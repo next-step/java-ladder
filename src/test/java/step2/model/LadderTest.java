@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.groups.Tuple.tuple;
 
 /*
 - 최대 사다리의 높이를 입력받는다.
@@ -34,13 +35,32 @@ public class LadderTest {
         Person person = Person.createPerson("pobi,honux,crong,jk");
         Ladder ladder = Ladder.createLadder(person, 5, () -> true);
         assertThat(ladder.getLine())
-                .extracting(Line::getPoints)
-                .containsExactly(
-                        List.of(false, true, false, true),
-                        List.of(false, true, false, true),
-                        List.of(false, true, false, true),
-                        List.of(false, true, false, true),
-                        List.of(false, true, false, true)
+                .extracting("points")
+                .contains(
+                        List.of(
+                                new Point(false, true),
+                                new Point(true, false),
+                                new Point(false, true),
+                                new Point(true, false)
+                        ),
+                        List.of(
+                                new Point(false, true),
+                                new Point(true, false),
+                                new Point(false, true),
+                                new Point(true, false)
+                        ),
+                        List.of(
+                                new Point(false, true),
+                                new Point(true, false),
+                                new Point(false, true),
+                                new Point(true, false)
+                        ),
+                        List.of(
+                                new Point(false, true),
+                                new Point(true, false),
+                                new Point(false, true),
+                                new Point(true, false)
+                        )
                 );
     }
 
