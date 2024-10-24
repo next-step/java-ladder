@@ -32,4 +32,12 @@ public class Point {
     public Point next(boolean current) {
         return new Point(this.current, current);
     }
+
+    public Point next(RandomGenerator random) {
+        return new Point(this.current, random.nextBoolean());
+    }
+
+    public Point last() {
+        return new Point(this.current, false);
+    }
 }
