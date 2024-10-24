@@ -21,7 +21,7 @@ public class RandomLine implements LineCreatableStrategy {
         return new Line(points);
     }
 
-    private static Boolean isTrueContinuous(Boolean current, final AtomicReference<Boolean> previous) {
+    private Boolean isTrueContinuous(Boolean current, final AtomicReference<Boolean> previous) {
         if (Boolean.TRUE.equals(previous.get()) && current) {
             current = false;
         }

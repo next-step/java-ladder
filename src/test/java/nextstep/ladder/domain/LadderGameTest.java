@@ -1,8 +1,8 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.vo.Input;
 import nextstep.ladder.vo.Result;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -22,10 +22,9 @@ public class LadderGameTest {
     }
 
     @Test
+    @DisplayName("사다리게임 결과")
     void play() {
-        Input input = new Input("pobi,honux,crong,jk", 5);
-
-        Result result = ladderGame.play(input);
+        Result result = ladderGame.play("pobi,honux,crong,jk", 5);
 
         assertThat(result.getPersons()).isEqualTo(PERSONS);
         assertThat(result.getLines()).isEqualTo(ALL_FALSE_LINE_LIST);

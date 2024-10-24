@@ -8,23 +8,32 @@ import nextstep.ladder.service.LadderService;
 import nextstep.ladder.view.View;
 
 public class Config {
-    public static LadderController ladderController() {
+    private static final Config config = new Config();
+
+    private Config() {
+    }
+
+    public static Config getInstance(){
+        return config;
+    }
+
+    public LadderController ladderController() {
         return new LadderController(view(), ladderService());
     }
 
-    private static LadderService ladderService() {
+    private LadderService ladderService() {
         return new LadderService(ladderGame());
     }
 
-    private static LadderGame ladderGame() {
+    private LadderGame ladderGame() {
         return new LadderGame(lineCreatableStrategy());
     }
 
-    private static LineCreatableStrategy lineCreatableStrategy() {
+    private LineCreatableStrategy lineCreatableStrategy() {
         return new RandomLine();
     }
 
-    private static View view() {
+    private View view() {
         return new View();
     }
 }

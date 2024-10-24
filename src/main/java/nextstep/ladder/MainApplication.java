@@ -5,7 +5,8 @@ import nextstep.ladder.controller.LadderController;
 
 public class MainApplication {
     public static void main(String[] args) {
-        LadderController ladderController = Config.ladderController();
+        Config config = Config.getInstance();
+        LadderController ladderController = config.ladderController();
         ladderController.run();
     }
 }

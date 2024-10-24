@@ -2,7 +2,6 @@ package nextstep.ladder.controller;
 
 import nextstep.ladder.service.LadderService;
 import nextstep.ladder.view.View;
-import nextstep.ladder.vo.Input;
 import nextstep.ladder.vo.Result;
 
 public class LadderController {
@@ -15,9 +14,10 @@ public class LadderController {
     }
 
     public void run() {
-        Input input = view.input();
+        String names = view.inputNames();
+        int countLadderHeight = view.inputCountLadderHeight();
 
-        Result result = ladderService.play(input);
+        Result result = ladderService.play(names, countLadderHeight);
 
         view.output(result);
     }

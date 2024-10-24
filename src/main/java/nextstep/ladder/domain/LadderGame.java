@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.strategy.LineCreatableStrategy;
-import nextstep.ladder.vo.Input;
 import nextstep.ladder.vo.Result;
 
 import java.util.ArrayList;
@@ -18,9 +17,9 @@ public class LadderGame {
         this.lineCreatableStrategy = lineCreatableStrategy;
     }
 
-    public Result play(final Input input) {
-        List<Person> persons = createPerson(input.getNames());
-        List<Line> lines = createLadder(input.getNumber(), persons.size());
+    public Result play(final String names, final int countLadderHeight) {
+        List<Person> persons = createPerson(names);
+        List<Line> lines = createLadder(countLadderHeight, persons.size());
         return new Result(persons, lines);
     }
 

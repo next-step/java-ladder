@@ -15,21 +15,17 @@ public class Line {
         this.points.addAll(points);
     }
 
-    private static boolean hasConsecutiveTrues(final List<Boolean> points) {
+    private boolean hasConsecutiveTrues(final List<Boolean> points) {
         return IntStream.range(1, points.size())
                 .anyMatch(index -> points.get(index) && points.get(index - 1));
     }
 
-    public String print() {
-        StringBuilder result = new StringBuilder("     |");
-        for (Boolean point : points) {
-            String value = "     ";
-            if (point) {
-                value = "-----";
-            }
-            result.append(value).append("|");
-        }
-        return result.toString();
+    public int size() {
+        return points.size();
+    }
+
+    public boolean isPointTrue(int index) {
+        return points.get(index);
     }
 
     @Override
