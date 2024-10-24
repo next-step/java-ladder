@@ -2,11 +2,11 @@ package ladder;
 
 import java.util.Objects;
 
-public class Player {
+public class PlayerOld {
 
     private final String name;
 
-    public Player(String name) {
+    public PlayerOld(String name) {
         if (name.length() > 5) {
             throw new IllegalArgumentException("name is too long");
         }
@@ -17,9 +17,9 @@ public class Player {
     public boolean equals(Object o) {
         if (this == o)
             return true;
-        if (!(o instanceof Player))
+        if (!(o instanceof PlayerOld))
             return false;
-        Player that = (Player)o;
+        PlayerOld that = (PlayerOld)o;
         return Objects.equals(name, that.name);
     }
 

@@ -8,15 +8,15 @@ public class Main {
     public static final String CHECK_ALL = "all";
 
     public static void main(String[] args) {
-        Players players = InputView.inputPlayers();
+        PlayersOld playersOld = InputView.inputPlayers();
         String[] inputResults = InputView.inputResult();
-        InputResult inputResult = new InputResult(inputResults, players.size());
+        InputResult inputResult = new InputResult(inputResults, playersOld.size());
         int height = InputView.inputHeight();
 
-        Ladder ladder = new Ladder(height, players.size());
-        LadderResult ladderResult = ladder.run(players, inputResult);
+        LadderOld ladderOld = new LadderOld(height, playersOld.size());
+        LadderResult ladderResult = ladderOld.run(playersOld, inputResult);
 
-        OutputView.outputLadderGame(players, ladder, inputResult);
+        OutputView.outputLadderGame(playersOld, ladderOld, inputResult);
 
         String personName = InputView.wantPerson();
         while (!personName.equals(CHECK_ALL)) {

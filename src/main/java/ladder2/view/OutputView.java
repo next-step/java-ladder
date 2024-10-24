@@ -1,14 +1,17 @@
-package ladder.view;
+package ladder2.view;
+
+import static java.util.stream.Collectors.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import ladder.InputResult;
-import ladder.LadderOld;
-import ladder.LadderResult;
-import ladder.PlayerOld;
-import ladder.PlayersOld;
+import ladder2.Ladder;
+import ladder2.LadderResult;
+import ladder2.Player;
+import ladder2.Players;
+import ladder2.Position;
 
 public class OutputView {
 
@@ -17,12 +20,12 @@ public class OutputView {
     private static final String LADDER_HORIZON = "-----";
     private static final String LADDER_BLANK = "     ";
 
-    public static void outputLadderGame(PlayersOld playersOld, LadderOld ladderOld, InputResult inputResult) {
+    public static void outputLadderGame(Players players, Ladder ladder, InputResult inputResult) {
         System.out.println();
         System.out.println("실행결과");
         System.out.println();
-        playerView(playersOld);
-        ladderView(ladderOld);
+        playerView(players);
+        ladderView(ladder);
         resultView(inputResult.getLadderResults());
     }
 
@@ -40,23 +43,30 @@ public class OutputView {
             .forEach(value -> System.out.println(value.getKey() + " : " + value.getValue()));
     }
 
-    private static void playerView(PlayersOld playersOld) {
-        String playerNames = playersOld.getPlayers().stream()
-            .map(PlayerOld::getName)
-            .collect(Collectors.joining(PLAYER_DELIMITER));
+    private static void playerView(Players players) {
+        String playerNames = players.getPlayers().stream()
+            .map(Player::getName)
+            .collect(joining(PLAYER_DELIMITER));
 
         System.out.println(playerNames);
     }
 
-    private static void ladderView(LadderOld ladderOld) {
-        ladderOld.getLines().stream()
-            .flatMap(line -> line.getPoints().stream()
-                .map(OutputView::drawHorizon)
-                .collect(Collectors.joining())
-                .concat(LADDER_VERTICAL)
-                .lines())
+    private static void ladderView(Ladder ladder) {
+        String ladderView = ladder.getLines().stream()
+            .map(line -> drawLines(line.getPositions()) + "\n")
             .map(it -> LADDER_BLANK + it)
-            .forEach(System.out::println);
+            .collect(joining());
+        System.out.println(ladderView);
+    }
+
+    private static String drawLines(List<Position> positions) {
+        return positions.stream()
+            .map(OutputView::drawLine)
+            .collect(joining());
+    }
+
+    private static String drawLine(Position position) {
+        return LADDER_VERTICAL + (position.lineOrBlank() ? LADDER_HORIZON : LADDER_BLANK);
     }
 
     private static void resultView(String[] results) {
@@ -64,9 +74,5 @@ public class OutputView {
         Arrays.stream(results)
             .map(it -> it + PLAYER_DELIMITER)
             .forEach(System.out::print);
-    }
-
-    private static String drawHorizon(boolean checkDraw) {
-        return LADDER_VERTICAL + (checkDraw ? LADDER_HORIZON : LADDER_BLANK);
     }
 }

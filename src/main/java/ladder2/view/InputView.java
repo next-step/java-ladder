@@ -1,17 +1,17 @@
-package ladder.view;
+package ladder2.view;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import ladder.PlayerOld;
-import ladder.PlayersOld;
+import ladder2.Player;
+import ladder2.Players;
 
 public class InputView {
 
     private static final String DELIMITER = ",";
 
-    public static PlayersOld inputPlayers() {
+    public static Players inputPlayers() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         return splitPlayer(scanner.nextLine());
@@ -43,13 +43,13 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    private static PlayersOld splitPlayer(String inputPlayers) {
+    private static Players splitPlayer(String inputPlayers) {
         String[] players = inputPlayers.split(DELIMITER);
-        List<PlayerOld> playerOldList = new ArrayList<>();
+        List<Player> playerList = new ArrayList<>();
         for (String player : players) {
-            playerOldList.add(new PlayerOld(player));
+            playerList.add(new Player(player));
         }
 
-        return new PlayersOld(playerOldList);
+        return new Players(playerList);
     }
 }

@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-class LadderResultTest {
+class LadderOldResultTest {
 
     @Test
     void 생성() {
