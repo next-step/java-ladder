@@ -1,5 +1,6 @@
 package step2.model;
 
+import step2.util.LadderDirection;
 import step2.ganerator.RandomGenerator;
 
 import java.util.ArrayList;
@@ -21,17 +22,19 @@ public class Line {
 
     //좌우로 살피고 true인 라인으로 옮긴다.
     public int getLineForward(int i) {
-        if (i >= 0 && points.get(i)) {
-            return i - 1;
-        }
-        if (i < points.size() - 1 && points.get(i + 1)) {
-            return i + 1;
-        }
-        return i;
+        return LadderDirection.decideDirection(this, i);
     }
 
     public List<Boolean> getPoints() {
         return points;
+    }
+
+    public int pointSize() {
+        return points.size();
+    }
+
+    public boolean getLineTrueOrFalse(int i) {
+        return points.get(i);
     }
 
     //사다리 라인을 생성한다.
