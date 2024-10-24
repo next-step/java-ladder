@@ -20,4 +20,16 @@ public class InputView {
         return scanner.nextInt();
     }
 
+    //사다리게임 보상을 입력한다.
+    public String inputLadderPrize() {
+        System.out.println(InputMessage.INPUT_LADDER_PRIZE.message());
+        return scanner.next();
+    }
+
+    //결과를 보고싶은 사람을 입력한다.
+    public String inputChoosePerson() {
+        System.out.println(InputMessage.INPUT_CHOOSE_PERSON.message());
+        return scanner.next();
+    }
+
 }
