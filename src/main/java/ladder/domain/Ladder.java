@@ -35,11 +35,8 @@ public class Ladder {
     }
 
     private Points movePoints(Members members) {
-        Points points = new Points(members.getSize());
-        for (Line line : lines) {
-            points = points.move(line);
-        }
-        return points;
+        return lines.stream()
+                .reduce(new Points(members.getSize()), Points::move, (p1, p2) -> p2);
     }
 
     private static void validateToPlay(Members members, Rewords rewords) {
