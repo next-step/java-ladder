@@ -3,13 +3,14 @@ package ladder.domain;
 import ladder.exception.InvalidHeightOfLadderException;
 import ladder.exception.InvalidNumberOfPlayersException;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
 
-    private List<Line> lines;
+    private final List<Line> lines;
 
     public Ladder(int heightOfLadder, int numberOfPlayers) {
         this.lines = createLadder(heightOfLadder, numberOfPlayers);
@@ -37,6 +38,6 @@ public class Ladder {
     }
 
     public List<Line> getLines() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 }

@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,7 +10,7 @@ public class Players {
     private final List<Player> players;
 
     private Players(List<Player> players) {
-        this.players = players;
+        this.players = new ArrayList<>(players);
     }
 
     public static Players of(List<String> namesOfPeople) {
@@ -22,6 +24,6 @@ public class Players {
     }
 
     public List<Player> getPlayers() {
-        return players;
+        return Collections.unmodifiableList(players);
     }
 }
