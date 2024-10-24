@@ -8,7 +8,20 @@
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
---- 
+---
+# STEP3 TODO
+# STEP3 DONE
+- [x] 기능 요구사항
+  - [x] 사다리 게임 실행 결과를 출력한다.
+  - [x] 개인별 이름을 입력하면 개인별 결과를 출력한다.
+  - [x] all을 입력하면 전체 참여자의 실행 결과를 출력한다
+- [x] 피드백
+  - [x] 배팅 입력 사이즈 검증
+  - [x] 오타 수정
+  - [x] increase, decrease 메소드명 수정 
+  - [x] 참가자 이름 중복 체크 
+  - [x] LadderResult Map -> List(UserResult) 변경
+---
 # STEP2 TODO
 # STEP2 DONE
 - [x] 기능 요구사항
@@ -21,7 +34,13 @@
 -[x] 프로그래밍 요구사항
   - [x] 자바 8의 스트림과 람다를 적용해 프로그래밍한다.
   - [x] 규칙 6: 모든 엔티티를 작게 유지한다.
-
+- [x] step2 피드백
+  - [x] height 매직넘버 적용
+  - [x] LadderGame 라인 생성 전략 주입
+  - [x] Line, Lines 라인 생성 전략 주입
+  - [x] 불필요 테스트 제거
+  - [x] SCANNER 대문자
+  - [x] InputView에서 객체 생성 분리
 --- 
 # STEP1 TODO
 # STEP1 DONE

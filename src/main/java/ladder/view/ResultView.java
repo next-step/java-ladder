@@ -1,10 +1,12 @@
 package ladder.view;
 
-import ladder.Line;
-import ladder.Lines;
-import ladder.Name;
+import ladder.Bettings;
+import ladder.line.Line;
+import ladder.line.Lines;
+import ladder.name.Name;
+import ladder.name.Names;
 
-import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ResultView {
@@ -13,8 +15,9 @@ public class ResultView {
     private static final String HORIZONTAL_LINE = "------";
     private static final String EMPTY_SPACE = "      ";
 
-    public void showNames(List<Name> names) {
-        String namesLine = names.stream()
+    public void showNames(Names names) {
+        String namesLine = names.getNames()
+                .stream()
                 .map(Name::getName)
                 .map(name -> String.format("%7s", name))
                 .collect(Collectors.joining());
@@ -32,6 +35,22 @@ public class ResultView {
                 .map(isConnected -> isConnected ? HORIZONTAL_LINE + VERTICAL_LINE : EMPTY_SPACE + VERTICAL_LINE)
                 .forEach(System.out::print);
         System.out.println();
+    }
+
+
+    public void showBettings(Bettings bettings) {
+        String namesLine = bettings.getBettings()
+                .stream()
+                .map(name -> String.format("%7s", name))
+                .collect(Collectors.joining());
+        System.out.println(namesLine);
+    }
+
+    public void showBettingResult(Map<String, String> ladderResult) {
+        System.out.println();
+        System.out.println("실행결과");
+        ladderResult.forEach((key, value) -> System.out.printf("%s: %s%n", key, value));
+
     }
 
 }

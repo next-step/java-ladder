@@ -1,4 +1,6 @@
-package ladder;
+package ladder.line;
+
+import ladder.Position;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,30 +8,34 @@ import java.util.Objects;
 
 public class Line {
     private List<Boolean> points = new ArrayList<>();
-    private LineGenerateStrategy lineGenerateStrategy;
 
     public Line(List<Boolean> points) {
-        this(points, new RandomLineGenerator());
-    }
-
-    public Line(List<Boolean> points, LineGenerateStrategy lineGenerateStrategy) {
         this.points = points;
-        this.lineGenerateStrategy = lineGenerateStrategy;
     }
 
     public Line(int countOfPerson, LineGenerateStrategy lineGenerateStrategy) {
-        this.lineGenerateStrategy = lineGenerateStrategy;
-        generatePoints(countOfPerson);
-    }
-
-    private void generatePoints(int countOfPerson) {
-
         boolean isPrevLineConnected = false;
+
         for (int i = 0; i < countOfPerson - 1; i++) {
             boolean currentLineConnection = !isPrevLineConnected && lineGenerateStrategy.generate();
             points.add(currentLineConnection);
             isPrevLineConnected = currentLineConnection;
         }
+    }
+
+    public Position move(int position) {
+        return move(new Position(position));
+    }
+
+    public Position move(Position position) {
+        if (position.isGreaterThanZero() && points.get(position.prev().getPosition())) {
+            return position.prev();
+        }
+
+        if (position.isLessThan(points.size()) && points.get(position.getPosition())) {
+            return position.next();
+        }
+        return position;
     }
 
     public List<Boolean> getPoints() {
