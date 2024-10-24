@@ -38,12 +38,6 @@ public class PlayerGroup {
         return toPlay;
     }
 
-    public List<String> playerNames() {
-        return players.stream()
-                .map(Player::getName)
-                .collect(Collectors.toUnmodifiableList());
-    }
-
     public int count() {
         return players.size();
     }
