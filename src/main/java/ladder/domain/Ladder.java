@@ -3,9 +3,12 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import ladder.strategy.LadderGenerateStrategy;
 
 public class Ladder {
+    private static final int START_RANGE_NUMBER = 0;
     private static final int MIN_LENGTH = 1;
     private static final String MIN_LENGTH_ERROR = "사다리 길이는 최소 " + MIN_LENGTH + "이상이어야 합니다.";
 
@@ -13,9 +16,9 @@ public class Ladder {
 
     public Ladder(int maxLength, Users users, LadderGenerateStrategy randomGenerateStrategy) {
         validateMinLength(maxLength);
-        for (int i = 0; i < maxLength; i++) {
-            lines.add(Line.of(users, randomGenerateStrategy));
-        }
+        lines = IntStream.range(START_RANGE_NUMBER, maxLength)
+                .mapToObj(line -> Line.of(users, randomGenerateStrategy))
+                .collect(Collectors.toList());
     }
 
     private void validateMinLength(int minLength) {
