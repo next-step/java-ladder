@@ -11,7 +11,7 @@ class LineTest {
     @Test
     void lineCreateTest() {
         int numberOfPlayers = 4;
-        Line line = new Line(numberOfPlayers);
+        Line line = new Line(numberOfPlayers, new RandomLineGenerator());
 
         assertThat(line.getPoints()).hasSize(numberOfPlayers - 1);
     }
