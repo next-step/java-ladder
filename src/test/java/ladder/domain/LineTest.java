@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -15,18 +13,7 @@ public class LineTest {
     public static final Line l1 = new Line(2, () -> true);
     public static final Line l2 = new Line(2, () -> false);
     public static final Line l3 = new Line(3, () -> true);
-
-    @Test
-    @DisplayName("리스트를 넣으면 그 라인에서의 이동 결과를 반환한다.")
-    void 리스트_이동_사다리없을경우() {
-        assertThat(l2.moveResult(List.of(0, 1))).isEqualTo(List.of(0, 1));
-    }
-
-    @Test
-    @DisplayName("리스트를 넣으면 그 라인에서의 이동 결과를 반환한다.")
-    void 리스트_이동() {
-        assertThat(l1.moveResult(List.of(0, 1))).isEqualTo(List.of(1, 0));
-    }
+    public static final Line l4 = new Line(4, () -> true);
 
     @ParameterizedTest
     @DisplayName("범위외에 인덱스를 요청할 때 예외를 발생시킨다.")

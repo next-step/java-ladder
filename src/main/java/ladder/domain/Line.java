@@ -2,7 +2,6 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -22,12 +21,6 @@ public class Line {
             throw new IllegalArgumentException("객체 범위 외의 인덱스는 허용하지 않습니다.");
         }
         return points.get(index);
-    }
-
-    public List<Integer> moveResult(List<Integer> results) {
-        return results.stream()
-                .map(this::move)
-                .collect(Collectors.toList());
     }
 
     private void addHorizontal(int index, int max, CreateStrategy createStrategy) {
@@ -56,7 +49,7 @@ public class Line {
         return points.get(index - 1);
     }
 
-    private int move(int index) {
+    public int move(int index) {
         if (isAbleToMoveLeft(index)) {
             return index - 1;
         }

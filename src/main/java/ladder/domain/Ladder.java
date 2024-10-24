@@ -24,29 +24,31 @@ public class Ladder {
         return lines.size();
     }
 
-    public List<Line> getLadders() {
+    public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
 
     public LadderResult playLadders(Members members, Rewords rewords) {
+        validateToPlay(members, rewords);
+        Points points = movePoints(members);
+        return new LadderResult(getResultMap(points, members, rewords));
+    }
+
+    private Points movePoints(Members members) {
+        Points points = new Points(members.getSize());
+        for (Line line : lines) {
+            points = points.move(line);
+        }
+        return points;
+    }
+
+    private static void validateToPlay(Members members, Rewords rewords) {
         if (members.getSize() != rewords.getSize()) {
             throw new IllegalStateException("사다리 게임을 진행할 수 없습니다.");
         }
-        List<Integer> point = getResultPoints(members.getSize());
-        return new LadderResult(getResultMap(point, members, rewords));
     }
 
-    private List<Integer> getResultPoints(int memberCount) {
-        List<Integer> point = IntStream.range(0, memberCount)
-                .boxed()
-                .collect(Collectors.toList());
-        for (Line line : lines) {
-            point = line.moveResult(point);
-        }
-        return point;
-    }
-
-    private Map<Member, Reword> getResultMap(List<Integer> point, Members members, Rewords rewords) {
+    private Map<Member, Reword> getResultMap(Points point, Members members, Rewords rewords) {
         Map<Member, Reword> map = new LinkedHashMap<>();
         IntStream.range(0, members.getSize())
                 .forEach(index -> map.put(members.getMember(index), rewords.get(point.get(index))));

@@ -38,7 +38,7 @@ public class ResultView {
         sb.append(System.lineSeparator());
 
 
-        for (Line line : ladder.getLadders()) {
+        for (Line line : ladder.getLines()) {
             printLines(line, sb);
         }
 

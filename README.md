@@ -88,3 +88,4 @@
 
 ## Step4. 리팩토링
 - [X] Lines -> Ladder 로 이름 변경
+- [X] 이동을 책임지는 객체 분리 (Points)
