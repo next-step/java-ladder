@@ -12,7 +12,7 @@ public class PlayerTest {
     }
 
     @Test
-    void switch_position() {
+    void switchPosition() {
         Player player1 = new Player("1", 0);
         Player player2 = new Player("2", 1);
 

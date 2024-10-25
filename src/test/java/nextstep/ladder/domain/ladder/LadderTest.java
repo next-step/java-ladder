@@ -26,7 +26,7 @@ public class LadderTest {
             "true,false,true,false:true,false,true,false:true,false,false,true:true,false,false,true:0,1,2,3,4",
             "true,false,true,false:true,false,false,true:true,false,true,false:true,false,false,true:0,1,4,2,3"
     }, delimiter = ':')
-    void apply_ladder_result_to_list_from_play_result_of_all_ladder_lines(
+    void applyLadderResultToListFromPlayResultOfAllLadderLines(
             String ladderLine1,
             String ladderLine2,
             String ladderLine3,

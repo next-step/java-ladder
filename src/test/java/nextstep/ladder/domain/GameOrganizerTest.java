@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class GameOrganizerTest {
 
     @Test
-    void get_match_result() {
+    void getMatchResult() {
         PlayerGroup playerGroup = new PlayerGroup("pobi,honux,crong,jk");
         LadderResultGroup ladderResultGroup =
                 LadderResultGroup.of("꽝, 5000, 3000, 꽝", playerGroup.count());

@@ -40,7 +40,7 @@ public class LadderLineTest {
             "true,false,true,false,true:1,0,3,2,5,4",
             "true,false,false,true,false:1,0,2,4,3,5"
     }, delimiter = ':')
-    void apply_ladder_play_result_to_player_group(String line, String result) {
+    void applyLadderPlayResultToPlayerGroup(String line, String result) {
         LadderLine ladderLine = new LadderLine(toList(line, Boolean::parseBoolean));
         List<Player> players = IntStream.range(0, 6)
                         .mapToObj(i -> new Player(String.valueOf(i), i))
