@@ -32,6 +32,24 @@ public class Line {
         return !points.isEmpty() && !points.get(points.size() - 1);
     }
 
+    private boolean hasLeftLadder(int index){
+        return !points.isEmpty() && !points.get(index - 1);
+    }
+
+    private boolean hasRightLadder(int index) {
+        return index + 1 < points.size() && points.get(index + 1);
+    }
+
+    public int decideNextIndex(int index) {
+        if (!(index == 0) && hasLeftLadder(index)) {
+            return index - 1;
+        }
+        if (index != points.size() && hasRightLadder(index)) {
+            return index + 1;
+        }
+        return index;
+    }
+
     public List<Boolean> getPoints() {
         return Collections.unmodifiableList(points);
     }

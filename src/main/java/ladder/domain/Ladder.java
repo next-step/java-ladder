@@ -2,7 +2,9 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import ladder.strategy.LadderGenerateStrategy;
@@ -29,5 +31,21 @@ public class Ladder {
 
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
+    }
+
+    public Map<Integer, Integer> rideLadder(int userSize) {
+        Map<Integer, Integer> resultMap = new HashMap<>();
+        for (int i = 0; i < userSize; i++) {
+            int finalIndex = decideUserResult(i);
+            resultMap.put(i, finalIndex);
+        }
+        return Collections.unmodifiableMap(resultMap);
+    }
+
+    private int decideUserResult(int index) {
+        for (Line line : lines) {
+            index = line.decideNextIndex(index);
+        }
+        return index;
     }
 }
