@@ -5,7 +5,7 @@ import nextstep.ladder.domain.result.LadderResultGroup;
 import nextstep.ladder.domain.result.MatchResult;
 import nextstep.ladder.domain.player.PlayerGroup;
 import nextstep.ladder.view.InputView;
-import nextstep.ladder.view.output.OutputView;
+import nextstep.ladder.view.OutputView;
 
 public class LadderGame {
 
@@ -20,7 +20,7 @@ public class LadderGame {
 
         MatchResult matchResult = GameOrganizer.getInstance().play(playerGroup, ladderResultGroup, ladder);
 
-        Visible outputView = new OutputView();
+        OutputView outputView = new OutputView();
         outputView.view(matchResult, ladder);
     }
 }
