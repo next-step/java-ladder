@@ -31,6 +31,8 @@ public class StreamStudy {
         List<String> printWords = words.stream()
                 .filter(w -> w.length() > 12)
                 .sorted(Comparator.comparingInt(String::length).reversed())
+                .distinct()
+                .limit(100)
                 .collect(Collectors.toList());
         printWords.forEach(System.out::println);
     }
