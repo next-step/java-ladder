@@ -18,8 +18,8 @@ public class LadderResultGroup {
         this.ladderResults = ladderResults;
     }
 
-    public static LadderResultGroup of(String resultStrings, int playerCount) {
-        String[] resultArray = toStringArray(resultStrings);
+    public static LadderResultGroup of(String ladderResultsToSplit, int playerCount) {
+        String[] resultArray = toStringArray(ladderResultsToSplit);
 
         if (resultArray.length != playerCount) {
             throw new IllegalArgumentException("참가자 수와 사다리 결과 수가 일치하지 않습니다.");

@@ -13,16 +13,16 @@ public class PlayerGroup {
 
     private final List<Player> players;
 
-    public PlayerGroup(String playerStrings) {
-        this(toList(playerStrings));
+    public PlayerGroup(String playersToSplit) {
+        this(toList(playersToSplit));
     }
 
     public PlayerGroup(List<Player> players) {
         this.players = players;
     }
 
-    private static List<Player> toList(String strings) {
-        String[] playerNames = toStringArray(strings);
+    private static List<Player> toList(String playersToSplit) {
+        String[] playerNames = toStringArray(playersToSplit);
 
         return IntStream.range(0, playerNames.length)
                 .mapToObj(i -> new Player(playerNames[i].trim(), i))
