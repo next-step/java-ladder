@@ -7,6 +7,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PlayerTest {
 
     @Test
+    void create() {
+        assertThat(new Player("test")).isEqualTo(new Player("test", 0));
+    }
+
+    @Test
     void switch_position() {
         Player player1 = new Player("1", 0);
         Player player2 = new Player("2", 1);

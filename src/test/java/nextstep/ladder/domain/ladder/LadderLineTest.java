@@ -13,6 +13,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LadderLineTest {
 
@@ -21,6 +22,16 @@ public class LadderLineTest {
         LadderLine ladderLine = LadderLine.of(9);
 
         assertThat(ladderLine.copy().size()).isEqualTo(8);
+    }
+
+    @Test
+    void throwExceptionIfPlayerCountNotMatch() {
+        LadderLine ladderLine = new LadderLine(toList("true,false,true,false,true", Boolean::parseBoolean));
+        List<Player> players = IntStream.range(0, 7)
+                .mapToObj(i -> new Player(String.valueOf(i), i))
+                .collect(Collectors.toList());
+
+        assertThatIllegalArgumentException().isThrownBy(() -> ladderLine.play(players));
     }
 
     @ParameterizedTest
