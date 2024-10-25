@@ -10,4 +10,4 @@
 
 ### 요구사항 3 - Optional에서 exception 처리
 
-+ [ ] nextstep.optional.ExpressionTest의 테스트가 통과하도록 Expression의 of 메소드를 구현
++ [x] nextstep.optional.ExpressionTest의 테스트가 통과하도록 Expression의 of 메소드를 구현
