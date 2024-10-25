@@ -20,4 +20,8 @@ public class LadderPrizes {
     public List<LadderPrize> getResults() {
         return results;
     }
+
+    public LadderPrize findPrize(int index) {
+        return results.get(index);
+    }
 }

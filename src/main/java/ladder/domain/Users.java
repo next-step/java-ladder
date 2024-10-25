@@ -35,4 +35,8 @@ public class Users {
     public List<UserName> getUsers() {
         return Collections.unmodifiableList(users);
     }
+
+    public UserName findUser(int index) {
+        return users.get(index);
+    }
 }
