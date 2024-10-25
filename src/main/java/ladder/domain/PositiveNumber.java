@@ -11,7 +11,7 @@ public class PositiveNumber {
     }
 
     public int validate(int number) {
-        if(number < MIN_NUMBER) {
+        if (number < MIN_NUMBER) {
             throw new IllegalArgumentException(NUMBER_ERROR_MESSAGE);
         }
         return number;

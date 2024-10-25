@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 public class Line {
 
     private final static String ZERO_ERROR_MESSAGE = "라인은 비어있을 수 없습니다.";
-    private final static String CONSECUTIVE_ERROR_MESSAGE = "연속으로 true 값이 올 수 없습니다.";
+    private final static String CONSECUTIVE_ERROR_MESSAGE = "연속으로 중복 될 수 없는 값이 존재합니다.";
 
     private final List<Boolean> points = new ArrayList<>();
 

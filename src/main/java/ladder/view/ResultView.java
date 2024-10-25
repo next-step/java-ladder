@@ -4,6 +4,7 @@ import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.Person;
 import ladder.domain.Persons;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,8 +45,9 @@ public class ResultView {
         });
         System.out.println();
     }
+
     private static String makeLadder(boolean hasLine) {
-        if(hasLine) {
+        if (hasLine) {
             return EXIST_LADDER;
         }
         return NO_LADDER;

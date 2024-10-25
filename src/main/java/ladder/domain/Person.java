@@ -13,7 +13,7 @@ public class Person {
     }
 
     private String validate(String name) {
-        if(name.length() > MAX_NAME_LENGTH) {
+        if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(MAX_NAME_ERROR_MESSAGE);
         }
         return name;
