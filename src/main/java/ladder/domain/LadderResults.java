@@ -16,4 +16,8 @@ public class LadderResults {
                 .map(LadderResult::new)
                 .collect(Collectors.toList());
     }
+
+    public List<LadderResult> getResults() {
+        return results;
+    }
 }

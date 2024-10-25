@@ -14,4 +14,8 @@ public class LadderResult {
             throw new IllegalArgumentException(BLANK_ERROR);
         }
     }
+
+    public String getResult() {
+        return result;
+    }
 }
