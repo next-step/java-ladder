@@ -11,12 +11,12 @@
 ### 스트림
 
 + [x] filter로 파일 문자 중 길이가 12보다 큰 문자의 수를 구한다.
-+ [ ] map으로 List에 담긴 모든 숫자 값을 2배한 결과 List를 생성한다.
-+ [ ] reduce로 List에 담긴 모든 숫자의 합을 구한다.
++ [x] map으로 List에 담긴 모든 숫자 값을 2배한 결과 List를 생성한다.
++ [x] reduce로 List에 담긴 모든 숫자의 합을 구한다.
 
 ### map, reduce, filter 실습 1
 
-+ [ ] List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구한다. 지금까지 학습한 map, reduce, filter를 활용해 구현해야 한다.
++ [x] List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구한다. 지금까지 학습한 map, reduce, filter를 활용해 구현해야 한다.
 
 ### map, reduce, filter 실습 2
 
