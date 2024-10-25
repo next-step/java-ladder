@@ -1,10 +1,10 @@
 package ladder.domain;
 
-public class LadderResult {
+public class LadderPrize {
     private static final String BLANK_ERROR = "결과는 공백일 수 없습니다.";
     private final String result;
 
-    public LadderResult(String result) {
+    public LadderPrize(String result) {
         validateIsBlank(result);
         this.result = result;
     }

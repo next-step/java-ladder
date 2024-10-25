@@ -5,16 +5,16 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 
-class LadderResultTest {
+class LadderPrizeTest {
     @Test
     void 결과_생성() {
-        LadderResult ladderResult = new LadderResult("꽝");
+        LadderPrize ladderResult = new LadderPrize("꽝");
         assertThat(ladderResult).isNotNull();
     }
 
     @Test
     void 결과값_검증(){
-        assertThatThrownBy(() -> new LadderResult(""))
+        assertThatThrownBy(() -> new LadderPrize(""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

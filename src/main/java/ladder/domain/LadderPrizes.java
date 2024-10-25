@@ -4,20 +4,20 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LadderResults {
-    private final List<LadderResult> results;
+public class LadderPrizes {
+    private final List<LadderPrize> results;
 
-    public LadderResults(String inputValue) {
+    public LadderPrizes(String inputValue) {
         this.results = convertToResult(inputValue);
     }
 
-    private List<LadderResult> convertToResult(String inputValue) {
+    private List<LadderPrize> convertToResult(String inputValue) {
         return Arrays.stream(inputValue.split(","))
-                .map(LadderResult::new)
+                .map(LadderPrize::new)
                 .collect(Collectors.toList());
     }
 
-    public List<LadderResult> getResults() {
+    public List<LadderPrize> getResults() {
         return results;
     }
 }

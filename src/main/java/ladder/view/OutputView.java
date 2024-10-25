@@ -2,7 +2,7 @@ package ladder.view;
 
 import java.util.stream.Collectors;
 import ladder.domain.Ladder;
-import ladder.domain.LadderResults;
+import ladder.domain.LadderPrizes;
 import ladder.domain.Users;
 
 public class OutputView {
@@ -11,7 +11,7 @@ public class OutputView {
     private static final String LADDER_HORIZON = "-----";
     private static final String LADDER_NONE = "     ";
 
-    public static void printGeneratedLadder(Users users, Ladder ladder, LadderResults ladderResults) {
+    public static void printGeneratedLadder(Users users, Ladder ladder, LadderPrizes ladderResults) {
         System.out.println(LADDER_RESULT_MESSAGE);
         printUserNames(users);
         printLadder(ladder);
@@ -32,7 +32,7 @@ public class OutputView {
         });
     }
 
-    private static void printResults(LadderResults ladderResults) {
+    private static void printResults(LadderPrizes ladderResults) {
         String results = ladderResults.getResults().stream()
                 .map(result -> String.format("%-6s", result.getResult()))
                 .collect(Collectors.joining(""));
