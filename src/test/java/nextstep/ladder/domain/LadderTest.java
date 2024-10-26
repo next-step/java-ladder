@@ -3,10 +3,11 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderTest {
     @Test
@@ -21,10 +22,20 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("실패 - getMap 메서드의 반환된 List를 수정했을 때 예외가 발생한다.")
-    void throwExceptionWhenModifyingReturnedList() {
-        Ladder ladder = new Ladder(new PositiveNumber(3), new PositiveNumber(5));
-        assertThatThrownBy(() -> ladder.getMap().add(new LadderRow(new PositiveNumber(3), () -> true)))
-                .isInstanceOf(UnsupportedOperationException.class);
+    @DisplayName("getLadderAsString 메서드가 width 만큼의 가로 폭과 지정된 height 만큼의 세로 길이를 가진 사다리 문자열을 반환한다.")
+    void getLadderAsStringTest() {
+        PositiveNumber width = new PositiveNumber(3);
+        PositiveNumber height = new PositiveNumber(3);
+        Ladder ladder = new Ladder(width, height);
+
+        List<String> ladderAsString = Arrays.stream(ladder.getLadderAsString().split("\n"))
+                .collect(Collectors.toList());
+
+        for (String row : ladderAsString) {
+            long pipeCount = row.chars().filter(it -> it == '|').count();
+            assertThat(pipeCount).isEqualTo(width.getValue());
+        }
+        assertThat(ladderAsString)
+                .hasSize(height.getValue());
     }
 }

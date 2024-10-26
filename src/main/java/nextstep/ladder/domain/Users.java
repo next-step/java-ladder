@@ -1,7 +1,10 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.util.StringUtils;
+
 import java.util.Collections;
 import java.util.LinkedHashSet;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -25,5 +28,18 @@ public class Users {
 
     public int size() {
         return users.size();
+    }
+
+    public String getUsersAsString() {
+        return users.stream()
+                .map(it -> StringUtils.lPad(it.getName(), 6))
+                .collect(Collectors.joining());
+    }
+
+    public User findUserByName(String name) {
+        return users.stream()
+                .filter(user -> user.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("존재하지 않는 유저 입니다."));
     }
 }

@@ -2,26 +2,18 @@ package nextstep.ladder.domain;
 
 public class LadderGame {
     private final Users players;
-    private final Ladder ladder;
+    private final GameBoard gameBoard;
 
-    public LadderGame(Users players, PositiveNumber height) {
+    public LadderGame(Users players, PositiveNumber height, ResultRow resultRow) {
         this.players = players;
-        this.ladder = new Ladder(new PositiveNumber(players.size()), height);
+        this.gameBoard = new GameBoard(new PositiveNumber(players.size()), height, resultRow);
     }
 
-    public Users getPlayers() {
-        return players;
+    public String getPlayerAsString() {
+        return players.getUsersAsString();
     }
 
-    public Ladder getLadder() {
-        return ladder;
-    }
-
-    public String getLadderAsString() {
-        StringBuilder builder = new StringBuilder();
-        ladder.getMapAsString().forEach(row ->
-            builder.append(row).append("|").append("\n")
-        );
-        return builder.toString();
+    public String getGameBoardAsString() {
+        return gameBoard.getGameBoardAsString();
     }
 }

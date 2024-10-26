@@ -7,6 +7,7 @@ import java.util.List;
 public class LadderRow {
     private static final String HORIZONTAL_BAR = "-----";
     private static final String EMPTY_HORIZONTAL_BAR = "     ";
+    private static final String ROW_DELIMITER = "|";
 
     private final List<String> row;
     private final BarGeneratorStrategy generatorStrategy;
@@ -46,6 +47,6 @@ public class LadderRow {
     }
 
     public String getRowAsString() {
-        return String.join("|", row);
+        return String.join("|", row) + ROW_DELIMITER;
     }
 }

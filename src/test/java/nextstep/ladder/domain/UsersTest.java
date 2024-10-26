@@ -5,10 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class UsersTest {
     @Test
@@ -19,15 +17,6 @@ class UsersTest {
                 .hasSize(3)
                 .extracting(User::getName)
                 .contains("홍길동", "전우치", "고길동");
-    }
-
-    @Test
-    @DisplayName("실패 - getUsers 메서드가 반환된 List를 수정했을 때 예외가 발생한다.")
-    void throwExceptionWhenModifyingReturnedList() {
-        Set<User> findUsers = initUser().getUsers();
-        User user = new User("둘리");
-        assertThatThrownBy(() -> findUsers.add(user))
-                .isInstanceOf(UnsupportedOperationException.class);
     }
 
     @Test

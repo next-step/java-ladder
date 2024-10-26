@@ -6,14 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Ladder {
-    private final PositiveNumber width;
-    private final PositiveNumber height;
     private final List<LadderRow> map;
 
     public Ladder(PositiveNumber width, PositiveNumber height) {
-        this.width = width;
-        this.height = height;
-        map = new ArrayList<>();
+        this.map = new ArrayList<>();
         makeMap(width, height);
     }
 
@@ -27,7 +23,19 @@ public class Ladder {
         return Collections.unmodifiableList(map);
     }
 
-    public List<String> getMapAsString() {
+    public String getLadderAsString() {
+        List<String> mapAsString = getMapAsString();
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < map.size(); i++) {
+            builder.append(mapAsString.get(i));
+            if (i != mapAsString.size() - 1) {
+                builder.append("\n");
+            }
+        }
+        return builder.toString();
+    }
+
+    private List<String> getMapAsString() {
         return map.stream()
                 .map(LadderRow::getRowAsString)
                 .collect(Collectors.toList());

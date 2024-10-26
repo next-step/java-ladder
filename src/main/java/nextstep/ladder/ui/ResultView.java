@@ -1,7 +1,6 @@
 package nextstep.ladder.ui;
 
 import nextstep.ladder.domain.LadderGame;
-import nextstep.ladder.util.StringUtils;
 
 public class ResultView {
     private static final String GAME_RESULT_HEADER = "\n실행결과\n";
@@ -10,24 +9,21 @@ public class ResultView {
         throw new UnsupportedOperationException("인스턴스를 생성할 수 없습니다.");
     }
 
-    public static void printGameResult(LadderGame ladderGame) {
+    public static void printLadder(LadderGame ladderGame) {
         printHeader();
         printPlayers(ladderGame);
-        printLadderMap(ladderGame);
+        printGameBoard(ladderGame);
     }
 
     private static void printHeader() {
         System.out.println(GAME_RESULT_HEADER);
     }
 
-    private static void printLadderMap(LadderGame ladderGame) {
-        System.out.println(ladderGame.getLadderAsString());
+    private static void printGameBoard(LadderGame ladderGame) {
+        System.out.println(ladderGame.getGameBoardAsString());
     }
 
     private static void printPlayers(LadderGame ladderGame) {
-        StringBuilder builder = new StringBuilder();
-        ladderGame.getPlayers().getUsers().forEach(player ->
-                builder.append(StringUtils.lPad(player.getName(),6)));
-        System.out.println(builder);
+        System.out.println(ladderGame.getPlayerAsString());
     }
 }
