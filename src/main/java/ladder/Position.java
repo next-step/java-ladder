@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Position {
     private static final int ZERO = 0;
-    public static final int ONE = 1;
+    private static final int DISTANCE = 1;
     private final int value;
 
     public Position(int value) {
@@ -14,12 +14,12 @@ public class Position {
         this.value = value;
     }
 
-    public Position prev() {
-        return new Position(value - ONE);
+    public Position right() {
+        return new Position(value - DISTANCE);
     }
 
-    public Position next() {
-        return new Position(value + ONE);
+    public Position left() {
+        return new Position(value + DISTANCE);
     }
 
     public boolean isGreaterThanZero() {

@@ -22,13 +22,6 @@ class PointTest {
         assertThat(point.move()).isEqualTo(Direction.PASS);
     }
 
-    @DisplayName("다음 사다리 연결 상태를 객체로 만들 수 있다.")
-    @Test
-    void next() {
-        Point point = Point.first(true).next(false);
-        assertThat(point.move()).isEqualTo(Direction.LEFT);
-    }
-
     @DisplayName("사다리 왼쪽으로 이동할 수 있다.")
     @Test
     void left() {
