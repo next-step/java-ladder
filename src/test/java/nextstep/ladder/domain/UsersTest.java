@@ -25,7 +25,8 @@ class UsersTest {
     @DisplayName("실패 - getUsers 메서드가 반환된 List를 수정했을 때 예외가 발생한다.")
     void throwExceptionWhenModifyingReturnedList() {
         Set<User> findUsers = initUser().getUsers();
-        assertThatThrownBy(() -> findUsers.add(new User("둘리")))
+        User user = new User("둘리");
+        assertThatThrownBy(() -> findUsers.add(user))
                 .isInstanceOf(UnsupportedOperationException.class);
     }
 
