@@ -20,5 +20,5 @@
     - [x] 추출한 100개의 단어 소문자로 출력
 - [ ] Optional 실습
   - [x] Optional을 활용해 조건에 따른 반환 (ageIsInRange1과 같은 기능을 Optional을 활용해 ageIsInRange2() 메소드에 구현)
-  - [ ] Optional에서 값을 반환
+  - [x] Optional에서 값을 반환 (Users.getUser 리팩토링)
   - [ ] Optional에서 exception 처리
