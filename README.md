@@ -16,4 +16,4 @@
 ### 람다
 
 1. [x] 익명 클래스를 람다로 전환 - CarTest
-2. [ ] 람다를 활용해 중복 제거 - sumAll, sumAllEven, sumAllOverThree method
+2. [x] 람다를 활용해 중복 제거 - sumAll, sumAllEven, sumAllOverThree method
