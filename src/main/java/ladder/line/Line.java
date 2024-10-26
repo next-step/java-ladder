@@ -31,16 +31,16 @@ public class Line {
         return ladderPositions.get(position.getPosition()).move();
     }
 
-    public List<LadderPosition> getCrosses() {
+    public List<LadderPosition> getLadderPositions() {
         return ladderPositions;
     }
 
-    public int getCrossesSize() {
+    public int getLadderPositionSize() {
         return ladderPositions.size();
     }
 
-    public boolean isConnected(int index) {
-        return ladderPositions.get(index).isConnected();
+    public boolean hasRightConnection(int index) {
+        return ladderPositions.get(index).hasRightConnection();
     }
 
     @Override

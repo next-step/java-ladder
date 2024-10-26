@@ -29,7 +29,7 @@ public class LadderPosition {
         return point.move();
     }
 
-    public boolean isConnected() {
+    public boolean hasRightConnection() {
         return point.move() == Direction.RIGHT;
     }
 

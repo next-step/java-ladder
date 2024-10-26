@@ -29,7 +29,7 @@ public class Ladder {
     public List<Position> movePoints() {
         List<Position> positions = new ArrayList<>();
 
-        int countOfPersons = lines.get(INIT).getCrossesSize();
+        int countOfPersons = lines.get(INIT).getLadderPositionSize();
         IntStream.range(INIT, countOfPersons)
                 .mapToObj(Position::new)
                 .map(this::move)

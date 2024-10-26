@@ -27,7 +27,7 @@ class LineTest {
                 Direction.LEFT
         );
 
-        assertThat(line.getCrosses())
+        assertThat(line.getLadderPositions())
                 .extracting(LadderPosition::getDirection)
                 .isEqualTo(expectedDirections);
     }

@@ -26,7 +26,7 @@ class LadderTest {
 
         assertThat(ladder.getLines())
                 .hasSize(3)
-                .flatExtracting(Line::getCrosses)
+                .flatExtracting(Line::getLadderPositions)
                 .extracting(LadderPosition::getDirection)
                 .isEqualTo(expectedDirections);
     }

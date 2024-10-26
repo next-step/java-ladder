@@ -12,7 +12,7 @@
 # STEP4 DONE
 - [x] 리팩터링
   - [x] Point 객체 TDD 구현
-  - [x] Cross 객체 TDD 구현
+  - [x] ladderPosition 객체 TDD 구현
   - [x] line, lines 객체 리팩토링
 ---
 # STEP3 TODO

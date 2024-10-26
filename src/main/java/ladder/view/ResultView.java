@@ -32,8 +32,8 @@ public class ResultView {
 
     private void showLine(Line line) {
         System.out.printf("%7s", VERTICAL_LINE);
-        IntStream.range(0, line.getCrosses().size() - 1)
-                .mapToObj(index -> line.isConnected(index) ? HORIZONTAL_LINE + VERTICAL_LINE : EMPTY_SPACE + VERTICAL_LINE)
+        IntStream.range(0, line.getLadderPositionSize() - 1)
+                .mapToObj(index -> line.hasRightConnection(index) ? HORIZONTAL_LINE + VERTICAL_LINE : EMPTY_SPACE + VERTICAL_LINE)
                 .forEach(System.out::print);
         System.out.println();
     }
