@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LadderResult {
@@ -12,7 +13,7 @@ public class LadderResult {
     }
 
     public static LadderResult of(Users users, LadderPrizes ladderPrizes, Map<Integer, Integer> ladderIndexMap) {
-        Map<UserName, LadderPrize> lottoResult = new HashMap<>();
+        Map<UserName, LadderPrize> lottoResult = new LinkedHashMap<>();
         ladderIndexMap.forEach((userIndex, prizeIndex) -> lottoResult.put(users.findUser(userIndex),
                 ladderPrizes.findPrize(prizeIndex)));
         return new LadderResult(lottoResult);

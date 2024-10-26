@@ -44,7 +44,7 @@ public class Users {
     public UserName findByName(String name) {
         return users.stream()
                 .filter(user -> user.getName().equals(name))
-                .findAny()
+                .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NON_USER_ERROR));
     }
 }
