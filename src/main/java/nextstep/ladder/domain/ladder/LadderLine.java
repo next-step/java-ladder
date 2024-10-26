@@ -19,7 +19,7 @@ public class LadderLine {
     }
 
     public static LadderLine of(int groupCount) {
-        DirectionDeterminer generator = new DirectionDeterminer(new RandomLineGenerator());
+        DirectionDeterminer generator = new DirectionDeterminer(RandomLineGenerator.getInstance());
         List<Direction> directions = new ArrayList<>();
 
         for (int i = 0; i < groupCount - 1; i++) {

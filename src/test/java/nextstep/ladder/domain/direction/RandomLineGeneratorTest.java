@@ -11,12 +11,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RandomLineGeneratorTest {
 
-    private RandomLineGenerator randomLineGenerator = new RandomLineGenerator();
-
     @Test
     void doNotGenerateTrueFromTrue() {
         IntStream.range(0, 100).parallel().forEach(i ->
-                assertThat(randomLineGenerator.generate(true)).isFalse()
+                assertThat(RandomLineGenerator.getInstance().generate(true)).isFalse()
         );
     }
 
@@ -25,7 +23,7 @@ public class RandomLineGeneratorTest {
     void shouldTrueAndFalseAppearAtLeastOnceStatistically() {
         List<Boolean> randomGenerated = IntStream.range(0, 1000).
                 parallel()
-                .mapToObj(i -> randomLineGenerator.generate(false))
+                .mapToObj(i -> RandomLineGenerator.getInstance().generate(false))
                 .collect(Collectors.toList());
 
         assertThat(randomGenerated).contains(true, false);
