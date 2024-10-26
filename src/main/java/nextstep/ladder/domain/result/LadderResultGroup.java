@@ -1,14 +1,11 @@
 package nextstep.ladder.domain.result;
 
 import nextstep.ladder.domain.player.Player;
+import nextstep.ladder.util.StringSplitter;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static nextstep.ladder.util.StringUtil.toStringArray;
 
 public class LadderResultGroup {
 
@@ -19,16 +16,13 @@ public class LadderResultGroup {
     }
 
     public static LadderResultGroup of(String ladderResultsToSplit, int playerCount) {
-        String[] resultArray = toStringArray(ladderResultsToSplit);
+        List<String> resultArray = new StringSplitter(ladderResultsToSplit).getSplit();
 
-        if (resultArray.length != playerCount) {
+        if (resultArray.size() != playerCount) {
             throw new IllegalArgumentException("참가자 수와 사다리 결과 수가 일치하지 않습니다.");
         }
 
-        return new LadderResultGroup(
-                Stream.of(resultArray)
-                        .map(String::trim)
-                        .collect(Collectors.toList()));
+        return new LadderResultGroup(resultArray);
     }
 
     public MatchResult matchResult(List<Player> players) {

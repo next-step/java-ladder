@@ -1,13 +1,11 @@
 package nextstep.ladder.domain.player;
 
 import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.util.StringSplitter;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
-import static nextstep.ladder.util.StringUtil.toStringArray;
 
 public class PlayerGroup {
 
@@ -22,11 +20,8 @@ public class PlayerGroup {
     }
 
     private static List<Player> toList(String playersToSplit) {
-        String[] playerNames = toStringArray(playersToSplit);
-
-        return IntStream.range(0, playerNames.length)
-                .mapToObj(i -> new Player(playerNames[i].trim(), i))
-                .collect(Collectors.toList());
+        return new StringSplitter(playersToSplit)
+                .indexBasedConverter((index, playerName) -> new Player(playerName, index));
     }
 
     public List<Player> play(Ladder ladder) {
