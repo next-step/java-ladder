@@ -10,7 +10,7 @@ public class LadderService {
         this.ladderGame = ladderGame;
     }
 
-    public Result play(final String names, final int countLadderHeight) {
-        return ladderGame.play(names, countLadderHeight);
+    public Result play(final String names, final String executeResult, final int countLadderHeight) {
+        return ladderGame.play(names, executeResult, countLadderHeight);
     }
 }

@@ -28,6 +28,27 @@ public class Line {
         return points.get(index);
     }
 
+    public List<Person> movePersons(final List<Person> persons) {
+        int personsSize = persons.size();
+        List<Person> result = new ArrayList<>(persons);
+        for (int i = 0; i < personsSize; i++) {
+            int index = moveIndex(personsSize, i);
+            result.set(index, persons.get(i));
+        }
+        return result;
+    }
+
+    private int moveIndex(int personsSize, int before) {
+        int after = before;
+        if (before < personsSize - 1 && points.get(before)) {
+            after++;
+        }
+        if (before > 0 && points.get(before - 1)) {
+            after--;
+        }
+        return after;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {

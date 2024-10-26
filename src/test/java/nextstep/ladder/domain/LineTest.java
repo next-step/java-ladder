@@ -10,6 +10,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LineTest {
 
+    public static final List<Person> PERSONS = List.of(new Person("hoya"), new Person("pobi"), new Person("catsb"), new Person("dhmin"));
+    public static final Line LINE = new Line(Arrays.asList(false, true, false));
+
+    @Test
+    @DisplayName("이동 가능한 사람들을 움직인 후, 반환")
+    void movePerson() {
+        assertEquals(LINE.movePersons(PERSONS), List.of(new Person("hoya"), new Person("catsb"), new Person("pobi"), new Person("dhmin")));
+    }
+
     @Test
     @DisplayName("연속된 true가 없는 경우 Line 생성")
     void createLineWithoutConsecutiveTrues() {
@@ -34,37 +43,28 @@ class LineTest {
     @Test
     @DisplayName("Line의 크기 확인")
     void lineSize() {
-        List<Boolean> points = Arrays.asList(false, true, false);
-        Line line = new Line(points);
-
-        assertEquals(3, line.size());
+        assertEquals(3, LINE.size());
     }
 
     @Test
     @DisplayName("지정된 인덱스의 값 확인 - true인 경우")
     void isPointTrueAtTruePosition() {
-        List<Boolean> points = Arrays.asList(false, true, false);
-        Line line = new Line(points);
-
-        assertTrue(line.isPointTrue(1));
+        assertTrue(LINE.isPointTrue(1));
     }
 
     @Test
     @DisplayName("지정된 인덱스의 값 확인 - false인 경우")
     void isPointTrueAtFalsePosition() {
-        List<Boolean> points = Arrays.asList(false, true, false);
-        Line line = new Line(points);
-
-        assertFalse(line.isPointTrue(0));
-        assertFalse(line.isPointTrue(2));
+        assertFalse(LINE.isPointTrue(0));
+        assertFalse(LINE.isPointTrue(2));
     }
 
     @Test
     @DisplayName("동일한 points 리스트를 가진 Line 객체 equals 비교")
     void lineEqualsWithSamePoints() {
-        List<Boolean> points1 = Arrays.asList(false, true, false);
-        Line line1 = new Line(points1);
-        Line line2 = new Line(points1);
+        List<Boolean> points = Arrays.asList(false, true, false);
+        Line line1 = new Line(points);
+        Line line2 = new Line(points);
 
         assertEquals(line1, line2);
     }
@@ -72,33 +72,24 @@ class LineTest {
     @Test
     @DisplayName("서로 다른 points 리스트를 가진 Line 객체 equals 비교")
     void lineNotEqualsWithDifferentPoints() {
-        Line line1 = new Line(Arrays.asList(false, true, false));
-        Line line2 = new Line(Arrays.asList(true, false, true));
-
-        assertNotEquals(line1, line2);
+        assertNotEquals(LINE, new Line(Arrays.asList(true, false, true)));
     }
 
     @Test
     @DisplayName("null 객체와 equals 비교")
     void lineNotEqualsWithNull() {
-        Line line = new Line(Arrays.asList(false, true, false));
-
-        assertNotEquals(line, null);
+        assertNotEquals(LINE, null);
     }
 
     @Test
     @DisplayName("다른 클래스 객체와 equals 비교")
     void lineNotEqualsWithDifferentClass() {
-        Line line = new Line(Arrays.asList(false, true, false));
-
-        assertNotEquals(line, "someString");
+        assertNotEquals(LINE, "someString");
     }
 
     @Test
     @DisplayName("자기 자신과 equals 비교")
     void lineEqualsWithSelf() {
-        Line line = new Line(Arrays.asList(false, true, false));
-
-        assertEquals(line, line);
+        assertEquals(LINE, LINE);
     }
 }

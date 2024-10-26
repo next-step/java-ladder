@@ -15,9 +15,10 @@ public class LadderController {
 
     public void run() {
         String names = view.inputNames();
+        String executeResult = view.inputExecuteResult();
         int countLadderHeight = view.inputCountLadderHeight();
 
-        Result result = ladderService.play(names, countLadderHeight);
+        Result result = ladderService.play(names, executeResult, countLadderHeight);
 
         view.output(result);
     }
