@@ -1,26 +1,26 @@
 package ladder.line;
 
-import ladder.Position;
+import ladder.line.move.LadderPosition;
+import ladder.line.move.Point;
+import ladder.line.move.Position;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private List<Boolean> points = new ArrayList<>();
-
-    public Line(List<Boolean> points) {
-        this.points = points;
-    }
+    private final List<LadderPosition> ladderPositions = new ArrayList<>();
 
     public Line(int countOfPerson, LineGenerateStrategy lineGenerateStrategy) {
         boolean isPrevLineConnected = false;
 
         for (int i = 0; i < countOfPerson - 1; i++) {
             boolean currentLineConnection = !isPrevLineConnected && lineGenerateStrategy.generate();
-            points.add(currentLineConnection);
+            ladderPositions.add(new LadderPosition(i, isPrevLineConnected, currentLineConnection));
             isPrevLineConnected = currentLineConnection;
         }
+
+        ladderPositions.add(new LadderPosition(new Position(countOfPerson - 1), Point.first(isPrevLineConnected).last()));
     }
 
     public Position move(int position) {
@@ -28,18 +28,19 @@ public class Line {
     }
 
     public Position move(Position position) {
-        if (position.isGreaterThanZero() && points.get(position.prev().getPosition())) {
-            return position.prev();
-        }
-
-        if (position.isLessThan(points.size()) && points.get(position.getPosition())) {
-            return position.next();
-        }
-        return position;
+        return ladderPositions.get(position.getPosition()).move();
     }
 
-    public List<Boolean> getPoints() {
-        return points;
+    public List<LadderPosition> getLadderPositions() {
+        return ladderPositions;
+    }
+
+    public int getLadderPositionSize() {
+        return ladderPositions.size();
+    }
+
+    public boolean hasRightConnection(int index) {
+        return ladderPositions.get(index).hasRightConnection();
     }
 
     @Override
@@ -47,18 +48,11 @@ public class Line {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Line line = (Line) o;
-        return Objects.equals(points, line.points);
+        return Objects.equals(ladderPositions, line.ladderPositions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(points);
-    }
-
-    @Override
-    public String toString() {
-        return "Line{" +
-                "points=" + points +
-                '}';
+        return Objects.hashCode(ladderPositions);
     }
 }

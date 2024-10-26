@@ -1,6 +1,8 @@
 package ladder.line;
 
-import ladder.Position;
+import ladder.line.move.LadderPosition;
+import ladder.line.move.Direction;
+import ladder.line.move.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,12 +13,23 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LineTest {
 
-    @DisplayName("6명 사이에서 사다리 라인 5개를 만들 수 있다.")
+    @DisplayName("6명에대해 사다리 움직임을 만들 수 있다.")
     @Test
-    void createThreeLine() {
+    void createLine() {
         Line line = new Line(6, () -> true);
 
-        assertThat(line).isEqualTo(new Line(List.of(true, false, true, false, true)));
+        List<Direction> expectedDirections = List.of(
+                Direction.RIGHT,
+                Direction.LEFT,
+                Direction.RIGHT,
+                Direction.LEFT,
+                Direction.RIGHT,
+                Direction.LEFT
+        );
+
+        assertThat(line.getLadderPositions())
+                .extracting(LadderPosition::getDirection)
+                .isEqualTo(expectedDirections);
     }
 
 

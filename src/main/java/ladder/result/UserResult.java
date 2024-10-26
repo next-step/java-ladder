@@ -1,6 +1,7 @@
-package ladder;
+package ladder.result;
 
 
+import ladder.line.move.Position;
 import ladder.name.Name;
 
 public class UserResult {
