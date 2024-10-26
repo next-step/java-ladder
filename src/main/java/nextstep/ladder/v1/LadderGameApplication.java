@@ -1,8 +1,8 @@
 package nextstep.ladder.v1;
 
 import nextstep.ladder.v1.model.*;
-import nextstep.ladder.v1.view.view.InputView;
-import nextstep.ladder.v1.view.view.ResultView;
+import nextstep.ladder.v1.view.InputView;
+import nextstep.ladder.v1.view.ResultView;
 
 import java.util.List;
 import java.util.Map;

@@ -1,6 +1,8 @@
-package nextstep.ladder.v1.view.view;
+package nextstep.ladder.v1.view;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class InputView {
@@ -8,11 +10,8 @@ public class InputView {
 
     public static List<String> inputPlayers() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        List<String> players = Arrays.stream(SC.nextLine().replaceAll(" ", "").split(","))
+        return Arrays.stream(SC.nextLine().replaceAll(" ", "").split(","))
                 .collect(Collectors.toList());
-        checkDuplicateInputs(players);
-
-        return players;
     }
 
     public static int inputLadderHeight() {
@@ -24,19 +23,10 @@ public class InputView {
     public static List<String> inputPrizes() {
         System.out.println();
         System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-        List<String> prizes = Arrays.stream(SC.nextLine().replaceAll(" ", "").split(","))
+        return Arrays.stream(SC.nextLine().replaceAll(" ", "").split(","))
                 .collect(Collectors.toList());
-        checkDuplicateInputs(prizes);
-
-        return prizes;
     }
 
-    public static void checkDuplicateInputs(List<String> inputs) {
-        Set<String> set = new HashSet<>(inputs);
-        if (set.size() != inputs.size()) {
-            throw new IllegalArgumentException("duplicate players error");
-        }
-    }
 
     public static String inputPlayerForResult() {
         System.out.println();

@@ -1,0 +1,36 @@
+package nextstep.ladder.v2;
+
+import nextstep.ladder.v2.model.*;
+import nextstep.ladder.v2.view.InputView;
+import nextstep.ladder.v2.view.ResultView;
+
+import java.util.List;
+import java.util.Map;
+
+public class LadderGameApplication {
+    public static void main(String[] args) {
+        List<String> names = InputView.inputPlayers();
+        List<String> prizes = InputView.inputPrizes();
+        int height = InputView.inputLadderHeight();
+
+        LadderGame ladderGame = new LadderGame(names);
+        Ladder ladder = ladderGame.createLadder(height, new RandomPointGenerator());
+        LadderResult ladderResult = ladderGame.createLadderResult(prizes);
+
+        ResultView.printResultLetters();
+        ResultView.printPlayers(ladderGame.getPlayerGroup().getPlayers());
+        ResultView.printLadder(ladder.getLines());
+        ResultView.printPrizes(prizes);
+
+        while (true) {
+            String input = nextstep.ladder.v1.view.InputView.inputPlayerForResult();
+            Player player = new Player(input);
+            boolean isAll = input.equals("all");
+            Map<Player, Prize> result = ladderResult.getResultByInput(player, isAll);
+            ResultView.printResult(result);
+            if (isAll) {
+                break;
+            }
+        }
+    }
+}

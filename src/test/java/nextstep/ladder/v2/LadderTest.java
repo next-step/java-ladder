@@ -1,0 +1,67 @@
+package nextstep.ladder.v2;
+
+import nextstep.ladder.v2.model.Ladder;
+import nextstep.ladder.v2.model.Line;
+import nextstep.ladder.v2.model.Point;
+import nextstep.ladder.v2.model.PointGenerator;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+public class LadderTest {
+    @Test
+    @DisplayName("ladder class 생성")
+    void createLadderTest() {
+        //given
+        int countOfPlayers = 3;
+        PointGenerator pointGenerator = new MockPointGenerator();
+        Line line = new Line(countOfPlayers, pointGenerator);
+
+        //when
+        Ladder ladder = new Ladder(List.of(line));
+
+        //then
+        List<Point> expectedPoints = List.of(new Point(false, true), new Point(true, false), new Point(false, false));
+        Assertions.assertThat(ladder.getLines()).hasSize(1);
+        List<Point> points = ladder.getLines().get(0).getPoints();
+        Assertions.assertThat(points).hasSameElementsAs(expectedPoints);
+    }
+
+    @Test
+    @DisplayName("ladder move 1")
+    void ladderMoveTest1() {
+        //given
+        int countOfPlayers = 3;
+        PointGenerator pointGenerator = new MockPointGenerator();
+        Line line = new Line(countOfPlayers, pointGenerator);
+        Ladder ladder = new Ladder(List.of(line));
+
+        //when
+        int position = ladder.move(0);
+
+        //then
+        //       0    1     2
+        // false true false false
+        Assertions.assertThat(position).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("ladder move 2")
+    void ladderMoveTest2() {
+        //given
+        int countOfPlayers = 3;
+        PointGenerator pointGenerator = new MockPointGenerator();
+        Line line = new Line(countOfPlayers, pointGenerator);
+        Ladder ladder = new Ladder(List.of(line));
+
+        //when
+        int position = ladder.move(1);
+
+        //then
+        //       0    1     2
+        // false true false false
+        Assertions.assertThat(position).isEqualTo(0);
+    }
+}
