@@ -26,7 +26,7 @@
 ### Optional
 
 1. [x] Optional을 활용해 조건에 따른 반환
-2. [ ] Optional에서 값을 반환
+2. [x] Optional에서 값을 반환
 3. [ ] Optional에서 exception 처리
 
 
