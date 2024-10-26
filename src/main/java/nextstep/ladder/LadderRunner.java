@@ -1,9 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.domain.LadderGame;
-import nextstep.ladder.domain.PositiveNumber;
-import nextstep.ladder.domain.ResultRow;
-import nextstep.ladder.domain.Users;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.ResultView;
 
@@ -14,5 +11,8 @@ public class LadderRunner {
         PositiveNumber height = new PositiveNumber(InputView.readLadderHeight());
         LadderGame ladderGame = new LadderGame(users, height, resultRow);
         ResultView.printLadder(ladderGame);
+
+        GameResult gameResult = ladderGame.start(InputView.readUserName());
+        ResultView.printResult(gameResult);
     }
 }

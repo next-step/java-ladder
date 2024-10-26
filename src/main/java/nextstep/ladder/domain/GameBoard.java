@@ -20,4 +20,9 @@ public class GameBoard {
     private String getResultRowAsString() {
         return resultRow.getResultRowAsString();
     }
+
+    public String getLadderResult(int startIndex) {
+        int resultIndex = ladder.getLadderResultIndex(startIndex);
+        return resultRow.getResult(resultIndex);
+    }
 }

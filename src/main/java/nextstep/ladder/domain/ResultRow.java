@@ -26,4 +26,8 @@ public class ResultRow {
                 .map(it -> StringUtils.lPad(it, 6))
                 .collect(Collectors.joining());
     }
+
+    public String getResult(int index) {
+        return row.get(index);
+    }
 }

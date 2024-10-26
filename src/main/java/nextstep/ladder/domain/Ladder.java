@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
+    private final PositiveNumber height;
     private final List<LadderRow> map;
 
     public Ladder(PositiveNumber width, PositiveNumber height) {
+        this.height = height;
         this.map = new ArrayList<>();
         makeMap(width, height);
     }
@@ -39,5 +42,21 @@ public class Ladder {
         return map.stream()
                 .map(LadderRow::getRowAsString)
                 .collect(Collectors.toList());
+    }
+
+    public int getLadderResultIndex(int startIndex) {
+        return IntStream.range(0, height.getValue())
+                .reduce(startIndex, this::getNextIndex);
+    }
+
+    private int getNextIndex(int currentIndex, int rowIndex) {
+        LadderRow currentStep = map.get(rowIndex);
+        if (currentStep.isLeftMoveable(currentIndex)) {
+            return currentIndex - 1;
+        }
+        if (currentStep.isRightMoveable(currentIndex)) {
+            return currentIndex + 1;
+        }
+        return currentIndex;
     }
 }

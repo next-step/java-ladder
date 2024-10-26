@@ -49,4 +49,18 @@ public class LadderRow {
     public String getRowAsString() {
         return String.join("|", row) + ROW_DELIMITER;
     }
+
+    public boolean isRightMoveable(int currentIndex) {
+        if (currentIndex + 1 >= row.size()) {
+            return false;
+        }
+        return row.get(currentIndex + 1).equals(HORIZONTAL_BAR);
+    }
+
+    public boolean isLeftMoveable(int currentIndex) {
+        if (currentIndex - 1 < 0) {
+            return false;
+        }
+        return row.get(currentIndex).equals(HORIZONTAL_BAR);
+    }
 }

@@ -32,4 +32,20 @@ class LadderRowTest {
         assertThat(ladderRow1.getRow().get(0)).isEqualTo("     ");
         assertThat(ladderRow2.getRow().get(0)).isEqualTo("     ");
     }
+
+    @Test
+    @DisplayName("성공 - isRightMoveable 메서드가 현재위치+1 이 row의 크기보다 크거나 같다면 false를 반환한다.")
+    void isRightMoveableTest() {
+        LadderRow ladderRow = new LadderRow(new PositiveNumber(5), () -> true);
+        System.out.println(ladderRow.getRow().size());
+        assertThat(ladderRow.isRightMoveable(4)).isFalse();
+    }
+
+    @Test
+    @DisplayName("성공 - isLeftMoveable 메서드가 현재위치-1 이 0보다 작다면 false를 반환한다.")
+    void isLeftMoveableTest() {
+        LadderRow ladderRow = new LadderRow(new PositiveNumber(5), () -> true);
+        System.out.println(ladderRow.getRow().size());
+        assertThat(ladderRow.isLeftMoveable(0)).isFalse();
+    }
 }

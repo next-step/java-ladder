@@ -16,4 +16,11 @@ public class LadderGame {
     public String getGameBoardAsString() {
         return gameBoard.getGameBoardAsString();
     }
+
+    public GameResult start(String username) {
+        if (username.equals("all")) {
+            return GameResult.allPlayerGameResult(players, gameBoard);
+        }
+        return GameResult.singlePlayerGameResult(players, gameBoard, username);
+    }
 }
