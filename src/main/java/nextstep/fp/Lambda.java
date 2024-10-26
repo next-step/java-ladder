@@ -30,35 +30,14 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        return sumAllCommon(numbers, new Conditional() {
-            @Override
-            public int getConditionalValue(int number) {
-                return number;
-            }
-        });
+        return sumAllCommon(numbers, (number) -> number);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        return sumAllCommon(numbers, new Conditional() {
-            @Override
-            public int getConditionalValue(int number) {
-                if (number % 2 == 0) {
-                    return number;
-                }
-                return 0;
-            }
-        });
+        return sumAllCommon(numbers, (number) -> number % 2 == 0 ? number : 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        return sumAllCommon(numbers, new Conditional() {
-            @Override
-            public int getConditionalValue(int number) {
-                if (number > 3) {
-                    return number;
-                }
-                return 0;
-            }
-        });
+        return sumAllCommon(numbers, (number) -> number > 3 ? number : 0);
     }
 }
