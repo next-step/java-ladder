@@ -1,4 +1,4 @@
-package nextstep.ladder.model;
+package nextstep.ladder.v1.model;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,6 +1,6 @@
-package nextstep.ladder;
+package nextstep.ladder.v1;
 
-import nextstep.ladder.model.Player;
+import nextstep.ladder.v1.model.Player;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.DisplayName;

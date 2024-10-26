@@ -1,4 +1,4 @@
-package nextstep.ladder.view;
+package nextstep.ladder.v1.view.view;
 
 import java.util.*;
 import java.util.stream.Collectors;

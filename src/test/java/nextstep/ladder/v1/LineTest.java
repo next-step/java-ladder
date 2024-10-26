@@ -1,7 +1,7 @@
-package nextstep.ladder;
+package nextstep.ladder.v1;
 
-import nextstep.ladder.model.Line;
-import nextstep.ladder.model.Point;
+import nextstep.ladder.v1.model.Line;
+import nextstep.ladder.v1.model.Point;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.DisplayName;

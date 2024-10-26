@@ -1,8 +1,8 @@
-package nextstep.ladder;
+package nextstep.ladder.v1;
 
-import nextstep.ladder.model.LadderResult;
-import nextstep.ladder.model.Player;
-import nextstep.ladder.model.Prize;
+import nextstep.ladder.v1.model.LadderResult;
+import nextstep.ladder.v1.model.Player;
+import nextstep.ladder.v1.model.Prize;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
