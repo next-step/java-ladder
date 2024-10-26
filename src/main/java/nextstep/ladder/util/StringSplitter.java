@@ -11,7 +11,7 @@ public class StringSplitter {
 
     private static final String DELIMITER = ",";
 
-    private List<String> split;
+    private final List<String> split;
 
     public StringSplitter(String toSplit) {
         String[] split = Optional.ofNullable(toSplit)
