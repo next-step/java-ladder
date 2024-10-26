@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.player;
 
+import nextstep.ladder.domain.direction.Direction;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,13 +13,13 @@ public class PlayerTest {
     }
 
     @Test
-    void switchPosition() {
-        Player player1 = new Player("1", 0);
-        Player player2 = new Player("2", 1);
+    void movePoint() {
+        Player player = new Player("1", 0);
 
-        player1.switchPosition(player2);
+        player.movePoint(Direction.RIGHT_DOWN);
+        player.movePoint(Direction.RIGHT_DOWN);
+        player.movePoint(Direction.LEFT_DOWN);
 
-        assertThat(player1.getPosition()).isEqualTo(1);
-        assertThat(player2.getPosition()).isEqualTo(0);
+        assertThat(player.getPosition()).isEqualTo(1);
     }
 }

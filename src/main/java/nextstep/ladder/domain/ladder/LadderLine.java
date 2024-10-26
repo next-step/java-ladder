@@ -1,67 +1,54 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.direction.Direction;
+import nextstep.ladder.domain.direction.DirectionDeterminer;
+import nextstep.ladder.domain.direction.RandomLineGenerator;
 import nextstep.ladder.domain.player.Player;
 
-import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Deque;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LadderLine {
 
-    private static final int RANDOM_BOUND = 2;
-    private static final int VALUE_FOR_LINE = 1;
-    private static final Random RANDOM = new Random();
+    private final List<Direction> directions;
 
-    private final List<Boolean> lines;
-
-    public LadderLine(List<Boolean> lines) {
-        this.lines = lines;
+    public LadderLine(List<Direction> directions) {
+        this.directions = directions;
     }
 
     public static LadderLine of(int groupCount) {
-        Deque<Boolean> stack = new ArrayDeque<>();
-        return Stream.of(new Ladder[groupCount - 1])
-                .map(empty -> {
-                    boolean isLine = needRandom(stack) && booleanFromRandom();
-                    stack.push(isLine);
-                    return isLine;
-                })
-                .collect(Collectors.collectingAndThen(Collectors.toList(), LadderLine::new));
-    }
+        DirectionDeterminer generator = new DirectionDeterminer(new RandomLineGenerator());
+        List<Direction> directions = new ArrayList<>();
 
-    private static boolean needRandom(Deque<Boolean> stack) {
-        return stack.isEmpty() || !stack.pop();
-    }
-
-    private static boolean booleanFromRandom() {
-        return RANDOM.nextInt(RANDOM_BOUND) == VALUE_FOR_LINE;
+        for (int i = 0; i < groupCount - 1; i++) {
+            directions.add(generator.next());
+        }
+        directions.add(generator.last());
+        return new LadderLine(directions);
     }
 
     public void play(List<Player> players) {
-        if (lines.size() != lineCount(players)) {
+        if (directions.size() != players.size()) {
             throw new IllegalArgumentException("사다리 라인 수와 참가자 리스트 수가 맞지 않습니다.");
         }
-
-        for (int i = 0; i < lines.size(); i++) {
-            switchPosition(players, i);
+        for (Player player : players) {
+            player.movePoint(directions.get(player.getPosition()));
         }
     }
 
-    private int lineCount(List<?> elements) {
-        return elements.size() - 1;
-    }
-
-    private void switchPosition(List<Player> players, int i) {
-        if (lines.get(i)) {
-            players.get(i).switchPosition(players.get(i + 1));
-        }
+    public void play(Player player) {
+        player.movePoint(directions.get(player.getPosition()));
     }
 
     public Collection<Boolean> copy() {
-        return List.copyOf(lines);
+        return directions.subList(0, directions.size() - 1).stream()
+                .map(this::isLine)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    public boolean isLine(Direction direction) {
+        return direction == Direction.RIGHT_DOWN;
     }
 }

@@ -1,5 +1,8 @@
 package nextstep.ladder.domain.player;
 
+import nextstep.ladder.domain.direction.Direction;
+import nextstep.ladder.domain.direction.Point;
+
 import java.util.Objects;
 
 public class Player {
@@ -7,7 +10,7 @@ public class Player {
     public static final int NAME_LIMIT = 5;
 
     private final String name;
-    private int position;
+    private Point point;
 
     public Player(String name) {
         this(name, 0);
@@ -19,17 +22,15 @@ public class Player {
         }
 
         this.name = name;
-        this.position = position;
+        this.point = Point.from(position, 0);
     }
 
     public Player copy() {
-        return new Player(name, position);
+        return new Player(name, point.getX());
     }
 
-    public void switchPosition(Player other) {
-        int temp = this.position;
-        this.position = other.position;
-        other.position = temp;
+    public void movePoint(Direction direction) {
+        point = point.movePoint(direction);
     }
 
     public String getName() {
@@ -37,7 +38,7 @@ public class Player {
     }
 
     public int getPosition() {
-        return position;
+        return point.getX();
     }
 
     @Override
@@ -49,11 +50,19 @@ public class Player {
             return false;
         }
         Player player = (Player) o;
-        return position == player.position && Objects.equals(name, player.name);
+        return Objects.equals(name, player.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, position);
+        return Objects.hashCode(name);
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", point=" + point +
+                '}';
     }
 }

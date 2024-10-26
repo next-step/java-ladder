@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.player;
 
+import nextstep.ladder.domain.direction.Direction;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.LadderLine;
 import org.junit.jupiter.api.Test;
@@ -39,9 +40,9 @@ public class PlayerGroupTest {
         PlayerGroup playerGroup = new PlayerGroup("pobi,honux,crong,jk");
 
         Ladder ladder = new Ladder(List.of(
-                new LadderLine(List.of(true, false, false)),
-                new LadderLine(List.of(true, false, false)),
-                new LadderLine(List.of(true, false, true))));
+                new LadderLine(List.of(Direction.RIGHT_DOWN, Direction.LEFT_DOWN, Direction.DOWN, Direction.DOWN)),
+                new LadderLine(List.of(Direction.RIGHT_DOWN, Direction.LEFT_DOWN, Direction.DOWN, Direction.DOWN)),
+                new LadderLine(List.of(Direction.RIGHT_DOWN, Direction.LEFT_DOWN, Direction.DOWN, Direction.DOWN))));
 
         List<Player> result = playerGroup.play(ladder);
 

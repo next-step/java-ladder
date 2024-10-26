@@ -23,8 +23,12 @@ public class LadderTest {
 
     @ParameterizedTest
     @CsvSource(value = {
-            "true,false,true,false:true,false,true,false:true,false,false,true:true,false,false,true:0,1,2,3,4",
-            "true,false,true,false:true,false,false,true:true,false,true,false:true,false,false,true:0,1,4,2,3"
+            "RIGHT_DOWN,LEFT_DOWN,RIGHT_DOWN,LEFT_DOWN,DOWN:RIGHT_DOWN,LEFT_DOWN,RIGHT_DOWN,LEFT_DOWN,DOWN:" +
+                    "RIGHT_DOWN,LEFT_DOWN,DOWN,RIGHT_DOWN,LEFT_DOWN:RIGHT_DOWN,LEFT_DOWN,DOWN,RIGHT_DOWN,LEFT_DOWN:" +
+                    "0,1,2,3,4",
+            "RIGHT_DOWN,LEFT_DOWN,RIGHT_DOWN,LEFT_DOWN,DOWN:RIGHT_DOWN,LEFT_DOWN,DOWN,RIGHT_DOWN,LEFT_DOWN:" +
+                    "RIGHT_DOWN,LEFT_DOWN,RIGHT_DOWN,LEFT_DOWN,DOWN:RIGHT_DOWN,LEFT_DOWN,DOWN,RIGHT_DOWN,LEFT_DOWN:" +
+                    "0,1,4,2,3"
     }, delimiter = ':')
     void applyLadderResultToListFromPlayResultOfAllLadderLines(
             String ladderLine1,
@@ -60,10 +64,6 @@ public class LadderTest {
     }
 
     private LadderLine toLadderLine(String text) {
-        return new LadderLine(toBooleanList(text));
-    }
-
-    private List<Boolean> toBooleanList(String text) {
-        return Stream.of(text.split(",")).map(Boolean::parseBoolean).collect(Collectors.toList());
+        return new LadderLine(LadderLineTest.toDirections(text));
     }
 }

@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.ladder;
 
+import nextstep.ladder.domain.direction.Direction;
 import nextstep.ladder.domain.player.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,11 +8,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static nextstep.ladder.domain.direction.Direction.LEFT_DOWN;
+import static nextstep.ladder.domain.direction.Direction.RIGHT_DOWN;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -26,7 +28,7 @@ public class LadderLineTest {
 
     @Test
     void throwExceptionIfPlayerCountNotMatch() {
-        LadderLine ladderLine = new LadderLine(toList("true,false,true,false,true", Boolean::parseBoolean));
+        LadderLine ladderLine = new LadderLine(List.of(RIGHT_DOWN, LEFT_DOWN, RIGHT_DOWN, LEFT_DOWN, RIGHT_DOWN, LEFT_DOWN));
         List<Player> players = IntStream.range(0, 7)
                 .mapToObj(i -> new Player(String.valueOf(i), i))
                 .collect(Collectors.toList());
@@ -37,31 +39,34 @@ public class LadderLineTest {
     @ParameterizedTest
     @DisplayName("이전 결과 리스트를 받아 사다리 게임 한 층을 진행 시킨 결과 반영시킨다")
     @CsvSource(value = {
-            "true,false,true,false,true:1,0,3,2,5,4",
-            "true,false,false,true,false:1,0,2,4,3,5"
+            "RIGHT_DOWN, LEFT_DOWN, RIGHT_DOWN, LEFT_DOWN, RIGHT_DOWN, LEFT_DOWN:1,0,3,2,5,4",
+            "RIGHT_DOWN, LEFT_DOWN, DOWN, RIGHT_DOWN, LEFT_DOWN, DOWN:1,0,2,4,3,5"
     }, delimiter = ':')
     void applyLadderPlayResultToPlayerGroup(String line, String result) {
-        LadderLine ladderLine = new LadderLine(toList(line, Boolean::parseBoolean));
+        LadderLine ladderLine = new LadderLine(toDirections(line));
         List<Player> players = IntStream.range(0, 6)
                         .mapToObj(i -> new Player(String.valueOf(i), i))
                         .collect(Collectors.toList());
+        List<Player> finished = toPlayerGroup(result);
 
-        ladderLine.play(players);
-
-        assertThat(players).containsExactly(toPlayerGroup(result));
+        for (int i = 0; i < players.size(); i++) {
+            ladderLine.play(players.get(i));
+            assertThat(players.get(i).getPosition()).isEqualTo(finished.get(i).getPosition());
+        }
     }
 
-    private <T> List<T> toList(String string, Function<String, T> converter) {
-        return Stream.of(string.split(","))
-                .map(converter)
+    public static List<Direction> toDirections(String directions) {
+        return Stream.of(directions.split(","))
+                .map(String::trim)
+                .map(Direction::valueOf)
                 .collect(Collectors.toList());
     }
 
-    private Player[] toPlayerGroup(String string) {
+    private List<Player> toPlayerGroup(String string) {
         String[] positions = string.split(",");
 
         return IntStream.range(0, 6)
                 .mapToObj(i -> new Player(String.valueOf(i), Integer.parseInt(positions[i])))
-                .toArray(Player[]::new);
+                .collect(Collectors.toList());
     }
 }
