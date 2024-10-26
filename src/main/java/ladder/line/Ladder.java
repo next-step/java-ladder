@@ -10,29 +10,25 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
-public class Lines {
+public class Ladder {
     private static final int INIT = 0;
 
     private List<Line> lines = new ArrayList<>();
-    private final List<Position> positions = new ArrayList<>();
 
-    public Lines(List<Line> lines) {
-        this.lines = lines;
-    }
-
-    public Lines(Names names, Height height, LineGenerateStrategy lineGenerateStrategy) {
+    public Ladder(Names names, Height height, LineGenerateStrategy lineGenerateStrategy) {
         this(names.getNames().size(), height.getValue(), lineGenerateStrategy);
     }
 
-    public Lines(int countOfPerson, int height, LineGenerateStrategy lineGenerateStrategy) {
+    public Ladder(int countOfPerson, int height, LineGenerateStrategy lineGenerateStrategy) {
         for (int i = INIT; i < height; i++) {
             lines.add(new Line(countOfPerson, lineGenerateStrategy));
         }
     }
 
     public List<Position> movePoints() {
-        int countOfPersons = lines.get(INIT).getPoints().size() + 1;
+        List<Position> positions = new ArrayList<>();
 
+        int countOfPersons = lines.get(INIT).getCrossesSize();
         IntStream.range(INIT, countOfPersons)
                 .mapToObj(Position::new)
                 .map(this::move)
@@ -56,19 +52,12 @@ public class Lines {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Lines lines1 = (Lines) o;
-        return Objects.equals(lines, lines1.lines);
+        Ladder ladder1 = (Ladder) o;
+        return Objects.equals(lines, ladder1.lines);
     }
 
     @Override
     public int hashCode() {
         return Objects.hashCode(lines);
-    }
-
-    @Override
-    public String toString() {
-        return "Lines{" +
-                "lines=" + lines +
-                '}';
     }
 }

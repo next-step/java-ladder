@@ -1,7 +1,6 @@
 package ladder.line;
 
 import ladder.Cross;
-import ladder.Direction;
 import ladder.Point;
 import ladder.Position;
 
@@ -10,11 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private List<Cross> crosses = new ArrayList<>();
-
-    public Line(List<Cross> crosses) {
-        this.crosses = crosses;
-    }
+    private final List<Cross> crosses = new ArrayList<>();
 
     public Line(int countOfPerson, LineGenerateStrategy lineGenerateStrategy) {
         boolean isPrevLineConnected = false;
@@ -26,15 +21,6 @@ public class Line {
         }
 
         crosses.add(new Cross(new Position(countOfPerson - 1), Point.first(isPrevLineConnected).last()));
-    }
-
-    public static Line from(List<Boolean> points) {
-        List<Cross> crossList = new ArrayList<>();
-        boolean prev = false;
-        for (int i = 0; i < points.size(); i++) {
-            crossList.add(new Cross(new Position(i), Point.first(prev).next(points.get(i))));
-        }
-        return new Line(crossList);
     }
 
     public Position move(int position) {
@@ -49,8 +35,8 @@ public class Line {
         return crosses;
     }
 
-    public Direction getDirection(int index){
-        return crosses.get(index).getDirection();
+    public int getCrossesSize() {
+        return crosses.size();
     }
 
     @Override

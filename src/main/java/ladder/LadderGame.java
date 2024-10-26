@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.line.LineGenerateStrategy;
-import ladder.line.Lines;
+import ladder.line.Ladder;
 import ladder.name.Name;
 import ladder.name.Names;
 import ladder.view.*;
@@ -31,11 +31,11 @@ public class LadderGame {
         validateSize(names, bettings);
 
         Height height = new Height(inputView.getHeightFromUser());
-        Lines lines = new Lines(names, height, lineGenerateStrategy);
-        LadderResult ladderResult = new LadderResult(names, lines.movePoints());
+        Ladder ladder = new Ladder(names, height, lineGenerateStrategy);
+        LadderResult ladderResult = new LadderResult(names, ladder.movePoints());
 
         resultView.showNames(names);
-        resultView.showLines(lines);
+        resultView.showLines(ladder);
         resultView.showBettings(bettings);
 
         String nameFromUser = null;
