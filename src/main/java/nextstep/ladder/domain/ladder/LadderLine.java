@@ -2,8 +2,8 @@ package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.direction.Direction;
 import nextstep.ladder.domain.direction.DirectionDeterminer;
+import nextstep.ladder.domain.direction.Point;
 import nextstep.ladder.domain.direction.RandomLineGenerator;
-import nextstep.ladder.domain.player.Player;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,20 +29,12 @@ public class LadderLine {
         return new LadderLine(directions);
     }
 
-    public void play(List<Player> players) {
-        if (directions.size() != players.size()) {
-            throw new IllegalArgumentException("사다리 라인 수와 참가자 리스트 수가 맞지 않습니다.");
-        }
-        for (Player player : players) {
-            player.movePoint(directions.get(player.getPosition()));
-        }
+    public Point play(Point point) {
+        System.out.println(point + ", " + directions.get(point.getX()));
+        return point.movePoint(directions.get(point.getX()));
     }
 
-    public void play(Player player) {
-        player.movePoint(directions.get(player.getPosition()));
-    }
-
-    public Collection<Boolean> copy() {
+    public Collection<Boolean> lines() {
         return directions.subList(0, directions.size() - 1).stream()
                 .map(this::isLine)
                 .collect(Collectors.toUnmodifiableList());

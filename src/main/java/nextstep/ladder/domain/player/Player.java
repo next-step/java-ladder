@@ -1,7 +1,7 @@
 package nextstep.ladder.domain.player;
 
-import nextstep.ladder.domain.direction.Direction;
 import nextstep.ladder.domain.direction.Point;
+import nextstep.ladder.domain.ladder.Ladder;
 
 import java.util.Objects;
 
@@ -29,8 +29,8 @@ public class Player {
         return new Player(name, point.getX());
     }
 
-    public void movePoint(Direction direction) {
-        point = point.movePoint(direction);
+    public void play(Ladder ladder) {
+        point = ladder.play(point);
     }
 
     public String getName() {

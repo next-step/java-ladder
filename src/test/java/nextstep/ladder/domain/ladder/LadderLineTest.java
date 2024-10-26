@@ -1,7 +1,7 @@
 package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.direction.Direction;
-import nextstep.ladder.domain.player.Player;
+import nextstep.ladder.domain.direction.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,10 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static nextstep.ladder.domain.direction.Direction.LEFT_DOWN;
-import static nextstep.ladder.domain.direction.Direction.RIGHT_DOWN;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class LadderLineTest {
 
@@ -23,17 +20,7 @@ public class LadderLineTest {
     void create() {
         LadderLine ladderLine = LadderLine.of(9);
 
-        assertThat(ladderLine.copy().size()).isEqualTo(8);
-    }
-
-    @Test
-    void throwExceptionIfPlayerCountNotMatch() {
-        LadderLine ladderLine = new LadderLine(List.of(RIGHT_DOWN, LEFT_DOWN, RIGHT_DOWN, LEFT_DOWN, RIGHT_DOWN, LEFT_DOWN));
-        List<Player> players = IntStream.range(0, 7)
-                .mapToObj(i -> new Player(String.valueOf(i), i))
-                .collect(Collectors.toList());
-
-        assertThatIllegalArgumentException().isThrownBy(() -> ladderLine.play(players));
+        assertThat(ladderLine.lines().size()).isEqualTo(8);
     }
 
     @ParameterizedTest
@@ -44,29 +31,18 @@ public class LadderLineTest {
     }, delimiter = ':')
     void applyLadderPlayResultToPlayerGroup(String line, String result) {
         LadderLine ladderLine = new LadderLine(toDirections(line));
-        List<Player> players = IntStream.range(0, 6)
-                        .mapToObj(i -> new Player(String.valueOf(i), i))
-                        .collect(Collectors.toList());
-        List<Player> finished = toPlayerGroup(result);
+        List<Point> resultPoints = Stream.of(result.split(","))
+                .map(x -> Point.from(Integer.parseInt(x), 1))
+                .collect(Collectors.toList());
 
-        for (int i = 0; i < players.size(); i++) {
-            ladderLine.play(players.get(i));
-            assertThat(players.get(i).getPosition()).isEqualTo(finished.get(i).getPosition());
-        }
+        IntStream.range(0, 6).forEach(i ->
+                assertThat(ladderLine.play(Point.from(i, 0))).isEqualTo(resultPoints.get(i)));
     }
 
     public static List<Direction> toDirections(String directions) {
         return Stream.of(directions.split(","))
                 .map(String::trim)
                 .map(Direction::valueOf)
-                .collect(Collectors.toList());
-    }
-
-    private List<Player> toPlayerGroup(String string) {
-        String[] positions = string.split(",");
-
-        return IntStream.range(0, 6)
-                .mapToObj(i -> new Player(String.valueOf(i), Integer.parseInt(positions[i])))
                 .collect(Collectors.toList());
     }
 }

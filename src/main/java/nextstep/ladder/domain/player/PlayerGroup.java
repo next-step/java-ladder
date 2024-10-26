@@ -29,7 +29,7 @@ public class PlayerGroup {
                 .map(Player::copy)
                 .collect(Collectors.toList());
 
-        ladder.play(toPlay);
+        toPlay.forEach(player -> player.play(ladder));
         return toPlay;
     }
 
