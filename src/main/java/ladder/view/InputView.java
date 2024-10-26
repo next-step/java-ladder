@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import ladder.domain.LadderPrize;
 import ladder.domain.UserName;
 
 public class InputView {
@@ -41,8 +42,10 @@ public class InputView {
         }
     }
 
-    public static String inputResults() {
+    public static List<LadderPrize> inputResults() {
         System.out.println(INPUT_RESULTS_MESSAGE);
-        return inputValue();
+       return Arrays.stream(inputValue().split(REGEX))
+               .map(LadderPrize::new)
+               .collect(Collectors.toList());
     }
 }

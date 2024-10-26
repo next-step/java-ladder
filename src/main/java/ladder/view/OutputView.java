@@ -32,8 +32,8 @@ public class OutputView {
         });
     }
 
-    private static void printResults(LadderPrizes ladderResults) {
-        String results = ladderResults.getResults().stream()
+    private static void printResults(LadderPrizes ladderPrizes) {
+        String results = ladderPrizes.getPrizes().stream()
                 .map(result -> String.format("%-6s", result.getResult()))
                 .collect(Collectors.joining(""));
         System.out.println(results);

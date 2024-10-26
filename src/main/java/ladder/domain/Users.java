@@ -7,6 +7,7 @@ public class Users {
     private static final int MIN_SIZE = 2;
     private static final String DUPLICATE_USER_ERROR = "사용자 이름은 중복될 수 없습니다.";
     private static final String MIN_SIZE_ERROR = "사용자는 " + MIN_SIZE + "명 이상이어야 합니다.";
+    private static final String NON_USER_ERROR = "존재하지 않는 사용자입니다.";
 
     private final List<UserName> users;
 
@@ -38,5 +39,12 @@ public class Users {
 
     public UserName findUser(int index) {
         return users.get(index);
+    }
+
+    public UserName findByName(String name) {
+        return users.stream()
+                .filter(user -> user.getName().equals(name))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(NON_USER_ERROR));
     }
 }
