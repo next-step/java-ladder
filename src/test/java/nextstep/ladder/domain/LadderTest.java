@@ -38,4 +38,25 @@ class LadderTest {
         assertThat(ladderAsString)
                 .hasSize(height.getValue());
     }
+
+    /**
+     * [ 테스트 사다리 모양 ]
+     * |     |     |
+     * |-----|     |
+     * |     |     |
+     */
+    @Test
+    @DisplayName("getLadderResultIndex 메서드가 사다리 게임 후 마지막 인덱스를 반환한다.")
+    void name() {
+        PositiveNumber width = new PositiveNumber(3);
+        List<LadderRow> map = List.of(
+                new LadderRow(new PositiveNumber(3), () -> false),
+                new LadderRow(new PositiveNumber(3), () -> true),
+                new LadderRow(new PositiveNumber(3), () -> false)
+        );
+        Ladder ladder = new Ladder(width, map);
+        assertThat(ladder.getLadderResultIndex(0)).isEqualTo(1);
+        assertThat(ladder.getLadderResultIndex(1)).isEqualTo(0);
+        assertThat(ladder.getLadderResultIndex(2)).isEqualTo(2);
+    }
 }

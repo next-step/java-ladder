@@ -39,7 +39,9 @@ public class LadderRow {
     }
 
     private String generateLine() {
-        return generatorStrategy.generable() ? HORIZONTAL_BAR : EMPTY_HORIZONTAL_BAR;
+        return generatorStrategy.generable()
+                ? HORIZONTAL_BAR
+                : EMPTY_HORIZONTAL_BAR;
     }
 
     private String getPreviousBar(int index) {
