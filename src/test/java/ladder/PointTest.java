@@ -15,11 +15,11 @@ class PointTest {
         assertThat(point.move()).isEqualTo(Direction.RIGHT);
     }
 
-    @DisplayName("사다리의 마지막으로 이동 시 다음으로 이동할 수 없는 객체를 생성할 수 있다.")
+    @DisplayName("사다리의 마지막은 오른쪽으로 이동할 수 없다.")
     @Test
     void last() {
         Point point = Point.first(true).last();
-        assertThat(point.move()).isEqualTo(Direction.PASS);
+        assertThat(point.move()).isEqualTo(Direction.LEFT);
     }
 
     @DisplayName("사다리 왼쪽으로 이동할 수 있다.")

@@ -25,6 +25,10 @@ public class Cross {
         return point.move();
     }
 
+    public boolean isConnected() {
+        return point.move() == Direction.RIGHT;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

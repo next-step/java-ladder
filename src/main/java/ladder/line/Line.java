@@ -39,6 +39,10 @@ public class Line {
         return crosses.size();
     }
 
+    public boolean isConnected(int index) {
+        return crosses.get(index).isConnected();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -7,7 +7,13 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
-
+---
+# STEP4 TODO
+# STEP4 DONE
+- [x] 리팩터링
+  - [x] Point 객체 TDD 구현
+  - [x] Cross 객체 TDD 구현
+  - [x] line, lines 객체 리팩토링
 ---
 # STEP3 TODO
 # STEP3 DONE
