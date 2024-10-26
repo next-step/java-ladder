@@ -1,5 +1,7 @@
 package ladder;
 
+import java.util.Objects;
+
 public class Point {
     private final boolean left;
     private final boolean current;
@@ -32,5 +34,18 @@ public class Point {
 
     public Point last() {
         return new Point(this.current, false);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return left == point.left && current == point.current;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, current);
     }
 }
