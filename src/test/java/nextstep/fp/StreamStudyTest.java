@@ -18,7 +18,10 @@ public class StreamStudyTest {
 
     @Test
     public void countWords() throws Exception {
-        long result = StreamStudy.countWords();
+        Conditional c = (length) -> {
+            return length > 12;
+        };
+        long result = StreamStudy.countWords(c);
         System.out.println("result : " + result);
     }
 
