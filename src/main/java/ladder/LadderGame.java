@@ -27,7 +27,8 @@ public class LadderGame {
         Names names = new Names(inputView.getPlayerNamesFromUser());
 
         List<String> bettingsFromUser = inputView.getBettingsFromUser();
-        Bettings bettings = new Bettings(bettingsFromUser, names);
+        Bettings bettings = new Bettings(bettingsFromUser);
+        validateSize(names, bettings);
 
         Height height = new Height(inputView.getHeightFromUser());
         Lines lines = new Lines(names, height, lineGenerateStrategy);
@@ -44,6 +45,12 @@ public class LadderGame {
 
             Map<String, String> bettingResult = ladderResult.getBettingResult(user, bettings);
             resultView.showBettingResult(bettingResult);
+        }
+    }
+
+    private void validateSize(Names names, Bettings bettings) {
+        if(names.hasDifferentSize(bettings.getBettingSize())) {
+            throw new IllegalArgumentException("참여자와 실행 결과의 수가 동일해야합니다.");
         }
     }
 

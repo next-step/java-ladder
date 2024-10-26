@@ -1,23 +1,15 @@
 package ladder;
 
-import ladder.name.Names;
-
 import java.util.List;
 
 public class Bettings {
     private static final int ZERO = 0;
     private final List<String> bettings;
 
-    public Bettings(List<String> bettings, Names names) {
-        if(names.hasDifferentSize(bettings.size())) {
-            throw new IllegalArgumentException("참여자와 실행 결과의 수가 동일해야합니다.");
-        }
+    public Bettings(List<String> bettings) {
         this.bettings = bettings;
     }
 
-    public List<String> getBettings() {
-        return bettings;
-    }
 
     public String getBetting(int index) {
         if (index < ZERO || index >= bettings.size()) {
@@ -26,4 +18,11 @@ public class Bettings {
         return bettings.get(index);
     }
 
+    public int getBettingSize() {
+        return this.bettings.size();
+    }
+
+    public List<String> getBettings() {
+        return bettings;
+    }
 }
