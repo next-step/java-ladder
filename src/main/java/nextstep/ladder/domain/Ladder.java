@@ -2,19 +2,21 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
+
+import static nextstep.ladder.domain.Line.createLines;
 
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(int height, int countOfPeople) {
-        lines = new ArrayList<>();
-
-        IntStream.range(0, height)
-                .forEach(num -> lines.add(new Line(countOfPeople)));
+    public Ladder(List<Line> lines) {
+        this.lines = new ArrayList<>(lines);
     }
 
     public List<Line> getLines() {
         return new ArrayList<>(lines);
+    }
+
+    public static Ladder createLadder(int height, int countOfPeople) {
+        return new Ladder(createLines(height, countOfPeople - 1));
     }
 }
