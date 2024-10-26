@@ -1,7 +1,7 @@
 package ladder.view;
 
 import ladder.Bettings;
-import ladder.line.Ladder;
+import ladder.ladder.Ladder;
 import ladder.line.Line;
 import ladder.name.Name;
 import ladder.name.Names;

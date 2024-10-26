@@ -1,8 +1,8 @@
 package ladder.line;
 
-import ladder.Cross;
-import ladder.Point;
-import ladder.Position;
+import ladder.line.move.Cross;
+import ladder.line.move.Point;
+import ladder.line.move.Position;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,7 @@
-package ladder;
+package ladder.result;
 
+import ladder.Bettings;
+import ladder.line.move.Position;
 import ladder.name.Name;
 import ladder.name.Names;
 

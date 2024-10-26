@@ -1,8 +1,8 @@
 package ladder.line;
 
-import ladder.Cross;
-import ladder.Direction;
-import ladder.Position;
+import ladder.line.move.Cross;
+import ladder.line.move.Direction;
+import ladder.line.move.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

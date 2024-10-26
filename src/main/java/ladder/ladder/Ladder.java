@@ -1,8 +1,9 @@
-package ladder.line;
+package ladder.ladder;
 
-import ladder.Height;
+import ladder.line.Line;
+import ladder.line.LineGenerateStrategy;
+import ladder.line.move.Position;
 import ladder.name.Names;
-import ladder.Position;
 
 import java.util.ArrayList;
 import java.util.Collections;

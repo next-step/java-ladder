@@ -1,4 +1,4 @@
-package ladder;
+package ladder.line.move;
 
 import java.util.Objects;
 

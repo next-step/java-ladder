@@ -1,9 +1,11 @@
 package ladder;
 
+import ladder.ladder.Height;
 import ladder.line.LineGenerateStrategy;
-import ladder.line.Ladder;
+import ladder.ladder.Ladder;
 import ladder.name.Name;
 import ladder.name.Names;
+import ladder.result.LadderResult;
 import ladder.view.*;
 
 import java.util.List;
