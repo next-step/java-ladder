@@ -16,7 +16,7 @@ public class Line {
 
         for (int i = 0; i < countOfPerson - 1; i++) {
             boolean currentLineConnection = !isPrevLineConnected && lineGenerateStrategy.generate();
-            ladderPositions.add(new LadderPosition(new Position(i), Point.first(isPrevLineConnected).next(currentLineConnection)));
+            ladderPositions.add(new LadderPosition(i, isPrevLineConnected, currentLineConnection));
             isPrevLineConnected = currentLineConnection;
         }
 

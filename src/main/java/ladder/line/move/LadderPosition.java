@@ -6,6 +6,10 @@ public class LadderPosition {
     private final Position position;
     private final Point point;
 
+    public LadderPosition(int position, boolean left, boolean current) {
+        this(new Position(position), Point.first(left).next(current));
+    }
+
     public LadderPosition(Position poisition, Point point) {
         this.position = poisition;
         this.point = point;
