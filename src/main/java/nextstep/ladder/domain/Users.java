@@ -40,7 +40,8 @@ public class Users {
                 .orElseThrow(() -> new NoSuchElementException("존재하지 않는 유저 입니다."));
     }
 
-    public int findUserIndex(User user) {
-        return new ArrayList<>(users).indexOf(user);
+    public Point findUserIndex(User user) {
+        int indexOfValue = new ArrayList<>(users).indexOf(user);
+        return new Point(indexOfValue);
     }
 }

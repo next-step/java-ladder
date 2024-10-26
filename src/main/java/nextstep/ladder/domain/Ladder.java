@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Ladder {
     private final PositiveNumber height;
@@ -49,19 +48,19 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public int getLadderResultIndex(int startIndex) {
-        return IntStream.range(0, height.getValue())
-                .reduce(startIndex, this::getNextIndex);
+    public Point getLadderResultIndex(Point startPoint) {
+        Point currentPoint = startPoint;
+        for (int i = 0; i < height.getValue(); i++) {
+            LadderRow currentStep = map.get(i);
+            if (currentStep.isLeftMoveable(currentPoint)) {
+                currentPoint = currentPoint.minus();
+                continue;
+            }
+            if (currentStep.isRightMoveable(currentPoint)) {
+                currentPoint = currentPoint.plus();
+            }
+        }
+        return currentPoint;
     }
 
-    private int getNextIndex(int currentIndex, int rowIndex) {
-        LadderRow currentStep = map.get(rowIndex);
-        if (currentStep.isLeftMoveable(currentIndex)) {
-            return currentIndex - 1;
-        }
-        if (currentStep.isRightMoveable(currentIndex)) {
-            return currentIndex + 1;
-        }
-        return currentIndex;
-    }
 }

@@ -43,7 +43,7 @@ public class GameResult {
             User user,
             GameResult gameResult
     ) {
-        int userIndex = players.findUserIndex(user);
+        Point userIndex = players.findUserIndex(user);
         String ladderResult = gameBoard.getLadderResult(userIndex);
         gameResult.put(user, ladderResult);
     }

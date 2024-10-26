@@ -38,7 +38,7 @@ class LadderRowTest {
     void isRightMoveableTest() {
         LadderRow ladderRow = new LadderRow(new PositiveNumber(5), () -> true);
         System.out.println(ladderRow.getRow().size());
-        assertThat(ladderRow.isRightMoveable(4)).isFalse();
+        assertThat(ladderRow.isRightMoveable(new Point(4))).isFalse();
     }
 
     @Test
@@ -46,6 +46,6 @@ class LadderRowTest {
     void isLeftMoveableTest() {
         LadderRow ladderRow = new LadderRow(new PositiveNumber(5), () -> true);
         System.out.println(ladderRow.getRow().size());
-        assertThat(ladderRow.isLeftMoveable(0)).isFalse();
+        assertThat(ladderRow.isLeftMoveable(new Point(0))).isFalse();
     }
 }

@@ -20,7 +20,7 @@ public class LadderRow {
 
     private void makeRow(PositiveNumber width) {
         for (int i = 0; i < width.getValue(); i++) {
-            row.add(getBar(i));
+            row.add(getBar(new Point(i)));
         }
     }
 
@@ -28,11 +28,11 @@ public class LadderRow {
         return Collections.unmodifiableList(row);
     }
 
-    private String getBar(int index) {
+    private String getBar(Point point) {
         if (row.isEmpty()) {
             return EMPTY_HORIZONTAL_BAR;
         }
-        if (getPreviousBar(index).equals(EMPTY_HORIZONTAL_BAR)) {
+        if (getPreviousBar(point).equals(EMPTY_HORIZONTAL_BAR)) {
             return generateLine();
         }
         return EMPTY_HORIZONTAL_BAR;
@@ -44,25 +44,25 @@ public class LadderRow {
                 : EMPTY_HORIZONTAL_BAR;
     }
 
-    private String getPreviousBar(int index) {
-        return row.get(index - 1);
+    private String getPreviousBar(Point point) {
+        return row.get(point.getValue() - 1);
     }
 
     public String getRowAsString() {
         return String.join("|", row) + ROW_DELIMITER;
     }
 
-    public boolean isRightMoveable(int currentIndex) {
-        if (currentIndex + 1 >= row.size()) {
+    public boolean isRightMoveable(Point currentPoint) {
+        if (currentPoint.getValue() + 1 >= row.size()) {
             return false;
         }
-        return row.get(currentIndex + 1).equals(HORIZONTAL_BAR);
+        return row.get(currentPoint.getValue() + 1).equals(HORIZONTAL_BAR);
     }
 
-    public boolean isLeftMoveable(int currentIndex) {
-        if (currentIndex - 1 < 0) {
+    public boolean isLeftMoveable(Point currentPoint) {
+        if (currentPoint.getValue() - 1 < 0) {
             return false;
         }
-        return row.get(currentIndex).equals(HORIZONTAL_BAR);
+        return row.get(currentPoint.getValue()).equals(HORIZONTAL_BAR);
     }
 }

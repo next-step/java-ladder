@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultRow {
+    private static final int MAX_LENGTH = 5;
+
     private final List<String> row;
 
     public ResultRow(List<String> results) {
@@ -18,7 +20,7 @@ public class ResultRow {
 
     private boolean validateElementLength(List<String> results) {
         return results.stream()
-                .noneMatch(it -> it.length() <= 5);
+                .noneMatch(it -> it.length() <= MAX_LENGTH);
     }
 
     public String getResultRowAsString() {
@@ -27,7 +29,7 @@ public class ResultRow {
                 .collect(Collectors.joining());
     }
 
-    public String getResult(int index) {
-        return row.get(index);
+    public String getResult(Point point) {
+        return row.get(point.getValue());
     }
 }

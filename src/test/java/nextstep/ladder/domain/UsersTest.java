@@ -43,7 +43,7 @@ class UsersTest {
     void findUserIndexTest() {
         Users users = initUser();
         User user = new User("고길동");
-        assertThat(users.findUserIndex(user)).isEqualTo(2);
+        assertThat(users.findUserIndex(user)).isEqualTo(new Point(2));
     }
 
     private Users initUser() {
