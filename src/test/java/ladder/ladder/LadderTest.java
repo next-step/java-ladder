@@ -1,7 +1,7 @@
 package ladder.ladder;
 
 import ladder.line.Line;
-import ladder.line.move.Cross;
+import ladder.line.move.LadderPosition;
 import ladder.line.move.Direction;
 import ladder.line.move.Position;
 import org.junit.jupiter.api.DisplayName;
@@ -27,7 +27,7 @@ class LadderTest {
         assertThat(ladder.getLines())
                 .hasSize(3)
                 .flatExtracting(Line::getCrosses)
-                .extracting(Cross::getDirection)
+                .extracting(LadderPosition::getDirection)
                 .isEqualTo(expectedDirections);
     }
 

@@ -2,11 +2,11 @@ package ladder.line.move;
 
 import java.util.Objects;
 
-public class Cross {
+public class LadderPosition {
     private final Position position;
     private final Point point;
 
-    public Cross(Position poisition, Point point) {
+    public LadderPosition(Position poisition, Point point) {
         this.position = poisition;
         this.point = point;
     }
@@ -33,8 +33,8 @@ public class Cross {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Cross cross = (Cross) o;
-        return Objects.equals(position, cross.position) && Objects.equals(point, cross.point);
+        LadderPosition ladderPosition = (LadderPosition) o;
+        return Objects.equals(position, ladderPosition.position) && Objects.equals(point, ladderPosition.point);
     }
 
     @Override
