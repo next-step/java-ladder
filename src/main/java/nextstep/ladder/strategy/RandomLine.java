@@ -2,30 +2,33 @@ package nextstep.ladder.strategy;
 
 import nextstep.ladder.domain.Line;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class RandomLine implements LineCreatableStrategy {
     private final Random random = new Random();
 
     @Override
     public Line create(final int countOfPerson) {
-        AtomicReference<Boolean> previous = new AtomicReference<>(false);
+        boolean previous = false;
         int sizePoints = countOfPerson - 1;
-        List<Boolean> points = IntStream.range(0, sizePoints)
-                .mapToObj(i -> isTrueContinuous(random.nextBoolean(), previous))
-                .collect(Collectors.toList());
+        List<Boolean> points = new ArrayList<>();
+
+        for (int i = 0; i < sizePoints; i++) {
+            boolean current = random.nextBoolean();
+            current = isTrueContinuous(current, previous);
+            points.add(current);
+            previous = current;
+        }
+
         return new Line(points);
     }
 
-    private Boolean isTrueContinuous(Boolean current, final AtomicReference<Boolean> previous) {
-        if (Boolean.TRUE.equals(previous.get()) && current) {
+    private boolean isTrueContinuous(boolean current, boolean previous) {
+        if (previous && current) {
             current = false;
         }
-        previous.set(current);
         return current;
     }
 }
