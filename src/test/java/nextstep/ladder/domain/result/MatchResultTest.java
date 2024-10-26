@@ -34,12 +34,12 @@ public class MatchResultTest {
             "crong,3000",
             "jk,3000"
     })
-    void get_player_result_from_player_name(String playerName, String result) {
+    void getPlayerResultFromPlayerName(String playerName, String result) {
         assertThat(matchResult.playResult(playerName).getResult()).isEqualTo(result);
     }
 
     @Test
-    void get_all_play_result() {
+    void getAllPlayResult() {
         int index = 0;
         assertThat(matchResult.allPlayResults()).containsExactly(
                 new PlayerResult(new Player("pobi", index++), "5000"),
@@ -50,7 +50,7 @@ public class MatchResultTest {
     }
 
     @Test
-    void throw_exception_if_no_play_result_from_given_player_name() {
+    void throwExceptionIfNoPlayResultFromGivenPlayerName() {
         assertThatIllegalArgumentException().isThrownBy(() -> matchResult.playResult("nobody"));
     }
 }

@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -23,10 +22,14 @@ public class LadderTest {
 
     @ParameterizedTest
     @CsvSource(value = {
-            "true,false,true,false:true,false,true,false:true,false,false,true:true,false,false,true:0,1,2,3,4",
-            "true,false,true,false:true,false,false,true:true,false,true,false:true,false,false,true:0,1,4,2,3"
+            "RIGHT_DOWN,LEFT_DOWN,RIGHT_DOWN,LEFT_DOWN,DOWN:RIGHT_DOWN,LEFT_DOWN,RIGHT_DOWN,LEFT_DOWN,DOWN:" +
+                    "RIGHT_DOWN,LEFT_DOWN,DOWN,RIGHT_DOWN,LEFT_DOWN:RIGHT_DOWN,LEFT_DOWN,DOWN,RIGHT_DOWN,LEFT_DOWN:" +
+                    "0,1,2,3,4",
+            "RIGHT_DOWN,LEFT_DOWN,RIGHT_DOWN,LEFT_DOWN,DOWN:RIGHT_DOWN,LEFT_DOWN,DOWN,RIGHT_DOWN,LEFT_DOWN:" +
+                    "RIGHT_DOWN,LEFT_DOWN,RIGHT_DOWN,LEFT_DOWN,DOWN:RIGHT_DOWN,LEFT_DOWN,DOWN,RIGHT_DOWN,LEFT_DOWN:" +
+                    "0,1,4,2,3"
     }, delimiter = ':')
-    void apply_ladder_result_to_list_from_play_result_of_all_ladder_lines(
+    void applyLadderResultToListFromPlayResultOfAllLadderLines(
             String ladderLine1,
             String ladderLine2,
             String ladderLine3,
@@ -60,10 +63,6 @@ public class LadderTest {
     }
 
     private LadderLine toLadderLine(String text) {
-        return new LadderLine(toBooleanList(text));
-    }
-
-    private List<Boolean> toBooleanList(String text) {
-        return Stream.of(text.split(",")).map(Boolean::parseBoolean).collect(Collectors.toList());
+        return new LadderLine(LadderLineTest.toDirections(text));
     }
 }
