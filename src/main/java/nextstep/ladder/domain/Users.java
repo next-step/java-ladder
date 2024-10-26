@@ -1,20 +1,21 @@
 package nextstep.ladder.domain;
 
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Users {
-    private final Set<User> users;
+    private final LinkedHashSet<User> users;
 
-    private Users(Set<User> users) {
+    private Users(LinkedHashSet<User> users) {
         this.users = users;
     }
 
     public static Users from(Set<String> userNames) {
-        Set<User> userSet = userNames.stream()
+        LinkedHashSet<User> userSet = userNames.stream()
                 .map(User::new)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toCollection(LinkedHashSet::new));
         return new Users(userSet);
     }
 

@@ -1,6 +1,7 @@
 package nextstep.ladder.ui;
 
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,12 +20,14 @@ public class InputView {
         System.out.println(USER_NAMES_QUESTION);
         return Arrays.stream(readText().split(SPLIT_DELIMITER))
                 .map(String::trim)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     public static int readLadderHeight() {
         System.out.println(LADDER_HEIGHT_QUESTION);
-        return readInt();
+        int ladderHeight = readInt();
+        SCANNER.nextLine();
+        return ladderHeight;
     }
 
     private static String readText() {

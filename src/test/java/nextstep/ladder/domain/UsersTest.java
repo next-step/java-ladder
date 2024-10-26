@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -37,6 +38,6 @@ class UsersTest {
     }
 
     private Users initUser() {
-        return Users.from(Set.of("홍길동", "전우치", "고길동"));
+        return Users.from(new LinkedHashSet<>(List.of("홍길동", "전우치", "고길동")));
     }
 }
