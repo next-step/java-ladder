@@ -24,6 +24,7 @@ public class StreamStudyTest {
     }
 
     @Test
+    @DisplayName("단어 길이가 12자를 초과하는 걸 순서대로 100개 중복없이 소문자로 추출하는 테스트")
     public void printLongestWordTop100() throws Exception {
         StreamStudy.printLongestWordTop100();
     }

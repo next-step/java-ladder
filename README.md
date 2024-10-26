@@ -21,6 +21,6 @@
 ### 스트림(stream)
 
 1. [x] map, reduce, filter 실습 1
-2. [ ] map, reduce, filter 실습 2
+2. [x] map, reduce, filter 실습 2
 
 
