@@ -36,11 +36,4 @@ public class LadderResult {
         result.put(player, prize);
         return result;
     }
-
-    public Map<Player, Prize> getResultByInput(Player player, boolean isAll) {
-        if (isAll) {
-            return getAllResult();
-        }
-        return getResultByPlayer(player);
-    }
 }
