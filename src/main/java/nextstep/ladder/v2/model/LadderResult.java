@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderResult {
-    private LinkedHashMap<Player, Prize> result;
+    private Map<Player, Prize> result;
 
-    public LadderResult(LinkedHashMap<Player, Prize> result) {
+    public LadderResult(Map<Player, Prize> result) {
         this.result = result;
     }
 
@@ -26,7 +26,7 @@ public class LadderResult {
         return new LadderResult(result);
     }
 
-    public LinkedHashMap<Player, Prize> getAllResult() {
+    public Map<Player, Prize> getAllResult() {
         return result;
     }
 

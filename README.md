@@ -48,3 +48,4 @@
 * LadderResult.getResultByInput() 분기 처리를 애플리케이션 로직에서 처리하도록 수정 [X]
 * Direction exception message 수정 및 Unit Test 추가 [X]
 * Point class에서 Direction 변수 제거 [X]
+* LadderResult의 result 변수를 Map type으로 변환 [X]
