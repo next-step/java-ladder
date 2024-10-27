@@ -30,13 +30,7 @@ public class Ladder {
     }
 
     public Line createLine(int countOfPlayers, PointGenerator pointGenerator) {
-        Line line = new Line(countOfPlayers, pointGenerator);
-        return line;
-    }
-
-    public void createALine(int countOfPlayers, PointGenerator pointGenerator) {
-        Line line = new Line(countOfPlayers, pointGenerator);
-        this.lines.add(line);
+        return new Line(countOfPlayers, pointGenerator);
     }
 
     public int move(int startPosition) {

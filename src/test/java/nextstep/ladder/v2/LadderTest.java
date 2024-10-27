@@ -49,13 +49,13 @@ public class LadderTest {
     }
 
     @Test
-    @DisplayName("ladder move - right direction")
-    void ladderMoveTest_RightDirection() {
+    @DisplayName("ladder move")
+    void ladderMoveTest() {
         //given
         int countOfPlayers = 3;
         PointGenerator pointGenerator = new MockPointGenerator();
-        Line line = new Line(countOfPlayers, pointGenerator);
-        Ladder ladder = new Ladder(List.of(line));
+        int height = 2;
+        Ladder ladder = Ladder.of(countOfPlayers).createLadder(height, pointGenerator);
 
         //when
         int position = ladder.move(0);
@@ -63,23 +63,6 @@ public class LadderTest {
         //then
         //       0    1     2
         // false true false false
-        Assertions.assertThat(position).isEqualTo(1);
-    }
-
-    @Test
-    @DisplayName("ladder move - left direction")
-    void ladderMoveTest_LeftDirection() {
-        //given
-        int countOfPlayers = 3;
-        PointGenerator pointGenerator = new MockPointGenerator();
-        Line line = new Line(countOfPlayers, pointGenerator);
-        Ladder ladder = new Ladder(List.of(line));
-
-        //when
-        int position = ladder.move(1);
-
-        //then
-        //       0    1     2
         // false true false false
         Assertions.assertThat(position).isEqualTo(0);
     }
