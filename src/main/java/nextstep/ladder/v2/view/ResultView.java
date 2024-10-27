@@ -32,7 +32,7 @@ public class ResultView {
         StringBuilder sb = new StringBuilder();
         lines.forEach(line -> {
             sb.append(" ".repeat(MAX));
-            List<Boolean> points = line.getPoints().stream().map(Point::isCur).collect(Collectors.toList());
+            List<Boolean> points = line.getPoints().stream().map(Point::isCurrent).collect(Collectors.toList());
             points.forEach(point -> sb.append("|").append(point ? "-".repeat(6) : " ".repeat(6)));
             sb.append("\n");
         });

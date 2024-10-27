@@ -3,12 +3,12 @@ package nextstep.ladder.v2.model;
 import java.util.Objects;
 
 public class Point {
-    private boolean prev;
-    private boolean cur;
+    private boolean previous;
+    private boolean current;
 
-    public Point(boolean prev, boolean cur) {
-        this.prev = prev;
-        this.cur = cur;
+    public Point(boolean previous, boolean current) {
+        this.previous = previous;
+        this.current = current;
     }
 
     public static Point first(PointGenerator pointGenerator) {
@@ -19,20 +19,20 @@ public class Point {
         return new Point(false, cur);
     }
 
-    public boolean isCur() {
-        return cur;
+    public boolean isCurrent() {
+        return current;
     }
 
     public Direction getDirection() {
-        return Direction.of(this.prev, this.cur);
+        return Direction.of(this.previous, this.current);
     }
 
     public Point next(PointGenerator pointGenerator) {
-        return new Point(this.cur, pointGenerator.generate(this.cur));
+        return new Point(this.current, pointGenerator.generate(this.current));
     }
 
     public Point last() {
-        return new Point(this.cur, false);
+        return new Point(this.current, false);
     }
 
     @Override
