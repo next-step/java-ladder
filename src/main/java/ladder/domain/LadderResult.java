@@ -9,7 +9,7 @@ public class LadderResult {
     private final Map<UserName, LadderPrize> lottoResult;
 
     private LadderResult(Map<UserName, LadderPrize> lottoResult) {
-        this.lottoResult = new HashMap<>(lottoResult);
+        this.lottoResult = new LinkedHashMap<>(lottoResult);
     }
 
     public static LadderResult of(Users users, LadderPrizes ladderPrizes, Map<Integer, Integer> ladderIndexMap) {

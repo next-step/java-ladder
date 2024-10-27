@@ -16,7 +16,8 @@ public class LadderPrizes {
     public LadderPrize findPrize(int index) {
         return prizes.get(index);
     }
-    public int size(){
+
+    public int size() {
         return prizes.size();
     }
 }
