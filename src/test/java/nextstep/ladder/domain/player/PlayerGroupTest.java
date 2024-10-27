@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.player;
 
+import nextstep.ladder.domain.direction.Direction;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.LadderLine;
 import org.junit.jupiter.api.Test;
@@ -23,25 +24,25 @@ public class PlayerGroupTest {
     }
 
     @Test
-    void 입력받은_참가자_문자열이_빈문자일때_예외_발생() {
+    void throwExceptionIfPlayerNameIsEmpty() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new PlayerGroup(""));
     }
 
     @Test
-    void 참가자_이름이_5자초과_또는_빈문자일때_예외_발생() {
+    void throwExceptionIfPlayerNameLengthExceedFive() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new PlayerGroup("pobisdfsd,honux,crong,jk"));
     }
 
     @Test
-    void 사다리_게임_정상_실행() {
+    void playLadderGame() {
         PlayerGroup playerGroup = new PlayerGroup("pobi,honux,crong,jk");
 
         Ladder ladder = new Ladder(List.of(
-                new LadderLine(List.of(true, false, false)),
-                new LadderLine(List.of(true, false, false)),
-                new LadderLine(List.of(true, false, true))));
+                new LadderLine(List.of(Direction.RIGHT_DOWN, Direction.LEFT_DOWN, Direction.DOWN, Direction.DOWN)),
+                new LadderLine(List.of(Direction.RIGHT_DOWN, Direction.LEFT_DOWN, Direction.DOWN, Direction.DOWN)),
+                new LadderLine(List.of(Direction.RIGHT_DOWN, Direction.LEFT_DOWN, Direction.DOWN, Direction.DOWN))));
 
         List<Player> result = playerGroup.play(ladder);
 

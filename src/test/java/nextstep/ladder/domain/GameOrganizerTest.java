@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.GameOrganizer;
+import nextstep.ladder.domain.direction.Direction;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.LadderLine;
 import nextstep.ladder.domain.player.Player;
@@ -17,15 +18,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class GameOrganizerTest {
 
     @Test
-    void get_match_result() {
+    void getMatchResult() {
         PlayerGroup playerGroup = new PlayerGroup("pobi,honux,crong,jk");
         LadderResultGroup ladderResultGroup =
                 LadderResultGroup.of("꽝, 5000, 3000, 꽝", playerGroup.count());
         Ladder ladder = new Ladder(List.of(
-                new LadderLine(List.of(true, false, false)),
-                new LadderLine(List.of(true, false, false)),
-                new LadderLine(List.of(true, false, false)),
-                new LadderLine(List.of(false, false, false))));
+                new LadderLine(List.of(Direction.RIGHT_DOWN, Direction.LEFT_DOWN, Direction.DOWN, Direction.DOWN)),
+                new LadderLine(List.of(Direction.RIGHT_DOWN, Direction.LEFT_DOWN, Direction.DOWN, Direction.DOWN)),
+                new LadderLine(List.of(Direction.RIGHT_DOWN, Direction.LEFT_DOWN, Direction.DOWN, Direction.DOWN)),
+                new LadderLine(List.of(Direction.DOWN, Direction.DOWN, Direction.DOWN, Direction.DOWN))));
 
         MatchResult matchResult = GameOrganizer.getInstance().play(playerGroup, ladderResultGroup, ladder);
 

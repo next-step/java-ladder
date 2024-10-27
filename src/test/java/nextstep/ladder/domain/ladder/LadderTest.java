@@ -1,14 +1,13 @@
 package nextstep.ladder.domain.ladder;
 
-import nextstep.ladder.domain.player.Player;
+import nextstep.ladder.domain.direction.Point;
+import nextstep.ladder.util.StringSplitter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -23,10 +22,14 @@ public class LadderTest {
 
     @ParameterizedTest
     @CsvSource(value = {
-            "true,false,true,false:true,false,true,false:true,false,false,true:true,false,false,true:0,1,2,3,4",
-            "true,false,true,false:true,false,false,true:true,false,true,false:true,false,false,true:0,1,4,2,3"
+            "RIGHT_DOWN,LEFT_DOWN,RIGHT_DOWN,LEFT_DOWN,DOWN:RIGHT_DOWN,LEFT_DOWN,RIGHT_DOWN,LEFT_DOWN,DOWN:" +
+                    "RIGHT_DOWN,LEFT_DOWN,DOWN,RIGHT_DOWN,LEFT_DOWN:RIGHT_DOWN,LEFT_DOWN,DOWN,RIGHT_DOWN,LEFT_DOWN:" +
+                    "0,1,2,3,4",
+            "RIGHT_DOWN,LEFT_DOWN,RIGHT_DOWN,LEFT_DOWN,DOWN:RIGHT_DOWN,LEFT_DOWN,DOWN,RIGHT_DOWN,LEFT_DOWN:" +
+                    "RIGHT_DOWN,LEFT_DOWN,RIGHT_DOWN,LEFT_DOWN,DOWN:RIGHT_DOWN,LEFT_DOWN,DOWN,RIGHT_DOWN,LEFT_DOWN:" +
+                    "0,1,3,4,2"
     }, delimiter = ':')
-    void apply_ladder_result_to_list_from_play_result_of_all_ladder_lines(
+    void applyLadderResultToListFromPlayResultOfAllLadderLines(
             String ladderLine1,
             String ladderLine2,
             String ladderLine3,
@@ -39,31 +42,16 @@ public class LadderTest {
                 toLadderLine(ladderLine3),
                 toLadderLine(ladderLine4)));
 
-        List<Player> players = toPlayers();
-        ladder.play(players);
+        List<Point> resultPoint = new StringSplitter(result)
+                .indexBasedConverter((index, toParseInt) -> Point.from(Integer.parseInt(toParseInt), 4));
 
-        assertThat(players).containsExactly(toPlayerArray(result));
-    }
-
-    private static List<Player> toPlayers() {
-        return IntStream.range(0, 5)
-                .mapToObj(i -> new Player(String.valueOf(i), i))
-                .collect(Collectors.toList());
-    }
-
-    private Player[] toPlayerArray(String text) {
-        String[] positions = text.split(",");
-
-        return IntStream.range(0, 5)
-                .mapToObj(i -> new Player(String.valueOf(i), Integer.parseInt(positions[i])))
-                .toArray(Player[]::new);
+        IntStream.range(0, 5).forEach(i ->{
+                    Point afterPoint = ladder.play(Point.from(i, 0));
+                    assertThat(afterPoint).isEqualTo(resultPoint.get(i));
+                });
     }
 
     private LadderLine toLadderLine(String text) {
-        return new LadderLine(toBooleanList(text));
-    }
-
-    private List<Boolean> toBooleanList(String text) {
-        return Stream.of(text.split(",")).map(Boolean::parseBoolean).collect(Collectors.toList());
+        return new LadderLine(LadderLineTest.toDirections(text));
     }
 }
