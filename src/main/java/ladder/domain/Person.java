@@ -7,9 +7,15 @@ public class Person {
     private final static String MAX_NAME_ERROR_MESSAGE = "이름은 5글자를 넘을 수 없습니다.";
 
     private final String name;
+    private Point point;
 
     public Person(String name) {
+        this(name, 0);
+    }
+
+    public Person(String name, int position) {
         this.name = validate(name);
+        this.point = new Point(position);
     }
 
     private String validate(String name) {
