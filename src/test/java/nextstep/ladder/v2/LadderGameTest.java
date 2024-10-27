@@ -13,10 +13,11 @@ public class LadderGameTest {
     void createLadderGameTest() {
         //given
         List<String> names = List.of("pobi", "honux", "crong", "jk");
+        Ladder ladder = Ladder.of(names.size()).createLadder(1, new MockPointGenerator());
         PlayerGroup group = new PlayerGroup(names);
 
         //when
-        LadderGame game = new LadderGame(names);
+        LadderGame game = new LadderGame(names, ladder);
 
         //then
         Assertions.assertThat(game).isNotNull();
@@ -24,29 +25,6 @@ public class LadderGameTest {
         Assertions.assertThat(game.getPlayerGroup()).isEqualTo(group);
     }
 
-    @Test
-    @DisplayName("ladder game - ladder 생성")
-    void createLadderWithLadderGameTest() {
-        //given
-        List<String> names = List.of("pobi", "honux", "crong");
-        PointGenerator pointGenerator = new MockPointGenerator();
-        int height = 5;
-        LadderGame game = new LadderGame(names);
-
-
-        //when
-        Ladder ladder = game.createLadder(height, pointGenerator);
-
-        //then
-        // false true false false
-        // false true false false
-        // false true false false
-        // false true false false
-        // false true false false
-        Assertions.assertThat(ladder.getLines()).hasSize(height);
-        List<Point> expectedPoints = List.of(new Point(false, true), new Point(true, false), new Point(false, false));
-        Assertions.assertThat(ladder.getLines().get(0).getPoints()).hasSameElementsAs(expectedPoints);
-    }
 
     @Test
     @DisplayName("ladder game - ladder result 생성")
@@ -55,8 +33,10 @@ public class LadderGameTest {
         List<String> names = List.of("pobi", "honux", "crong");
         PointGenerator pointGenerator = new MockPointGenerator();
         int height = 1;
-        LadderGame game = new LadderGame(names);
-        Ladder ladder = game.createLadder(height, pointGenerator);
+
+        Ladder ladder = Ladder.of(names.size()).createLadder(height, pointGenerator);
+
+        LadderGame game = new LadderGame(names, ladder);
 
         List<String> prizeInput = List.of("꽝", "5000", "꽝");
 

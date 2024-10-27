@@ -50,3 +50,4 @@
 * Point class에서 Direction 변수 제거 [X]
 * LadderResult의 result 변수를 Map type으로 수정 [X]
 * Point prev, cur 변수를 previous, current로 수정 [X]
+* LadderGame 생성자를 통해 Ladder 주입 받도록 수정 [X]

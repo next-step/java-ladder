@@ -13,8 +13,8 @@ public class LadderGameApplication {
         List<String> prizes = InputView.inputPrizes();
         int height = InputView.inputLadderHeight();
 
-        LadderGame ladderGame = new LadderGame(names);
-        Ladder ladder = ladderGame.createLadder(height, new RandomPointGenerator());
+        Ladder ladder = Ladder.of(names.size()).createLadder(height, new RandomPointGenerator());
+        LadderGame ladderGame = new LadderGame(names, ladder);
         LadderResult ladderResult = ladderGame.createLadderResult(prizes);
 
         ResultView.printResultLetters();

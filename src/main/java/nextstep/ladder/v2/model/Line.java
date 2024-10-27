@@ -30,6 +30,10 @@ public class Line {
         return points;
     }
 
+    public int getSize() {
+        return points.size();
+    }
+
     public int move(int startPos) {
         return this.points.get(startPos).getNextPosition(startPos);
     }

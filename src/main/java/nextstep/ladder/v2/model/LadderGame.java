@@ -8,9 +8,9 @@ public class LadderGame {
     private PlayerGroup playerGroup;
     private Ladder ladder;
 
-    public LadderGame(List<String> names) {
+    public LadderGame(List<String> names, Ladder ladder) {
         this.playerGroup = new PlayerGroup(names);
-        this.ladder = Ladder.empty();
+        this.ladder = ladder;
     }
 
     public PlayerGroup getPlayerGroup() {
@@ -19,12 +19,6 @@ public class LadderGame {
 
     public Ladder getLadder() {
         return ladder;
-    }
-
-    public Ladder createLadder(int height, PointGenerator pointGenerator) {
-        IntStream.range(0, height)
-                .forEach(idx -> this.ladder.createALine(playerGroup.getSize(), pointGenerator));
-        return this.ladder;
     }
 
     public LadderResult createLadderResult(List<String> prizeInput) {

@@ -30,8 +30,27 @@ public class LadderTest {
     }
 
     @Test
-    @DisplayName("ladder move 1")
-    void ladderMoveTest1() {
+    @DisplayName("ladder creatLadder")
+    void createLadderWithStaticMethodTest() {
+        //given
+        int countOfPlayers = 3;
+        PointGenerator pointGenerator = new MockPointGenerator();
+        Line line = new Line(countOfPlayers, pointGenerator);
+        int height = 1;
+
+        //when
+        Ladder ladder = Ladder.of(countOfPlayers).createLadder(height, pointGenerator);
+
+        //then
+        List<Point> expectedPoints = List.of(new Point(false, true), new Point(true, false), new Point(false, false));
+        Assertions.assertThat(ladder.getLines()).hasSize(1);
+        List<Point> points = ladder.getLines().get(0).getPoints();
+        Assertions.assertThat(points).hasSameElementsAs(expectedPoints);
+    }
+
+    @Test
+    @DisplayName("ladder move - right direction")
+    void ladderMoveTest_RightDirection() {
         //given
         int countOfPlayers = 3;
         PointGenerator pointGenerator = new MockPointGenerator();
@@ -48,8 +67,8 @@ public class LadderTest {
     }
 
     @Test
-    @DisplayName("ladder move 2")
-    void ladderMoveTest2() {
+    @DisplayName("ladder move - left direction")
+    void ladderMoveTest_LeftDirection() {
         //given
         int countOfPlayers = 3;
         PointGenerator pointGenerator = new MockPointGenerator();
