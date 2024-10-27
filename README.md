@@ -44,3 +44,4 @@
 * LadderResult class 구현 [X]
 * LadderGame class 구현 [X]
 * Direction Unit Test 추가 [X]
+* 결과 출력 로직 수정 [X]

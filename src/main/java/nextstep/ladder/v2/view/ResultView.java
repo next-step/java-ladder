@@ -47,10 +47,7 @@ public class ResultView {
     }
 
     private static int getCountOfSpace(String input) {
-        if (input.equals("꽝")) {
-            return getCountOfSpace(input.length());
-        }
-        return input.length();
+        return input.length() > MAX ? input.length() : MAX - input.length();
     }
 
     public static void printResult(Map<Player, Prize> result) {
