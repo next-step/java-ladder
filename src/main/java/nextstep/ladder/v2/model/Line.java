@@ -31,6 +31,6 @@ public class Line {
     }
 
     public int move(int startPos) {
-        return this.points.get(startPos).getDirection().getNextPosition(startPos);
+        return this.points.get(startPos).getNextPosition(startPos);
     }
 }

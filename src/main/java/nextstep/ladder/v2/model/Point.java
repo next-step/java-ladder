@@ -27,6 +27,10 @@ public class Point {
         return Direction.of(this.previous, this.current);
     }
 
+    public int getNextPosition(int startPosition) {
+        return getDirection().getNextPosition(startPosition);
+    }
+
     public Point next(PointGenerator pointGenerator) {
         return new Point(this.current, pointGenerator.generate(this.current));
     }
