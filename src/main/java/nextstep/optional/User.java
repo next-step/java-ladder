@@ -35,7 +35,11 @@ public class User {
     }
 
     public static boolean ageIsInRange2(User user) {
-        return Optional.ofNullable(user).stream().map(u -> user.getAge() >= 30 && u.getAge() <= 45).count() > 0;
+        return Optional.ofNullable(user).stream().filter(User::isInRange).count() > 0;
+    }
+
+    private static boolean isInRange(User user) {
+        return user.getAge() != null && user.getAge() >= 30 && user.getAge() <= 45;
     }
 
     @Override
