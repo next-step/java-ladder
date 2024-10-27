@@ -23,14 +23,6 @@ public class Line {
 
     }
 
-    private void addHorizontal(int num, Strategy strategy) {
-        if (isValid(num) && strategy.randomLadder()) {
-            this.points.add(true);
-            return;
-        }
-        this.points.add(false);
-    }
-
     private List<Boolean> parse(Boolean... booleans) {
         isValid(booleans);
 
@@ -52,8 +44,39 @@ public class Line {
                 });
     }
 
+    private void addHorizontal(int num, Strategy strategy) {
+        if (isValid(num) && strategy.randomLadder()) {
+            this.points.add(true);
+            return;
+        }
+        this.points.add(false);
+    }
+
     public boolean isValid(int number) {
         return !points.isEmpty() && !points.get(number - 1);
+    }
+
+    public int move(int position) {
+        if(canMoveLeft(position)) {
+            return position - 1;
+        }
+        if(canMoveRight(position)) {
+            return position + 1;
+        }
+
+        return position;
+    }
+
+    private boolean canMoveLeft(int position) {
+        return position > 0 && hasLine(position - 1);
+    }
+
+    private boolean canMoveRight(int position) {
+        return position < points.size() && hasLine(position + 1);
+    }
+
+    private boolean hasLine(int position) {
+        return points.get(position);
     }
 
     public List<Boolean> getPoints() {
