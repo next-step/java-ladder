@@ -19,7 +19,7 @@ public enum Direction {
 
     public static Direction of(boolean left, boolean right) {
         if (left && right) {
-            throw new IllegalArgumentException("illegal direction");
+            throw new IllegalArgumentException("both previous and current point must not be true");
         }
 
         if (!left && !right) {
