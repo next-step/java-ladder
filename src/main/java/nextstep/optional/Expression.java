@@ -17,10 +17,12 @@ enum Expression {
     }
 
     static Expression of(String expression) {
-        return Optional.ofNullable(expression)
-                .flatMap(exp -> Arrays.stream(values())
-                        .filter(v -> matchExpression(v, expression))
-                        .findFirst())
+        if(expression ==null){
+            throw new IllegalArgumentException("입력 값이 null입니다.");
+        }
+        return Arrays.stream(values())
+                .filter(v -> matchExpression(v, expression))
+                .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(String.format("%s는 사칙연산에 해당하지 않는 표현식입니다.", expression)));
 
     }
