@@ -22,8 +22,8 @@ public class Ladder {
     public int move(int startPosition) {
         return lines.stream()
                 .reduce(startPosition,
-                        (result, line) -> line.move(result),
-                        (result1, result2) -> result1);
+                        (position, line) -> line.move(position),
+                        (nextPosition1, nextPosition2) -> nextPosition1);
     }
 
     public List<Line> getLines() {
