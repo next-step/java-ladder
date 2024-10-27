@@ -43,3 +43,4 @@
 * PlayerGroup class 구현 [X]
 * LadderResult class 구현 [X]
 * LadderGame class 구현 [X]
+* Direction Unit Test 추가 [X]
