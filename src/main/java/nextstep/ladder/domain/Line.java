@@ -16,6 +16,10 @@ public class Line {
         this(new ArrayList<>());
     }
 
+    public boolean hasLineAtPosition(int position) {
+        return points.get(position);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -27,9 +31,5 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hash(points);
-    }
-
-    public boolean hasLineAtPosition(int position) {
-        return points.get(position);
     }
 }

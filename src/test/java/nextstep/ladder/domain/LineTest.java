@@ -16,7 +16,7 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("높이:1 이고, |-----|     |")
+    @DisplayName("#CASE: 높이:1, 참가자:3명 -->  |-----|     |")
     void 라인_존재여부() {
         Line line = new Line(Arrays.asList(Boolean.TRUE, Boolean.TRUE, Boolean.FALSE));
         assertThat(line.hasLineAtPosition(0)).isTrue();
