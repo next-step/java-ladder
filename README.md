@@ -19,5 +19,10 @@
   |     |-----|     |    Line[3] : False True True False
   |-----|     |-----|    Line[4] : True True True True
   
+  # 사다리 랜덤 생성 전략
+  1. 최소 2자리 이상 비어있으면 True or False를 선택할 수 있다.
+    1-1. True 인 경우 True True 를 동시에 넣어준다. ( 라인은 두 점을 잇는 선이다.)
+    1-2. False 인 경우 False만 넣어준다.  
+  2. 한 자리만 남았다면 그 자리는 무조건 False 이다.
 ``````
 
