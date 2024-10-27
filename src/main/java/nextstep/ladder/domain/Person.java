@@ -19,6 +19,10 @@ public class Person {
         return String.format(LEFT_PAD, name);
     }
 
+    public String name() {
+        return name;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
