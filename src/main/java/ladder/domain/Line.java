@@ -33,11 +33,11 @@ public class Line {
     }
 
     private boolean hasLeftLadder(int index) {
-        return !points.isEmpty() && !points.get(index - 1);
+        return points.get(index - 1);
     }
 
     private boolean hasRightLadder(int index) {
-        return index + 1 < points.size() && points.get(index + 1);
+        return index + 1 < points.size() && points.get(index);
     }
 
     public int decideNextIndex(int index) {
