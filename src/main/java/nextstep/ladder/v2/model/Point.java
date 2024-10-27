@@ -5,12 +5,10 @@ import java.util.Objects;
 public class Point {
     private boolean prev;
     private boolean cur;
-    private Direction direction;
 
     public Point(boolean prev, boolean cur) {
         this.prev = prev;
         this.cur = cur;
-        this.direction = Direction.of(this.prev, this.cur);
     }
 
     public static Point first(PointGenerator pointGenerator) {
@@ -26,7 +24,7 @@ public class Point {
     }
 
     public Direction getDirection() {
-        return this.direction;
+        return Direction.of(this.prev, this.cur);
     }
 
     public Point next(PointGenerator pointGenerator) {

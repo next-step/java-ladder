@@ -51,7 +51,7 @@ public class PointTest {
         //given
 
         //when
-        ThrowableAssert.ThrowingCallable callable = () -> new Point(true, true);
+        ThrowableAssert.ThrowingCallable callable = () -> new Point(true, true).getDirection();
 
         //then
         Assertions.assertThatThrownBy(callable).isInstanceOf(IllegalArgumentException.class);
