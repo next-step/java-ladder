@@ -57,22 +57,21 @@ public class Line {
     }
 
     public int move(int position) {
-        if(canMoveLeft(position)) {
+        if (canMoveLeft(position)) {
             return position - 1;
         }
-        if(canMoveRight(position)) {
+        if (canMoveRight(position)) {
             return position + 1;
         }
-
         return position;
     }
 
     private boolean canMoveLeft(int position) {
-        return position > 0 && hasLine(position - 1);
+        return position > 0 && hasLine(position);
     }
 
     private boolean canMoveRight(int position) {
-        return position < points.size() && hasLine(position + 1);
+        return position < points.size() - 1 && hasLine(position + 1);
     }
 
     private boolean hasLine(int position) {

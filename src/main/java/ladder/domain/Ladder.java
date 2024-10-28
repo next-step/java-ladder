@@ -29,6 +29,14 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
+    public int getPersonLadderResult(int startPosition) {
+        int currentPosition = startPosition;
+        for(Line line : lines) {
+            currentPosition = line.move(currentPosition);
+        }
+        return currentPosition;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

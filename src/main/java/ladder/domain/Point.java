@@ -22,14 +22,6 @@ public class Point {
         }
     }
 
-    public Point plus() {
-        return new Point(this.point+1);
-    }
-
-    public Point minus() {
-        return new Point(this.point-1);
-    }
-
 
     @Override
     public boolean equals(Object o) {
