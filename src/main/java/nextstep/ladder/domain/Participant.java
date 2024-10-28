@@ -11,6 +11,10 @@ public class Participant {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private void validateNameLength(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 최대5글자까지 허용합니다.");

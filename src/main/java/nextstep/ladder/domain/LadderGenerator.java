@@ -7,6 +7,7 @@ import java.util.Random;
 public class LadderGenerator {
 
     private static final int MINIMUM_SPACE = 2;
+
     private static final Random random = new Random();
 
     private int participantCount;

@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,12 +11,12 @@ public class Line {
         this.points = points;
     }
 
-    public Line() {
-        this(new ArrayList<>());
-    }
-
     public boolean hasLineAtPosition(int position) {
         return points.get(position);
+    }
+
+    public List<Boolean> getPoints() {
+        return points;
     }
 
     @Override
