@@ -13,6 +13,7 @@ public class GameResultTest {
     void 게임결과와_참여자수_일치() {
         Gamers gamers = new Gamers("Anna,Max,Tom");
         GameResult gameResult = new GameResult("Win,Lose,Draw");
+
         assertThat(gameResult.validateGameResultCount(gamers)).isEqualTo(true);
     }
 
@@ -20,6 +21,7 @@ public class GameResultTest {
     void 게임결과와_참여자수_불일치시_예외발생() {
         Gamers gamers = new Gamers("Anna,Max,Tom");
         GameResult gameResult = new GameResult("Win,Lose");
+
         assertThatThrownBy(() -> gameResult.validateGameResultCount(gamers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("게임 결과와 참여자 인원 수가 다릅니다.");

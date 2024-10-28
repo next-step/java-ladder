@@ -29,4 +29,9 @@ public class InputView {
         }
         return height;
     }
+
+    public String receiveGamerNameForResult() {
+        System.out.println("결과를 보고 싶은 사람은? (0 입력 시 종료됩니다.)");
+        return scanner.nextLine();
+    }
 }

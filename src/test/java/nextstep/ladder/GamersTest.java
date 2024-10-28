@@ -12,18 +12,21 @@ class GamersTest {
     @Test
     void 참가자_수_확인() {
         Gamers gamers = new Gamers("Anna,Max,Tom");
+
         assertEquals(3, gamers.getCountOfPerson());
     }
 
     @Test
     void 참가자_이름_목록_확인() {
         Gamers gamers = new Gamers("Anna,Max,Tom");
+
         assertThat(gamers.getGamerNames()).containsExactly("Anna", "Max", "Tom");
     }
 
     @Test
     void 참가자가_한_명일_때_이름_확인() {
         Gamers gamers = new Gamers("Anna");
+
         assertEquals(1, gamers.getCountOfPerson());
         assertThat(gamers.getGamerNames()).containsExactly("Anna");
     }

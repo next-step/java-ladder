@@ -2,10 +2,8 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.model.*;
 
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class ResultView {
     private static final int LADDER_POINT_COUNT = 5;
@@ -28,12 +26,12 @@ public class ResultView {
         System.out.println(gameResult.getResults().stream().collect(Collectors.joining(JOINING_SEPARATOR)));
     }
 
-    private void printLadder(Ladder ladder) {
-        ladder.getLines().forEach(this::printLadderLine);
-    }
-
     private void printGamerNames(Gamers gamers) {
         System.out.println(gamers.getGamerNames().stream().collect(Collectors.joining(JOINING_SEPARATOR)));
+    }
+
+    private void printLadder(Ladder ladder) {
+        ladder.getLines().forEach(this::printLadderLine);
     }
 
     private void validateResult(Gamers gamers, Ladder ladder) {
@@ -47,8 +45,32 @@ public class ResultView {
     }
 
     private void printLadderLine(Line line) {
-        System.out.print("    |");
+        System.out.print("|");
         line.getPoints().forEach(ResultView::printLadderSegment);
         System.out.println();
+    }
+
+    public void printGamerResult(GamerResult gamerResult, String gamer) {
+        String result = gamerResult.getResultByName(gamer);
+
+        System.out.println("실행 결과");
+
+        if (gamer.equals("all")) {
+            gamerResult.getResults().forEach((key, value) -> {
+                System.out.println(key + " : " + value);
+            });
+            return;
+        }
+
+        if (gamer == null || gamer.isEmpty() || result == null || result.isEmpty()) {
+            System.out.println("잘못된 이름입니다. 다시 입력 해주세요.");
+            return;
+        }
+
+        System.out.println(result);
+    }
+
+    public void printGameOver() {
+        System.out.println("사다리 게임을 종료합니다.");
     }
 }

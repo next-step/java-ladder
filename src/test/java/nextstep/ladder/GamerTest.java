@@ -12,6 +12,7 @@ class GamerTest {
     void 정상_이름_확인() {
         String name = "P1";
         Gamer gamer = new Gamer(name);
+
         assertEquals(name, gamer.getName());
     }
 

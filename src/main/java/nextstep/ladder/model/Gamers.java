@@ -1,6 +1,5 @@
 package nextstep.ladder.model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,8 +11,8 @@ public class Gamers {
 
     public Gamers(String name) {
         this.gamers = Arrays.stream(name.split(DELIMITER))
-                        .map(Gamer::new)
-                        .collect(Collectors.toUnmodifiableList());
+                .map(Gamer::new)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public int getCountOfPerson() {
@@ -25,6 +24,7 @@ public class Gamers {
                 .mapToObj(this::getGamerNameByPosition)
                 .collect(Collectors.toList());
     }
+
 
     public String getGamerNameByPosition(int position) {
         return gamers.get(position).getName();
