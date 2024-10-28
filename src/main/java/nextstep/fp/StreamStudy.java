@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 
 public class StreamStudy {
 
+    private final static int THRESHOLD = 3;
+
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
@@ -37,17 +39,29 @@ public class StreamStudy {
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
-        return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
+        return numbers.stream().map(StreamStudy::doubleValue).collect(Collectors.toList());
     }
 
     public static long sumAll(List<Integer> numbers) {
-        return numbers.stream().reduce(0, (x, y) -> x + y);
+        return numbers.stream().reduce(0, StreamStudy::sum);
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
         return numbers.stream()
-                .filter(n -> n > 3)
-                .map(n -> n * 2)
-                .reduce((x, y) -> x + y).get();
+                .filter(StreamStudy::isOverThreshold)
+                .map(StreamStudy::doubleValue)
+                .reduce(StreamStudy::sum).get();
+    }
+
+    private static boolean isOverThreshold(int number) {
+        return number > THRESHOLD;
+    }
+
+    private static int doubleValue(int number) {
+        return number * 2;
+    }
+
+    private static int sum(int a, int b) {
+        return a + b;
     }
 }
