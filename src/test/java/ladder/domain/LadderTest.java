@@ -2,6 +2,8 @@ package ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,4 +24,12 @@ class LadderTest {
 
     }
 
+    @Test
+    void 사다리_게임_결과_테스트() {
+        Ladder ladder = new Ladder(new PositiveNumber(5), List.of(new Line(false, true, false, true), new Line(false, false, true, false), new Line(false, true, false, false), new Line(false, false, true, false), new Line(false, true, false, true)));
+
+        assertThat(ladder.getPersonLadderResult(1)).isEqualTo(3);
+        assertThat(ladder.getPersonLadderResult(3)).isEqualTo(1);
+        assertThat(ladder.getPersonLadderResult(0)).isEqualTo(0);
+    }
 }

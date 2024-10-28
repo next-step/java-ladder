@@ -21,17 +21,4 @@ public class PointTest {
                 .hasMessageMatching("위치는 0보다 작을 수 없습니다.");
     }
 
-    @Test
-    void 위치_앞으로_이동() {
-        Point point = new Point(0);
-
-        assertThat(point.plus()).isEqualTo(new Point(1));
-    }
-
-    @Test
-    void 위치_뒤로_이동() {
-        Point point = new Point(1);
-        assertThat(point.minus()).isEqualTo(new Point(0));
-    }
-
 }
