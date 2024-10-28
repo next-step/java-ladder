@@ -16,15 +16,15 @@ public class LadderResults {
     public void processLadderGameOutcomes(Players players, Ladder ladder) {
         for (int player = 0; player < players.size(); player++) {
             int finalPosition = ladder.move(player);
-            ladderGameOutcomes.put(players.getPlayerName(player), executionResults.get(finalPosition));
+            ladderGameOutcomes.put(players.playerName(player), executionResults.get(finalPosition));
         }
     }
 
-    public Map<String, String> getLadderGameOutcomes() {
+    public Map<String, String> ladderGameOutcomes() {
         return ladderGameOutcomes;
     }
 
-    public List<String> getExecutionResults() {
+    public List<String> executionResults() {
         return executionResults;
     }
 }

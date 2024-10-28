@@ -37,7 +37,7 @@ public class Ladder {
         }
     }
 
-    public List<Line> getLines() {
+    public List<Line> lines() {
         return Collections.unmodifiableList(lines);
     }
 

@@ -15,9 +15,9 @@ class PlayersTest {
         List<String> namesOfPeople = List.of("joe", "pobi", "kori");
         Players players = Players.of(namesOfPeople);
 
-        List<Player> playersList = players.getPlayers();
+        List<Player> playersList = players.players();
 
         assertThat(playersList.size()).isEqualTo(namesOfPeople.size());
-        assertThat(playersList.get(0).getPlayerName()).isEqualTo(namesOfPeople.get(0));
+        assertThat(playersList.get(0).playerName()).isEqualTo(namesOfPeople.get(0));
     }
 }

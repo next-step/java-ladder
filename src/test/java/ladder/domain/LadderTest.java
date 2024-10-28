@@ -17,7 +17,7 @@ class LadderTest {
         int numberOfPlayers = 4;
         Ladder ladder = new Ladder(heightOfLadder, numberOfPlayers);
 
-        assertThat(ladder.getLines()).hasSize(heightOfLadder);
+        assertThat(ladder.lines()).hasSize(heightOfLadder);
     }
 
     @DisplayName("1 미만의 사다리 높이를 입력하면 예외가 발생한다.")

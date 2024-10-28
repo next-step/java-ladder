@@ -50,21 +50,21 @@ public class ConsoleOutputHandler implements OutputHandler {
     }
 
     private void printPlayers(Players players) {
-        for (Player player : players.getPlayers()) {
-            System.out.printf("%-7s", player.getPlayerName());
+        for (Player player : players.players()) {
+            System.out.printf("%-7s", player.playerName());
         }
         printBlankLine();
     }
 
     private void printLadder(Ladder ladder) {
-        for (Line line : ladder.getLines()) {
+        for (Line line : ladder.lines()) {
             printLine(line);
         }
     }
 
     private void printLine(Line line) {
         System.out.print(SPACE.repeat(4));
-        for (Boolean point : line.getPoints()) {
+        for (Boolean point : line.points()) {
             System.out.print(BAR);
             drawBridge(point);
         }
@@ -80,7 +80,7 @@ public class ConsoleOutputHandler implements OutputHandler {
     }
 
     private void printExecutionResults(LadderResults ladderResults) {
-        List<String> executionResults = ladderResults.getExecutionResults();
+        List<String> executionResults = ladderResults.executionResults();
         for (String result : executionResults) {
             System.out.printf("%-6s", result);
         }
@@ -94,7 +94,7 @@ public class ConsoleOutputHandler implements OutputHandler {
 
     @Override
     public void showAllResults(LadderResults ladderResults) {
-        Map<String, String> ladderGameOutcomes = ladderResults.getLadderGameOutcomes();
+        Map<String, String> ladderGameOutcomes = ladderResults.ladderGameOutcomes();
         showTextOfFinalResult();
         for (Map.Entry<String, String> entry : ladderGameOutcomes.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
@@ -103,7 +103,7 @@ public class ConsoleOutputHandler implements OutputHandler {
 
     @Override
     public void showResultForPlayer(String nameOfPlayer, LadderResults ladderResults) {
-        Map<String, String> ladderGameOutcomes = ladderResults.getLadderGameOutcomes();
+        Map<String, String> ladderGameOutcomes = ladderResults.ladderGameOutcomes();
         showTextOfFinalResult();
         System.out.println(ladderGameOutcomes.get(nameOfPlayer));
         printBlankLine();

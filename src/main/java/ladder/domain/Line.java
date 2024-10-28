@@ -11,7 +11,7 @@ public class Line {
         this.points = lineGenerator.generate(numberOfPlayers);
     }
 
-    public List<Boolean> getPoints() {
+    public List<Boolean> points() {
         return Collections.unmodifiableList(points);
     }
 

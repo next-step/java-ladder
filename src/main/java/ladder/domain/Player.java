@@ -12,7 +12,7 @@ public class Player {
         return new Player(PlayerName.of(name));
     }
 
-    public String getPlayerName() {
-        return playerName.getName();
+    public String playerName() {
+        return playerName.name();
     }
 }
