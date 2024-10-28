@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.model.GameResult;
 import nextstep.ladder.model.Gamers;
 import nextstep.ladder.model.Ladder;
 import nextstep.ladder.view.InputView;
@@ -10,8 +11,10 @@ public class LadderGame {
     private final ResultView resultView = new ResultView();
     public void start() {
         Gamers gamers = new Gamers(inputView.receiveGamers());
+        GameResult gameResult = new GameResult(inputView.receiveGameResult());
+        gameResult.validateGameResultCount(gamers);
         int height = inputView.receiveMaxHeight();
         Ladder ladder = new Ladder(height, gamers.getCountOfPerson());
-        resultView.printResult(gamers, ladder);
+        resultView.printResult(gamers, ladder, gameResult);
     }
 }
