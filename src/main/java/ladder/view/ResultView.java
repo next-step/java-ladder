@@ -88,7 +88,7 @@ public class ResultView {
 
     }
 
-    public boolean makeLadderGameResultView(String name) {
+    private boolean makeLadderGameResultView(String name) {
         if(name.equals(ALL)) {
             persons.getPersons().forEach(person -> {
                 System.out.print(person.getName()+DELIMITER);
