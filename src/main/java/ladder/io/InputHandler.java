@@ -4,8 +4,11 @@ import java.util.List;
 
 public interface InputHandler {
 
-    List<String> getNamesOfPlayers();
+    List<String> getNamesOfPlayersFromUser();
 
-    int getHeightOfLadder();
+    List<String> getPlayResultsFromUser();
 
+    int getHeightOfLadderFromUser();
+
+    String getPlayerNameForResultFromUser();
 }

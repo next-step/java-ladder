@@ -3,6 +3,7 @@ package ladder;
 
 import ladder.domain.Ladder;
 import ladder.domain.Players;
+import ladder.domain.LadderResults;
 import ladder.io.InputHandler;
 import ladder.io.OutputHandler;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 public class LadderGame {
 
+    public static final String ALL = "all";
     private final InputHandler inputHandler;
     private final OutputHandler outputHandler;
 
@@ -21,16 +23,40 @@ public class LadderGame {
     public void run() {
         // 참여하는 사람 이름 입력
         outputHandler.showCommentForNamesOfPlayers();
-        List<String> namesOfPeople = inputHandler.getNamesOfPlayers();
-        Players players = Players.of(namesOfPeople);
+        List<String> namesOfPeopleFromUser = inputHandler.getNamesOfPlayersFromUser();
+        Players players = Players.of(namesOfPeopleFromUser);
+
+        // 실행 결과 입력
+        outputHandler.showCommentForPlayResults();
+        List<String> playResultsFromUser = inputHandler.getPlayResultsFromUser();
+        LadderResults ladderResults = new LadderResults(playResultsFromUser);
 
         // 사다리 높이 입력
         outputHandler.showCommentForHeightOfLadder();
-        int heightOfLadder = inputHandler.getHeightOfLadder();
-        Ladder ladder = new Ladder(heightOfLadder, namesOfPeople.size());
+        int heightOfLadder = inputHandler.getHeightOfLadderFromUser();
+        Ladder ladder = new Ladder(heightOfLadder, namesOfPeopleFromUser.size());
 
-        // 실행 결과 출력
-        outputHandler.showLadderGameResult(players, ladder);
+        // 사다리 결과 출력
+        outputHandler.showLadderGameResult(players, ladder, ladderResults);
+
+        // 결과 출력
+        ladderResults.processLadderGameOutcomes(players, ladder);
+        while (processResultRequest(ladderResults)) {}
+    }
+
+    private boolean processResultRequest(LadderResults ladderResults) {
+        outputHandler.showCommentForWhoseResultWantToSee();
+        String playerName = inputHandler.getPlayerNameForResultFromUser();
+        if (isRequestForAllResults(playerName)) {
+            outputHandler.showAllResults(ladderResults);
+            return true;
+        }
+        outputHandler.showResultForPlayer(playerName, ladderResults);
+        return false;
+    }
+
+    private boolean isRequestForAllResults(String playerName) {
+        return playerName.equals(ALL);
     }
 
 }

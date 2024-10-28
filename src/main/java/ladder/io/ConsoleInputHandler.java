@@ -10,17 +10,29 @@ public class ConsoleInputHandler implements InputHandler {
     public static final String DEFAULT_DELIMITER = ",";
 
     @Override
-    public List<String> getNamesOfPlayers() {
+    public List<String> getNamesOfPlayersFromUser() {
         String[] namesOfPeople = SCANNER.nextLine().split(DEFAULT_DELIMITER);
         blankLine();
         return List.of(namesOfPeople);
     }
 
     @Override
-    public int getHeightOfLadder() {
+    public List<String> getPlayResultsFromUser() {
+        String[] playResults = SCANNER.nextLine().split(DEFAULT_DELIMITER);
+        blankLine();
+        return List.of(playResults);
+    }
+
+    @Override
+    public int getHeightOfLadderFromUser() {
         String heightOfLadder = SCANNER.nextLine();
         blankLine();
         return toInt(heightOfLadder);
+    }
+
+    @Override
+    public String getPlayerNameForResultFromUser() {
+        return SCANNER.nextLine();
     }
 
     private void blankLine() {

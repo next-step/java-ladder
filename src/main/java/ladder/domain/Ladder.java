@@ -40,4 +40,12 @@ public class Ladder {
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
+
+    public int move(int startPosition) {
+        int position = startPosition;
+        for (Line line : lines) {
+            position = line.move(position);
+        }
+        return position;
+    }
 }
