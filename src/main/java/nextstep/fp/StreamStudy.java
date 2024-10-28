@@ -5,10 +5,13 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class StreamStudy {
+
+    private final static int THRESHOLD = 3;
 
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
@@ -27,18 +30,38 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        // TODO 이 부분에 구현한다.
+        words.stream().filter(d -> d.length() > 12)
+                .sorted(Comparator.comparing(String::length).reversed())
+                .distinct()
+                .limit(100)
+                .map(String::toLowerCase)
+                .forEach(System.out::println);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
-        return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
+        return numbers.stream().map(StreamStudy::doubleValue).collect(Collectors.toList());
     }
 
     public static long sumAll(List<Integer> numbers) {
-        return numbers.stream().reduce(0, (x, y) -> x + y);
+        return numbers.stream().reduce(0, StreamStudy::sum);
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+        return numbers.stream()
+                .filter(StreamStudy::isOverThreshold)
+                .map(StreamStudy::doubleValue)
+                .reduce(StreamStudy::sum).get();
+    }
+
+    private static boolean isOverThreshold(int number) {
+        return number > THRESHOLD;
+    }
+
+    private static int doubleValue(int number) {
+        return number * 2;
+    }
+
+    private static int sum(int a, int b) {
+        return a + b;
     }
 }
