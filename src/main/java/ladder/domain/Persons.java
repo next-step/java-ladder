@@ -1,10 +1,8 @@
 package ladder.domain;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Persons {
     private final static int MIN_PERSON_NUMBERS = 2;
@@ -18,8 +16,8 @@ public class Persons {
     }
 
     public Persons(String... input) {
-        this(Arrays.stream(input)
-                .map(Person::new)
+        this(IntStream.range(0, input.length)
+                .mapToObj(index -> new Person(input[index], index))
                 .collect(Collectors.toList()));
     }
 
@@ -44,6 +42,11 @@ public class Persons {
 
     public List<Person> getPersons() {
         return Collections.unmodifiableList(this.persons);
+    }
+
+    public Optional<Person> isSamePerson(String name) {
+        return persons.stream()
+                .filter(person -> person.isSameName(name)).findFirst();
     }
 
     @Override

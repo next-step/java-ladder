@@ -22,6 +22,9 @@ public class Point {
         }
     }
 
+    public int getPoint() {
+        return point;
+    }
 
     @Override
     public boolean equals(Object o) {

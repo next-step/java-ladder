@@ -29,6 +29,14 @@ public class Person {
         return name;
     }
 
+    public int getPoint() {
+        return this.point.getPoint();
+    }
+
+    public boolean isSameName(String name) {
+        return this.name.equals(name);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -40,6 +48,10 @@ public class Person {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public void gameResultSave(int personLadderResult) {
+        point = new Point(personLadderResult);
     }
 
 }

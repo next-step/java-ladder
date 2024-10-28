@@ -22,7 +22,6 @@ public class LadderResult {
     }
 
     public static LadderResult from(Persons persons, String results) {
-
         return new LadderResult(persons, results);
     }
 
@@ -46,6 +45,10 @@ public class LadderResult {
             return results;
         }
         throw new IllegalArgumentException(RESULT_ERROR_MESSAGE);
+    }
+
+    public String getResult(int index) {
+        return results.get(index);
     }
 
     @Override

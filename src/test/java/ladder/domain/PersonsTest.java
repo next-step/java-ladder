@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import ladder.domain.Persons;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -17,6 +16,12 @@ public class PersonsTest {
         assertThatThrownBy(() -> new Persons("pobi"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageMatching("참여 인원은 2명이상이어야 합니다.");
+    }
+
+    @Test
+    void 참가자_동일한_이름_조회_테스트() {
+        Persons persons = new Persons("phobi,honux,cron,jk");
+        assertThat(persons.isSamePerson("phobi").get()).isEqualTo(new Person("phobi"));
     }
 
 }

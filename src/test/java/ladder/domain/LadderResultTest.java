@@ -23,4 +23,13 @@ public class LadderResultTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageMatching("입력한 실행 결과 수가 참여자 수를 초과했습니다.");
     }
+
+    @Test
+    void 실행_결과_조회_테스트() {
+        LadderResult ladderResult = LadderResult.from(new Persons("phobi,bbj"), "꽝,5000");
+
+        assertThat(ladderResult.getResult(0)).isEqualTo("꽝");
+        assertThat(ladderResult.getResult(1)).isEqualTo("5000");
+    }
+
 }

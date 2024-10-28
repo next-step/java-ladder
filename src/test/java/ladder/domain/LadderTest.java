@@ -32,4 +32,5 @@ class LadderTest {
         assertThat(ladder.getPersonLadderResult(3)).isEqualTo(1);
         assertThat(ladder.getPersonLadderResult(0)).isEqualTo(0);
     }
+
 }

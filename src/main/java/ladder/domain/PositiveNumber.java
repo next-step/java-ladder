@@ -17,8 +17,4 @@ public class PositiveNumber {
         return number;
     }
 
-    public int getNumber() {
-        return number;
-    }
-
 }
