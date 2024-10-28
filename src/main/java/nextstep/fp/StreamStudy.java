@@ -33,21 +33,27 @@ public class StreamStudy {
         words.stream()
                 .distinct()
                 .filter(word -> word.length() > 12)
-                .sorted((a, b) -> Integer.compare(b.length(), a.length()))
+                .sorted((a, b) -> b.length() - a.length())
                 .limit(100)
                 .map(String::toLowerCase)
-                .collect(Collectors.toList()).forEach(System.out::println);
+                .forEach(System.out::println);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
-        return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
+        return numbers.stream()
+                .map(x -> 2 * x)
+                .collect(Collectors.toList());
     }
 
     public static long sumAll(List<Integer> numbers) {
-        return numbers.stream().reduce(0, (x, y) -> x + y);
+        return numbers.stream()
+                .reduce(0, (x, y) -> x + y);
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return numbers.stream().filter(number -> number > 3).map(number -> number * 2).reduce(0, (a, b) -> a + b);
+        return numbers.stream()
+                .filter(number -> number > 3)
+                .map(number -> number * 2)
+                .reduce(0, (a, b) -> a + b);
     }
 }

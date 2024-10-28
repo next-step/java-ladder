@@ -40,6 +40,8 @@ public class Lambda {
     }
 
     private static int sumConditional(List<Integer> numbers, Conditional conditional) {
-        return numbers.stream().filter(conditional::test).reduce(0, (x, y) -> x + y);
+        return numbers.stream()
+                .filter(conditional::test)
+                .reduce(0, (x, y) -> x + y);
     }
 }
