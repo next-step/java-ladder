@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Line {
 
-    private List<Boolean> lines;
+    private final List<Boolean> lines;
 
     public Line(int participantCount) {
         this.lines = initializeLines(participantCount);
@@ -21,11 +21,14 @@ public class Line {
     }
 
     private void createLineForLadder() {
-        Random random = new Random();
         for (int j = 0; j < lines.size()-1; j++) {
-            boolean canCreateLine = (j == 0 || !lines.get(j - 1)) && random.nextBoolean();
-            lines.set(j, canCreateLine);
+            lines.set(j, canCreateLine(j));
         }
+    }
+
+    private boolean canCreateLine(int lineIndex) {
+        Random random = new Random();
+        return (lineIndex == 0 || !lines.get(lineIndex-1)) && random.nextBoolean();
     }
 
     public List<Boolean> getLines() {
@@ -34,6 +37,10 @@ public class Line {
 
     public int size() {
         return lines.size();
+    }
+
+    public Boolean lineStatus(int index) {
+        return lines.get(index);
     }
 
     @Override

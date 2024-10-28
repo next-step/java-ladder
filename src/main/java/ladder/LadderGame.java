@@ -7,10 +7,10 @@ public class LadderGame {
 
     public void run() {
         LadderInput ladderInput = new LadderInput();
-        InformationForGame informationForGame = ladderInput.participant();
+        Ladder ladder = new Ladder(ladderInput.participant(), ladderInput.ladderCount());
 
-        informationForGame.createLines();
-        LadderOutput ladderOutput = new LadderOutput(informationForGame.getLines(), informationForGame.getParticipants());
+        ladder.createLines();
+        LadderOutput ladderOutput = new LadderOutput(ladder.getLines(), ladder.getParticipants());
         ladderOutput.printLadder();
     }
 
