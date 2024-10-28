@@ -32,7 +32,8 @@ public class StreamStudy {
                 .sorted(Comparator.comparing(String::length).reversed())
                 .distinct()
                 .limit(100)
-                .forEach(str -> System.out.println(str.toLowerCase()));
+                .map(String::toLowerCase)
+                .forEach(System.out::println);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
