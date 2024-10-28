@@ -22,11 +22,11 @@ public class Gamers {
 
     public List<String> getGamerNames() {
         return IntStream.range(0, gamers.size())
-                .mapToObj(this::getGamerNameByIndex)
+                .mapToObj(this::getGamerNameByPosition)
                 .collect(Collectors.toList());
     }
 
-    public String getGamerNameByIndex(int index) {
-        return gamers.get(index).getName();
+    public String getGamerNameByPosition(int position) {
+        return gamers.get(position).getName();
     }
 }
