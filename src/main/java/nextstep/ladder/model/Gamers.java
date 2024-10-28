@@ -4,24 +4,29 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Gamers {
     private static final String DELIMITER = ",";
-    private final List<Gamer> gamers = new ArrayList<>();
+    private final List<Gamer> gamers;
 
     public Gamers(String name) {
-        Arrays.stream(name.split(DELIMITER))
-                .map(Gamer::new)
-                .forEach(gamers::add);
+        this.gamers = Arrays.stream(name.split(DELIMITER))
+                        .map(Gamer::new)
+                        .collect(Collectors.toUnmodifiableList());
     }
 
     public int getCountOfPerson() {
         return gamers.size();
     }
 
-    public String getGamers() {
-        return gamers.stream()
-                .map(Gamer::getName)
-                .collect(Collectors.joining(DELIMITER));
+    public List<String> getGamerNames() {
+        return IntStream.range(0, gamers.size())
+                .mapToObj(this::getGamerNameByIndex)
+                .collect(Collectors.toList());
+    }
+
+    public String getGamerNameByIndex(int index) {
+        return gamers.get(index).getName();
     }
 }

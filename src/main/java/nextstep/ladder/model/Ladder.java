@@ -2,16 +2,18 @@ package nextstep.ladder.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
 
     public Ladder(int height, int countOfPerson) {
         validateHeight(height);
         validateCountOfPerson(countOfPerson);
-        IntStream.range(0, height)
-                .forEach(i -> lines.add(new Line(countOfPerson)));
+        lines = IntStream.range(0, height)
+                .mapToObj(i -> new Line(countOfPerson))
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private void validateCountOfPerson(int countOfPerson) {

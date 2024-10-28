@@ -3,7 +3,7 @@ package nextstep.ladder.model;
 import java.util.Random;
 
 public class Point {
-    private final Random random = new Random();
+    private static final Random random = new Random();
     private final boolean point;
 
     public Point() {
