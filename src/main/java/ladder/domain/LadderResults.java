@@ -9,8 +9,12 @@ public class LadderResults {
     private final Map<String, String> ladderGameOutcomes = new HashMap<>();
     private final List<String> executionResults;
 
-    public LadderResults(List<String> executionResults) {
+    private LadderResults(List<String> executionResults) {
         this.executionResults = executionResults;
+    }
+
+    public static LadderResults of(List<String> executionResults) {
+        return new LadderResults(executionResults);
     }
 
     public void processLadderGameOutcomes(Players players, Ladder ladder) {

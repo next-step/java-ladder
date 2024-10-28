@@ -7,8 +7,20 @@ public class Line {
 
     private final List<Boolean> points;
 
+    private Line(List<Boolean> points) {
+        this.points = points;
+    }
+
     public Line(int numberOfPlayers, LineGenerator lineGenerator) {
         this.points = lineGenerator.generate(numberOfPlayers);
+    }
+
+    public static Line of(int numberOfPlayers, LineGenerator lineGenerator) {
+        return new Line(lineGenerator.generate(numberOfPlayers));
+    }
+
+    public static Line of(List<Boolean> points) {
+        return new Line(points);
     }
 
     public List<Boolean> points() {

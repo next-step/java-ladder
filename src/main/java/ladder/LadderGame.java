@@ -29,12 +29,12 @@ public class LadderGame {
         // 실행 결과 입력
         outputHandler.showCommentForPlayResults();
         List<String> playResultsFromUser = inputHandler.getPlayResultsFromUser();
-        LadderResults ladderResults = new LadderResults(playResultsFromUser);
+        LadderResults ladderResults = LadderResults.of(playResultsFromUser);
 
         // 사다리 높이 입력
         outputHandler.showCommentForHeightOfLadder();
         int heightOfLadder = inputHandler.getHeightOfLadderFromUser();
-        Ladder ladder = new Ladder(heightOfLadder, namesOfPeopleFromUser.size());
+        Ladder ladder = Ladder.of(heightOfLadder, namesOfPeopleFromUser.size());
 
         // 사다리 결과 출력
         outputHandler.showLadderGameResult(players, ladder, ladderResults);
@@ -49,10 +49,10 @@ public class LadderGame {
         String playerName = inputHandler.getPlayerNameForResultFromUser();
         if (isRequestForAllResults(playerName)) {
             outputHandler.showAllResults(ladderResults);
-            return true;
+            return false;
         }
         outputHandler.showResultForPlayer(playerName, ladderResults);
-        return false;
+        return true;
     }
 
     private boolean isRequestForAllResults(String playerName) {

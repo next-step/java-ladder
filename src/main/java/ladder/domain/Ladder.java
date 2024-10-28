@@ -12,11 +12,19 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(int heightOfLadder, int numberOfPlayers) {
-        this.lines = createLadder(heightOfLadder, numberOfPlayers);
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
-    private List<Line> createLadder(int heightOfLadder, int numberOfPlayers) {
+    public static Ladder of(List<Line> lines) {
+        return new Ladder(lines);
+    }
+
+    public static Ladder of(int heightOfLadder, int numberOfPlayers) {
+        return new Ladder(createLadder(heightOfLadder, numberOfPlayers));
+    }
+
+    private static List<Line> createLadder(int heightOfLadder, int numberOfPlayers) {
         validateHeightOfLadder(heightOfLadder);
         validateNumberOfPlayers(numberOfPlayers);
 
@@ -25,13 +33,13 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    private void validateHeightOfLadder(int heightOfLadder) {
+    private static void validateHeightOfLadder(int heightOfLadder) {
         if (heightOfLadder < 1) {
             throw new InvalidHeightOfLadderException();
         }
     }
 
-    private void validateNumberOfPlayers(int numberOfPlayers) {
+    private static void validateNumberOfPlayers(int numberOfPlayers) {
         if (numberOfPlayers < 1) {
             throw new InvalidNumberOfPlayersException();
         }
