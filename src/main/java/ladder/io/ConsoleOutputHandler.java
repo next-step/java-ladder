@@ -5,6 +5,10 @@ import ladder.domain.Ladder;
 import ladder.domain.Line;
 import ladder.domain.Player;
 import ladder.domain.Players;
+import ladder.domain.LadderResults;
+
+import java.util.List;
+import java.util.Map;
 
 import static ladder.domain.PlayerName.NAME_WIDTH;
 
@@ -20,40 +24,47 @@ public class ConsoleOutputHandler implements OutputHandler {
     }
 
     @Override
+    public void showCommentForPlayResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+    }
+
+    @Override
     public void showCommentForHeightOfLadder() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
     }
 
     @Override
-    public void showLadderGameResult(Players players, Ladder ladder) {
+    public void showLadderGameResult(Players players, Ladder ladder, LadderResults ladderResults) {
         printResultTitle();
 
         printPlayers(players);
 
         printLadder(ladder);
+
+        printExecutionResults(ladderResults);
     }
 
     private void printResultTitle() {
-        System.out.println("실행 결과");
-        System.out.println();
+        System.out.println("사다리 결과");
+        printBlankLine();
     }
 
     private void printPlayers(Players players) {
-        for (Player player : players.getPlayers()) {
-            System.out.printf("%-7s", player.getPlayerName());
+        for (Player player : players.players()) {
+            System.out.printf("%-7s", player.playerName());
         }
-        System.out.println();
+        printBlankLine();
     }
 
     private void printLadder(Ladder ladder) {
-        for (Line line : ladder.getLines()) {
+        for (Line line : ladder.lines()) {
             printLine(line);
         }
     }
 
     private void printLine(Line line) {
         System.out.print(SPACE.repeat(4));
-        for (Boolean point : line.getPoints()) {
+        for (Boolean point : line.points()) {
             System.out.print(BAR);
             drawBridge(point);
         }
@@ -67,4 +78,44 @@ public class ConsoleOutputHandler implements OutputHandler {
         }
         System.out.print(SPACE.repeat(NAME_WIDTH));
     }
+
+    private void printExecutionResults(LadderResults ladderResults) {
+        List<String> executionResults = ladderResults.executionResults();
+        for (String result : executionResults) {
+            System.out.printf("%-6s", result);
+        }
+        printBlankLine();
+    }
+
+    @Override
+    public void showCommentForWhoseResultWantToSee() {
+        System.out.println("결과를 보고 싶은 사람은?");
+    }
+
+    @Override
+    public void showAllResults(LadderResults ladderResults) {
+        Map<String, String> ladderGameOutcomes = ladderResults.ladderGameOutcomes();
+        showTextOfFinalResult();
+        for (Map.Entry<String, String> entry : ladderGameOutcomes.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
+
+    @Override
+    public void showResultForPlayer(String nameOfPlayer, LadderResults ladderResults) {
+        Map<String, String> ladderGameOutcomes = ladderResults.ladderGameOutcomes();
+        showTextOfFinalResult();
+        System.out.println(ladderGameOutcomes.get(nameOfPlayer));
+        printBlankLine();
+    }
+
+    private void showTextOfFinalResult() {
+        printBlankLine();
+        System.out.println("실행 결과");
+    }
+
+    private void printBlankLine() {
+        System.out.println();
+    }
+
 }

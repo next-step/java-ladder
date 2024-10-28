@@ -15,9 +15,9 @@ class LadderTest {
     void createLadderTest() {
         int heightOfLadder = 5;
         int numberOfPlayers = 4;
-        Ladder ladder = new Ladder(heightOfLadder, numberOfPlayers);
+        Ladder ladder = Ladder.of(heightOfLadder, numberOfPlayers);
 
-        assertThat(ladder.getLines()).hasSize(heightOfLadder);
+        assertThat(ladder.lines()).hasSize(heightOfLadder);
     }
 
     @DisplayName("1 미만의 사다리 높이를 입력하면 예외가 발생한다.")
@@ -26,7 +26,7 @@ class LadderTest {
         int heightOfLadder = 5;
         int numberOfPlayers = 0;
 
-        assertThatThrownBy(() -> new Ladder(heightOfLadder, numberOfPlayers))
+        assertThatThrownBy(() -> Ladder.of(heightOfLadder, numberOfPlayers))
                 .isInstanceOf(InvalidNumberOfPlayersException.class)
                 .hasMessage("플레이어 수는 1명 이상입니다.");
     }
@@ -37,7 +37,7 @@ class LadderTest {
         int heightOfLadder = 0;
         int numberOfPlayers = 4;
 
-        assertThatThrownBy(() -> new Ladder(heightOfLadder, numberOfPlayers))
+        assertThatThrownBy(() -> Ladder.of(heightOfLadder, numberOfPlayers))
                 .isInstanceOf(InvalidHeightOfLadderException.class)
                 .hasMessage("사다리 높이는 1 이상이어야 합니다.");
     }

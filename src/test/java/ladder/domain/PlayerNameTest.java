@@ -17,7 +17,7 @@ class PlayerNameTest {
         String name = "joe";
         PlayerName playerName = PlayerName.of(name);
 
-        assertThat(playerName.getName()).isEqualTo(name);
+        assertThat(playerName.name()).isEqualTo(name);
     }
 
     @DisplayName("1자 미만 5자 초과 길이의 플레이어 이름을 입력하면 예외가 발생한다.")

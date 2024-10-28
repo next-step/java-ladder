@@ -13,7 +13,7 @@ class PlayerTest {
         String name = "joe";
         Player player = Player.of(name);
 
-        assertThat(player.getPlayerName()).isEqualTo(name);
+        assertThat(player.playerName()).isEqualTo(name);
     }
 
 }

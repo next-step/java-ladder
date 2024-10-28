@@ -23,7 +23,15 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    public List<Player> getPlayers() {
+    public List<Player> players() {
         return Collections.unmodifiableList(players);
+    }
+
+    public String playerName(int index) {
+        return players.get(index).playerName();
+    }
+
+    public int size() {
+        return players.size();
     }
 }
