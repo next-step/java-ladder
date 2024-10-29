@@ -17,7 +17,7 @@ public class Point {
     }
 
     private static void validateValue(int point) {
-        if(point < 0) {
+        if (point < 0) {
             throw new IllegalArgumentException(POINT_ERROR_MESSAGE);
         }
     }

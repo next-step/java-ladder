@@ -12,10 +12,10 @@ public class ResultView {
     private static final String ALL = "all";
     private static final String DELIMITER = " : ";
     private static final String NOT_EXIST_ERROR_MESSAGE = "존재하지 않는 사람입니다.";
-    private final static String NO_LADDER = "     |";
-    private final static String EXIST_LADDER = "-----|";
-    private final static String LADDER_RESULT_SENTENCE = "사다리 결과";
-    private final static String RESULT_SENTENCE = "  실행 결과  ";
+    private static final String NO_LADDER = "     |";
+    private static final String EXIST_LADDER = "-----|";
+    private static final String LADDER_RESULT_SENTENCE = "사다리 결과";
+    private static final String RESULT_SENTENCE = "  실행 결과  ";
 
     private final LadderResult ladderResult;
     private final Persons persons;

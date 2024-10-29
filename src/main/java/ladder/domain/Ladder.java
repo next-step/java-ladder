@@ -31,7 +31,7 @@ public class Ladder {
 
     public int getPersonLadderResult(int startPosition) {
         int currentPosition = startPosition;
-        for(Line line : lines) {
+        for (Line line : lines) {
             currentPosition = line.move(currentPosition);
         }
         return currentPosition;

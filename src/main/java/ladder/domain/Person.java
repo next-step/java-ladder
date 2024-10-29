@@ -3,8 +3,8 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Person {
-    private final static int MAX_NAME_LENGTH = 5;
-    private final static String MAX_NAME_ERROR_MESSAGE = "이름은 5글자를 넘을 수 없습니다.";
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final String MAX_NAME_ERROR_MESSAGE = "이름은 5글자를 넘을 수 없습니다.";
 
     private final String name;
     private Point point;

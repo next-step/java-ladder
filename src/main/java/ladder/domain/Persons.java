@@ -5,9 +5,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Persons {
-    private final static int MIN_PERSON_NUMBERS = 2;
-    private final static String MIN_PERSON_NUMBERS_ERROR_MESSAGE = "참여 인원은 " + MIN_PERSON_NUMBERS + "명이상이어야 합니다.";
-    private final static String DELIMITER = ",";
+    private static final int MIN_PERSON_NUMBERS = 2;
+    private static final String MIN_PERSON_NUMBERS_ERROR_MESSAGE = "참여 인원은 " + MIN_PERSON_NUMBERS + "명이상이어야 합니다.";
+    private static final String DELIMITER = ",";
 
     private final List<Person> persons;
 
