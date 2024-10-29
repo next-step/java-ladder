@@ -39,14 +39,17 @@ public class Ladder {
     public Point getLadderResultIndex(Point startPoint) {
         Point currentPoint = startPoint;
         for (int i = 0; i < height.getValue(); i++) {
-            LadderRow currentStep = ladderRows.get(i);
-            if (currentStep.isLeftMoveable(currentPoint)) {
-                currentPoint = currentPoint.minus();
-                continue;
-            }
-            if (currentStep.isRightMoveable(currentPoint)) {
-                currentPoint = currentPoint.plus();
-            }
+            currentPoint = getNextPoint(currentPoint, ladderRows.get(i));
+        }
+        return currentPoint;
+    }
+
+    private Point getNextPoint(Point currentPoint, LadderRow ladderRow) {
+        if (ladderRow.isLeftMoveable(currentPoint)) {
+            return currentPoint.minus();
+        }
+        if (ladderRow.isRightMoveable(currentPoint)) {
+            return currentPoint.plus();
         }
         return currentPoint;
     }
@@ -55,13 +58,17 @@ public class Ladder {
     public String toString() {
         List<String> mapAsString = getMapAsString();
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < ladderRows.size(); i++) {
-            builder.append(mapAsString.get(i));
-            if (i != mapAsString.size() - 1) {
-                builder.append("\n");
-            }
+        for (int i = 0; i < mapAsString.size(); i++) {
+            appendLine(builder, mapAsString.get(i), i);
         }
         return builder.toString();
+    }
+
+    private void appendLine(StringBuilder builder, String line, int index) {
+        builder.append(line);
+        if (index != getMapAsString().size() - 1) {
+            builder.append("\n");
+        }
     }
 
 }
