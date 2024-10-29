@@ -2,21 +2,26 @@ package nextstep.ladder;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.IntStream;
 
 public class Lines {
 
     private final List<Boolean> lines;
 
-    public Lines(List<Boolean> lines) {
-        if (isConsecutive(lines)) {
-            throw new IllegalArgumentException("다리는 연속 될 수 없습니다.");
-        }
-        this.lines = lines;
+    public Lines(NonConsecutiveFlagGenerator nonConsecutiveFlagGenerator) {
+        this.lines = nonConsecutiveFlagGenerator.create();
     }
 
-    private boolean isConsecutive(List<Boolean> lines) {
-        return IntStream.range(0, lines.size() - 1).anyMatch(i -> lines.get(i) && lines.get(i + 1));
+    public Lines(List<Boolean> lines) {
+        this(createDefaultGenerator(lines));
+    }
+
+    private static NonConsecutiveFlagGenerator createDefaultGenerator(List<Boolean> lines) {
+        return new NonConsecutiveFlagGenerator() {
+            @Override
+            protected List<Boolean> createResult() {
+                return lines;
+            }
+        };
     }
 
     @Override
