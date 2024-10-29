@@ -16,7 +16,7 @@ public class Point {
         this.point = point;
     }
 
-    private static void validateValue(int point) {
+    private void validateValue(int point) {
         if (point < 0) {
             throw new IllegalArgumentException(POINT_ERROR_MESSAGE);
         }
