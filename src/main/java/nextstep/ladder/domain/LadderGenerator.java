@@ -6,43 +6,28 @@ import java.util.Random;
 
 public class LadderGenerator {
 
-    private static final int MINIMUM_SPACE = 2;
-
     private static final Random random = new Random();
 
-    private int participantCount;
-    private int height;
-
-    public LadderGenerator(int participantCount, int height) {
-        this.participantCount = participantCount;
-        this.height = height;
+    private LadderGenerator() {
     }
 
-    public Ladder generateLadder() {
+    public static Ladder generateLadder(int participantCount, int height) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(createRandomLine());
+            lines.add(createRandomLine(participantCount));
         }
         return new Ladder(lines);
     }
 
-    private Line createRandomLine() {
-        List<Boolean> points = new ArrayList<>();
-        int cnt = 0;
-        while (cnt != participantCount) {
-            if (hasTwoSpace(cnt) && random.nextBoolean()) {
-                points.add(Boolean.TRUE);
-                points.add(Boolean.TRUE);
-                cnt += 2;
-                continue;
+    private static Line createRandomLine(int participantCount) {
+        Line randomLine = new Line(participantCount);
+        for (int cnt = 0; cnt < participantCount - 1; cnt++) {
+            boolean isConnected = random.nextBoolean();
+            boolean hasBridge = !randomLine.hasBridgeAtPosition(cnt);
+            if (isConnected && !hasBridge) {
+                randomLine.putBridgeAtPosition(cnt);
             }
-            points.add(Boolean.FALSE);
-            cnt++;
         }
-        return new Line(points);
-    }
-
-    private boolean hasTwoSpace(int cnt) {
-        return cnt + MINIMUM_SPACE <= participantCount;
+        return randomLine;
     }
 }

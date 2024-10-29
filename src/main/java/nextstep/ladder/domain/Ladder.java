@@ -16,10 +16,6 @@ public class Ladder {
         this(Arrays.asList(lines));
     }
 
-    public Line getLineAt(int position) {
-        return lines.get(position);
-    }
-
     public List<Line> getLines() {
         return lines;
     }

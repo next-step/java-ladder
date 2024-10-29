@@ -9,16 +9,14 @@ class LadderGeneratorTest {
     @Test
     @DisplayName("참가자:3명, 높이:1 사다리 생성")
     void 사다리_생성() {
-        LadderGenerator generator = new LadderGenerator(3, 1);
-        Ladder ladder = generator.generateLadder();
+        Ladder ladder = LadderGenerator.generateLadder(3, 1);
         Assertions.assertThat(ladder).isInstanceOf(Ladder.class);
     }
 
     @Test
     @DisplayName("참가자:3명, 높이:3 사다리 생성")
     void 사다리_생성_높이3() {
-        LadderGenerator generator = new LadderGenerator(3, 3);
-        Ladder ladder = generator.generateLadder();
+        Ladder ladder = LadderGenerator.generateLadder(3, 3);
         Assertions.assertThat(ladder.getLines()).hasSize(3);
     }
 }
