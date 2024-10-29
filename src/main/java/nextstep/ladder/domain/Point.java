@@ -28,6 +28,10 @@ public class Point {
         this.right = true;
     }
 
+    public boolean isRightConnected() {
+        return right;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

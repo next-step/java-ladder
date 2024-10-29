@@ -35,8 +35,8 @@ public class Line {
         nextPoint.connectLeft();
     }
 
-    public List<Boolean> getPoints() {
-        return null;
+    public List<Point> getPoints() {
+        return points;
     }
 
     @Override
