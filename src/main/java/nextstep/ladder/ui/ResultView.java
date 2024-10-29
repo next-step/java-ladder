@@ -2,11 +2,6 @@ package nextstep.ladder.ui;
 
 import nextstep.ladder.domain.GameResult;
 import nextstep.ladder.domain.LadderGame;
-import nextstep.ladder.domain.Prize;
-import nextstep.ladder.domain.User;
-
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ResultView {
     private static final String LADDER_RESULT_HEADER = "\n사다리 결과\n";
@@ -32,11 +27,11 @@ public class ResultView {
     }
 
     private static void printGameBoard(LadderGame ladderGame) {
-        System.out.println(ladderGame.getGameBoardAsString());
+        System.out.println(ladderGame.getGameBoard());
     }
 
     private static void printPlayers(LadderGame ladderGame) {
-        System.out.println(ladderGame.getPlayerAsString());
+        System.out.println(ladderGame.getPlayers());
     }
 
     public static void printResult(GameResult gameResult) {
@@ -45,11 +40,7 @@ public class ResultView {
     }
 
     private static void printGameResult(GameResult gameResult) {
-        Map<User, Prize> result = gameResult.getResult();
-        String formattedResult = result.entrySet().stream()
-                .map(it -> it.getKey() + it.getValue().toString() + "\n")
-                .collect(Collectors.joining());
-        System.out.println(formattedResult);
+        System.out.println(gameResult);
     }
 
     private static void printGameResultHeader() {

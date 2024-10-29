@@ -30,18 +30,6 @@ public class Ladder {
         return Collections.unmodifiableList(ladderRows);
     }
 
-    public String getLadderAsString() {
-        List<String> mapAsString = getMapAsString();
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < ladderRows.size(); i++) {
-            builder.append(mapAsString.get(i));
-            if (i != mapAsString.size() - 1) {
-                builder.append("\n");
-            }
-        }
-        return builder.toString();
-    }
-
     private List<String> getMapAsString() {
         return ladderRows.stream()
             .map(LadderRow::getRowAsString)
@@ -61,6 +49,19 @@ public class Ladder {
             }
         }
         return currentPoint;
+    }
+
+    @Override
+    public String toString() {
+        List<String> mapAsString = getMapAsString();
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < ladderRows.size(); i++) {
+            builder.append(mapAsString.get(i));
+            if (i != mapAsString.size() - 1) {
+                builder.append("\n");
+            }
+        }
+        return builder.toString();
     }
 
 }

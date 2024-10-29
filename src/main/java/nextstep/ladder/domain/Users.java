@@ -1,9 +1,13 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.util.StringUtils;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.NoSuchElementException;
+import java.util.Set;
 import java.util.stream.Collectors;
+
+import nextstep.ladder.util.StringUtils;
 
 public class Users {
     private final LinkedHashSet<User> users;
@@ -14,8 +18,8 @@ public class Users {
 
     public static Users from(Set<String> userNames) {
         LinkedHashSet<User> userSet = userNames.stream()
-                .map(User::new)
-                .collect(Collectors.toCollection(LinkedHashSet::new));
+            .map(User::new)
+            .collect(Collectors.toCollection(LinkedHashSet::new));
         return new Users(userSet);
     }
 
@@ -27,21 +31,22 @@ public class Users {
         return users.size();
     }
 
-    public String getUsersAsString() {
-        return users.stream()
-                .map(it -> StringUtils.lPad(it.getName(), 6))
-                .collect(Collectors.joining());
-    }
-
     public User findUserByName(String name) {
         return users.stream()
-                .filter(user -> user.getName().equals(name))
-                .findFirst()
-                .orElseThrow(() -> new NoSuchElementException("존재하지 않는 유저 입니다."));
+            .filter(user -> user.getName().equals(name))
+            .findFirst()
+            .orElseThrow(() -> new NoSuchElementException("존재하지 않는 유저 입니다."));
     }
 
     public Point findUserIndex(User user) {
         int indexOfValue = new ArrayList<>(users).indexOf(user);
         return new Point(indexOfValue);
+    }
+
+    @Override
+    public String toString() {
+        return users.stream()
+            .map(it -> StringUtils.lPad(it.getName(), 6))
+            .collect(Collectors.joining());
     }
 }

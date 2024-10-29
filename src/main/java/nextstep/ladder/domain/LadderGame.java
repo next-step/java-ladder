@@ -9,12 +9,12 @@ public class LadderGame {
         this.gameBoard = new GameBoard(new PositiveNumber(players.size()), height, resultRow);
     }
 
-    public String getPlayerAsString() {
-        return players.getUsersAsString();
+    public GameBoard getGameBoard() {
+        return gameBoard;
     }
 
-    public String getGameBoardAsString() {
-        return gameBoard.getGameBoardAsString();
+    public Users getPlayers() {
+        return players;
     }
 
     public GameResult start(String username) {

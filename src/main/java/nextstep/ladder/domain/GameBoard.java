@@ -9,20 +9,17 @@ public class GameBoard {
         this.resultRow = resultRow;
     }
 
-    public String getGameBoardAsString() {
-        return getLadderAsString() + "\n" + getResultRowAsString();
-    }
-
-    private String getLadderAsString() {
-        return ladder.getLadderAsString();
-    }
-
-    private String getResultRowAsString() {
-        return resultRow.getResultRowAsString();
+    public Ladder getLadder() {
+        return ladder;
     }
 
     public Prize getLadderResult(Point startPoint) {
         Point resultIndex = ladder.getLadderResultIndex(startPoint);
         return new Prize(resultRow.getResult(resultIndex));
+    }
+
+    @Override
+    public String toString() {
+        return ladder + "\n" + resultRow;
     }
 }
