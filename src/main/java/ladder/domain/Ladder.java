@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.exception.InvalidHeightOfLadderException;
 import ladder.exception.InvalidNumberOfPlayersException;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,7 +14,7 @@ public class Ladder {
     private final List<Line> lines;
 
     private Ladder(List<Line> lines) {
-        this.lines = lines;
+        this.lines = new ArrayList<>(lines);
     }
 
     public static Ladder of(List<Line> lines) {
@@ -29,7 +30,7 @@ public class Ladder {
         validateNumberOfPlayers(numberOfPlayers);
 
         return IntStream.range(0, heightOfLadder)
-                .mapToObj(i -> new Line(numberOfPlayers, new RandomLineGenerator()))
+                .mapToObj(i -> Line.of(numberOfPlayers, new RandomLineGenerator()))
                 .collect(Collectors.toList());
     }
 

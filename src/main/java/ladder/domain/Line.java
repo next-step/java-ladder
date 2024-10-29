@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -8,11 +9,7 @@ public class Line {
     private final List<Boolean> points;
 
     private Line(List<Boolean> points) {
-        this.points = points;
-    }
-
-    public Line(int numberOfPlayers, LineGenerator lineGenerator) {
-        this.points = lineGenerator.generate(numberOfPlayers);
+        this.points = new ArrayList<>(points);
     }
 
     public static Line of(int numberOfPlayers, LineGenerator lineGenerator) {
