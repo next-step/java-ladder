@@ -14,9 +14,9 @@ class LadderTest {
     @DisplayName("성공 - Ladder를 생성했을 떄 주어진 넓이와 높이만큼의 map이 생성된다.")
     void initTest() {
         Ladder ladder = new Ladder(new PositiveNumber(3), new PositiveNumber(5));
-        List<LadderRow> ladderMap = ladder.getMap();
-        assertThat(ladderMap).hasSize(5);
-        ladderMap.forEach(row ->
+        List<LadderRow> ladderLadderRows = ladder.getLadderRows();
+        assertThat(ladderLadderRows).hasSize(5);
+        ladderLadderRows.forEach(row ->
                 assertThat(row.getRow()).hasSize(3)
         );
     }

@@ -7,33 +7,33 @@ import java.util.stream.Collectors;
 
 public class Ladder {
     private final PositiveNumber height;
-    private final List<LadderRow> map;
+    private final List<LadderRow> ladderRows;
 
     public Ladder(PositiveNumber width, PositiveNumber height) {
         this.height = height;
-        this.map = new ArrayList<>();
+        this.ladderRows = new ArrayList<>();
         makeMap(width, height);
     }
 
-    public Ladder(PositiveNumber height, List<LadderRow> map) {
+    public Ladder(PositiveNumber height, List<LadderRow> ladderRows) {
         this.height = height;
-        this.map = map;
+        this.ladderRows = ladderRows;
     }
 
     private void makeMap(PositiveNumber width, PositiveNumber height) {
         for (int i = 0; i < height.getValue(); i++) {
-            map.add(new LadderRow(width, RandomBarGeneratorStrategy.getInstance()));
+            ladderRows.add(new LadderRow(width, RandomBarGeneratorStrategy.getInstance()));
         }
     }
 
-    public List<LadderRow> getMap() {
-        return Collections.unmodifiableList(map);
+    public List<LadderRow> getLadderRows() {
+        return Collections.unmodifiableList(ladderRows);
     }
 
     public String getLadderAsString() {
         List<String> mapAsString = getMapAsString();
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < map.size(); i++) {
+        for (int i = 0; i < ladderRows.size(); i++) {
             builder.append(mapAsString.get(i));
             if (i != mapAsString.size() - 1) {
                 builder.append("\n");
@@ -43,15 +43,15 @@ public class Ladder {
     }
 
     private List<String> getMapAsString() {
-        return map.stream()
-                .map(LadderRow::getRowAsString)
-                .collect(Collectors.toList());
+        return ladderRows.stream()
+            .map(LadderRow::getRowAsString)
+            .collect(Collectors.toList());
     }
 
     public Point getLadderResultIndex(Point startPoint) {
         Point currentPoint = startPoint;
         for (int i = 0; i < height.getValue(); i++) {
-            LadderRow currentStep = map.get(i);
+            LadderRow currentStep = ladderRows.get(i);
             if (currentStep.isLeftMoveable(currentPoint)) {
                 currentPoint = currentPoint.minus();
                 continue;
