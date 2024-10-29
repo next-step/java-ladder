@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,10 +9,6 @@ public class Ladder {
 
     public Ladder(List<Line> lines) {
         this.lines = lines;
-    }
-
-    public Ladder(Line... lines) {
-        this(Arrays.asList(lines));
     }
 
     public List<Line> getLines() {

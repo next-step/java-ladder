@@ -10,7 +10,7 @@ class LineTest {
 
     @Test
     void 해당위치에_다리가_있는지_판단한다() {
-        List<Point> points = Arrays.asList(
+        List<Point> points = List.of(
                 new Point(false, true),
                 new Point(true, false),
                 new Point(false, false));

@@ -12,12 +12,12 @@ public class LadderPrinterTest {
     @Test
     @DisplayName("사다리가 주여졌을 때, 문자열로 반환한다.")
     void 사다리_문자열_출력() {
-        List<Point> points = Arrays.asList(
+        List<Point> points =List.of(
                 new Point(false, true),
                 new Point(true, false),
                 new Point(false, false));
         Line line = new Line(points);
-        LadderPrinter printer = new LadderPrinter(new Ladder(line));
+        LadderPrinter printer = new LadderPrinter(new Ladder(List.of(line)));
         Assertions.assertThat(printer.printLadder()).isEqualTo("     |-----|     |\n");
     }
 }
