@@ -19,10 +19,10 @@ public class Ladder {
     }
 
     private void validateLadder(int height, int countOfPerson) {
-        if (MIN_HEIGHT < 1) {
+        if (height < MIN_HEIGHT) {
             throw new IllegalArgumentException(VALIDATE_HEIGHT);
         }
-        if (MIN_PERSON < 2) {
+        if (countOfPerson < MIN_PERSON) {
             throw new IllegalArgumentException(VALIDATE_COUNT_PERSON);
         }
     }
