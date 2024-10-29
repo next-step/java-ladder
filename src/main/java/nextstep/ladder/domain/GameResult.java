@@ -1,24 +1,22 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class GameResult {
-    private final Map<String, String> result;
+    private final Map<User, Prize> result;
 
     public GameResult() {
         this.result = new LinkedHashMap<>();
     }
 
-    private void put(User user, String ladderResult) {
-        result.put(user.getName(), ladderResult);
+    private void put(User user, Prize prize) {
+        result.put(user, prize);
     }
 
-    public String resultAsString() {
-        return result.entrySet().stream()
-                .map(it -> it.getKey() + " : " + it.getValue() + "\n")
-                .collect(Collectors.joining());
+    public Map<User, Prize> getResult() {
+        return Collections.unmodifiableMap(result);
     }
 
     public static GameResult allPlayerGameResult(Users players, GameBoard gameBoard) {
@@ -44,7 +42,7 @@ public class GameResult {
             GameResult gameResult
     ) {
         Point userIndex = players.findUserIndex(user);
-        String ladderResult = gameBoard.getLadderResult(userIndex);
-        gameResult.put(user, ladderResult);
+        Prize prize = gameBoard.getLadderResult(userIndex);
+        gameResult.put(user, prize);
     }
 }

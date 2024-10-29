@@ -21,8 +21,8 @@ public class GameBoard {
         return resultRow.getResultRowAsString();
     }
 
-    public String getLadderResult(Point startPoint) {
+    public Prize getLadderResult(Point startPoint) {
         Point resultIndex = ladder.getLadderResultIndex(startPoint);
-        return resultRow.getResult(resultIndex);
+        return new Prize(resultRow.getResult(resultIndex));
     }
 }
