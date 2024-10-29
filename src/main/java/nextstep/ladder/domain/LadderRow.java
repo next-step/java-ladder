@@ -39,9 +39,10 @@ public class LadderRow {
     }
 
     private String generateLine() {
-        return generatorStrategy.generable()
-                ? HORIZONTAL_BAR
-                : EMPTY_HORIZONTAL_BAR;
+        if (generatorStrategy.generable()) {
+            return HORIZONTAL_BAR;
+        }
+        return EMPTY_HORIZONTAL_BAR;
     }
 
     private String getPreviousBar(Point point) {
@@ -53,16 +54,24 @@ public class LadderRow {
     }
 
     public boolean isRightMoveable(Point currentPoint) {
-        if (currentPoint.getValue() + 1 >= row.size()) {
+        if (isOverRightLimit(currentPoint)) {
             return false;
         }
         return row.get(currentPoint.getValue() + 1).equals(HORIZONTAL_BAR);
     }
 
+    private boolean isOverRightLimit(Point currentPoint) {
+        return currentPoint.getValue() + 1 >= row.size();
+    }
+
     public boolean isLeftMoveable(Point currentPoint) {
-        if (currentPoint.getValue() - 1 < 0) {
+        if (isOverLeftLimit(currentPoint)) {
             return false;
         }
         return row.get(currentPoint.getValue()).equals(HORIZONTAL_BAR);
+    }
+
+    private boolean isOverLeftLimit(Point currentPoint) {
+        return currentPoint.getValue() - 1 < 0;
     }
 }
