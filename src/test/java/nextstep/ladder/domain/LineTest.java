@@ -1,27 +1,31 @@
 package nextstep.ladder.domain;
 
-import org.junit.jupiter.api.DisplayName;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import java.util.List;
 
 class LineTest {
 
     @Test
-    void create() {
-        Line line = new Line(Arrays.asList(Boolean.TRUE, Boolean.TRUE));
-        assertThat(line).isEqualTo(new Line(Arrays.asList(Boolean.TRUE, Boolean.TRUE)));
+    void 해당위치에_다리가_있는지_판단한다() {
+        List<Point> points = Arrays.asList(
+                new Point(false, true),
+                new Point(true, false),
+                new Point(false, false));
+        Line line = new Line(points);
+        Assertions.assertThat(line.hasBridgeAtPosition(0)).isTrue();
+        Assertions.assertThat(line.hasBridgeAtPosition(1)).isTrue();
+        Assertions.assertThat(line.hasBridgeAtPosition(2)).isFalse();
     }
 
     @Test
-    @DisplayName("#CASE: 높이:1, 참가자:3명 -->  |-----|     |")
-    void 라인_존재여부() {
-        Line line = new Line(Arrays.asList(Boolean.TRUE, Boolean.TRUE, Boolean.FALSE));
-        assertThat(line.hasLineAtPosition(0)).isTrue();
-        assertThat(line.hasLineAtPosition(1)).isTrue();
-        assertThat(line.hasLineAtPosition(2)).isFalse();
+    void 해당위치에_다리를_놓는다() {
+        Line line = new Line(3);
+        line.putBridgeAtPosition(0);
+        Assertions.assertThat(line.hasBridgeAtPosition(0)).isTrue();
+        Assertions.assertThat(line.hasBridgeAtPosition(1)).isTrue();
+        Assertions.assertThat(line.hasBridgeAtPosition(2)).isFalse();
     }
 }
