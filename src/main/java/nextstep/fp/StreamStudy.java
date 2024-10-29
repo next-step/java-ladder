@@ -36,13 +36,14 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        words.stream()
-                .filter(s->s.length()>12)
+        String result = words.stream()
+                .filter(s -> s.length() > 12)
                 .map(String::toLowerCase)
                 .distinct()
                 .sorted(Comparator.comparingInt(String::length))
                 .limit(100)
-                .forEach(System.out::println);
+                .reduce("", (s1, s2) -> s1 + s2 + "\n");
+        System.out.println(result);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
