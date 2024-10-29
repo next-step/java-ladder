@@ -7,6 +7,7 @@ import java.util.List;
 public class LadderRow {
     private static final String HORIZONTAL_BAR = "-----";
     private static final String EMPTY_HORIZONTAL_BAR = "     ";
+    private static final String ROW_DELIMITER = "|";
 
     private final List<String> row;
     private final BarGeneratorStrategy generatorStrategy;
@@ -19,7 +20,7 @@ public class LadderRow {
 
     private void makeRow(PositiveNumber width) {
         for (int i = 0; i < width.getValue(); i++) {
-            row.add(getBar(i));
+            row.add(getBar(new Point(i)));
         }
     }
 
@@ -27,25 +28,50 @@ public class LadderRow {
         return Collections.unmodifiableList(row);
     }
 
-    private String getBar(int index) {
+    private String getBar(Point point) {
         if (row.isEmpty()) {
             return EMPTY_HORIZONTAL_BAR;
         }
-        if (getPreviousBar(index).equals(EMPTY_HORIZONTAL_BAR)) {
+        if (getPreviousBar(point).equals(EMPTY_HORIZONTAL_BAR)) {
             return generateLine();
         }
         return EMPTY_HORIZONTAL_BAR;
     }
 
     private String generateLine() {
-        return generatorStrategy.generable() ? HORIZONTAL_BAR : EMPTY_HORIZONTAL_BAR;
+        if (generatorStrategy.generable()) {
+            return HORIZONTAL_BAR;
+        }
+        return EMPTY_HORIZONTAL_BAR;
     }
 
-    private String getPreviousBar(int index) {
-        return row.get(index - 1);
+    private String getPreviousBar(Point point) {
+        return row.get(point.getValue() - 1);
     }
 
     public String getRowAsString() {
-        return String.join("|", row);
+        return String.join("|", row) + ROW_DELIMITER;
+    }
+
+    public boolean isRightMoveable(Point currentPoint) {
+        if (isOverRightLimit(currentPoint)) {
+            return false;
+        }
+        return row.get(currentPoint.getValue() + 1).equals(HORIZONTAL_BAR);
+    }
+
+    private boolean isOverRightLimit(Point currentPoint) {
+        return currentPoint.getValue() + 1 >= row.size();
+    }
+
+    public boolean isLeftMoveable(Point currentPoint) {
+        if (isOverLeftLimit(currentPoint)) {
+            return false;
+        }
+        return row.get(currentPoint.getValue()).equals(HORIZONTAL_BAR);
+    }
+
+    private boolean isOverLeftLimit(Point currentPoint) {
+        return currentPoint.getValue() - 1 < 0;
     }
 }

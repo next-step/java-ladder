@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderRowTest {
     @Test
@@ -35,10 +34,18 @@ class LadderRowTest {
     }
 
     @Test
-    @DisplayName("실패 - getRow 메서드의 반환된 List를 수정했을 때 예외가 발생한다.")
-    void throwExceptionWhenModifyingReturnedList() {
+    @DisplayName("성공 - isRightMoveable 메서드가 현재위치+1 이 row의 크기보다 크거나 같다면 false를 반환한다.")
+    void isRightMoveableTest() {
         LadderRow ladderRow = new LadderRow(new PositiveNumber(5), () -> true);
-        assertThatThrownBy(() -> ladderRow.getRow().add("-----"))
-                .isInstanceOf(UnsupportedOperationException.class);
+        System.out.println(ladderRow.getRow().size());
+        assertThat(ladderRow.isRightMoveable(new Point(4))).isFalse();
+    }
+
+    @Test
+    @DisplayName("성공 - isLeftMoveable 메서드가 현재위치-1 이 0보다 작다면 false를 반환한다.")
+    void isLeftMoveableTest() {
+        LadderRow ladderRow = new LadderRow(new PositiveNumber(5), () -> true);
+        System.out.println(ladderRow.getRow().size());
+        assertThat(ladderRow.isLeftMoveable(new Point(0))).isFalse();
     }
 }

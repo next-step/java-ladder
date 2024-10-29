@@ -1,35 +1,52 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.NoSuchElementException;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Users {
-    private final List<User> users;
+import nextstep.ladder.util.StringUtils;
 
-    public Users(List<User> users) {
-        validateDuplicateUserName(users);
+public class Users {
+    private final LinkedHashSet<User> users;
+
+    private Users(LinkedHashSet<User> users) {
         this.users = users;
     }
 
-    private void validateDuplicateUserName(List<User> users) {
-        if (getDistinctUserCount(users) != users.size()) {
-            throw new IllegalArgumentException("이름이 같은 회원이 포함되어 있습니다.");
-        }
+    public static Users from(Set<String> userNames) {
+        LinkedHashSet<User> userSet = userNames.stream()
+            .map(User::new)
+            .collect(Collectors.toCollection(LinkedHashSet::new));
+        return new Users(userSet);
     }
 
-    private long getDistinctUserCount(List<User> users) {
-        return users.stream()
-                .map(User::getName)
-                .collect(Collectors.toSet())
-                .size();
-    }
-
-    public List<User> getUsers() {
-        return Collections.unmodifiableList(users);
+    public Set<User> getUsers() {
+        return Collections.unmodifiableSet(users);
     }
 
     public int size() {
         return users.size();
+    }
+
+    public User findUserByName(String name) {
+        return users.stream()
+            .filter(user -> user.getName().equals(name))
+            .findFirst()
+            .orElseThrow(() -> new NoSuchElementException("존재하지 않는 유저 입니다."));
+    }
+
+    public Point findUserIndex(User user) {
+        int indexOfValue = new ArrayList<>(users).indexOf(user);
+        return new Point(indexOfValue);
+    }
+
+    @Override
+    public String toString() {
+        return users.stream()
+            .map(it -> StringUtils.lPad(it.getName(), 6))
+            .collect(Collectors.joining());
     }
 }
