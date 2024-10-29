@@ -27,4 +27,8 @@ public class Ladder {
     public int size() {
         return horizontalLines.size();
     }
+
+    public HorizontalLine getByIndex(int index) {
+        return horizontalLines.get(index);
+    }
 }
