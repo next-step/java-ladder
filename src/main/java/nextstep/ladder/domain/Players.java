@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,5 +16,9 @@ public class Players {
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public int getPlayerCount() {
+        return players.size();
     }
 }

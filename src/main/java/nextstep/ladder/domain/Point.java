@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.Random;
 
@@ -12,5 +12,9 @@ public class Point {
 
     public Point(Point previousPoint) {
         this.point = !previousPoint.point && random.nextBoolean();
+    }
+
+    public boolean isPoint() {
+        return point;
     }
 }

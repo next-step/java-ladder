@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ public class Line {
 
     private void initPoints(int countOfPerson) {
         points.add(new Point());
-        for (int i = 1; i < countOfPerson; i++) {
+        for (int i = 1; i < countOfPerson - 1; i++) {
             points.add(new Point(points.get(i - 1)));
         }
     }

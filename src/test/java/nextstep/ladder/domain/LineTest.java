@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -10,7 +10,7 @@ class LineTest {
     @DisplayName("사다리 라인을 그릴 수 있다.")
     @Test
     void 사다리_라인_그리기() {
-        assertThat(new Line(4).getPoints()).hasSize(4);
+        assertThat(new Line(4).getPoints()).hasSize(3);
     }
 
     @DisplayName("참여자가 2명 미만일때 에러")
