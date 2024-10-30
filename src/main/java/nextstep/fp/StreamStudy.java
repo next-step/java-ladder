@@ -33,9 +33,9 @@ public class StreamStudy {
         words.stream()
                 .filter(w -> w.length() > WORD_MAX_LENGTH)
                 .map(String::toLowerCase)
+                .sorted(Comparator.comparingInt(String::length))
                 .distinct()
                 .limit(100)
-                .sorted(Comparator.comparingInt(String::length))
                 .forEachOrdered(System.out::println);
     }
 
