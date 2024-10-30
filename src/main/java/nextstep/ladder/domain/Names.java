@@ -1,10 +1,11 @@
 package nextstep.ladder.domain;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
-public class Names {
+public class Names implements Iterable<String> {
 
     private static final String SPLIT_PATTERN = ",";
     private static final int MIN_SIZE = 2;
@@ -39,6 +40,15 @@ public class Names {
 
     private static List<String> toList(String[] value) {
         return Arrays.asList(value);
+    }
+
+    public int size() {
+        return names.size();
+    }
+
+    @Override
+    public Iterator<String> iterator() {
+        return this.names.iterator();
     }
 
     @Override

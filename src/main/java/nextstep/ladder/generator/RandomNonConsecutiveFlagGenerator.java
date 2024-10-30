@@ -27,15 +27,15 @@ public class RandomNonConsecutiveFlagGenerator extends NonConsecutiveFlagGenerat
     }
 
     private boolean beforeIsTrue(List<Boolean> result, int i) {
-        return !result.get(i - 1) || i == 0;
+        return i == 0 || !result.get(i - 1);
     }
 
     private boolean random(boolean before) {
         if (before) {
-            return false;
+            Random random = new Random();
+            return random.nextBoolean();
         }
 
-        Random random = new Random();
-        return random.nextBoolean();
+        return false;
     }
 }

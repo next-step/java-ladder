@@ -1,12 +1,13 @@
 package nextstep.ladder.domain;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import nextstep.ladder.generator.NonConsecutiveFlagGenerator;
 
-public class Ladder {
+public class Ladder implements Iterable<Lines> {
 
     private final List<Lines> ladder;
 
@@ -23,6 +24,11 @@ public class Ladder {
 
     private static List<Lines> toLadder(int height, NonConsecutiveFlagGenerator generator) {
         return Stream.generate(() -> new Lines(generator)).limit(height).collect(Collectors.toList());
+    }
+
+    @Override
+    public Iterator<Lines> iterator() {
+        return ladder.iterator();
     }
 
     @Override
