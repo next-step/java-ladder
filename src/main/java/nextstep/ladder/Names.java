@@ -10,6 +10,9 @@ public class Names {
     private final List<String> names;
 
     public Names(List<String> names) {
+        if (names.stream().anyMatch(name -> name.length() > 5)) {
+            throw new IllegalArgumentException("잘못된 이름입력입니다.");
+        }
         this.names = names;
     }
 
