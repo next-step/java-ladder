@@ -17,7 +17,7 @@ public class Line {
         this(sizeToPointList(size));
     }
 
-    public static List<Point> sizeToPointList(int size) {
+    private static List<Point> sizeToPointList(int size) {
         return IntStream.range(0, size)
                 .mapToObj(i -> new Point())
                 .collect(Collectors.toList());

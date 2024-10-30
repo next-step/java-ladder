@@ -4,6 +4,10 @@ import java.util.List;
 
 public class LadderPrinter {
 
+    private static final String EMPTY_SPACE = "     ";
+    private static final String CONNECTED_STRING = "|-----";
+    private static final String DISCONNECTED_STRING = "|     ";
+
     private final Ladder ladder;
 
     public LadderPrinter(Ladder ladder) {
@@ -21,16 +25,17 @@ public class LadderPrinter {
     private String convertLineToString(Line line) {
         List<Point> points = line.getPoints();
         StringBuilder builder = new StringBuilder();
-        builder.append("     ");
-        for (int cnt = 0; cnt < points.size() - 1; cnt++) {
-            Point point = points.get(cnt);
-            if (point.isRightConnected()) {
-                builder.append("|-----");
-                continue;
-            }
-            builder.append("|     ");
+        builder.append(EMPTY_SPACE);
+        for (int position = 0; position < points.size() - 1; position++) {
+            Point point = points.get(position);
+            builder.append(getCurrentPositionStatus(point));
         }
         builder.append("|\n");
+        System.out.println(builder.toString());
         return builder.toString();
+    }
+
+    private String getCurrentPositionStatus(Point point) {
+        return point.isRightConnected() ? CONNECTED_STRING : DISCONNECTED_STRING;
     }
 }

@@ -23,7 +23,7 @@ public class LadderGenerator {
         Line randomLine = new Line(participantCount);
         for (int cnt = 0; cnt < participantCount - 1; cnt++) {
             boolean isConnected = random.nextBoolean();
-            boolean hasBridge = !randomLine.hasBridgeAtPosition(cnt);
+            boolean hasBridge = randomLine.hasBridgeAtPosition(cnt);
             if (isConnected && !hasBridge) {
                 randomLine.putBridgeAtPosition(cnt);
             }
