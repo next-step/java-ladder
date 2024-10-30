@@ -8,4 +8,10 @@ public class InputView {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
+
+    public static int readHeight() {
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
+    }
 }

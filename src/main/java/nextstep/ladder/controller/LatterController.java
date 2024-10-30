@@ -6,5 +6,6 @@ public class LatterController {
 
     public void playGame() {
         String names = InputView.readNames();
+        int height = InputView.readHeight();
     }
 }
