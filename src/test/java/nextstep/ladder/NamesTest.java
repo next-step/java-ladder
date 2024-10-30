@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class NamesTest {
 
@@ -14,8 +16,9 @@ public class NamesTest {
         assertThat(names).isEqualTo(new Names(List.of("test1", "test2")));
     }
 
-    @Test
-    public void 유효하지_않은_이름입력시_예외가_발생한다() {
-        assertThatIllegalArgumentException().isThrownBy(() -> new Names("testaa,test2"));
+    @ParameterizedTest
+    @ValueSource(strings = {"testaa,test2", "", " "})
+    public void 유효하지_않은_이름입력시_예외가_발생한다(String value) {
+        assertThatIllegalArgumentException().isThrownBy(() -> new Names(value));
     }
 }

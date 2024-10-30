@@ -10,10 +10,14 @@ public class Names {
     private final List<String> names;
 
     public Names(List<String> names) {
-        if (names.stream().anyMatch(name -> name.length() > 5)) {
+        if (inValid(names)) {
             throw new IllegalArgumentException("잘못된 이름입력입니다.");
         }
         this.names = names;
+    }
+
+    private static boolean inValid(List<String> names) {
+        return names.stream().anyMatch(name -> name.length() > 5 || name.isBlank());
     }
 
     public Names(String value) {
