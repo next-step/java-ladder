@@ -22,6 +22,7 @@ public class StreamStudyTest {
         System.out.println("result : " + result);
     }
 
+
     @Test
     public void printLongestWordTop100() throws Exception {
         StreamStudy.printLongestWordTop100();

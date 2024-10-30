@@ -2,6 +2,7 @@ package nextstep.optional;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class Users {
     static final User DEFAULT_USER = new User("codesquad", 100);
@@ -18,6 +19,6 @@ public class Users {
                 return user;
             }
         }
-        return DEFAULT_USER;
+        return users.stream().filter(user -> user.matchName(name)).findFirst().orElseGet(()->DEFAULT_USER);
     }
 }
