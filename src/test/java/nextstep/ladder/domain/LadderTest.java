@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 import java.util.Collections;
 import java.util.List;
+import nextstep.ladder.generator.NonConsecutiveFlagGenerator;
 import org.junit.jupiter.api.Test;
 
 public class LadderTest {
