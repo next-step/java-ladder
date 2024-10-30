@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Names {
 
     private static final String SPLIT_PATTERN = ",";
+    private static final int MIN_SIZE = 2;
     private final List<String> names;
 
     public Names(List<String> names) {
@@ -17,6 +18,14 @@ public class Names {
     }
 
     private static boolean inValid(List<String> names) {
+        return containInValidName(names) || inValidSize(names);
+    }
+
+    private static boolean inValidSize(List<String> names) {
+        return names.size() < MIN_SIZE;
+    }
+
+    private static boolean containInValidName(List<String> names) {
         return names.stream().anyMatch(name -> name.length() > 5 || name.isBlank());
     }
 
