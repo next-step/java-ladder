@@ -5,12 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameResult {
-    private static final String DELIMITER = ",";
     private final List<String> results;
 
-    public GameResult(String results) {
-        validateGameResult(results);
-        this.results = Arrays.stream(results.split(DELIMITER)).map(String::trim).collect(Collectors.toUnmodifiableList());
+    public GameResult(List<String> results) {
+        this.results = results;
     }
 
     public boolean validateGameResultCount(Gamers gamers) {
@@ -22,12 +20,6 @@ public class GameResult {
 
     public List<String> getResults() {
         return results;
-    }
-
-    private void validateGameResult(String results) {
-        if (results == null || results.isEmpty()) {
-            throw new IllegalArgumentException("결과 문자열이 비어있거나 null입니다.");
-        }
     }
 
     public String getGameResultByPosition(int position) {

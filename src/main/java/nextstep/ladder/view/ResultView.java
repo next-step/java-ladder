@@ -7,7 +7,8 @@ import java.util.stream.Collectors;
 
 public class ResultView {
     private static final int LADDER_POINT_COUNT = 5;
-    private final String JOINING_SEPARATOR = "  ";
+    private static final String EXIT_SIGNAL = "0";
+    private static final String JOINING_SEPARATOR = "  ";
     private static final Map<Boolean, String> LADDER_SEGMENTS = Map.of(
             true, "-".repeat(LADDER_POINT_COUNT),
             false, " ".repeat(LADDER_POINT_COUNT)
@@ -51,7 +52,10 @@ public class ResultView {
     }
 
     public void printGamerResult(GamerResult gamerResult, String gamer) {
-        String result = gamerResult.getResultByName(gamer);
+        if (gamer.equals(EXIT_SIGNAL)) {
+            printGameOver();
+            return;
+        }
 
         System.out.println("실행 결과");
 
@@ -62,10 +66,7 @@ public class ResultView {
             return;
         }
 
-        if (gamer == null || gamer.isEmpty() || result == null || result.isEmpty()) {
-            System.out.println("잘못된 이름입니다. 다시 입력 해주세요.");
-            return;
-        }
+        String result = gamerResult.getResultByName(gamer);
 
         System.out.println(result);
     }

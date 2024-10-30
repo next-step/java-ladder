@@ -15,6 +15,10 @@ public class Gamers {
                 .collect(Collectors.toUnmodifiableList());
     }
 
+    public boolean contains(String gamer) {
+        return gamers.contains(gamer);
+    }
+
     public int getCountOfPerson() {
         return gamers.size();
     }

@@ -25,20 +25,12 @@ public class LadderGame {
         resultView.printResult(gamers, ladder, gameResult);
 
         startLadderGame(gamers, ladder, gameResult);
-        printGamerResult();
+        printGamerResult(gamers);
     }
 
-    private void printGamerResult() {
-        while (true) {
-            String gamer = inputView.receiveGamerNameForResult();
-
-            if (gamer.equals("0")) {
-                resultView.printGameOver();
-                return;
-            }
-
-            resultView.printGamerResult(gamerResult, gamer);
-        }
+    private void printGamerResult(Gamers gamers) {
+        String gamer = inputView.receiveGamerNameForResult(gamers);
+        resultView.printGamerResult(gamerResult, gamer);
     }
 
     private void startLadderGame(Gamers gamers, Ladder ladder, GameResult gameResult) {

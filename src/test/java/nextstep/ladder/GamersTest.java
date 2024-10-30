@@ -37,4 +37,21 @@ class GamersTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 빈 문자열이 될 수 없습니다.");
     }
+
+    @Test
+    void 특정_위치의_참가자_이름_확인() {
+        Gamers gamers = new Gamers("Anna,Max,Tom");
+
+        assertEquals("Anna", gamers.getGamerNameByPosition(0));
+        assertEquals("Max", gamers.getGamerNameByPosition(1));
+        assertEquals("Tom", gamers.getGamerNameByPosition(2));
+    }
+
+    @Test
+    void 잘못된_위치의_참가자_이름_요청_시_예외() {
+        Gamers gamers = new Gamers("Anna,Max,Tom");
+
+        assertThatThrownBy(() -> gamers.getGamerNameByPosition(3))
+                .isInstanceOf(IndexOutOfBoundsException.class);
+    }
 }
