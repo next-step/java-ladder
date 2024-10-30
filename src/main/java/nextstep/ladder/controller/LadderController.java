@@ -2,7 +2,7 @@ package nextstep.ladder.controller;
 
 import nextstep.ladder.view.InputView;
 
-public class LatterController {
+public class LadderController {
 
     public void playGame() {
         String names = InputView.readNames();
