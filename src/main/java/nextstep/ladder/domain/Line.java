@@ -18,13 +18,11 @@ public class Line {
         return new Line(newPoints);
     }
 
-    public boolean drawLine(int position) {
+    public void drawLine(int position) {
         validatePosition(position);
-        if (!canDrawLine(position)) {
-            return false;
+        if (canDrawLine(position)) {
+            points.set(position, true);
         }
-        points.set(position, true);
-        return true;
     }
 
 
