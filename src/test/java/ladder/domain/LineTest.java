@@ -21,7 +21,7 @@ public class LineTest {
     void 라인_생성_연속_실패_테스트() {
         assertThatThrownBy(() -> new Line(false, false, true, true))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageMatching("연속으로 true 값이 올 수 없습니다.");
+                .hasMessageMatching("연속으로 중복 될 수 없는 값이 존재합니다.");
     }
 
     @Test
@@ -30,6 +30,20 @@ public class LineTest {
         assertThatThrownBy(() -> new Line())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageMatching("라인은 비어있을 수 없습니다.");
+    }
+
+    @Test
+    void 라인_이동_테스트() {
+        Line line = new Line(false, true, false, true);
+
+        assertThat(line.move(2)).isEqualTo(3);
+    }
+
+    @Test
+    void 라인_제자리_이동_테스트() {
+        Line line = new Line(false, true, false, false);
+
+        assertThat(line.move(3)).isEqualTo(3);
     }
 
 }

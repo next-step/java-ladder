@@ -7,8 +7,8 @@ import java.util.stream.IntStream;
 
 public class Line {
 
-    private final static String ZERO_ERROR_MESSAGE = "라인은 비어있을 수 없습니다.";
-    private final static String CONSECUTIVE_ERROR_MESSAGE = "연속으로 true 값이 올 수 없습니다.";
+    private static final String ZERO_ERROR_MESSAGE = "라인은 비어있을 수 없습니다.";
+    private static final String CONSECUTIVE_ERROR_MESSAGE = "연속으로 중복 될 수 없는 값이 존재합니다.";
 
     private final List<Boolean> points = new ArrayList<>();
 
@@ -21,14 +21,6 @@ public class Line {
         IntStream.range(0, countOfPerson)
                 .forEach(num -> addHorizontal(num, strategy));
 
-    }
-
-    private void addHorizontal(int num, Strategy strategy) {
-        if (isValid(num) && strategy.randomLadder()) {
-            this.points.add(true);
-            return;
-        }
-        this.points.add(false);
     }
 
     private List<Boolean> parse(Boolean... booleans) {
@@ -52,8 +44,38 @@ public class Line {
                 });
     }
 
+    private void addHorizontal(int num, Strategy strategy) {
+        if (isValid(num) && strategy.randomLadder()) {
+            this.points.add(true);
+            return;
+        }
+        this.points.add(false);
+    }
+
     public boolean isValid(int number) {
         return !points.isEmpty() && !points.get(number - 1);
+    }
+
+    public int move(int position) {
+        if (canMoveLeft(position)) {
+            return position - 1;
+        }
+        if (canMoveRight(position)) {
+            return position + 1;
+        }
+        return position;
+    }
+
+    private boolean canMoveLeft(int position) {
+        return position > 0 && hasLine(position);
+    }
+
+    private boolean canMoveRight(int position) {
+        return position < points.size() - 1 && hasLine(position + 1);
+    }
+
+    private boolean hasLine(int position) {
+        return points.get(position);
     }
 
     public List<Boolean> getPoints() {
