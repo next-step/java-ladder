@@ -1,8 +1,12 @@
 package ladder.controller;
 
-import ladder.service.Ladder;
+import ladder.domain.Bridge;
+import ladder.domain.RandomConnectionStrategy;
+import ladder.service.LadderGame;
 import ladder.view.InputView;
 import ladder.view.ResultView;
+
+import java.util.List;
 
 public class LadderController {
 
@@ -11,7 +15,8 @@ public class LadderController {
         int participantCount = participantNames.length;
         int maxLadderHeight = InputView.inputMaxLadderHeight();
 
-        Ladder ladder = new Ladder(maxLadderHeight, participantCount);
+        LadderGame ladderGame = new LadderGame();
+        List<Bridge> ladder = ladderGame.createLadder(maxLadderHeight, participantCount, new RandomConnectionStrategy());
 
         ResultView.printLadderResult(participantNames, ladder);
     }
