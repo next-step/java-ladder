@@ -8,20 +8,15 @@ import ladder.generator.LineStrategy;
 import ladder.generator.Strategy;
 import ladder.view.ResultView;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Optional;
-
 import static ladder.view.InputView.*;
-import static ladder.view.ResultView.*;
 
 public class LadderGame {
 
     public void play() {
-        Persons persons = new Persons(participantQuestion());
+        Persons persons = Persons.from(participantQuestion());
         Strategy strategy = new LineStrategy();
 
-        LadderResult ladderResult = LadderResult.from(persons, ladderResultQuestion());
+        LadderResult ladderResult = LadderResult.of(persons, ladderResultQuestion());
         Ladder ladder = Ladder.of(persons.getSize(), ladderCountQuestion(), strategy);
         makePlayResults(persons, ladder);
 

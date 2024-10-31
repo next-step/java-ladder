@@ -9,20 +9,19 @@ public class LadderResult {
 
     private final Map<Integer, String> results;
 
-    public LadderResult(Persons persons, String results) {
-        this(persons, split(results));
-    }
 
-    public LadderResult(Persons persons, String[] results) {
-        this(parse(isValid(persons, results)));
-    }
-
-    public LadderResult(Map<Integer, String> results) {
+    private LadderResult(Map<Integer, String> results) {
         this.results = results;
     }
 
-    public static LadderResult from(Persons persons, String results) {
-        return new LadderResult(persons, results);
+    public static LadderResult from(Map<Integer, String> results) {
+        return new LadderResult(results);
+    }
+
+    public static LadderResult of(Persons persons, String results) {
+        String[] resultArr = split(results);
+
+        return new LadderResult(parse(isValid(persons, resultArr)));
     }
 
     private static String[] split(String results) {

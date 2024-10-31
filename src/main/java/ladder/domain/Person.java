@@ -25,6 +25,10 @@ public class Person {
         return name;
     }
 
+    private void isAll(String name) {
+
+    }
+
     public String getName() {
         return name;
     }

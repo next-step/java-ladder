@@ -2,7 +2,6 @@ package ladder.domain;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Persons {
     private static final int MIN_PERSON_NUMBERS = 2;
@@ -11,18 +10,25 @@ public class Persons {
 
     private final List<Person> persons;
 
-    public Persons(String input) {
-        this(parse(input));
-    }
 
-    public Persons(String... input) {
-        this(IntStream.range(0, input.length)
-                .mapToObj(index -> new Person(input[index], index))
-                .collect(Collectors.toList()));
-    }
-
-    public Persons(List<Person> persons) {
+    private Persons(List<Person> persons) {
         this.persons = persons;
+    }
+
+    public static Persons from(String input) {
+        List<Person> personList = Arrays.stream(validatePersonCount(parse(input)))
+                .map(Person::new)
+                .collect(Collectors.toList());
+
+        return new Persons(personList);
+    }
+
+    public static Persons from(String... input) {
+        List<Person> personList = Arrays.stream(validatePersonCount(input))
+                .map(Person::new)
+                .collect(Collectors.toList());
+
+        return new Persons(personList);
     }
 
     private static String[] parse(String input) {

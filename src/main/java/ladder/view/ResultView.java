@@ -3,8 +3,6 @@ package ladder.view;
 import ladder.domain.*;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -81,15 +79,15 @@ public class ResultView {
         boolean flag = false;
 
         while (!flag) {
-            String name = InputView.getLadderPlayResult();
+            String input = InputView.getLadderPlayResult();
             System.out.println(RESULT_SENTENCE);
-            flag = makeLadderGameResultView(name);
+            flag = makeLadderGameResultView(input);
         }
 
     }
 
-    private boolean makeLadderGameResultView(String name) {
-        if(name.equals(ALL)) {
+    private boolean makeLadderGameResultView(String input) {
+        if(input.equals(ALL)) {
             persons.getPersons().forEach(person -> {
                 System.out.print(person.getName()+DELIMITER);
                 System.out.println(ladderResult.getResult(person.getPoint()));
@@ -97,7 +95,7 @@ public class ResultView {
             return true;
         }
 
-        Person person = persons.isSamePerson(name).orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_ERROR_MESSAGE));
+        Person person = persons.isSamePerson(input).orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_ERROR_MESSAGE));
         System.out.println(ladderResult.getResult(person.getPoint()));
         return false;
     }

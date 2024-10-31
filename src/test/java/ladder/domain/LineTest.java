@@ -36,14 +36,14 @@ public class LineTest {
     void 라인_이동_테스트() {
         Line line = new Line(false, true, false, true);
 
-        assertThat(line.move(2)).isEqualTo(1);
+        assertThat(line.move(2)).isEqualTo(3);
     }
 
     @Test
     void 라인_제자리_이동_테스트() {
-        Line line = new Line(false, true, false, true);
+        Line line = new Line(false, true, false, false);
 
-        assertThat(line.move(1)).isEqualTo(1);
+        assertThat(line.move(3)).isEqualTo(3);
     }
 
 }
