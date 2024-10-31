@@ -6,13 +6,13 @@ import java.util.stream.IntStream;
 public abstract class NonConsecutiveFlagGenerator {
 
     public final List<Boolean> create() {
-        List<Boolean> reuslt = createResult();
+        List<Boolean> result = createResult();
 
-        if (isConsecutive(reuslt)) {
+        if (isConsecutive(result)) {
             throw new IllegalStateException("연속되는 숫자 입니다");
         }
 
-        return reuslt;
+        return result;
     }
 
     protected abstract List<Boolean> createResult();
