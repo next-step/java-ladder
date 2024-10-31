@@ -1,32 +1,77 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.model.Gamers;
-import nextstep.ladder.model.Ladder;
-import nextstep.ladder.model.Line;
-import nextstep.ladder.model.Point;
+import nextstep.ladder.model.*;
 
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ResultView {
     private static final int LADDER_POINT_COUNT = 5;
+    private static final String EXIT_SIGNAL = "0";
+    private static final String JOINING_SEPARATOR = "  ";
     private static final Map<Boolean, String> LADDER_SEGMENTS = Map.of(
             true, "-".repeat(LADDER_POINT_COUNT),
             false, " ".repeat(LADDER_POINT_COUNT)
     );
 
-    public void printResult(Gamers gamers, Ladder ladder) {
+    public void printResult(Gamers gamers, Ladder ladder, GameResult gameResult) {
+        validateResult(gamers, ladder);
         System.out.println("\n\n실행 결과\n");
-        System.out.println(gamers.getGamers());
+
+        printGamerNames(gamers);
+        printLadder(ladder);
+        printGameResult(gameResult);
+    }
+
+    private void printGameResult(GameResult gameResult) {
+        System.out.println(gameResult.getResults().stream().collect(Collectors.joining(JOINING_SEPARATOR)));
+    }
+
+    private void printGamerNames(Gamers gamers) {
+        System.out.println(gamers.getGamerNames().stream().collect(Collectors.joining(JOINING_SEPARATOR)));
+    }
+
+    private void printLadder(Ladder ladder) {
         ladder.getLines().forEach(this::printLadderLine);
     }
 
-    private static void printLadderPoint(Point point) {
+    private void validateResult(Gamers gamers, Ladder ladder) {
+        if (gamers.getCountOfPerson() == 0 || ladder.getLines().isEmpty()) {
+            throw new IllegalArgumentException("결과를 출력할 수 없습니다. 참가자 또는 사다리 정보가 없습니다.");
+        }
+    }
+
+    private static void printLadderSegment(Point point) {
         System.out.print(LADDER_SEGMENTS.get(point.getValue()) + "|");
     }
 
     private void printLadderLine(Line line) {
         System.out.print("|");
-        line.getPoints().forEach(ResultView::printLadderPoint);
+        line.getPoints().forEach(ResultView::printLadderSegment);
         System.out.println();
+    }
+
+    public void printGamerResult(GamerResult gamerResult, String gamer) {
+        if (gamer.equals(EXIT_SIGNAL)) {
+            printGameOver();
+            return;
+        }
+
+        System.out.println("실행 결과");
+
+        if (gamer.equals("all")) {
+            gamerResult.getResults().forEach((key, value) -> {
+                System.out.println(key + " : " + value);
+            });
+            return;
+        }
+
+        String result = gamerResult.getResultByName(gamer);
+
+        System.out.println(result);
+    }
+
+    public void printGameOver() {
+        System.out.println("사다리 게임을 종료합니다.");
     }
 }
