@@ -12,11 +12,13 @@ public class ResultView {
     private static final String VERTICAL_EMPTY_UNIT = " ";
     private static final String RESULT_MESSAGE = "실행결과";
 
-    public static void print(LadderGame ladderGame) {
+
+
+    public static void print(Persons persons, Heights heights) {
         System.out.println(RESULT_MESSAGE);
-        int lengthCount = ladderGame.maxLength() + 2;
-        printPersons(lengthCount, ladderGame.getPersons());
-        printLadder(lengthCount, ladderGame.getHeights());
+        int lengthCount = persons.getMaxLength() + 2;
+        printPersons(lengthCount, persons);
+        printLadder(lengthCount, heights);
     }
 
     private static void printPersons(int maxLength, Persons persons) {
@@ -34,9 +36,9 @@ public class ResultView {
         printHeight(maxLength, heights.getHeight());
     }
 
-    private static void printHeight(int maxLength, List<Verticals> heights) {
-        for (Verticals height : heights) {
-            printVerticals(maxLength, height.getVertical());
+    private static void printHeight(int maxLength, List<Lines> heights) {
+        for (Lines height : heights) {
+            printVerticals(maxLength, height.getLines());
             System.out.println();
         }
     }
@@ -69,4 +71,5 @@ public class ResultView {
                 .limit(maxLength - 1)
                 .collect(Collectors.joining()) + HEIGHT_UNIT;
     }
+
 }

@@ -10,8 +10,8 @@ public class Persons {
     private final List<Person> persons;
     private final int maxLength;
 
-    public Persons(String texts) {
-        this(Arrays.stream(split(texts))
+    public Persons(String[] texts) {
+        this(Arrays.stream(texts)
                 .map(Person::new)
                 .collect(Collectors.toList()));
     }
@@ -26,10 +26,6 @@ public class Persons {
 
     public int personCount() {
         return persons.size();
-    }
-
-    private static String[] split(String texts) {
-        return texts.split(SPLIT_DELIMITER);
     }
 
     public List<Person> getPersons() {

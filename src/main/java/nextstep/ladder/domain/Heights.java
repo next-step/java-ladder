@@ -1,18 +1,18 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.strategy.RandomBoolean;
+import nextstep.ladder.domain.strategy.RandomBooleanStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Heights {
 
-    private List<Verticals> height = new ArrayList<>();
+    private List<Lines> heights = new ArrayList<>();
 
     public Heights(int peopleCount, int heightCount) {
         validate(heightCount);
         for (int i = 0; i < heightCount; i++) {
-            height.add(new Verticals(peopleCount, new RandomBoolean()));
+            heights.add(new Lines(peopleCount - 1, new RandomBooleanStrategy()));
         }
     }
 
@@ -22,7 +22,7 @@ public class Heights {
         }
     }
 
-    public List<Verticals> getHeight() {
-        return height;
+    public List<Lines> getHeight() {
+        return heights;
     }
 }

@@ -3,7 +3,7 @@ package nextstep.ladder.domain.strategy;
 
 import java.util.Random;
 
-public class RandomBoolean implements BooleanStrategy {
+public class RandomBooleanStrategy implements BooleanStrategy {
     private static final Random random = new Random();
 
     @Override
