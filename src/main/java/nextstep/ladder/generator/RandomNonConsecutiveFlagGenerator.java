@@ -8,23 +8,23 @@ import java.util.stream.Stream;
 public class RandomNonConsecutiveFlagGenerator extends NonConsecutiveFlagGenerator {
 
     private static final Random RANDOM = new Random();
-    private final int size;
+    private final LadderWidthSize size;
 
-    public RandomNonConsecutiveFlagGenerator(int size) {
+    public RandomNonConsecutiveFlagGenerator(LadderWidthSize size) {
         this.size = size;
     }
 
     @Override
     protected List<Boolean> createResult() {
         List<Boolean> result = createList();
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; size.greater(i); i++) {
             result.set(i, random(beforeIsTrue(result, i)));
         }
         return result;
     }
 
     private List<Boolean> createList() {
-        return Stream.generate(() -> false).limit(size).collect(Collectors.toList());
+        return Stream.generate(() -> false).limit(size.value()).collect(Collectors.toList());
     }
 
     private boolean beforeIsTrue(List<Boolean> result, int i) {
