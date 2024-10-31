@@ -1,10 +1,8 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.Players;
-import nextstep.ladder.domain.Point;
 
 public class ResultView {
     private static final String INPUT_NAME_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
@@ -30,25 +28,6 @@ public class ResultView {
     }
 
     public static void printLadder(Ladder ladder) {
-        for (Line line : ladder.getLines()) {
-            printLine(line);
-        }
-    }
-
-    private static void printLine(Line line) {
-        StringBuilder lineOutput = new StringBuilder(LADDER_START);
-        for (Point point : line.getPoints()) {
-            lineOutput = generateLine(lineOutput, point);
-        }
-        System.out.println(lineOutput);
-    }
-
-    private static StringBuilder generateLine(StringBuilder lineOutput, Point point) {
-        if (point.isPoint()) {
-            lineOutput.append(LADDER_POINT);
-        } else {
-            lineOutput.append(EMPTY_POINT);
-        }
-        return lineOutput;
+        System.out.println(ladder.toString());
     }
 }

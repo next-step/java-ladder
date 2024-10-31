@@ -10,15 +10,18 @@ public class Ladder {
     private static final int MIN_PERSON = 2;
     private final List<Line> lines;
 
-    public Ladder(int height, int countOfPerson) {
-        validateLadder(height, countOfPerson);
-        this.lines = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(countOfPerson));
-        }
+
+    private Ladder(List<Line> lines) {
+        this.lines = lines;
     }
 
-    private void validateLadder(int height, int countOfPerson) {
+    public static Ladder create(int height, int countOfPerson) {
+        validateLadder(height, countOfPerson);
+        List<Line> lines = initLines(height, countOfPerson);
+        return new Ladder(lines);
+    }
+
+    private static void validateLadder(int height, int countOfPerson) {
         if (height < MIN_HEIGHT) {
             throw new IllegalArgumentException(VALIDATE_HEIGHT);
         }
@@ -27,7 +30,24 @@ public class Ladder {
         }
     }
 
+    private static List<Line> initLines(int height, int countOfPerson) {
+        List<Line> lines = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            lines.add(Line.create(countOfPerson));
+        }
+        return lines;
+    }
+
     public List<Line> getLines() {
         return lines;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder ladderOutput = new StringBuilder();
+        for (Line line : lines) {
+            ladderOutput.append(line.toString()).append("\n");
+        }
+        return ladderOutput.toString();
     }
 }

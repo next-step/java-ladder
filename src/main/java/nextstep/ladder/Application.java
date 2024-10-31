@@ -1,20 +1,19 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Players;
+
 import static nextstep.ladder.view.InputView.inputLadderHeight;
 import static nextstep.ladder.view.InputView.inputNames;
 import static nextstep.ladder.view.ResultView.printLadder;
 import static nextstep.ladder.view.ResultView.printPlayerNames;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Players;
-import nextstep.ladder.view.ResultView;
-
 public class Application {
     public static void main(String[] args) {
-        Players players = new Players(inputNames(ResultView::printInputName));
-        int height = inputLadderHeight(ResultView::printInputHeight);
+        Players players = new Players(inputNames());
+        int height = inputLadderHeight();
 
-        Ladder ladder = new Ladder(height, players.getPlayerCount());
+        Ladder ladder = Ladder.create(height, players.getPlayerCount());
 
         printPlayerNames(players);
 
