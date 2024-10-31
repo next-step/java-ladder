@@ -24,7 +24,7 @@ public class OutputView {
     }
 
     private static void renderLadder(Ladder ladder) {
-        for (Lines lines : ladder) {
+        for (Lines lines : ladder.getLines()) {
             System.out.print(EMPTY);
             System.out.print(HORIZONTAL_LINE);
             renderLine(lines);
@@ -33,13 +33,13 @@ public class OutputView {
     }
 
     private static void renderLine(Lines lines) {
-        for (Boolean line : lines) {
-            System.out.print(line(line));
+        for (Boolean point : lines.getPoint()) {
+            System.out.print(pointFormat(point));
             System.out.print(HORIZONTAL_LINE);
         }
     }
 
-    private static String line(Boolean line) {
+    private static String pointFormat(Boolean line) {
         if (line) {
             return LINE;
         }

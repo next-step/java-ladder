@@ -1,13 +1,13 @@
 package nextstep.ladder.domain;
 
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import nextstep.ladder.generator.NonConsecutiveFlagGenerator;
 
-public class Ladder implements Iterable<Lines> {
+public class Ladder {
 
     private final List<Lines> ladder;
 
@@ -26,9 +26,8 @@ public class Ladder implements Iterable<Lines> {
         return Stream.generate(() -> new Lines(generator)).limit(height).collect(Collectors.toList());
     }
 
-    @Override
-    public Iterator<Lines> iterator() {
-        return ladder.iterator();
+    public List<Lines> getLines() {
+        return Collections.unmodifiableList(ladder);
     }
 
     @Override

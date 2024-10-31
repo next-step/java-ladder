@@ -1,11 +1,11 @@
 package nextstep.ladder.domain;
 
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import nextstep.ladder.generator.NonConsecutiveFlagGenerator;
 
-public class Lines implements Iterable<Boolean> {
+public class Lines {
 
     private final List<Boolean> lines;
 
@@ -26,9 +26,8 @@ public class Lines implements Iterable<Boolean> {
         };
     }
 
-    @Override
-    public Iterator<Boolean> iterator() {
-        return lines.iterator();
+    public List<Boolean> getPoint() {
+        return Collections.unmodifiableList(lines);
     }
 
     @Override
