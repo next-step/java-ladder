@@ -1,33 +1,36 @@
 package nextstep.ladder.domain;
 
 import java.util.Arrays;
-import java.util.Iterator;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-public class Names implements Iterable<String> {
+public class Names {
 
     private static final String SPLIT_PATTERN = ",";
     private static final int MIN_SIZE = 2;
-    private final List<String> names;
+    private final Set<Name> names;
 
     public Names(List<String> names) {
-        if (inValid(names)) {
+        Set<Name> result = toNames(names);
+        if (inValidSize(result) || hasDuplication(names.size(), result)) {
             throw new IllegalArgumentException("잘못된 이름입력입니다.");
         }
-        this.names = names;
+        this.names = result;
     }
 
-    private static boolean inValid(List<String> names) {
-        return containInValidName(names) || inValidSize(names);
+    private boolean hasDuplication(int size, Set<Name> result) {
+        return size != result.size();
     }
 
-    private static boolean inValidSize(List<String> names) {
+    private static boolean inValidSize(Collection<Name> names) {
         return names.size() < MIN_SIZE;
     }
 
-    private static boolean containInValidName(List<String> names) {
-        return names.stream().anyMatch(name -> name.length() > 5 || name.isBlank());
+    private static Set<Name> toNames(List<String> names) {
+        return names.stream().map(Name::new).collect(Collectors.toSet());
     }
 
     public Names(String value) {
@@ -46,9 +49,8 @@ public class Names implements Iterable<String> {
         return names.size();
     }
 
-    @Override
-    public Iterator<String> iterator() {
-        return this.names.iterator();
+    public Set<Name> getNames() {
+        return this.names;
     }
 
     @Override

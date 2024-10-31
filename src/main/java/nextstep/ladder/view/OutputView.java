@@ -2,6 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Lines;
+import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Names;
 
 public class OutputView {
@@ -17,8 +18,8 @@ public class OutputView {
     }
 
     private static void renderName(Names names) {
-        for (String name : names) {
-            System.out.printf(" ".repeat(6 - name.length()) + name);
+        for (Name name : names.getNames()) {
+            System.out.printf(" ".repeat(6 - name.length()) + name.getName());
         }
         System.out.println();
     }
