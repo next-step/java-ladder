@@ -13,19 +13,6 @@ public class Lines {
         this.lines = nonConsecutiveFlagGenerator.create();
     }
 
-    public Lines(List<Boolean> lines) {
-        this(createDefaultGenerator(lines));
-    }
-
-    private static NonConsecutiveFlagGenerator createDefaultGenerator(List<Boolean> lines) {
-        return new NonConsecutiveFlagGenerator() {
-            @Override
-            protected List<Boolean> createResult() {
-                return lines;
-            }
-        };
-    }
-
     public List<Boolean> getPoint() {
         return Collections.unmodifiableList(lines);
     }
