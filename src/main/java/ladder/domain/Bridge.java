@@ -1,32 +1,30 @@
-package ladder.service;
+package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.IntStream;
 
 public class Bridge {
-    private static final Random RANDOM = new Random();
+    private final List<Boolean> connections;
 
-    private final List<Boolean> connections = new ArrayList<>();
-
-    public Bridge(int participantCount) {
-        connectLadders(participantCount);
+    public Bridge() {
+        connections = new ArrayList<>();
     }
 
-    private void connectLadders(int participantCount) {
+    public void connectSteps(int participantCount, ConnectionStrategy strategy) {
         IntStream.range(0, participantCount - 1)
                 .forEach(index -> {
                     if (index > 0 && !connections.isEmpty() && connections.get(index - 1)) {
                         connections.add(false);
                         return;
                     }
-                    connections.add(RANDOM.nextBoolean());
+                    connections.add(strategy.connect());
                 });
     }
 
     public List<Boolean> getConnections() {
-        return connections;
+        return Collections.unmodifiableList(connections);
     }
 
 }
