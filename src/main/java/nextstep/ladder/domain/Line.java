@@ -18,12 +18,24 @@ public class Line {
         return new Line(newPoints);
     }
 
-    public void drawLine(int position) {
+    public boolean drawLine(int position) {
         validatePosition(position);
-        if (position > 0 && points.get(position - 1)) {
-            throw new IllegalArgumentException("연속된 라인을 그을 수 없습니다.");
+        if (!canDrawLine(position)) {
+            return false;
         }
         points.set(position, true);
+        return true;
+    }
+
+
+    private boolean canDrawLine(int position) {
+        if (position > 0 && points.get(position - 1)) {
+            return false;
+        }
+        if (position < points.size() - 1 && points.get(position + 1)) {
+            return false;
+        }
+        return true;
     }
 
     private void validatePosition(int position) {

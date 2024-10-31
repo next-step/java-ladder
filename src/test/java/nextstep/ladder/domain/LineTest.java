@@ -26,13 +26,14 @@ class LineTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("연속된 가로선이 그려지면 예외가 잘 발생하는지")
+    @DisplayName("연속된 가로선이 그려지지 않는지")
     @Test
     void drawLine_Continuous() {
         Line line = Line.createLine(5);
         line.drawLine(1);
-        assertThatThrownBy(() -> line.drawLine(2))
-                .isInstanceOf(IllegalArgumentException.class);
+        line.drawLine(2);
+        assertThat(line.hasLine(1)).isTrue();
+        assertThat(line.hasLine(2)).isFalse();
     }
 
 }

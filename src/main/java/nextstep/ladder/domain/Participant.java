@@ -20,6 +20,10 @@ public class Participant {
     }
 
     public String getFormattedName() {
-        return String.format("%-" + MAX_NAME_LENGTH + "s", name);
+        int padding = MAX_NAME_LENGTH - name.length();
+        int leftPadding = padding / 2;
+        int rightPadding = padding - leftPadding;
+
+        return " ".repeat(leftPadding) + name + " ".repeat(rightPadding);
     }
 }

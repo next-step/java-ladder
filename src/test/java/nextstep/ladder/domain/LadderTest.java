@@ -37,7 +37,7 @@ class LadderTest {
         );
     }
 
-    @DisplayName("사다리가 생성되었을 때 연속된 선이 생기면 예외가 발생하는지")
+    @DisplayName("사다리가 생성되었을 때 연속된 선이 생기지 않는지")
     @Test
     void createLadderTest_NoContinuousLine() {
         Participants participants = new Participants("pobi,honux,crong");
@@ -47,7 +47,7 @@ class LadderTest {
                 true, true
         );
 
-        assertThatThrownBy(() -> Ladder.createLadder(participants, 3, testStrategy))
-                .isInstanceOf(IllegalArgumentException.class);
+        Ladder ladder = Ladder.createLadder(participants, 3, testStrategy);
+        assertThat(ladder.toString()).doesNotContain("-----|-----");
     }
 }
