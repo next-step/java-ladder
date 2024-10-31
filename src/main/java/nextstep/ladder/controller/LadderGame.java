@@ -6,5 +6,6 @@ import nextstep.ladder.ui.InputView;
 public class LadderGame {
     public static void main(String[] args) {
         Participants participants = new Participants(InputView.inputParticipantsName());
+        int height = InputView.inputHeight();
     }
 }

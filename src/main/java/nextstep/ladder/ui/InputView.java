@@ -11,4 +11,14 @@ public class InputView {
         System.out.println(PARTICIPANTS_NAME_QUESTION);
         return SCANNER.nextLine();
     }
+
+    public static int inputHeight() {
+        printBlankLine();
+        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        return SCANNER.nextInt();
+    }
+
+    private static void printBlankLine() {
+        System.out.println();
+    }
 }

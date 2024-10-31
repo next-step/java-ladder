@@ -18,4 +18,8 @@ public class Participant {
             throw new IllegalArgumentException("참가자 이름은 5자를 초과할 수 없습니다.");
         }
     }
+
+    public String getFormattedName() {
+        return String.format("%-" + MAX_NAME_LENGTH + "s", name);
+    }
 }

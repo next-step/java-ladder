@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,5 +18,13 @@ public class Participants {
                 .map(String::trim)
                 .map(Participant::new)
                 .collect(Collectors.toList()));
+    }
+
+    public List<Participant> getParticipants() {
+        return Collections.unmodifiableList(participants);
+    }
+
+    public int size() {
+        return participants.size();
     }
 }

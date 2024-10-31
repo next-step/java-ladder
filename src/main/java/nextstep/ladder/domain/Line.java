@@ -31,4 +31,12 @@ public class Line {
             throw new IllegalArgumentException("유효하지 않은 위치입니다.");
         }
     }
+
+    public boolean hasLine(int position) {
+        return points.get(position);
+    }
+
+    public int size() {
+        return points.size();
+    }
 }
