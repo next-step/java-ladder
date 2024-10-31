@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import nextstep.ladder.generator.NonConsecutiveFlagGenerator;
@@ -10,11 +9,11 @@ public class Lines {
     private final List<Boolean> lines;
 
     public Lines(NonConsecutiveFlagGenerator nonConsecutiveFlagGenerator) {
-        this.lines = nonConsecutiveFlagGenerator.create();
+        this.lines = List.copyOf(nonConsecutiveFlagGenerator.create());
     }
 
     public List<Boolean> getPoint() {
-        return Collections.unmodifiableList(lines);
+        return lines;
     }
 
     @Override

@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -18,7 +19,7 @@ public class Names {
         if (inValidSize(result) || hasDuplication(names.size(), result)) {
             throw new IllegalArgumentException("잘못된 이름입력입니다.");
         }
-        this.names = result;
+        this.names = Collections.unmodifiableSet(result);
     }
 
     private boolean hasDuplication(int size, Set<Name> result) {

@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -15,7 +14,7 @@ public class Ladder {
         if (ladder.isEmpty()) {
             throw new IllegalArgumentException("사다리의 높이는 0이하 일 수 없습니다.");
         }
-        this.ladder = ladder;
+        this.ladder = List.copyOf(ladder);
     }
 
     public Ladder(int height, NonConsecutiveFlagGenerator generator) {
@@ -27,7 +26,7 @@ public class Ladder {
     }
 
     public List<Lines> getLines() {
-        return Collections.unmodifiableList(ladder);
+        return ladder;
     }
 
     @Override
