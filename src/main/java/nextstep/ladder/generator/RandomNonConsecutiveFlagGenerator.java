@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 public class RandomNonConsecutiveFlagGenerator extends NonConsecutiveFlagGenerator {
 
+    private static final Random RANDOM = new Random();
     private final int size;
 
     public RandomNonConsecutiveFlagGenerator(int size) {
@@ -32,8 +33,7 @@ public class RandomNonConsecutiveFlagGenerator extends NonConsecutiveFlagGenerat
 
     private boolean random(boolean before) {
         if (before) {
-            Random random = new Random();
-            return random.nextBoolean();
+            return RANDOM.nextBoolean();
         }
 
         return false;
