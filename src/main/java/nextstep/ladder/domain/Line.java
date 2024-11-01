@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -19,16 +20,14 @@ public class Line {
     }
 
     public static List<Line> createLines(int countOfLine, int countOfLink) {
-        List<Line> lines = new ArrayList<>();
-        IntStream.range(0, countOfLine)
-                .forEach(number -> lines.add(createLine(countOfLink)));
-
-        return lines;
+        return IntStream.range(0, countOfLine)
+                .mapToObj(number -> createLine(countOfLink))
+                .collect(Collectors.toList());
     }
 
-    private static Line createLine(int countOfPoint) {
+    private static Line createLine(int countOfLink) {
         List<Link> links = new ArrayList<>(List.of(new Link()));
-        IntStream.range(1, countOfPoint)
+        IntStream.range(1, countOfLink)
                 .forEach(number -> {
                     Link currentLink = links.get(links.size() - 1);
                     links.add(currentLink.createNextLink());
@@ -45,19 +44,20 @@ public class Line {
         return new ArrayList<>(links);
     }
 
-    public List<Integer> move(List<Integer> points) {
-        List<Integer> copiedPoints = new ArrayList<>(points);
+    public List<Integer> move(List<Integer> positions) {
+        List<Integer> movedPositions = new ArrayList<>(positions);
+        ListIterator<Link> links = this.links.listIterator();
 
-        IntStream.range(0, links.size())
-                .forEach(i -> {
-                    if (links.get(i)
-                            .isExist()) {
-                        int temp = copiedPoints.get(i);
-                        copiedPoints.set(i, copiedPoints.get(i + 1));
-                        copiedPoints.set(i + 1, temp);
-                    }
-                });
+        links.forEachRemaining(link -> {
+            if (link.isExist()) {
+                int indexOfLink = links.nextIndex();
 
-        return copiedPoints;
+                movedPositions.set(indexOfLink, positions.get(indexOfLink + 1));
+                movedPositions.set(indexOfLink + 1, positions.get(indexOfLink));
+            }
+            links.next();
+        });
+
+        return movedPositions;
     }
 }

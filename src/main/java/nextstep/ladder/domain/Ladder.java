@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -9,16 +10,28 @@ import java.util.stream.IntStream;
 import static nextstep.ladder.domain.Line.createLines;
 
 public class Ladder {
-    private final int width;
+    private final int countOfPoint;
     private final List<Line> lines;
 
-    public Ladder(int width, List<Line> lines) {
-        if (!isValidLines(lines, width - 1)) {
+    private List<Integer> result;
+
+    public Ladder(int countOfPoint, List<Line> lines) {
+        if (!isValidLines(lines, countOfPoint - 1)) {
             throw new IllegalArgumentException("사다리 연결부의 개수가 유효하지 않습니다.");
         }
 
-        this.width = width;
+        this.countOfPoint = countOfPoint;
         this.lines = new ArrayList<>(lines);
+    }
+
+    public Ladder(int countOfPoint, List<Line> lines, List<Integer> result) {
+        if (!isValidLines(lines, countOfPoint - 1)) {
+            throw new IllegalArgumentException("사다리 연결부의 개수가 유효하지 않습니다.");
+        }
+
+        this.countOfPoint = countOfPoint;
+        this.lines = new ArrayList<>(lines);
+        this.result = result;
     }
 
     public static Ladder createLadder(int height, int width) {
@@ -34,13 +47,31 @@ public class Ladder {
         return new ArrayList<>(lines);
     }
 
-    public List<Integer> play() {
-        AtomicReference<List<Integer>> numbers = new AtomicReference<>(IntStream.range(0, width)
+    public void move() {
+        AtomicReference<List<Integer>> numbers = new AtomicReference<>(IntStream.range(0, countOfPoint)
                 .boxed()
                 .collect(Collectors.toList()));
 
         lines.forEach(line -> numbers.set(line.move(numbers.get())));
 
-        return numbers.get();
+        result = numbers.get();
+    }
+
+    public int getEndPoint(int startPoint) {
+        return result.indexOf(startPoint);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ladder ladder = (Ladder) o;
+        return countOfPoint == ladder.countOfPoint && Objects.equals(lines, ladder.lines) && Objects.equals(
+                result, ladder.result);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(countOfPoint, lines, result);
     }
 }
