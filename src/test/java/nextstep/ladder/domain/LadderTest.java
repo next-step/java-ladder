@@ -30,13 +30,19 @@ class LadderTest {
                 true, false
         );
         Ladder ladder = Ladder.createLadder(participants, 3, testStrategy);
+        List<Line> lines = ladder.lines();
 
-        assertThat(ladder.toString()).isEqualTo(
-                "pobi  honux crong\n" +
-                        "    |-----|     |\n" +
-                        "    |     |-----|\n" +
-                        "    |-----|     |\n"
-        );
+        // 첫 번째 줄 검증
+        assertThat(lines.get(0).points().isConnected(0)).isTrue();
+        assertThat(lines.get(0).points().isConnected(1)).isFalse();
+
+        // 두 번째 줄 검증
+        assertThat(lines.get(1).points().isConnected(0)).isFalse();
+        assertThat(lines.get(1).points().isConnected(1)).isTrue();
+
+        // 세 번째 줄 검증
+        assertThat(lines.get(2).points().isConnected(0)).isTrue();
+        assertThat(lines.get(2).points().isConnected(1)).isFalse();
     }
 
     @DisplayName("사다리가 생성되었을 때 연속된 선이 생기지 않는지")
@@ -50,6 +56,13 @@ class LadderTest {
         );
 
         Ladder ladder = Ladder.createLadder(participants, 3, testStrategy);
-        assertThat(ladder.toString()).doesNotContain("-----|-----");
+
+        ladder.lines().forEach(line -> {
+            Points points = line.points();
+            for (int i = 0; i < points.size() - 1; i++) {
+                // 연속된 두 지점이 모두 연결되어 있지 않아야 함
+                assertThat(points.isConnected(i) && points.isConnected(i + 1)).isFalse();
+            }
+        });
     }
 }

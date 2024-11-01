@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -39,35 +40,15 @@ public class Ladder {
         return line;
     }
 
-    public String toString() {
-        StringBuilder result = new StringBuilder();
-
-        result.append(participants.getParticipants()
-                        .stream()
-                        .map(Participant::getFormattedName)
-                        .collect(Collectors.joining(" ")))
-                .append("\n");
-
-        lines.forEach(line -> {
-            result.append(drawLine(line)).append("\n");
-        });
-
-        return result.toString();
+    public int participantCount() {
+        return participants.size();
     }
 
-    private String drawLine(Line line) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("    ");
-        IntStream.range(0, participants.size() - 1)
-                .forEach(i -> {
-                    builder.append("|");
-                    if (i < line.size() && line.hasLine(i)) {
-                        builder.append("-----");
-                    } else {
-                        builder.append("     ");
-                    }
-                });
-        builder.append("|");
-        return builder.toString();
+    public List<String> participantNames() {
+        return participants.names();
+    }
+
+    public List<Line> lines() {
+        return Collections.unmodifiableList(lines);
     }
 }

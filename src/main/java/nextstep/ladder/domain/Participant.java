@@ -19,11 +19,7 @@ public class Participant {
         }
     }
 
-    public String getFormattedName() {
-        int padding = MAX_NAME_LENGTH - name.length();
-        int leftPadding = padding / 2;
-        int rightPadding = padding - leftPadding;
-
-        return " ".repeat(leftPadding) + name + " ".repeat(rightPadding);
+    public String getName() {
+        return name;
     }
 }
