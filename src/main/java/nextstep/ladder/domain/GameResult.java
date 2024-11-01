@@ -14,4 +14,8 @@ public class GameResult {
     public String findResultByName(String name) {
         return resultMap.get(name);
     }
+
+    public Map<String, String> getResultMap() {
+        return resultMap;
+    }
 }
