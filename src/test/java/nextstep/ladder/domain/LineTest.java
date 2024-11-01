@@ -10,13 +10,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LineTest {
 
-    public static final List<Person> PERSONS = List.of(new Person("hoya"), new Person("pobi"), new Person("catsb"), new Person("dhmin"));
     public static final Line LINE = new Line(Arrays.asList(false, true, false));
 
     @Test
-    @DisplayName("이동 가능한 사람들을 움직인 후, 반환")
+    @DisplayName("시작 인덱스를 입력하여 최종 위치를 계산")
     void movePerson() {
-        assertEquals(LINE.movePersons(PERSONS), List.of(new Person("hoya"), new Person("catsb"), new Person("pobi"), new Person("dhmin")));
+        assertEquals(LINE.movePerson(0), 0);
+        assertEquals(LINE.movePerson(1), 2);
+        assertEquals(LINE.movePerson(2), 1);
+        assertEquals(LINE.movePerson(3), 3);
     }
 
     @Test

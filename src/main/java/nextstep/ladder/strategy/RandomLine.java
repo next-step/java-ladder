@@ -26,9 +26,6 @@ public class RandomLine implements LineCreatableStrategy {
     }
 
     private boolean isTrueContinuous(boolean current, boolean previous) {
-        if (previous && current) {
-            current = false;
-        }
-        return current;
+        return !previous || !current;
     }
 }
