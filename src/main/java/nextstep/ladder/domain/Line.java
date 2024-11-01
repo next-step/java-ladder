@@ -35,6 +35,10 @@ public class Line {
         nextPoint.connectLeft();
     }
 
+    public Point getPoint(int index) {
+        return points.get(index);
+    }
+
     public List<Point> getPoints() {
         return points;
     }

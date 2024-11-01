@@ -15,6 +15,15 @@ public class Ladder {
         return lines;
     }
 
+    public int moveDown(int column) {
+        for (int row = 0; row < lines.size(); row++) {
+            Line line = lines.get(row);
+            Point point = line.getPoint(column);
+            column += point.getDirection();
+        }
+        return column;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
