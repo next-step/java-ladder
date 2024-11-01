@@ -1,9 +1,6 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Participant;
-import nextstep.ladder.domain.Participants;
-import nextstep.ladder.domain.RandomLineDecisionStrategy;
+import nextstep.ladder.domain.*;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.ResultView;
 

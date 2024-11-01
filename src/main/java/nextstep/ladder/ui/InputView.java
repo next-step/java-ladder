@@ -14,6 +14,7 @@ public class InputView {
         System.out.println(PARTICIPANTS_NAME_QUESTION);
         return Arrays.stream(SCANNER.nextLine()
                 .split(","))
+                .map(String::trim)
                 .collect(Collectors.toList());
     }
 
