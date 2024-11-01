@@ -23,18 +23,6 @@ public class Line {
                 .collect(Collectors.toList());
     }
 
-    public boolean hasBridgeAtPosition(int position) {
-        Point point = points.get(position);
-        return point.hasTrue();
-    }
-
-    public void putBridgeAtPosition(int position) {
-        Point point = points.get(position);
-        Point nextPoint = points.get(position + 1);
-        point.connectRight();
-        nextPoint.connectLeft();
-    }
-
     public Point getPoint(int index) {
         return points.get(index);
     }

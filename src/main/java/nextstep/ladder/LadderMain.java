@@ -18,12 +18,12 @@ public class LadderMain {
 
         int height = inputLadderHeight();
         Ladder ladder = LadderGenerator.generateLadder(participants.getParticipantCount(), height);
-        LadderGame game = new LadderGame(participants, ladder);
-        GameResult gameResult = game.play(resultList);
 
         LadderPrinter printer = new LadderPrinter(ladder);
         printLadderStatus(participants.getParticipantNames(), printer.printLadder(), resultList);
 
+        LadderGame game = new LadderGame(participants, ladder);
+        GameResult gameResult = game.play(resultList);
         printPlayResultForLoop(gameResult);
     }
 
@@ -38,4 +38,3 @@ public class LadderMain {
         printAllResult(gameResult.getResultMap());
     }
 }
-

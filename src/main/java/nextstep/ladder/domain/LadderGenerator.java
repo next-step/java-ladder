@@ -20,14 +20,15 @@ public class LadderGenerator {
     }
 
     private static Line createRandomLine(int participantCount) {
-        Line randomLine = new Line(participantCount);
-        for (int cnt = 0; cnt < participantCount - 1; cnt++) {
-            boolean isConnected = random.nextBoolean();
-            boolean hasBridge = randomLine.hasBridgeAtPosition(cnt);
-            if (isConnected && !hasBridge) {
-                randomLine.putBridgeAtPosition(cnt);
-            }
+        List<Point> points = new ArrayList<>();
+        boolean left = false;
+        boolean right = random.nextBoolean();
+        points.add(new Point(left, right));
+        for (int cnt = 1; cnt < participantCount; cnt++) {
+            left = right;
+            right = (cnt == participantCount - 1 || left) ? false : random.nextBoolean();
+            points.add(new Point(left, right));
         }
-        return randomLine;
+        return new Line(points);
     }
 }
