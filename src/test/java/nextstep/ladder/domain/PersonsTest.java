@@ -24,14 +24,4 @@ public class PersonsTest {
         assertThat(persons).isEqualTo(target);
 
     }
-
-    @Test
-    void 문자열_입력_시_최대_길이() {
-
-        Persons persons = new Persons(new String[]{"pobi", "honux", "crong", "jk"});
-        int maxLength = persons.getMaxLength();
-
-        assertThat(maxLength).isEqualTo(5);
-
-    }
 }
