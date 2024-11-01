@@ -7,14 +7,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class LineTest {
 
     @DisplayName("객체 생성이 잘 되는지")
     @Test
     void create() {
-        Line line = Line.createLine(5);
-        assertThat(line).isNotNull();
+        assertDoesNotThrow(() -> Line.createLine(5));
     }
 
     @DisplayName("유효하지 않은 위치에 가로선을 그리면 예외가 잘 발생하는지")

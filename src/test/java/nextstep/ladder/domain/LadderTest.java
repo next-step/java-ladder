@@ -3,6 +3,8 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 class LadderTest {
@@ -13,7 +15,7 @@ class LadderTest {
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Ladder.createLadder(
-                        new Participants("crong,honux"),
+                        new Participants(List.of(new Participant("pobi"), new Participant("honux"))),
                         0,
                         new RandomLineDecisionStrategy()));
     }
@@ -21,7 +23,7 @@ class LadderTest {
     @DisplayName("사다리가 예상대로 잘 생성되는지")
     @Test
     void createLadderTest() {
-        Participants participants = new Participants("pobi,honux,crong");
+        Participants participants = new Participants(List.of(new Participant("pobi"), new Participant("honux"), new Participant("crong")));
         LineDecisionStrategy testStrategy = new TestLineDecisionStrategy(
                 true, false,
                 false, true,
@@ -40,7 +42,7 @@ class LadderTest {
     @DisplayName("사다리가 생성되었을 때 연속된 선이 생기지 않는지")
     @Test
     void createLadderTest_NoContinuousLine() {
-        Participants participants = new Participants("pobi,honux,crong");
+        Participants participants = new Participants(List.of(new Participant("pobi"), new Participant("honux"), new Participant("crong")));
         LineDecisionStrategy testStrategy = new TestLineDecisionStrategy(
                 true, true,
                 true, true,
