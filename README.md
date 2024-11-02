@@ -8,7 +8,9 @@
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
-## TODO
+---
+
+### 1단계 TODO
 - [x] 람다 실습
   - [x] 익명 클래스를 람다로 전환
   - [x] 람다를 활용해 중복 제거
@@ -22,3 +24,18 @@
   - [x] Optional을 활용해 조건에 따른 반환 (ageIsInRange1과 같은 기능을 Optional을 활용해 ageIsInRange2() 메소드에 구현)
   - [x] Optional에서 값을 반환 (orElse를 활용하여 Users.getUser 리팩토링)
   - [x] Optional에서 exception 처리 (orElseThrow 활용하여 Expression.of 리팩토링)
+
+
+---
+
+### 2단계 사다리 TODO
+- UI
+  - [x] 사람 이름 입력
+  - [x] 사다리 높이 입력
+  - [ ] 사다리게임 실행결과 출력
+
+- 사람
+  - [ ] 이름 최대 5글자
+
+- [ ] 사다리
+  * 사다리 라인이 겹치지 않도록 한다
