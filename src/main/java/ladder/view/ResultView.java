@@ -1,41 +1,24 @@
 package ladder.view;
 
 import ladder.domain.Bridge;
+import ladder.domain.LadderResult;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class ResultView {
 
-    public static void printLadderResult(String[] participantNames, List<Bridge> ladder) {
-        System.out.println("실행결과\n");
+    public static void printLadderResult(List<Bridge> ladder, LadderResult ladderResult) {
+        System.out.println("\n사다리 결과\n");
 
-        printParticipantNames(participantNames);
-
-        printLadder(ladder);
+        ladderResult.printParticipantNames();
+        ladderResult.printLadder(ladder);
+        ladderResult.printOutcomes();
     }
 
-    private static void printParticipantNames(String[] participantNames) {
-        Arrays.stream(participantNames)
-                .forEach(name -> System.out.print(name + "  "));
-        System.out.println();
-    }
+    public static void printOutcomeForParticipant(String outcomeForParticipant) {
+        System.out.println("\n실행결과");
 
-    private static void printLadder(List<Bridge> ladders) {
-        ladders.forEach(bridge -> {
-            List<Boolean> connections = bridge.getConnections();
-            StringBuilder output = new StringBuilder("    |");
-
-            connections.forEach(isConnected -> {
-                if (isConnected) {
-                    output.append("-----|");
-                    return;
-                }
-                output.append("     |");
-            });
-
-            System.out.println(output);
-        });
+        System.out.println(outcomeForParticipant);
     }
 
 }
