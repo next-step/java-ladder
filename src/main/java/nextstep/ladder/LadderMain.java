@@ -1,11 +1,9 @@
 package nextstep.ladder;
 
-import java.util.List;
-
 public class LadderMain {
     public static void main(String[] args) {
-        List<String> usernameStrs = InputView.inputUserNames();
+        Usernames usernames = new Usernames(InputView.inputUserNames());
         int height = InputView.inputHeight();
-        ResultView.printLadderResult(new Usernames(usernameStrs), new Ladder(height, usernameStrs.size()));
+        ResultView.printLadderResult(usernames, new Ladder(height, usernames.size()));
     }
 }
