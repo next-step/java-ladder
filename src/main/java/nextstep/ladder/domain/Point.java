@@ -4,6 +4,10 @@ import java.util.Objects;
 
 public class Point {
 
+    private static final int LEFT = -1;
+    private static final int RIGHT = 1;
+    private static final int DOWN = 0;
+
     private boolean left;
     private boolean right;
 
@@ -16,20 +20,18 @@ public class Point {
         this(false, false);
     }
 
-    public boolean hasTrue() {
-        return left || right;
-    }
-
-    public void connectLeft() {
-        this.left = true;
-    }
-
-    public void connectRight() {
-        this.right = true;
-    }
-
     public boolean isRightConnected() {
         return right;
+    }
+
+    public int getDirection() {
+        if (left) {
+            return LEFT;
+        }
+        if (right) {
+            return RIGHT;
+        }
+        return DOWN;
     }
 
     @Override

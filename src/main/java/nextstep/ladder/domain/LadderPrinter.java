@@ -31,7 +31,6 @@ public class LadderPrinter {
             builder.append(getCurrentPositionStatus(point));
         }
         builder.append("|\n");
-        System.out.println(builder.toString());
         return builder.toString();
     }
 

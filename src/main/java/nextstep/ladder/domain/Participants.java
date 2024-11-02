@@ -24,6 +24,11 @@ public class Participants {
                 .collect(Collectors.toList());
     }
 
+    public String findNameByOrder(int order) {
+        Participant participant = participants.get(order);
+        return participant.getName();
+    }
+
     public int getParticipantCount() {
         return participants.size();
     }
