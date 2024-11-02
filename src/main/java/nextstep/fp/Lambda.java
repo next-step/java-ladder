@@ -1,8 +1,7 @@
 package nextstep.fp;
 
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.function.Predicate;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
@@ -23,21 +22,22 @@ public class Lambda {
         new Thread(() -> System.out.println("Hello from thread")).start();
     }
 
-    private static int sumAllCommon(List<Integer> numbers, Function<Integer, Integer> conditional) {
+    private static int sumAllCommon(List<Integer> numbers, Predicate<Integer> predicate) {
         return numbers.stream()
-                .mapToInt(number -> conditional.apply(number))
+                .filter(predicate)
+                .mapToInt(Integer::intValue)
                 .sum();
     }
 
     public static int sumAll(List<Integer> numbers) {
-        return sumAllCommon(numbers, (number) -> number);
+        return sumAllCommon(numbers, (number) -> true);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        return sumAllCommon(numbers, (number) -> number % 2 == 0 ? number : 0);
+        return sumAllCommon(numbers, (number) -> number % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        return sumAllCommon(numbers, (number) -> number > 3 ? number : 0);
+        return sumAllCommon(numbers, (number) -> number > 3);
     }
 }
