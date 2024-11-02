@@ -6,6 +6,7 @@ public class LadderMain {
     public static void main(String[] args) {
         List<String> usernameStrs = InputView.inputUserNames();
         Usernames usernames = new Usernames(usernameStrs);
-        int height = InputView.inputMaxHeight();
+        int height = InputView.inputHeight();
+        Ladder ladder = new Ladder(height, usernameStrs.size());
     }
 }
