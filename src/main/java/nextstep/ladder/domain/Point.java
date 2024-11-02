@@ -20,18 +20,6 @@ public class Point {
         this(false, false);
     }
 
-    public boolean hasTrue() {
-        return left || right;
-    }
-
-    public void connectLeft() {
-        this.left = true;
-    }
-
-    public void connectRight() {
-        this.right = true;
-    }
-
     public boolean isRightConnected() {
         return right;
     }
