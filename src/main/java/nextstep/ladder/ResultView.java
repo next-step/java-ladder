@@ -38,9 +38,13 @@ public class ResultView {
     private static String toStringLine(Line line) {
         List<String> result = line.getPoints()
                 .stream()
-                .map(point -> point ? LINE_SYMBOL_TRUE : LINE_SYMBOL_FALSE)
+                .map(ResultView::getLineSymbol)
                 .collect(Collectors.toList());
 
         return LINE_DELIMITER + String.join(LINE_DELIMITER, result) + LINE_DELIMITER;
+    }
+
+    private static String getLineSymbol(boolean point) {
+        return point ? LINE_SYMBOL_TRUE : LINE_SYMBOL_FALSE;
     }
 }
