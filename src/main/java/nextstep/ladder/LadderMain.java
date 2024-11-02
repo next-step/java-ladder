@@ -5,8 +5,7 @@ import java.util.List;
 public class LadderMain {
     public static void main(String[] args) {
         List<String> usernameStrs = InputView.inputUserNames();
-        Usernames usernames = new Usernames(usernameStrs);
         int height = InputView.inputHeight();
-        Ladder ladder = new Ladder(height, usernameStrs.size());
+        ResultView.printLadderResult(new Usernames(usernameStrs), new Ladder(height, usernameStrs.size()));
     }
 }
