@@ -16,11 +16,10 @@ public class LadderGame {
 
     public GameResult play(List<String> results) {
         int participantCount = participants.getParticipantCount();
-        List<String> participantNames = participants.getParticipantNames();
         Map<String, String> resultsMap = new LinkedHashMap<>();
         for (int nth = 0; nth < participantCount; nth++) {
             int resultOrder = ladder.moveDown(nth);
-            resultsMap.put(participantNames.get(nth), results.get(resultOrder));
+            resultsMap.put(participants.findNameByOrder(nth), results.get(resultOrder));
         }
         return new GameResult(resultsMap);
     }

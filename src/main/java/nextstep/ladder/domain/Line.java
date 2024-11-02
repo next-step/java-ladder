@@ -2,8 +2,6 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Line {
 
@@ -11,16 +9,6 @@ public class Line {
 
     public Line(List<Point> points) {
         this.points = points;
-    }
-
-    public Line(int size) {
-        this(sizeToPointList(size));
-    }
-
-    private static List<Point> sizeToPointList(int size) {
-        return IntStream.range(0, size)
-                .mapToObj(i -> new Point())
-                .collect(Collectors.toList());
     }
 
     public Point getPoint(int index) {
