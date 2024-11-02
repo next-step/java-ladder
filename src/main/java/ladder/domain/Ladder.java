@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
@@ -12,13 +13,14 @@ public class Ladder {
     }
 
     public List<Bridge> createSteps(int maxLadderHeight, int participantCount, ConnectionStrategy strategy) {
-        IntStream.range(0, maxLadderHeight)
-                .forEach(index -> {
-                    steps.add(new Bridge());
-                    steps.get(index).connectSteps(participantCount, strategy);
-                });
-
-        return steps;
+        return IntStream.range(0, maxLadderHeight)
+                .mapToObj(index -> {
+                    Bridge bridge = new Bridge();
+                    bridge.connectSteps(participantCount, strategy);
+                    steps.add(bridge);
+                    return bridge;
+                })
+                .collect(Collectors.toList());
     }
 
 }
