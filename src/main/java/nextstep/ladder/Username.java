@@ -1,0 +1,12 @@
+package nextstep.ladder;
+
+public class Username {
+    String username;
+
+    public Username(String username){
+        if(username.length() > 5){
+            throw new IllegalArgumentException("사람 이름은 최대 5글자까지 입력 가능합니다.");
+        }
+        this.username = username;
+    }
+}
