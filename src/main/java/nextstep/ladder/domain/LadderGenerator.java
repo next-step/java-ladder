@@ -26,9 +26,17 @@ public class LadderGenerator {
         points.add(new Point(left, right));
         for (int cnt = 1; cnt < participantCount; cnt++) {
             left = right;
-            right = (cnt == participantCount - 1 || left) ? false : random.nextBoolean();
+            right = nextRight(participantCount, cnt, left);
             points.add(new Point(left, right));
         }
         return new Line(points);
+    }
+
+    private static boolean nextRight(int participantCount, int cnt, boolean previous) {
+        return (isLastPosition(participantCount, cnt) || previous) ? false : random.nextBoolean();
+    }
+
+    private static boolean isLastPosition(int participantCount, int cnt) {
+        return cnt + 1 == participantCount;
     }
 }

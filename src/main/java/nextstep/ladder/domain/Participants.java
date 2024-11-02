@@ -24,8 +24,8 @@ public class Participants {
                 .collect(Collectors.toList());
     }
 
-    public String findNameByOrder(int nth) {
-        Participant participant = participants.get(nth);
+    public String findNameByOrder(int order) {
+        Participant participant = participants.get(order);
         return participant.getName();
     }
 
