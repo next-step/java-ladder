@@ -36,7 +36,10 @@
   - [x] 이름 출력
   - [x] 사다리 출력
 
-- 사람
+- Usernames
+- [x] 참여자 수 0일 때 throw IllegalArgumentException
+
+- Username
 - [x] 이름 최대 5글자
 
 - 사다리
