@@ -1,5 +1,5 @@
 package nextstep.ladder.domain;
 
-public class Ladder {
+public class Lines {
 
 }
