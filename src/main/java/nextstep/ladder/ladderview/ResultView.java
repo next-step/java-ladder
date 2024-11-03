@@ -5,8 +5,13 @@ import java.util.List;
 public class ResultView {
 
     public void printResult(List<String>players, String ladders) {
+        printReultGuide();
         printPlayers(players);
         printLadders(ladders);
+    }
+
+    private void printReultGuide() {
+        System.out.println("\n실행 결과\n");
     }
 
     private void printPlayers(List<String> players) {

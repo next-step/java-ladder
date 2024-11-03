@@ -7,8 +7,9 @@ import java.util.stream.IntStream;
 
 public class Lines {
     private static final String LINE_SEPERATOR = "\n";
-    public static final String CONNECTED = "-----|";
-    public static final String DISCONNECTED = "     |";
+    private static final String CONNECTED = "-----|";
+    private static final String DISCONNECTED = "     |";
+
     private final List<Line> lines;
 
     public Lines(int numberOfPlayers) {
@@ -27,28 +28,31 @@ public class Lines {
         generationLastLineConnection(random);
     }
 
-    private void generateConnectionsExceptLastLine(Random random) {
-        for (int i = 1 ; i<lines.size() -1 ; i++) {
-            generateEachConnectionsExceptLastLine(random, i);
-        }
-    }
-
     private void generateEachConnectionsExceptLastLine(Random random, int i) {
         Line line = lines.get(i);
-        if(connectionCondition(random, line)) {
+        if(connectionConditionSatisfyAboutFortyPercent(random, line, i)) {
             Line nextLine = lines.get(i +1);
             line.connectRight();
             nextLine.connectLeft();
         }
     }
 
-    private static boolean connectionCondition(Random random, Line line) {
-        return random.nextBoolean() && !line.isLeftConnected();
+    private void generateConnectionsExceptLastLine(Random random) {
+        for (int i = 1 ; i<lines.size() -1 ; i++) {
+            generateEachConnectionsExceptLastLine(random, i);
+        }
+    }
+
+    private static boolean connectionConditionSatisfyAboutFortyPercent(Random random, Line line, int number) {
+        if(number%2==1) {
+            return random.nextInt(10)>5 && !line.isLeftConnected();
+        }
+        return random.nextInt(10)>2 && !line.isLeftConnected();
     }
 
     private void generationLastLineConnection(Random random) {
         Line lastLine = lines.get(lines.size()-1);
-        if(connectionCondition(random, lastLine)) {
+        if(connectionConditionSatisfyAboutFortyPercent(random, lastLine, lines.size()-1)) {
             lastLine.connectRight();
         }
     }

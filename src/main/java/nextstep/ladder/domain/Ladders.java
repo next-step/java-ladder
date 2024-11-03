@@ -6,12 +6,10 @@ import java.util.stream.IntStream;
 
 public class Ladders {
     private final int height;
-    private final int numberOfPlayers;
     private final List<Lines> ladder;
 
     public Ladders(int height, int numberOfPlayers) {
         this.height = height;
-        this.numberOfPlayers = numberOfPlayers;
         this.ladder = createLadders(height,numberOfPlayers);
     }
 
