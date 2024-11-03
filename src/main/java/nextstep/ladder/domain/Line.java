@@ -2,10 +2,10 @@ package nextstep.ladder.domain;
 
 public class Line {
     private static final boolean CONNECTED = true;
-    private static final boolean UNCONNECTED = false;
+    private static final boolean DISCONNECTED = false;
 
-    private boolean left = UNCONNECTED;
-    private boolean right= UNCONNECTED;
+    private boolean left = DISCONNECTED;
+    private boolean right = DISCONNECTED;
 
     public Line(boolean left, boolean right) {
         this.left = left;
@@ -17,40 +17,25 @@ public class Line {
     }
 
     public void connectRight() {
-        checkLeftConnected();
+        if (isLeftConnected()) {
+            return;
+        }
         right = CONNECTED;
     }
 
     public void connectLeft() {
-        checkRightConnected();
+        if (isRightConnected() ) {
+            return ;
+        }
         left = CONNECTED;
     }
 
-    private void checkLeftConnected() {
-        if(isLeftAlreadyConnected()) {
-            throw new IllegalArgumentException("오른쪽으로 연결할 수 없습니다");
-        }
-    }
-
-    private void checkRightConnected() {
-        if(isRightAlreadyConnected()) {
-            throw new IllegalArgumentException("왼쪽으로 연결할 수 없습니다");
-        }
-    }
-
-    private boolean isLeftAlreadyConnected() {
+    public boolean isLeftConnected() {
         return left;
     }
 
-    private boolean isRightAlreadyConnected() {
+    public boolean isRightConnected() {
         return right;
     }
 
-    public boolean isLeft() {
-        return left;
-    }
-
-    public boolean isRight() {
-        return right;
-    }
 }
