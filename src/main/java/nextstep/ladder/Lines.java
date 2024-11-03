@@ -12,10 +12,14 @@ public class Lines {
         generate(height, countOfPerson);
     }
 
-    private void generate(int height, int countOfPerson){
+    private void generate(int height, int countOfPerson) {
         this.lines = Stream.generate(() -> new Line(countOfPerson))
                 .limit(height)
                 .collect(Collectors.toList());
+    }
+
+    public List<Line> getValue() {
+        return this.lines;
     }
 
     public String toString(String delimiter, String lineDelimiter, String lineTrueSymbol, String lineFalseSymbol) {

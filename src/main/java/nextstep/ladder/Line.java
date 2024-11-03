@@ -23,6 +23,10 @@ public class Line {
         return false;
     }
 
+    public List<Boolean> getPoints() {
+        return this.points;
+    }
+
     public String toString(String delimiter, String trueSymbol, String falseSymbol) {
         List<String> result = this.points
                 .stream()
