@@ -2,5 +2,5 @@ package nextstep.ladder.domain.strategy;
 
 public interface BooleanStrategy {
 
-    boolean decide();
+    boolean decide(int index);
 }

@@ -16,6 +16,7 @@ public class Ladders {
         }
     }
 
+
     private void validate(int heightCount) {
         if (heightCount < 1) {
             throw new IllegalArgumentException("높이는 0이상이여야 합니다");

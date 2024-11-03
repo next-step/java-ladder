@@ -11,11 +11,16 @@ public class Results {
         this.results = Arrays.stream(results).map(Result::new).collect(Collectors.toList());
     }
 
+
     public List<Result> getResults() {
         return results;
     }
 
     public Result search(int index) {
         return results.get(index);
+    }
+
+    public int resultSize() {
+        return results.size();
     }
 }

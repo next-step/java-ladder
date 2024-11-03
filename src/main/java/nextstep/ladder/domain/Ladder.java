@@ -14,11 +14,11 @@ public class Ladder {
         }
     }
 
-    private Boolean createLine(int i, BooleanStrategy booleanStrategy) {
-        if (isPrev(i)) {
+    private Boolean createLine(int index, BooleanStrategy booleanStrategy) {
+        if (isPrev(index)) {
             return false;
         }
-        return booleanStrategy.decide();
+        return booleanStrategy.decide(index);
     }
 
     private boolean isPrev(int i) {
@@ -31,4 +31,29 @@ public class Ladder {
     public List<Boolean> getLines() {
         return lines;
     }
+
+    public int decide(int index) {
+        if (isLeft(index)) {
+            return index - 1;
+        }
+        if (isRight(index)) {
+            return index + 1;
+        }
+        return index;
+    }
+
+    private boolean isLeft(int result) {
+        if (result == 0 || !lines.get(result - 1)) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isRight(int result) {
+        if (lines.size() == result || !lines.get(result)) {
+            return false;
+        }
+        return true;
+    }
+
 }
