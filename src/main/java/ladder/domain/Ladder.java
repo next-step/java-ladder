@@ -39,8 +39,12 @@ public class Ladder {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Ladder ladder = (Ladder) o;
         return Objects.equals(height, ladder.height) && Objects.equals(lines, ladder.lines);
     }

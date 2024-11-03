@@ -28,7 +28,6 @@ public class LadderResult {
         return results.split(",");
     }
 
-
     private static Map<Integer, String> parse(String[] results) {
         Map<Integer, String> map = new HashMap<>();
 
@@ -52,8 +51,12 @@ public class LadderResult {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         LadderResult that = (LadderResult) o;
         return Objects.equals(results, that.results);
     }

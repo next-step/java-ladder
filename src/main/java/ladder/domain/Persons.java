@@ -57,8 +57,12 @@ public class Persons {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Persons persons1 = (Persons) o;
         return Objects.equals(persons, persons1.persons);
     }

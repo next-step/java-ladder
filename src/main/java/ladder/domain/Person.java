@@ -9,7 +9,7 @@ public class Person {
     private static final String ALL_ERROR = "all은 사용자 이름으로 사용 할 수 없습니다.";
 
     private final String name;
-    private Point point;
+    private Position position;
 
     public Person(String name) {
         this(name, 0);
@@ -17,7 +17,7 @@ public class Person {
 
     public Person(String name, int position) {
         this.name = validate(name);
-        this.point = new Point(position);
+        this.position = new Position(position);
     }
 
     private String validate(String name) {
@@ -29,7 +29,7 @@ public class Person {
     }
 
     private void isAll(String name) {
-        if(name.equalsIgnoreCase(ALL)) {
+        if (name.equalsIgnoreCase(ALL)) {
             throw new IllegalArgumentException(ALL_ERROR);
         }
     }
@@ -39,7 +39,7 @@ public class Person {
     }
 
     public int getPoint() {
-        return this.point.getPoint();
+        return this.position.getPosition();
     }
 
     public boolean isSameName(String name) {
@@ -48,8 +48,12 @@ public class Person {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Person person = (Person) o;
         return Objects.equals(name, person.name);
     }
@@ -60,7 +64,7 @@ public class Person {
     }
 
     public void gameResultSave(int personLadderResult) {
-        point = new Point(personLadderResult);
+        position = new Position(personLadderResult);
     }
 
 }

@@ -44,8 +44,8 @@ public class ResultView {
         System.out.println(prizeResults);
     }
 
-    private static void makeLadder(List<Boolean> line) {
-        line.forEach(value -> {
+    private static void makeLadder(List<Point> line) {
+        line.stream().map(Point::isPoint).forEach(value -> {
             System.out.print(makeLadder(value));
         });
         System.out.println();

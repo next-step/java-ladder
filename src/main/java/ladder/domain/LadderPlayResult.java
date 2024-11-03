@@ -14,8 +14,4 @@ public class LadderPlayResult {
         return playResult.get(person);
     }
 
-    public Map<Person, String> getLadderPlayResult() {
-        return new LinkedHashMap<>(playResult);
-    }
-
 }
