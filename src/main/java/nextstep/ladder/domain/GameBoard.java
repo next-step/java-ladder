@@ -2,11 +2,11 @@ package nextstep.ladder.domain;
 
 public class GameBoard {
     private final Ladder ladder;
-    private final ResultRow resultRow;
+    private final ResultLine resultLine;
 
-    public GameBoard(PositiveNumber width, PositiveNumber height, ResultRow resultRow) {
+    public GameBoard(PositiveNumber width, PositiveNumber height, ResultLine resultLine) {
         this.ladder = new Ladder(width, height);
-        this.resultRow = resultRow;
+        this.resultLine = resultLine;
     }
 
     public Ladder getLadder() {
@@ -15,11 +15,11 @@ public class GameBoard {
 
     public Prize getLadderResult(Point startPoint) {
         Point resultIndex = ladder.getLadderResultIndex(startPoint);
-        return new Prize(resultRow.getResult(resultIndex));
+        return new Prize(resultLine.getResult(resultIndex));
     }
 
     @Override
     public String toString() {
-        return ladder + "\n" + resultRow;
+        return ladder + "\n" + resultLine;
     }
 }

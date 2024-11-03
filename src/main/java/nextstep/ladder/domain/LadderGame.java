@@ -2,13 +2,13 @@ package nextstep.ladder.domain;
 
 public class LadderGame {
     private static final String ALL_PLAYER = "all";
-    
+
     private final Users players;
     private final GameBoard gameBoard;
 
-    public LadderGame(Users players, PositiveNumber height, ResultRow resultRow) {
+    public LadderGame(Users players, PositiveNumber height, ResultLine resultLine) {
         this.players = players;
-        this.gameBoard = new GameBoard(new PositiveNumber(players.size()), height, resultRow);
+        this.gameBoard = new GameBoard(new PositiveNumber(players.size()), height, resultLine);
     }
 
     public GameBoard getGameBoard() {

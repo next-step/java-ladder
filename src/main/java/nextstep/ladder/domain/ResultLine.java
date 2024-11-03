@@ -6,12 +6,12 @@ import java.util.stream.Collectors;
 
 import nextstep.ladder.util.StringUtils;
 
-public class ResultRow {
+public class ResultLine {
     private static final int MAX_LENGTH = 5;
 
     private final List<String> row;
 
-    public ResultRow(List<String> results) {
+    public ResultLine(List<String> results) {
         if (validateElementLength(results)) {
             throw new IllegalArgumentException("결과 중 5자리 초과인 문자가 포함되어 있습니다.");
         }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class LadderRow {
+public class Line {
     private static final String HORIZONTAL_BAR = "-----";
     private static final String EMPTY_HORIZONTAL_BAR = "     ";
     private static final String ROW_DELIMITER = "|";
@@ -12,7 +12,7 @@ public class LadderRow {
     private final List<String> row;
     private final BarGeneratorStrategy generatorStrategy;
 
-    public LadderRow(PositiveNumber width, BarGeneratorStrategy generatorStrategy) {
+    public Line(PositiveNumber width, BarGeneratorStrategy generatorStrategy) {
         this.row = new ArrayList<>();
         this.generatorStrategy = generatorStrategy;
         makeRow(width);
