@@ -1,28 +1,34 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.strategy.RandomBooleanStrategy;
+import nextstep.ladder.domain.strategy.BooleanStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
+    private final List<Boolean> lines = new ArrayList<>();
 
-    private List<Lines> ladder = new ArrayList<>();
-
-    public Ladder(int peopleCount, int heightCount) {
-        validate(heightCount);
-        for (int i = 0; i < heightCount; i++) {
-            ladder.add(new Lines(peopleCount - 1, new RandomBooleanStrategy()));
+    public Ladder(int lineCount, BooleanStrategy booleanStrategy) {
+        for (int i = 0; i < lineCount; i++) {
+            lines.add(createLine(i, booleanStrategy));
         }
     }
 
-    private void validate(int heightCount) {
-        if (heightCount < 1) {
-            throw new IllegalArgumentException("높이는 0이상이여야 합니다");
+    private Boolean createLine(int i, BooleanStrategy booleanStrategy) {
+        if (isPrev(i)) {
+            return false;
         }
+        return booleanStrategy.decide();
     }
 
-    public List<Lines> getHeight() {
-        return ladder;
+    private boolean isPrev(int i) {
+        if (i == 0) {
+            return false;
+        }
+        return lines.get(i - 1);
+    }
+
+    public List<Boolean> getLines() {
+        return lines;
     }
 }

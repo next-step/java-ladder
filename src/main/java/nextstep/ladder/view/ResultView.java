@@ -14,14 +14,14 @@ public class ResultView {
 
 
 
-    public static void print(Persons persons, Ladder ladder) {
+    public static void print(Persons persons, Ladders ladders) {
         System.out.println(RESULT_MESSAGE);
         int lengthCount = persons.getPersons().stream()
                 .map(person -> person.getLength())
                 .max(Integer::compareTo)
                 .orElse(0) + 2;
         printPersons(lengthCount, persons);
-        printLadder(lengthCount, ladder);
+        printLadder(lengthCount, ladders);
     }
 
     private static void printPersons(int maxLength, Persons persons) {
@@ -35,12 +35,12 @@ public class ResultView {
                 .collect(Collectors.joining()) + person.getName();
     }
 
-    private static void printLadder(int maxLength, Ladder ladder) {
-        printHeight(maxLength, ladder.getHeight());
+    private static void printLadder(int maxLength, Ladders ladders) {
+        printHeight(maxLength, ladders.getLadders());
     }
 
-    private static void printHeight(int maxLength, List<Lines> heights) {
-        for (Lines height : heights) {
+    private static void printHeight(int maxLength, List<Ladder> heights) {
+        for (Ladder height : heights) {
             printVerticals(maxLength, height.getLines());
             System.out.println();
         }
