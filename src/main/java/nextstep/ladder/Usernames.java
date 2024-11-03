@@ -16,10 +16,6 @@ public class Usernames {
                 .collect(Collectors.toList());
     }
 
-    public List<Username> getValues() {
-        return usernames;
-    }
-
     public int size() {
         return usernames.size();
     }
