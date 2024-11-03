@@ -12,4 +12,8 @@ public class Point {
     public boolean getRight() {
         return right;
     }
+
+    public String getLineSymbol(String trueSymbol, String falseSymbol) {
+        return right ? trueSymbol : falseSymbol;
+    }
 }
