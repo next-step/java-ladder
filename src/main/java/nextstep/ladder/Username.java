@@ -1,9 +1,8 @@
 package nextstep.ladder;
 
 public class Username {
-    private String username;
-
     private static final int MAX_USERNAME_LENGTH = 5;
+    private String username;
 
     public Username(String username) {
         if (username.length() > MAX_USERNAME_LENGTH) {

@@ -29,7 +29,7 @@ public class Points {
         return i > 0 && points.get(i - 1).getRight();
     }
 
-    public int getSize(){
+    public int getSize() {
         return this.points.size();
     }
 
