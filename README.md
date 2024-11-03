@@ -3,7 +3,9 @@
 
 ## TODO
 
-### PersonResult
+
+
+### PersonResults
 - [ ] 문자열로 이름 입력 시 이름, 결과 Map 반환
 - [ ] 문자열로 all 입력 시 List 이름, 결과 map 반환
 - [ ] 문자열로 없는 이름 입력 시 예외 발생 
@@ -35,3 +37,7 @@
 
 ### Result (결과 1개)
 - [x] 빈 값 검증
+
+### PersonResult
+- [x] 이름으로 포함되어 있는지 검증
+- [x] 이름으로 Result 객체 반환
