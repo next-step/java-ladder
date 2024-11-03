@@ -18,6 +18,7 @@ public class LadderController {
         int height = inputView.inputHeight();
 
 
+
     }
 
 }
