@@ -2,10 +2,7 @@ package ladder.domain;
 
 import ladder.generator.Strategy;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -61,7 +58,7 @@ public class Points {
     }
 
     public List<Point> getPoints() {
-        return points;
+        return Collections.unmodifiableList(points);
     }
 
     @Override
