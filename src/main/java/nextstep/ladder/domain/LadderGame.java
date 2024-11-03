@@ -27,7 +27,7 @@ public class LadderGame {
             Map<User, Prize> result = new LinkedHashMap<>();
             players.getUsers().forEach(user -> {
                 int userIndex = players.findUserIndex(user);
-                Prize prize = gameBoard.getLadderResult(userIndex);
+                Prize prize = gameBoard.run(userIndex);
                 result.put(user, prize);
             });
             return new GameResult(result);
@@ -35,7 +35,7 @@ public class LadderGame {
 
         User user = players.findUserByName(username);
         int userIndex = players.findUserIndex(user);
-        Prize prize = gameBoard.getLadderResult(userIndex);
+        Prize prize = gameBoard.run(userIndex);
         return new GameResult(user, prize);
     }
 }

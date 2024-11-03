@@ -36,7 +36,8 @@ public class Ladder {
             .collect(Collectors.toList());
     }
 
-    public int getLadderResultIndex(int startPoint) {
+    // 시작 지점을 매개변수로 받는 run 메서드. 사다리 게임 후 마지막 인덱스를 반환한다.
+    public int run(int startPoint) {
         int currentPoint = startPoint;
         for (int i = 0; i < height.getValue(); i++) {
             currentPoint = getNextPoint(currentPoint, lines.get(i));
