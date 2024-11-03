@@ -10,7 +10,7 @@ public class Ladders {
 
     public Ladders(int height, int numberOfPlayers) {
         this.height = height;
-        this.ladder = createLadders(height,numberOfPlayers);
+        this.ladder = createLadders(height, numberOfPlayers);
     }
 
     private List<Lines> createLadders(int height, int numberOfPlayers) {
@@ -20,9 +20,7 @@ public class Ladders {
     }
 
     public void createLines() {
-        for(int i =0; i<height; i++) {
-            ladder.get(i).generateConnections();
-        }
+        ladder.forEach(Lines::generateConnections);
     }
 
     public String getLadderState() {

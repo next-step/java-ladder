@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ResultView {
 
-    public void printResult(List<String>players, String ladders) {
+    public void printResult(List<String> players, String ladders) {
         printReultGuide();
         printPlayers(players);
         printLadders(ladders);
@@ -21,7 +21,7 @@ public class ResultView {
     }
 
     private void printPlayerFormat(String name) {
-        System.out.print(String.format("%6s",name));
+        System.out.print(String.format("%6s", name));
     }
 
     private void printLadders(String ladders) {

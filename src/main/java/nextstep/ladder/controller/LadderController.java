@@ -20,7 +20,7 @@ public class LadderController {
         int height = inputView.inputHeight();
         Ladders ladders = new Ladders(height, numberOfParticipants);
         ladders.createLines();
-        resultView.printResult(participants.getParticipants(),ladders.getLadderState());
+        resultView.printResult(participants.getParticipants(), ladders.getLadderState());
     }
 
 }

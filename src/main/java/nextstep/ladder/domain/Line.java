@@ -24,8 +24,8 @@ public class Line {
     }
 
     public void connectLeft() {
-        if (isRightConnected() ) {
-            return ;
+        if (isRightConnected()) {
+            return;
         }
         left = CONNECTED;
     }

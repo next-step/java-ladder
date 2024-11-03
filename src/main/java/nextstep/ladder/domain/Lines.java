@@ -17,7 +17,7 @@ public class Lines {
     }
 
     private List<Line> createLines(int numberOfPlayers) {
-        return  IntStream.rangeClosed(1, numberOfPlayers)
+        return IntStream.rangeClosed(1, numberOfPlayers)
                 .mapToObj(i -> new Line())
                 .collect(Collectors.toList());
     }
@@ -28,31 +28,30 @@ public class Lines {
         generationLastLineConnection(random);
     }
 
-    private void generateEachConnectionsExceptLastLine(Random random, int i) {
-        Line line = lines.get(i);
-        if(connectionConditionSatisfyAboutFortyPercent(random, line, i)) {
-            Line nextLine = lines.get(i +1);
+    private void generateConnectionsExceptLastLine(Random random) {
+        for (int i = 1; i < lines.size() - 1; i++) {
+            generateEachConnectionsExceptLastLine(random, lines.get(i), i);
+        }
+    }
+
+    private void generateEachConnectionsExceptLastLine(Random random, Line line, int i) {
+        if (connectionConditionSatisfyAboutFortyPercent(random, line, i)) {
+            Line nextLine = lines.get(i + 1);
             line.connectRight();
             nextLine.connectLeft();
         }
     }
 
-    private void generateConnectionsExceptLastLine(Random random) {
-        for (int i = 1 ; i<lines.size() -1 ; i++) {
-            generateEachConnectionsExceptLastLine(random, i);
-        }
-    }
-
     private static boolean connectionConditionSatisfyAboutFortyPercent(Random random, Line line, int number) {
-        if(number%2==1) {
-            return random.nextInt(10)>5 && !line.isLeftConnected();
+        if (number % 2 == 1) {
+            return random.nextInt(10) > 5 && !line.isLeftConnected();
         }
-        return random.nextInt(10)>2 && !line.isLeftConnected();
+        return random.nextInt(10) > 2 && !line.isLeftConnected();
     }
 
     private void generationLastLineConnection(Random random) {
-        Line lastLine = lines.get(lines.size()-1);
-        if(connectionConditionSatisfyAboutFortyPercent(random, lastLine, lines.size()-1)) {
+        Line lastLine = lines.get(lines.size() - 1);
+        if (connectionConditionSatisfyAboutFortyPercent(random, lastLine, lines.size() - 1)) {
             lastLine.connectRight();
         }
     }
@@ -64,7 +63,7 @@ public class Lines {
     }
 
     private String getConnectionsState(Line line) {
-        if(line.isRightConnected()) {
+        if (line.isRightConnected()) {
             return CONNECTED;
         }
         return DISCONNECTED;
