@@ -17,4 +17,14 @@ public class Ladder {
     public List<Line> getLadder() {
         return this.ladder;
     }
+
+    public String toString(String delimiter, String lineDelimiter, String lineTrueSymbol, String lineFalseSymbol) {
+        return String.join(
+                delimiter,
+                this.ladder
+                        .stream()
+                        .map((line) -> line.toString(lineDelimiter, lineTrueSymbol, lineFalseSymbol))
+                        .collect(Collectors.toList())
+        );
+    }
 }

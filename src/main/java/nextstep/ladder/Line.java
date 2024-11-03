@@ -3,6 +3,7 @@ package nextstep.ladder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -22,7 +23,16 @@ public class Line {
         return false;
     }
 
-    public List<Boolean> getPoints() {
-        return this.points;
+    public String toString(String delimiter, String trueSymbol, String falseSymbol) {
+        List<String> result = this.points
+                .stream()
+                .map(point -> getLineSymbol(point, trueSymbol, falseSymbol))
+                .collect(Collectors.toList());
+
+        return delimiter + String.join(delimiter, result) + delimiter;
+    }
+
+    private static String getLineSymbol(boolean point, String trueSymbol, String falseSymbol) {
+        return point ? trueSymbol : falseSymbol;
     }
 }

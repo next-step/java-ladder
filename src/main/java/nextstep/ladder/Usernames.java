@@ -23,4 +23,14 @@ public class Usernames {
     public int size() {
         return usernames.size();
     }
+
+    public String toString() {
+        return String.join(
+                "",
+                this.usernames
+                        .stream()
+                        .map(str -> str.getUsernameForPrint())
+                        .collect(Collectors.toList())
+        );
+    }
 }
