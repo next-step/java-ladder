@@ -15,7 +15,7 @@ class LadderTest {
         List<Line> ladderLines = ladder.getLadderRows();
         assertThat(ladderLines).hasSize(5);
         ladderLines.forEach(row ->
-            assertThat(row.getRow()).hasSize(3)
+            assertThat(row.getCrosses()).hasSize(3)
         );
     }
 

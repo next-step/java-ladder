@@ -12,7 +12,7 @@ public class Ladder {
     public Ladder(PositiveNumber width, PositiveNumber height) {
         this.height = height;
         this.lines = new ArrayList<>();
-        makeMap(width, height);
+        makeLine(width, height);
     }
 
     public Ladder(PositiveNumber height, List<Line> lines) {
@@ -20,7 +20,7 @@ public class Ladder {
         this.lines = lines;
     }
 
-    private void makeMap(PositiveNumber width, PositiveNumber height) {
+    private void makeLine(PositiveNumber width, PositiveNumber height) {
         for (int i = 0; i < height.getValue(); i++) {
             lines.add(new Line(width, RandomBarGeneratorStrategy.getInstance()));
         }
