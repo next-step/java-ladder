@@ -7,9 +7,9 @@ public class ResultView {
     private final static String LADDER_DELIMITER = "\n";
 
 
-    public static void printLadderResult(Usernames usernames, Lines ladder) {
+    public static void printLadderResult(Usernames usernames, Lines lines) {
         System.out.println(usernames.toString());
-        System.out.println(ladder.toString(LADDER_DELIMITER, LINE_DELIMITER, LINE_SYMBOL_TRUE, LINE_SYMBOL_FALSE));
+        System.out.println(lines.toString(LADDER_DELIMITER, LINE_DELIMITER, LINE_SYMBOL_TRUE, LINE_SYMBOL_FALSE));
     }
 
 }

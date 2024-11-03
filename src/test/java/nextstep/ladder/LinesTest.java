@@ -10,7 +10,7 @@ public class LinesTest {
     @DisplayName("사다리 전체 출력 확인")
     void check() {
         Lines lines = new Lines(6, 3);
-        System.out.println(lines);
+        System.out.println(lines.toString("\n", "|", "-----", "     "));
     }
 
     @Test
