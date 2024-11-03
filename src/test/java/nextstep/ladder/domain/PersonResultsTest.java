@@ -48,7 +48,7 @@ class PersonResultsTest {
     }
 
     @Test
-    void all_search(){
+    void all_search() {
         PersonResults personResults = new PersonResults(
                 List.of(
                         new PersonResult(new Person("java"), new Result("꽝")),

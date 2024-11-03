@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ResultTest {
     @Test
-    void 빈값_검증(){
+    void 빈값_검증() {
         assertThatThrownBy(
                 () -> new Result("")
         ).isInstanceOf(IllegalArgumentException.class);

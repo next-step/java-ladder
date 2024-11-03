@@ -32,7 +32,7 @@ public class Ladders {
     }
 
     public int searchIndex(int index) {
-        for(int i = 0;i<ladders.size();i++){
+        for (int i = 0; i < ladders.size(); i++) {
             index = ladders.get(i).decide(index);
         }
         return index;

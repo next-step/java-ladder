@@ -27,12 +27,12 @@ public class LadderTest {
         Ladder ladder = new Ladder(6, (index) -> index == 0 || index == 3);
         assertAll(
                 () -> assertThat(ladder.decide(0)).isEqualTo(1)
-                ,() -> assertThat(ladder.decide(1)).isEqualTo(0)
-                ,() -> assertThat(ladder.decide(2)).isEqualTo(2)
-                ,() -> assertThat(ladder.decide(3)).isEqualTo(4)
-                ,() -> assertThat(ladder.decide(4)).isEqualTo(3)
-                ,() -> assertThat(ladder.decide(5)).isEqualTo(5)
-                ,() -> assertThat(ladder.decide(6)).isEqualTo(6)
+                , () -> assertThat(ladder.decide(1)).isEqualTo(0)
+                , () -> assertThat(ladder.decide(2)).isEqualTo(2)
+                , () -> assertThat(ladder.decide(3)).isEqualTo(4)
+                , () -> assertThat(ladder.decide(4)).isEqualTo(3)
+                , () -> assertThat(ladder.decide(5)).isEqualTo(5)
+                , () -> assertThat(ladder.decide(6)).isEqualTo(6)
         );
     }
 }

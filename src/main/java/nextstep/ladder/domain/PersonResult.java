@@ -1,18 +1,18 @@
 package nextstep.ladder.domain;
 
-import java.util.Map;
 import java.util.Objects;
 
 public class PersonResult {
     private final Person person;
     private final Result result;
+
     public PersonResult(Person person, Result result) {
 
         this.person = person;
         this.result = result;
     }
 
-    public boolean isExist(String personName){
+    public boolean isExist(String personName) {
         return person.equals(new Person(personName));
     }
 

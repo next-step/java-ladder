@@ -1,8 +1,5 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.PersonResult;
-
-import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -27,7 +24,6 @@ public class InputView {
         System.out.println(REQUEST_HEIGHT_COUNT);
         return toInt(scanner.nextLine());
     }
-
 
     public static String viewPerson() {
         System.out.println(REQUEST_WHO);
