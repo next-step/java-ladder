@@ -37,7 +37,7 @@ public class GameResult {
         User user,
         GameResult gameResult
     ) {
-        Point userIndex = players.findUserIndex(user);
+        int userIndex = players.findUserIndex(user);
         Prize prize = gameBoard.getLadderResult(userIndex);
         gameResult.put(user, prize);
     }

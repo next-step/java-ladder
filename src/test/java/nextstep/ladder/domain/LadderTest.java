@@ -36,8 +36,8 @@ class LadderTest {
         );
         Ladder ladder = new Ladder(width, map);
 
-        assertThat(ladder.getLadderResultIndex(new Point(0))).isEqualTo(new Point(1));
-        assertThat(ladder.getLadderResultIndex(new Point(1))).isEqualTo(new Point(0));
-        assertThat(ladder.getLadderResultIndex(new Point(2))).isEqualTo(new Point(2));
+        assertThat(ladder.getLadderResultIndex(0)).isEqualTo(1);
+        assertThat(ladder.getLadderResultIndex(1)).isEqualTo(0);
+        assertThat(ladder.getLadderResultIndex(2)).isEqualTo(2);
     }
 }

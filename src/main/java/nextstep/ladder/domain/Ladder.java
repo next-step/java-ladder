@@ -36,20 +36,20 @@ public class Ladder {
             .collect(Collectors.toList());
     }
 
-    public Point getLadderResultIndex(Point startPoint) {
-        Point currentPoint = startPoint;
+    public int getLadderResultIndex(int startPoint) {
+        int currentPoint = startPoint;
         for (int i = 0; i < height.getValue(); i++) {
             currentPoint = getNextPoint(currentPoint, lines.get(i));
         }
         return currentPoint;
     }
 
-    private Point getNextPoint(Point currentPoint, Line line) {
+    private int getNextPoint(int currentPoint, Line line) {
         if (line.isLeftMoveable(currentPoint)) {
-            return currentPoint.minus();
+            return currentPoint - 1;
         }
         if (line.isRightMoveable(currentPoint)) {
-            return currentPoint.plus();
+            return currentPoint + 1;
         }
         return currentPoint;
     }

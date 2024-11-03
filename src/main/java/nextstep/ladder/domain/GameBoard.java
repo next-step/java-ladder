@@ -13,8 +13,8 @@ public class GameBoard {
         return ladder;
     }
 
-    public Prize getLadderResult(Point startPoint) {
-        Point resultIndex = ladder.getLadderResultIndex(startPoint);
+    public Prize getLadderResult(int startPoint) {
+        int resultIndex = ladder.getLadderResultIndex(startPoint);
         return new Prize(resultLine.getResult(resultIndex));
     }
 

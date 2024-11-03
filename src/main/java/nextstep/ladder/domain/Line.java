@@ -20,7 +20,7 @@ public class Line {
 
     private void makeRow(PositiveNumber width) {
         for (int i = 0; i < width.getValue(); i++) {
-            row.add(getBar(new Point(i)));
+            row.add(getBar(i));
         }
     }
 
@@ -28,7 +28,7 @@ public class Line {
         return Collections.unmodifiableList(row);
     }
 
-    private String getBar(Point point) {
+    private String getBar(int point) {
         if (row.isEmpty()) {
             return EMPTY_HORIZONTAL_BAR;
         }
@@ -45,33 +45,33 @@ public class Line {
         return EMPTY_HORIZONTAL_BAR;
     }
 
-    private String getPreviousBar(Point point) {
-        return row.get(point.getValue() - 1);
+    private String getPreviousBar(int point) {
+        return row.get(point - 1);
     }
 
     public String getRowAsString() {
         return String.join("|", row) + ROW_DELIMITER;
     }
 
-    public boolean isRightMoveable(Point currentPoint) {
+    public boolean isRightMoveable(int currentPoint) {
         if (isOverRightLimit(currentPoint)) {
             return false;
         }
-        return row.get(currentPoint.getValue() + 1).equals(HORIZONTAL_BAR);
+        return row.get(currentPoint + 1).equals(HORIZONTAL_BAR);
     }
 
-    private boolean isOverRightLimit(Point currentPoint) {
-        return currentPoint.getValue() + 1 >= row.size();
+    private boolean isOverRightLimit(int currentPoint) {
+        return currentPoint + 1 >= row.size();
     }
 
-    public boolean isLeftMoveable(Point currentPoint) {
+    public boolean isLeftMoveable(int currentPoint) {
         if (isOverLeftLimit(currentPoint)) {
             return false;
         }
-        return row.get(currentPoint.getValue()).equals(HORIZONTAL_BAR);
+        return row.get(currentPoint).equals(HORIZONTAL_BAR);
     }
 
-    private boolean isOverLeftLimit(Point currentPoint) {
-        return currentPoint.getValue() - 1 < 0;
+    private boolean isOverLeftLimit(int currentPoint) {
+        return currentPoint - 1 < 0;
     }
 }

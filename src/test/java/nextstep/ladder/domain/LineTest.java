@@ -38,7 +38,7 @@ class LineTest {
     void isRightMoveableTest() {
         Line line = new Line(new PositiveNumber(5), () -> true);
         System.out.println(line.getRow().size());
-        assertThat(line.isRightMoveable(new Point(4))).isFalse();
+        assertThat(line.isRightMoveable(4)).isFalse();
     }
 
     @Test
@@ -46,6 +46,6 @@ class LineTest {
     void isLeftMoveableTest() {
         Line line = new Line(new PositiveNumber(5), () -> true);
         System.out.println(line.getRow().size());
-        assertThat(line.isLeftMoveable(new Point(0))).isFalse();
+        assertThat(line.isLeftMoveable(0)).isFalse();
     }
 }

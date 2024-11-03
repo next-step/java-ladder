@@ -1,14 +1,13 @@
 package nextstep.ladder.domain;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class UsersTest {
     @Test
@@ -16,9 +15,9 @@ class UsersTest {
     void getUsersTest() {
         Users users = initUser();
         assertThat(users.getUsers())
-                .hasSize(3)
-                .extracting(User::getName)
-                .contains("홍길동", "전우치", "고길동");
+            .hasSize(3)
+            .extracting(User::getName)
+            .contains("홍길동", "전우치", "고길동");
     }
 
     @Test
@@ -26,7 +25,7 @@ class UsersTest {
     void sizeTest() {
         Users users = initUser();
         assertThat(users.size())
-                .isEqualTo(initUser().size());
+            .isEqualTo(initUser().size());
     }
 
     @Test
@@ -34,8 +33,8 @@ class UsersTest {
     void throwExceptionWhenNotExistUsername() {
         Users users = initUser();
         assertThatThrownBy(() -> users.findUserByName("없는이름"))
-                .isInstanceOf(NoSuchElementException.class)
-                .hasMessage("존재하지 않는 유저 입니다.");
+            .isInstanceOf(NoSuchElementException.class)
+            .hasMessage("존재하지 않는 유저 입니다.");
     }
 
     @Test
@@ -43,7 +42,7 @@ class UsersTest {
     void findUserIndexTest() {
         Users users = initUser();
         User user = new User("고길동");
-        assertThat(users.findUserIndex(user)).isEqualTo(new Point(2));
+        assertThat(users.findUserIndex(user)).isEqualTo(2);
     }
 
     private Users initUser() {

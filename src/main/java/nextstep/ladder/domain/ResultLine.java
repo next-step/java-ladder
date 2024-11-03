@@ -23,8 +23,8 @@ public class ResultLine {
             .noneMatch(it -> it.length() <= MAX_LENGTH);
     }
 
-    public String getResult(Point point) {
-        return row.get(point.getValue());
+    public String getResult(int point) {
+        return row.get(point);
     }
 
     @Override
