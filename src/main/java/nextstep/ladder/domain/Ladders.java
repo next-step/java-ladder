@@ -1,7 +1,36 @@
 package nextstep.ladder.domain;
 
-public class Ladders {
-    public Ladders(int height, int numberOfPlayers) {
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
+public class Ladders {
+    private final int height;
+    private final int numberOfPlayers;
+    private final List<Lines> ladder;
+
+    public Ladders(int height, int numberOfPlayers) {
+        this.height = height;
+        this.numberOfPlayers = numberOfPlayers;
+        this.ladder = createLadders(height,numberOfPlayers);
     }
+
+    private List<Lines> createLadders(int height, int numberOfPlayers) {
+        return IntStream.rangeClosed(1, height)
+                .mapToObj(i -> new Lines(numberOfPlayers))
+                .collect(Collectors.toList());
+    }
+
+    public void createLines() {
+        for(int i =0; i<height; i++) {
+            ladder.get(i).generateConnections();
+        }
+    }
+
+    public String getLadderState() {
+        return ladder.stream()
+                .map(Lines::getLinesState)
+                .collect(Collectors.joining());
+    }
+
 }
