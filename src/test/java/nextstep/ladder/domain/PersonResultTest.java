@@ -18,11 +18,4 @@ class PersonResultTest {
         );
     }
 
-    @Test
-    void search(){
-        PersonResult personResult = new PersonResult(new Person("hyeon"), new Result("3000"));
-        Result result = personResult.search("hyeon");
-
-        assertThat(result).isEqualTo(new Result("3000"));
-    }
 }

@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class PersonResult {
     private final Map<Person, Result> personResult;
@@ -13,7 +14,16 @@ public class PersonResult {
         return personResult.containsKey(new Person(personName));
     }
 
-    public Result search(String personName) {
-        return personResult.get(new Person(personName));
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PersonResult that = (PersonResult) o;
+        return Objects.equals(personResult, that.personResult);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(personResult);
     }
 }

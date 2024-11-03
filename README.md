@@ -5,11 +5,6 @@
 
 
 
-### PersonResults
-- [ ] 문자열로 이름 입력 시 이름, 결과 Map 반환
-- [ ] 문자열로 all 입력 시 List 이름, 결과 map 반환
-- [ ] 문자열로 없는 이름 입력 시 예외 발생 
-
 ### Ladders (사다리)
 - [ ] Person 객체로 Result 결과 반환
 - [ ] Persons, Results 파라미터 입력 시 사이즈가 같지 않으면 예외 처리 
@@ -38,6 +33,11 @@
 ### Result (결과 1개)
 - [x] 빈 값 검증
 
+
+### PersonResults
+- [ ] 문자열로 이름 입력 PersonResult 반환
+- [ ] 문자열로 all 입력 시 List PersonResult 반환
+- [ ] 문자열로 없는 이름 입력 시 예외 발생
+
 ### PersonResult
 - [x] 이름으로 포함되어 있는지 검증
-- [x] 이름으로 Result 객체 반환
