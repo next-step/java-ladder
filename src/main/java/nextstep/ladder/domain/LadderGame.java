@@ -1,5 +1,8 @@
 package nextstep.ladder.domain;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class LadderGame {
     private static final String ALL_PLAYER = "all";
 
@@ -21,8 +24,18 @@ public class LadderGame {
 
     public GameResult start(String username) {
         if (username.equals(ALL_PLAYER)) {
-            return GameResult.allPlayerGameResult(players, gameBoard);
+            Map<User, Prize> result = new LinkedHashMap<>();
+            players.getUsers().forEach(user -> {
+                int userIndex = players.findUserIndex(user);
+                Prize prize = gameBoard.getLadderResult(userIndex);
+                result.put(user, prize);
+            });
+            return new GameResult(result);
         }
-        return GameResult.singlePlayerGameResult(players, gameBoard, username);
+
+        User user = players.findUserByName(username);
+        int userIndex = players.findUserIndex(user);
+        Prize prize = gameBoard.getLadderResult(userIndex);
+        return new GameResult(user, prize);
     }
 }
