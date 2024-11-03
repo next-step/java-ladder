@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -22,6 +23,16 @@ public class PersonsTest {
         );
 
         assertThat(persons).isEqualTo(target);
+
+    }
+
+    @DisplayName("index 입력 시 Person 객체 반환")
+    @Test
+    void search() {
+        Persons persons = new Persons(new String[]{"pobi", "honux", "crong", "jk"});
+        Person searchPerson = persons.searchIndex(2);
+
+        assertThat(searchPerson).isEqualTo(new Person("crong"));
 
     }
 }

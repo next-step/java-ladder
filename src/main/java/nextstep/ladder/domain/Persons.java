@@ -40,4 +40,8 @@ public class Persons {
     public int hashCode() {
         return Objects.hash(persons);
     }
+
+    public Person searchIndex(int index) {
+        return persons.get(index);
+    }
 }
