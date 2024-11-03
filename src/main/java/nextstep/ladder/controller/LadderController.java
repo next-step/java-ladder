@@ -15,6 +15,9 @@ public class LadderController {
 
     public void run() {
         List<String> partipantsName = inputView.inputName();
+        int height = inputView.inputHeight();
+
+
     }
 
 }
