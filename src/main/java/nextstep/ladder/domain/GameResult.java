@@ -18,9 +18,6 @@ public class GameResult {
     public static GameResult allPlayerGameResult(Users players, GameBoard gameBoard) {
         GameResult gameResult = new GameResult();
         players.getUsers().forEach(user -> addUserLadderResult(players, gameBoard, user, gameResult));
-        for (User user : players.getUsers()) {
-            addUserLadderResult(players, gameBoard, user, gameResult);
-        }
         return gameResult;
     }
 
