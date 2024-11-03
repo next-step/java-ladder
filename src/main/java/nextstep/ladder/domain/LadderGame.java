@@ -1,12 +1,23 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LadderGame {
 
-    public static void start(Persons persons, Results results, int heightCount) {
+    public static PersonResults result(Persons persons, Ladders ladders, Results results) {
         validate(persons, results);
+        List<PersonResult> personResults = new ArrayList<>();
 
-        Ladders ladders = new Ladders(persons.personCount(), heightCount);
+        for (int i = 0; i < persons.personCount(); i++) {
+            int resultIndex = searchIndex(i, ladders);
+            personResults.add(new PersonResult(persons.searchIndex(i), results.searchIndex(resultIndex)));
+        }
+        return new PersonResults(personResults);
+    }
 
+    private static int searchIndex(int index, Ladders ladders) {
+        return ladders.searchIndex(index);
     }
 
     private static void validate(Persons persons, Results results) {
@@ -14,4 +25,5 @@ public class LadderGame {
             throw new IllegalArgumentException("참가자와 결과 사이즈가 같지 않습니다");
         }
     }
+
 }

@@ -4,14 +4,24 @@ import java.util.Map;
 import java.util.Objects;
 
 public class PersonResult {
-    private final Map<Person, Result> personResult;
-
+    private final Person person;
+    private final Result result;
     public PersonResult(Person person, Result result) {
-        this.personResult = Map.of(person, result);
+
+        this.person = person;
+        this.result = result;
     }
 
     public boolean isExist(String personName){
-        return personResult.containsKey(new Person(personName));
+        return person.equals(new Person(personName));
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public Result getResult() {
+        return result;
     }
 
     @Override
@@ -19,11 +29,12 @@ public class PersonResult {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PersonResult that = (PersonResult) o;
-        return Objects.equals(personResult, that.personResult);
+        return Objects.equals(person, that.person) && Objects.equals(result, that.result);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(personResult);
+        return Objects.hash(person, result);
     }
+
 }

@@ -13,12 +13,13 @@ public class LadderGameTest {
         Persons persons = new Persons(new String[]{
                 "a", "b", "c"
         });
+        Ladders ladders = new Ladders(persons.personCount(), 5);
         Results results = new Results(new String[]{
                 "꽝", "1000"
         });
 
         assertThatThrownBy(
-                () -> LadderGame.start(persons, results, 5)
+                () -> LadderGame.result(persons, ladders, results)
         );
     }
 }

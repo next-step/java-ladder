@@ -16,7 +16,7 @@ class ResultsTest {
     @Test
     void search(){
         Results results = new Results(new String[]{"꽝","1000","2000","3000"});
-        Result result = results.search(3);
+        Result result = results.searchIndex(3);
 
         assertThat(result).isEqualTo(new Result("3000"));
     }

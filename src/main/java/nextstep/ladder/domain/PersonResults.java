@@ -21,7 +21,7 @@ public class PersonResults {
                         .filter(personResult -> personResult.isExist(personName))
                         .findFirst()
                         .orElseThrow(
-                                () -> new IllegalArgumentException("")
+                                () -> new IllegalArgumentException("검색한 사람은 없습니다")
                         )
         );
     }

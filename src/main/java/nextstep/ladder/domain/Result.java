@@ -33,4 +33,13 @@ public class Result {
     public int hashCode() {
         return Objects.hash(text);
     }
+
+    @Override
+    public String toString() {
+        return text;
+    }
+
+    public int getLength() {
+        return text.length();
+    }
 }

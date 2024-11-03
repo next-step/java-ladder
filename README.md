@@ -2,16 +2,12 @@
 
 ## TODO
 
-### Ladders (사다리)
-- [ ] Person 객체로 Result 결과 반환
-
-### Ladder (사다리 1줄)
-
 ## DONE
 
 ### Ladders (사다리)
 
 - [x] 높이 1미만이면 예외 처리
+- [x] index로 결과 index 반환
 
 ### Ladder (사다리 1줄)
 - [x] 전략 패턴 검증

@@ -16,7 +16,7 @@ public class Results {
         return results;
     }
 
-    public Result search(int index) {
+    public Result searchIndex(int index) {
         return results.get(index);
     }
 
