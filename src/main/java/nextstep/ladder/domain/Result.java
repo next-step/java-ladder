@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.Objects;
+
 public class Result {
 
     private String text;
@@ -17,5 +19,18 @@ public class Result {
 
     private boolean isBlank(String text) {
         return text == null || text.isBlank();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Result result = (Result) o;
+        return Objects.equals(text, result.text);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(text);
     }
 }
