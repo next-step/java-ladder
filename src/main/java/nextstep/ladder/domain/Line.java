@@ -7,13 +7,20 @@ public class Line {
     private boolean left = DISCONNECTED;
     private boolean right = DISCONNECTED;
 
+    public Line() {
+
+    }
+
     public Line(boolean left, boolean right) {
+        checkLeftAndRightALLConnected(left, right);
         this.left = left;
         this.right = right;
     }
 
-    public Line() {
-
+    private void checkLeftAndRightALLConnected(boolean left, boolean right) {
+        if(left == CONNECTED && right == CONNECTED) {
+            throw new IllegalArgumentException("연속으로 연결된 라인은 생성할 수 없습니다");
+        }
     }
 
     public void connectRight() {
