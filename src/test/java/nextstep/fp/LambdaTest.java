@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LambdaTest {
+class LambdaTest {
     private List<Integer> numbers;
 
     @BeforeEach
@@ -17,35 +17,35 @@ public class LambdaTest {
     }
 
     @Test
-    public void printAllOld() throws Exception {
+    void printAllOld() throws Exception {
         Lambda.printAllOld(numbers);
     }
 
     @Test
-    public void printAllLambda() throws Exception {
+    void printAllLambda() throws Exception {
         Lambda.printAllLambda(numbers);
     }
 
     @Test
-    public void runThread() throws Exception {
+    void runThread() throws Exception {
         Lambda.runThread();
     }
 
     @Test
-    public void sumAll() throws Exception {
-        int sum = Lambda.sumAll(numbers);
+    void sumAll() throws Exception {
+        int sum = Lambda.sumAll(numbers, (number) -> true);
         assertThat(sum).isEqualTo(21);
     }
 
     @Test
-    public void sumAllEven() throws Exception {
-        int sum = Lambda.sumAllEven(numbers);
+    void sumAllEven() throws Exception {
+        int sum = Lambda.sumAll(numbers, (number) -> number % 2 == 0);
         assertThat(sum).isEqualTo(12);
     }
 
     @Test
-    public void sumAllOverThree() throws Exception {
-        int sum = Lambda.sumAllOverThree(numbers);
+    void sumAllOverThree() throws Exception {
+        int sum = Lambda.sumAll(numbers, (number) -> number > 3);
         assertThat(sum).isEqualTo(15);
     }
 }
