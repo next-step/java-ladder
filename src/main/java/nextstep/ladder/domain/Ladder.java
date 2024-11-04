@@ -14,10 +14,17 @@ public class Ladder {
         this.participants = participants;
     }
 
-    public static Ladder createLadder(Participants participants, int height, LineDecisionStrategy lineDescisionStrategy) {
+    public static Ladder createLadder(Participants participants, LadderResult result, int height, LineDecisionStrategy lineDescisionStrategy) {
+        validateResult(participants, result);
         validateHeight(height);
         List<Line> lines = initializeLadder(height, participants, lineDescisionStrategy);
         return new Ladder(lines, participants);
+    }
+
+    private static void validateResult(Participants participants, LadderResult result) {
+        if (!result.isMatchedWithParticipants(participants)) {
+            throw new IllegalArgumentException("참가자 수와 결과 수가 일치해야 합니다.");
+        }
     }
 
     private static void validateHeight(int height) {

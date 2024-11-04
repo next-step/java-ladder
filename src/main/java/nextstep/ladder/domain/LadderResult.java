@@ -18,4 +18,8 @@ public class LadderResult {
     public List<String> getResults() {
         return Collections.unmodifiableList(results);
     }
+
+    public boolean isMatchedWithParticipants(Participants participants) {
+        return results.size() == participants.size();
+    }
 }
