@@ -61,6 +61,14 @@ public class Ladder {
 
     public String findResult(String name) {
         int startPosition = participants.findParticipantIndex(name);
+        int endPosition = moveDown(startPosition);
         return "";
+    }
+
+    private int moveDown(int position) {
+        for (Line line : lines) {
+            position = line.move(position);
+        }
+        return position;
     }
 }

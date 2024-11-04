@@ -36,4 +36,27 @@ class LineTest {
         assertThat(line.hasLine(2)).isFalse();
     }
 
+    @DisplayName("그려진 선이 없을때 move 메서드가 동일한 위치를 반환하는지")
+    @Test
+    void moveTest_withNoLine() {
+        Line line = Line.createLine(5);
+        assertThat(line.move(0)).isEqualTo(0);
+    }
+
+    @DisplayName("왼쪽으로 이동할 수 있는지")
+    @Test
+    void moveTest_withLeftSide() {
+        Line line = Line.createLine(5);
+        line.drawLine(1);
+        assertThat(line.move(2)).isEqualTo(1);
+    }
+
+    @DisplayName("오른쪽으로 이동할 수 있는지")
+    @Test
+    void moveTest_withRightSide() {
+        Line line = Line.createLine(5);
+        line.drawLine(1);
+        assertThat(line.move(1)).isEqualTo(2);
+    }
+
 }
