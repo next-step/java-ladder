@@ -1,8 +1,8 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Participants {
 
@@ -16,6 +16,13 @@ public class Participants {
         return participants.stream()
                 .map(Participant::getName)
                 .collect(Collectors.toList());
+    }
+
+    public int findParticipantIndex(String name) {
+        return IntStream.range(0, participants.size())
+                .filter(i -> participants.get(i).getName().equals(name))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public int size() {

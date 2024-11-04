@@ -32,4 +32,30 @@ public class Line {
     public Points points() {
         return points;
     }
+
+    public int move(int position) {
+        if (canMoveLeft(position)) {
+            return moveLeft(position);
+        }
+        if (canMoveRight(position)) {
+            return moveRight(position);
+        }
+        return position;
+    }
+
+    private boolean canMoveLeft(int position) {
+        return position > 0 && points.isConnected(position - 1);
+    }
+
+    private boolean canMoveRight(int position) {
+        return position < points.size() && points.isConnected(position);
+    }
+
+    private int moveLeft(int position) {
+        return position - 1;
+    }
+
+    private int moveRight(int position) {
+        return position + 1;
+    }
 }

@@ -4,10 +4,22 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
 
 class LadderTest {
+
+    @DisplayName("참여자 수와 결과 수가 다른 경우 예외가 잘 발생하는지")
+    @Test
+    void createLadderWithDifferentParticipantsAndResults() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> Ladder.createLadder(
+                        new Participants(List.of(new Participant("pobi"), new Participant("honux"))),
+                        new LadderResult(List.of("꽝", "5000", "3000")),
+                        3,
+                        new RandomLineDecisionStrategy()));
+    }
 
     @DisplayName("사다리 높이가 1 미만인 경우 예외가 잘 발생하는지")
     @Test
@@ -16,6 +28,7 @@ class LadderTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> Ladder.createLadder(
                         new Participants(List.of(new Participant("pobi"), new Participant("honux"))),
+                        new LadderResult(List.of("꽝", "5000")),
                         0,
                         new RandomLineDecisionStrategy()));
     }
@@ -24,12 +37,13 @@ class LadderTest {
     @Test
     void createLadderTest() {
         Participants participants = new Participants(List.of(new Participant("pobi"), new Participant("honux"), new Participant("crong")));
+        LadderResult result = new LadderResult(List.of("꽝", "5000", "3000"));
         LineDecisionStrategy testStrategy = new TestLineDecisionStrategy(
                 true, false,
                 false, true,
                 true, false
         );
-        Ladder ladder = Ladder.createLadder(participants, 3, testStrategy);
+        Ladder ladder = Ladder.createLadder(participants, result, 3, testStrategy);
         List<Line> lines = ladder.lines();
 
         // 첫 번째 줄 검증
@@ -49,20 +63,60 @@ class LadderTest {
     @Test
     void createLadderTest_NoContinuousLine() {
         Participants participants = new Participants(List.of(new Participant("pobi"), new Participant("honux"), new Participant("crong")));
+        LadderResult result = new LadderResult(List.of("꽝", "5000", "3000"));
         LineDecisionStrategy testStrategy = new TestLineDecisionStrategy(
                 true, true,
                 true, true,
                 true, true
         );
 
-        Ladder ladder = Ladder.createLadder(participants, 3, testStrategy);
+        Ladder ladder = Ladder.createLadder(participants, result, 3, testStrategy);
 
         ladder.lines().forEach(line -> {
             Points points = line.points();
             for (int i = 0; i < points.size() - 1; i++) {
-                // 연속된 두 지점이 모두 연결되어 있지 않아야 함
                 assertThat(points.isConnected(i) && points.isConnected(i + 1)).isFalse();
             }
         });
     }
+
+    @DisplayName("결과를 잘 찾아서 반환하는지")
+    @Test
+    void findResultTest() {
+        Participants participants = new Participants(List.of(
+                new Participant("pobi"),
+                new Participant("honux"),
+                new Participant("crong")
+        ));
+        LadderResult results = new LadderResult(List.of("꽝", "5000", "3000"));
+        LineDecisionStrategy testStrategy = new TestLineDecisionStrategy(
+                true, false,  // 첫 줄: pobi -> honux
+                false, true   // 둘째 줄: honux -> crong
+        );
+
+        Ladder ladder = Ladder.createLadder(participants, results, 2, testStrategy);
+
+        assertThat(ladder.findResult("pobi")).isEqualTo("3000");
+        assertThat(ladder.findResult("honux")).isEqualTo("꽝");
+        assertThat(ladder.findResult("crong")).isEqualTo("5000");
+    }
+
+    @DisplayName("모든 결과를 조회했을 때 결과를 잘 반환하는지")
+    @Test
+    void findAllResults() {
+        Participants participants = new Participants(List.of(
+                new Participant("pobi"),
+                new Participant("honux")
+        ));
+        LadderResult results = new LadderResult(List.of("꽝", "5000"));
+        LineDecisionStrategy testStrategy = new AllLineDecisionStrategy();
+
+        Ladder ladder = Ladder.createLadder(participants, results, 1, testStrategy);
+        Map<String, String> allResults = ladder.findAllResults();
+
+        assertThat(allResults)
+                .containsEntry("pobi", "5000")
+                .containsEntry("honux", "꽝");
+    }
 }
+
