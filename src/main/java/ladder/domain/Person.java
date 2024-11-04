@@ -5,8 +5,8 @@ import java.util.Objects;
 public class Person {
     public static final String ALL = "all";
     private static final int MAX_NAME_LENGTH = 5;
-    private static final String MAX_NAME_ERROR_MESSAGE = "이름은 5글자를 넘을 수 없습니다.";
-    private static final String ALL_ERROR = "all은 사용자 이름으로 사용 할 수 없습니다.";
+    private static final String MAX_NAME_ERROR_MESSAGE = "이름은 "+ MAX_NAME_LENGTH + "글자를 넘을 수 없습니다.";
+    private static final String ALL_ERROR = ALL+"은 사용자 이름으로 사용 할 수 없습니다.";
 
     private final String name;
     private Position position;

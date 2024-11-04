@@ -3,7 +3,8 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Position {
-    private static final String POINT_ERROR_MESSAGE = "위치는 0보다 작을 수 없습니다.";
+    private static final int MIN_VALUE = 0;
+    private static final String POINT_ERROR_MESSAGE = "위치는 " + MIN_VALUE + "보다 작을 수 없습니다.";
 
     private final int position;
 
@@ -17,7 +18,7 @@ public class Position {
     }
 
     private void validateValue(int position) {
-        if (position < 0) {
+        if (position < MIN_VALUE) {
             throw new IllegalArgumentException(POINT_ERROR_MESSAGE);
         }
     }
