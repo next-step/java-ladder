@@ -17,4 +17,11 @@ public class PositiveNumber {
         return number;
     }
 
+    @Override
+    public String toString() {
+        return "PositiveNumber{" +
+                "number=" + number +
+                '}';
+    }
+
 }

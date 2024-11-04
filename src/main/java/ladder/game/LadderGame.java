@@ -6,9 +6,9 @@ import ladder.domain.Person;
 import ladder.domain.Persons;
 import ladder.generator.LineStrategy;
 import ladder.generator.Strategy;
-import ladder.view.ResultView;
 
 import static ladder.view.InputView.*;
+import static ladder.view.ResultView.*;
 
 public class LadderGame {
 
@@ -20,8 +20,10 @@ public class LadderGame {
         Ladder ladder = Ladder.of(persons.getSize(), ladderCountQuestion(), strategy);
         makePlayResults(persons, ladder);
 
-        ResultView resultView = new ResultView(ladderResult, persons);
-        resultView.getResultView(ladder);
+        getPersonsResultView(persons);
+        getLadderResultView(ladder);
+        getLadderPrizeResultView(persons, ladderResult);
+        getLadderGameResultView(persons, ladderResult);
     }
 
     private static void makePlayResults(Persons persons, Ladder ladder) {

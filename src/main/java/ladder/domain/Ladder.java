@@ -30,17 +30,23 @@ public class Ladder {
     }
 
     public int getPersonLadderResult(int startPosition) {
+        System.out.println(startPosition);
         int currentPosition = startPosition;
         for (Line line : lines) {
             currentPosition = line.move(currentPosition);
         }
+        System.out.println(currentPosition);
         return currentPosition;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Ladder ladder = (Ladder) o;
         return Objects.equals(height, ladder.height) && Objects.equals(lines, ladder.lines);
     }
@@ -50,4 +56,11 @@ public class Ladder {
         return Objects.hash(height, lines);
     }
 
+    @Override
+    public String toString() {
+        return "Ladder{" +
+                "height=" + height +
+                ", lines=" + lines +
+                '}';
+    }
 }

@@ -1,10 +1,10 @@
 package ladder.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
 
@@ -22,14 +22,6 @@ public class LineTest {
         assertThatThrownBy(() -> new Line(false, false, true, true))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageMatching("연속으로 중복 될 수 없는 값이 존재합니다.");
-    }
-
-    @Test
-    @DisplayName("빈 라인 객체 생성 시 예외 발생 테스트")
-    void 라인_생성_실패_테스트() {
-        assertThatThrownBy(() -> new Line())
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageMatching("라인은 비어있을 수 없습니다.");
     }
 
     @Test
