@@ -18,7 +18,7 @@ public class Line {
     public int move(int position) {
         Point point = points.get(position);
         Direction direction = point.move();
-        return position + direction.getDirectionValue();
+        return direction.move(position);
     }
 
     @Override
