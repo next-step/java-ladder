@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -78,4 +79,44 @@ class LadderTest {
             }
         });
     }
+
+    @DisplayName("결과를 잘 찾아서 반환하는지")
+    @Test
+    void findResultTest() {
+        Participants participants = new Participants(List.of(
+                new Participant("pobi"),
+                new Participant("honux"),
+                new Participant("crong")
+        ));
+        LadderResult results = new LadderResult(List.of("꽝", "5000", "3000"));
+        LineDecisionStrategy testStrategy = new TestLineDecisionStrategy(
+                true, false,  // 첫 줄: pobi -> honux
+                false, true   // 둘째 줄: honux -> crong
+        );
+
+        Ladder ladder = Ladder.createLadder(participants, results, 2, testStrategy);
+
+        assertThat(ladder.findResult("pobi")).isEqualTo("3000");
+        assertThat(ladder.findResult("honux")).isEqualTo("꽝");
+        assertThat(ladder.findResult("crong")).isEqualTo("5000");
+    }
+
+    @DisplayName("모든 결과를 조회했을 때 결과를 잘 반환하는지")
+    @Test
+    void findAllResults() {
+        Participants participants = new Participants(List.of(
+                new Participant("pobi"),
+                new Participant("honux")
+        ));
+        LadderResult results = new LadderResult(List.of("꽝", "5000"));
+        LineDecisionStrategy testStrategy = new AllLineDecisionStrategy();
+
+        Ladder ladder = Ladder.createLadder(participants, results, 1, testStrategy);
+        Map<String, String> allResults = ladder.findAllResults();
+
+        assertThat(allResults)
+                .containsEntry("pobi", "5000")
+                .containsEntry("honux", "꽝");
+    }
 }
+
