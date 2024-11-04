@@ -58,4 +58,9 @@ public class Ladder {
     public List<Line> lines() {
         return Collections.unmodifiableList(lines);
     }
+
+    public String findResult(String name) {
+        int startPosition = participants.findParticipantIndex(name);
+        return "";
+    }
 }
