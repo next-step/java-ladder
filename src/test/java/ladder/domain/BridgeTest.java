@@ -28,8 +28,8 @@ class BridgeTest {
         ConnectionStrategy alwaysTrueStrategy = new FakeConnectionStrategy(true);
         bridge.connectSteps(4, alwaysTrueStrategy);
 
-        assertEquals(1, bridge.move(0));
-        assertEquals(0, bridge.move(1));
+        assertEquals(new Position(1), bridge.move(new Position(0)));
+        assertEquals(new Position(0), bridge.move(new Position(1)));
     }
 
 }

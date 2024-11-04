@@ -18,7 +18,9 @@ public class LadderTest {
 
         ConnectionStrategy alwaysTrueStrategy = new FakeConnectionStrategy(true);
 
-        List<Bridge> steps = ladder.createSteps(new LadderSetting(4, 5), alwaysTrueStrategy);
+        ladder.createSteps(new LadderSetting(4, 5), alwaysTrueStrategy);
+
+        List<Bridge> steps = ladder.getSteps();
 
         assertThat(steps.size()).isEqualTo(5);
         steps.forEach(bridge -> {
@@ -38,13 +40,15 @@ public class LadderTest {
         String[] participantNames = {"aaaa", "bbbb", "cccc", "dddd"};
         String[] outcomes = {"꽝", "5000", "꽝", "3000"};
 
+        LadderGameData gameData = new LadderGameData(participantNames, outcomes);
+
         Map<String, String> expectedOutcomes = new LinkedHashMap<>();
         expectedOutcomes.put("aaaa", "5000");
         expectedOutcomes.put("bbbb", "꽝");
         expectedOutcomes.put("cccc", "3000");
         expectedOutcomes.put("dddd", "꽝");
 
-        assertThat(ladder.findOutcomeForParticipant(participantNames, outcomes))
+        assertThat(ladder.findOutcomeForParticipant(gameData).getParticipantOutcomes())
                 .isEqualTo(expectedOutcomes);
     }
 
