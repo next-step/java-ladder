@@ -7,6 +7,6 @@ public class LadderGameTest {
     @Test
     void create() {
         LadderGame ladderGame = new LadderGame(6, 5);
-        Assertions.assertThat(ladderGame.getShapeOfLadderAsList()).hasSize(6);
+        Assertions.assertThat(ladderGame.getLines()).hasSize(6);
     }
 }
