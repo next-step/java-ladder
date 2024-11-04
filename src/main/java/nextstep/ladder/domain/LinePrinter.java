@@ -24,6 +24,6 @@ public class LinePrinter {
     }
 
     private static String getCurrentPositionStatus(Point point) {
-        return point.isRightConnected() ? CONNECTED_STRING : DISCONNECTED_STRING;
+        return point.isRightDirection() ? CONNECTED_STRING : DISCONNECTED_STRING;
     }
 }

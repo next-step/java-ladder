@@ -4,15 +4,27 @@ import java.util.Objects;
 
 public class Point {
 
-    private final boolean left;
-    private final boolean right;
+    private final Direction direction;
+
+    public Point(Direction direction) {
+        this.direction = direction;
+    }
 
     public Point(boolean left, boolean right) {
         if (left && right) {
             throw new IllegalArgumentException("유효하지 않은 상태입니다.");
         }
-        this.left = left;
-        this.right = right;
+        direction = determineDirection(left, right);
+    }
+
+    private Direction determineDirection(boolean left, boolean right) {
+        if (left) {
+            return Direction.LEFT;
+        }
+        if (right) {
+            return Direction.RIGHT;
+        }
+        return Direction.DOWN;
     }
 
     public static Point first(boolean right) {
@@ -20,28 +32,25 @@ public class Point {
     }
 
     public Point next(boolean next) {
-        if (right) {
-            return new Point(right, false);
+        if (isRightDirection()) {
+            return new Point(Direction.LEFT);
         }
-        return new Point(right, next);
+        return new Point(false, next);
     }
 
     public Point last() {
-        return new Point(this.right, false);
+        if (isRightDirection()) {
+            return new Point(Direction.LEFT);
+        }
+        return new Point(Direction.DOWN);
     }
 
     public Direction move() {
-        if (right) {
-            return Direction.RIGHT;
-        }
-        if (left) {
-            return Direction.LEFT;
-        }
-        return Direction.DOWN;
+        return direction;
     }
 
-    public boolean isRightConnected() {
-        return right;
+    public boolean isRightDirection() {
+        return Direction.RIGHT == direction;
     }
 
     @Override
@@ -49,11 +58,11 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return left == point.left && right == point.right;
+        return direction == point.direction;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(left, right);
+        return Objects.hash(direction);
     }
 }

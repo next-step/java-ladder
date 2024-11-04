@@ -22,7 +22,6 @@ public class LadderMain {
         int height = inputLadderHeight();
         LadderGenerator generator = new RandomLadderGenerator();
         Ladder ladder = generator.generateLadder(participants.getParticipantCount(), height);
-
         printLadderStatus(participants.getParticipantNames(), ladder, resultList);
 
         LadderGame game = new LadderGame(participants, ladder);
