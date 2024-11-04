@@ -6,9 +6,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Persons {
-    private static final String SPLIT_DELIMITER = ",";
     private final List<Person> persons;
-    private final int maxLength;
+
 
     public Persons(String[] texts) {
         this(Arrays.stream(texts)
@@ -18,10 +17,7 @@ public class Persons {
 
     public Persons(List<Person> persons) {
         this.persons = persons;
-        this.maxLength = persons.stream()
-                .map(person -> person.getLength())
-                .max(Integer::compareTo)
-                .orElse(0);
+
     }
 
     public int personCount() {
@@ -30,10 +26,6 @@ public class Persons {
 
     public List<Person> getPersons() {
         return persons;
-    }
-
-    public int getMaxLength() {
-        return maxLength;
     }
 
     @Override
@@ -48,4 +40,9 @@ public class Persons {
     public int hashCode() {
         return Objects.hash(persons);
     }
+
+    public Person searchIndex(int index) {
+        return persons.get(index);
+    }
+
 }

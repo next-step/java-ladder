@@ -10,15 +10,31 @@ public class ResultView {
     private static final String HEIGHT_UNIT = "|";
     private static final String VERTICAL_LINE_UNIT = "-";
     private static final String VERTICAL_EMPTY_UNIT = " ";
-    private static final String RESULT_MESSAGE = "실행결과";
+    private static final String ALL_FLAG = "all";
+    private static final String RESULT_LADDER = "사다리 결과";
+    private static final String RESULT_MESSAGE = "실행 결과";
 
 
-
-    public static void print(Persons persons, Heights heights) {
-        System.out.println(RESULT_MESSAGE);
-        int lengthCount = persons.getMaxLength() + 2;
+    public static void printLadder(Persons persons, Ladders ladders, Results results) {
+        System.out.println(RESULT_LADDER);
+        int lengthCount = persons.getPersons().stream()
+                .map(person -> person.getLength())
+                .max(Integer::compareTo)
+                .orElse(0) + 2;
         printPersons(lengthCount, persons);
-        printLadder(lengthCount, heights);
+        printLadder(lengthCount, ladders);
+        printResult(lengthCount, results);
+    }
+
+    private static void printResult(int maxLength, Results results) {
+        results.getResults().forEach(result -> System.out.print(resultText(maxLength, result)));
+        System.out.println();
+    }
+
+    private static String resultText(int maxLength, Result result) {
+        return Stream.generate(() -> VERTICAL_EMPTY_UNIT)
+                .limit(maxLength - result.getLength())
+                .collect(Collectors.joining()) + result;
     }
 
     private static void printPersons(int maxLength, Persons persons) {
@@ -29,15 +45,15 @@ public class ResultView {
     private static String personText(int maxLength, Person person) {
         return Stream.generate(() -> VERTICAL_EMPTY_UNIT)
                 .limit(maxLength - person.getLength())
-                .collect(Collectors.joining()) + person.getName();
+                .collect(Collectors.joining()) + person;
     }
 
-    private static void printLadder(int maxLength, Heights heights) {
-        printHeight(maxLength, heights.getHeight());
+    private static void printLadder(int maxLength, Ladders ladders) {
+        printHeight(maxLength, ladders.getLadders());
     }
 
-    private static void printHeight(int maxLength, List<Lines> heights) {
-        for (Lines height : heights) {
+    private static void printHeight(int maxLength, List<Ladder> heights) {
+        for (Ladder height : heights) {
             printVerticals(maxLength, height.getLines());
             System.out.println();
         }
@@ -72,4 +88,30 @@ public class ResultView {
                 .collect(Collectors.joining()) + HEIGHT_UNIT;
     }
 
+    public static boolean printGameResult(Person viewPerson, PersonResults gameResult) {
+        if (isAll(viewPerson)) {
+            return printGameResultAll(gameResult);
+        }
+        return printGameResultSingle(viewPerson, gameResult);
+    }
+
+    private static boolean printGameResultAll(PersonResults personResults) {
+
+        List<Person> keys = personResults.getKeys();
+        for (Person person : keys) {
+            Result result = personResults.getResultByPerson(person);
+            System.out.println(person + " : " + result);
+        }
+        return true;
+    }
+
+    private static boolean printGameResultSingle(Person viewPerson, PersonResults personResult) {
+        System.out.println(RESULT_MESSAGE);
+        System.out.println(personResult.getResultByPerson(viewPerson));
+        return false;
+    }
+
+    private static boolean isAll(Person viewPerson) {
+        return viewPerson.equalsText(ALL_FLAG);
+    }
 }

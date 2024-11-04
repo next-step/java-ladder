@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -25,13 +26,13 @@ public class PersonsTest {
 
     }
 
+    @DisplayName("index 입력 시 Person 객체 반환")
     @Test
-    void 문자열_입력_시_최대_길이() {
-
+    void search() {
         Persons persons = new Persons(new String[]{"pobi", "honux", "crong", "jk"});
-        int maxLength = persons.getMaxLength();
+        Person searchPerson = persons.searchIndex(2);
 
-        assertThat(maxLength).isEqualTo(5);
+        assertThat(searchPerson).isEqualTo(new Person("crong"));
 
     }
 }

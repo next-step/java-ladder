@@ -33,8 +33,8 @@ public class Person {
         return name.length();
     }
 
-    public String getName() {
-        return name;
+    public boolean equalsText(String text) {
+        return this.name.equals(text);
     }
 
     @Override
@@ -54,4 +54,6 @@ public class Person {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+
 }
