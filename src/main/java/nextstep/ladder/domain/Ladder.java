@@ -7,49 +7,50 @@ import java.util.stream.Collectors;
 
 public class Ladder {
     private final PositiveNumber height;
-    private final List<LadderRow> ladderRows;
+    private final List<Line> lines;
 
     public Ladder(PositiveNumber width, PositiveNumber height) {
         this.height = height;
-        this.ladderRows = new ArrayList<>();
-        makeMap(width, height);
+        this.lines = new ArrayList<>();
+        makeLine(width, height);
     }
 
-    public Ladder(PositiveNumber height, List<LadderRow> ladderRows) {
+    public Ladder(PositiveNumber height, List<Line> lines) {
         this.height = height;
-        this.ladderRows = ladderRows;
+        this.lines = lines;
     }
 
-    private void makeMap(PositiveNumber width, PositiveNumber height) {
+    private void makeLine(PositiveNumber width, PositiveNumber height) {
         for (int i = 0; i < height.getValue(); i++) {
-            ladderRows.add(new LadderRow(width, RandomBarGeneratorStrategy.getInstance()));
+            lines.add(new Line(width, RandomBarGeneratorStrategy.getInstance()));
         }
     }
 
-    public List<LadderRow> getLadderRows() {
-        return Collections.unmodifiableList(ladderRows);
+    public List<Line> getLadderRows() {
+        return Collections.unmodifiableList(lines);
     }
 
     private List<String> getMapAsString() {
-        return ladderRows.stream()
-            .map(LadderRow::getRowAsString)
+        return lines.stream()
+            .map(Line::getRowAsString)
             .collect(Collectors.toList());
     }
 
-    public Point getLadderResultIndex(Point startPoint) {
-        Point currentPoint = startPoint;
+    // 시작 지점을 매개변수로 받는 run 메서드. 사다리 게임 후 마지막 인덱스를 반환한다.
+    public int run(int startPoint) {
+        int currentPoint = startPoint;
         for (int i = 0; i < height.getValue(); i++) {
-            currentPoint = getNextPoint(currentPoint, ladderRows.get(i));
+            currentPoint = getNextPoint(currentPoint, lines.get(i));
         }
         return currentPoint;
     }
 
-    private Point getNextPoint(Point currentPoint, LadderRow ladderRow) {
-        if (ladderRow.isLeftMoveable(currentPoint)) {
-            return currentPoint.minus();
+    private int getNextPoint(int currentPoint, Line line) {
+        if (line.isLeftMoveable(currentPoint)) {
+            return currentPoint - 1;
         }
-        if (ladderRow.isRightMoveable(currentPoint)) {
-            return currentPoint.plus();
+        if (line.isRightMoveable(currentPoint)) {
+            return currentPoint + 1;
         }
         return currentPoint;
     }
