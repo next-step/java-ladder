@@ -1,19 +1,19 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class LadderGame {
 
     public static PersonResults result(Persons persons, Ladders ladders, Results results) {
         validate(persons, results);
-        List<PersonResult> personResults = new ArrayList<>();
+        Map<Person, Result> personResultMap = new LinkedHashMap<>();
 
         for (int i = 0; i < persons.personCount(); i++) {
             int resultIndex = searchIndex(i, ladders);
-            personResults.add(new PersonResult(persons.searchIndex(i), results.searchIndex(resultIndex)));
+            personResultMap.put(persons.searchIndex(i), results.searchIndex(resultIndex));
         }
-        return new PersonResults(personResults);
+        return new PersonResults(personResultMap);
     }
 
     private static int searchIndex(int index, Ladders ladders) {

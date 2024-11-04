@@ -2,62 +2,54 @@ package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class PersonResultsTest {
 
     @Test
     void 없는_이름이면_예외() {
 
+        Map<Person, Result> map = new LinkedHashMap<>();
+        map.put(new Person("java"), new Result("꽝"));
+        map.put(new Person("jeong"), new Result("2000"));
+        map.put(new Person("hyeon"), new Result("3000"));
+        PersonResults personResults = new PersonResults(map);
 
-        PersonResults personResults = new PersonResults(
-                List.of(
-                        new PersonResult(new Person("java"), new Result("꽝")),
-                        new PersonResult(new Person("jeong"), new Result("2000")),
-                        new PersonResult(new Person("hyeon"), new Result("3000"))
-                )
+        assertThatIllegalArgumentException().isThrownBy(
+                () -> personResults.getResultByPerson(new Person("js"))
         );
 
-        assertThatThrownBy(
-                () -> personResults.searchName("js")
-        ).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 서치_사이즈_검증() {
-        PersonResults personResults = new PersonResults(
-                List.of(
-                        new PersonResult(new Person("java"), new Result("꽝")),
-                        new PersonResult(new Person("jeong"), new Result("2000")),
-                        new PersonResult(new Person("hyeon"), new Result("3000"))
-                )
-        );
+    void 서치() {
+        Map<Person, Result> map = new LinkedHashMap<>();
+        map.put(new Person("java"), new Result("꽝"));
+        map.put(new Person("jeong"), new Result("2000"));
+        map.put(new Person("hyeon"), new Result("3000"));
+        PersonResults personResults = new PersonResults(map);
 
-        List<PersonResult> results = personResults.searchName("java");
+        Result result = personResults.getResultByPerson(new Person("java"));
 
-        assertAll(
-                () -> assertThat(results).hasSize(1),
-                () -> assertThat(results.get(0)).isEqualTo(
-                        new PersonResult(new Person("java"), new Result("꽝"))
-                )
-        );
+        assertThat(result).isEqualTo(new Result("꽝"));
     }
 
     @Test
-    void all_search() {
-        PersonResults personResults = new PersonResults(
-                List.of(
-                        new PersonResult(new Person("java"), new Result("꽝")),
-                        new PersonResult(new Person("jeong"), new Result("2000")),
-                        new PersonResult(new Person("hyeon"), new Result("3000"))
-                )
-        );
-        List<PersonResult> results = personResults.searchName("all");
+    void key_list() {
+        Map<Person, Result> map = new LinkedHashMap<>();
+        map.put(new Person("java"), new Result("꽝"));
+        map.put(new Person("jeong"), new Result("2000"));
+        map.put(new Person("hyeon"), new Result("3000"));
+        PersonResults personResults = new PersonResults(map);
 
-        assertThat(results).hasSize(3);
+        List<Person> keys = personResults.getKeys();
+
+        assertThat(keys).isEqualTo(List.of(new Person("java"), new Person("jeong"), new Person("hyeon")));
     }
+
 }

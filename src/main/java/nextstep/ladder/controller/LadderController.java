@@ -11,7 +11,7 @@ public class LadderController {
         Results results = new Results(InputView.requestResults());
         int heightCount = InputView.requestHeightCount();
 
-        Ladders ladders = new Ladders(persons.personCount(), heightCount);
+        Ladders ladders = Ladders.of(persons.personCount(), heightCount);
         ResultView.printLadder(persons, ladders, results);
 
         PersonResults gameResult = LadderGame.result(persons, ladders, results);
@@ -26,16 +26,6 @@ public class LadderController {
     }
 
     private static boolean printResult(String viewPerson, PersonResults gameResult) {
-        if (isAll(viewPerson)) {
-            ResultView.printGameResultAll(gameResult.searchName(viewPerson));
-            return true;
-        }
-        ResultView.printGameResult(gameResult.searchName(viewPerson).get(0));
-        return false;
+        return ResultView.printGameResult(new Person(viewPerson), gameResult);
     }
-
-    private static boolean isAll(String viewPerson) {
-        return viewPerson.equals("all");
-    }
-
 }

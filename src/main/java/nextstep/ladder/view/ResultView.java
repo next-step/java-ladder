@@ -10,6 +10,7 @@ public class ResultView {
     private static final String HEIGHT_UNIT = "|";
     private static final String VERTICAL_LINE_UNIT = "-";
     private static final String VERTICAL_EMPTY_UNIT = " ";
+    private static final String ALL_FLAG = "all";
     private static final String RESULT_LADDER = "사다리 결과";
     private static final String RESULT_MESSAGE = "실행 결과";
 
@@ -87,21 +88,30 @@ public class ResultView {
                 .collect(Collectors.joining()) + HEIGHT_UNIT;
     }
 
-
-    public static void printGameResultAll(List<PersonResult> personResults) {
-        System.out.println(RESULT_MESSAGE);
-        printAll(personResults);
-    }
-
-    private static void printAll(List<PersonResult> personResults) {
-
-        for (PersonResult personResult : personResults) {
-            System.out.println(personResult.getPerson() + " : " + personResult.getResult());
+    public static boolean printGameResult(Person viewPerson, PersonResults gameResult) {
+        if (isAll(viewPerson)) {
+            return printGameResultAll(gameResult);
         }
+        return printGameResultSingle(viewPerson, gameResult);
     }
 
-    public static void printGameResult(PersonResult personResult) {
+    private static boolean printGameResultAll(PersonResults personResults) {
+
+        List<Person> keys = personResults.getKeys();
+        for (Person person : keys) {
+            Result result = personResults.getResultByPerson(person);
+            System.out.println(person + " : " + result);
+        }
+        return true;
+    }
+
+    private static boolean printGameResultSingle(Person viewPerson, PersonResults personResult) {
         System.out.println(RESULT_MESSAGE);
-        System.out.println(personResult.getResult());
+        System.out.println(personResult.getResultByPerson(viewPerson));
+        return false;
+    }
+
+    private static boolean isAll(Person viewPerson) {
+        return viewPerson.equalsText(ALL_FLAG);
     }
 }

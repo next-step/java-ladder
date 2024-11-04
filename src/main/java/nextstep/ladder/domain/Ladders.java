@@ -8,33 +8,65 @@ import java.util.List;
 
 public class Ladders {
 
-    private List<Ladder> ladders = new ArrayList<>();
+    private final List<Ladder> ladders;
 
-    public Ladders(int peopleCount, int heightCount) {
-        this(peopleCount, heightCount, new RandomBooleanStrategy());
+    private Ladders(List<Ladder> ladders) {
+        this.ladders = ladders;
     }
 
-    public Ladders(int peopleCount, int heightCount, BooleanStrategy booleanStrategy) {
+    public static Ladders of(List<Ladder> ladders) {
+        return new Ladders(ladders);
+    }
+
+    public static Ladders of(int peopleCount, int heightCount) {
+        return of(peopleCount, heightCount, new RandomBooleanStrategy());
+    }
+
+    private static Ladders of(int peopleCount, int heightCount, BooleanStrategy booleanStrategy) {
         validate(heightCount);
+        List<Ladder> ladders = new ArrayList<>();
         for (int i = 0; i < heightCount; i++) {
-            ladders.add(new Ladder(peopleCount - 1, booleanStrategy));
+            List<Boolean> lines = createLines(peopleCount - 1, booleanStrategy);
+            ladders.add(new Ladder(lines));
         }
+        return new Ladders(ladders);
     }
 
-    private void validate(int heightCount) {
-        if (heightCount < 1) {
-            throw new IllegalArgumentException("높이는 0이상이여야 합니다");
+    private static List<Boolean> createLines(int lineCount, BooleanStrategy booleanStrategy) {
+        List<Boolean> lines = new ArrayList<>();
+        for (int i = 0; i < lineCount; i++) {
+            lines.add(isLine(lines, i, booleanStrategy));
         }
+        return lines;
+    }
+
+    public int searchIndex(int index) {
+        for (int i = 0; i < ladders.size(); i++) {
+            index = ladders.get(i).search(index);
+        }
+        return index;
     }
 
     public List<Ladder> getLadders() {
         return ladders;
     }
 
-    public int searchIndex(int index) {
-        for (int i = 0; i < ladders.size(); i++) {
-            index = ladders.get(i).decide(index);
+    private static void validate(int heightCount) {
+        if (heightCount < 1) {
+            throw new IllegalArgumentException("높이는 0이상이여야 합니다");
         }
-        return index;
     }
+
+    private static Boolean isLine(List<Boolean> lines, int i, BooleanStrategy booleanStrategy) {
+        if (isPerv(lines, i)) {
+            return false;
+        }
+        return booleanStrategy.decide();
+    }
+
+    private static boolean isPerv(List<Boolean> lines, int i) {
+        return i != 0 && lines.get(i - 1);
+    }
+
+
 }

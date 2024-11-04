@@ -7,7 +7,7 @@ public class RandomBooleanStrategy implements BooleanStrategy {
     private static final Random random = new Random();
 
     @Override
-    public boolean decide(int index) {
+    public boolean decide() {
         return random.nextBoolean();
     }
 }

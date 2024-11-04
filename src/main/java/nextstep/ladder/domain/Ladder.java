@@ -1,38 +1,19 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.strategy.BooleanStrategy;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private final List<Boolean> lines = new ArrayList<>();
+    private final List<Boolean> lines;
 
-    public Ladder(int lineCount, BooleanStrategy booleanStrategy) {
-        for (int i = 0; i < lineCount; i++) {
-            lines.add(createLine(i, booleanStrategy));
-        }
-    }
-
-    private Boolean createLine(int index, BooleanStrategy booleanStrategy) {
-        if (isPrev(index)) {
-            return false;
-        }
-        return booleanStrategy.decide(index);
-    }
-
-    private boolean isPrev(int i) {
-        if (i == 0) {
-            return false;
-        }
-        return lines.get(i - 1);
+    public Ladder(List<Boolean> lines) {
+        this.lines = lines;
     }
 
     public List<Boolean> getLines() {
         return lines;
     }
 
-    public int decide(int index) {
+    public int search(int index) {
         if (isLeft(index)) {
             return index - 1;
         }
@@ -43,17 +24,11 @@ public class Ladder {
     }
 
     private boolean isLeft(int result) {
-        if (result == 0 || !lines.get(result - 1)) {
-            return false;
-        }
-        return true;
+        return result != 0 && lines.get(result - 1);
     }
 
     private boolean isRight(int result) {
-        if (lines.size() == result || !lines.get(result)) {
-            return false;
-        }
-        return true;
+        return lines.size() != result && lines.get(result);
     }
 
 }

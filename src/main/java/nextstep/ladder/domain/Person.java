@@ -33,6 +33,10 @@ public class Person {
         return name.length();
     }
 
+    public boolean equalsText(String text) {
+        return this.name.equals(text);
+    }
+
     @Override
     public String toString() {
         return name;
