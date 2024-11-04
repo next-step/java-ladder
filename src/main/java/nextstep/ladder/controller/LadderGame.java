@@ -1,6 +1,5 @@
 package nextstep.ladder.controller;
 
-import java.util.List;
 import nextstep.ladder.domain.*;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.ResultView;
@@ -15,6 +14,9 @@ public class LadderGame {
 
         Ladder ladder = Ladder.createLadder(participants, result, height, new RandomLineDecisionStrategy());
         ResultView.printLadder(ladder);
+
+        String name = InputView.inputResultName();
+        ResultView.printResult(name, ladder);
     }
 
     private static Participants initializeParticipants() {

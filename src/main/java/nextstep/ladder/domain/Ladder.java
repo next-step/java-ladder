@@ -62,6 +62,10 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
+    public List<String> getResults() {
+        return results.getResults();
+    }
+
     public String findResult(String name) {
         int startPosition = participants.findParticipantIndex(name);
         int endPosition = moveDown(startPosition);
