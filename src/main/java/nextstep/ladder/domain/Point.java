@@ -8,16 +8,41 @@ public class Point {
     private static final int RIGHT = 1;
     private static final int DOWN = 0;
 
-    private boolean left;
-    private boolean right;
+    private final boolean left;
+    private final boolean right;
 
     public Point(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalArgumentException("유효하지 않은 상태입니다.");
+        }
         this.left = left;
         this.right = right;
     }
 
     public Point() {
         this(false, false);
+    }
+
+    public Point next(boolean next) {
+        return new Point(this.right, next);
+    }
+
+    public static Point first(boolean right) {
+        return new Point(false, right);
+    }
+
+    public static Point last(boolean left) {
+        return new Point(left, false);
+    }
+
+    public Direction move() {
+        if (right) {
+            return Direction.RIGHT;
+        }
+        if (left) {
+            return Direction.LEFT;
+        }
+        return Direction.DOWN;
     }
 
     public boolean isRightConnected() {
