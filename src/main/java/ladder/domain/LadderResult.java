@@ -1,49 +1,35 @@
 package ladder.domain;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LadderResult {
-    private final String[] participantNames;
-    private final String[] outcomes;
+    private static final String ALL_PARTICIPANT = "all";
 
-    public LadderResult(String[] participantNames, String[] outcomes) {
-        this.participantNames = participantNames;
-        this.outcomes = outcomes;
+    private final Map<String, String> participantOutcomes;
+
+    public LadderResult() {
+        participantOutcomes = new HashMap<>();
     }
 
-    public void printParticipantNames() {
-        Arrays.stream(participantNames)
-                .forEach(name -> System.out.print(name + "  "));
-        System.out.println();
-    }
-
-    public void printLadder(List<Bridge> ladders) {
-        StringBuilder output = new StringBuilder();
-
-        ladders.forEach(bridge -> {
-            List<Boolean> connections = bridge.getConnections();
-            output.append("    |");
-            connections.forEach(isConnected -> {
-                if (isConnected) {
-                    output.append("-----|");
-                    return;
-                }
-                output.append("     |");
-            });
-            output.append("\n");
-        });
-
-        System.out.println(output);
-    }
-
-    public void printOutcomes() {
-        StringBuilder output = new StringBuilder();
-
-        for (String outcome : outcomes) {
-            output.append(outcome).append("    ");
+    public String getOutcomeForParticipant(String participantNameForOutcome) {
+        if (participantNameForOutcome.equals(ALL_PARTICIPANT)) {
+            return participantOutcomes.entrySet()
+                    .stream()
+                    .map(entry -> entry.getKey() + " : " + entry.getValue())
+                    .collect(Collectors.joining("\n"));
         }
 
-        System.out.println(output);
+        if (participantOutcomes.get(participantNameForOutcome) == null) {
+            throw new NullPointerException("존재하지 않는 참가자입니다.");
+        }
+
+        return participantOutcomes.get(participantNameForOutcome);
     }
+
+    public Map<String, String> getParticipantOutcomes() {
+        return participantOutcomes;
+    }
+
 }

@@ -23,13 +23,13 @@ public class Bridge {
                 });
     }
 
-    public int move(int position) {
-        if (position > 0 && connections.get(position - 1)) {
-            return position - 1;
+    public Position move(Position position) {
+        if (position.getValue() > 0 && connections.get(position.getValue() - 1)) {
+            return position.moveLeft();
         }
 
-        if (position < connections.size() && connections.get(position)) {
-            return position + 1;
+        if (position.getValue() < connections.size() && connections.get(position.getValue())) {
+            return position.moveRight();
         }
 
         return position;

@@ -1,12 +1,14 @@
 package ladder.view;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
-    private static final String NAME_FORMAT = "^[a-zA-Z]+(,[a-zA-Z]+)*$";
-    private static final String OUTCOME_FORMAT = "^(꽝|[1-9][0-9]*)(,(꽝|[1-9][0-9]*))*$";
+    private static final int MIN_PARTICIPANT_NUMBER = 2;
+    private static final String NAME_FORMAT = "^[a-zA-Z]+(,\\s*[a-zA-Z]+)*$";
+    private static final String OUTCOME_FORMAT = "^(꽝|[1-9][0-9]*)(,\\s*(꽝|[1-9][0-9]*))*$";
     private static final String HEIGHT_FORMAT = "^([1-9][0-9]*)$";
 
     public static String[] inputParticipantNames() {
@@ -18,7 +20,17 @@ public class InputView {
             throw new InputMismatchException("잘못된 입력 형식입니다. 다시 입력해주세요.");
         }
 
-        return names.split(",");
+        String[] participantNames = names.split(",");
+
+        if(participantNames.length < MIN_PARTICIPANT_NUMBER) {
+            throw new InputMismatchException("참가자의 수는 최소 2명 이상어이야 합니다.");
+        }
+
+        participantNames = Arrays.stream(participantNames)
+                .map(String::trim)
+                .toArray(String[]::new);
+
+        return participantNames;
     }
 
     public static String[] inputOutcomes() {
@@ -30,7 +42,12 @@ public class InputView {
             throw new InputMismatchException("잘못된 입력 형식입니다. 다시 입력해주세요.");
         }
 
-        return outcome.split(",");
+        String[] outcomes = outcome.split(",");
+        outcomes = Arrays.stream(outcomes)
+                .map(String::trim)
+                .toArray(String[]::new);
+
+        return outcomes;
     }
 
     public static int inputMaxLadderHeight() {
