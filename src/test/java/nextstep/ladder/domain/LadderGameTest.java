@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +20,7 @@ class LadderGameTest {
                 new Point(true, false),
                 new Point(false, false));
         Line line = new Line(points);
-        ladder = new Ladder(List.of(line));
+        ladder = new MyLadder(List.of(line));
     }
 
     @Test

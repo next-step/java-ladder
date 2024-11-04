@@ -18,7 +18,7 @@ public class LadderGame {
         int participantCount = participants.getParticipantCount();
         Map<String, String> resultsMap = new LinkedHashMap<>();
         for (int nth = 0; nth < participantCount; nth++) {
-            int resultOrder = ladder.moveDown(nth);
+            int resultOrder = ladder.move(nth);
             resultsMap.put(participants.findNameByOrder(nth), results.get(resultOrder));
         }
         return new GameResult(resultsMap);

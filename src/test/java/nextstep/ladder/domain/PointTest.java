@@ -10,12 +10,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class PointTest {
 
     @Test
-    void 포인트_생성() {
-        Point point = new Point();
-        assertThat(point).isEqualTo(new Point());
-    }
-
-    @Test
     void moveDown() {
         Point point = new Point(false, false);
         Assertions.assertThat(point.move()).isEqualTo(Direction.DOWN);

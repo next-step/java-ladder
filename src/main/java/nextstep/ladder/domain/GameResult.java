@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class GameResult {
 
-    private Map<String, String> resultMap;
+    private final Map<String, String> resultMap;
 
     public GameResult(Map<String, String> resultMap) {
         this.resultMap = resultMap;
