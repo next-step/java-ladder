@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class LadderPrinterTest {
+public class LinePrinterTest {
 
     @Test
     @DisplayName("사다리가 주여졌을 때, 문자열로 반환한다.")
@@ -16,7 +16,6 @@ public class LadderPrinterTest {
                 new Point(true, false),
                 new Point(false, false));
         Line line = new Line(points);
-        LadderPrinter printer = new LadderPrinter(new Ladder(List.of(line)));
-        Assertions.assertThat(printer.printLadder()).isEqualTo("     |-----|     |\n");
+        Assertions.assertThat(LinePrinter.convertLineToString(line)).isEqualTo("     |-----|     |\n");
     }
 }
