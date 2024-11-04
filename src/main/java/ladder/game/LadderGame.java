@@ -6,7 +6,6 @@ import ladder.domain.Person;
 import ladder.domain.Persons;
 import ladder.generator.LineStrategy;
 import ladder.generator.Strategy;
-import ladder.view.ResultView;
 
 import static ladder.view.InputView.*;
 import static ladder.view.ResultView.*;

@@ -30,10 +30,12 @@ public class Ladder {
     }
 
     public int getPersonLadderResult(int startPosition) {
+        System.out.println(startPosition);
         int currentPosition = startPosition;
         for (Line line : lines) {
             currentPosition = line.move(currentPosition);
         }
+        System.out.println(currentPosition);
         return currentPosition;
     }
 
@@ -54,4 +56,11 @@ public class Ladder {
         return Objects.hash(height, lines);
     }
 
+    @Override
+    public String toString() {
+        return "Ladder{" +
+                "height=" + height +
+                ", lines=" + lines +
+                '}';
+    }
 }

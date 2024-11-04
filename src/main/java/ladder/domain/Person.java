@@ -46,6 +46,10 @@ public class Person {
         return this.name.equals(name);
     }
 
+    public void gameResultSave(int personLadderResult) {
+        position = new Position(personLadderResult);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -61,10 +65,6 @@ public class Person {
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    public void gameResultSave(int personLadderResult) {
-        position = new Position(personLadderResult);
     }
 
 }

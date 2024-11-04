@@ -30,4 +30,11 @@ public class Point {
         return Objects.hash(point);
     }
 
+    @Override
+    public String toString() {
+        return "Point{" +
+                "point=" + point +
+                '}';
+    }
+
 }

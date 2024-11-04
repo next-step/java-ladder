@@ -33,7 +33,6 @@ public class ResultView {
                 .map(Line::getPoints)
                 .forEach(ResultView::makeLadder);
 
-
     }
 
     public static void getLadderPrizeResultView(Persons persons, LadderResult ladderResult) {

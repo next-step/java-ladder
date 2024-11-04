@@ -6,14 +6,13 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
 
     @Test
     void 사다리_생성_성공_테스트() {
         Ladder ladder = Ladder.of(4, 5, () -> true);
-        assertThat(ladder.getLines()).contains(new Line(new Points(false, true, false, true)));
+        assertThat(ladder.getLines()).contains(new Line(false, true, false, true));
     }
 
     @Test
@@ -26,7 +25,7 @@ class LadderTest {
 
     @Test
     void 사다리_게임_결과_테스트() {
-        Ladder ladder = new Ladder(new PositiveNumber(5), List.of(new Line(new Points(false, true, false, true)), new Line(new Points(false, false, true, false)), new Line(new Points(false, true, false, false)), new Line(new Points(false, false, true, false)), new Line(new Points(false, true, false, true))));
+        Ladder ladder = new Ladder(new PositiveNumber(5), List.of(new Line(false, true, false, true), new Line(false, false, true, false), new Line(false, true, false, false), new Line(false, false, true, false), new Line(false, true, false, true)));
 
         assertThat(ladder.getPersonLadderResult(1)).isEqualTo(3);
         assertThat(ladder.getPersonLadderResult(3)).isEqualTo(1);
