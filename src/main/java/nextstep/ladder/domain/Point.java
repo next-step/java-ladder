@@ -23,16 +23,19 @@ public class Point {
         this(false, false);
     }
 
-    public Point next(boolean next) {
-        return new Point(this.right, next);
-    }
-
     public static Point first(boolean right) {
         return new Point(false, right);
     }
 
-    public static Point last(boolean left) {
-        return new Point(left, false);
+    public Point next(boolean next) {
+        if (right) {
+            return new Point(right, false);
+        }
+        return new Point(right, next);
+    }
+
+    public Point last() {
+        return new Point(this.right, false);
     }
 
     public Direction move() {

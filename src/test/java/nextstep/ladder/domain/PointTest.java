@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -47,6 +48,7 @@ class PointTest {
     }
 
     @Test
+    @DisplayName("이전 포인트에 다리가 놓여져 있다면, 다음 포인트에서도 왼쪽에 다리를 놓을 수 있어야 한다.")
     void next() {
         Point point = new Point(false, true);
         Assertions.assertThat(point.next(false)).isEqualTo(new Point(true, false));

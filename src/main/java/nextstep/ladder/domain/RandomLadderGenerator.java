@@ -19,22 +19,13 @@ public class RandomLadderGenerator implements LadderGenerator {
 
     private Line createRandomLine(int participantCount) {
         List<Point> points = new ArrayList<>();
-        boolean left = false;
-        boolean right = random.nextBoolean();
-        points.add(new Point(left, right));
-        for (int cnt = 1; cnt < participantCount; cnt++) {
-            left = right;
-            right = nextRight(participantCount, cnt, left);
-            points.add(new Point(left, right));
+        Point point = Point.first(random.nextBoolean());
+        points.add(point);
+        for (int cnt = 1; cnt < participantCount - 1; cnt++) {
+            point = point.next(random.nextBoolean());
+            points.add(point);
         }
+        points.add(point.last());
         return new Line(points);
-    }
-
-    private boolean nextRight(int participantCount, int cnt, boolean previous) {
-        return (isLastPosition(participantCount, cnt) || previous) ? false : random.nextBoolean();
-    }
-
-    private boolean isLastPosition(int participantCount, int cnt) {
-        return cnt + 1 == participantCount;
     }
 }
