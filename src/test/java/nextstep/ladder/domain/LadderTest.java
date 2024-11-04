@@ -7,9 +7,9 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class MyLadderTest {
+class LadderTest {
 
-    private MyLadder ladder;
+    private Ladder ladder;
 
     @BeforeEach
     void setUp() {
@@ -18,7 +18,7 @@ class MyLadderTest {
                 new Point(true, false),
                 new Point(false, false));
         Line line = new Line(points);
-        ladder = new MyLadder(List.of(line));
+        ladder = new Ladder(List.of(line));
     }
 
     @Test
@@ -28,7 +28,7 @@ class MyLadderTest {
                 new Point(true, false),
                 new Point(false, false));
         Line line = new Line(points);
-        assertThat(ladder).isEqualTo(new MyLadder(List.of(line)));
+        assertThat(ladder).isEqualTo(new Ladder(List.of(line)));
     }
 
     @Test

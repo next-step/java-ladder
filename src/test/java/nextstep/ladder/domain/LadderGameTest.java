@@ -20,7 +20,7 @@ class LadderGameTest {
                 new Point(true, false),
                 new Point(false, false));
         Line line = new Line(points);
-        ladder = new MyLadder(List.of(line));
+        ladder = new Ladder(List.of(line));
     }
 
     @Test
