@@ -23,6 +23,18 @@ public class Bridge {
                 });
     }
 
+    public Position move(Position position) {
+        if (position.getValue() > 0 && connections.get(position.getValue() - 1)) {
+            return position.moveLeft();
+        }
+
+        if (position.getValue() < connections.size() && connections.get(position.getValue())) {
+            return position.moveRight();
+        }
+
+        return position;
+    }
+
     public List<Boolean> getConnections() {
         return Collections.unmodifiableList(connections);
     }

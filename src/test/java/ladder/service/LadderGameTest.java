@@ -1,8 +1,6 @@
 package ladder.service;
 
-import ladder.domain.Bridge;
-import ladder.domain.ConnectionStrategy;
-import ladder.domain.FakeConnectionStrategy;
+import ladder.domain.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,12 +17,54 @@ public class LadderGameTest {
 
         ConnectionStrategy alwaysTrueStrategy = new FakeConnectionStrategy(true);
 
-        List<Bridge> ladder = ladderGame.createLadder(5, 4, alwaysTrueStrategy);
+        Ladder ladder = ladderGame.createLadder(new LadderSetting(4, 5), alwaysTrueStrategy);
 
-        assertThat(ladder.size()).isEqualTo(5);
-        ladder.forEach(bridge -> {
+        List<Bridge> steps = ladder.getSteps();
+
+        assertThat(steps.size()).isEqualTo(5);
+        steps.forEach(bridge -> {
             assertThat(bridge.getConnections().size()).isEqualTo(3);
         });
+    }
+
+    @Test
+    @DisplayName("사다리 게임 테스트")
+    public void playGame() {
+        LadderGame ladderGame = new LadderGame();
+
+        ConnectionStrategy alwaysTrueStrategy = new FakeConnectionStrategy(true);
+
+        Ladder ladder = ladderGame.createLadder(new LadderSetting(4, 5), alwaysTrueStrategy);
+
+        String[] participantNames = {"aaaa", "bbbb", "cccc", "dddd"};
+        String[] outcomes = {"꽝", "5000", "꽝", "3000"};
+
+        LadderGameData gameData = new LadderGameData(participantNames, outcomes);
+
+        LadderResult ladderResult = ladderGame.playGame(ladder, gameData);
+
+        String expectedOutcomes = "aaaa : 5000\nbbbb : 꽝\ncccc : 3000\ndddd : 꽝";
+
+        assertThat(ladderGame.getOutcomeForParticipant(ladderResult, "all")).isEqualTo(expectedOutcomes);
+    }
+
+    @Test
+    @DisplayName("입력받은 참가자의 결과를 찾는 테스트")
+    public void getOutcomeForeParticipant() {
+        LadderGame ladderGame = new LadderGame();
+
+        ConnectionStrategy alwaysTrueStrategy = new FakeConnectionStrategy(true);
+
+        Ladder ladder = ladderGame.createLadder(new LadderSetting(4, 5), alwaysTrueStrategy);
+
+        String[] participantNames = {"aaaa", "bbbb", "cccc", "dddd"};
+        String[] outcomes = {"꽝", "5000", "꽝", "3000"};
+
+        LadderGameData gameData = new LadderGameData(participantNames, outcomes);
+
+        LadderResult ladderResult = ladderGame.playGame(ladder, gameData);
+
+        assertThat(ladderGame.getOutcomeForParticipant(ladderResult, "aaaa")).isEqualTo("5000");
     }
 
 }

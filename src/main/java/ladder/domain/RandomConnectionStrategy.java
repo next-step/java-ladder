@@ -1,9 +1,9 @@
 package ladder.domain;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomConnectionStrategy implements ConnectionStrategy {
-    private static final Random RANDOM = new Random();
+    private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
 
     @Override
     public boolean connect() {

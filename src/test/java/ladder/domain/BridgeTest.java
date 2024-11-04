@@ -20,4 +20,16 @@ class BridgeTest {
         assertEquals(true, bridge.getConnections().get(2));
     }
 
+    @Test
+    @DisplayName("사다리 타기 테스트")
+    public void move() {
+        Bridge bridge = new Bridge();
+
+        ConnectionStrategy alwaysTrueStrategy = new FakeConnectionStrategy(true);
+        bridge.connectSteps(4, alwaysTrueStrategy);
+
+        assertEquals(new Position(1), bridge.move(new Position(0)));
+        assertEquals(new Position(0), bridge.move(new Position(1)));
+    }
+
 }
