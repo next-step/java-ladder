@@ -14,9 +14,9 @@ public class Ladder {
     public static Ladder createSteps(LadderSetting setting, ConnectionStrategy strategy) {
         Ladder ladder = new Ladder();
 
-        for (int count = 1; count <= setting.getLadderHeight(); count++) {
+        for (int count = 1; count <= setting.getStepCount(); count++) {
             Bridge bridge = new Bridge();
-            bridge.connectSteps(setting.getLadderCount(), strategy);
+            bridge.connectSteps(setting.getLineCount(), strategy);
             ladder.steps.add(bridge);
         }
 

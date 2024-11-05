@@ -19,7 +19,7 @@ public class LadderController {
         int maxLadderHeight = InputView.inputMaxLadderHeight();
 
         LadderGameData gameData = new LadderGameData(participantNames, outcomes);
-        Ladder ladder = LadderGame.createLadder(new LadderSetting(participantCount, maxLadderHeight), new RandomConnectionStrategy());
+        Ladder ladder = LadderGame.createLadder(new LadderSetting(maxLadderHeight, participantCount), new RandomConnectionStrategy());
         ResultView.printLadderResult(ladder, gameData);
 
         LadderResult ladderResult = LadderGame.playGame(ladder, gameData);

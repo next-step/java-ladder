@@ -13,7 +13,7 @@ public class LadderGame {
     }
 
     public static Ladder createLadder(LadderSetting setting, ConnectionStrategy strategy) {
-        if(setting.getLadderCount() < MIN_LADDER_COUNT) {
+        if(setting.getLineCount() < MIN_LADDER_COUNT) {
             throw new RuntimeException("사다리의 개수는 최소 2개 이상이어야 합니다.");
         }
 

@@ -15,7 +15,7 @@ public class LadderGameTest {
     public void createLadder() {
         ConnectionStrategy alwaysTrueStrategy = new FakeConnectionStrategy(true);
 
-        Ladder ladder = LadderGame.createLadder(new LadderSetting(4, 5), alwaysTrueStrategy);
+        Ladder ladder = LadderGame.createLadder(new LadderSetting(5, 4), alwaysTrueStrategy);
 
         List<Bridge> steps = ladder.getSteps();
 
@@ -30,7 +30,7 @@ public class LadderGameTest {
     public void playGame() {
         ConnectionStrategy alwaysTrueStrategy = new FakeConnectionStrategy(true);
 
-        Ladder ladder = LadderGame.createLadder(new LadderSetting(4, 5), alwaysTrueStrategy);
+        Ladder ladder = LadderGame.createLadder(new LadderSetting(5, 4), alwaysTrueStrategy);
 
         String[] participantNames = {"aaaa", "bbbb", "cccc", "dddd"};
         String[] outcomes = {"꽝", "5000", "꽝", "3000"};
@@ -49,7 +49,7 @@ public class LadderGameTest {
     public void getOutcomeForeParticipant() {
  ConnectionStrategy alwaysTrueStrategy = new FakeConnectionStrategy(true);
 
-        Ladder ladder = LadderGame.createLadder(new LadderSetting(4, 5), alwaysTrueStrategy);
+        Ladder ladder = LadderGame.createLadder(new LadderSetting(5, 4), alwaysTrueStrategy);
 
         String[] participantNames = {"aaaa", "bbbb", "cccc", "dddd"};
         String[] outcomes = {"꽝", "5000", "꽝", "3000"};
