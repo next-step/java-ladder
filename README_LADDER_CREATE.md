@@ -56,7 +56,7 @@ public class Line {
   * field Players
   * field List<Line>
 * Players
-  - [ ] 참여할 사람 이름들을 받아 참여자들을 생성한다.
+  - [x] 참여할 사람 이름들을 받아 참여자들을 생성한다.
   * field List<Player>
 * Player
   * field Name
