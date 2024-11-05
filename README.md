@@ -7,3 +7,21 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## 기능 목록
+- [x] 입력(InputView)
+    - [x] 참여자 입력
+      - [x] 이름 쉼표 구분 
+      - [x] 이름 5자 초과시 예외 처리
+    - [x] 사다리 높이 입력
+      - [x] 높이 1미만 시 예외처리
+- [x] 라인(line)
+  - [x] 연결 상태 확인
+  - [x] 연결 (연결 되있지 않을 시)
+- [x] 특정 높이에서의 라인들(lines)
+  - [x] 라인 생성
+    - [x] 연속 생성 불가 
+- [x] 사다리(Ladders)
+  - [x] 각 높이 라인들 생성
+- [x] 출력 (ResultView)
+  - [x] 사다리 상태 출력
