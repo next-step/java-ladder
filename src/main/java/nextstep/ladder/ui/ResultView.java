@@ -1,21 +1,14 @@
 package nextstep.ladder.ui;
 
+import nextstep.ladder.domain.GameResult;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ResultView {
-    private static final String LADDER_RESULT_MESSAGE = "사다리 결과";
-    private static final String RESULT_MESSAGE = "실행 결과";
-    private static final String BLANK = "     ";
-    private static final String LINE = "-----";
-    private static final String VERTICAL_LINE = "|";
-    private static final String COLON = " : ";
-    private static final String INITIAL_PADDING = "    ";
     private static final int FORMAT_LENGTH = 5;
     private static final String PRINT_ALL_RESULT_COMMAND = "all";
 
@@ -26,7 +19,7 @@ public class ResultView {
 
     private static void printResultMessage() {
         printBlankLine();
-        System.out.println(LADDER_RESULT_MESSAGE);
+        System.out.println("사다리 결과");
         printBlankLine();
     }
 
@@ -66,13 +59,13 @@ public class ResultView {
 
     private static String generateLadderRow(Line line, int participantCount) {
         StringBuilder builder = new StringBuilder();
-        builder.append(INITIAL_PADDING);
+        builder.append("    ");
 
         for (int i = 0; i < participantCount - 1; i++) {
-            builder.append(VERTICAL_LINE);
-            builder.append(line.points().isConnected(i) ? LINE : BLANK);
+            builder.append("|");
+            builder.append(line.points().isConnected(i) ? "-----" : "     ");
         }
-        builder.append(VERTICAL_LINE);
+        builder.append("|");
 
         return builder.toString();
     }
@@ -90,14 +83,16 @@ public class ResultView {
             printAllResults(ladder.findAllResults());
             return;
         }
-        System.out.println(RESULT_MESSAGE);
+        System.out.println("실행 결과");
         System.out.println(ladder.findResult(name));
+        printBlankLine();
     }
 
-    private static void printAllResults(Map<String, String> results) {
-        System.out.println(RESULT_MESSAGE);
-        results.forEach((name, result) ->
-                System.out.println(name + COLON + result)
+    private static void printAllResults(GameResult gameResult) {
+        System.out.println("실행 결과");
+        gameResult.getAllResults()
+                .forEach((name, result) ->
+                System.out.println(name + " : " + result)
         );
     }
 }

@@ -79,12 +79,13 @@ public class Ladder {
         return position;
     }
 
-    public Map<String, String> findAllResults() {
-        return participants.names()
+    public GameResult findAllResults() {
+        Map<String, String> results = participants.names()
                 .stream()
                 .collect(Collectors.toMap(
                         name -> name,
                         this::findResult
                 ));
+        return new GameResult(results);
     }
 }
