@@ -17,6 +17,7 @@ public class LadderController {
     public void run() {
         Participants participants = new Participants(inputView.inputName());
         int numberOfParticipants = participants.getParticipantCount();
+        inputView.inputResult(numberOfParticipants);
         int height = inputView.inputHeight();
         Ladders ladders = new Ladders(height, numberOfParticipants);
         ladders.createLines();
