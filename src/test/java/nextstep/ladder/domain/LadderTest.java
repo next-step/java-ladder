@@ -14,7 +14,7 @@ public class LadderTest {
     @DisplayName("2명이면 선은 1개, 선은 그리는 것으로 하기")
     @Test
     void 전략패턴_검증() {
-        List<Boolean> lines = Arrays.asList(true);
+        List<Boolean> lines = List.of(true);
         Ladder ladder = new Ladder(lines);
 
         assertAll(
@@ -28,7 +28,7 @@ public class LadderTest {
     void search_position() {
         // 0      1      2     3     4      5      6
         //   true, false, false, true, false, false
-        List<Boolean> lines = Arrays.asList(true, false, false, true, false, false);
+        List<Boolean> lines = List.of(true, false, false, true, false, false);
         Ladder ladder = new Ladder(lines);
         assertAll(
                 () -> assertThat(ladder.search(0)).isEqualTo(1)

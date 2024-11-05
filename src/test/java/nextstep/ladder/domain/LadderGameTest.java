@@ -18,9 +18,9 @@ public class LadderGameTest {
                 "a", "b", "c"
         });
 
-        List<Ladder> create = Arrays.asList(
-                new Ladder(Arrays.asList(false,true)),
-                new Ladder(Arrays.asList(true,false))
+        List<Ladder> create = List.of(
+                new Ladder(List.of(false, true)),
+                new Ladder(List.of(true, false))
         );
         Ladders ladders = Ladders.of(create);
         Results results = new Results(new String[]{

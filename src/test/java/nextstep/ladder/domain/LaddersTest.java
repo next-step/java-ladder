@@ -28,8 +28,8 @@ public class LaddersTest {
         //      false   true
 
         List<Ladder> create = Arrays.asList(
-                new Ladder(Arrays.asList(true, false)),
-                new Ladder(Arrays.asList(false, true))
+                new Ladder(List.of(true, false)),
+                new Ladder(List.of(false, true))
         );
         Ladders ladders = Ladders.of(create);
 

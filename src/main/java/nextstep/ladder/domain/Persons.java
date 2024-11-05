@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 public class Persons {
     private final List<Person> persons;
 
-
     public Persons(String[] texts) {
         this(Arrays.stream(texts)
                 .map(Person::new)
