@@ -4,34 +4,53 @@ import java.util.Objects;
 
 public class Point {
 
-    private static final int LEFT = -1;
-    private static final int RIGHT = 1;
-    private static final int DOWN = 0;
+    private final Direction direction;
 
-    private boolean left;
-    private boolean right;
+    public Point(Direction direction) {
+        this.direction = direction;
+    }
 
     public Point(boolean left, boolean right) {
-        this.left = left;
-        this.right = right;
+        if (left && right) {
+            throw new IllegalArgumentException("유효하지 않은 상태입니다.");
+        }
+        direction = determineDirection(left, right);
     }
 
-    public Point() {
-        this(false, false);
-    }
-
-    public boolean isRightConnected() {
-        return right;
-    }
-
-    public int getDirection() {
+    private Direction determineDirection(boolean left, boolean right) {
         if (left) {
-            return LEFT;
+            return Direction.LEFT;
         }
         if (right) {
-            return RIGHT;
+            return Direction.RIGHT;
         }
-        return DOWN;
+        return Direction.DOWN;
+    }
+
+    public static Point first(boolean right) {
+        return new Point(false, right);
+    }
+
+    public Point next(boolean next) {
+        if (isRightDirection()) {
+            return new Point(Direction.LEFT);
+        }
+        return new Point(false, next);
+    }
+
+    public Point last() {
+        if (isRightDirection()) {
+            return new Point(Direction.LEFT);
+        }
+        return new Point(Direction.DOWN);
+    }
+
+    public Direction move() {
+        return direction;
+    }
+
+    public boolean isRightDirection() {
+        return Direction.RIGHT == direction;
     }
 
     @Override
@@ -39,11 +58,11 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return left == point.left && right == point.right;
+        return direction == point.direction;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(left, right);
+        return Objects.hash(direction);
     }
 }

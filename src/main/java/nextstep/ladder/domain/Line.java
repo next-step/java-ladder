@@ -5,18 +5,25 @@ import java.util.Objects;
 
 public class Line {
 
-    private List<Point> points;
+    private final List<Point> points;
 
     public Line(List<Point> points) {
         this.points = points;
     }
 
-    public Point getPoint(int index) {
-        return points.get(index);
-    }
-
     public List<Point> getPoints() {
         return points;
+    }
+
+    public int move(int position) {
+        Point point = points.get(position);
+        Direction direction = point.move();
+        return direction.move(position);
+    }
+
+    @Override
+    public String toString() {
+        return LinePrinter.convertLineToString(this);
     }
 
     @Override

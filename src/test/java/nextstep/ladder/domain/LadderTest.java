@@ -33,8 +33,8 @@ class LadderTest {
 
     @Test
     void 사다리_실행결과_반환() {
-        assertThat(ladder.moveDown(0)).isEqualTo(1);
-        assertThat(ladder.moveDown(1)).isEqualTo(0);
-        assertThat(ladder.moveDown(2)).isEqualTo(2);
+        assertThat(ladder.move(0)).isEqualTo(1);
+        assertThat(ladder.move(1)).isEqualTo(0);
+        assertThat(ladder.move(2)).isEqualTo(2);
     }
 }

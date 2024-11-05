@@ -1,5 +1,7 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.Ladder;
+
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +11,7 @@ public class ResultView {
 
     }
 
-    public static void printLadderStatus(List<String> names, String ladder, List<String> results) {
+    public static void printLadderStatus(List<String> names, Ladder ladder, List<String> results) {
         System.out.println("\n사다리 결과\n");
         printNames(names);
         System.out.print(ladder);

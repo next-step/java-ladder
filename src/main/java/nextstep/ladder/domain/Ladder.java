@@ -11,17 +11,21 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public List<Line> getLines() {
-        return lines;
-    }
-
-    public int moveDown(int column) {
+    public int move(int position) {
         for (int row = 0; row < lines.size(); row++) {
             Line line = lines.get(row);
-            Point point = line.getPoint(column);
-            column += point.getDirection();
+            position = line.move(position);
         }
-        return column;
+        return position;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        for (Line line : lines) {
+            builder.append(line.toString());
+        }
+        return builder.toString();
     }
 
     @Override
