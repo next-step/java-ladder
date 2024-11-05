@@ -4,10 +4,11 @@ import java.util.List;
 
 public class ResultView {
 
-    public void printResult(List<String> players, String ladders) {
+    public void printResult(List<String> players, String ladders, List<String> results) {
         printReultGuide();
         printPlayers(players);
         printLadders(ladders);
+        printResults(results);
     }
 
     private void printReultGuide() {
@@ -16,15 +17,20 @@ public class ResultView {
 
     private void printPlayers(List<String> players) {
         players.stream()
-                .forEach(i -> printPlayerFormat(i));
+                .forEach(i -> printByFormat(i));
+        System.out.println();
+    }
+    private void printResults(List<String> players) {
+        players.stream()
+                .forEach(i -> printByFormat(i));
         System.out.println();
     }
 
-    private void printPlayerFormat(String name) {
-        System.out.print(String.format("%6s", name));
+    private void printByFormat(String input) {
+        System.out.print(String.format("%6s", input));
     }
 
     private void printLadders(String ladders) {
-        System.out.println(ladders);
+        System.out.print(ladders);
     }
 }
