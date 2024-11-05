@@ -1,10 +1,12 @@
 package study;
 
 import org.junit.jupiter.api.Test;
+import study.core.Edge;
 import study.core.Ladder;
 import study.core.LadderGame;
 import study.core.Line;
 import study.core.PlayerName;
+import study.core.Point;
 import study.core.Prize;
 import study.core.Result;
 
@@ -30,9 +32,12 @@ public class LadderGameTest {
     void play() {
         LadderGame ladderGame = new LadderGame(List.of(new PlayerName("a"), new PlayerName("b")), 3);
         Ladder ladder = new Ladder(List.of(
-                new Line(List.of(true)),
-                new Line(List.of(false)),
-                new Line(List.of(true))
+                new Line(List.of(new Point(0, Edge.first(true))
+                        , new Point(1, Edge.first(true).last()))),
+                new Line(List.of(new Point(0, Edge.first(false))
+                        , new Point(1, Edge.first(false).last()))),
+                new Line(List.of(new Point(0, Edge.first(true))
+                        , new Point(1, Edge.first(true).last())))
         ));
         List<Prize> prizes = List.of(new Prize("1등"), new Prize("꽝"));
 

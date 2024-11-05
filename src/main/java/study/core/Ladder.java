@@ -15,10 +15,10 @@ public class Ladder {
     }
 
     public int move(int position) {
-        int currentPosition = position;
+        int result = position;
         for (Line line : lines) {
-            currentPosition = line.move(currentPosition);
+            result = line.move(result);
         }
-        return currentPosition;
+        return result;
     }
 }

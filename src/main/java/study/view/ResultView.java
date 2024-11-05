@@ -30,14 +30,14 @@ public class ResultView {
 
     public void printLine(Line line) {
         sb.append(LINE_HORIZONTAL_EMPTY);
-        line.getPoints().forEach(point -> {
+        for (int i = 0; i < line.getPoints().size() - 1; i++) {
             sb.append(LINE_VERTICAL);
-            if (!point) {
+            if (!line.getPoints().get(i).isCurrent()) {
                 sb.append(LINE_HORIZONTAL_EMPTY);
-                return;
+                continue;
             }
             sb.append(LINE_HORIZONTAL);
-        });
+        }
         sb.append(LINE_VERTICAL).append(System.lineSeparator());
     }
 
