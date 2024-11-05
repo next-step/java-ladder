@@ -16,7 +16,7 @@ public class LineTest {
     @Test
     void create() {
         Line actual = new Line(5, () -> true);
-        Line expected = new Line(List.of(true, false, true, false));
+        Line expected = new Line(List.of(false, true, false, true, false));
 
         assertThat(actual).isEqualTo(expected);
     }
@@ -32,15 +32,13 @@ public class LineTest {
     }
 
     @Test
-    void line() {
+    void toStringLine() {
+        Players players = new Players("pobi,crong,honux,jk");
         Line line = new Line(4, () -> true);
 
-        List<Boolean> actual = line.line();
-        List<Boolean> expcected = List.of(true, false, true);
+        String actual = line.toLineString(players.names());
+        String expeccted = "    |-----|     |--|";
 
-        assertThat(actual).isEqualTo(expcected);
-        // 불변성
-        assertThatThrownBy(() -> actual.add(false))
-                .isInstanceOf(UnsupportedOperationException.class);
+        assertThat(actual).isEqualTo(expeccted);
     }
 }

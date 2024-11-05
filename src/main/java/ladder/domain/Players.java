@@ -17,6 +17,10 @@ public class Players {
         this(toPlayers(names));
     }
 
+    public int size() {
+        return players.size();
+    }
+
     private static List<Player> toPlayers(String names) {
         return SplitUtil.split(names)
                 .stream()
@@ -35,5 +39,11 @@ public class Players {
     @Override
     public int hashCode() {
         return Objects.hash(players);
+    }
+
+    public List<Name> names() {
+        return players.stream()
+                .map(Player::name)
+                .collect(Collectors.toList());
     }
 }

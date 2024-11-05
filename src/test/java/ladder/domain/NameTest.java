@@ -25,4 +25,11 @@ public class NameTest {
                 }).isInstanceOf(InvalidNameException.class)
                 .hasMessage(NOT_ALLOW_EMPTY_NAME);
     }
+
+    @Test
+    void length() {
+        Name name = new Name("pobi");
+        int actual = name.length();
+        Assertions.assertThat(actual).isEqualTo(4);
+    }
 }

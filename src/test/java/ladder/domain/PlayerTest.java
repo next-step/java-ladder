@@ -10,4 +10,12 @@ public class PlayerTest {
         Player expected = new Player(new Name("pobi"));
         Assertions.assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    void name() {
+        Player player = new Player("pobi");
+        Name name = player.name();
+        Assertions.assertThat(name).isEqualTo(new Name("pobi"));
+
+    }
 }

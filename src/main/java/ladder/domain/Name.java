@@ -15,6 +15,10 @@ public class Name {
         this.name = name;
     }
 
+    public int length() {
+        return name.length();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

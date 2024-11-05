@@ -14,8 +14,11 @@ import java.util.stream.IntStream;
 public class Line {
     public static final String NOT_ALLOWED_PLAYER_ZERO_OR_MINUS_MESSAGE = "참여자명 수는 최소 1명 이상이어야 합니다";
     public static final int START = 0;
-    public static final int END_OFFSET = 1;
     public static final int MIN_PLAYERS_COUNT = 1;
+    public static final String HORIZONTAL = "-";
+    public static final String SPACE = " ";
+    public static final String PLAYER_DELIMITER = "|";
+    public static final String PREFIX = "";
     private final List<Boolean> line;
 
     public Line(List<Boolean> line) {
@@ -31,8 +34,7 @@ public class Line {
             throw new PlayersCountException(NOT_ALLOWED_PLAYER_ZERO_OR_MINUS_MESSAGE);
         }
         AtomicReference<Boolean> prev = new AtomicReference<>();
-        int end = playersCount - END_OFFSET;
-        return IntStream.range(START, end)
+        return IntStream.range(START, playersCount)
                 .boxed()
                 .map(toBoolean(prev, generator))
                 .collect(Collectors.toList());
@@ -43,6 +45,7 @@ public class Line {
         return index -> {
             Boolean horizontal = horizontalGenerator.generate();
             if (index == START) {
+                horizontal = false;
                 previous.set(horizontal);
             }
             if (index > START && previous.get().equals(true)) {
@@ -56,8 +59,19 @@ public class Line {
         };
     }
 
-    public List<Boolean> line() {
-        return Collections.unmodifiableList(line);
+    public String toLineString(List<Name> names) {
+        return IntStream.range(0, names.size())
+                .boxed()
+                .map(index -> toHorizontalString(index, names.get(index)))
+                .collect(Collectors.joining(PLAYER_DELIMITER, PREFIX, PLAYER_DELIMITER));
+    }
+
+    private String toHorizontalString(Integer integer, Name name) {
+        int length = name.length();
+        if (line.get(integer)) {
+            return HORIZONTAL.repeat(length);
+        }
+        return SPACE.repeat(length);
     }
 
     @Override
