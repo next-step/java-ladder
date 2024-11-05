@@ -14,28 +14,25 @@ public class LadderTest {
     @Test
     @DisplayName("사다리 생성 테스트")
     public void createLadder() {
-        Ladder ladder = new Ladder();
-
         ConnectionStrategy alwaysTrueStrategy = new FakeConnectionStrategy(true);
 
-        ladder.createSteps(new LadderSetting(4, 5), alwaysTrueStrategy);
+        Ladder ladder = Ladder.createSteps(new LadderSetting(4, 5), alwaysTrueStrategy);
 
         List<Bridge> steps = ladder.getSteps();
 
         assertThat(steps.size()).isEqualTo(5);
-        steps.forEach(bridge -> {
-            assertThat(bridge.getConnections().size()).isEqualTo(3);
-        });
+
+        for (Bridge bridge : steps) {
+            assertThat(bridge.getLines().size()).isEqualTo(3);
+        }
     }
 
     @Test
     @DisplayName("참가자의 사다리 타기 결과를 찾는 테스트")
     public void findOutcomeForParticipant() {
-        Ladder ladder = new Ladder();
-
         ConnectionStrategy alwaysTrueStrategy = new FakeConnectionStrategy(true);
 
-        ladder.createSteps(new LadderSetting(4, 5), alwaysTrueStrategy);
+        Ladder ladder = Ladder.createSteps(new LadderSetting(4, 5), alwaysTrueStrategy);
 
         String[] participantNames = {"aaaa", "bbbb", "cccc", "dddd"};
         String[] outcomes = {"꽝", "5000", "꽝", "3000"};

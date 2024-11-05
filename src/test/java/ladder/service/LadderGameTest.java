@@ -13,58 +13,52 @@ public class LadderGameTest {
     @Test
     @DisplayName("사다리 생성 테스트")
     public void createLadder() {
-        LadderGame ladderGame = new LadderGame();
-
         ConnectionStrategy alwaysTrueStrategy = new FakeConnectionStrategy(true);
 
-        Ladder ladder = ladderGame.createLadder(new LadderSetting(4, 5), alwaysTrueStrategy);
+        Ladder ladder = LadderGame.createLadder(new LadderSetting(4, 5), alwaysTrueStrategy);
 
         List<Bridge> steps = ladder.getSteps();
 
         assertThat(steps.size()).isEqualTo(5);
         steps.forEach(bridge -> {
-            assertThat(bridge.getConnections().size()).isEqualTo(3);
+            assertThat(bridge.getLines().size()).isEqualTo(3);
         });
     }
 
     @Test
     @DisplayName("사다리 게임 테스트")
     public void playGame() {
-        LadderGame ladderGame = new LadderGame();
-
         ConnectionStrategy alwaysTrueStrategy = new FakeConnectionStrategy(true);
 
-        Ladder ladder = ladderGame.createLadder(new LadderSetting(4, 5), alwaysTrueStrategy);
+        Ladder ladder = LadderGame.createLadder(new LadderSetting(4, 5), alwaysTrueStrategy);
 
         String[] participantNames = {"aaaa", "bbbb", "cccc", "dddd"};
         String[] outcomes = {"꽝", "5000", "꽝", "3000"};
 
         LadderGameData gameData = new LadderGameData(participantNames, outcomes);
 
-        LadderResult ladderResult = ladderGame.playGame(ladder, gameData);
+        LadderResult ladderResult = LadderGame.playGame(ladder, gameData);
 
         String expectedOutcomes = "aaaa : 5000\nbbbb : 꽝\ncccc : 3000\ndddd : 꽝";
 
-        assertThat(ladderGame.getOutcomeForParticipant(ladderResult, "all")).isEqualTo(expectedOutcomes);
+        assertThat(LadderGame.getOutcomeForParticipant(ladderResult, "all")).isEqualTo(expectedOutcomes);
     }
 
     @Test
     @DisplayName("입력받은 참가자의 결과를 찾는 테스트")
     public void getOutcomeForeParticipant() {
-        LadderGame ladderGame = new LadderGame();
+ ConnectionStrategy alwaysTrueStrategy = new FakeConnectionStrategy(true);
 
-        ConnectionStrategy alwaysTrueStrategy = new FakeConnectionStrategy(true);
-
-        Ladder ladder = ladderGame.createLadder(new LadderSetting(4, 5), alwaysTrueStrategy);
+        Ladder ladder = LadderGame.createLadder(new LadderSetting(4, 5), alwaysTrueStrategy);
 
         String[] participantNames = {"aaaa", "bbbb", "cccc", "dddd"};
         String[] outcomes = {"꽝", "5000", "꽝", "3000"};
 
         LadderGameData gameData = new LadderGameData(participantNames, outcomes);
 
-        LadderResult ladderResult = ladderGame.playGame(ladder, gameData);
+        LadderResult ladderResult = LadderGame.playGame(ladder, gameData);
 
-        assertThat(ladderGame.getOutcomeForParticipant(ladderResult, "aaaa")).isEqualTo("5000");
+        assertThat(LadderGame.getOutcomeForParticipant(ladderResult, "aaaa")).isEqualTo("5000");
     }
 
 }
