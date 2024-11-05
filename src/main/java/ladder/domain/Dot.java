@@ -1,11 +1,9 @@
 package ladder.domain;
 
 public class Dot {
-    private int index;
     private Boolean value;
 
-    public Dot(int index, Boolean value) {
-        this.index = index;
+    public Dot(Boolean value) {
         this.value = value;
     }
 
@@ -16,6 +14,6 @@ public class Dot {
     @Override
     public boolean equals(Object obj) {
         Dot dot = (Dot)obj;
-        return this.value == dot.value && this.index == ((Dot) obj).index;
+        return this.value == dot.value;
     }
 }

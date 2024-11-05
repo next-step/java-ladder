@@ -3,23 +3,10 @@ package ladder.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
     private Line line;
-
-    class RandomDecisionTest implements BridgeDecision {
-        private Boolean value;
-
-        public RandomDecisionTest(Boolean value) {
-            this.value = value;
-        }
-
-        @Override
-        public Boolean isBridgeTarge() {
-            return value;
-        }
-    }
 
     @BeforeEach
     void beforeEech() {
