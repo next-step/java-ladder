@@ -62,8 +62,12 @@ public class Line {
   * field Name
   - [x] 공백을 입력받을수 없다. (NOTE: 사람 이름을 5자 기준으로 출력하기 때문에 사다리 폭도 넓어져야 한다. - 이 기준이 5자 이하인지 모호한것 같습니다.)
 * Line
-  - [ ] 한줄을 생성한다.
+  - [x] 참여자 count, HorizontalGenerator 를 받아 한줄을 생성한다.
+  - [x] 참여자 count 0 일경우 오류.
+  - [x] 한줄 정보를 출력한다.
   * field List<Boolean>
+* HorizontalGenerator
+  - [x] 가로줄을 생성한다.
 ### View
 * InputView
   - [ ] 참여할 사람 이름을 입력받는다.
