@@ -20,7 +20,7 @@ public class Participants {
 
     public int findParticipantIndex(String name) {
         return IntStream.range(0, participants.size())
-                .filter(i -> participants.get(i).getName().equals(name))
+                .filter(i -> participants.get(i).matchName(name))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }

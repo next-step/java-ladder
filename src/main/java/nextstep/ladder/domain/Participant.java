@@ -19,6 +19,10 @@ public class Participant {
         }
     }
 
+    public boolean matchName(String name) {
+        return this.name.equals(name);
+    }
+
     public String getName() {
         return name;
     }
