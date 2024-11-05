@@ -1,11 +1,11 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.strategy.BooleanStrategy;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
+import static nextstep.ladder.LadderMethod.toLines;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -28,8 +28,8 @@ public class LaddersTest {
         //      false   true
 
         List<Ladder> create = Arrays.asList(
-                new Ladder(List.of(true, false)),
-                new Ladder(List.of(false, true))
+                new Ladder(toLines(List.of(true, false))),
+                new Ladder(toLines(List.of(false, true)))
         );
         Ladders ladders = Ladders.of(create);
 

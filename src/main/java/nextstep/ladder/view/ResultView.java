@@ -17,13 +17,16 @@ public class ResultView {
 
     public static void printLadder(Persons persons, Ladders ladders, Results results) {
         System.out.println(RESULT_LADDER);
-        int lengthCount = persons.getPersons().stream()
-                .map(person -> person.getLength())
-                .max(Integer::compareTo)
+
+        int maxLength = Stream.concat(
+                        persons.getPersons().stream().mapToInt(person -> person.getLength()).boxed(),
+                        results.getResults().stream().mapToInt(person -> person.getLength()).boxed()
+                ).max(Integer::compareTo)
                 .orElse(0) + 2;
-        printPersons(lengthCount, persons);
-        printLadder(lengthCount, ladders);
-        printResult(lengthCount, results);
+
+        printPersons(maxLength, persons);
+        printLadder(maxLength, ladders);
+        printResult(maxLength, results);
     }
 
     private static void printResult(int maxLength, Results results) {
@@ -59,10 +62,10 @@ public class ResultView {
         }
     }
 
-    private static void printVerticals(int maxLength, List<Boolean> vertical) {
+    private static void printVerticals(int maxLength, List<Line> vertical) {
         System.out.print(startLadder(maxLength));
         vertical.stream()
-                .map(isLine -> isLine ? createVertical(maxLength) : createEmpty(maxLength))
+                .map(isLine -> isLine.isLine() ? createVertical(maxLength) : createEmpty(maxLength))
                 .forEach(unit -> printVertical(unit));
     }
 
