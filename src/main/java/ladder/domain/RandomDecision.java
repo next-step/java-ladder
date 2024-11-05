@@ -6,7 +6,7 @@ public class RandomDecision implements BridgeDecision {
     private static Random random = new Random();
 
     @Override
-    public boolean isBridgeTarge() {
+    public Boolean isBridgeTarge() {
         return random.nextBoolean();
     }
 }

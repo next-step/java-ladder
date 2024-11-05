@@ -1,6 +1,4 @@
 package ladder;
-
-import ladder.domain.BridgeDecision;
 import ladder.domain.LadderGame;
 import ladder.domain.Players;
 import ladder.domain.RandomDecision;
@@ -12,8 +10,7 @@ public class LadderMain {
     public static void main(String[] args) {
         Players players = new Players(InputView.inputPlayers());
 
-        LadderGame ladderGame = new LadderGame(InputView.inputHeight(), players.size());
-        ladderGame.buildLines(new RandomDecision());
+        LadderGame ladderGame = new LadderGame(InputView.inputHeight(), players.size(), new RandomDecision());
 
         OutputView.print(players.getPlayerNames());
         OutputView.printLadder(ladderGame.getLines());

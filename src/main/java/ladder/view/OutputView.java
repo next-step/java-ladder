@@ -11,16 +11,9 @@ public class OutputView {
     }
 
     public static void print(List<String> names) {
-        names.stream()
-                .map(name -> name + " ".repeat(Player.NAME_MAX_LENGTH + 1 - name.length()))
-                .forEach(System.out::print);
+        names.stream().forEach(name -> System.out.print(String.format("%-6s",name)));
         System.out.println();
     }
-
-    public static void println(List<String> strings) {
-        strings.stream().forEach(System.out::println);
-    }
-
     public static void printLadder(List<Line> lines) {
         lines.stream().forEach(line -> print(line));
     }

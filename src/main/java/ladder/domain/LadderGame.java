@@ -6,21 +6,16 @@ import java.util.List;
 public class LadderGame {
     private List<Line> lines;
 
-    public LadderGame(int height, int userCount) {
-        this.lines = initializeLines(height, userCount);
+    public LadderGame(int height, int userCount, BridgeDecision bridgeDecision) {
+        this.lines = initializeLines(height, userCount, bridgeDecision);
     }
 
-    private static List<Line> initializeLines(int height, int userCount) {
+    private static List<Line> initializeLines(int height, int userCount, BridgeDecision bridgeDecision) {
         List<Line> lines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            lines.add(new Line(userCount));
+            lines.add(new Line(userCount, bridgeDecision.isBridgeTarge()));
         }
         return lines;
-    }
-
-    public void buildLines(BridgeDecision bridgeDecision) {
-        lines.stream()
-                .forEach(line -> line.buildLine(bridgeDecision.isBridgeTarge()));
     }
 
     public List<Line> getLines() {

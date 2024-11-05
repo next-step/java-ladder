@@ -8,10 +8,22 @@ import static org.assertj.core.api.Assertions.*;
 public class LineTest {
     private Line line;
 
+    class RandomDecisionTest implements BridgeDecision {
+        private Boolean value;
+
+        public RandomDecisionTest(Boolean value) {
+            this.value = value;
+        }
+
+        @Override
+        public Boolean isBridgeTarge() {
+            return value;
+        }
+    }
+
     @BeforeEach
     void beforeEech() {
-        line = new Line(5);
-        line.buildLine(true);
+        line = new Line(5, true);
     }
 
     @Test
