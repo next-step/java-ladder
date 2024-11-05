@@ -8,8 +8,8 @@ public class Line {
         points = new Points(countOfPerson);
     }
 
-    public String toString(String delimiter, String trueSymbol, String falseSymbol) {
-        return points.toString(delimiter, trueSymbol, falseSymbol);
+    public String toString(String trueSymbol, String falseSymbol) {
+        return points.toString(trueSymbol, falseSymbol);
     }
 
 }

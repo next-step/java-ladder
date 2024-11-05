@@ -8,7 +8,7 @@ public class LineTest {
     @DisplayName("중복되는 가로선이 없는지 출력 확인")
     void check() {
         Line line2 = new Line(6);
-        System.out.println(line2.toString("|", "-----", "     "));
+        System.out.println(line2.toString("-----", "     "));
     }
 
 }

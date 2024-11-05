@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 
 public class Points {
 
+    private static final String LINE_DELIMITER = "|";
     private static final Random RANDOM = new Random();
 
     private List<Point> points = new ArrayList<>();
@@ -33,14 +34,14 @@ public class Points {
         return this.points.size();
     }
 
-    public String toString(String delimiter, String trueSymbol, String falseSymbol) {
+    public String toString(String trueSymbol, String falseSymbol) {
         List<String> result = this.points
                 .stream()
                 .map(point -> point.getLineSymbol(trueSymbol, falseSymbol))
                 .limit(this.points.size() - 1)
                 .collect(Collectors.toList());
 
-        return delimiter + String.join(delimiter, result) + delimiter;
+        return LINE_DELIMITER + String.join(LINE_DELIMITER, result) + LINE_DELIMITER;
     }
 
 }
