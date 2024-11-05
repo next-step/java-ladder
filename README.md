@@ -13,6 +13,9 @@
 - [x] 전략 패턴 검증
 - [x] index 번호로 가야할 index(index -1 , index, index +1) 번호 반환
 
+### Line (선 여부)
+- [x] 선 그어졌는지 여부
+
 ### Persons (참여 인원들)
 
 - [x] 배열 입력 시 리스트 검증
