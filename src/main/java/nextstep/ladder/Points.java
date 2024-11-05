@@ -2,26 +2,19 @@ package nextstep.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Points {
-    private static final Random RANDOM = new Random();
     private static final String LINE_DELIMITER = "|";
     private List<Point> points = new ArrayList<>();
 
     public Points(int size) {
         IntStream.range(0, size).forEach((i) -> {
+            boolean isLast = i == size - 1;
             boolean prevRight = i == 0 ? false : points.get(i - 1).getRight();
-            boolean right = i == size - 1 ? false : generateRandomRightPoint(prevRight);
-
-            points.add(new Point(prevRight, right));
+            points.add(new Point(prevRight, isLast));
         });
-    }
-
-    private boolean generateRandomRightPoint(boolean prev) {
-        return prev ? false : RANDOM.nextBoolean();
     }
 
     public int getSize() {
