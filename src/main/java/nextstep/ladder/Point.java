@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 public class Point {
+
     private boolean left;
     private boolean right;
 
