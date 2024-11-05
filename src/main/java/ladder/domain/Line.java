@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.domain.util.HorizontalGenerator;
+import ladder.exception.LineException;
 import ladder.exception.PlayersCountException;
 
 import java.util.Collections;
@@ -13,7 +14,8 @@ import java.util.stream.IntStream;
 
 public class Line {
     public static final String NOT_ALLOWED_PLAYER_ZERO_OR_MINUS_MESSAGE = "참여자명 수는 최소 1명 이상이어야 합니다";
-    public static final int START = 0;
+    public static final String NOT_MATCHED_LINE_PLAYERS_COUNT_MESSAGE = "사다리 라인갯수와 참가자수가 맞지 않습니다.";
+    public static final int START_INCLUSIVE = 0;
     public static final int MIN_PLAYERS_COUNT = 1;
     public static final String HORIZONTAL = "-";
     public static final String SPACE = " ";
@@ -34,7 +36,7 @@ public class Line {
             throw new PlayersCountException(NOT_ALLOWED_PLAYER_ZERO_OR_MINUS_MESSAGE);
         }
         AtomicReference<Boolean> prev = new AtomicReference<>();
-        return IntStream.range(START, playersCount)
+        return IntStream.range(START_INCLUSIVE, playersCount)
                 .boxed()
                 .map(toBoolean(prev, generator))
                 .collect(Collectors.toList());
@@ -44,15 +46,15 @@ public class Line {
                                                         HorizontalGenerator horizontalGenerator) {
         return index -> {
             Boolean horizontal = horizontalGenerator.generate();
-            if (index == START) {
+            if (index == START_INCLUSIVE) {
                 horizontal = false;
                 previous.set(horizontal);
             }
-            if (index > START && previous.get().equals(true)) {
+            if (index > START_INCLUSIVE && previous.get().equals(true)) {
                 horizontal = false;
                 previous.set(horizontal);
             }
-            if (index > START) {
+            if (index > START_INCLUSIVE) {
                 previous.set(horizontal);
             }
             return horizontal;
@@ -60,7 +62,10 @@ public class Line {
     }
 
     public String toLineString(List<Name> names) {
-        return IntStream.range(0, names.size())
+        if (names.size() != line.size()) {
+            throw new LineException(NOT_MATCHED_LINE_PLAYERS_COUNT_MESSAGE);
+        }
+        return IntStream.range(START_INCLUSIVE, names.size())
                 .boxed()
                 .map(index -> toHorizontalString(index, names.get(index)))
                 .collect(Collectors.joining(PLAYER_DELIMITER, PREFIX, PLAYER_DELIMITER));
