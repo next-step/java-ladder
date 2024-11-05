@@ -11,7 +11,18 @@ public class Line {
 
     }
 
-    public Line(boolean left, boolean right) {
+    public static Line first() {
+        return new Line(DISCONNECTED, CONNECTED);
+    }
+
+    public static Line last() {
+        return new Line(CONNECTED, DISCONNECTED);
+    }
+    public static Line firstAndLast() {
+        return new Line(CONNECTED, CONNECTED);
+    }
+
+    private Line(boolean left, boolean right) {
         checkLeftAndRightALLConnected(left, right);
         this.left = left;
         this.right = right;
