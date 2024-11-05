@@ -3,11 +3,10 @@ package nextstep.ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
+import static nextstep.ladder.LadderMethod.toLines;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderGameTest {
 
@@ -18,9 +17,9 @@ public class LadderGameTest {
                 "a", "b", "c"
         });
 
-        List<Ladder> create = Arrays.asList(
-                new Ladder(Arrays.asList(false,true)),
-                new Ladder(Arrays.asList(true,false))
+        List<Ladder> create = List.of(
+                new Ladder(toLines(List.of(false, true))),
+                new Ladder(toLines(List.of(true, false)))
         );
         Ladders ladders = Ladders.of(create);
         Results results = new Results(new String[]{

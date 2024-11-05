@@ -1,5 +1,8 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.Persons;
+import nextstep.ladder.domain.Results;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -10,14 +13,14 @@ public class InputView {
     private final static String REQUEST_WHO = "결과를 보고 싶은 사람은?";
     private static Scanner scanner = new Scanner(System.in);
 
-    public static String[] requestNames() {
+    public static Persons requestNames() {
         System.out.println(REQUEST_NAMES);
-        return split(scanner.nextLine());
+        return new Persons(split(scanner.nextLine()));
     }
 
-    public static String[] requestResults() {
+    public static Results requestResults() {
         System.out.println(REQUEST_RESULT);
-        return split(scanner.nextLine());
+        return new Results(split(scanner.nextLine()));
     }
 
     public static int requestHeightCount() {

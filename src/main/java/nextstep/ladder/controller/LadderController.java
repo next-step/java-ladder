@@ -7,8 +7,8 @@ import nextstep.ladder.view.ResultView;
 public class LadderController {
 
     public static void run() {
-        Persons persons = new Persons(InputView.requestNames());
-        Results results = new Results(InputView.requestResults());
+        Persons persons = InputView.requestNames();
+        Results results = InputView.requestResults();
         int heightCount = InputView.requestHeightCount();
 
         Ladders ladders = Ladders.of(persons.personCount(), heightCount);

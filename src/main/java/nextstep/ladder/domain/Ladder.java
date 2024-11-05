@@ -3,13 +3,13 @@ package nextstep.ladder.domain;
 import java.util.List;
 
 public class Ladder {
-    private final List<Boolean> lines;
+    private final List<Line> lines;
 
-    public Ladder(List<Boolean> lines) {
+    public Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
-    public List<Boolean> getLines() {
+    public List<Line> getLines() {
         return lines;
     }
 
@@ -24,11 +24,11 @@ public class Ladder {
     }
 
     private boolean isLeft(int result) {
-        return result != 0 && lines.get(result - 1);
+        return result != 0 && lines.get(result - 1).isLine();
     }
 
     private boolean isRight(int result) {
-        return lines.size() != result && lines.get(result);
+        return lines.size() != result && lines.get(result).isLine();
     }
 
 }

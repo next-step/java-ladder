@@ -26,16 +26,16 @@ public class Ladders {
         validate(heightCount);
         List<Ladder> ladders = new ArrayList<>();
         for (int i = 0; i < heightCount; i++) {
-            List<Boolean> lines = createLines(peopleCount - 1, booleanStrategy);
+            List<Line> lines = createLines(peopleCount - 1, booleanStrategy);
             ladders.add(new Ladder(lines));
         }
         return new Ladders(ladders);
     }
 
-    private static List<Boolean> createLines(int lineCount, BooleanStrategy booleanStrategy) {
-        List<Boolean> lines = new ArrayList<>();
+    private static List<Line> createLines(int lineCount, BooleanStrategy booleanStrategy) {
+        List<Line> lines = new ArrayList<>();
         for (int i = 0; i < lineCount; i++) {
-            lines.add(isLine(lines, i, booleanStrategy));
+            lines.add(new Line(isLine(lines, i, booleanStrategy)));
         }
         return lines;
     }
@@ -57,15 +57,15 @@ public class Ladders {
         }
     }
 
-    private static Boolean isLine(List<Boolean> lines, int i, BooleanStrategy booleanStrategy) {
+    private static Boolean isLine(List<Line> lines, int i, BooleanStrategy booleanStrategy) {
         if (isPerv(lines, i)) {
             return false;
         }
         return booleanStrategy.decide();
     }
 
-    private static boolean isPerv(List<Boolean> lines, int i) {
-        return i != 0 && lines.get(i - 1);
+    private static boolean isPerv(List<Line> lines, int i) {
+        return i != 0 && lines.get(i - 1).isLine();
     }
 
 

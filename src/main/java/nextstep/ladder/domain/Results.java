@@ -8,7 +8,9 @@ public class Results {
     private final List<Result> results;
 
     public Results(String[] results) {
-        this.results = Arrays.stream(results).map(Result::new).collect(Collectors.toList());
+        this.results = Arrays.stream(results)
+                .map(Result::new)
+                .collect(Collectors.toList());
     }
 
     public List<Result> getResults() {
