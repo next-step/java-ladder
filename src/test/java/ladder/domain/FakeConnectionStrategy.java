@@ -8,7 +8,7 @@ public class FakeConnectionStrategy implements ConnectionStrategy {
     }
 
     @Override
-    public boolean connect() {
+    public boolean isConnect() {
         return fixedConnect;
     }
 }
