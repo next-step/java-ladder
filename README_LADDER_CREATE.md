@@ -49,21 +49,21 @@ public class Line {
 
 ## TODO
 ### Domain
-* Player
-  * Name
-    - [ ] 5자를 넘을 수 없다.
-  * VerticalPosition
-  * HorizontalPosition
-* Line
-  * List<Boolean>
-    - [ ] 한줄을 생성한다.
-* Players
-  * List<Player>
-    - [ ] 참여할 사람 이름들을 받아 참여자들을 생성한다.
 * Ladder
-  * List<Line>
-    - [ ] 여러줄을 생성한다.
-    - [ ] 여러줄을 사다리 문자열로 출력한다.
+  - [ ] 참여자들을 받아 여러줄을 생성한다.
+  - [ ] 여러줄을 사다리 문자열로 출력한다.
+  - [ ] 참여자의 이름길이에 따라 줄 내에 가로길이가 길어진다.
+  * field Players
+  * field List<Line>
+* Players
+  - [ ] 참여할 사람 이름들을 받아 참여자들을 생성한다.
+  * field List<Player>
+* Player
+  - [ ] 공백을 입력받을수 없다. (NOTE: 사람 이름을 5자 기준으로 출력하기 때문에 사다리 폭도 넓어져야 한다. - 이 기준이 5자 이하인지 모호한것 같습니다.)
+  * field Name
+* Line
+  - [ ] 한줄을 생성한다.
+  * field List<Boolean>
 ### View
 * InputView
   - [ ] 참여할 사람 이름을 입력받는다.
