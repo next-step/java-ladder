@@ -1,5 +1,6 @@
 package nextstep.ladder.ui;
 
+import nextstep.ladder.domain.GameResult;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Line;
 
@@ -95,9 +96,10 @@ public class ResultView {
         printBlankLine();
     }
 
-    private static void printAllResults(Map<String, String> results) {
+    private static void printAllResults(GameResult gameResult) {
         System.out.println(RESULT_MESSAGE);
-        results.forEach((name, result) ->
+        gameResult.getAllResults()
+                .forEach((name, result) ->
                 System.out.println(name + COLON + result)
         );
     }

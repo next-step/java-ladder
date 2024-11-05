@@ -112,9 +112,9 @@ class LadderTest {
         LineDecisionStrategy testStrategy = new AllLineDecisionStrategy();
 
         Ladder ladder = Ladder.createLadder(participants, results, 1, testStrategy);
-        Map<String, String> allResults = ladder.findAllResults();
+        GameResult allResults = ladder.findAllResults();
 
-        assertThat(allResults)
+        assertThat(allResults.getAllResults())
                 .containsEntry("pobi", "5000")
                 .containsEntry("honux", "꽝");
     }
