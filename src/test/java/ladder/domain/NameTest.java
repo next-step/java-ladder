@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static ladder.domain.Name.NOT_ALLOW_EMPTY_NAME;
+import static org.assertj.core.api.Assertions.*;
 
 public class NameTest {
 
@@ -14,13 +15,13 @@ public class NameTest {
     void create() {
         Name actual = new Name("pobi");
         Name expected = new Name("pobi");
-        Assertions.assertThat(actual).isEqualTo(expected);
+        assertThat(actual).isEqualTo(expected);
     }
 
     @ParameterizedTest
     @NullAndEmptySource
     void create_공백_실패(String emptyName) {
-        Assertions.assertThatThrownBy(() -> {
+        assertThatThrownBy(() -> {
                     new Name(emptyName);
                 }).isInstanceOf(InvalidNameException.class)
                 .hasMessage(NOT_ALLOW_EMPTY_NAME);
@@ -30,6 +31,14 @@ public class NameTest {
     void length() {
         Name name = new Name("pobi");
         int actual = name.length();
-        Assertions.assertThat(actual).isEqualTo(4);
+        assertThat(actual).isEqualTo(4);
+    }
+
+    @Test
+    void name() {
+        Name name = new Name("pobi");
+        String actual = name.name();
+
+        assertThat(actual).isEqualTo("pobi");
     }
 }

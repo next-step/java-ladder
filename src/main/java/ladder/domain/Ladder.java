@@ -9,6 +9,8 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     public static final int START = 0;
+    public static final String LINE_BREAK = "\n";
+    public static final String SPACE = " ";
     private final List<Line> lines;
     private final Players players;
 
@@ -39,15 +41,13 @@ public class Ladder {
     }
 
     public String toLadderString() {
-        return lines.stream()
+        String namesString = players.names()
+                .stream()
+                .map(Name::name)
+                .collect(Collectors.joining(SPACE));
+        String ladderString = lines.stream()
                 .map(line -> line.toLineString(players.names()))
-                .collect(Collectors.joining("\n"));
-//        return new StringBuilder()
-//                .append("    |-----|     |-----|")
-//                .append("    |-----|     |-----|")
-//                .append("    |-----|     |-----|")
-//                .append("    |-----|     |-----|")
-//                .append("    |-----|     |-----|")
-//                .toString();
+                .collect(Collectors.joining(LINE_BREAK));
+        return namesString + LINE_BREAK + ladderString;
     }
 }
