@@ -7,6 +7,9 @@ import nextstep.ladder.ui.ResultView;
 import java.util.stream.Collectors;
 
 public class LadderGame {
+
+    private static final String PRINT_ALL_RESULT_COMMAND = "all";
+
     public static void main(String[] args) {
         Participants participants = initializeParticipants();
         LadderResult result = initializeResult();
@@ -15,8 +18,7 @@ public class LadderGame {
         Ladder ladder = Ladder.createLadder(participants, result, height, new RandomLineDecisionStrategy());
         ResultView.printLadder(ladder);
 
-        String name = InputView.inputResultName();
-        ResultView.printResult(name, ladder);
+        processResults(ladder);
     }
 
     private static Participants initializeParticipants() {
@@ -29,4 +31,18 @@ public class LadderGame {
     private static LadderResult initializeResult() {
         return new LadderResult(InputView.inputResult());
     }
+
+    private static void processResults(Ladder ladder) {
+        String name = InputView.inputResultName();
+        while (!isGameEnd(name)) {
+            ResultView.printResult(name, ladder);
+            name = InputView.inputResultName();
+        }
+        ResultView.printResult(name, ladder);
+    }
+
+    private static boolean isGameEnd(String name) {
+        return PRINT_ALL_RESULT_COMMAND.equalsIgnoreCase(name);
+    }
+
 }

@@ -92,6 +92,7 @@ public class ResultView {
         }
         System.out.println(RESULT_MESSAGE);
         System.out.println(ladder.findResult(name));
+        printBlankLine();
     }
 
     private static void printAllResults(Map<String, String> results) {
