@@ -56,4 +56,37 @@ public class LineTest {
                 .hasMessage("연속으로 연결된 라인은 생성할 수 없습니다");
     }
 
+    @Test
+    @DisplayName("좌우로 연결되지 않은 지점은 그냥 내려간다")
+    void 좌우로_연결되지_않은_지점은_그냥_내려감() {
+        Line line = new Line();
+        int location = 0;
+
+        location = line.tryMove(location);
+
+        assertThat(location).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("왼쪽으로 연결된 지점은 왼쪽으로 이동 후 내려간다")
+    void 왼쪽으로_연결된_지점은_왼쪽으로_이동_후_내려감() {
+        Line line = Line.first();
+        int location = 1;
+
+        location = line.tryMove(location);
+
+        assertThat(location).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("왼쪽으로 연결된 지점은 왼쪽으로 이동 후 내려간다")
+    void 오른쪽으로_연결된_지점은_오른쪽으로_이동_후_내려감() {
+        Line line = Line.first();
+        int location = 1;
+
+        location = line.tryMove(location);
+
+        assertThat(location).isEqualTo(0);
+    }
+
 }

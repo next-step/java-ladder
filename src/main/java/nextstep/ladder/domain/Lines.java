@@ -69,4 +69,8 @@ public class Lines {
         return DISCONNECTED;
     }
 
+    public Line getLineOfSpecificLocation(int i) {
+        return lines.get(i);
+    }
+
 }

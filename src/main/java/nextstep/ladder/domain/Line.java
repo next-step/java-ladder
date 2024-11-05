@@ -12,11 +12,11 @@ public class Line {
     }
 
     public static Line first() {
-        return new Line(DISCONNECTED, CONNECTED);
+        return new Line(CONNECTED, DISCONNECTED);
     }
 
     public static Line last() {
-        return new Line(CONNECTED, DISCONNECTED);
+        return new Line(DISCONNECTED, CONNECTED);
     }
     public static Line firstAndLast() {
         return new Line(CONNECTED, CONNECTED);
@@ -46,6 +46,26 @@ public class Line {
             return;
         }
         left = CONNECTED;
+    }
+
+    public int tryMove(int location) {
+        location = tryMoveRight(location);
+        location = tryMoveLeft(location);
+        return location;
+    }
+
+    private int tryMoveRight(int location) {
+        if (isRightConnected()) {
+            return ++location;
+        }
+        return location;
+    }
+
+    private int tryMoveLeft(int location) {
+        if (isLeftConnected()) {
+            return --location;
+        }
+        return location;
     }
 
     public boolean isLeftConnected() {

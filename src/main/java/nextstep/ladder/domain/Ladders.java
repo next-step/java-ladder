@@ -29,4 +29,14 @@ public class Ladders {
                 .collect(Collectors.joining());
     }
 
+    public int traverseLadderDown(int playerIndex) {
+        int location = playerIndex;
+        for (int i = 0; i < height; i++) {
+            Lines lines = ladder.get(i);
+            Line line = lines.getLineOfSpecificLocation(location);
+            location = line.tryMove(location);
+        }
+        return location;
+    }
+
 }
