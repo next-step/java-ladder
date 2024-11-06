@@ -3,24 +3,24 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<Bridge> steps;
 
-    public Ladder() {
-        steps = new ArrayList<>();
+    private Ladder() {
+        this.steps = new ArrayList<>();
     }
 
-    public Ladder createSteps(LadderSetting setting, ConnectionStrategy strategy) {
-        IntStream.range(0, setting.getLadderHeight())
-                .forEach(index -> {
-                    Bridge bridge = new Bridge();
-                    bridge.connectSteps(setting.getLadderCount(), strategy);
-                    steps.add(bridge);
-                });
+    public static Ladder createSteps(LadderSetting setting, ConnectionStrategy strategy) {
+        Ladder ladder = new Ladder();
 
-        return this;
+        for (int count = 1; count <= setting.getStepCount(); count++) {
+            Bridge bridge = new Bridge();
+            bridge.connectSteps(setting.getLineCount(), strategy);
+            ladder.steps.add(bridge);
+        }
+
+        return ladder;
     }
 
     public LadderResult findOutcomeForParticipant(LadderGameData gameData) {
@@ -30,7 +30,7 @@ public class Ladder {
         String[] participantNames = gameData.getParticipantNames();
         String[] outcomes = gameData.getOutcomes();
 
-        if(participantNames.length != outcomes.length) {
+        if (participantNames.length != outcomes.length) {
             throw new RuntimeException("참가자의 수와 사다리 결과 개수가 일치하지 않습니다.");
         }
 

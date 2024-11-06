@@ -1,42 +1,44 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Bridge {
-    private final List<Boolean> connections;
+    private final List<Connection> lines;
 
     public Bridge() {
-        connections = new ArrayList<>();
+        lines = new ArrayList<>();
     }
 
     public void connectSteps(int participantCount, ConnectionStrategy strategy) {
-        IntStream.range(0, participantCount - 1)
-                .forEach(index -> {
-                    if (index > 0 && !connections.isEmpty() && connections.get(index - 1)) {
-                        connections.add(false);
-                        return;
-                    }
-                    connections.add(strategy.connect());
-                });
+        for (int index = 0; index < participantCount-1; index++) {
+            checkAndConnectLines(index, strategy.isConnect());
+        }
+    }
+
+    private void checkAndConnectLines(int index, boolean isConnect) {
+        if (index > 0 && lines.get(index-1).isConnect()) {
+            Connection.connect(lines, false);
+            return;
+        }
+
+       Connection.connect(lines, isConnect);
     }
 
     public Position move(Position position) {
-        if (position.getValue() > 0 && connections.get(position.getValue() - 1)) {
+        if (position.getValue() > 0 && lines.get(position.getValue()-1).isConnect()) {
             return position.moveLeft();
         }
 
-        if (position.getValue() < connections.size() && connections.get(position.getValue())) {
+        if (position.getValue() < lines.size() && lines.get(position.getValue()).isConnect()) {
             return position.moveRight();
         }
 
         return position;
     }
 
-    public List<Boolean> getConnections() {
-        return Collections.unmodifiableList(connections);
+    public List<Connection> getLines() {
+        return lines;
     }
 
 }

@@ -1,20 +1,20 @@
 package ladder.domain;
 
 public class LadderSetting {
-    private final int ladderCount;
-    private final int ladderHeight;
+    private final int stepCount;
+    private final int lineCount;
 
-    public LadderSetting(int ladderCount, int ladderHeight) {
-        this.ladderCount = ladderCount;
-        this.ladderHeight = ladderHeight;
+    public LadderSetting(int stepCount, int lineCount) {
+        this.stepCount = stepCount;
+        this.lineCount = lineCount;
     }
 
-    public int getLadderCount() {
-        return ladderCount;
+    public int getStepCount() {
+        return stepCount;
     }
 
-    public int getLadderHeight() {
-        return ladderHeight;
+    public int getLineCount() {
+        return lineCount;
     }
 
 }

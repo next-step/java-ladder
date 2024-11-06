@@ -1,32 +1,31 @@
 package ladder.service;
 
-import ladder.domain.*;
-
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import ladder.domain.ConnectionStrategy;
+import ladder.domain.Ladder;
+import ladder.domain.LadderGameData;
+import ladder.domain.LadderResult;
+import ladder.domain.LadderSetting;
 
 public class LadderGame {
     private static final int MIN_LADDER_COUNT = 2;
 
-    public LadderGame() {
+    private LadderGame() {
     }
 
-    public Ladder createLadder(LadderSetting setting, ConnectionStrategy strategy) {
-        if(setting.getLadderCount() < MIN_LADDER_COUNT) {
+    public static Ladder createLadder(LadderSetting setting, ConnectionStrategy strategy) {
+        if(setting.getLineCount() < MIN_LADDER_COUNT) {
             throw new RuntimeException("사다리의 개수는 최소 2개 이상이어야 합니다.");
         }
 
-        Ladder ladder = new Ladder();
-        return ladder.createSteps(setting, strategy);
+        return Ladder.createSteps(setting, strategy);
     }
 
-    public LadderResult playGame(Ladder ladder, LadderGameData gameData) {
+    public static LadderResult playGame(Ladder ladder, LadderGameData gameData) {
         return ladder.findOutcomeForParticipant(gameData);
     }
 
 
-    public String getOutcomeForParticipant(LadderResult ladderResult, String participantNameForOutcome) {
+    public static String getOutcomeForParticipant(LadderResult ladderResult, String participantNameForOutcome) {
         return ladderResult.getOutcomeForParticipant(participantNameForOutcome);
     }
 }

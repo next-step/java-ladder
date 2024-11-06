@@ -1,6 +1,10 @@
 package ladder.controller;
 
-import ladder.domain.*;
+import ladder.domain.Ladder;
+import ladder.domain.LadderGameData;
+import ladder.domain.LadderResult;
+import ladder.domain.LadderSetting;
+import ladder.domain.RandomConnectionStrategy;
 import ladder.service.LadderGame;
 import ladder.view.InputView;
 import ladder.view.ResultView;
@@ -14,15 +18,14 @@ public class LadderController {
         String[] outcomes = InputView.inputOutcomes();
         int maxLadderHeight = InputView.inputMaxLadderHeight();
 
-        LadderGame ladderGame = new LadderGame();
         LadderGameData gameData = new LadderGameData(participantNames, outcomes);
-        Ladder ladder = ladderGame.createLadder(new LadderSetting(participantCount, maxLadderHeight), new RandomConnectionStrategy());
+        Ladder ladder = LadderGame.createLadder(new LadderSetting(maxLadderHeight, participantCount), new RandomConnectionStrategy());
         ResultView.printLadderResult(ladder, gameData);
 
-        LadderResult ladderResult = ladderGame.playGame(ladder, gameData);
+        LadderResult ladderResult = LadderGame.playGame(ladder, gameData);
 
         String participantNameForOutcome = InputView.inputParticipantNameForOutcome();
-        String outcomeForParticipant = ladderGame.getOutcomeForParticipant(ladderResult, participantNameForOutcome);
+        String outcomeForParticipant = LadderGame.getOutcomeForParticipant(ladderResult, participantNameForOutcome);
         ResultView.printOutcomeForParticipant(outcomeForParticipant);
     }
 

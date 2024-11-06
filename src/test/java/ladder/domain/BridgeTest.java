@@ -3,7 +3,9 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class BridgeTest {
 
@@ -15,9 +17,11 @@ class BridgeTest {
         ConnectionStrategy alwaysTrueStrategy = new FakeConnectionStrategy(true);
         bridge.connectSteps(4, alwaysTrueStrategy);
 
-        assertEquals(true, bridge.getConnections().get(0));
-        assertEquals(false, bridge.getConnections().get(1));
-        assertEquals(true, bridge.getConnections().get(2));
+        List<Connection> lines = bridge.getLines();
+
+        assertTrue(lines.get(0).isConnect());
+        assertFalse(lines.get(1).isConnect());
+        assertTrue(lines.get(2).isConnect());
     }
 
     @Test

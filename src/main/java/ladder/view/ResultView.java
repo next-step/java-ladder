@@ -1,9 +1,9 @@
 package ladder.view;
 
 import ladder.domain.Bridge;
+import ladder.domain.Connection;
 import ladder.domain.Ladder;
 import ladder.domain.LadderGameData;
-import ladder.domain.LadderResult;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,20 +28,29 @@ public class ResultView {
     private static void printLadder(List<Bridge> ladder) {
         StringBuilder output = new StringBuilder();
 
-        ladder.forEach(bridge -> {
-            List<Boolean> connections = bridge.getConnections();
+        for (Bridge bridge : ladder) {
+            List<Connection> lines = bridge.getLines();
+
             output.append("    |");
-            connections.forEach(isConnected -> {
-                if (isConnected) {
-                    output.append("-----|");
-                    return;
-                }
-                output.append("     |");
-            });
+            checkConnect(lines, output);
             output.append("\n");
-        });
+        }
 
         System.out.println(output);
+    }
+
+    private static void checkConnect(List<Connection> lines, StringBuilder output) {
+        for (Connection connection : lines) {
+            formLadder(connection.isConnect(), output);
+        }
+    }
+
+    private static void formLadder(boolean isConnect, StringBuilder output) {
+        if (isConnect) {
+            output.append("-----|");
+            return;
+        }
+        output.append("     |");
     }
 
     private static void printOutcomes(String[] outcomes) {

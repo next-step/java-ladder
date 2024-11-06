@@ -22,4 +22,5 @@ public class PositionTest {
         position = position.moveRight();
         assertThat(position.getValue()).isEqualTo(1);
     }
+
 }
