@@ -1,5 +1,9 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.engine.LadderGame;
+import nextstep.ladder.engine.Line;
+import nextstep.ladder.engine.Person;
+import nextstep.ladder.engine.Winner;
 import nextstep.ladder.strategy.LineCreatableStrategy;
 import nextstep.ladder.vo.Result;
 
@@ -9,15 +13,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class LadderGame {
+public class LadderGameImpl implements LadderGame {
     public static final String DELIMITER = ",";
 
     private final LineCreatableStrategy lineCreatableStrategy;
 
-    public LadderGame(final LineCreatableStrategy lineCreatableStrategy) {
+    public LadderGameImpl(final LineCreatableStrategy lineCreatableStrategy) {
         this.lineCreatableStrategy = lineCreatableStrategy;
     }
 
+    @Override
     public Result play(final String names, final String executeResult, final int countLadderHeight) {
         List<Person> persons = createPerson(names);
         List<Line> lines = createLadder(countLadderHeight, persons.size());
@@ -32,14 +37,14 @@ public class LadderGame {
         for (int i = 0; i < persons.size(); i++) {
             int finalPosition = lines.stream()
                     .reduce(i, (position, line) -> line.movePerson(position), (a, b) -> b);
-            winners.add(new Winner(persons.get(i), values[finalPosition]));
+            winners.add(new WinnerImpl(persons.get(i), values[finalPosition]));
         }
         return winners;
     }
 
     private List<Person> createPerson(final String names) {
         return Arrays.stream(names.split(DELIMITER))
-                .map(Person::new)
+                .map(PersonImpl::new)
                 .collect(Collectors.toList());
     }
 

@@ -1,6 +1,6 @@
 package nextstep.ladder.service;
 
-import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.engine.LadderGame;
 import nextstep.ladder.vo.Result;
 
 public class LadderService {

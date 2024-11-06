@@ -1,8 +1,11 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Person;
-import nextstep.ladder.domain.Winner;
+import nextstep.ladder.domain.LineImpl;
+import nextstep.ladder.domain.PersonImpl;
+import nextstep.ladder.domain.WinnerImpl;
+import nextstep.ladder.engine.Line;
+import nextstep.ladder.engine.Person;
+import nextstep.ladder.engine.Winner;
 import nextstep.ladder.vo.Result;
 
 import java.util.List;
@@ -57,7 +60,7 @@ public class View {
             StringBuilder sb = new StringBuilder();
             sb.append(EXECUTE_RESULT);
             for (Winner winner : winners) {
-                if (Objects.equals(winner.getPerson(), new Person(name))) {
+                if (Objects.equals(winner.getPerson(), new PersonImpl(name))) {
                     sb.append(winner.getResult());
                 }
                 if (Objects.equals(name, ALL)) {
