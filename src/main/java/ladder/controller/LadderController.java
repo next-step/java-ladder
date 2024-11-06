@@ -12,7 +12,7 @@ public class LadderController {
     public static void run() {
         InputView inputView = new InputView(new Scanner(System.in));
 
-        Players players = inputView.inputPlayerNamesToPlayers();
+        Players players = inputView.inputNamesToPlayers();
         Ladder ladder = inputView.inputVerticalSizeToLadder(players);
 
         ResultView resultView = new ResultView(ladder);
