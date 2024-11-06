@@ -11,6 +11,10 @@ public class Username {
         this.username = username;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
     public String getUsernameForPrint() {
         return String.format("%-6s", username);
     }
