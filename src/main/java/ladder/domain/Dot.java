@@ -1,21 +1,39 @@
 package ladder.domain;
 
 public class Dot {
-    private int index;
-    private Boolean value;
+    private final boolean value;
+    private static int ONE = 1;
+    private static int ZERO = 0;
+    private static int MINUS_ONE = -1;
 
-    public Dot(int index, Boolean value) {
-        this.index = index;
+    public Dot(boolean value) {
         this.value = value;
     }
 
-    public Boolean getValue() {
+    public boolean getValue() {
         return value;
+    }
+
+    public int getMoveStep() {
+        if (value) {
+            return ONE;
+        }
+        return ZERO;
+    }
+
+    public int getMoveStepWithPreDot(boolean preIndexValue) {
+        if (preIndexValue) {
+            return MINUS_ONE;
+        }
+        if (value) {
+            return ONE;
+        }
+        return ZERO;
     }
 
     @Override
     public boolean equals(Object obj) {
-        Dot dot = (Dot)obj;
-        return this.value == dot.value && this.index == ((Dot) obj).index;
+        Dot dot = (Dot) obj;
+        return this.value == dot.value;
     }
 }
