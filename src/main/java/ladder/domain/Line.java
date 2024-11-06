@@ -22,12 +22,12 @@ public class Line {
     public static final String PREFIX = "";
     private final List<Boolean> line;
 
-    public Line(List<Boolean> line) {
-        this.line = line;
-    }
-
     public Line(int playersCount, LineGenerator generator) {
         this(generateLine(playersCount, generator));
+    }
+
+    public Line(List<Boolean> line) {
+        this.line = line;
     }
 
     private static List<Boolean> generateLine(int playersCount, LineGenerator generator) {
