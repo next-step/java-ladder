@@ -28,7 +28,6 @@ public class Lines {
     public void generateConnections() {
         Random random = new Random();
         generateConnectionsExceptLastLine(random);
-        //generationLastLineConnection(random);
     }
 
     private void generateConnectionsExceptLastLine(Random random) {
@@ -52,13 +51,6 @@ public class Lines {
         return random.nextInt(10) > 2 && !line.isLeftConnected();
     }
 
-//    private void generationLastLineConnection(Random random) {
-//        Line lastLine = lines.get(lines.size() - 2);
-//        if (connectionConditionSatisfyAboutFortyPercent(random, lastLine, lines.size() - 1)) {
-//            lastLine.connectRight();
-//        }
-//    }
-
     public String getLinesState() {
         return "     "+lines.stream()
                 .map(this::getConnectionsState)
@@ -74,6 +66,10 @@ public class Lines {
 
     public Line getLineOfSpecificLocation(int i) {
         return lines.get(i);
+    }
+
+    public int getLineCount() {
+        return lines.size();
     }
 
 }

@@ -27,12 +27,6 @@ public class Ladders {
         ladder.forEach(Lines::generateConnections);
     }
 
-    public String getLadderState() {
-        return ladder.stream()
-                .map(Lines::getLinesState)
-                .collect(Collectors.joining());
-    }
-
     public int traverseLadderDown(int playerIndex) {
         int location = playerIndex;
         for (int i = 0; i < height; i++) {
@@ -41,6 +35,16 @@ public class Ladders {
             location = line.tryMove(location);
         }
         return location;
+    }
+
+    public String getLadderState() {
+        return ladder.stream()
+                .map(Lines::getLinesState)
+                .collect(Collectors.joining());
+    }
+
+    public int getLadderHeight() {
+        return ladder.size();
     }
 
 }
