@@ -6,7 +6,6 @@ import ladder.domain.RandomDecision;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.Arrays;
 import java.util.Map;
 
 public class LadderMain {

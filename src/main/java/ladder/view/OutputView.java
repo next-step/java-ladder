@@ -15,16 +15,20 @@ public class OutputView {
     }
 
     public static void print(List<String> names) {
-        names.stream().forEach(name -> System.out.print(String.format("%-6s", name)));
+        names.stream()
+                .forEach(name -> System.out.print(String.format("%-6s", name)));
         System.out.println();
     }
 
     public static void printLadder(List<Line> lines) {
-        lines.stream().forEach(line -> print(line));
+        lines.stream()
+                .forEach(line -> print(line));
     }
 
     private static void print(Line line) {
-        line.getDots().stream().map(dot -> getDotValueToString(dot)).forEach(System.out::print);
+        line.getDots().stream()
+                .map(dot -> getDotValueToString(dot))
+                .forEach(System.out::print);
         System.out.println();
     }
 
