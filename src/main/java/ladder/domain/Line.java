@@ -19,9 +19,7 @@ public class Line {
             Boolean preDotValue = dots.get(i - 1).getValue();
             dots.add(i, new Dot(!preDotValue));
         }
-
-        dots.add(count - 1, new Dot(false));
-
+        dots.add(new Dot(false));
         return dots;
     }
 
@@ -32,36 +30,11 @@ public class Line {
     }
 
     public int getLineIndex(int index) {
+        Dot dot = dots.get(index);
+
         if (index == 0) {
-            return getFirstDotIndex(index);
+            return index + dot.getMoveStep();
         }
-        if (index == dots.size() - 1) {
-            return getLastDotIndex(index);
-        }
-        return getMiddleDotIndex(index);
-    }
-
-    private int getMiddleDotIndex(int index) {
-        if (dots.get(index - 1).getValue()) {
-            return index - 1;
-        }
-        if (dots.get(index).getValue()) {
-            return index + 1;
-        }
-        return index;
-    }
-
-    private int getLastDotIndex(int index) {
-        if (dots.get(index - 1).getValue()) {
-            return index - 1;
-        }
-        return index;
-    }
-
-    private int getFirstDotIndex(int index) {
-        if (dots.get(index).getValue()) {
-            return index + 1;
-        }
-        return index;
+        return index + dot.getMoveStepWithPreDot(dots.get(index-1).getValue());
     }
 }

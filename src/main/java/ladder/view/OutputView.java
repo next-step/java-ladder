@@ -1,12 +1,15 @@
 package ladder.view;
 
+import ladder.domain.LadderGame;
 import ladder.domain.Line;
 import ladder.domain.Player;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class OutputView {
+    private static String RESULT_MSG = "사다리 결과";
     public static void printMsg(String msg) {
         System.out.println(msg);
     }
@@ -43,4 +46,10 @@ public class OutputView {
         return "|" + " ".repeat(Player.NAME_MAX_LENGTH);
     }
 
+    public static void printGeneratedLadder(LadderGame ladderGame, String[] inputedResult) {
+        printMsg(RESULT_MSG);
+        print(ladderGame.getPlayers().getPlayerNames());
+        printLadder(ladderGame.getLines());
+        print(Arrays.asList(inputedResult));
+    }
 }

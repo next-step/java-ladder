@@ -33,10 +33,15 @@ public class LadderGame {
 
     public int getPlayerResultIndex(int index) {
         int resultIndex = index;
-        for (int i = 0; i < lines.size(); i++) {
-            resultIndex = lines.get(i).getLineIndex(resultIndex);
+
+        for (Line line : lines) {
+            resultIndex = line.getLineIndex(resultIndex);
         }
         return resultIndex;
+    }
+
+    public Players getPlayers() {
+        return players;
     }
 
     public List<Line> getLines() {
