@@ -33,11 +33,11 @@ public class Lambda {
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        return sumAllByCondition(numbers, (number) -> number % 2 == 0);
+        return sumAllByCondition(numbers, number -> number % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        return sumAllByCondition(numbers, (number) -> number > 3);
+        return sumAllByCondition(numbers, number -> number > 3);
     }
 
     private static int sumAllByCondition(List<Integer> numbers, Conditional condition) {
