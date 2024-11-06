@@ -12,6 +12,10 @@ public class Ladders {
         this.height = height;
         this.ladder = createLadders(height, numberOfPlayers);
     }
+    public Ladders(int height, List<Lines> ladders) {
+        this.height = height;
+        this.ladder = ladders;
+    }
 
     private List<Lines> createLadders(int height, int numberOfPlayers) {
         return IntStream.rangeClosed(1, height)

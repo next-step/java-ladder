@@ -1,6 +1,8 @@
 package nextstep.ladder.ladderview;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import nextstep.ladder.domain.LadderResult;
 
 public class ResultView {
 
@@ -12,7 +14,7 @@ public class ResultView {
     }
 
     private void printReultGuide() {
-        System.out.println("\n실행 결과\n");
+        System.out.println("\n사다리 결과\n");
     }
 
     private void printPlayers(List<String> players) {
@@ -32,5 +34,26 @@ public class ResultView {
 
     private void printLadders(String ladders) {
         System.out.print(ladders);
+    }
+
+    public void printResultOfPlayer(LadderResult ladderResult, String player) {
+        System.out.println("\n실행 결과");
+        if(player.equals("all")) {
+            printAllExecutionResult(ladderResult);
+            return;
+        }
+        printExecutionResult(ladderResult, player);
+    }
+
+    private void printAllExecutionResult(LadderResult ladderResult) {
+        System.out.println(ladderResult.getPlayerAndResult()
+                .entrySet()
+                .stream()
+                .map(player -> player.getKey() + " : " + player.getValue()+"\n")
+                .collect(Collectors.joining()));
+    }
+
+    private void printExecutionResult(LadderResult ladderResult, String player) {
+        System.out.println(ladderResult.getSpecificPlayerResult(player));
     }
 }

@@ -13,4 +13,8 @@ public class Results {
     public List<String> getResults() {
         return new ArrayList<>(results);
     }
+
+    public String getFinalResult(int location) {
+        return results.get(location);
+    }
 }
