@@ -8,5 +8,6 @@ public class LadderMain {
         List<String> results = InputView.inputResults();
         int height = InputView.inputHeight();
         ResultView.printLadderResult(usernames, new Lines(height, usernames.size()));
+        String resultUserName = InputView.inputResultUserName();
     }
 }
