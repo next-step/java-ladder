@@ -7,7 +7,7 @@ public class LadderMain {
         Usernames usernames = new Usernames(InputView.inputUserNames());
         List<String> results = InputView.inputResults();
         int height = InputView.inputHeight();
-        ResultView.printLadderResult(usernames, new Lines(height, usernames.size()));
+        ResultView.printLadderResult(usernames, new Lines(height, usernames.size()), results);
         String resultUserName = InputView.inputResultUserName();
     }
 }
