@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.domain.util.LineGenerator;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -21,22 +22,13 @@ public class Lines {
         this.lines = lines;
     }
 
+
+
     private static List<Line> generateLines(int playersSize, int verticalLadderSize, LineGenerator generator) {
         return IntStream.range(START_INCLUSIVE, verticalLadderSize)
                 .boxed()
                 .map(index -> new Line(playersSize, generator))
                 .collect(Collectors.toList());
-    }
-
-    public String toLinesString(Players players) {
-        String namesString = players.names()
-                .stream()
-                .map(name -> SPACE.repeat(players.namesMaxLength() - name.length()) + name.name())
-                .collect(Collectors.joining(SPACE));
-        String linesString = lines.stream()
-                .map(line -> line.toLineString(players))
-                .collect(Collectors.joining(LINE_BREAK));
-        return namesString + LINE_BREAK + linesString;
     }
 
     @Override
@@ -50,5 +42,9 @@ public class Lines {
     @Override
     public int hashCode() {
         return Objects.hash(lines);
+    }
+
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 }

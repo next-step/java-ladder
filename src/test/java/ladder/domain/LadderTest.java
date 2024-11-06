@@ -1,11 +1,13 @@
 package ladder.domain;
 
 import ladder.domain.util.LineGenerator;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
@@ -14,12 +16,20 @@ public class LadderTest {
     private Players players;
     private LineGenerator horizontalGenerator;
     private int verticalLadderSize;
+    private Lines lines;
 
     @BeforeEach
     void setUp() {
         players = new Players("pobi,crong,honux,jk");
         horizontalGenerator = () -> true;
         verticalLadderSize = 5;
+        lines = new Lines(List.of(
+                new Line(4, horizontalGenerator),
+                new Line(4, horizontalGenerator),
+                new Line(4, horizontalGenerator),
+                new Line(4, horizontalGenerator),
+                new Line(4, horizontalGenerator)
+        ));
     }
 
     @Test
@@ -37,18 +47,18 @@ public class LadderTest {
     }
 
     @Test
-    void toStringLadder() {
-        Ladder ladder = new Ladder(players, verticalLadderSize, horizontalGenerator);
-        String actual = ladder.toLadderString();
-        String expected = new StringBuilder()
-                .append(" pobi crong honux    jk\n")
-                .append("     |-----|     |-----|\n")
-                .append("     |-----|     |-----|\n")
-                .append("     |-----|     |-----|\n")
-                .append("     |-----|     |-----|\n")
-                .append("     |-----|     |-----|")
-                .toString();
+    void getLines() {
+        Ladder ladder = new Ladder(players, lines);
+        Lines actual = ladder.getLines();
 
-        assertThat(actual).isEqualTo(expected);
+        assertThat(actual).isEqualTo(lines);
+    }
+
+    @Test
+    void getPlayers() {
+        Ladder ladder = new Ladder(players, lines);
+        Players actual = ladder.getPlayers();
+
+        assertThat(actual).isEqualTo(players);
     }
 }

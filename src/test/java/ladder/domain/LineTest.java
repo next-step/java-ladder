@@ -2,11 +2,11 @@ package ladder.domain;
 
 import ladder.exception.LineException;
 import ladder.exception.PlayersCountException;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static ladder.domain.Line.*;
@@ -45,24 +45,13 @@ public class LineTest {
     }
 
     @Test
-    void toStringLine() {
-        Players players = new Players("pobi,crong,honux,jk");
-        Line line = new Line(players.size(), () -> true);
+    void getPoint() {
+        List<Boolean> lineList = new ArrayList<>(List.of(false, true, false, true, false));
+        Line line = new Line(lineList);
+        List<Boolean> actual = line.getPoint();
 
-        String actual = line.toLineString(players);
-        String expeccted = "     |-----|     |-----|";
-
-        assertThat(actual).isEqualTo(expeccted);
-    }
-
-    @Test
-    void toStringLine_playersCount_players_names_count_불일치() {
-        Players players = new Players("pobi,crong,honux,jk,newbi");
-        Line line = new Line(4, () -> true);
-
-        assertThatThrownBy(() -> {
-            String actual = line.toLineString(players);
-        }).isInstanceOf(LineException.class)
-                .hasMessage(NOT_MATCHED_LINE_PLAYERS_COUNT_MESSAGE);
+        assertThat(actual).isEqualTo(lineList);
+        assertThatThrownBy(() -> actual.add(false))
+                .isInstanceOf(UnsupportedOperationException.class);
     }
 }

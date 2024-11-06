@@ -30,7 +30,11 @@ public class Ladder {
         return Objects.hash(lines);
     }
 
-    public String toLadderString() {
-        return lines.toLinesString(players);
+    public Lines getLines() {
+        return lines;
+    }
+
+    public Players getPlayers() {
+        return players;
     }
 }

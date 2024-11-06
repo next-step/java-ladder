@@ -1,12 +1,16 @@
 package ladder.domain;
 
 import ladder.domain.util.LineGenerator;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.instrument.UnmodifiableClassException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static ladder.domain.PlayersTest.PLAYERS1;
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LinesTest {
@@ -37,18 +41,20 @@ public class LinesTest {
     }
 
     @Test
-    void toLinesString() {
-        Lines lines = new Lines(PLAYERS1, verticalLadderSize, generator);
-        String actual = lines.toLinesString(PLAYERS1);
-        String expected = new StringBuilder()
-                .append(" pobi crong honux    jk\n")
-                .append("     |-----|     |-----|\n")
-                .append("     |-----|     |-----|\n")
-                .append("     |-----|     |-----|\n")
-                .append("     |-----|     |-----|\n")
-                .append("     |-----|     |-----|")
-                .toString();
+    void getLines() {
+        ArrayList<Line> lineList = new ArrayList<>(List.of(
+                new Line(playersCount, generator),
+                new Line(playersCount, generator),
+                new Line(playersCount, generator),
+                new Line(playersCount, generator),
+                new Line(playersCount, generator)
+        ));
+        Lines lines = new Lines(lineList);
+        List<Line> actual = lines.getLines();
 
-        assertThat(actual).isEqualTo(expected);
+        assertThat(actual).isEqualTo(lineList);
+        assertThatThrownBy(() -> {
+            actual.add(new Line(playersCount, generator));
+        }).isInstanceOf(UnsupportedOperationException.class);
     }
 }

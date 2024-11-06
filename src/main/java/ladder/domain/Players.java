@@ -1,7 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.util.SplitUtil;
-
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -10,6 +9,7 @@ import static ladder.domain.Name.DEFAULT_MAX_NAME_LENGTH;
 
 public class Players {
 
+    public static final String DELIMITER = ",";
     private final List<Player> players;
 
     public Players(List<Player> players) {
@@ -25,7 +25,9 @@ public class Players {
     }
 
     private static List<Player> toPlayers(String names) {
-        return SplitUtil.split(names)
+        return Arrays.stream(names.split(DELIMITER))
+                .map(String::trim)
+                .collect(Collectors.toList())
                 .stream()
                 .map(Player::new)
                 .collect(Collectors.toList());
