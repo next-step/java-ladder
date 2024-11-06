@@ -6,40 +6,40 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static ladder.domain.PlayersTest.PLAYERS1;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LadderTest {
+public class LinesTest {
 
-
-    private Players players;
-    private HorizontalGenerator horizontalGenerator;
+    private int playersCount;
+    private HorizontalGenerator generator;
     private int verticalLadderSize;
 
     @BeforeEach
     void setUp() {
-        players = new Players("pobi,crong,honux,jk");
-        horizontalGenerator = () -> true;
+        playersCount = PLAYERS1.size();
         verticalLadderSize = 5;
+        generator = () -> true;
     }
 
     @Test
     void create() {
-        Ladder actual = new Ladder(players, verticalLadderSize, horizontalGenerator);
-        Ladder expected = new Ladder(players, new Lines(List.of(
-                new Line(4, horizontalGenerator),
-                new Line(4, horizontalGenerator),
-                new Line(4, horizontalGenerator),
-                new Line(4, horizontalGenerator),
-                new Line(4, horizontalGenerator)
-                )));
+        Lines actual = new Lines(PLAYERS1, verticalLadderSize, generator);
+        Lines expected = new Lines(List.of(
+                new Line(playersCount, generator),
+                new Line(playersCount, generator),
+                new Line(playersCount, generator),
+                new Line(playersCount, generator),
+                new Line(playersCount, generator)
+        ));
 
         assertThat(actual).isEqualTo(expected);
     }
 
     @Test
-    void toStringLadder() {
-        Ladder ladder = new Ladder(players, verticalLadderSize, horizontalGenerator);
-        String actual = ladder.toLadderString();
+    void toLinesString() {
+        Lines lines = new Lines(PLAYERS1, verticalLadderSize, generator);
+        String actual = lines.toLinesString(PLAYERS1);
         String expected = new StringBuilder()
                 .append(" pobi crong honux    jk\n")
                 .append("     |-----|     |-----|\n")

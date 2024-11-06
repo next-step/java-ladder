@@ -50,10 +50,13 @@ public class Line {
 ## TODO
 ### Domain
 * Ladder
+  - [x] 사다리를 문자열로 출력한다.
+  * field Lines
+  * field Players
+* Lines
   - [x] 참여자들, 가로생성 익명클래스, 사다리높이 를 받아 여러줄을 생성한다.
   - [x] 여러줄을 사다리 문자열로 출력한다.
     - [x] 참여자의 이름길이의 가장 큰 길이에 따라 줄 내에 가로길이가 길어진다.
-  * field Players
   * field List<Line>
 * Players
   - [x] 참여할 사람 이름들을 받아 참여자들을 생성한다.

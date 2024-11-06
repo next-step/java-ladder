@@ -2,27 +2,18 @@ package ladder.domain;
 
 import ladder.domain.util.HorizontalGenerator;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Ladder {
     public static final int START = 0;
-    public static final String LINE_BREAK = "\n";
-    public static final String SPACE = " ";
-    private final List<Line> lines;
+    private final Lines lines;
     private final Players players;
 
     public Ladder(Players players, int verticalLadderSize, HorizontalGenerator generator) {
-        this(players, IntStream.range(START, verticalLadderSize)
-                .boxed()
-                .map(index -> new Line(players.size(), generator))
-                .collect(Collectors.toList())
-        );
+        this(players, new Lines(players, verticalLadderSize, generator));
     }
 
-    public Ladder(Players players, List<Line> lines) {
+    public Ladder(Players players, Lines lines) {
         this.players = players;
         this.lines = lines;
     }
@@ -41,13 +32,6 @@ public class Ladder {
     }
 
     public String toLadderString() {
-        String namesString = players.names()
-                .stream()
-                .map(name -> SPACE.repeat(players.namesMaxLength() - name.length()) + name.name())
-                .collect(Collectors.joining(SPACE));
-        String ladderString = lines.stream()
-                .map(line -> line.toLineString(players))
-                .collect(Collectors.joining(LINE_BREAK));
-        return namesString + LINE_BREAK + ladderString;
+        return lines.toLinesString(players);
     }
 }
