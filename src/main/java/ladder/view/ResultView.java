@@ -3,13 +3,11 @@ package ladder.view;
 import ladder.domain.Ladder;
 
 public class ResultView {
-    private final Ladder ladder;
 
-    public ResultView(Ladder ladder) {
-        this.ladder = ladder;
+    public ResultView() {
     }
 
-    public void renderLadder() {
+    public void renderLadder(Ladder ladder) {
         System.out.println("실행결과");
         System.out.println(ladder.toLadderString());
     }

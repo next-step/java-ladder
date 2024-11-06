@@ -15,9 +15,9 @@ public class LadderController {
         Players players = inputView.inputNamesToPlayers();
         Ladder ladder = inputView.inputVerticalSizeToLadder(players);
 
-        ResultView resultView = new ResultView(ladder);
+        ResultView resultView = new ResultView();
 
-        resultView.renderLadder();
+        resultView.renderLadder(ladder);
     }
 
 }
