@@ -61,19 +61,20 @@ public class Line {
         };
     }
 
-    public String toLineString(List<Name> names) {
+    public String toLineString(Players players) {
+        List<Name> names = players.names();
+        int namesMaxLength = players.namesMaxLength();
         if (names.size() != line.size()) {
             throw new LineException(NOT_MATCHED_LINE_PLAYERS_COUNT_MESSAGE);
         }
         return IntStream.range(START_INCLUSIVE, names.size())
                 .boxed()
-                .map(index -> toHorizontalString(index, names.get(index)))
+                .map(index -> toHorizontalString(index, namesMaxLength))
                 .collect(Collectors.joining(PLAYER_DELIMITER, PREFIX, PLAYER_DELIMITER));
     }
 
-    private String toHorizontalString(Integer integer, Name name) {
-        int length = name.length();
-        if (line.get(integer)) {
+    private String toHorizontalString(int index, int length) {
+        if (line.get(index)) {
             return HORIZONTAL.repeat(length);
         }
         return SPACE.repeat(length);

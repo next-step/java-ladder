@@ -7,6 +7,9 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Players {
+
+    public static final int DEFAULT_MAX_NAME_LENGTH = 5;
+
     private final List<Player> players;
 
     public Players(List<Player> players) {
@@ -26,6 +29,15 @@ public class Players {
                 .stream()
                 .map(Player::new)
                 .collect(Collectors.toList());
+    }
+
+
+    public int namesMaxLength() {
+        return names()
+                .stream()
+                .mapToInt(Name::length)
+                .max()
+                .orElse(DEFAULT_MAX_NAME_LENGTH);
     }
 
     @Override

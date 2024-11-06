@@ -38,19 +38,19 @@ public class LineTest {
         Players players = new Players("pobi,crong,honux,jk");
         Line line = new Line(players.size(), () -> true);
 
-        String actual = line.toLineString(players.names());
-        String expeccted = "    |-----|     |--|";
+        String actual = line.toLineString(players);
+        String expeccted = "     |-----|     |-----|";
 
         assertThat(actual).isEqualTo(expeccted);
     }
 
     @Test
     void toStringLine_playersCount_players_names_count_불일치() {
-        Players players = new Players("pobi,crong,honux,jk,newuser");
+        Players players = new Players("pobi,crong,honux,jk,newbi");
         Line line = new Line(4, () -> true);
 
         assertThatThrownBy(() -> {
-            String actual = line.toLineString(players.names());
+            String actual = line.toLineString(players);
         }).isInstanceOf(LineException.class)
                 .hasMessage(NOT_MATCHED_LINE_PLAYERS_COUNT_MESSAGE);
     }

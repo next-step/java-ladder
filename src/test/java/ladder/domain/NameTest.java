@@ -1,12 +1,12 @@
 package ladder.domain;
 
 import ladder.exception.InvalidNameException;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
-import static ladder.domain.Name.NOT_ALLOW_EMPTY_NAME;
+import static ladder.domain.Name.NOT_ALLOW_EMPTY_NAME_MESSAGE;
+import static ladder.domain.Name.NOT_ALLOW_EXCEED_MAX_NAME_LENGTH_MESSAGE;
 import static org.assertj.core.api.Assertions.*;
 
 public class NameTest {
@@ -24,7 +24,15 @@ public class NameTest {
         assertThatThrownBy(() -> {
                     new Name(emptyName);
                 }).isInstanceOf(InvalidNameException.class)
-                .hasMessage(NOT_ALLOW_EMPTY_NAME);
+                .hasMessage(NOT_ALLOW_EMPTY_NAME_MESSAGE);
+    }
+
+    @Test
+    void create_5글자초과_실패() {
+        assertThatThrownBy(() -> {
+            Name name = new Name("pobi22");
+        }).isInstanceOf(InvalidNameException.class)
+                .hasMessage(NOT_ALLOW_EXCEED_MAX_NAME_LENGTH_MESSAGE);
     }
 
     @Test

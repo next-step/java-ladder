@@ -43,10 +43,10 @@ public class Ladder {
     public String toLadderString() {
         String namesString = players.names()
                 .stream()
-                .map(Name::name)
+                .map(name -> SPACE.repeat(players.namesMaxLength() - name.length()) + name.name())
                 .collect(Collectors.joining(SPACE));
         String ladderString = lines.stream()
-                .map(line -> line.toLineString(players.names()))
+                .map(line -> line.toLineString(players))
                 .collect(Collectors.joining(LINE_BREAK));
         return namesString + LINE_BREAK + ladderString;
     }

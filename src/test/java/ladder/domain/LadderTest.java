@@ -42,12 +42,12 @@ public class LadderTest {
         Ladder ladder = new Ladder(players, verticalLadderSize, horizontalGenerator);
         String actual = ladder.toLadderString();
         String expected = new StringBuilder()
-                .append("pobi crong honux jk\n")
-                .append("    |-----|     |--|\n")
-                .append("    |-----|     |--|\n")
-                .append("    |-----|     |--|\n")
-                .append("    |-----|     |--|\n")
-                .append("    |-----|     |--|")
+                .append(" pobi crong honux    jk\n")
+                .append("     |-----|     |-----|\n")
+                .append("     |-----|     |-----|\n")
+                .append("     |-----|     |-----|\n")
+                .append("     |-----|     |-----|\n")
+                .append("     |-----|     |-----|")
                 .toString();
 
         assertThat(actual).isEqualTo(expected);
