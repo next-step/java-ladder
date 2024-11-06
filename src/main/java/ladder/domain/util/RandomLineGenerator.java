@@ -1,11 +1,12 @@
 package ladder.domain.util;
 
+import java.util.Random;
+
 public class RandomLineGenerator implements LineGenerator {
 
-    public static final double BOUNDARY = 0.5d;
 
     @Override
     public Boolean generate() {
-        return Math.random() > BOUNDARY;
+        return new Random().nextBoolean();
     }
 }
