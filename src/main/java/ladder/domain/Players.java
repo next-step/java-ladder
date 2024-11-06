@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Players {
+import static ladder.domain.Name.DEFAULT_MAX_NAME_LENGTH;
 
-    public static final int DEFAULT_MAX_NAME_LENGTH = 5;
+public class Players {
 
     private final List<Player> players;
 
