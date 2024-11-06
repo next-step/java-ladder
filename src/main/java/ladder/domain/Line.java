@@ -4,7 +4,6 @@ import ladder.domain.util.HorizontalGenerator;
 import ladder.exception.LineException;
 import ladder.exception.PlayersCountException;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;

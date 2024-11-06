@@ -7,7 +7,8 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static ladder.domain.Name.NOT_ALLOW_EMPTY_NAME_MESSAGE;
 import static ladder.domain.Name.NOT_ALLOW_EXCEED_MAX_NAME_LENGTH_MESSAGE;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class NameTest {
 

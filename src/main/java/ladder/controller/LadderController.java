@@ -19,10 +19,9 @@ public class LadderController {
 
         Players players = new Players(inputPlayerNames);
         Ladder ladder = new Ladder(players, inputVerticalSize, new RandomHorizontalGenerator());
-        ResultView resultView = new ResultView( ladder);
+        ResultView resultView = new ResultView(ladder);
 
         resultView.renderLadder();
-
     }
 
 }
