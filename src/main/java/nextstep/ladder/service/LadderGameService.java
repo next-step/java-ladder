@@ -3,6 +3,7 @@ package nextstep.ladder.service;
 import nextstep.ladder.domain.*;
 
 import java.util.List;
+import java.util.ListIterator;
 import java.util.stream.Stream;
 
 public class LadderGameService {
@@ -21,7 +22,19 @@ public class LadderGameService {
     }
 
     public LadderGameResult play(List<Player> players, List<Prize> prizes, Ladder ladder) {
-        return new LadderGame(players, prizes, ladder).play();
+        LadderGameResult result;
+
+        ladder.move();
+
+        ListIterator<Player> playersIterator = players.listIterator();
+        result = new OrderedLadderGameResult();
+
+        playersIterator.forEachRemaining(player -> {
+            result.add(player, prizes.get(ladder.getEndPoint(playersIterator.nextIndex())));
+            playersIterator.next();
+        });
+
+        return result;
     }
 
     public Prize getPrizeByPlayer(LadderGameResult result, String playerName) {

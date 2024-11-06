@@ -25,6 +25,12 @@ public abstract class LadderGameResult {
             }
         });
 
+        ladderGameResult.entrySet()
+                .stream()
+                .filter(result -> result.getKey()
+                        .isMatchedName(playerName))
+                .forEach(result -> prize.set(result.getValue()));
+
         if (prize.get() == null) {
             throw new IllegalArgumentException("참가자 이름이 유효하지 않습니다.");
         }

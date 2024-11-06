@@ -1,14 +1,15 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.service.LadderGameService;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderGameResult;
 import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.Prize;
+import nextstep.ladder.service.LadderGameService;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static nextstep.ladder.view.InputView.*;
 import static nextstep.ladder.view.ResultView.*;
@@ -53,11 +54,8 @@ public class LadderGameController {
     }
 
     public void searchResultMultiple(LadderGameResult result, int countOfSearch) {
-        int count = 1;
-        while (count <= countOfSearch) {
-            searchResult(result);
-            count++;
-        }
+        IntStream.range(0, countOfSearch)
+                .forEach(num -> searchResult(result));
     }
 
     public void searchResult(LadderGameResult result) {

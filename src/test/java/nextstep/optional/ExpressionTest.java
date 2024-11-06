@@ -14,9 +14,8 @@ public class ExpressionTest {
 
     @Test
     public void notValidExpression() {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> {
-                    Expression.of("&");
-                });
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            Expression.of("&");
+        });
     }
 }
