@@ -14,7 +14,10 @@ import java.util.stream.IntStream;
 public class Line {
     public static final String NOT_ALLOWED_PLAYER_ZERO_OR_MINUS_MESSAGE = "참여자명 수는 최소 1명 이상이어야 합니다";
     public static final String NOT_MATCHED_LINE_PLAYERS_COUNT_MESSAGE = "사다리 라인갯수와 참가자수가 맞지 않습니다.";
+    public static final String NOT_ALLOWED_CREATE_ADJACENT_LINE_MESSAGE = "사다리 라인을 겹치게 만들 수 없습니다.";
     public static final int START_INCLUSIVE = 0;
+    public static final int END_EXCLUSIVE_OFFSET = 1;
+    public static final int NEXT_INDEX_OFFSET = 1;
     public static final int MIN_PLAYERS_COUNT = 1;
     public static final String HORIZONTAL = "-";
     public static final String SPACE = " ";
@@ -27,7 +30,21 @@ public class Line {
     }
 
     public Line(List<Boolean> line) {
+        validateLine(line);
         this.line = line;
+    }
+
+    private static void validateLine(List<Boolean> line) {
+        boolean isAdjacentLine = IntStream
+                .range(START_INCLUSIVE, line.size() - END_EXCLUSIVE_OFFSET)
+                .boxed()
+                .anyMatch(index ->
+                        line.get(index) &&
+                        line.get(index + NEXT_INDEX_OFFSET)
+                );
+        if (isAdjacentLine) {
+            throw new LineException(NOT_ALLOWED_CREATE_ADJACENT_LINE_MESSAGE);
+        }
     }
 
     private static List<Boolean> generateLine(int playersCount, LineGenerator generator) {
