@@ -13,7 +13,7 @@ public class Dot {
 
     @Override
     public boolean equals(Object obj) {
-        Dot dot = (Dot)obj;
+        Dot dot = (Dot) obj;
         return this.value == dot.value;
     }
 }
