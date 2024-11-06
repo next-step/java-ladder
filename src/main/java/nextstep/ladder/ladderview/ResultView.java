@@ -2,7 +2,7 @@ package nextstep.ladder.ladderview;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import nextstep.ladder.domain.LadderResult;
+import nextstep.ladder.domain.LadderGameResult;
 
 public class ResultView {
 
@@ -22,6 +22,7 @@ public class ResultView {
                 .forEach(i -> printByFormat(i));
         System.out.println();
     }
+
     private void printResults(List<String> players) {
         players.stream()
                 .forEach(i -> printByFormat(i));
@@ -36,24 +37,24 @@ public class ResultView {
         System.out.print(ladders);
     }
 
-    public void printResultOfPlayer(LadderResult ladderResult, String player) {
+    public void printResultOfPlayer(LadderGameResult ladderGameResult, String player) {
         System.out.println("\n실행 결과");
-        if(player.equals("all")) {
-            printAllExecutionResult(ladderResult);
+        if (player.equals("all")) {
+            printAllExecutionResult(ladderGameResult);
             return;
         }
-        printExecutionResult(ladderResult, player);
+        printExecutionResult(ladderGameResult, player);
     }
 
-    private void printAllExecutionResult(LadderResult ladderResult) {
-        System.out.println(ladderResult.getPlayerAndResult()
+    private void printAllExecutionResult(LadderGameResult ladderGameResult) {
+        System.out.println(ladderGameResult.getAllResultOfPlayer()
                 .entrySet()
                 .stream()
-                .map(player -> player.getKey() + " : " + player.getValue()+"\n")
+                .map(player -> player.getKey() + " : " + player.getValue() + "\n")
                 .collect(Collectors.joining()));
     }
 
-    private void printExecutionResult(LadderResult ladderResult, String player) {
-        System.out.println(ladderResult.getSpecificPlayerResult(player));
+    private void printExecutionResult(LadderGameResult ladderGameResult, String player) {
+        System.out.println(ladderGameResult.getSpecificPlayerResult(player));
     }
 }

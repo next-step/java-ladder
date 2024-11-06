@@ -1,6 +1,6 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.LadderResult;
+import nextstep.ladder.domain.LadderGameResult;
 import nextstep.ladder.domain.Ladders;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.domain.Results;
@@ -27,16 +27,16 @@ public class LadderController {
         ladders.createLines();
         resultView.printResult(participants.getParticipants(), ladders.getLadderState(), results.getResults());
 
-        LadderResult ladderResult = new LadderResult(ladders, participants, results);
-        printReulstUntilInputIsAll(ladderResult);
+        LadderGameResult ladderGameResult = new LadderGameResult(ladders, participants, results);
+        printReulstUntilInputIsAll(ladderGameResult);
 
     }
 
-    private void printReulstUntilInputIsAll(LadderResult ladderResult) {
+    private void printReulstUntilInputIsAll(LadderGameResult ladderGameResult) {
         String player = inputView.inputResultOfPlayer();
-        resultView.printResultOfPlayer(ladderResult,player);
-        if(checkInputIsAll(player)) {
-            printReulstUntilInputIsAll(ladderResult);
+        resultView.printResultOfPlayer(ladderGameResult, player);
+        if (checkInputIsAll(player)) {
+            printReulstUntilInputIsAll(ladderGameResult);
         }
     }
 

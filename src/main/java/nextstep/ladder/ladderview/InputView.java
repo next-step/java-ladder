@@ -35,7 +35,7 @@ public class InputView {
     }
 
     private void checkResultCountIsSameAsNumberOfPlayer(int numberOfPlayer, List<String> splitedResult) {
-        if(splitedResult.size() < numberOfPlayer) {
+        if(splitedResult.size() != numberOfPlayer) {
             throw new IllegalArgumentException("입력 참가자 수와 입력 결과 수가 같아야 합니다");
         }
     }

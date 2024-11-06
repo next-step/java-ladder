@@ -9,12 +9,15 @@ public class Lines {
     private static final String LINE_SEPERATOR = "\n";
     private static final String CONNECTED = "|-----";
     private static final String DISCONNECTED = "|     ";
+    public static final int ODD_LINE = 0;
+    public static final int ODD_NUMBER_LINE = ODD_LINE;
 
     private final List<Line> lines;
 
     public Lines(int numberOfPlayers) {
         this.lines = createLines(numberOfPlayers);
     }
+
     public Lines(List<Line> lines) {
         this.lines = lines;
     }
@@ -45,14 +48,14 @@ public class Lines {
     }
 
     private static boolean connectionConditionSatisfyAboutFortyPercent(Random random, Line line, int number) {
-        if (number % 2 == 0) {
+        if (number % 2 == ODD_NUMBER_LINE) {
             return random.nextInt(10) > 5 && !line.isLeftConnected();
         }
         return random.nextInt(10) > 2 && !line.isLeftConnected();
     }
 
     public String getLinesState() {
-        return "     "+lines.stream()
+        return "     " + lines.stream()
                 .map(this::getConnectionsState)
                 .collect(Collectors.joining()) + LINE_SEPERATOR;
     }

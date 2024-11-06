@@ -1,7 +1,7 @@
 package nextstep.ladder;
 
 import java.util.List;
-import nextstep.ladder.domain.LadderResult;
+import nextstep.ladder.domain.LadderGameResult;
 import nextstep.ladder.domain.Ladders;
 import nextstep.ladder.domain.Line;
 import nextstep.ladder.domain.Lines;
@@ -11,7 +11,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LadderResultTest {
+public class LadderGameResultTest {
 
     Line firstLine = new Line();
     Line middleLine = Line.last();
@@ -34,9 +34,9 @@ public class LadderResultTest {
     @Test
     @DisplayName("특정 참여자의 사다리 게임 결과를 가져온다")
     void 특정_참여자_결과_테스트() {
-        LadderResult ladderResult = new LadderResult(ladders, participants, results);
+        LadderGameResult ladderGameResult = new LadderGameResult(ladders, participants, results);
 
-        Assertions.assertThat(ladderResult.getSpecificPlayerResult("woni")).isEqualTo("1000");
-        Assertions.assertThat(ladderResult.getSpecificPlayerResult("honux")).isEqualTo("꽝");
+        Assertions.assertThat(ladderGameResult.getSpecificPlayerResult("woni")).isEqualTo("1000");
+        Assertions.assertThat(ladderGameResult.getSpecificPlayerResult("honux")).isEqualTo("꽝");
     }
 }

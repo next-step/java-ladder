@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class LadderResult {
+public class LadderGameResult {
     private final Map<String, String> playerAndResult;
 
-    public LadderResult(Ladders ladders, Participants participants, Results results) {
+    public LadderGameResult(Ladders ladders, Participants participants, Results results) {
         this.playerAndResult = recordResult(ladders, participants, results);
     }
 
@@ -23,7 +23,7 @@ public class LadderResult {
                 ));
     }
 
-    public Map<String, String> getPlayerAndResult() {
+    public Map<String, String> getAllResultOfPlayer() {
         return new LinkedHashMap<>(playerAndResult);
     }
 

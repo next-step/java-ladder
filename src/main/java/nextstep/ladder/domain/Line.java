@@ -18,6 +18,7 @@ public class Line {
     public static Line last() {
         return new Line(DISCONNECTED, CONNECTED);
     }
+
     public static Line firstAndLast() {
         return new Line(CONNECTED, CONNECTED);
     }
@@ -29,7 +30,7 @@ public class Line {
     }
 
     private void checkLeftAndRightALLConnected(boolean left, boolean right) {
-        if(left == CONNECTED && right == CONNECTED) {
+        if (left == CONNECTED && right == CONNECTED) {
             throw new IllegalArgumentException("연속으로 연결된 라인은 생성할 수 없습니다");
         }
     }
