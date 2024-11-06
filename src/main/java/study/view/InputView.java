@@ -17,6 +17,12 @@ public class InputView {
         String[] names = SCANNER.nextLine().split(",");
         System.out.println();
         return Arrays.stream(names)
+                .map(String::trim)
+                .peek(name -> {
+                    if (name.equals("all")) {
+                        throw new IllegalArgumentException("all은 이름으로 사용할 수 없습니다.");
+                    }
+                })
                 .map(PlayerName::new)
                 .collect(Collectors.toList());
     }

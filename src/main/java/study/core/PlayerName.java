@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class PlayerName {
     private static final int MAX_NAME_LENGTH = 5;
+    private static final String ALL_COMMAND = "all";
 
     private final String name;
 
@@ -14,6 +15,10 @@ public class PlayerName {
 
     public String getName() {
         return name;
+    }
+
+    public boolean isAll() {
+        return name.equals(ALL_COMMAND);
     }
 
     private void validate(String name) {

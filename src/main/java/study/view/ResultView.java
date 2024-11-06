@@ -4,6 +4,7 @@ package study.view;
 import study.core.Ladder;
 import study.core.Line;
 import study.core.PlayerName;
+import study.core.Point;
 import study.core.Prize;
 import study.core.Result;
 
@@ -30,21 +31,25 @@ public class ResultView {
 
     public void printLine(Line line) {
         sb.append(LINE_HORIZONTAL_EMPTY);
-        line.getPoints().forEach(point -> {
+        for (int i = 0; i < line.getPoints().size() - 1; i++) {
             sb.append(LINE_VERTICAL);
-            if (!point) {
-                sb.append(LINE_HORIZONTAL_EMPTY);
-                return;
-            }
-            sb.append(LINE_HORIZONTAL);
-        });
+            printHorizontalLine(line.getPoints().get(i));
+        }
         sb.append(LINE_VERTICAL).append(System.lineSeparator());
+    }
+
+    public void printHorizontalLine(Point point) {
+        if (point.isCurrent()) {
+            System.out.print(LINE_HORIZONTAL);
+            return;
+        }
+        System.out.print(LINE_HORIZONTAL_EMPTY);
     }
 
     public void printResult(PlayerName playerName, Result result) {
         System.out.println();
         System.out.println(RESULT_MESSAGE);
-        if (!playerName.getName().equals("all")) {
+        if (!playerName.isAll()) {
             System.out.println(result.getPrizeToStringByPlayerName(playerName));
             return;
         }

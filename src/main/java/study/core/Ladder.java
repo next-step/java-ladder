@@ -13,4 +13,12 @@ public class Ladder {
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
+
+    public int move(int position) {
+        int result = position;
+        for (Line line : lines) {
+            result = line.move(result);
+        }
+        return result;
+    }
 }
