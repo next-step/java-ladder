@@ -9,6 +9,18 @@ public class Point {
         this.edge = edge;
     }
 
+    public static Point left(int position) {
+        return new Point(position, Edge.first(true).next(false));
+    }
+
+    public static Point right(int position) {
+        return new Point(position, Edge.first(false).next(true));
+    }
+
+    public static Point pass(int position) {
+        return new Point(position, Edge.first(false).next(false));
+    }
+
     public Edge getEdge() {
         return edge;
     }
@@ -18,10 +30,10 @@ public class Point {
     }
 
     public int move() {
-        if (edge.move() == Direction.RIGHT) {
+        if (edge.isRight()) {
             return position + 1;
         }
-        if (edge.move() == Direction.LEFT) {
+        if (edge.isLeft()) {
             return position - 1;
         }
         return position;

@@ -37,4 +37,12 @@ public class Edge {
         }
         return Direction.PASS;
     }
+
+    public boolean isRight() {
+        return move() == Direction.RIGHT;
+    }
+
+    public boolean isLeft() {
+        return move() == Direction.LEFT;
+    }
 }

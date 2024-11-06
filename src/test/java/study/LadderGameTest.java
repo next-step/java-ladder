@@ -32,12 +32,9 @@ public class LadderGameTest {
     void play() {
         LadderGame ladderGame = new LadderGame(List.of(new PlayerName("a"), new PlayerName("b")), 3);
         Ladder ladder = new Ladder(List.of(
-                new Line(List.of(new Point(0, Edge.first(true))
-                        , new Point(1, Edge.first(true).last()))),
-                new Line(List.of(new Point(0, Edge.first(false))
-                        , new Point(1, Edge.first(false).last()))),
-                new Line(List.of(new Point(0, Edge.first(true))
-                        , new Point(1, Edge.first(true).last())))
+                new Line(List.of(Point.right(0), Point.left(1))),
+                new Line(List.of(Point.pass(0), Point.pass(1))),
+                new Line(List.of(Point.right(0), Point.left(1)))
         ));
         List<Prize> prizes = List.of(new Prize("1등"), new Prize("꽝"));
 

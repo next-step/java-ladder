@@ -25,7 +25,10 @@ public class LineTest {
         Edge second = first.next(true);
         Edge last = second.last();
 
-        Line line = new Line(List.of(new Point(0, first), new Point(1, second), new Point(2, last)));
+        Line line = new Line(List.of(new Point(0, first)
+                , new Point(1, second)
+                , new Point(2, last)));
+
         assertThat(line.getPoints().get(1).isCurrent()).isFalse();
     }
 

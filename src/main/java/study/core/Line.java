@@ -1,8 +1,9 @@
 package study.core;
 
+import study.util.RandomUtil;
+
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class Line {
     private final List<Point> points;
@@ -20,12 +21,11 @@ public class Line {
     }
 
     public void createPoints(int playerCount) {
-        Random random = new Random();
-        Point firstPoint = new Point(0, Edge.first(random.nextBoolean()));
+        Point firstPoint = new Point(0, Edge.first(RandomUtil.nextBoolean()));
         points.add(firstPoint);
         Point nextPoint = firstPoint;
         for (int i = 1; i < playerCount - 1; i++) {
-            nextPoint = new Point(i, nextPoint.getEdge().next(random.nextBoolean()));
+            nextPoint = new Point(i, nextPoint.getEdge().next(RandomUtil.nextBoolean()));
             points.add(nextPoint);
         }
         points.add(new Point(playerCount - 1, nextPoint.getEdge().last()));
