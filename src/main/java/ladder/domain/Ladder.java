@@ -1,15 +1,14 @@
 package ladder.domain;
 
-import ladder.domain.util.HorizontalGenerator;
+import ladder.domain.util.LineGenerator;
 
 import java.util.Objects;
 
 public class Ladder {
-    public static final int START = 0;
     private final Lines lines;
     private final Players players;
 
-    public Ladder(Players players, int verticalLadderSize, HorizontalGenerator generator) {
+    public Ladder(Players players, int verticalLadderSize, LineGenerator generator) {
         this(players, new Lines(players, verticalLadderSize, generator));
     }
 

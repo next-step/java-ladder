@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.util.HorizontalGenerator;
+import ladder.domain.util.LineGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ public class LadderTest {
 
 
     private Players players;
-    private HorizontalGenerator horizontalGenerator;
+    private LineGenerator horizontalGenerator;
     private int verticalLadderSize;
 
     @BeforeEach

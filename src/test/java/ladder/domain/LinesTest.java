@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.util.HorizontalGenerator;
+import ladder.domain.util.LineGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LinesTest {
 
     private int playersCount;
-    private HorizontalGenerator generator;
+    private LineGenerator generator;
     private int verticalLadderSize;
 
     @BeforeEach

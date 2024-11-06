@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.util.HorizontalGenerator;
+import ladder.domain.util.LineGenerator;
 import ladder.exception.LineException;
 import ladder.exception.PlayersCountException;
 
@@ -26,11 +26,11 @@ public class Line {
         this.line = line;
     }
 
-    public Line(int playersCount, HorizontalGenerator generator) {
+    public Line(int playersCount, LineGenerator generator) {
         this(generateLine(playersCount, generator));
     }
 
-    private static List<Boolean> generateLine(int playersCount, HorizontalGenerator generator) {
+    private static List<Boolean> generateLine(int playersCount, LineGenerator generator) {
         if (playersCount < MIN_PLAYERS_COUNT) {
             throw new PlayersCountException(NOT_ALLOWED_PLAYER_ZERO_OR_MINUS_MESSAGE);
         }
@@ -42,9 +42,9 @@ public class Line {
     }
 
     private static Function<Integer, Boolean> toBoolean(AtomicReference<Boolean> previous,
-                                                        HorizontalGenerator horizontalGenerator) {
+                                                        LineGenerator lineGenerator) {
         return index -> {
-            Boolean horizontal = horizontalGenerator.generate();
+            Boolean horizontal = lineGenerator.generate();
             if (index == START_INCLUSIVE) {
                 horizontal = false;
                 previous.set(horizontal);

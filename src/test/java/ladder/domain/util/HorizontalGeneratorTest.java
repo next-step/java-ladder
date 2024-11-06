@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class HorizontalGeneratorTest {
     @Test
     void generate() {
-        Boolean actual = ((HorizontalGenerator) () -> false).generate();
+        Boolean actual = ((LineGenerator) () -> false).generate();
 
         Assertions.assertThat(actual).isFalse();
     }

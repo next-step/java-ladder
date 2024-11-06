@@ -1,7 +1,6 @@
 package ladder.domain.util;
 
 @FunctionalInterface
-public interface HorizontalGenerator {
-
+public interface LineGenerator {
     Boolean generate();
 }
