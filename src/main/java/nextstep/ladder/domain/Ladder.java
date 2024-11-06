@@ -16,7 +16,7 @@ public class Ladder {
     private List<Integer> result;
 
     public Ladder(int countOfPoint, List<Line> lines) {
-        if (!isValidLines(lines, countOfPoint - 1)) {
+        if (isInvalidLines(lines, countOfPoint - 1)) {
             throw new IllegalArgumentException("사다리 연결부의 개수가 유효하지 않습니다.");
         }
 
@@ -25,7 +25,7 @@ public class Ladder {
     }
 
     public Ladder(int countOfPoint, List<Line> lines, List<Integer> result) {
-        if (!isValidLines(lines, countOfPoint - 1)) {
+        if (isInvalidLines(lines, countOfPoint - 1)) {
             throw new IllegalArgumentException("사다리 연결부의 개수가 유효하지 않습니다.");
         }
 
@@ -38,8 +38,8 @@ public class Ladder {
         return new Ladder(width, createLines(height, width - 1));
     }
 
-    private static boolean isValidLines(List<Line> lines, int countOfLink) {
-        return lines.stream()
+    private static boolean isInvalidLines(List<Line> lines, int countOfLink) {
+        return !lines.stream()
                 .allMatch(line -> line.hasCountOfLink(countOfLink));
     }
 
@@ -49,8 +49,8 @@ public class Ladder {
 
     public void move() {
         AtomicReference<List<Integer>> numbers = new AtomicReference<>(IntStream.range(0, countOfPoint)
-                .boxed()
-                .collect(Collectors.toList()));
+                                                                               .boxed()
+                                                                               .collect(Collectors.toList()));
 
         lines.forEach(line -> numbers.set(line.move(numbers.get())));
 
@@ -63,11 +63,17 @@ public class Ladder {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
         Ladder ladder = (Ladder) o;
-        return countOfPoint == ladder.countOfPoint && Objects.equals(lines, ladder.lines) && Objects.equals(
-                result, ladder.result);
+        return countOfPoint == ladder.countOfPoint && Objects.equals(lines, ladder.lines) &&
+               Objects.equals(result, ladder.result);
     }
 
     @Override

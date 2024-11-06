@@ -14,9 +14,13 @@ class LadderTest {
 
     @BeforeEach
     public void setUp() {
-        lines = List.of(new Line(true, false, true), new Line(false, true, false), new Line(true, false, false),
-                        new Line(false, true, false), new Line(true, false, true)
-                );
+        lines = List.of(
+                new Line(true, false, true),
+                new Line(false, true, false),
+                new Line(true, false, false),
+                new Line(false, true, false),
+                new Line(true, false, true)
+        );
     }
 
     @Test
@@ -26,6 +30,6 @@ class LadderTest {
 
         ladder.move();
 
-        assertThat(ladder).isEqualTo(new Ladder(countOfPoint, lines, List.of(0,3,2,1)));
+        assertThat(ladder).isEqualTo(new Ladder(countOfPoint, lines, List.of(0, 3, 2, 1)));
     }
 }
