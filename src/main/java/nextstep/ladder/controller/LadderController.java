@@ -40,7 +40,7 @@ public class LadderController {
         }
     }
 
-    private static boolean checkInputIsAll(String player) {
+    private boolean checkInputIsAll(String player) {
         return !player.equals("all");
     }
 
