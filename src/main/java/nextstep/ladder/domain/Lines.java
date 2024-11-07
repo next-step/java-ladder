@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -28,30 +27,32 @@ public class Lines {
                 .collect(Collectors.toList());
     }
 
-    public void generateConnections() {
-        Random random = new Random();
-        generateConnectionsExceptLastLine(random);
+    public void generateConnections(ConnectCondition oddCondition, ConnectCondition evenCondition) {
+        generateConnectionsExceptLastLine(oddCondition, evenCondition);
     }
 
-    private void generateConnectionsExceptLastLine(Random random) {
+    private void generateConnectionsExceptLastLine(ConnectCondition oddCondition, ConnectCondition evenCondition) {
         for (int i = 0; i < lines.size() - 1; i++) {
-            generateEachConnectionsExceptLastLine(random, lines.get(i), i);
+            generateEachConnectionsExceptLastLine(lines.get(i), oddCondition, evenCondition);
         }
     }
 
-    private void generateEachConnectionsExceptLastLine(Random random, Line line, int i) {
-        if (connectionConditionSatisfyAboutFortyPercent(random, line, i)) {
-            Line nextLine = lines.get(i + 1);
+    private void generateEachConnectionsExceptLastLine(Line line, ConnectCondition oddCondition,
+                                                       ConnectCondition evenCondition) {
+        int index = lines.indexOf(line);
+        if (index % 2 == ODD_NUMBER_LINE) {
+            connectionConditionSatisfyAboutFortyPercent(line, index, oddCondition);
+            return;
+        }
+        connectionConditionSatisfyAboutFortyPercent(line, index, evenCondition);
+    }
+
+    private void connectionConditionSatisfyAboutFortyPercent(Line line, int index, ConnectCondition connectCondition) {
+        if (connectCondition.test(line)) {
+            Line nextLine = lines.get(index + 1);
             line.connectRight();
             nextLine.connectLeft();
         }
-    }
-
-    private static boolean connectionConditionSatisfyAboutFortyPercent(Random random, Line line, int number) {
-        if (number % 2 == ODD_NUMBER_LINE) {
-            return random.nextInt(10) > 5 && !line.isLeftConnected();
-        }
-        return random.nextInt(10) > 2 && !line.isLeftConnected();
     }
 
     public String getLinesState() {

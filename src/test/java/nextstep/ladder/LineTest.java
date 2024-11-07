@@ -50,7 +50,7 @@ public class LineTest {
 
     @Test
     @DisplayName("양쪽으로 연결된 라인을 생성 시 예외 발생")
-    void 양쪽으로_연결된_라인_생성_시_예외_발생(){
+    void 양쪽으로_연결된_라인_생성_시_예외_발생() {
         assertThatThrownBy(() -> Line.firstAndLast())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("연속으로 연결된 라인은 생성할 수 없습니다");
