@@ -3,6 +3,7 @@ package ladder.domain;
 import ladder.exception.PlayersCountException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -31,13 +32,14 @@ public class LineTest {
     }
 
     @Test
+    @DisplayName("라인을 생성한다")
     void create() {
         assertThatNoException().isThrownBy(() -> {
             new Line(List.of(firstPoint, next1Point, next2Point, lastPoint));
         });
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "라인생성 오류: 참여자 명수가 0 이하일 경우 오류가 발생한다")
     @ValueSource(ints = {0, -1, Integer.MIN_VALUE})
     void create_참여자명_0_음수_오류(int playersCount) {
         assertThatThrownBy(() -> {
@@ -48,7 +50,8 @@ public class LineTest {
     }
 
     @Test
-    void getPoint() {
+    @DisplayName("포인트들을 조회한다")
+    void getPoints() {
         List<Point> points = List.of(firstPoint, next1Point, next2Point, lastPoint);
         Line line = new Line(points);
         List<Point> actual = line.getPoints();

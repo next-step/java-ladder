@@ -2,6 +2,7 @@ package ladder.domain;
 
 import ladder.domain.util.CrossGenerator;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class LinesTest {
     }
 
     @Test
+    @DisplayName("라인목록을 생성한다")
     void create() {
         Lines actual = new Lines(PLAYERS1, verticalLadderSize, falseGenerator);
         Lines expected = new Lines(List.of(
@@ -39,6 +41,7 @@ public class LinesTest {
     }
 
     @Test
+    @DisplayName("라인목록을 조회한다")
     void getLines() {
         ArrayList<Line> lineList = new ArrayList<>(List.of(
                 new Line(playersCount, falseGenerator),
