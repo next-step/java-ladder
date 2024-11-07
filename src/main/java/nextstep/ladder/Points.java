@@ -20,6 +20,10 @@ public class Points {
         });
     }
 
+    public Points(List<Point> points){
+        this.points = points;
+    }
+
     private boolean generateRandomRightPoint(boolean prev) {
         return prev ? false : RANDOM.nextBoolean();
     }
@@ -36,6 +40,12 @@ public class Points {
                 .collect(Collectors.toList());
 
         return LINE_DELIMITER + String.join(LINE_DELIMITER, result) + LINE_DELIMITER;
+    }
+
+    public List<Integer> getResultIndexs() {
+        return IntStream.range(0, points.size()).map((i) -> points.get(i).getResultIndex(i))
+                .boxed()
+                .collect(Collectors.toList());
     }
 
 }
