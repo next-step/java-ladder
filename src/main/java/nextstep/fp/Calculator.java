@@ -4,10 +4,7 @@ package nextstep.fp;
 public interface Calculator {
     boolean isUsable(int number);
 
-    default int plus(int number, int result) {
-        if (isUsable(number)) {
-            return number + result;
-        }
-        return result;
+    default int plus(int number1, int number2) {
+        return number1 + number2;
     }
 }
