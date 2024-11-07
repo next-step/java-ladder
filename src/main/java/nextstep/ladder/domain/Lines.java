@@ -7,13 +7,19 @@ import java.util.stream.IntStream;
 
 public class Lines {
     private static final String LINE_SEPERATOR = "\n";
-    private static final String CONNECTED = "-----|";
-    private static final String DISCONNECTED = "     |";
+    private static final String CONNECTED = "|-----";
+    private static final String DISCONNECTED = "|     ";
+    public static final int ODD_LINE = 0;
+    public static final int ODD_NUMBER_LINE = ODD_LINE;
 
     private final List<Line> lines;
 
     public Lines(int numberOfPlayers) {
         this.lines = createLines(numberOfPlayers);
+    }
+
+    public Lines(List<Line> lines) {
+        this.lines = lines;
     }
 
     private List<Line> createLines(int numberOfPlayers) {
@@ -25,11 +31,10 @@ public class Lines {
     public void generateConnections() {
         Random random = new Random();
         generateConnectionsExceptLastLine(random);
-        generationLastLineConnection(random);
     }
 
     private void generateConnectionsExceptLastLine(Random random) {
-        for (int i = 1; i < lines.size() - 1; i++) {
+        for (int i = 0; i < lines.size() - 1; i++) {
             generateEachConnectionsExceptLastLine(random, lines.get(i), i);
         }
     }
@@ -43,21 +48,14 @@ public class Lines {
     }
 
     private static boolean connectionConditionSatisfyAboutFortyPercent(Random random, Line line, int number) {
-        if (number % 2 == 1) {
+        if (number % 2 == ODD_NUMBER_LINE) {
             return random.nextInt(10) > 5 && !line.isLeftConnected();
         }
         return random.nextInt(10) > 2 && !line.isLeftConnected();
     }
 
-    private void generationLastLineConnection(Random random) {
-        Line lastLine = lines.get(lines.size() - 1);
-        if (connectionConditionSatisfyAboutFortyPercent(random, lastLine, lines.size() - 1)) {
-            lastLine.connectRight();
-        }
-    }
-
     public String getLinesState() {
-        return lines.stream()
+        return "     " + lines.stream()
                 .map(this::getConnectionsState)
                 .collect(Collectors.joining()) + LINE_SEPERATOR;
     }
@@ -67,6 +65,14 @@ public class Lines {
             return CONNECTED;
         }
         return DISCONNECTED;
+    }
+
+    public Line getLineOfSpecificLocation(int i) {
+        return lines.get(i);
+    }
+
+    public int getLineCount() {
+        return lines.size();
     }
 
 }

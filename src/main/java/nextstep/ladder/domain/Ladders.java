@@ -13,6 +13,11 @@ public class Ladders {
         this.ladder = createLadders(height, numberOfPlayers);
     }
 
+    public Ladders(int height, List<Lines> ladders) {
+        this.height = height;
+        this.ladder = ladders;
+    }
+
     private List<Lines> createLadders(int height, int numberOfPlayers) {
         return IntStream.rangeClosed(1, height)
                 .mapToObj(i -> new Lines(numberOfPlayers))
@@ -23,10 +28,24 @@ public class Ladders {
         ladder.forEach(Lines::generateConnections);
     }
 
+    public int traverseLadderDown(int playerIndex) {
+        int location = playerIndex;
+        for (int i = 0; i < height; i++) {
+            Lines lines = ladder.get(i);
+            Line line = lines.getLineOfSpecificLocation(location);
+            location = line.tryMove(location);
+        }
+        return location;
+    }
+
     public String getLadderState() {
         return ladder.stream()
                 .map(Lines::getLinesState)
                 .collect(Collectors.joining());
+    }
+
+    public int getLadderHeight() {
+        return ladder.size();
     }
 
 }
