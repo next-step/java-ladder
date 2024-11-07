@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Line {
     public static final String NOT_ALLOWED_PLAYER_ZERO_OR_MINUS_MESSAGE = "참여자명 수는 최소 1명 이상이어야 합니다";
@@ -31,25 +28,32 @@ public class Line {
         if (playersCount < MIN_PLAYERS_COUNT) {
             throw new PlayersCountException(NOT_ALLOWED_PLAYER_ZERO_OR_MINUS_MESSAGE);
         }
-        int endExclusive = playersCount - END_EXCLUSIVE_OFFSET;
-        Point first = Point.first(generator.generate());
-        return IntStream.range(START_INCLUSIVE, endExclusive)
-                .boxed()
-                .map(index -> toPoint(index, first, generator, endExclusive))
-                .collect(Collectors.toList());
+
+        List<Point> points = new ArrayList<>();
+        Point point = Point.first(generator.generate());
+
+        for (int index = START_INCLUSIVE; index < playersCount; index++) {
+            int endExclusive = playersCount - END_EXCLUSIVE_OFFSET;
+            point = toPoint(index, point, generator, endExclusive);
+            points.add(point);
+        }
+
+        return points;
     }
 
-    private static Point toPoint(int index, Point point, CrossGenerator lineGenerator, int endExclusive) {
+    private static Point toPoint(int index, Point previousPoint, CrossGenerator generator, int endExclusive) {
+        if (index == START_INCLUSIVE) {
+            return previousPoint;
+        }
+
+        if (index == endExclusive) {
+            return previousPoint.last();
+        }
+
         try {
-            if (index == START_INCLUSIVE) {
-                return point;
-            }
-            if (index == endExclusive) {
-                return point.last();
-            }
-            return point.next(lineGenerator.generate());
+            return previousPoint.next(generator.generate());
         } catch (PointException e) {
-            return toPoint(index, point, lineGenerator, endExclusive);
+            return toPoint(index, previousPoint, generator, endExclusive);
         }
     }
 
