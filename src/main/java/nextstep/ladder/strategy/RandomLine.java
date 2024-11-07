@@ -1,7 +1,6 @@
 package nextstep.ladder.strategy;
 
-import nextstep.ladder.domain.LineImpl;
-import nextstep.ladder.engine.Line;
+import nextstep.ladder.domain.Line;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,7 @@ public class RandomLine implements LineCreatableStrategy {
             previous = current;
         }
 
-        return new LineImpl(points);
+        return new Line(points);
     }
 
     private boolean isTrueContinuous(boolean current, boolean previous) {

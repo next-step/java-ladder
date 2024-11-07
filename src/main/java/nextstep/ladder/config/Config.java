@@ -1,8 +1,7 @@
 package nextstep.ladder.config;
 
 import nextstep.ladder.controller.LadderController;
-import nextstep.ladder.domain.LadderGameImpl;
-import nextstep.ladder.engine.LadderGame;
+import nextstep.ladder.domain.LadderGame;
 import nextstep.ladder.strategy.LineCreatableStrategy;
 import nextstep.ladder.strategy.RandomLine;
 import nextstep.ladder.service.LadderService;
@@ -27,7 +26,7 @@ public class Config {
     }
 
     private LadderGame ladderGame() {
-        return new LadderGameImpl(lineCreatableStrategy());
+        return new LadderGame(lineCreatableStrategy());
     }
 
     private LineCreatableStrategy lineCreatableStrategy() {

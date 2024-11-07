@@ -1,16 +1,14 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.engine.Person;
-
 import java.util.Objects;
 
-public class PersonImpl implements Person {
+public class Person {
     public static final int NAME_LENGTH_LIMIT = 5;
     public static final String LEFT_PAD = "%5s";
 
     private final String name;
 
-    public PersonImpl(final String name) {
+    public Person(final String name) {
         if (name.length() > NAME_LENGTH_LIMIT) {
             throw new IllegalArgumentException("The name allows up to 5 characters.");
         }
@@ -33,7 +31,7 @@ public class PersonImpl implements Person {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        PersonImpl personImpl = (PersonImpl) o;
-        return Objects.equals(name, personImpl.name);
+        Person person = (Person) o;
+        return Objects.equals(name, person.name);
     }
 }

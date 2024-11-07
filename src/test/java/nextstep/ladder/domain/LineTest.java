@@ -9,12 +9,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LineImplTest {
-    private LineImpl line;
+class LineTest {
+    private Line line;
 
     @BeforeEach
     void setUp() {
-        line = new LineImpl(Arrays.asList(false, true, false));
+        line = new Line(Arrays.asList(false, true, false));
     }
 
     @Test
@@ -30,7 +30,7 @@ class LineImplTest {
     @DisplayName("연속된 true가 없는 경우 Line 생성")
     void createLineWithoutConsecutiveTrues() {
         List<Boolean> points = Arrays.asList(true, false, true, false);
-        LineImpl line = new LineImpl(points);
+        Line line = new Line(points);
 
         assertEquals(points.size(), line.size());
         for (int i = 0; i < points.size(); i++) {
@@ -43,7 +43,7 @@ class LineImplTest {
     void createLineWithConsecutiveTruesThrowsException() {
         List<Boolean> points = Arrays.asList(true, true, false, true);
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> new LineImpl(points));
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> new Line(points));
         assertEquals("Consecutive true points are not allowed", exception.getMessage());
     }
 
@@ -70,8 +70,8 @@ class LineImplTest {
     @DisplayName("동일한 points 리스트를 가진 Line 객체 equals 비교")
     void lineEqualsWithSamePoints() {
         List<Boolean> points = Arrays.asList(false, true, false);
-        LineImpl line1 = new LineImpl(points);
-        LineImpl line2 = new LineImpl(points);
+        Line line1 = new Line(points);
+        Line line2 = new Line(points);
 
         assertEquals(line1, line2);
     }
@@ -79,7 +79,7 @@ class LineImplTest {
     @Test
     @DisplayName("서로 다른 points 리스트를 가진 Line 객체 equals 비교")
     void lineNotEqualsWithDifferentPoints() {
-        assertNotEquals(line, new LineImpl(Arrays.asList(true, false, true)));
+        assertNotEquals(line, new Line(Arrays.asList(true, false, true)));
     }
 
     @Test

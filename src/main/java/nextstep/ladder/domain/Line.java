@@ -1,16 +1,14 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.engine.Line;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
-public class LineImpl implements Line {
+public class Line {
     private final List<Boolean> points = new ArrayList<>();
 
-    public LineImpl(final List<Boolean> points) {
+    public Line(final List<Boolean> points) {
         if (hasConsecutiveTrues(points)) {
             throw new IllegalArgumentException("Consecutive true points are not allowed");
         }
@@ -57,7 +55,7 @@ public class LineImpl implements Line {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        LineImpl line = (LineImpl) o;
+        Line line = (Line) o;
         return Objects.equals(points, line.points);
     }
 }

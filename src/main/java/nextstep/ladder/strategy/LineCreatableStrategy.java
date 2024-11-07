@@ -1,6 +1,6 @@
 package nextstep.ladder.strategy;
 
-import nextstep.ladder.engine.Line;
+import nextstep.ladder.domain.Line;
 
 @FunctionalInterface
 public interface LineCreatableStrategy {

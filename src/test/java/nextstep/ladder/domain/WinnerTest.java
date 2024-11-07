@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-public class WinnerImplTest {
+public class WinnerTest {
 
-    public static final PersonImpl PERSON_IMPL = new PersonImpl("hoya");
+    public static final Person PERSON_IMPL = new Person("hoya");
     public static final String RESULT = "1등";
-    public static final WinnerImpl WINNER_IMPL = new WinnerImpl(PERSON_IMPL, RESULT);
+    public static final Winner WINNER_IMPL = new Winner(PERSON_IMPL, RESULT);
 
     @Test
     @DisplayName("Winner 객체를 생성하고 속성을 설정한다")
@@ -24,13 +24,13 @@ public class WinnerImplTest {
     @Test
     @DisplayName("동일한 속성을 가진 Winner 객체 equals 비교")
     void winnerEqualsWithSameProperties() {
-        assertEquals(new WinnerImpl(PERSON_IMPL, RESULT), new WinnerImpl(PERSON_IMPL, RESULT));
+        assertEquals(new Winner(PERSON_IMPL, RESULT), new Winner(PERSON_IMPL, RESULT));
     }
 
     @Test
     @DisplayName("서로 다른 속성을 가진 Winner 객체 equals 비교")
     void winnerNotEqualsWithDifferentProperties() {
-        assertNotEquals(WINNER_IMPL, new WinnerImpl(new PersonImpl("dhmin"), "1등"));
+        assertNotEquals(WINNER_IMPL, new Winner(new Person("dhmin"), "1등"));
     }
 
     @Test

@@ -1,8 +1,8 @@
 package nextstep.ladder.vo;
 
-import nextstep.ladder.engine.Line;
-import nextstep.ladder.engine.Person;
-import nextstep.ladder.engine.Winner;
+import nextstep.ladder.domain.Line;
+import nextstep.ladder.domain.Person;
+import nextstep.ladder.domain.Winner;
 
 import java.util.List;
 

@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PersonImplTest {
+class PersonTest {
 
-    public static final PersonImpl P1 = new PersonImpl("hoya");
-    public static final PersonImpl P2 = new PersonImpl("pobi");
+    public static final Person P1 = new Person("hoya");
+    public static final Person P2 = new Person("pobi");
 
     @Test
     @DisplayName("이름 길이가 제한 이내인 경우 Person 생성")
@@ -20,7 +20,7 @@ class PersonImplTest {
     @DisplayName("이름이 5자를 초과할 경우 예외 발생")
     void createPersonWithNameExceedingLimitThrowsException() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> new PersonImpl("kimjooho"));
+                () -> new Person("kimjooho"));
         assertEquals("The name allows up to 5 characters.", exception.getMessage());
     }
 
@@ -33,14 +33,14 @@ class PersonImplTest {
     @Test
     @DisplayName("이름이 5자인 경우 좌측 패딩 확인")
     void leftPadExactLengthName() {
-        PersonImpl personImpl = new PersonImpl("JooHo");
-        assertEquals("JooHo", personImpl.leftPad());
+        Person person = new Person("JooHo");
+        assertEquals("JooHo", person.leftPad());
     }
 
     @Test
     @DisplayName("동일한 이름을 가진 Person 객체 equals 비교")
     void equalsWithSameName() {
-        assertEquals(P1, new PersonImpl("hoya"));
+        assertEquals(P1, new Person("hoya"));
     }
 
     @Test

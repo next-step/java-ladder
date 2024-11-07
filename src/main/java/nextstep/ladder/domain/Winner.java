@@ -1,15 +1,12 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.engine.Person;
-import nextstep.ladder.engine.Winner;
-
 import java.util.Objects;
 
-public class WinnerImpl implements Winner {
+public class Winner {
     private final Person person;
     private final String result;
 
-    public WinnerImpl(final Person person, final String result) {
+    public Winner(final Person person, final String result) {
         this.person = person;
         this.result = result;
     }
@@ -34,7 +31,7 @@ public class WinnerImpl implements Winner {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        WinnerImpl winnerImpl = (WinnerImpl) o;
-        return Objects.equals(person, winnerImpl.person) && Objects.equals(result, winnerImpl.result);
+        Winner winner = (Winner) o;
+        return Objects.equals(person, winner.person) && Objects.equals(result, winner.result);
     }
 }
