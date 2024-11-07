@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,14 +10,20 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LineTest {
+    private Line line;
 
-    public static final List<Person> PERSONS = List.of(new Person("hoya"), new Person("pobi"), new Person("catsb"), new Person("dhmin"));
-    public static final Line LINE = new Line(Arrays.asList(false, true, false));
+    @BeforeEach
+    void setUp() {
+        line = new Line(Arrays.asList(false, true, false));
+    }
 
     @Test
-    @DisplayName("이동 가능한 사람들을 움직인 후, 반환")
+    @DisplayName("시작 인덱스를 입력하여 최종 위치를 계산")
     void movePerson() {
-        assertEquals(LINE.movePersons(PERSONS), List.of(new Person("hoya"), new Person("catsb"), new Person("pobi"), new Person("dhmin")));
+        assertEquals(line.movePerson(0), 0);
+        assertEquals(line.movePerson(1), 2);
+        assertEquals(line.movePerson(2), 1);
+        assertEquals(line.movePerson(3), 3);
     }
 
     @Test
@@ -43,20 +50,20 @@ class LineTest {
     @Test
     @DisplayName("Line의 크기 확인")
     void lineSize() {
-        assertEquals(3, LINE.size());
+        assertEquals(3, line.size());
     }
 
     @Test
     @DisplayName("지정된 인덱스의 값 확인 - true인 경우")
     void isPointTrueAtTruePosition() {
-        assertTrue(LINE.isPointTrue(1));
+        assertTrue(line.isPointTrue(1));
     }
 
     @Test
     @DisplayName("지정된 인덱스의 값 확인 - false인 경우")
     void isPointTrueAtFalsePosition() {
-        assertFalse(LINE.isPointTrue(0));
-        assertFalse(LINE.isPointTrue(2));
+        assertFalse(line.isPointTrue(0));
+        assertFalse(line.isPointTrue(2));
     }
 
     @Test
@@ -72,24 +79,24 @@ class LineTest {
     @Test
     @DisplayName("서로 다른 points 리스트를 가진 Line 객체 equals 비교")
     void lineNotEqualsWithDifferentPoints() {
-        assertNotEquals(LINE, new Line(Arrays.asList(true, false, true)));
+        assertNotEquals(line, new Line(Arrays.asList(true, false, true)));
     }
 
     @Test
     @DisplayName("null 객체와 equals 비교")
     void lineNotEqualsWithNull() {
-        assertNotEquals(LINE, null);
+        assertNotEquals(line, null);
     }
 
     @Test
     @DisplayName("다른 클래스 객체와 equals 비교")
     void lineNotEqualsWithDifferentClass() {
-        assertNotEquals(LINE, "someString");
+        assertNotEquals(line, "someString");
     }
 
     @Test
     @DisplayName("자기 자신과 equals 비교")
     void lineEqualsWithSelf() {
-        assertEquals(LINE, LINE);
+        assertEquals(line, line);
     }
 }

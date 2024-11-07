@@ -28,14 +28,12 @@ public class Line {
         return points.get(index);
     }
 
-    public List<Person> movePersons(final List<Person> persons) {
-        int personsSize = persons.size();
-        List<Person> result = new ArrayList<>(persons);
-        for (int i = 0; i < personsSize; i++) {
-            int index = moveIndex(personsSize, i);
-            result.set(index, persons.get(i));
+    public int movePerson(int startIndex) {
+        int position = startIndex;
+        for (int i = 0; i < points.size(); i++) {
+            position = moveIndex(points.size(), position);
         }
-        return result;
+        return position;
     }
 
     private int moveIndex(int personsSize, int before) {

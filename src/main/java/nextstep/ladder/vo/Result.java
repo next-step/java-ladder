@@ -9,12 +9,12 @@ import java.util.List;
 public class Result {
     private final List<Person> persons;
     private final List<Line> lines;
-    private final List<Winner> winner;
+    private final List<Winner> winners;
 
-    public Result(final List<Person> persons, final List<Line> lines, final List<Winner> winner) {
+    public Result(final List<Person> persons, final List<Line> lines, final List<Winner> winners) {
         this.persons = persons;
         this.lines = lines;
-        this.winner = winner;
+        this.winners = winners;
     }
 
     public List<Person> getPersons() {
@@ -26,6 +26,6 @@ public class Result {
     }
 
     public List<Winner> getWinners() {
-        return winner;
+        return winners;
     }
 }

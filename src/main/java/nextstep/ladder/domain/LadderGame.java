@@ -25,17 +25,14 @@ public class LadderGame {
         return new Result(persons, lines, winners);
     }
 
-    private static List<Winner> findWinners(String executeResult, List<Person> persons, List<Line> lines) {
-        List<Person> movedPersons = new ArrayList<>(persons);
-        for (Line line : lines) {
-            movedPersons = line.movePersons(movedPersons);
-        }
-
+    private static List<Winner> findWinners(final String executeResult, final List<Person> persons, final List<Line> lines) {
         String[] values = executeResult.split(DELIMITER);
 
         List<Winner> winners = new ArrayList<>();
-        for(int i = 0; i < values.length; i++) {
-            winners.add(new Winner(movedPersons.get(i), values[i]));
+        for (int i = 0; i < persons.size(); i++) {
+            int finalPosition = lines.stream()
+                    .reduce(i, (position, line) -> line.movePerson(position), (a, b) -> b);
+            winners.add(new Winner(persons.get(i), values[finalPosition]));
         }
         return winners;
     }
