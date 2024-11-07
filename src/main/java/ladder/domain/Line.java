@@ -48,27 +48,22 @@ public class Line {
             throw new PlayersCountException(NOT_ALLOWED_PLAYER_ZERO_OR_MINUS_MESSAGE);
         }
         AtomicReference<Boolean> prev = new AtomicReference<>();
-        return IntStream.range(START_INCLUSIVE, playersCount)
+        return IntStream.range(START_INCLUSIVE, playersCount - END_EXCLUSIVE_OFFSET)
                 .boxed()
                 .map(toBoolean(prev, generator))
                 .collect(Collectors.toList());
     }
 
+    //TODO: https://github.com/next-step/java-ladder/pull/2264#discussion_r1831117917
     private static Function<Integer, Boolean> toBoolean(AtomicReference<Boolean> previous,
                                                         LineGenerator lineGenerator) {
         return index -> {
-            Boolean horizontal = lineGenerator.generate();
-            if (index == START_INCLUSIVE) {
-                horizontal = false;
-                previous.set(horizontal);
-            }
+            boolean horizontal = lineGenerator.generate();
+
             if (index > START_INCLUSIVE && previous.get().equals(true)) {
                 horizontal = false;
-                previous.set(horizontal);
             }
-            if (index > START_INCLUSIVE) {
-                previous.set(horizontal);
-            }
+            previous.set(horizontal);
             return horizontal;
         };
     }

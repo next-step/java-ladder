@@ -9,17 +9,16 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ladder.domain.Line.*;
+import static ladder.domain.Line.NOT_ALLOWED_CREATE_ADJACENT_LINE_MESSAGE;
+import static ladder.domain.Line.NOT_ALLOWED_PLAYER_ZERO_OR_MINUS_MESSAGE;
 import static org.assertj.core.api.Assertions.*;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
 
     @Test
     void create() {
         Line actual = new Line(5, () -> true);
-        Line expected = new Line(List.of(false, true, false, true, false));
+        Line expected = new Line(List.of(true, false, true, false));
 
         assertThat(actual).isEqualTo(expected);
     }
@@ -36,12 +35,12 @@ public class LineTest {
 
     @Test
     void create_라인이_겹치면_오류() {
-        assertThatThrownBy(() -> new Line(List.of(false, true, true, false, false)))
+        assertThatThrownBy(() -> new Line(List.of(true, true, false, false)))
                 .isInstanceOf(LineException.class)
                 .hasMessage(NOT_ALLOWED_CREATE_ADJACENT_LINE_MESSAGE);
 
         assertThatNoException()
-                .isThrownBy(() -> new Line(List.of(false, true, false, false, false)));
+                .isThrownBy(() -> new Line(List.of(true, false, false, false)));
     }
 
     @Test

@@ -2,6 +2,7 @@ package ladder.domain;
 
 import java.util.Objects;
 
+//TODO: https://github.com/next-step/java-ladder/pull/2264#discussion_r1831136672
 public class Player {
     private final Name name;
 

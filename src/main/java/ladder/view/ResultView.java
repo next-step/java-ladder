@@ -16,6 +16,8 @@ public class ResultView {
     public static final String HORIZONTAL = "-";
     public static final String PLAYER_DELIMITER = "|";
     public static final String PREFIX = "";
+    public static final int INDEX_OFFSET = 1;
+
     public ResultView() {
     }
 
@@ -26,28 +28,40 @@ public class ResultView {
 
     public String toLadderString(Ladder ladder) {
         Players players = ladder.getPlayers();
-        List<Line> lines = ladder.getLines().getLines();
-        String namesString = players.names()
+        List<Line> lines = ladder.getLines()
+                .getLines();
+        return toFormattedNames(players) +
+                LINE_BREAK +
+                toFormattedLines(players, lines);
+    }
+
+    private static String toFormattedLines(Players players, List<Line> lines) {
+        return lines.stream()
+                .map(line -> toFormattedLine(players, line.getPoint()))
+                .collect(Collectors.joining(LINE_BREAK));
+    }
+
+    private static String toFormattedNames(Players players) {
+        return players.names()
                 .stream()
                 .map(name -> SPACE.repeat(players.namesMaxLength() - name.length()) + name.name())
                 .collect(Collectors.joining(SPACE));
-        String linesString = lines.stream()
-                .map(line -> toLineString(players, line.getPoint()))
-                .collect(Collectors.joining(LINE_BREAK));
-        return namesString + LINE_BREAK + linesString;
     }
 
-    public String toLineString(Players players, List<Boolean> point) {
+    private static String toFormattedLine(Players players, List<Boolean> point) {
         List<Name> names = players.names();
         int namesMaxLength = players.namesMaxLength();
         return IntStream.range(START_INCLUSIVE, names.size())
                 .boxed()
-                .map(index -> toHorizontalString(index, namesMaxLength, point))
+                .map(index -> toFormattedHorizontal(index, namesMaxLength, point))
                 .collect(Collectors.joining(PLAYER_DELIMITER, PREFIX, PLAYER_DELIMITER));
     }
 
-    private String toHorizontalString(int index, int length, List<Boolean> point) {
-        if (point.get(index)) {
+    private static String toFormattedHorizontal(int index, int length, List<Boolean> point) {
+        if (index == START_INCLUSIVE) {
+            return SPACE.repeat(length);
+        }
+        if (point.get(index - INDEX_OFFSET)) {
             return HORIZONTAL.repeat(length);
         }
         return SPACE.repeat(length);
