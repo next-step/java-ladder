@@ -17,4 +17,7 @@ public class Point {
         return right ? trueSymbol : falseSymbol;
     }
 
+    public int getResultIndex(int index) {
+        return left ? index - 1 : (right ? index + 1 : index);
+    }
 }
