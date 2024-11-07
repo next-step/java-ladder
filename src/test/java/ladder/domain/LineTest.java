@@ -1,7 +1,8 @@
 package ladder.domain;
 
-import ladder.exception.LineException;
 import ladder.exception.PlayersCountException;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -9,18 +10,31 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ladder.domain.Line.NOT_ALLOWED_CREATE_ADJACENT_LINE_MESSAGE;
 import static ladder.domain.Line.NOT_ALLOWED_PLAYER_ZERO_OR_MINUS_MESSAGE;
 import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
 
+    private Point firstPoint;
+    private Point next1Point;
+    private Point next2Point;
+    private Point lastPoint;
+
+    @BeforeEach
+    void setUp() {
+        firstPoint = Point.first(true);
+        next1Point = firstPoint.next(false);
+        next2Point = next1Point.next(true);
+        lastPoint = next2Point.last();
+    }
+
     @Test
     void create() {
-        Line actual = new Line(5, () -> true);
-        Line expected = new Line(List.of(true, false, true, false));
-
-        assertThat(actual).isEqualTo(expected);
+        assertThatNoException().isThrownBy(() -> {
+            new Line(List.of(firstPoint, next1Point, next2Point, lastPoint));
+        });
     }
 
     @ParameterizedTest
@@ -34,23 +48,13 @@ public class LineTest {
     }
 
     @Test
-    void create_라인이_겹치면_오류() {
-        assertThatThrownBy(() -> new Line(List.of(true, true, false, false)))
-                .isInstanceOf(LineException.class)
-                .hasMessage(NOT_ALLOWED_CREATE_ADJACENT_LINE_MESSAGE);
-
-        assertThatNoException()
-                .isThrownBy(() -> new Line(List.of(true, false, false, false)));
-    }
-
-    @Test
     void getPoint() {
-        List<Boolean> lineList = new ArrayList<>(List.of(false, true, false, true, false));
-        Line line = new Line(lineList);
-        List<Boolean> actual = line.getPoint();
+        List<Point> points = List.of(firstPoint, next1Point, next2Point, lastPoint);
+        Line line = new Line(points);
+        List<Point> actual = line.getPoints();
 
-        assertThat(actual).isEqualTo(lineList);
-        assertThatThrownBy(() -> actual.add(false))
+        assertThat(actual).isEqualTo(points);
+        assertThatThrownBy(() -> actual.add(next2Point))
                 .isInstanceOf(UnsupportedOperationException.class);
     }
 }

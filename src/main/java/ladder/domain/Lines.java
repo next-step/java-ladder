@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.util.LineGenerator;
+import ladder.domain.util.CrossGenerator;
 
 import java.util.Collections;
 import java.util.List;
@@ -14,7 +14,7 @@ public class Lines {
     public static final String SPACE = " ";
     private final List<Line> lines;
 
-    public Lines(Players players, int verticalLadderSize, LineGenerator generator) {
+    public Lines(Players players, int verticalLadderSize, CrossGenerator generator) {
         this(generateLines(players.size(), verticalLadderSize, generator));
     }
 
@@ -24,7 +24,7 @@ public class Lines {
 
 
 
-    private static List<Line> generateLines(int playersSize, int verticalLadderSize, LineGenerator generator) {
+    private static List<Line> generateLines(int playersSize, int verticalLadderSize, CrossGenerator generator) {
         return IntStream.range(START_INCLUSIVE, verticalLadderSize)
                 .boxed()
                 .map(index -> new Line(playersSize, generator))

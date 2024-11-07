@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Name;
-import ladder.domain.Players;
+import ladder.domain.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,7 +34,7 @@ public class ResultView {
 
     private static String toFormattedLines(Players players, List<Line> lines) {
         return lines.stream()
-                .map(line -> toFormattedLine(players, line.getPoint()))
+                .map(line -> toFormattedLine(players, line.getPoints()))
                 .collect(Collectors.joining(LINE_BREAK));
     }
 
@@ -48,20 +45,20 @@ public class ResultView {
                 .collect(Collectors.joining(SPACE));
     }
 
-    private static String toFormattedLine(Players players, List<Boolean> point) {
+    private static String toFormattedLine(Players players, List<Point> points) {
         List<Name> names = players.names();
         int namesMaxLength = players.namesMaxLength();
         return IntStream.range(START_INCLUSIVE, names.size())
                 .boxed()
-                .map(index -> toFormattedHorizontal(index, namesMaxLength, point))
+                .map(index -> toFormattedHorizontal(index, namesMaxLength, points))
                 .collect(Collectors.joining(PLAYER_DELIMITER, PREFIX, PLAYER_DELIMITER));
     }
 
-    private static String toFormattedHorizontal(int index, int length, List<Boolean> point) {
+    private static String toFormattedHorizontal(int index, int length, List<Point> points) {
         if (index == START_INCLUSIVE) {
             return SPACE.repeat(length);
         }
-        if (point.get(index - INDEX_OFFSET)) {
+        if (points.get(index - INDEX_OFFSET).getCurrent()) {
             return HORIZONTAL.repeat(length);
         }
         return SPACE.repeat(length);

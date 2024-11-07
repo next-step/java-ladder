@@ -1,6 +1,6 @@
 package ladder.domain.util;
 
 @FunctionalInterface
-public interface LineGenerator {
+public interface CrossGenerator {
     boolean generate();
 }

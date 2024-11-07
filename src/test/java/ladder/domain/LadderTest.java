@@ -1,46 +1,44 @@
 package ladder.domain;
 
-import ladder.domain.util.LineGenerator;
-import org.assertj.core.api.Assertions;
+import ladder.domain.util.CrossGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderTest {
 
 
     private Players players;
-    private LineGenerator horizontalGenerator;
+    private CrossGenerator falseGenerator;
     private int verticalLadderSize;
     private Lines lines;
 
     @BeforeEach
     void setUp() {
         players = new Players("pobi,crong,honux,jk");
-        horizontalGenerator = () -> true;
+        falseGenerator = () -> false;
         verticalLadderSize = 5;
         lines = new Lines(List.of(
-                new Line(4, horizontalGenerator),
-                new Line(4, horizontalGenerator),
-                new Line(4, horizontalGenerator),
-                new Line(4, horizontalGenerator),
-                new Line(4, horizontalGenerator)
+                new Line(4, falseGenerator),
+                new Line(4, falseGenerator),
+                new Line(4, falseGenerator),
+                new Line(4, falseGenerator),
+                new Line(4, falseGenerator)
         ));
     }
 
     @Test
     void create() {
-        Ladder actual = new Ladder(players, verticalLadderSize, horizontalGenerator);
+        Ladder actual = new Ladder(players, verticalLadderSize, falseGenerator);
         Ladder expected = new Ladder(players, new Lines(List.of(
-                new Line(4, horizontalGenerator),
-                new Line(4, horizontalGenerator),
-                new Line(4, horizontalGenerator),
-                new Line(4, horizontalGenerator),
-                new Line(4, horizontalGenerator)
+                new Line(4, falseGenerator),
+                new Line(4, falseGenerator),
+                new Line(4, falseGenerator),
+                new Line(4, falseGenerator),
+                new Line(4, falseGenerator)
                 )));
 
         assertThat(actual).isEqualTo(expected);

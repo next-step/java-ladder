@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.util.LineGenerator;
+import ladder.domain.util.CrossGenerator;
 
 import java.util.Objects;
 
@@ -8,7 +8,7 @@ public class Ladder {
     private final Lines lines;
     private final Players players;
 
-    public Ladder(Players players, int verticalLadderSize, LineGenerator generator) {
+    public Ladder(Players players, int verticalLadderSize, CrossGenerator generator) {
         this(players, new Lines(players, verticalLadderSize, generator));
     }
 

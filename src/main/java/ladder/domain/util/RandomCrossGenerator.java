@@ -2,7 +2,7 @@ package ladder.domain.util;
 
 import java.util.Random;
 
-public class RandomLineGenerator implements LineGenerator {
+public class RandomCrossGenerator implements CrossGenerator {
 
     @Override
     public boolean generate() {

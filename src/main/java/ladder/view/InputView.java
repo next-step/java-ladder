@@ -2,7 +2,7 @@ package ladder.view;
 
 import ladder.domain.Ladder;
 import ladder.domain.Players;
-import ladder.domain.util.RandomLineGenerator;
+import ladder.domain.util.RandomCrossGenerator;
 import ladder.exception.InvalidNameException;
 import ladder.exception.LineException;
 import ladder.exception.PlayersCountException;
@@ -28,7 +28,7 @@ public class InputView {
     }
     public Ladder inputVerticalSizeToLadder(Players players) {
         try {
-            return new Ladder(players, inputVerticalSize(), new RandomLineGenerator());
+            return new Ladder(players, inputVerticalSize(), new RandomCrossGenerator());
         } catch (PlayersCountException | LineException e) {
             System.out.println(e.getMessage());
             return inputVerticalSizeToLadder(inputNamesToPlayers());
