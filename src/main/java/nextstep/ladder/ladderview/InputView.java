@@ -3,6 +3,7 @@ package nextstep.ladder.ladderview;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 public class InputView {
@@ -28,9 +29,9 @@ public class InputView {
         return splitedResult;
     }
 
-    private List<String> splitedInput(String input, InputSpliter inputSpliter) {
+    private List<String> splitedInput(String input, UnaryOperator<String> inputSpliter) {
         return Arrays.stream(input.split(DELIMITER))
-                .map(word -> inputSpliter.checkValidInput(word))
+                .map(word -> inputSpliter.apply(word))
                 .collect(Collectors.toList());
     }
 

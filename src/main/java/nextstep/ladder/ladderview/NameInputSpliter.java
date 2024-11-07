@@ -1,6 +1,8 @@
 package nextstep.ladder.ladderview;
 
-public class NameInputSpliter implements InputSpliter {
+import java.util.function.UnaryOperator;
+
+public class NameInputSpliter implements UnaryOperator<String> {
     private static NameInputSpliter splitNameInput;
 
     public static NameInputSpliter getInstance() {
@@ -14,7 +16,7 @@ public class NameInputSpliter implements InputSpliter {
     }
 
     @Override
-    public String checkValidInput(String name) {
+    public String apply(String name) {
         if (name.length() > 5) {
             throw new IllegalArgumentException("이름의 길이는 5자를 초과할 수 없습니다");
         }

@@ -1,6 +1,8 @@
 package nextstep.ladder.ladderview;
 
-public class ResultInputSpliter implements InputSpliter {
+import java.util.function.UnaryOperator;
+
+public class ResultInputSpliter implements UnaryOperator<String> {
     private static ResultInputSpliter splitResultInput;
 
     public static ResultInputSpliter getInstance() {
@@ -15,7 +17,7 @@ public class ResultInputSpliter implements InputSpliter {
     }
 
     @Override
-    public String checkValidInput(String result) {
+    public String apply(String result) {
         try {
             Integer.parseInt(result);
         } catch(IllegalArgumentException e) {
