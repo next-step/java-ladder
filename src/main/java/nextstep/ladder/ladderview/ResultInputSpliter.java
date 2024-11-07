@@ -6,7 +6,7 @@ public class ResultInputSpliter implements UnaryOperator<String> {
     private static ResultInputSpliter splitResultInput;
 
     public static ResultInputSpliter getInstance() {
-        if(splitResultInput == null) {
+        if (splitResultInput == null) {
             splitResultInput = new ResultInputSpliter();
         }
         return splitResultInput;
@@ -20,7 +20,7 @@ public class ResultInputSpliter implements UnaryOperator<String> {
     public String apply(String result) {
         try {
             Integer.parseInt(result);
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             return "꽝";
         }
         return result;

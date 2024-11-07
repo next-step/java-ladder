@@ -25,7 +25,10 @@ public class Ladders {
     }
 
     public void createLines() {
-        ladder.forEach(Lines::generateConnections);
+        OddLineRandomConnectCondition oddLineRandomConnectCondition = OddLineRandomConnectCondition.getInstance();
+        EvenLineRandomConnectCondition evenLineRandomConnectCondition = EvenLineRandomConnectCondition.getInstance();
+        ladder.forEach(
+                lines -> lines.generateConnections(oddLineRandomConnectCondition, evenLineRandomConnectCondition));
     }
 
     public int traverseLadderDown(int playerIndex) {

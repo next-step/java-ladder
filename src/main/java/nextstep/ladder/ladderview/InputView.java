@@ -18,11 +18,11 @@ public class InputView {
     }
 
     public List<String> inputResult(int numberOfPlayer) {
-        System.out.println(LINE_BREAK +"실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        System.out.println(LINE_BREAK + "실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
         List<String> splitedResult = splitedInput(scanner.nextLine(), ResultInputSpliter.getInstance());
         try {
             checkResultCountIsSameAsNumberOfPlayer(numberOfPlayer, splitedResult);
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("입력 참가자 수와 입력 결과 수가 같아야 합니다");
             return inputResult(numberOfPlayer);
         }
@@ -36,13 +36,13 @@ public class InputView {
     }
 
     private void checkResultCountIsSameAsNumberOfPlayer(int numberOfPlayer, List<String> splitedResult) {
-        if(splitedResult.size() != numberOfPlayer) {
+        if (splitedResult.size() != numberOfPlayer) {
             throw new IllegalArgumentException("입력 참가자 수와 입력 결과 수가 같아야 합니다");
         }
     }
 
     public int inputHeight() {
-        System.out.println(LINE_BREAK+"최대 사다리 높이는 몇 개인가요?");
+        System.out.println(LINE_BREAK + "최대 사다리 높이는 몇 개인가요?");
         return checkHeightIsValid(Integer.valueOf(scanner.nextLine()));
     }
 
@@ -54,7 +54,7 @@ public class InputView {
     }
 
     public String inputResultOfPlayer() {
-        System.out.println(LINE_BREAK+"결과를 보고 싶은 사람은?");
+        System.out.println(LINE_BREAK + "결과를 보고 싶은 사람은?");
         return scanner.nextLine();
     }
 }
