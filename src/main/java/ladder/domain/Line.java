@@ -13,13 +13,14 @@ public class Line {
 
     private static List<Dot> initializeDots(int count, Boolean firstDotValue) {
         List<Dot> dots = new ArrayList<>();
-        dots.add(0, new Dot(firstDotValue));
+        int lastIndex = count - 1;
 
-        for (int i = 1; i < count - 1; i++) {
-            Boolean preDotValue = dots.get(i - 1).getValue();
-            dots.add(i, new Dot(!preDotValue));
+        dots.add(0, Dot.firstDot(firstDotValue));
+        for (int i = 0; i < lastIndex-1 ; i++) {
+            dots.add(i+1,dots.get(i).nextDot());
         }
-        dots.add(new Dot(false));
+        dots.add(Dot.lastDot(lastIndex,dots.get(lastIndex-1).getValue()));
+
         return dots;
     }
 
@@ -30,11 +31,6 @@ public class Line {
     }
 
     public int getLineIndex(int index) {
-        Dot dot = dots.get(index);
-
-        if (index == 0) {
-            return index + dot.getMoveStep();
-        }
-        return index + dot.getMoveStepWithPreDot(dots.get(index-1).getValue());
+        return dots.get(index).getMoveStep();
     }
 }
