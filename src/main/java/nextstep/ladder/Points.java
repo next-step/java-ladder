@@ -28,12 +28,8 @@ public class Points {
         return prev ? false : RANDOM.nextBoolean();
     }
 
-    public int getSize() {
+    public int size() {
         return this.points.size();
-    }
-
-    public List<Point> getValues() {
-        return this.points;
     }
 
     public String toString(String trueSymbol, String falseSymbol) {

@@ -11,6 +11,9 @@ public class Lines {
     private List<Line> lines = new ArrayList<>();
 
     public Lines(int height, int countOfPerson) {
+        if (height <= 0) {
+            throw new IllegalArgumentException("사다리 높이는 0 이상 입력해주세요.");
+        }
         generate(height, countOfPerson);
     }
 

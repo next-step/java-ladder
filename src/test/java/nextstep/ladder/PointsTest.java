@@ -15,7 +15,7 @@ public class PointsTest {
     @DisplayName("생성된 Points 사이즈 확인")
     void size() {
         points = new Points(5);
-        assertThat(points.getSize()).isEqualTo(5);
+        assertThat(points.size()).isEqualTo(5);
     }
 
     @Test
