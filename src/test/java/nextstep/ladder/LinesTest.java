@@ -44,7 +44,6 @@ public class LinesTest {
 
     @Test
     void getFinalResultIndexs() {
-//        System.out.println("테스트");
 //        System.out.println(lines.getFinalResultIndexs(5));
         assertThat(lines.getFinalResultIndexs(5)).isEqualTo(Arrays.asList(2, 3, 0, 1, 4));
 

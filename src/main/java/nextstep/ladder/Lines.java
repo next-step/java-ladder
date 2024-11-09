@@ -39,34 +39,19 @@ public class Lines {
     }
 
     public List<Integer> getFinalResultIndexs(int countOfPerson) {
-        List<Integer> finalResultIndexs = IntStream.range(0, countOfPerson)
-                .boxed()
-                .collect(Collectors.toList());
-
-        // 각 사람의 위치를 개별적으로 이동
-//        for (int personIndex = 0; personIndex < countOfPerson; personIndex++) {
-//            int currentIndex = personIndex;
-//
-//            for (Line line : lines) {
-//                List<Integer> resultIndexs = line.getResultIndexs();
-//                currentIndex = resultIndexs.get(currentIndex);
-//            }
-//
-//            // 최종 위치를 반영
-//            finalResultIndexs.set(personIndex, currentIndex);
-//        }
+        List<Integer> finalResultIndexs = new ArrayList<>();
 
         IntStream.range(0, countOfPerson)
                 .forEach(personIndex -> {
-                    int currentIndex = personIndex;
-                    for (Line line : lines) {
-                        List<Integer> resultIndexs = line.getResultIndexs();
-                        currentIndex = resultIndexs.get(currentIndex);
-                    }
-
-                    finalResultIndexs.set(personIndex, currentIndex);
+                    finalResultIndexs.add(personIndex, getPersonFinalResultIndex(personIndex));
                 });
 
         return finalResultIndexs;
+    }
+
+    private int getPersonFinalResultIndex(int personIndex) {
+        return lines.stream()
+                .map(Line::getResultIndexs)
+                .reduce(personIndex, (index, resultIndexs) -> resultIndexs.get(index), (a, b) -> b);
     }
 }
