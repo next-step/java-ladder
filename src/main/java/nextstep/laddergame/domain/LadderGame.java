@@ -13,11 +13,8 @@ public class LadderGame {
         this.ladders = ladders;
     }
 
-    public static LadderGame start(List<String> participants, Integer maxHeight) {
-        return new LadderGame(
-                participants,
-                maxHeight,
-                Ladders.create(participants.size(), maxHeight, new RandomLadderLinesGenerator()));
+    public LadderGame(List<String> participants, Integer maxHeight) {
+        this(participants, maxHeight, Ladders.create(participants.size(), maxHeight, new RandomLadderLinesGenerator()));
     }
 
     public List<String> getParticipants() {
