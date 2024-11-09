@@ -20,7 +20,7 @@ public class Points {
         });
     }
 
-    public Points(List<Point> points){
+    public Points(List<Point> points) {
         this.points = points;
     }
 
@@ -30,6 +30,10 @@ public class Points {
 
     public int getSize() {
         return this.points.size();
+    }
+
+    public List<Point> getValues() {
+        return this.points;
     }
 
     public String toString(String trueSymbol, String falseSymbol) {
@@ -48,4 +52,8 @@ public class Points {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public String toString() {
+        return points.stream().map(Point::toString).collect(Collectors.toList()).toString();
+    }
 }

@@ -20,4 +20,12 @@ public class Point {
     public int getResultIndex(int index) {
         return left ? index - 1 : (right ? index + 1 : index);
     }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "left=" + left +
+                ", right=" + right +
+                '}';
+    }
 }
