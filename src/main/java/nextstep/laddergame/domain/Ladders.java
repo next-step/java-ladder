@@ -13,7 +13,7 @@ public class Ladders {
     }
 
     public static Ladders create(int participantsSize, int maxHeight, LadderLinesGenerator ladderLinesGenerator) {
-        ArrayList<Ladder> newLadders = new ArrayList<>();
+        List<Ladder> newLadders = new ArrayList<>();
         Ladder beforeLadder = null;
 
         for (int i = 0; i < participantsSize - 1; i++) {
