@@ -30,8 +30,12 @@ public class Lines {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Lines lines1 = (Lines) o;
         return Objects.equals(lines, lines1.lines);
     }
