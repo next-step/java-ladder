@@ -26,15 +26,15 @@ public class LinesTest {
         );
     }
 
-    @Test
-    @DisplayName("사다리 전체 출력 확인")
-    void check() {
-        for (Line line : lines.getValues()) {
-            System.out.println(line.toString());
-            System.out.println(line.getResultIndexs());
-        }
-        System.out.println(lines.toString("-----", "     "));
-    }
+//    @Test
+//    @DisplayName("사다리 전체 출력 확인")
+//    void check() {
+//        for (Line line : lines.getValues()) {
+//            System.out.println(line.toString());
+//            System.out.println(line.getResultIndexs());
+//        }
+//        System.out.println(lines.toString("-----", "     "));
+//    }
 
     @Test
     @DisplayName("사다리 라인 사이즈 확인")
@@ -44,7 +44,9 @@ public class LinesTest {
 
     @Test
     void getFinalResultIndexs() {
-        System.out.println("테스트");
-        System.out.println(lines.getFinalResultIndexs(5));
+//        System.out.println("테스트");
+//        System.out.println(lines.getFinalResultIndexs(5));
+        assertThat(lines.getFinalResultIndexs(5)).isEqualTo(Arrays.asList(2, 3, 0, 1, 4));
+
     }
 }

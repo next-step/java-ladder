@@ -16,8 +16,16 @@ public class Usernames {
                 .collect(Collectors.toList());
     }
 
+    public List<Username> getValues() {
+        return usernames;
+    }
+
     public int size() {
         return usernames.size();
+    }
+
+    public int indexOf(String username) {
+        return usernames.indexOf(new Username(username));
     }
 
     public String toString() {

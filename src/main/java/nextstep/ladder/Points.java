@@ -54,6 +54,6 @@ public class Points {
 
     @Override
     public String toString() {
-        return points.stream().map(Point::toString).collect(Collectors.toList()).toString();
+        return points.stream().map(Point::toString).collect(Collectors.joining());
     }
 }
