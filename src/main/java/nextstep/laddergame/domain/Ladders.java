@@ -16,20 +16,14 @@ public class Ladders {
         ArrayList<Ladder> newLadders = new ArrayList<>();
         Ladder beforeLadder = null;
 
-        for (int i = 0; i < participantsSize; i++) {
-            if (lastLadder(i, participantsSize)) {
-                newLadders.add(Ladder.createLastLadder(participantsSize, maxHeight));
-                break;
-            }
+        for (int i = 0; i < participantsSize - 1; i++) {
             Ladder ladder = Ladder.create(Optional.ofNullable(beforeLadder), maxHeight, ladderLinesGenerator);
             newLadders.add(ladder);
             beforeLadder = ladder;
         }
-        return new Ladders(newLadders);
-    }
 
-    private static boolean lastLadder(int index, int participantsSize) {
-        return index == participantsSize - 1;
+        newLadders.add(Ladder.createLastLadder(participantsSize, maxHeight));
+        return new Ladders(newLadders);
     }
 
     public int size() {
@@ -42,8 +36,12 @@ public class Ladders {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Ladders ladders1 = (Ladders) o;
         return Objects.equals(ladders, ladders1.ladders);  // false.
     }
