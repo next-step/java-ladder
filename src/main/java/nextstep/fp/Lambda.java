@@ -26,6 +26,10 @@ public class Lambda {
         }).start();
     }
 
+    public static void runThreadLamda() {
+        new Thread(() -> System.out.println("Hello from thread")).start();
+    }
+
     public static int sumAll(List<Integer> numbers) {
         int total = 0;
         for (int number : numbers) {
@@ -53,4 +57,10 @@ public class Lambda {
         }
         return total;
     }
+
+    public static int sumAllLamda(List<Integer> numbers, Conditional conditional) {
+        //number -> conditional.test(number)
+        return numbers.stream().filter(conditional::test).mapToInt(number-> number).sum();
+    }
+
 }
