@@ -16,6 +16,12 @@ public class CarTest {
         });
         assertThat(actual).isEqualTo(new Car("pobi", 1));
     }
+    @Test
+    public void 이동_람다() {
+        Car car = new Car("pobi", 0);
+        Car actual = car.move(() -> true);
+        assertThat(actual).isEqualTo(new Car("pobi", 1));
+    }
 
     @Test
     public void 정지() {
@@ -27,5 +33,13 @@ public class CarTest {
             }
         });
         assertThat(actual).isEqualTo(new Car("pobi", 0));
+    }
+
+    @Test
+    public void 정지_람다() {
+        Car car = new Car("pobi", 0);
+        Car actual = car.move( ()-> false);
+        assertThat(actual).isEqualTo(new Car("pobi", 0));
+
     }
 }
