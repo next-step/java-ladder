@@ -11,10 +11,10 @@ public class RandomLadderLinesGenerator implements LadderLinesGenerator {
     public Lines generate(Optional<Ladder> beforeLadder, int maxHeight) {
         List<Boolean> newLines = IntStream.range(0, maxHeight)
                 .mapToObj(floor ->
-                        beforeLadder.filter(ladder -> ladder.isLineAlreadySetAt(floor))
-                                .map(ladder -> Boolean.FALSE)
-                                .orElseGet(random::nextBoolean))
-                .collect(Collectors.toList());
+                        beforeLadder.isPresent() && beforeLadder.get().isLineAlreadySetAt(floor)
+                                ? Boolean.FALSE
+                                : random.nextBoolean()
+                ).collect(Collectors.toList());
 
         if (isAllNonSet(newLines)) {
             return generate(beforeLadder, maxHeight);
