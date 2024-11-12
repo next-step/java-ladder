@@ -17,6 +17,6 @@ public class ExpressionTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> {
                     Expression.of("&");
-                });
+                }).withMessage("&는 사칙연산에 해당하지 않는 표현식입니다.");
     }
 }
