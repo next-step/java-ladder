@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 
 public class ResultView {
     public static final int START_INCLUSIVE = 0;
-    public static final String LINE_BREAK = "\n";
+    public static final String LINE_BREAK = System.lineSeparator();
     public static final String SPACE = " ";
     public static final String HORIZONTAL = "-";
     public static final String PLAYER_DELIMITER = "|";
