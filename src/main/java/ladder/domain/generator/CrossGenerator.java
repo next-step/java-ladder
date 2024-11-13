@@ -1,4 +1,4 @@
-package ladder.domain.util;
+package ladder.domain.generator;
 
 @FunctionalInterface
 public interface CrossGenerator {

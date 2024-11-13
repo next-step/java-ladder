@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.domain.util.CrossGenerator;
+import ladder.domain.generator.CrossGenerator;
 
 import java.util.Objects;
 

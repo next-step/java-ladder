@@ -2,7 +2,7 @@ package ladder.view;
 
 import ladder.domain.Ladder;
 import ladder.domain.Players;
-import ladder.domain.util.RandomCrossGenerator;
+import ladder.domain.generator.RandomCrossGenerator;
 import ladder.exception.InvalidNameException;
 import ladder.exception.LineException;
 import ladder.exception.PlayersCountException;
