@@ -73,7 +73,7 @@ public class Line {
   - [x] 참여자 count 0 일경우 오류.
   - [x] 한줄 정보를 문자열로 출력한다.
   * field List<Boolean>
-* HorizontalGenerator
+* CrossGenerator.java
   - [x] 가로줄을 생성한다.
 ### View
 * InputView

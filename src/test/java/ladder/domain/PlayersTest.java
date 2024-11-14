@@ -23,10 +23,10 @@ public class PlayersTest {
     @DisplayName("플레이어 목록을 생성한다")
     void create() {
         Players expected = new Players(List.of(
-                        new Player("pobi"),
-                        new Player("crong"),
-                        new Player("honux"),
-                        new Player("jk")));
+                        new Name("pobi"),
+                        new Name("crong"),
+                        new Name("honux"),
+                        new Name("jk")));
 
         assertThat(players).isEqualTo(expected);
     }
@@ -51,14 +51,4 @@ public class PlayersTest {
 
         assertThat(actual).isEqualTo(expected);
     }
-
-
-    @Test
-    @DisplayName("플레이어 목록중 이름의 가장 긴 길이를 출력한다")
-    void namesMaxLength() {
-        int actual = players.namesMaxLength();
-
-        assertThat(actual).isEqualTo(5);
-    }
-
 }
