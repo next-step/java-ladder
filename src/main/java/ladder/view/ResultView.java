@@ -6,20 +6,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static ladder.domain.Name.DEFAULT_MAX_NAME_LENGTH;
+
 public class ResultView {
     public static final int START_INCLUSIVE = 0;
     public static final String LINE_BREAK = System.lineSeparator();
     public static final String SPACE = " ";
-    public static final String HORIZONTAL = "-";
+    public static final String SPACES = "     ";
+    public static final String CROSS_LINES = "-----";
     public static final String PLAYER_DELIMITER = "|";
     public static final String PREFIX = "";
     public static final int INDEX_OFFSET = 1;
+    public static final String RESULT_MESSAGE = "실행결과";
 
     public ResultView() {
     }
 
     public void renderLadder(Ladder ladder) {
-        System.out.println("실행결과");
+        System.out.println(RESULT_MESSAGE);
         System.out.println(toLadderString(ladder));
     }
 
@@ -41,26 +45,25 @@ public class ResultView {
     private static String toFormattedNames(Players players) {
         return players.names()
                 .stream()
-                .map(name -> SPACE.repeat(players.namesMaxLength() - name.length()) + name.name())
+                .map(name -> SPACE.repeat(DEFAULT_MAX_NAME_LENGTH - name.length()) + name.name())
                 .collect(Collectors.joining(SPACE));
     }
 
     private static String toFormattedLine(Players players, List<Point> points) {
         List<Name> names = players.names();
-        int namesMaxLength = players.namesMaxLength();
         return IntStream.range(START_INCLUSIVE, names.size())
                 .boxed()
-                .map(index -> toFormattedHorizontal(index, namesMaxLength, points))
+                .map(index -> toFormattedHorizontal(index, points))
                 .collect(Collectors.joining(PLAYER_DELIMITER, PREFIX, PLAYER_DELIMITER));
     }
 
-    private static String toFormattedHorizontal(int index, int length, List<Point> points) {
+    private static String toFormattedHorizontal(int index, List<Point> points) {
         if (index == START_INCLUSIVE) {
-            return SPACE.repeat(length);
+            return SPACES;
         }
         if (points.get(index - INDEX_OFFSET).getCurrent()) {
-            return HORIZONTAL.repeat(length);
+            return CROSS_LINES;
         }
-        return SPACE.repeat(length);
+        return SPACES;
     }
 }
