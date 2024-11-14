@@ -31,14 +31,18 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
+/*
         int total = 0;
         for (int number : numbers) {
             total += number;
         }
         return total;
+*/
+       return sumAllLamda(numbers, number -> true);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
+/*
         int total = 0;
         for (int number : numbers) {
             if (number % 2 == 0) {
@@ -46,9 +50,12 @@ public class Lambda {
             }
         }
         return total;
+ */
+        return sumAllLamda(numbers, number -> number % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
+/*
         int total = 0;
         for (int number : numbers) {
             if (number > 3) {
@@ -56,6 +63,8 @@ public class Lambda {
             }
         }
         return total;
+*/
+        return sumAllLamda(numbers, number -> number > 3);
     }
 
     public static int sumAllLamda(List<Integer> numbers, Conditional conditional) {
