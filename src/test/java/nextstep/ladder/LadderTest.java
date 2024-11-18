@@ -15,7 +15,7 @@ public class LadderTest {
     @BeforeAll
     static void setup() {
         ladder = new Ladder(
-                new Usernames(Arrays.asList("test", "test2", "test3","test4","test5")),
+                new Usernames(Arrays.asList("test", "test2", "test3", "test4", "test5")),
                 new Lines(Arrays.asList(
                         new Line(new Points(Arrays.asList(new Point(false, false), new Point(false, true), new Point(true, false), new Point(false, true), new Point(true, false)))),
                         new Line(new Points(Arrays.asList(new Point(false, true), new Point(true, false), new Point(false, false), new Point(false, false), new Point(false, false)))),
@@ -24,7 +24,7 @@ public class LadderTest {
                         new Line(new Points(Arrays.asList(new Point(false, false), new Point(false, true), new Point(true, false), new Point(false, true), new Point(true, false)))),
                         new Line(new Points(Arrays.asList(new Point(false, false), new Point(false, false), new Point(false, false), new Point(false, true), new Point(true, false))))
                 ))
-                , Arrays.asList("result1", "result2", "result3","result4","result5"));
+                , Arrays.asList("result1", "result2", "result3", "result4", "result5"));
     }
 
     @Test
@@ -32,10 +32,10 @@ public class LadderTest {
     public void getAllResult() {
         assertThat(ladder.getResult("all"))
                 .isEqualTo("test4 : result2\n" +
-                "test5 : result5\n" +
-                "test2 : result4\n" +
-                "test3 : result1\n" +
-                "test : result3");
+                        "test5 : result5\n" +
+                        "test2 : result4\n" +
+                        "test3 : result1\n" +
+                        "test : result3");
     }
 
     @Test

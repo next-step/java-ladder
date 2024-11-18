@@ -54,7 +54,7 @@ public class Ladder {
 
         return resultMap.entrySet()
                 .stream()
-                .map(d -> d.getKey()+" : "+d.getValue()).collect(Collectors.joining("\n"));
+                .map(d -> d.getKey() + " : " + d.getValue()).collect(Collectors.joining("\n"));
     }
 
     private String getResultByUsername(String resultUsername) {
