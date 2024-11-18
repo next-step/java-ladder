@@ -3,7 +3,6 @@ package nextstep.ladder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Lines {
@@ -41,18 +40,7 @@ public class Lines {
         );
     }
 
-    public List<Integer> getFinalResultIndexs(int countOfPerson) {
-        List<Integer> finalResultIndexs = new ArrayList<>();
-
-        IntStream.range(0, countOfPerson)
-                .forEach(personIndex -> {
-                    finalResultIndexs.add(personIndex, getPersonFinalResultIndex(personIndex));
-                });
-
-        return finalResultIndexs;
-    }
-
-    private int getPersonFinalResultIndex(int personIndex) {
+    public int getPersonFinalResultIndex(int personIndex) {
         return lines.stream()
                 .map(Line::getResultIndexs)
                 .reduce(personIndex, (index, resultIndexs) -> resultIndexs.get(index), (a, b) -> b);

@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -37,19 +38,27 @@ public class Ladder {
         return getResultByUsername(resultUsername);
     }
 
-    private String getAllResult() {
-        List<Integer> resultIndexs = lines.getFinalResultIndexs(usernames.size());
+    private Map<String, String> getResultMap() {
+        Map<String, String> result = IntStream.range(0, usernames.size())
+                .boxed()
+                .collect(Collectors.toMap(
+                        i -> usernames.getValues().get(i).getUsername(),
+                        i -> results.get(lines.getPersonFinalResultIndex(i))
+                ));
 
-        String result = IntStream.range(0, usernames.size())
-                .mapToObj(i -> usernames.getValues().get(i).getUsername() + ":" + results.get(resultIndexs.get(i)))
-                .collect(Collectors.joining("\n"));
         return result;
     }
 
+    private String getAllResult() {
+        Map<String, String> resultMap = getResultMap();
+
+        return resultMap.entrySet()
+                .stream()
+                .map(d -> d.getKey()+" : "+d.getValue()).collect(Collectors.joining("\n"));
+    }
+
     private String getResultByUsername(String resultUsername) {
-        int index = usernames.indexOf(resultUsername);
-        int resultIndex = lines.getFinalResultIndexs(usernames.size()).get(index);
-        return results.get(resultIndex);
+        return getResultMap().get(resultUsername);
     }
 
 }
