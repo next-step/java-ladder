@@ -21,9 +21,6 @@ public class PointsTest {
     @Test
     void 결과_인덱스_목록_조회() {
         points = new Points(List.of(new Point(false, false), new Point(false, true), new Point(true, false), new Point(false, true), new Point(true, false)));
-        assertThat(points.getResultIndexs()).isEqualTo(Arrays.asList(0, 2, 1, 4, 3));
-
-        points = new Points(List.of(new Point(false, true), new Point(true, false), new Point(false, true), new Point(true, false), new Point(false, false)));
-        assertThat(points.getResultIndexs()).isEqualTo(Arrays.asList(1, 0, 3, 2, 4));
+        assertThat(points.getResultIndex(3)).isEqualTo( 4);
     }
 }

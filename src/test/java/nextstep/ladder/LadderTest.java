@@ -31,11 +31,11 @@ public class LadderTest {
     @DisplayName("모든 사용자의 사다리 결과")
     public void getAllResult() {
         assertThat(ladder.getResult("all"))
-                .isEqualTo("test4:result2\n" +
-                "test5:result5\n" +
-                "test2:result4\n" +
-                "test3:result1\n" +
-                "test:result3");
+                .isEqualTo("test4 : result2\n" +
+                "test5 : result5\n" +
+                "test2 : result4\n" +
+                "test3 : result1\n" +
+                "test : result3");
     }
 
     @Test

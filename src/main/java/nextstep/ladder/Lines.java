@@ -42,7 +42,6 @@ public class Lines {
 
     public int getPersonFinalResultIndex(int personIndex) {
         return lines.stream()
-                .map(Line::getResultIndexs)
-                .reduce(personIndex, (index, resultIndexs) -> resultIndexs.get(index), (a, b) -> b);
+                .reduce(personIndex, (index, line) -> line.getResultIndex(index), (a, b) -> b);
     }
 }

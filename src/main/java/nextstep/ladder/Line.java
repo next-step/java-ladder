@@ -1,8 +1,6 @@
 package nextstep.ladder;
 
 
-import java.util.List;
-
 public class Line {
     private Points points;
 
@@ -18,8 +16,8 @@ public class Line {
         return points.toString(trueSymbol, falseSymbol);
     }
 
-    public List<Integer> getResultIndexs() {
-        return points.getResultIndexs();
+    public Integer getResultIndex(int index) {
+        return points.getResultIndex(index);
     }
 
     @Override

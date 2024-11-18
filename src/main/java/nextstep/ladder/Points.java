@@ -42,10 +42,8 @@ public class Points {
         return LINE_DELIMITER + String.join(LINE_DELIMITER, result) + LINE_DELIMITER;
     }
 
-    public List<Integer> getResultIndexs() {
-        return IntStream.range(0, points.size()).map((i) -> points.get(i).getResultIndex(i))
-                .boxed()
-                .collect(Collectors.toList());
+    public Integer getResultIndex(int index) {
+        return points.get(index).getResultIndex(index);
     }
 
     @Override
