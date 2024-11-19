@@ -16,4 +16,16 @@ public class Point {
     public String getLineSymbol(String trueSymbol, String falseSymbol) {
         return right ? trueSymbol : falseSymbol;
     }
+
+    public int getResultIndex(int index) {
+        return left ? index - 1 : (right ? index + 1 : index);
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "left=" + left +
+                ", right=" + right +
+                '}';
+    }
 }

@@ -7,40 +7,47 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Points {
-
     private static final Random RANDOM = new Random();
-
+    private static final String LINE_DELIMITER = "|";
     private List<Point> points = new ArrayList<>();
 
     public Points(int size) {
         IntStream.range(0, size).forEach((i) -> {
-            generate(i, size);
+            boolean prevRight = i == 0 ? false : points.get(i - 1).getRight();
+            boolean right = i == size - 1 ? false : generateRandomRightPoint(prevRight);
+
+            points.add(new Point(prevRight, right));
         });
     }
 
-    private void generate(int i, int size) {
-        boolean left = i == 0 ? false : isLinePresentAt(i);
-        boolean right = i == size - 1 ? false : (isLinePresentAt(i) ? false : RANDOM.nextBoolean());
-
-        points.add(new Point(left, right));
+    public Points(List<Point> points) {
+        this.points = points;
     }
 
-    private boolean isLinePresentAt(int i) {
-        return i > 0 && points.get(i - 1).getRight();
+    private boolean generateRandomRightPoint(boolean prev) {
+        return prev ? false : RANDOM.nextBoolean();
     }
 
-    public int getSize() {
+    public int size() {
         return this.points.size();
     }
 
-    public String toString(String delimiter, String trueSymbol, String falseSymbol) {
+    public String toString(String trueSymbol, String falseSymbol) {
         List<String> result = this.points
                 .stream()
                 .map(point -> point.getLineSymbol(trueSymbol, falseSymbol))
                 .limit(this.points.size() - 1)
                 .collect(Collectors.toList());
 
-        return delimiter + String.join(delimiter, result) + delimiter;
+        return LINE_DELIMITER + String.join(LINE_DELIMITER, result) + LINE_DELIMITER;
     }
 
+    public Integer getResultIndex(int index) {
+        return points.get(index).getResultIndex(index);
+    }
+
+    @Override
+    public String toString() {
+        return points.stream().map(Point::toString).collect(Collectors.joining());
+    }
 }
