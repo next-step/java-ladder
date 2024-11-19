@@ -16,6 +16,11 @@ public class LadderResult extends CommaSeparatedResult {
     }
 
     @Override
+    public int size() {
+        return results.size();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

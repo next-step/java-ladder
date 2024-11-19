@@ -37,6 +37,7 @@ public class Names extends CommaSeparatedResult {
         this(convert(value));
     }
 
+    @Override
     public int size() {
         return names.size();
     }
