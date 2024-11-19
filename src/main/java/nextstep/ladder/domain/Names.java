@@ -1,16 +1,15 @@
 package nextstep.ladder.domain;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
+import nextstep.ladder.CommaSeparatedResult;
 
-public class Names {
+public class Names extends CommaSeparatedResult {
 
-    private static final String SPLIT_PATTERN = ",";
     private static final int MIN_SIZE = 2;
     private final Set<Name> names;
 
@@ -35,15 +34,7 @@ public class Names {
     }
 
     public Names(String value) {
-        this(toList(split(value)));
-    }
-
-    private static String[] split(String value) {
-        return value.split(SPLIT_PATTERN);
-    }
-
-    private static List<String> toList(String[] value) {
-        return Arrays.asList(value);
+        this(convert(value));
     }
 
     public int size() {
