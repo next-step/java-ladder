@@ -2,7 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Lines;
-import nextstep.ladder.domain.Names;
+import nextstep.ladder.dto.CommaSeparatedResult;
 
 public class OutputView {
 
@@ -10,14 +10,14 @@ public class OutputView {
     private static final String LINE = "-----";
     private static final String HORIZONTAL_LINE = "|";
 
-    public static void rendering(Names names, Ladder ladder) {
+    public static void rendering(CommaSeparatedResult commaSeparatedResult, Ladder ladder) {
         System.out.println("실행결과");
-        renderName(names);
+        renderName(commaSeparatedResult);
         renderLadder(ladder);
     }
 
-    private static void renderName(Names names) {
-        for (String name : names.getNamesByString()) {
+    private static void renderName(CommaSeparatedResult commaSeparatedResult) {
+        for (String name : commaSeparatedResult.getNamesByString()) {
             System.out.printf(" ".repeat(6 - name.length()) + name);
         }
         System.out.println();

@@ -1,7 +1,8 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Names;
+import nextstep.ladder.dto.CommaSeparatedResult;
+import nextstep.ladder.dto.Names;
 import nextstep.ladder.generator.RandomNonConsecutiveFlagGenerator;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
@@ -9,9 +10,9 @@ import nextstep.ladder.view.OutputView;
 public class LadderController {
 
     public void playGame() {
-        Names names = new Names(InputView.readNames());
-        Ladder ladder = new Ladder(InputView.readHeight(), names.size(),
+        CommaSeparatedResult commaSeparatedResult = new Names(InputView.readNames());
+        Ladder ladder = new Ladder(InputView.readHeight(), commaSeparatedResult.size(),
                 new RandomNonConsecutiveFlagGenerator());
-        OutputView.rendering(names, ladder);
+        OutputView.rendering(commaSeparatedResult, ladder);
     }
 }
