@@ -21,12 +21,7 @@ public class Ladder {
     }
 
     public Ladder(int height, int width, NonConsecutiveFlagGenerator generator) {
-        this(width, toLadder(height, width, generator));
-    }
-
-    private static List<Lines> toLadder(int height, int width, NonConsecutiveFlagGenerator generator) {
-        return Stream.generate(() -> new Lines(generator.create(new LadderWidthSize(width)))).limit(height)
-                .collect(Collectors.toList());
+        this(width, LadderConverter.convert(height, width, generator));
     }
 
     public List<Lines> getLines() {
@@ -48,5 +43,16 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(ladder);
+    }
+
+    private static class LadderConverter {
+        private static List<Lines> convert(int height, int width, NonConsecutiveFlagGenerator generator) {
+            return toLadder(height, width, generator);
+        }
+
+        private static List<Lines> toLadder(int height, int width, NonConsecutiveFlagGenerator generator) {
+            return Stream.generate(() -> new Lines(generator.create(new LadderWidthSize(width)))).limit(height)
+                    .collect(Collectors.toList());
+        }
     }
 }
