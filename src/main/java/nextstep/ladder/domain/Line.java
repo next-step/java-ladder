@@ -1,6 +1,6 @@
 package nextstep.ladder.domain;
 
-import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Line {
@@ -13,7 +13,7 @@ public class Line {
         this.lineRange = new LineRange(left);
     }
 
-    public void move(HashMap<Integer, Integer> map) {
+    public void move(Map<Integer, Integer> map) {
         if (hasPoint) {
             lineRange.swap(map);
         }
