@@ -1,33 +1,39 @@
 package nextstep.ladder.domain;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Position {
 
-    private final Map<Integer, Integer> position;
+    private final List<Integer> position;
 
-    Position(Map<Integer, Integer> position) {
-        this.position = new HashMap<>(position);
+
+    Position(List<Integer> position) {
+        this.position = new ArrayList<>(position);
     }
 
     void swap(int left, int right) {
-        validContainsIndex(left, right);
+        validContainsIndex(left);
+        validContainsIndex(right);
         swapValue(left, right);
     }
 
-    private void validContainsIndex(int left, int right) {
-        if (!position.containsKey(left) || !position.containsKey(right)) {
+    private void validContainsIndex(int index) {
+        if (lastIndex() < index) {
             throw new IllegalArgumentException("이동하려는 위치가 존재하지 않습니다");
         }
+    }
+
+    private int lastIndex() {
+        return this.position.size() - 1;
     }
 
     private void swapValue(int left, int right) {
         Integer leftValue = position.get(left);
         Integer rightValue = position.get(right);
-        position.put(left, rightValue);
-        position.put(right, leftValue);
+        position.set(left, rightValue);
+        position.set(right, leftValue);
     }
 
     @Override

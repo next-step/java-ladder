@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 public class LadderTest {
@@ -36,7 +35,7 @@ public class LadderTest {
 
         Position result = ladder.result();
 
-        assertThat(result).isEqualTo(new Position(Map.of(0, 1, 1, 0, 2, 3, 3, 2)));
+        assertThat(result).isEqualTo(new Position(List.of(1, 0, 3, 2)));
     }
 
     private static NonConsecutiveFlagGeneratorFake createFakeGenerator(List<Boolean> lines) {

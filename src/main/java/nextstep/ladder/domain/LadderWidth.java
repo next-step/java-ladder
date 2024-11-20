@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LadderWidth {
     private static final int START_INDEX = 0;
@@ -11,9 +12,9 @@ public class LadderWidth {
     }
 
     public Position position() {
-        HashMap<Integer, Integer> result = new HashMap<>();
+        List<Integer> result = new ArrayList<>();
         for (int i = START_INDEX; i < width; i++) {
-            result.put(i, i);
+            result.add(i);
         }
         return new Position(result);
     }
