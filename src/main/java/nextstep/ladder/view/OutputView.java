@@ -10,14 +10,15 @@ public class OutputView {
     private static final String LINE = "-----";
     private static final String HORIZONTAL_LINE = "|";
 
-    public static void rendering(CommaSeparatedResult commaSeparatedResult, Ladder ladder) {
+    public static void rendering(CommaSeparatedResult names, Ladder ladder, CommaSeparatedResult results) {
         System.out.println("실행결과");
-        renderName(commaSeparatedResult);
+        renderName(names);
         renderLadder(ladder);
+        renderResult(results);
     }
 
     private static void renderName(CommaSeparatedResult commaSeparatedResult) {
-        for (String name : commaSeparatedResult.getNamesByString()) {
+        for (String name : commaSeparatedResult.getValuesByString()) {
             System.out.printf(" ".repeat(6 - name.length()) + name);
         }
         System.out.println();
@@ -30,6 +31,13 @@ public class OutputView {
             renderLine(lines);
             System.out.println();
         }
+    }
+
+    private static void renderResult(CommaSeparatedResult commaSeparatedResult) {
+        for (String result : commaSeparatedResult.getValuesByString()) {
+            System.out.printf(" " + result + " ".repeat(5 - result.length()));
+        }
+        System.out.println();
     }
 
     private static void renderLine(Lines lines) {

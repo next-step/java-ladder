@@ -33,7 +33,7 @@ public class LadderParticipationResult {
         return names;
     }
 
-    public CommaSeparatedResult getLadderResult() {
+    public CommaSeparatedResult ladderResult() {
         return ladderResult;
     }
 }

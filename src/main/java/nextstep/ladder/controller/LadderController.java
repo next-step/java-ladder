@@ -14,7 +14,7 @@ public class LadderController {
         LadderParticipationResult ladderParticipationResult = LadderParticipationResult();
         Ladder ladder = new Ladder(InputView.readHeight(), ladderParticipationResult.size(),
                 new RandomNonConsecutiveFlagGenerator());
-        OutputView.rendering(ladderParticipationResult.names(), ladder);
+        OutputView.rendering(ladderParticipationResult.names(), ladder, ladderParticipationResult.ladderResult());
     }
 
     private LadderParticipationResult LadderParticipationResult() {
