@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class PointIndex {
     private int left;
@@ -27,5 +28,22 @@ public class PointIndex {
         if (!map.containsKey(this.left) || !map.containsKey(this.right)) {
             throw new IllegalArgumentException("이동하려는 위치가 존재하지 않습니다");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PointIndex that = (PointIndex) o;
+        return left == that.left && right == that.right;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, right);
     }
 }

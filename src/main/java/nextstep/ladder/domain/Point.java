@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Point {
 
@@ -16,5 +17,26 @@ public class Point {
         if (hasPoint) {
             pointIndex.swap(map);
         }
+    }
+
+    public boolean canMove() {
+        return hasPoint;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Point point = (Point) o;
+        return hasPoint == point.hasPoint && Objects.equals(pointIndex, point.pointIndex);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(pointIndex, hasPoint);
     }
 }
