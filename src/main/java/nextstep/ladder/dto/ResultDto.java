@@ -17,7 +17,14 @@ public class ResultDto {
     }
 
     public String findResult(String name) {
+        validContainsName(name);
         return result.get(name);
+    }
+
+    private void validContainsName(String name) {
+        if (!result.containsKey(name)) {
+            throw new IllegalArgumentException("찾을 수 없는 사용자 입니다");
+        }
     }
 
     @Override
