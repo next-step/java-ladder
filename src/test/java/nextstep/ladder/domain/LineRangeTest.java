@@ -11,15 +11,15 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class PointIndexTest {
+class LineRangeTest {
 
     @ParameterizedTest
     @MethodSource("swapResult")
     void left의_바로다음숫자와_값을_스왑한다(int left, Map<Integer, Integer> result) {
-        PointIndex pointIndex = new PointIndex(left);
+        LineRange lineRange = new LineRange(left);
         HashMap<Integer, Integer> before = new HashMap<>(Map.of(0, 0, 1, 1, 2, 2));
 
-        pointIndex.swap(before);
+        lineRange.swap(before);
 
         assertThat(before).isEqualTo(result);
 
@@ -27,10 +27,10 @@ class PointIndexTest {
 
     @Test
     void 스왑하려는_위치가_없으면_예외를_발생시킨다() {
-        PointIndex pointIndex = new PointIndex(1);
+        LineRange lineRange = new LineRange(1);
         HashMap<Integer, Integer> before = new HashMap<>(Map.of(0, 0, 1, 1));
 
-        assertThatIllegalArgumentException().isThrownBy(() -> pointIndex.swap(before));
+        assertThatIllegalArgumentException().isThrownBy(() -> lineRange.swap(before));
     }
 
     private static Stream<Arguments> swapResult() {

@@ -1,26 +1,31 @@
 package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 public class LineTest {
 
     @Test
-    public void 사다리_한_줄_생성테스트() {
-        List<Boolean> lines = List.of(true, false, true, false);
-        assertThat(new Lines(createFakeGenerator(lines)))
-                .isEqualTo(new Lines(createFakeGenerator(lines)));
+    void 다리_포인트가_존재하는_경우_스왑된다() {
+        Line line = new Line(true, 0);
+
+        HashMap<Integer, Integer> map = new HashMap<>(Map.of(0, 0, 1, 1));
+        line.move(map);
+
+        assertThat(map).isEqualTo(Map.of(0, 1, 1, 0));
     }
 
     @Test
-    public void 사다리는_연속_되면안된다() {
-        assertThatIllegalStateException().isThrownBy(() -> new Lines(createFakeGenerator(List.of(true, true))));
+    void 다리의_포인트가_없으면_스왑되지않는다() {
+        Line line = new Line(false, 0);
+
+        HashMap<Integer, Integer> map = new HashMap<>(Map.of(0, 0, 1, 1));
+        line.move(map);
+
+        assertThat(map).isEqualTo(Map.of(0, 0, 1, 1));
     }
 
-    private static NonConsecutiveFlagGeneratorFake createFakeGenerator(List<Boolean> lines) {
-        return new NonConsecutiveFlagGeneratorFake(lines);
-    }
 }

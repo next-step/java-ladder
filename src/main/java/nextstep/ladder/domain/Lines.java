@@ -9,14 +9,14 @@ import nextstep.ladder.generator.NonConsecutiveFlagGenerator;
 
 public class Lines {
 
-    private final List<Point> points;
+    private final List<Line> points;
 
     public Lines(NonConsecutiveFlagGenerator nonConsecutiveFlagGenerator) {
         this.points = PointConverter.convert(nonConsecutiveFlagGenerator.create());
     }
 
     public List<Boolean> getPoint() {
-        return points.stream().map(Point::canMove).collect(Collectors.toList());
+        return points.stream().map(Line::canMove).collect(Collectors.toList());
     }
 
     @Override
@@ -37,14 +37,14 @@ public class Lines {
     }
 
     private static class PointConverter {
-        private static List<Point> convert(List<Boolean> points) {
+        private static List<Line> convert(List<Boolean> points) {
             return toPoints(points);
         }
 
-        private static List<Point> toPoints(List<Boolean> lines) {
-            ArrayList<Point> result = new ArrayList<>();
+        private static List<Line> toPoints(List<Boolean> lines) {
+            ArrayList<Line> result = new ArrayList<>();
             for (int i = 0; i < lines.size(); i++) {
-                result.add(new Point(lines.get(i), i));
+                result.add(new Line(lines.get(i), i));
             }
             return result;
         }

@@ -3,11 +3,11 @@ package nextstep.ladder.domain;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class PointIndex {
+public class LineRange {
     private int left;
     private int right;
 
-    public PointIndex(int left) {
+    public LineRange(int left) {
         this.left = left;
         this.right = left + 1;
     }
@@ -38,7 +38,7 @@ public class PointIndex {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        PointIndex that = (PointIndex) o;
+        LineRange that = (LineRange) o;
         return left == that.left && right == that.right;
     }
 
