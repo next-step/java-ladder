@@ -8,11 +8,15 @@ public class LadderResult extends CommaSeparatedResult {
     private final List<String> results;
 
     public LadderResult(String value) {
-        this(convert(value));
+        this(List.copyOf(convert(value)));
     }
 
     public LadderResult(List<String> results) {
         this.results = results;
+    }
+
+    public List<String> getResults() {
+        return results;
     }
 
     @Override

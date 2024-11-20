@@ -1,49 +1,49 @@
 package nextstep.ladder.domain;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 import nextstep.ladder.CommaSeparatedResult;
 
 public class Names extends CommaSeparatedResult {
 
     private static final int MIN_SIZE = 2;
-    private final Set<Name> names;
+    private final List<Name> names;
 
     public Names(List<String> names) {
-        Set<Name> result = toNames(names);
-        if (inValidSize(result) || hasDuplication(names.size(), result)) {
+        if (inValidSize(names) || hasDuplication(names)) {
             throw new IllegalArgumentException("잘못된 이름입력입니다.");
         }
-        this.names = Collections.unmodifiableSet(result);
+        this.names = List.copyOf(toNames(names));
     }
 
-    private boolean hasDuplication(int size, Set<Name> result) {
-        return size != result.size();
+    private static List<Name> toNames(List<String> names) {
+        return names.stream().map(Name::new).collect(Collectors.toList());
     }
 
-    private static boolean inValidSize(Collection<Name> names) {
+    private boolean hasDuplication(List<String> result) {
+        return distinctCount(result) != result.size();
+    }
+
+    private static long distinctCount(List<String> result) {
+        return result.stream().distinct().count();
+    }
+
+    private static boolean inValidSize(List<String> names) {
         return names.size() < MIN_SIZE;
-    }
-
-    private static Set<Name> toNames(List<String> names) {
-        return names.stream().map(Name::new).collect(Collectors.toSet());
     }
 
     public Names(String value) {
         this(convert(value));
     }
 
+    public List<String> getNamesByString() {
+        return this.names.stream().map(Name::getName).collect(Collectors.toList());
+    }
+
     @Override
     public int size() {
         return names.size();
-    }
-
-    public Set<Name> getNames() {
-        return this.names;
     }
 
     @Override

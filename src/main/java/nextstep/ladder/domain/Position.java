@@ -1,7 +1,9 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Position {
@@ -34,6 +36,23 @@ public class Position {
         Integer rightValue = position.get(right);
         position.set(left, rightValue);
         position.set(right, leftValue);
+    }
+
+    public Map<String, String> match(final List<String> names, final List<String> results) {
+        HashMap<String, String> result = new HashMap<>();
+        for (int i = 0; i < position.size(); i++) {
+            result.put(name(names, i), ladderResult(results, i));
+        }
+        return result;
+    }
+
+    private static String name(List<String> names, int i) {
+        return names.get(i);
+    }
+
+    private String ladderResult(List<String> results, int i) {
+        Integer resultIndex = this.position.get(i);
+        return results.get(resultIndex);
     }
 
     @Override

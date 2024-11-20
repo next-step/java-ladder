@@ -18,10 +18,6 @@ public class Name {
         return name.length() > MAX_LENGTH || name.isBlank();
     }
 
-    public int length() {
-        return name.length();
-    }
-
     public String getName() {
         return name;
     }
