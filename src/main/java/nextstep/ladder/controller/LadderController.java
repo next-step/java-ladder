@@ -19,6 +19,7 @@ public class LadderController {
         ResultDto result = ladderParticipationResult.match(ladder.result());
         while (true) {
             String name = InputView.readUserName();
+            OutputView.renderResult(result, name);
         }
     }
 

@@ -1,17 +1,20 @@
 package nextstep.ladder.view;
 
+import java.util.Map.Entry;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Lines;
 import nextstep.ladder.dto.CommaSeparatedResult;
+import nextstep.ladder.dto.ResultDto;
 
 public class OutputView {
 
     private static final String EMPTY = "     ";
     private static final String LINE = "-----";
     private static final String HORIZONTAL_LINE = "|";
+    private static final String ALL = "all";
 
     public static void renderLadder(CommaSeparatedResult names, Ladder ladder, CommaSeparatedResult results) {
-        System.out.println("실행결과");
+        System.out.println("사다리 결과");
         renderName(names);
         renderLadder(ladder);
         renderResult(results);
@@ -52,5 +55,24 @@ public class OutputView {
             return LINE;
         }
         return EMPTY;
+    }
+
+    public static void renderResult(ResultDto resultDto, String name) {
+        System.out.println("실행결과");
+        if (name.equalsIgnoreCase(ALL)) {
+            renderAllResult(resultDto);
+            return;
+        }
+        renderNameResult(resultDto.findResult(name));
+    }
+
+    private static void renderAllResult(ResultDto resultDto) {
+        for (Entry<String, String> entry : resultDto.allResult()) {
+            System.out.printf("%s : %s\n", entry.getKey(), entry.getValue());
+        }
+    }
+
+    private static void renderNameResult(String result) {
+        System.out.println(result);
     }
 }
