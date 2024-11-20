@@ -10,7 +10,7 @@ public class OutputView {
     private static final String LINE = "-----";
     private static final String HORIZONTAL_LINE = "|";
 
-    public static void rendering(CommaSeparatedResult names, Ladder ladder, CommaSeparatedResult results) {
+    public static void renderLadder(CommaSeparatedResult names, Ladder ladder, CommaSeparatedResult results) {
         System.out.println("실행결과");
         renderName(names);
         renderLadder(ladder);
