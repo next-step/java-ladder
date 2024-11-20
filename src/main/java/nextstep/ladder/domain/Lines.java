@@ -19,7 +19,7 @@ public class Lines {
         this.lines = PointConverter.convert(lines);
     }
 
-    public List<Boolean> getPoint() {
+    public List<Boolean> getLines() {
         return lines.stream().map(Line::canMove).collect(Collectors.toList());
     }
 
