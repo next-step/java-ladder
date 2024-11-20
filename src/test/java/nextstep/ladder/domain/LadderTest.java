@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 public class LadderTest {
@@ -25,6 +26,17 @@ public class LadderTest {
     @Test
     public void 라인이_존재하지_않을_수_없다() {
         assertThatIllegalArgumentException().isThrownBy(() -> new Ladder(2, Collections.emptyList()));
+    }
+
+    @Test
+    public void 이동_최종_결과를_반환한다() {
+        List<Boolean> booleans = List.of(true, false, true);
+        NonConsecutiveFlagGeneratorFake fakeGenerator = createFakeGenerator(booleans);
+        Ladder ladder = new Ladder(3, 4, fakeGenerator);
+
+        Position result = ladder.result();
+
+        assertThat(result).isEqualTo(new Position(Map.of(0, 1, 1, 0, 2, 3, 3, 2)));
     }
 
     private static NonConsecutiveFlagGeneratorFake createFakeGenerator(List<Boolean> lines) {

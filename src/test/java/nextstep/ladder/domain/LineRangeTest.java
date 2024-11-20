@@ -17,11 +17,11 @@ class LineRangeTest {
     @MethodSource("swapResult")
     void left의_바로다음숫자와_값을_스왑한다(int left, Map<Integer, Integer> result) {
         LineRange lineRange = new LineRange(left);
-        HashMap<Integer, Integer> before = new HashMap<>(Map.of(0, 0, 1, 1, 2, 2));
+        Position position = new Position(Map.of(0, 0, 1, 1, 2, 2));
 
-        lineRange.swap(before);
+        lineRange.swap(position);
 
-        assertThat(before).isEqualTo(result);
+        assertThat(position).isEqualTo(new Position(result));
 
     }
 
@@ -30,7 +30,7 @@ class LineRangeTest {
         LineRange lineRange = new LineRange(1);
         HashMap<Integer, Integer> before = new HashMap<>(Map.of(0, 0, 1, 1));
 
-        assertThatIllegalArgumentException().isThrownBy(() -> lineRange.swap(before));
+        assertThatIllegalArgumentException().isThrownBy(() -> lineRange.swap(new Position(before)));
     }
 
     private static Stream<Arguments> swapResult() {

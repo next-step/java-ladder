@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.Map;
 import java.util.Objects;
 
 public class LineRange {
@@ -12,22 +11,8 @@ public class LineRange {
         this.right = left + 1;
     }
 
-    void swap(Map<Integer, Integer> map) {
-        validContainIndex(map);
-        swapValue(map);
-    }
-
-    private void validContainIndex(Map<Integer, Integer> map) {
-        if (!map.containsKey(this.left) || !map.containsKey(this.right)) {
-            throw new IllegalArgumentException("이동하려는 위치가 존재하지 않습니다");
-        }
-    }
-
-    private void swapValue(Map<Integer, Integer> map) {
-        Integer leftValue = map.get(this.left);
-        Integer rightValue = map.get(this.right);
-        map.put(this.left, rightValue);
-        map.put(this.right, leftValue);
+    void swap(Position position) {
+        position.swap(left, right);
     }
 
     @Override

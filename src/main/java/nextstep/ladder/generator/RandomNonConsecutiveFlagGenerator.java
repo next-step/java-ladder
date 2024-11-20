@@ -10,7 +10,7 @@ public class RandomNonConsecutiveFlagGenerator extends NonConsecutiveFlagGenerat
     private static final Random RANDOM = new Random();
 
     @Override
-    protected List<Boolean> createResult(LadderWidthSize size) {
+    protected List<Boolean> createResult(GeneratorWidthSize size) {
         List<Boolean> result = createList(size);
         for (int i = 0; size.greater(i); i++) {
             result.set(i, random(beforeIsTrue(result, i)));
@@ -18,7 +18,7 @@ public class RandomNonConsecutiveFlagGenerator extends NonConsecutiveFlagGenerat
         return result;
     }
 
-    private List<Boolean> createList(LadderWidthSize size) {
+    private List<Boolean> createList(GeneratorWidthSize size) {
         return Stream.generate(() -> false).limit(size.value()).collect(Collectors.toList());
     }
 

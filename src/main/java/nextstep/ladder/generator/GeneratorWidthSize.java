@@ -1,9 +1,9 @@
 package nextstep.ladder.generator;
 
-public class LadderWidthSize {
+public class GeneratorWidthSize {
     private int size;
 
-    public LadderWidthSize(int size) {
+    public GeneratorWidthSize(int size) {
         if (size < 0) {
             throw new IllegalArgumentException("사이즈는 0미만일 수 없습니다.");
         }

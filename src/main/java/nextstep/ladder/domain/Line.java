@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.Map;
 import java.util.Objects;
 
 public class Line {
@@ -13,9 +12,9 @@ public class Line {
         this.lineRange = new LineRange(left);
     }
 
-    public void move(Map<Integer, Integer> map) {
+    public void move(Position position) {
         if (hasPoint) {
-            lineRange.swap(map);
+            lineRange.swap(position);
         }
     }
 

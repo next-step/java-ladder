@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.util;
 
 import java.util.List;
 import java.util.stream.IntStream;

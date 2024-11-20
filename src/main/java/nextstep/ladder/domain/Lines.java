@@ -1,11 +1,10 @@
 package nextstep.ladder.domain;
 
 
-import static nextstep.ladder.domain.ConsecutiveChecker.isConsecutive;
+import static nextstep.ladder.util.ConsecutiveChecker.isConsecutive;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -20,9 +19,9 @@ public class Lines {
         this.lines = PointConverter.convert(lines);
     }
 
-    public void move(Map<Integer, Integer> before) {
+    public void move(Position position) {
         for (Line line : lines) {
-            line.move(before);
+            line.move(position);
         }
     }
 

@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
@@ -25,11 +24,11 @@ public class LinesTest {
     @Test
     public void 사다리의_이동결과를_반환한다() {
         Lines lines = new Lines(List.of(true, false, true));
-        Map<Integer, Integer> before = new HashMap<>(Map.of(0, 0, 1, 1, 2, 2, 3, 3));
+        Position positon = new Position(Map.of(0, 0, 1, 1, 2, 2, 3, 3));
 
-        lines.move(before);
+        lines.move(positon);
 
-        assertThat(before).isEqualTo(Map.of(0, 1, 1, 0, 2, 3, 3, 2));
+        assertThat(positon).isEqualTo(new Position(Map.of(0, 1, 1, 0, 2, 3, 3, 2)));
     }
 
 }

@@ -1,13 +1,13 @@
 package nextstep.ladder.generator;
 
-import static nextstep.ladder.domain.ConsecutiveChecker.isConsecutive;
+import static nextstep.ladder.util.ConsecutiveChecker.isConsecutive;
 
 import java.util.List;
 
 public abstract class NonConsecutiveFlagGenerator {
 
-    public final List<Boolean> create(LadderWidthSize ladderWidthSize) {
-        List<Boolean> result = createResult(ladderWidthSize);
+    public final List<Boolean> create(GeneratorWidthSize generatorWidthSize) {
+        List<Boolean> result = createResult(generatorWidthSize);
 
         if (isConsecutive(result)) {
             throw new IllegalStateException("연속되는 숫자 입니다");
@@ -16,6 +16,6 @@ public abstract class NonConsecutiveFlagGenerator {
         return result;
     }
 
-    protected abstract List<Boolean> createResult(LadderWidthSize ladderWidthSize);
+    protected abstract List<Boolean> createResult(GeneratorWidthSize generatorWidthSize);
 
 }
