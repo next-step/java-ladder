@@ -38,7 +38,7 @@ public class CommaSeparatedResult {
         return commaSeparatedResult.size() == size();
     }
 
-    public final List<String> getNamesByString() {
+    public final List<String> getValuesByString() {
         return this.values.stream().map(Value::getName).collect(Collectors.toList());
     }
 

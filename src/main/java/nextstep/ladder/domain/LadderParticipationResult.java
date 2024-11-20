@@ -5,13 +5,13 @@ import nextstep.ladder.dto.ResultDto;
 
 public class LadderParticipationResult {
 
-    private final CommaSeparatedResult commaSeparatedResult;
+    private final CommaSeparatedResult names;
     private final CommaSeparatedResult ladderResult;
 
-    public LadderParticipationResult(CommaSeparatedResult commaSeparatedResult, CommaSeparatedResult ladderResult) {
-        validSameName(commaSeparatedResult, ladderResult);
-        this.commaSeparatedResult = commaSeparatedResult;
-        this.ladderResult = ladderResult;
+    public LadderParticipationResult(CommaSeparatedResult names, CommaSeparatedResult ladderResults) {
+        validSameName(names, ladderResults);
+        this.names = names;
+        this.ladderResult = ladderResults;
     }
 
     private static void validSameName(CommaSeparatedResult commaSeparatedResult, CommaSeparatedResult ladderResult) {
@@ -21,6 +21,19 @@ public class LadderParticipationResult {
     }
 
     public ResultDto match(Position position) {
-        return new ResultDto(position.match(commaSeparatedResult.getNamesByString(), ladderResult.getNamesByString()));
+        return new ResultDto(
+                position.match(names.getValuesByString(), ladderResult.getValuesByString()));
+    }
+
+    public int size() {
+        return names.size();
+    }
+
+    public CommaSeparatedResult names() {
+        return names;
+    }
+
+    public CommaSeparatedResult getLadderResult() {
+        return ladderResult;
     }
 }
