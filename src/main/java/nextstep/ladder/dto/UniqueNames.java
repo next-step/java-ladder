@@ -3,9 +3,9 @@ package nextstep.ladder.dto;
 import nextstep.ladder.dto.validation.CommaSeparatedResultValidator;
 import nextstep.ladder.dto.validation.DuplicationValidation;
 
-public class Names extends CommaSeparatedResult {
+public class UniqueNames extends CommaSeparatedResult {
 
-    public Names(String value) {
+    public UniqueNames(String value) {
         super(value);
     }
 

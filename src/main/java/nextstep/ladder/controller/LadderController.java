@@ -3,20 +3,22 @@ package nextstep.ladder.controller;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderParticipationResult;
 import nextstep.ladder.dto.CommaSeparatedResult;
-import nextstep.ladder.dto.Names;
 import nextstep.ladder.dto.ResultDto;
+import nextstep.ladder.dto.UniqueNames;
 import nextstep.ladder.generator.RandomNonConsecutiveFlagGenerator;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
 public class LadderController {
 
-    public void playGame() {
+    public ResultDto playGame() {
         LadderParticipationResult ladderParticipationResult = LadderParticipationResult();
         Ladder ladder = ladder(ladderParticipationResult);
         OutputView.renderLadder(ladderParticipationResult.names(), ladder, ladderParticipationResult.ladderResult());
+        return ladderParticipationResult.match(ladder.result());
+    }
 
-        ResultDto result = ladderParticipationResult.match(ladder.result());
+    public void showResultForUser(ResultDto result) {
         while (true) {
             String name = InputView.readUserName();
             OutputView.renderResult(result, name);
@@ -24,7 +26,7 @@ public class LadderController {
     }
 
     private LadderParticipationResult LadderParticipationResult() {
-        CommaSeparatedResult names = new Names(InputView.readNames());
+        CommaSeparatedResult names = new UniqueNames(InputView.readNames());
         CommaSeparatedResult results = new CommaSeparatedResult(InputView.readResult());
         return new LadderParticipationResult(names, results);
     }

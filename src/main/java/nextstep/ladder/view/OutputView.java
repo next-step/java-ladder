@@ -1,5 +1,6 @@
 package nextstep.ladder.view;
 
+import java.util.Map;
 import java.util.Map.Entry;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Lines;
@@ -12,6 +13,8 @@ public class OutputView {
     private static final String LINE = "-----";
     private static final String HORIZONTAL_LINE = "|";
     private static final String ALL = "all";
+    private static final int NAME_PADDING = 6;
+    private static final int RESULT_PADDING = 5;
 
     public static void renderLadder(CommaSeparatedResult names, Ladder ladder, CommaSeparatedResult results) {
         System.out.println("사다리 결과");
@@ -22,7 +25,7 @@ public class OutputView {
 
     private static void renderName(CommaSeparatedResult commaSeparatedResult) {
         for (String name : commaSeparatedResult.getValuesByString()) {
-            System.out.printf(" ".repeat(6 - name.length()) + name);
+            System.out.printf(" ".repeat(NAME_PADDING - name.length()) + name);
         }
         System.out.println();
     }
@@ -38,7 +41,7 @@ public class OutputView {
 
     private static void renderResult(CommaSeparatedResult commaSeparatedResult) {
         for (String result : commaSeparatedResult.getValuesByString()) {
-            System.out.printf(" " + result + " ".repeat(5 - result.length()));
+            System.out.printf(" " + result + " ".repeat(RESULT_PADDING - result.length()));
         }
         System.out.println();
     }
@@ -67,7 +70,8 @@ public class OutputView {
     }
 
     private static void renderAllResult(ResultDto resultDto) {
-        for (Entry<String, String> entry : resultDto.allResult()) {
+        Map<String, String> map = resultDto.allResult();
+        for (Entry<String, String> entry : map.entrySet()) {
             System.out.printf("%s : %s\n", entry.getKey(), entry.getValue());
         }
     }
