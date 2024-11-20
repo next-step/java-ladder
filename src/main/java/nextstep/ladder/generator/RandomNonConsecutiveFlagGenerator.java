@@ -8,22 +8,17 @@ import java.util.stream.Stream;
 public class RandomNonConsecutiveFlagGenerator extends NonConsecutiveFlagGenerator {
 
     private static final Random RANDOM = new Random();
-    private final LadderWidthSize size;
-
-    public RandomNonConsecutiveFlagGenerator(LadderWidthSize size) {
-        this.size = size;
-    }
 
     @Override
-    protected List<Boolean> createResult() {
-        List<Boolean> result = createList();
+    protected List<Boolean> createResult(LadderWidthSize size) {
+        List<Boolean> result = createList(size);
         for (int i = 0; size.greater(i); i++) {
             result.set(i, random(beforeIsTrue(result, i)));
         }
         return result;
     }
 
-    private List<Boolean> createList() {
+    private List<Boolean> createList(LadderWidthSize size) {
         return Stream.generate(() -> false).limit(size.value()).collect(Collectors.toList());
     }
 

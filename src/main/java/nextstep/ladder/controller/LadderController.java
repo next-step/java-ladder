@@ -11,8 +11,9 @@ public class LadderController {
 
     public void playGame() {
         Names names = new Names(InputView.readNames());
-        Ladder ladder = new Ladder(InputView.readHeight(),
-                new RandomNonConsecutiveFlagGenerator(new LadderWidthSize(names.size() - 1)));
+        int width = names.size() - 1;
+        Ladder ladder = new Ladder(InputView.readHeight(), width,
+                new RandomNonConsecutiveFlagGenerator(new LadderWidthSize(width)));
         OutputView.rendering(names, ladder);
     }
 }

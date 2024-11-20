@@ -15,16 +15,16 @@ public class LadderTest {
         List<Boolean> booleans = List.of(true, false);
 
         NonConsecutiveFlagGeneratorFake fakeGenerator = createFakeGenerator(booleans);
-        Ladder ladder = new Ladder(2, fakeGenerator);
+        Ladder ladder = new Ladder(2, 2, fakeGenerator);
         assertThat(ladder).isEqualTo(
-                new Ladder(List.of(
+                new Ladder(2, List.of(
                         new Lines(booleans),
                         new Lines(booleans))));
     }
 
     @Test
     public void 라인이_존재하지_않을_수_없다() {
-        assertThatIllegalArgumentException().isThrownBy(() -> new Ladder(Collections.emptyList()));
+        assertThatIllegalArgumentException().isThrownBy(() -> new Ladder(2, Collections.emptyList()));
     }
 
     private static NonConsecutiveFlagGeneratorFake createFakeGenerator(List<Boolean> lines) {

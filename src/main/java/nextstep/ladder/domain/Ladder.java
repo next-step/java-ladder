@@ -4,25 +4,29 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import nextstep.ladder.generator.LadderWidthSize;
 import nextstep.ladder.generator.NonConsecutiveFlagGenerator;
 
 public class Ladder {
 
     private final List<Lines> ladder;
+    private int width;
 
-    public Ladder(List<Lines> ladder) {
+    public Ladder(int width, List<Lines> ladder) {
         if (ladder.isEmpty()) {
             throw new IllegalArgumentException("사다리의 높이는 0이하 일 수 없습니다.");
         }
+        this.width = width;
         this.ladder = List.copyOf(ladder);
     }
 
-    public Ladder(int height, NonConsecutiveFlagGenerator generator) {
-        this(toLadder(height, generator));
+    public Ladder(int height, int width, NonConsecutiveFlagGenerator generator) {
+        this(width, toLadder(height, width, generator));
     }
 
-    private static List<Lines> toLadder(int height, NonConsecutiveFlagGenerator generator) {
-        return Stream.generate(() -> new Lines(generator.create())).limit(height).collect(Collectors.toList());
+    private static List<Lines> toLadder(int height, int width, NonConsecutiveFlagGenerator generator) {
+        return Stream.generate(() -> new Lines(generator.create(new LadderWidthSize(width)))).limit(height)
+                .collect(Collectors.toList());
     }
 
     public List<Lines> getLines() {

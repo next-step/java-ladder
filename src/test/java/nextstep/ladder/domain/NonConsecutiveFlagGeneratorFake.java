@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
+import nextstep.ladder.generator.LadderWidthSize;
 import nextstep.ladder.generator.NonConsecutiveFlagGenerator;
 
 public class NonConsecutiveFlagGeneratorFake extends NonConsecutiveFlagGenerator {
@@ -12,7 +13,7 @@ public class NonConsecutiveFlagGeneratorFake extends NonConsecutiveFlagGenerator
     }
 
     @Override
-    protected List<Boolean> createResult() {
+    protected List<Boolean> createResult(LadderWidthSize size) {
         return result;
     }
 }
