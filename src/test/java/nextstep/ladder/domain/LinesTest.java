@@ -11,18 +11,13 @@ public class LinesTest {
     @Test
     public void 사다리_한_줄_생성테스트() {
         List<Boolean> lines = List.of(true, false, true, false);
-        assertThat(new Lines(createFakeGenerator(lines)))
-                .isEqualTo(new Lines(createFakeGenerator(lines)));
+        assertThat(new Lines(lines))
+                .isEqualTo(new Lines(lines));
     }
 
     @Test
     public void 사다리는_연속_되면안된다() {
-        assertThatIllegalStateException().isThrownBy(() -> new Lines(createFakeGenerator(List.of(true, true))));
+        assertThatIllegalStateException().isThrownBy(() -> new Lines(List.of(true, true)));
     }
 
-    @Test
-
-    private static NonConsecutiveFlagGeneratorFake createFakeGenerator(List<Boolean> lines) {
-        return new NonConsecutiveFlagGeneratorFake(lines);
-    }
 }

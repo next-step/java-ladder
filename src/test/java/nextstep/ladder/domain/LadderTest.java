@@ -18,8 +18,8 @@ public class LadderTest {
         Ladder ladder = new Ladder(2, fakeGenerator);
         assertThat(ladder).isEqualTo(
                 new Ladder(List.of(
-                        new Lines(fakeGenerator),
-                        new Lines(fakeGenerator))));
+                        new Lines(booleans),
+                        new Lines(booleans))));
     }
 
     @Test

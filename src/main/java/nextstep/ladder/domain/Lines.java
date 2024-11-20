@@ -1,22 +1,26 @@
 package nextstep.ladder.domain;
 
 
+import static nextstep.ladder.domain.ConsecutiveChecker.isConsecutive;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import nextstep.ladder.generator.NonConsecutiveFlagGenerator;
 
 public class Lines {
 
-    private final List<Line> points;
+    private final List<Line> lines;
 
-    public Lines(NonConsecutiveFlagGenerator nonConsecutiveFlagGenerator) {
-        this.points = PointConverter.convert(nonConsecutiveFlagGenerator.create());
+    public Lines(List<Boolean> lines) {
+        if (isConsecutive(lines)) {
+            throw new IllegalStateException("연속되는 숫자 입니다");
+        }
+        this.lines = PointConverter.convert(lines);
     }
 
     public List<Boolean> getPoint() {
-        return points.stream().map(Line::canMove).collect(Collectors.toList());
+        return lines.stream().map(Line::canMove).collect(Collectors.toList());
     }
 
     @Override
@@ -28,12 +32,12 @@ public class Lines {
             return false;
         }
         Lines lines1 = (Lines) o;
-        return Objects.equals(points, lines1.points);
+        return Objects.equals(lines, lines1.lines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(points);
+        return Objects.hash(lines);
     }
 
     private static class PointConverter {

@@ -22,7 +22,7 @@ public class Ladder {
     }
 
     private static List<Lines> toLadder(int height, NonConsecutiveFlagGenerator generator) {
-        return Stream.generate(() -> new Lines(generator)).limit(height).collect(Collectors.toList());
+        return Stream.generate(() -> new Lines(generator.create())).limit(height).collect(Collectors.toList());
     }
 
     public List<Lines> getLines() {
