@@ -31,6 +31,10 @@ public class Lines {
                 .collect(Collectors.toList());
     }
 
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,9 +46,5 @@ public class Lines {
     @Override
     public int hashCode() {
         return Objects.hash(lines);
-    }
-
-    public List<Line> getLines() {
-        return Collections.unmodifiableList(lines);
     }
 }

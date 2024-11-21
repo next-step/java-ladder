@@ -59,13 +59,13 @@ public class PointTest {
         Point next2 = next1.next(true);
         Point last = next2.last();
 
-        boolean firstCurrent = first.getCurrent();
+        boolean firstCurrent = first.getRight();
         boolean firstCurrentExpected = true;
 
-        boolean next1Current = next1.getCurrent();
+        boolean next1Current = next1.getRight();
         boolean next1CurrentExpected = false;
 
-        boolean next2Current = next2.getCurrent();
+        boolean next2Current = next2.getRight();
         boolean next2CurrentExpected = true;
 
         Assertions.assertThat(firstCurrent).isEqualTo(firstCurrentExpected);
