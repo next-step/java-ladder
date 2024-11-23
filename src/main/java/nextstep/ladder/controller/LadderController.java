@@ -1,8 +1,8 @@
 package nextstep.ladder.controller;
 
+import nextstep.ladder.domain.LadderFactory;
 import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.Participants;
-import nextstep.ladder.service.LadderService;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
@@ -19,11 +19,9 @@ public class LadderController {
         String names = inputView.inputName();
         int maxLadder = inputView.inputMaxLadder();
 
-        LadderService ladderService = new LadderService();
+        Participants participants  = new Participants(names);
 
-        Participants participants  = ladderService.getParticipants(names);
-
-        Lines lines = ladderService.createLadder(participants, maxLadder);
+        Lines lines = LadderFactory.createLadder(participants, maxLadder);
 
         outputView.outputResult(participants, lines);
     }
