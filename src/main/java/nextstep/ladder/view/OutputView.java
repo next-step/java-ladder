@@ -1,7 +1,7 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.config.Const;
 import nextstep.ladder.domain.Lines;
+import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.Participants;
 
 import java.util.HashMap;
@@ -33,7 +33,7 @@ public class OutputView {
 
     public static String outputLineTrue() {
         StringBuilder outputLine = new StringBuilder("|");
-        for (int i = 0; i < Const.MAX_NAME_LENGTH; i++) {
+        for (int i = 0; i < Participant.MAX_NAME_LENGTH; i++) {
             outputLine.append("-");
         }
         return outputLine.toString();
@@ -41,7 +41,7 @@ public class OutputView {
 
     public static String outputLineFalse() {
         StringBuilder outputLine = new StringBuilder("|");
-        for (int i = 0; i < Const.MAX_NAME_LENGTH; i++) {
+        for (int i = 0; i < Participant.MAX_NAME_LENGTH; i++) {
             outputLine.append(" ");
         }
         return outputLine.toString();
