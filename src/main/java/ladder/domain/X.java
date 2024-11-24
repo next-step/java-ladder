@@ -9,6 +9,7 @@ import static ladder.exception.NotAllowedNegativeNumber.NOT_ALLOWED_NEGATIVE_NUM
 public class X {
 
     public static final int MINIMAL_VALUE = 0;
+    public static final int MOVE = 1;
     private final int value;
 
     public X(int value) {
@@ -26,6 +27,10 @@ public class X {
         this(MINIMAL_VALUE);
     }
 
+    public X moveRight() {
+        return new X(value + MOVE);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -37,5 +42,9 @@ public class X {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    public X moveLeft() {
+        return new X(value - MOVE);
     }
 }
