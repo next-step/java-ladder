@@ -8,12 +8,12 @@ import java.util.Objects;
 public class Lines {
     private final List<Boolean> lines;
 
-    public Lines(List<Boolean> lines) {
-        this.lines = lines;
+    public Lines(Boolean... lines) {
+        this(Arrays.asList(lines));
     }
 
-    public Lines(Boolean... lines) {
-        this.lines = Arrays.asList(lines);
+    public Lines(List<Boolean> lines) {
+        this.lines = lines;
     }
 
     public static Lines empty(int height) {
