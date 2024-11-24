@@ -8,6 +8,7 @@ import static ladder.exception.NotAllowedNegativeNumber.NOT_ALLOWED_NEGATIVE_NUM
 
 public class Y {
     public static final int MINIMAL_VALUE = 0;
+    public static final int MOVE = 1;
     private final int value;
 
     public Y(int value) {
@@ -36,5 +37,9 @@ public class Y {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    public Y moveDown() {
+        return new Y(value + MOVE);
     }
 }
