@@ -6,14 +6,17 @@ import java.util.Objects;
 
 import static ladder.exception.NotAllowedNegativeNumber.NOT_ALLOWED_NEGATIVE_NUMBER_MESSAGE;
 
-public class X {
-
+public class Y {
     public static final int MINIMAL_VALUE = 0;
     private final int value;
 
-    public X(int value) {
+    public Y(int value) {
         validate(value);
         this.value = value;
+    }
+
+    public Y() {
+        this(MINIMAL_VALUE);
     }
 
     private static void validate(int value) {
@@ -22,16 +25,12 @@ public class X {
         }
     }
 
-    public X() {
-        this(MINIMAL_VALUE);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        X x = (X) o;
-        return value == x.value;
+        Y y = (Y) o;
+        return value == y.value;
     }
 
     @Override
