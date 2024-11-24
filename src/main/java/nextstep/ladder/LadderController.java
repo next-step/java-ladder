@@ -1,16 +1,13 @@
 package nextstep.ladder;
 
-import java.util.List;
-
 public class LadderController {
 
     public static void main(String[] args) {
         InputView inputView = new InputView();
-        List<String> participantsList = inputView.getParticipantsName();
+
+        Players players = new Players(inputView.getPlayersName());
 
         int ladderHeight = inputView.getLadderHeight();
-
-
 
     }
 }
