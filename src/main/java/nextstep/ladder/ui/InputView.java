@@ -8,11 +8,13 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class InputView {
-    private final Scanner scanner = new Scanner(System.in);
+    private static final String PLAYERS_NAME_TEXT = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
+    private static final String LADDER_HEIGHT_TEXT = "\n최대 사다리 높이는 몇 개인가요?";
+    private static final Scanner scanner = new Scanner(System.in);
     private static final String DELIMITER_COMMA = ",";
 
-    public List<Player> getPlayersName() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+    public static List<Player> getPlayersName() {
+        System.out.println(PLAYERS_NAME_TEXT);
 
         String inputPlayers = scanner.nextLine();
 
@@ -21,13 +23,13 @@ public class InputView {
                      .collect(Collectors.toList());
     }
 
-    public int getLadderHeight() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+    public static int getLadderHeight() {
+        System.out.println(LADDER_HEIGHT_TEXT);
 
         return scanner.nextInt();
     }
 
-    private String[] splitByDelimiter(String text) {
+    private static String[] splitByDelimiter(String text) {
         return text.split(DELIMITER_COMMA);
     }
 
