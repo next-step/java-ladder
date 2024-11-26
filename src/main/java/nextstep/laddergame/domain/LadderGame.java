@@ -5,12 +5,12 @@ import nextstep.laddergame.service.LaddersFactory;
 import java.util.List;
 
 public class LadderGame {
-    private final List<String> participants;
+    private final Participants participants;
     private final Integer maxHeight;
     private final Ladders ladders;
 
     private LadderGame(List<String> participants, Integer maxHeight, Ladders ladders) {
-        this.participants = participants;
+        this.participants = new Participants(participants);
         this.maxHeight = maxHeight;
         this.ladders = ladders;
     }
@@ -19,7 +19,7 @@ public class LadderGame {
         this(participants, maxHeight, laddersFactory.createLadders(participants.size(), maxHeight, ladderLinesGenerator));
     }
 
-    public List<String> getParticipants() {
+    public Participants getParticipants() {
         return participants;
     }
 

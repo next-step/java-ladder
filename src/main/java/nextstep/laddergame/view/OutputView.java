@@ -1,8 +1,8 @@
 package nextstep.laddergame.view;
 
 import nextstep.laddergame.domain.LadderGame;
+import nextstep.laddergame.domain.Participants;
 
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -32,9 +32,9 @@ public class OutputView {
                 .collect(Collectors.joining());
     }
 
-    private static String createParticipantsResult(List<String> participants) {
-        return participants.stream()
-                .map(participant -> participant + TWICE_SPACES)
+    private static String createParticipantsResult(Participants participants) {
+        return participants.values()
+                .stream().map(participant -> participant.getName() + TWICE_SPACES)
                 .collect(Collectors.joining());
     }
 }
