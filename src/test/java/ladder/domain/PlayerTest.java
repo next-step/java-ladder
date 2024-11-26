@@ -24,4 +24,14 @@ public class PlayerTest {
 
         assertThat(name).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("포지션을 출력한다")
+    void postion() {
+        Player player = new Player(new PlayerName("pobi"), new Position(2, 3));
+        Position name = player.position();
+        Position expected = new Position(2, 3);
+
+        assertThat(name).isEqualTo(expected);
+    }
 }

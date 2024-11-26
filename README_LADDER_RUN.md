@@ -108,10 +108,10 @@ jk : 5000
 ## ADDED_TODO
 ### Domain
 * Rewards
+  - [ ] 게임결과를 도출한다  
   * Reward
-    - [ ] 이름을 출력한다
-    - [ ] 게임결과를 도출한다
-      - [ ] Position 동등 비교
+    - [x] 이름을 출력한다
+    - [x] Position 동등 비교
     * RewardName
       - [x] 생성
       - [x] 이름을 출력한다
@@ -121,6 +121,7 @@ jk : 5000
   * Player
     - [x] 생성
     - [x] 이름을 출력한다
+    - [x] 포지션을 출력한다
     * PlayerName(; Name)
       - [x] 생성
       - [x] 이름이 all 일 수 없다
