@@ -31,6 +31,14 @@ public class X {
         return new X(value + MOVE);
     }
 
+    public X moveLeft() {
+        return new X(value - MOVE);
+    }
+
+    public int value() {
+        return value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,9 +50,5 @@ public class X {
     @Override
     public int hashCode() {
         return Objects.hash(value);
-    }
-
-    public X moveLeft() {
-        return new X(value - MOVE);
     }
 }

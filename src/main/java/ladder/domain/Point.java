@@ -6,31 +6,35 @@ import java.util.Objects;
 
 public class Point {
     public static final String NOT_ALLOWED_CONSECUTIVE_LINE_MESSAGE = "사다리 라인을 연속해서 만들 수 없습니다.";
-    private final boolean left;
-    private final boolean right;
+    private final boolean prev;
+    private final boolean current;
 
-    private Point(boolean left, boolean right) {
-        if (left && right) {
+    private Point(boolean prev, boolean current) {
+        if (prev && current) {
             throw new PointException(NOT_ALLOWED_CONSECUTIVE_LINE_MESSAGE);
         }
-        this.left = left;
-        this.right = right;
+        this.prev = prev;
+        this.current = current;
     }
 
-    public static Point first(boolean right) {
-        return new Point(false, right);
+    public static Point first(boolean current) {
+        return new Point(false, current);
     }
 
-    public Point next(boolean right) {
-        return new Point(this.right, right);
+    public Point next(boolean current) {
+        return new Point(this.current, current);
     }
 
     public Point last() {
-        return new Point(this.right, false);
+        return new Point(this.current, false);
     }
 
-    public boolean getRight() {
-        return right;
+    public boolean getCurrent() {
+        return current;
+    }
+
+    public boolean getPrev() {
+        return prev;
     }
 
     @Override
@@ -38,19 +42,19 @@ public class Point {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return left == point.left && right == point.right;
+        return prev == point.prev && current == point.current;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(left, right);
+        return Objects.hash(prev, current);
     }
 
     @Override
     public String toString() {
         return "Point{" +
-                "left=" + left +
-                ", right=" + right +
+                "prev=" + prev +
+                ", current=" + current +
                 '}';
     }
 }

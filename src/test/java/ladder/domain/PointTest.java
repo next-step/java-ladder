@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static ladder.domain.Point.NOT_ALLOWED_CONSECUTIVE_LINE_MESSAGE;
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -57,19 +58,40 @@ public class PointTest {
         Point first = Point.first(true);
         Point next1 = first.next(false);
         Point next2 = next1.next(true);
-        Point last = next2.last();
 
-        boolean firstCurrent = first.getRight();
+        boolean firstCurrent = first.getCurrent();
         boolean firstCurrentExpected = true;
 
-        boolean next1Current = next1.getRight();
+        boolean next1Current = next1.getCurrent();
         boolean next1CurrentExpected = false;
 
-        boolean next2Current = next2.getRight();
+        boolean next2Current = next2.getCurrent();
         boolean next2CurrentExpected = true;
 
-        Assertions.assertThat(firstCurrent).isEqualTo(firstCurrentExpected);
-        Assertions.assertThat(next1Current).isEqualTo(next1CurrentExpected);
-        Assertions.assertThat(next2Current).isEqualTo(next2CurrentExpected);
+        assertThat(firstCurrent).isEqualTo(firstCurrentExpected);
+        assertThat(next1Current).isEqualTo(next1CurrentExpected);
+        assertThat(next2Current).isEqualTo(next2CurrentExpected);
+    }
+
+    @Test
+    @DisplayName("이전 포인트를 출력한다")
+    void getPrev() {
+        // f t f t f
+        Point first = Point.first(true);
+        Point next1 = first.next(false);
+        Point next2 = next1.next(true);
+
+        boolean firstCurrent = first.getPrev();
+        boolean firstCurrentExpected = false;
+
+        boolean next1Current = next1.getPrev();
+        boolean next1CurrentExpected = true;
+
+        boolean next2Current = next2.getPrev();
+        boolean next2CurrentExpected = false;
+
+        assertThat(firstCurrent).isEqualTo(firstCurrentExpected);
+        assertThat(next1Current).isEqualTo(next1CurrentExpected);
+        assertThat(next2Current).isEqualTo(next2CurrentExpected);
     }
 }

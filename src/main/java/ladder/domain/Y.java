@@ -26,6 +26,10 @@ public class Y {
         }
     }
 
+    public Y moveDown() {
+        return new Y(value + MOVE);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -37,9 +41,5 @@ public class Y {
     @Override
     public int hashCode() {
         return Objects.hash(value);
-    }
-
-    public Y moveDown() {
-        return new Y(value + MOVE);
     }
 }

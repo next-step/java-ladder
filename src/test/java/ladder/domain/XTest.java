@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static ladder.exception.NotAllowedNegativeNumber.NOT_ALLOWED_NEGATIVE_NUMBER_MESSAGE;
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -55,10 +56,19 @@ public class XTest {
     @Test
     @DisplayName("왼쪽으로 이동 실패: 0미만")
     void moveLeft_실패_0미만() {
-        Assertions.assertThatThrownBy(() -> {
+        assertThatThrownBy(() -> {
             X x = new X();
             X actual = x.moveLeft();
         }).isInstanceOf(NotAllowedNegativeNumber.class)
                 .hasMessage(NOT_ALLOWED_NEGATIVE_NUMBER_MESSAGE);
+    }
+
+    @Test
+    @DisplayName("x 의 실제 값을 출력한다")
+    void value() {
+        X x = new X(3);
+        int value = x.value();
+
+        assertThat(value).isEqualTo(3);
     }
 }

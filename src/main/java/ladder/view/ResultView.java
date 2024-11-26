@@ -61,7 +61,7 @@ public class ResultView {
         if (index == START_INCLUSIVE) {
             return SPACES;
         }
-        if (points.get(index - INDEX_OFFSET).getRight()) {
+        if (points.get(index - INDEX_OFFSET).getCurrent()) {
             return CROSS_LINES;
         }
         return SPACES;
