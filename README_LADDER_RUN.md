@@ -58,10 +58,11 @@ jk : 5000
 참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)
 pobi,honux,crong,jk
 
-// 없음 - Rewards
-// List<Reward> 필요.(사람수에 맞아야 함)
-  // Reward
-    // prize, position
+/** 
+  없음
+  Rewards
+  List<RewardName> rewards field
+*/
 실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)
 꽝,5000,꽝,3000
 
@@ -76,20 +77,21 @@ pobi  honux crong   jk
     |-----|     |     |
     |     |-----|     |
     |-----|     |-----|
-// 없음 - Rewards 
-꽝    5000  꽝    3000
+꽝    5000  꽝    3000 // 없음 - Rewards 
 
-// 없음 - InputView
-  // Player
-    // Name, Position
+/**
+  없음 - InputView
+  Name
+*/
 결과를 보고 싶은 사람은?
 pobi
 
-// 없음 - ResultView
-  // Results
-    // List<Result>
-      // Result
-        // Reward, Player
+/**
+  없음 - ResultView
+  Players players;
+  String result = rewards.result(playerName);
+  List<String> results = players.results(players);
+*/
 실행 결과
 꽝
 
@@ -109,43 +111,26 @@ jk : 5000
 * Rewards
   * Reward
     - [ ] 이름을 출력한다
-    - [ ] 게임결과를 도출한다
-      - [ ] Position 동등 비교
-    * Name
+    - [ ] 게임결과를 도출한다("pobi")
+    - [ ] 게임결과들을 도출한다("all")
+    * RewardName
       - [x] 생성
-    * Position
-      - [ ] Player -> Position 내용과 상동
 * Players
-  * Player
-    - [ ] 이름을 출력한다
-    - [ ] Position 출력한다
-    * Name
-      - [x] 생성
-    * Position
-      - [ ] 생성
-      - [ ] 이동
-        - [ ] 좌로 이동
-          - [ ] 좌 -> 아래로 이동
-        - [ ] 우로 이동
-          - [ ] 우 -> 아래로 이동
-        - [ ] 아래로 이동
-      - [ ] 동등비교
-      * X
-        - [ ] 생성
-          - [ ] 0보다 작으면 오류
-        - [ ] 이동
-          - [ ] 0보다 작으면 오류
-      * Y
-        - [ ] 생성
-          - [ ] 0보다 작으면 오류
-        - [ ] 이동
-          - [ ] 0보다 작으면 오류
-* Results
-  * Result
-    * Reward
-      - [ ] 생성
-    * Player
-      - [ ] 생성
+  - [ ] 가장 아래 Lines 위치 여부
+  - [x] 플레이어 모두 한칸 아래 이동
+    - [x] 플레이어 가로 좌측 이동
+    - [x] 플레이어 가로 우측 이동
+    - [x] 플레이어 가로 이동 없음
+  * Name
+    - [x] 생성
+  * VerticalPosition
+    - [ ] 생성
+    - [ ] 이동(무조건 아래로)
+* Point
+  - [x] 이동
+    - [x] 좌측
+    - [x] 우측
+    - [x] 이동안함
 ### View
 * InputView
   - [ ] 실행 결과를 입력받는다.(실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요))

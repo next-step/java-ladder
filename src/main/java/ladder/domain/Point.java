@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.enums.MoveStatus;
 import ladder.exception.PointException;
 
 import java.util.Objects;
@@ -52,5 +53,15 @@ public class Point {
                 "left=" + left +
                 ", right=" + right +
                 '}';
+    }
+
+    public MoveStatus move() {
+        if (!this.left && this.right) {
+            return MoveStatus.RIGHT;
+        }
+        if (this.left && !this.right) {
+            return MoveStatus.LEFT;
+        }
+        return MoveStatus.STOP;
     }
 }

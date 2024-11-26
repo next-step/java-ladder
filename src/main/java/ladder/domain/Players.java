@@ -1,16 +1,12 @@
 package ladder.domain;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Players {
 
     public static final String DELIMITER = ",";
     private final List<Name> names;
-
 
     public Players(List<Name> names) {
         this.names = names;
@@ -48,5 +44,16 @@ public class Players {
 
     public List<Name> names() {
         return Collections.unmodifiableList(names);
+    }
+
+    public Players moveLine(Line line) {
+        List<Name> result = new ArrayList<>();
+        names.forEach(name -> {
+            int index = names.indexOf(name);
+            Point point = line.getPoints().get(index);
+            int movePoint = point.move().value();
+            result.add(names.get(index + movePoint));
+        });
+        return new Players(result);
     }
 }
