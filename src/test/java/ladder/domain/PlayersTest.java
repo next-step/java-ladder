@@ -23,10 +23,10 @@ public class PlayersTest {
     @DisplayName("플레이어 목록을 생성한다")
     void create() {
         Players expected = new Players(List.of(
-                        new PlayerName("pobi"),
-                        new PlayerName("crong"),
-                        new PlayerName("honux"),
-                        new PlayerName("jk")));
+                        new Player("pobi"),
+                        new Player("crong"),
+                        new Player("honux"),
+                        new Player("jk")));
 
         assertThat(players).isEqualTo(expected);
     }

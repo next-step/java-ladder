@@ -15,8 +15,8 @@ public class Player {
         this(new PlayerName(name), new Position());
     }
 
-    public String name() {
-        return playerName.value();
+    public PlayerName name() {
+        return playerName;
     }
 
     public Position position() {

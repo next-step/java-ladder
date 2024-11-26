@@ -19,8 +19,8 @@ public class PlayerTest {
     @DisplayName("이름을 출력한다")
     void name() {
         Player player = new Player("pobi");
-        String name = player.name();
-        String expected = "pobi";
+        PlayerName name = player.name();
+        PlayerName expected = new PlayerName("pobi");
 
         assertThat(name).isEqualTo(expected);
     }

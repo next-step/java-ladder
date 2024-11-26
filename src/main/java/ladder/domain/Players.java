@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -9,44 +8,45 @@ import java.util.stream.Collectors;
 public class Players {
 
     public static final String DELIMITER = ",";
-    private final List<PlayerName> playerNames;
+    private final List<Player> players;
 
-
-    public Players(List<PlayerName> playerNames) {
-        this.playerNames = playerNames;
+    public Players(List<Player> players) {
+        this.players = players;
     }
 
     public Players(String names) {
-        this(toNames(names));
+        this(toPlayer(names));
     }
 
     public int size() {
-        return playerNames.size();
+        return players.size();
     }
 
-    private static List<PlayerName> toNames(String names) {
+    private static List<Player> toPlayer(String names) {
         return Arrays.stream(names.split(DELIMITER))
                 .map(String::trim)
                 .collect(Collectors.toList())
                 .stream()
-                .map(PlayerName::new)
+                .map(Player::new)
                 .collect(Collectors.toList());
+    }
+
+    public List<PlayerName> names() {
+        return players.stream()
+                .map(Player::name)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Players players = (Players) o;
-        return Objects.equals(playerNames, players.playerNames);
+        Players players1 = (Players) o;
+        return Objects.equals(players, players1.players);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playerNames);
-    }
-
-    public List<PlayerName> names() {
-        return Collections.unmodifiableList(playerNames);
+        return Objects.hash(players);
     }
 }
