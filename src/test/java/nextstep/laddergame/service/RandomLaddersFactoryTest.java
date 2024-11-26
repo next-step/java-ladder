@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class RandomLaddersFactoryTest {
     @DisplayName("Ladders 객체를 생성한다.")
     @Test
-    void createLadder() {
+    void createLadders() {
         List<Boolean> givenLines = List.of(true, false, true, false, true);
         LaddersFactory laddersFactory = new RandomLaddersFactory();
 
