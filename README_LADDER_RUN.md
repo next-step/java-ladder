@@ -113,7 +113,8 @@ jk : 5000
     - [ ] 게임결과를 도출한다
       - [ ] Position 동등 비교
     * RewardName
-      - [ ] 생성
+      - [x] 생성
+      - [x] 이름을 출력한다
     * Position
       - [ ] Player -> Position 내용과 상동
 * Players
