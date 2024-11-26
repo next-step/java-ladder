@@ -52,14 +52,15 @@ public class PlayerNameTest {
     void length() {
         PlayerName playerName = new PlayerName("pobi");
         int actual = playerName.length();
+
         assertThat(actual).isEqualTo(4);
     }
 
     @Test
     @DisplayName("이름을 출력한다")
-    void name() {
+    void value() {
         PlayerName playerName = new PlayerName("pobi");
-        String actual = playerName.name();
+        String actual = playerName.value();
 
         assertThat(actual).isEqualTo("pobi");
     }

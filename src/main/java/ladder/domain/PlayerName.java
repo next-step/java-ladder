@@ -32,7 +32,7 @@ public class PlayerName {
         return name.length();
     }
 
-    public String name() {
+    public String value() {
         return name;
     }
 

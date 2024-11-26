@@ -45,7 +45,7 @@ public class ResultView {
     private static String toFormattedNames(Players players) {
         return players.names()
                 .stream()
-                .map(name -> SPACE.repeat(DEFAULT_MAX_NAME_LENGTH - name.length()) + name.name())
+                .map(name -> SPACE.repeat(DEFAULT_MAX_NAME_LENGTH - name.length()) + name.value())
                 .collect(Collectors.joining(SPACE));
     }
 

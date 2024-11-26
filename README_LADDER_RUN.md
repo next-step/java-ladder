@@ -118,8 +118,8 @@ jk : 5000
       - [ ] Player -> Position 내용과 상동
 * Players
   * Player
-    - [ ] 이름을 출력한다
-    - [ ] Position 출력한다
+    - [x] 생성
+    - [x] 이름을 출력한다
     * PlayerName(; Name)
       - [x] 생성
       - [x] 이름이 all 일 수 없다
