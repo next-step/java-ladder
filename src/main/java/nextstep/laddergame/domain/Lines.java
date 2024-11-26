@@ -20,10 +20,6 @@ public class Lines {
         return new Lines(Collections.nCopies(height, Boolean.FALSE));
     }
 
-    public int size() {
-        return this.lines.size();
-    }
-
     public boolean isAlreadySetAt(int floor) {
         return Boolean.TRUE.equals(lines.get(floor));
     }
