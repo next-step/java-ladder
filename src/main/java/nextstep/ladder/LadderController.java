@@ -1,5 +1,6 @@
 package nextstep.ladder;
 
+import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.ui.InputView;
 
@@ -9,5 +10,6 @@ public class LadderController {
         Players players = new Players(InputView.getPlayersName());
         int ladderHeight = InputView.getLadderHeight();
 
+        Ladder ladder = Ladder.of(players, ladderHeight);
     }
 }
