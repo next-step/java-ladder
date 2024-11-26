@@ -19,7 +19,7 @@ public class LadderGameInterface {
     }
 
     public void start() {
-        OutputView.printGameResult(ladderGameService.start(
+        OutputView.printLadder(ladderGameService.createLadder(
                 InputView.enterParticipantsName(),
                 InputView.enterLadderMaxHeight(),
                 new RandomLaddersFactory(),

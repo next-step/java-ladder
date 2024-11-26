@@ -13,7 +13,7 @@ public class OutputView {
     private static final String EMPTY_LADDER_LINE = "|     ";
     private static final String SET_LADDER_LINE = "|-----";
 
-    public static void printGameResult(LadderGame ladderGame) {
+    public static void printLadder(LadderGame ladderGame) {
         StringBuilder stringBuilder = new StringBuilder("실행결과").append(LINE_SEPARATOR).append(LINE_SEPARATOR);
         stringBuilder.append(createParticipantsResult(ladderGame.getParticipants())).append(LINE_SEPARATOR);
         stringBuilder.append(createLadderResult(ladderGame));
