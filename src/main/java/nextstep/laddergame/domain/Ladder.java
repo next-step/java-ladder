@@ -1,25 +1,23 @@
 package nextstep.laddergame.domain;
 
 import java.util.Objects;
-import java.util.Optional;
 
 public class Ladder {
-    private static final Integer INIT_POSITION = 0;
-    private final Integer position;
+    private final Position position;
     private final Lines lines;
 
-    public Ladder(Optional<Ladder> beforeLadder, int maxHeight, LadderLinesGenerator ladderLinesGenerator) {
-        this(beforeLadder.map(Ladder::nextPosition).orElse(INIT_POSITION),
-                ladderLinesGenerator.generate(beforeLadder, maxHeight));
+
+    public Ladder(int position, Lines lines) {
+        this(new Position(position), lines);
     }
 
-    public Ladder(Integer position, Lines lines) {
+    public Ladder(Position position, Lines lines) {
         this.position = position;
         this.lines = lines;
     }
 
-    public Integer nextPosition() {
-        return this.position + 1;
+    public Position nextPosition() {
+        return position.next();
     }
 
     public boolean isLineAlreadySetAt(int floor) {
