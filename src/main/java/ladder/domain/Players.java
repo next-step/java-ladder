@@ -9,11 +9,11 @@ import java.util.stream.Collectors;
 public class Players {
 
     public static final String DELIMITER = ",";
-    private final List<Name> names;
+    private final List<PlayerName> playerNames;
 
 
-    public Players(List<Name> names) {
-        this.names = names;
+    public Players(List<PlayerName> playerNames) {
+        this.playerNames = playerNames;
     }
 
     public Players(String names) {
@@ -21,15 +21,15 @@ public class Players {
     }
 
     public int size() {
-        return names.size();
+        return playerNames.size();
     }
 
-    private static List<Name> toNames(String names) {
+    private static List<PlayerName> toNames(String names) {
         return Arrays.stream(names.split(DELIMITER))
                 .map(String::trim)
                 .collect(Collectors.toList())
                 .stream()
-                .map(Name::new)
+                .map(PlayerName::new)
                 .collect(Collectors.toList());
     }
 
@@ -38,15 +38,15 @@ public class Players {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Players players = (Players) o;
-        return Objects.equals(names, players.names);
+        return Objects.equals(playerNames, players.playerNames);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(names);
+        return Objects.hash(playerNames);
     }
 
-    public List<Name> names() {
-        return Collections.unmodifiableList(names);
+    public List<PlayerName> names() {
+        return Collections.unmodifiableList(playerNames);
     }
 }

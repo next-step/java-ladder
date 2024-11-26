@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static ladder.domain.Name.DEFAULT_MAX_NAME_LENGTH;
+import static ladder.domain.PlayerName.DEFAULT_MAX_NAME_LENGTH;
 
 public class ResultView {
     public static final int START_INCLUSIVE = 0;
@@ -50,8 +50,8 @@ public class ResultView {
     }
 
     private static String toFormattedLine(Players players, List<Point> points) {
-        List<Name> names = players.names();
-        return IntStream.range(START_INCLUSIVE, names.size())
+        List<PlayerName> playerNames = players.names();
+        return IntStream.range(START_INCLUSIVE, playerNames.size())
                 .boxed()
                 .map(index -> toFormattedHorizontal(index, points))
                 .collect(Collectors.joining(PLAYER_DELIMITER, PREFIX, PLAYER_DELIMITER));

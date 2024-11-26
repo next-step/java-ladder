@@ -23,10 +23,10 @@ public class PlayersTest {
     @DisplayName("플레이어 목록을 생성한다")
     void create() {
         Players expected = new Players(List.of(
-                        new Name("pobi"),
-                        new Name("crong"),
-                        new Name("honux"),
-                        new Name("jk")));
+                        new PlayerName("pobi"),
+                        new PlayerName("crong"),
+                        new PlayerName("honux"),
+                        new PlayerName("jk")));
 
         assertThat(players).isEqualTo(expected);
     }
@@ -41,12 +41,12 @@ public class PlayersTest {
     @Test
     @DisplayName("플레이어 목록의 이름을 출력한다")
     void names() {
-        List<Name> actual = players.names();
-        List<Name> expected = List.of(
-                new Name("pobi"),
-                new Name("crong"),
-                new Name("honux"),
-                new Name("jk")
+        List<PlayerName> actual = players.names();
+        List<PlayerName> expected = List.of(
+                new PlayerName("pobi"),
+                new PlayerName("crong"),
+                new PlayerName("honux"),
+                new PlayerName("jk")
         );
 
         assertThat(actual).isEqualTo(expected);

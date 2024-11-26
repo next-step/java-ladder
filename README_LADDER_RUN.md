@@ -122,7 +122,7 @@ jk : 5000
     - [ ] Position 출력한다
     * PlayerName(; Name)
       - [x] 생성
-      - [ ] 이름이 all 일 수 없다
+      - [x] 이름이 all 일 수 없다
     * Position
       - [x] 생성
       - [x] 이동
