@@ -1,5 +1,13 @@
 # 사다리 게임
 ## Step2 > 사다리(생성)
+### 피드백 반영
+- 부 생성자가 주 생성자를 호출하도록 구현한다.
+- 사다리 생성 역할을 하는 `LaddersFactory`를 생성한다.
+  - `LaddersFactory` (추상), `RandomLaddersFactory` (구현체)
+
+추가 리팩터링 >
+- `LadderFactory`, `LadderLineGenerator`는 `LadderGameInterface`에서 결정하도록 한다.
+
 ### 기능 요구사항
 - 사다리 게임에 참여하는 사람에 이름을 최대5글자까지 부여할 수 있다. 사다리를 출력할 때 사람 이름도 같이 출력한다.
 - 사람 이름은 쉼표(,)를 기준으로 구분한다.

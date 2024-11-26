@@ -1,6 +1,8 @@
 package nextstep.laddergame;
 
+import nextstep.laddergame.domain.RandomLadderLinesGenerator;
 import nextstep.laddergame.service.LadderGameService;
+import nextstep.laddergame.service.RandomLaddersFactory;
 import nextstep.laddergame.view.InputView;
 import nextstep.laddergame.view.OutputView;
 
@@ -19,7 +21,9 @@ public class LadderGameInterface {
     public void start() {
         OutputView.printGameResult(ladderGameService.start(
                 InputView.enterParticipantsName(),
-                InputView.enterLadderMaxHeight()));
+                InputView.enterLadderMaxHeight(),
+                new RandomLaddersFactory(),
+                new RandomLadderLinesGenerator()));
     }
 
 }

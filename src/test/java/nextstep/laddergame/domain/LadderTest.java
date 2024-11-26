@@ -26,7 +26,8 @@ class LadderTest {
     @Test
     void create_by_randomLadderLinesGenerator() {
         RandomLadderLinesGenerator randomLadderLinesGenerator = new RandomLadderLinesGenerator();
-        Ladder actual = Ladder.create(Optional.of(new Ladder(0, new Lines(List.of(TRUE, FALSE, TRUE)))), 3, randomLadderLinesGenerator);
+        Ladder beforeLadder = new Ladder(0, new Lines(List.of(TRUE, FALSE, TRUE)));
+        Ladder actual = new Ladder(Optional.of(beforeLadder), 3, randomLadderLinesGenerator);
 
         assertThat(actual).extracting("position")
                 .isEqualTo(1);

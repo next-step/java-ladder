@@ -1,5 +1,7 @@
 package nextstep.laddergame.domain;
 
+import nextstep.laddergame.service.LaddersFactory;
+
 import java.util.List;
 
 public class LadderGame {
@@ -13,8 +15,8 @@ public class LadderGame {
         this.ladders = ladders;
     }
 
-    public LadderGame(List<String> participants, Integer maxHeight) {
-        this(participants, maxHeight, Ladders.create(participants.size(), maxHeight, new RandomLadderLinesGenerator()));
+    public LadderGame(List<String> participants, Integer maxHeight, LaddersFactory laddersFactory, LadderLinesGenerator ladderLinesGenerator) {
+        this(participants, maxHeight, laddersFactory.createLadders(participants.size(), maxHeight, ladderLinesGenerator));
     }
 
     public List<String> getParticipants() {

@@ -8,23 +8,17 @@ public class Ladder {
     private final Integer position;
     private final Lines lines;
 
+    public Ladder(Optional<Ladder> beforeLadder, int maxHeight, LadderLinesGenerator ladderLinesGenerator) {
+        this(beforeLadder.map(Ladder::nextPosition).orElse(INIT_POSITION),
+                ladderLinesGenerator.generate(beforeLadder, maxHeight));
+    }
+
     public Ladder(Integer position, Lines lines) {
         this.position = position;
         this.lines = lines;
     }
 
-    public static Ladder create(Optional<Ladder> beforeLadder, int maxHeight, LadderLinesGenerator ladderLinesGenerator) {
-        return new Ladder(
-                beforeLadder.map(Ladder::nextPosition).orElse(INIT_POSITION),
-                ladderLinesGenerator.generate(beforeLadder, maxHeight)
-        );
-    }
-
-    public static Ladder createLastLadder(int laddersSize, int height) {
-        return new Ladder(laddersSize - 1, Lines.empty(height));
-    }
-
-    private Integer nextPosition() {
+    public Integer nextPosition() {
         return this.position + 1;
     }
 
