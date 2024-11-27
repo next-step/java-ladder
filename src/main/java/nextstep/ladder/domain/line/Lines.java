@@ -11,14 +11,18 @@ public class Lines {
         this.lines = lines;
     }
 
-    public static Lines of(int height, int width) {
+    public Lines(int height, int width) {
+        this.lines = createLines(height, width);
+    }
+
+    private List<Line> createLines(int height, int width) {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            lines.add(Line.of(width));
+            lines.add(new Line(width));
         }
 
-        return new Lines(lines);
+        return lines;
     }
 
     public List<Line> getLines() {

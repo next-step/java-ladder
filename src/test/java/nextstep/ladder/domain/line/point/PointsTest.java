@@ -9,8 +9,8 @@ import java.util.List;
 class PointsTest {
 
     @Test
-    void of() {
-        Points points = Points.of(1, new SpecificLineGenerator());
+    void create() {
+        Points points = new Points(1, new SpecificLineGenerator());
 
         Assertions.assertThat(points).isNotNull();
         Assertions.assertThat(points.getPoints().get(0).canMoveRight()).isTrue();
@@ -18,7 +18,7 @@ class PointsTest {
 
     @Test
     void getPoints() {
-        Points points = Points.of(1, new SpecificLineGenerator());
+        Points points = new Points(1, new SpecificLineGenerator());
 
         List<Point> selectedPoints = points.getPoints();
 

@@ -12,8 +12,8 @@ public class Line {
         this.points = points;
     }
 
-    public static Line of(int count) {
-        return new Line(Points.of(count, new RandomLineGenerator()));
+    public Line(int pointCount) {
+        this(new Points(pointCount, new RandomLineGenerator()));
     }
 
     public List<Point> getPoints() {

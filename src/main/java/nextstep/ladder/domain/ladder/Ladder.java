@@ -16,8 +16,8 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder of(Players players, int ladderHeight) {
-        return new Ladder(players, Lines.of(ladderHeight, players.playerCount()));
+    public Ladder(Players players, int ladderHeight) {
+        this(players, new Lines(ladderHeight, players.playerCount()));
     }
 
     public List<Player> getPlayers() {

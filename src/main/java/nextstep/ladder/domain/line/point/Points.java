@@ -13,7 +13,11 @@ public class Points {
         this.points = points;
     }
 
-    public static Points of(int count, LineGenerator lineGenerator) {
+    public Points(int count, LineGenerator lineGenerator) {
+        this.points = createPoints(count, lineGenerator);
+    }
+
+    private List<Point> createPoints(int count, LineGenerator lineGenerator) {
         List<Point> points = new ArrayList<>();
         Point currentPoint = Point.first(lineGenerator.draw());
         points.add(currentPoint);
@@ -23,7 +27,7 @@ public class Points {
             points.add(currentPoint);
         }
 
-        return new Points(points);
+        return points;
     }
 
     public List<Point> getPoints() {
