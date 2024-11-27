@@ -19,10 +19,11 @@ public class LinesTest {
     public void 사다리는_연속_되면안된다() {
         assertThatIllegalStateException().isThrownBy(() -> new Lines(List.of(true, true)));
     }
+    
 
     @Test
     public void 사다리의_이동결과를_반환한다() {
-        Lines lines = new Lines(List.of(true, false, true));
+        Lines lines = new Lines(true, false, true);
         Position positon = new Position(List.of(0, 1, 2, 3));
 
         lines.move(positon);

@@ -4,6 +4,7 @@ package nextstep.ladder.domain;
 import static nextstep.ladder.util.ConsecutiveChecker.isConsecutive;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -17,6 +18,10 @@ public class Lines {
             throw new IllegalStateException("연속되는 숫자 입니다");
         }
         this.lines = PointConverter.convert(lines);
+    }
+
+    public Lines(Boolean... lines) {
+        this(Arrays.asList(lines));
     }
 
     public void move(Position position) {
