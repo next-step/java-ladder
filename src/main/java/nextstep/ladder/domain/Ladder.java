@@ -12,12 +12,16 @@ public class Ladder {
     private final List<Lines> ladder;
     private final LadderWidth width;
 
-    public Ladder(int width, List<Lines> ladder) {
+    public Ladder(LadderWidth ladderWidth, List<Lines> ladder) {
         if (ladder.isEmpty()) {
             throw new IllegalArgumentException("사다리의 높이는 0이하 일 수 없습니다.");
         }
-        this.width = new LadderWidth(width);
+        this.width = ladderWidth;
         this.ladder = List.copyOf(ladder);
+    }
+
+    public Ladder(int width, List<Lines> ladder) {
+        this(new LadderWidth(width), ladder);
     }
 
     public Ladder(int height, int width, NonConsecutiveFlagGenerator generator) {

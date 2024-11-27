@@ -8,8 +8,12 @@ public class Line {
     private boolean hasPoint;
 
     public Line(boolean hasPoint, int left) {
+        this(hasPoint, new LineRange(left));
+    }
+
+    public Line(boolean hasPoint, LineRange lineRange) {
         this.hasPoint = hasPoint;
-        this.lineRange = new LineRange(left);
+        this.lineRange = lineRange;
     }
 
     public void move(Position position) {
