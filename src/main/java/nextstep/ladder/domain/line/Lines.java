@@ -1,8 +1,9 @@
 package nextstep.ladder.domain.line;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Lines {
     private final List<Line> lines;
@@ -16,13 +17,9 @@ public class Lines {
     }
 
     private List<Line> createLines(int height, int width) {
-        List<Line> lines = new ArrayList<>();
-
-        for (int i = 0; i < height; i++) {
-            lines.add(new Line(width));
-        }
-
-        return lines;
+        return IntStream.range(0, height)
+                        .mapToObj(i -> new Line(width))
+                        .collect(Collectors.toList());
     }
 
     public List<Line> getLines() {
