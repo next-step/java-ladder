@@ -11,13 +11,16 @@ public class Reward {
         this.position = position;
     }
 
-
     public Reward(String name, int x, int y) {
         this(new RewardName(name), new Position(x, y));
     }
 
-    public String name() {
-        return rewardName.value();
+    public RewardName name() {
+        return rewardName;
+    }
+
+    public boolean isEqualPosition(Player player) {
+        return this.position.equals(player.position());
     }
 
     @Override
@@ -31,9 +34,5 @@ public class Reward {
     @Override
     public int hashCode() {
         return Objects.hash(rewardName, position);
-    }
-
-    public boolean isEqualPosition(Player player) {
-        return this.position.equals(player.position());
     }
 }

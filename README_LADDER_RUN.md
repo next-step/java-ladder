@@ -108,7 +108,9 @@ jk : 5000
 ## ADDED_TODO
 ### Domain
 * Rewards
-  - [ ] 게임결과를 도출한다  
+  - [x] 생성  
+  - [x] 게임결과를 도출한다  
+  - [x] 게임결과들을 도출한다 
   * Reward
     - [x] 이름을 출력한다
     - [x] Position 동등 비교
@@ -116,7 +118,7 @@ jk : 5000
       - [x] 생성
       - [x] 이름을 출력한다
     * Position
-      - [ ] Player -> Position 내용과 상동
+      - [x] Player -> Position 내용과 상동
 * Players
   * Player
     - [x] 생성
@@ -146,11 +148,14 @@ jk : 5000
         - [x] 이동
           - [x] 아래로 이동
 * Results
+  - [x] 생성
+  - [x] 결과목록 출력
   * Result
-    * Reward
-      - [ ] 생성
-    * Player
-      - [ ] 생성
+    - [x] 생성
+    - [x] 플레이어의 결과인지 출력(isPlayerResult)
+    - [x] RewardName 출력
+    * PlayerName
+    * RewardName
 ### View
 * InputView
   - [ ] 실행 결과를 입력받는다.(실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요))

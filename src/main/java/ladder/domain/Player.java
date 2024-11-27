@@ -35,4 +35,12 @@ public class Player {
     public int hashCode() {
         return Objects.hash(playerName, position);
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "playerName=" + playerName +
+                ", position=" + position +
+                '}';
+    }
 }

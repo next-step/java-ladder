@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class Players {
@@ -35,6 +36,10 @@ public class Players {
         return players.stream()
                 .map(Player::name)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public void each(Consumer<Player> consumer) {
+        players.forEach(consumer);
     }
 
     @Override

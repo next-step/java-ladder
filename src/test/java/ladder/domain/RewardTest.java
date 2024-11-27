@@ -19,8 +19,8 @@ public class RewardTest {
     @DisplayName("이름을 출력한다")
     void name() {
         Reward reward = new Reward("꽝", 0, 5);
-        String actual = reward.name();
-        String expected = "꽝";
+        RewardName actual = reward.name();
+        RewardName expected = new RewardName("꽝");
 
         assertThat(actual).isEqualTo(expected);
     }
