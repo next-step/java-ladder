@@ -1,6 +1,6 @@
 package nextstep.ladder.domain.ladder;
 
-import nextstep.ladder.domain.PlayerTest;
+import nextstep.ladder.domain.player.PlayerTest;
 import nextstep.ladder.domain.player.Players;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
