@@ -10,7 +10,7 @@ import nextstep.ladder.generator.NonConsecutiveFlagGenerator;
 public class Ladder {
 
     private final List<Lines> ladder;
-    private LadderWidth width;
+    private final LadderWidth width;
 
     public Ladder(int width, List<Lines> ladder) {
         if (ladder.isEmpty()) {

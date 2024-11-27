@@ -3,8 +3,8 @@ package nextstep.ladder.domain;
 import java.util.Objects;
 
 public class LineRange {
-    private int left;
-    private int right;
+    private final int left;
+    private final int right;
 
     public LineRange(int left) {
         this.left = left;
