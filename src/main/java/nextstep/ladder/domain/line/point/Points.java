@@ -2,9 +2,10 @@ package nextstep.ladder.domain.line.point;
 
 import nextstep.ladder.domain.line.LineGenerator;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Points {
     private final List<Point> points;
@@ -18,16 +19,10 @@ public class Points {
     }
 
     private List<Point> createPoints(int count, LineGenerator lineGenerator) {
-        List<Point> points = new ArrayList<>();
-        Point currentPoint = Point.first(lineGenerator.draw());
-        points.add(currentPoint);
-
-        for (int i = 1; i < count; i++) {
-            currentPoint = currentPoint.next(lineGenerator.draw());
-            points.add(currentPoint);
-        }
-
-        return points;
+        return Stream.iterate(Point.first(lineGenerator.draw()),
+                              currentPoint -> currentPoint.next(lineGenerator.draw()))
+                     .limit(count)
+                     .collect(Collectors.toList());
     }
 
     public List<Point> getPoints() {
