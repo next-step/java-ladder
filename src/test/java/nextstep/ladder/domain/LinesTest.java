@@ -11,19 +11,19 @@ public class LinesTest {
     @Test
     public void 사다리_한_줄_생성테스트() {
         List<Boolean> lines = List.of(true, false, true, false);
-        assertThat(new Lines(lines))
-                .isEqualTo(new Lines(lines));
+        assertThat(LinesFactory.lines(lines))
+                .isEqualTo(LinesFactory.lines(lines));
     }
 
     @Test
     public void 사다리는_연속_되면안된다() {
-        assertThatIllegalStateException().isThrownBy(() -> new Lines(List.of(true, true)));
+        assertThatIllegalStateException().isThrownBy(() -> LinesFactory.lines(true, true));
     }
-    
+
 
     @Test
     public void 사다리의_이동결과를_반환한다() {
-        Lines lines = new Lines(true, false, true);
+        Lines lines = LinesFactory.lines(true, false, true);
         Position positon = new Position(List.of(0, 1, 2, 3));
 
         lines.move(positon);

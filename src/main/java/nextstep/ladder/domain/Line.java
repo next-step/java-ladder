@@ -26,6 +26,17 @@ public class Line {
         return hasPoint;
     }
 
+    public boolean connected(Line line) {
+        if (hasNoConsecutivePoints(line)) {
+            return false;
+        }
+        return lineRange.isContinue(line.lineRange);
+    }
+
+    private boolean hasNoConsecutivePoints(Line line) {
+        return !hasPoint || !line.hasPoint;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

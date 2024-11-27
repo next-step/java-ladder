@@ -1,27 +1,20 @@
 package nextstep.ladder.domain;
 
 
-import static nextstep.ladder.util.ConsecutiveChecker.isConsecutive;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import nextstep.ladder.util.ConsecutiveChecker;
 
 public class Lines {
 
     private final List<Line> lines;
 
-    public Lines(List<Boolean> lines) {
-        if (isConsecutive(lines)) {
+    public Lines(List<Line> lines) {
+        if (ConsecutiveChecker.isConsecutiveLine(lines)) {
             throw new IllegalStateException("연속되는 숫자 입니다");
         }
-        this.lines = PointConverter.convert(lines);
-    }
-
-    public Lines(Boolean... lines) {
-        this(Arrays.asList(lines));
+        this.lines = lines;
     }
 
     public void move(Position position) {
@@ -49,19 +42,5 @@ public class Lines {
     @Override
     public int hashCode() {
         return Objects.hash(lines);
-    }
-
-    private static class PointConverter {
-        private static List<Line> convert(List<Boolean> points) {
-            return toPoints(points);
-        }
-
-        private static List<Line> toPoints(List<Boolean> lines) {
-            ArrayList<Line> result = new ArrayList<>();
-            for (int i = 0; i < lines.size(); i++) {
-                result.add(new Line(lines.get(i), i));
-            }
-            return result;
-        }
     }
 }

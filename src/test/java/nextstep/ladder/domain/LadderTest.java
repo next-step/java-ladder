@@ -15,11 +15,23 @@ public class LadderTest {
         List<Boolean> booleans = List.of(true, false);
 
         NonConsecutiveFlagGeneratorFake fakeGenerator = createFakeGenerator(booleans);
-        Ladder ladder = new Ladder(2, 2, fakeGenerator);
+        Ladder ladder = LadderFactory.ladder(2, 2, fakeGenerator);
         assertThat(ladder).isEqualTo(
                 new Ladder(2, List.of(
-                        new Lines(booleans),
-                        new Lines(booleans))));
+                        LinesFactory.lines(booleans),
+                        LinesFactory.lines(booleans))));
+    }
+
+    @Test
+    public void 입력한높이만큼_라인을_생성한다2() {
+        List<Boolean> booleans = List.of(true, false);
+
+        NonConsecutiveFlagGeneratorFake fakeGenerator = createFakeGenerator(booleans);
+        Ladder ladder = LadderFactory.ladder(2, 2, fakeGenerator);
+        assertThat(ladder).isEqualTo(
+                new Ladder(2, List.of(
+                        LinesFactory.lines(booleans),
+                        LinesFactory.lines(booleans))));
     }
 
     @Test
@@ -31,7 +43,7 @@ public class LadderTest {
     public void 이동_최종_결과를_반환한다() {
         List<Boolean> booleans = List.of(true, false, true);
         NonConsecutiveFlagGeneratorFake fakeGenerator = createFakeGenerator(booleans);
-        Ladder ladder = new Ladder(3, 4, fakeGenerator);
+        Ladder ladder = LadderFactory.ladder(3, 4, fakeGenerator);
 
         Position result = ladder.result();
 

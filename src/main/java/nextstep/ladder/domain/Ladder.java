@@ -2,10 +2,6 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import nextstep.ladder.generator.GeneratorWidthSize;
-import nextstep.ladder.generator.NonConsecutiveFlagGenerator;
 
 public class Ladder {
 
@@ -22,10 +18,6 @@ public class Ladder {
 
     public Ladder(int width, List<Lines> ladder) {
         this(new LadderWidth(width), ladder);
-    }
-
-    public Ladder(int height, int width, NonConsecutiveFlagGenerator generator) {
-        this(width, LadderConverter.convert(height, width, generator));
     }
 
     public List<Lines> getLines() {
@@ -65,14 +57,4 @@ public class Ladder {
         return Objects.hash(ladder);
     }
 
-    private static class LadderConverter {
-        private static List<Lines> convert(int height, int width, NonConsecutiveFlagGenerator generator) {
-            return toLadder(height, width, generator);
-        }
-
-        private static List<Lines> toLadder(int height, int width, NonConsecutiveFlagGenerator generator) {
-            return Stream.generate(() -> new Lines(generator.create(new GeneratorWidthSize(width - 1)))).limit(height)
-                    .collect(Collectors.toList());
-        }
-    }
 }

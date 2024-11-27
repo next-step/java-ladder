@@ -1,6 +1,7 @@
 package nextstep.ladder.controller;
 
 import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderFactory;
 import nextstep.ladder.domain.LadderParticipationResult;
 import nextstep.ladder.dto.CommaSeparatedResult;
 import nextstep.ladder.dto.ResultDto;
@@ -32,7 +33,7 @@ public class LadderController {
     }
 
     private Ladder ladder(LadderParticipationResult ladderParticipationResult) {
-        return new Ladder(InputView.readHeight(), ladderParticipationResult.size(),
+        return LadderFactory.ladder(InputView.readHeight(), ladderParticipationResult.size(),
                 new RandomNonConsecutiveFlagGenerator());
     }
 
