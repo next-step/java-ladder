@@ -113,12 +113,11 @@ jk : 5000
   - [x] 게임결과들을 도출한다 
   * Reward
     - [x] 이름을 출력한다
-    - [x] Position 동등 비교
+    - [x] Position x 동등 비교
     * RewardName
       - [x] 생성
       - [x] 이름을 출력한다
-    * Position
-      - [x] Player -> Position 내용과 상동
+    * X
 * Players
   * Player
     - [x] 생성
@@ -135,6 +134,7 @@ jk : 5000
         - [x] 우로 이동
           - [x] 우 -> 아래로 이동
         - [x] 아래로 이동
+      - [x] 가로 일치 여부를 출력한다
       * X
         - [x] 생성
           - [x] 0보다 작으면 오류

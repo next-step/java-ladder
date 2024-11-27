@@ -17,13 +17,13 @@ public class Rewards {
         this.rewards = rewards;
     }
 
-    public Rewards(List<String> rewardNames, int maxLadderHeight) {
-        this(toRewards(rewardNames, maxLadderHeight));
+    public Rewards(String... rewardNames) {
+        this(toRewards(rewardNames));
     }
 
-    private static List<Reward> toRewards(List<String> names, int maxLadderHeight) {
-        return IntStream.range(START_INCLUSIVE, names.size())
-                .mapToObj(index -> new Reward(names.get(index), index, maxLadderHeight))
+    private static List<Reward> toRewards(String... names) {
+        return IntStream.range(START_INCLUSIVE, names.length)
+                .mapToObj(index -> new Reward(names[index], index))
                 .collect(Collectors.toList());
     }
 

@@ -4,15 +4,15 @@ import java.util.Objects;
 
 public class Reward {
     private final RewardName rewardName;
-    private final Position position;
+    private final X x;
 
-    public Reward(RewardName rewardName, Position position) {
+    public Reward(RewardName rewardName, X x) {
         this.rewardName = rewardName;
-        this.position = position;
+        this.x = x;
     }
 
-    public Reward(String name, int x, int y) {
-        this(new RewardName(name), new Position(x, y));
+    public Reward(String name, int x) {
+        this(new RewardName(name), new X(x));
     }
 
     public RewardName name() {
@@ -20,7 +20,7 @@ public class Reward {
     }
 
     public boolean isEqualPosition(Player player) {
-        return this.position.equals(player.position());
+        return player.position().xEquals(this.x);
     }
 
     @Override
@@ -28,11 +28,11 @@ public class Reward {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reward reward = (Reward) o;
-        return Objects.equals(rewardName, reward.rewardName) && Objects.equals(position, reward.position);
+        return Objects.equals(rewardName, reward.rewardName) && Objects.equals(x, reward.x);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(rewardName, position);
+        return Objects.hash(rewardName, x);
     }
 }

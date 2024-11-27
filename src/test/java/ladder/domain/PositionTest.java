@@ -82,4 +82,14 @@ public class PositionTest {
 
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("가로 일치 여부를 출력한다")
+    void xEquals() {
+        Position position = new Position(4, 0);
+        boolean actualTrue = position.xEquals(new X(4));
+        boolean actualFalse = position.xEquals(new X(3));
+        assertThat(actualTrue).isTrue();
+        assertThat(actualFalse).isFalse();
+    }
 }
