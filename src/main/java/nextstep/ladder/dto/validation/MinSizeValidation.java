@@ -1,10 +1,11 @@
 package nextstep.ladder.dto.validation;
 
 import java.util.List;
+import nextstep.ladder.domain.MinSizeValidator;
 
 public class MinSizeValidation implements CommaSeparatedResultValidation {
 
-    private static final int MIN_SIZE = 2;
+    private static final MinSizeValidator minSizeValidator = new MinSizeValidator();
 
     @Override
     public void valid(List<String> values) {
@@ -12,16 +13,6 @@ public class MinSizeValidation implements CommaSeparatedResultValidation {
     }
 
     private void validValues(List<String> names) {
-        if (inValidSize(names)) {
-            throw createException();
-        }
-    }
-
-    private static boolean inValidSize(List<String> names) {
-        return names.size() < MIN_SIZE;
-    }
-
-    private static IllegalArgumentException createException() {
-        return new IllegalArgumentException("잘못된 입력입니다.");
+        minSizeValidator.valid(names.size());
     }
 }

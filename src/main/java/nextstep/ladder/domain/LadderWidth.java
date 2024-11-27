@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LadderWidth {
+    private static final MinSizeValidator minSizeValidator = new MinSizeValidator();
     private static final int START_INDEX = 0;
     private final int width;
 
     public LadderWidth(int width) {
+        minSizeValidator.valid(width);
         this.width = width;
     }
 
