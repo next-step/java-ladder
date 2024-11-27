@@ -12,7 +12,7 @@ import nextstep.ladder.view.OutputView;
 public class LadderController {
 
     public ResultDto playGame() {
-        LadderParticipationResult ladderParticipationResult = LadderParticipationResult();
+        LadderParticipationResult ladderParticipationResult = ladderParticipationResult();
         Ladder ladder = ladder(ladderParticipationResult);
         OutputView.renderLadder(ladderParticipationResult.names(), ladder, ladderParticipationResult.ladderResult());
         return ladderParticipationResult.match(ladder.result());
@@ -25,7 +25,7 @@ public class LadderController {
         }
     }
 
-    private LadderParticipationResult LadderParticipationResult() {
+    private LadderParticipationResult ladderParticipationResult() {
         CommaSeparatedResult names = new UniqueNames(InputView.readNames());
         CommaSeparatedResult results = new CommaSeparatedResult(InputView.readResult());
         return new LadderParticipationResult(names, results);
