@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static ladder.domain.PlayerName.DEFAULT_MAX_NAME_LENGTH;
+import static ladder.domain.Name.DEFAULT_MAX_NAME_LENGTH;
 
 public class ResultView {
     public static final int START_INCLUSIVE = 0;
@@ -45,13 +45,13 @@ public class ResultView {
     private static String toFormattedNames(Players players) {
         return players.names()
                 .stream()
-                .map(name -> SPACE.repeat(DEFAULT_MAX_NAME_LENGTH - name.length()) + name.value())
+                .map(name -> SPACE.repeat(DEFAULT_MAX_NAME_LENGTH - name.length()) + name.name())
                 .collect(Collectors.joining(SPACE));
     }
 
     private static String toFormattedLine(Players players, List<Point> points) {
-        List<PlayerName> playerNames = players.names();
-        return IntStream.range(START_INCLUSIVE, playerNames.size())
+        List<Name> names = players.names();
+        return IntStream.range(START_INCLUSIVE, names.size())
                 .boxed()
                 .map(index -> toFormattedHorizontal(index, points))
                 .collect(Collectors.joining(PLAYER_DELIMITER, PREFIX, PLAYER_DELIMITER));
@@ -61,7 +61,7 @@ public class ResultView {
         if (index == START_INCLUSIVE) {
             return SPACES;
         }
-        if (points.get(index - INDEX_OFFSET).getCurrent()) {
+        if (points.get(index - INDEX_OFFSET).getRight()) {
             return CROSS_LINES;
         }
         return SPACES;
