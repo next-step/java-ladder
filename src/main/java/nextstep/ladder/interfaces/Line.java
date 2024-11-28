@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.interfaces;
 
 public interface Line {
     void move(Position position);

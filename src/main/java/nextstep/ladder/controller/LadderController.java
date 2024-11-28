@@ -1,12 +1,12 @@
 package nextstep.ladder.controller;
 
-import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderParticipationResult;
 import nextstep.ladder.dto.CommaSeparatedResult;
 import nextstep.ladder.dto.ResultDto;
 import nextstep.ladder.dto.UniqueNames;
 import nextstep.ladder.factory.LadderFactory;
 import nextstep.ladder.generator.RandomNonConsecutiveFlagGenerator;
+import nextstep.ladder.interfaces.Ladder;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 

@@ -3,9 +3,9 @@ package nextstep.ladder.factory;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import nextstep.ladder.domain.Lines;
 import nextstep.ladder.generator.GeneratorWidthSize;
 import nextstep.ladder.generator.NonConsecutiveFlagGenerator;
+import nextstep.ladder.interfaces.Lines;
 
 public class LadderDataConverter {
     static List<Lines> convert(int height, int width, NonConsecutiveFlagGenerator generator) {

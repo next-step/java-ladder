@@ -2,8 +2,8 @@ package nextstep.ladder.factory;
 
 import java.util.Arrays;
 import java.util.List;
-import nextstep.ladder.domain.Lines;
 import nextstep.ladder.domain.LinesImpl;
+import nextstep.ladder.interfaces.Lines;
 
 public class LinesFactory {
     public static Lines lines(List<Boolean> lines) {

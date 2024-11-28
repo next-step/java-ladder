@@ -6,6 +6,9 @@ import static nextstep.ladder.util.ConsecutiveChecker.isConsecutive;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import nextstep.ladder.interfaces.Line;
+import nextstep.ladder.interfaces.Lines;
+import nextstep.ladder.interfaces.Position;
 
 public class LinesImpl implements Lines {
     private final List<Line> lines;

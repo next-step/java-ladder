@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
 
 import java.util.List;
 import nextstep.ladder.factory.LinesFactory;
+import nextstep.ladder.interfaces.Lines;
+import nextstep.ladder.interfaces.Position;
 import org.junit.jupiter.api.Test;
 
 public class LinesTest {

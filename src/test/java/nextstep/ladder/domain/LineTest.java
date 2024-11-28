@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import nextstep.ladder.interfaces.Position;
 import org.junit.jupiter.api.Test;
 
 public class LineTest {

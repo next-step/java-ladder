@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.validator;
 
 public class MinSizeValidator {
     private static final int MIN_WIDTH = 2;

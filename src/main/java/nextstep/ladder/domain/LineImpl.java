@@ -1,6 +1,8 @@
 package nextstep.ladder.domain;
 
 import java.util.Objects;
+import nextstep.ladder.interfaces.Line;
+import nextstep.ladder.interfaces.Position;
 
 public class LineImpl implements Line {
 
@@ -26,10 +28,6 @@ public class LineImpl implements Line {
     @Override
     public boolean canMove() {
         return hasPoint;
-    }
-
-    private boolean hasNoConsecutivePoints(LineImpl line) {
-        return !hasPoint || !line.hasPoint;
     }
 
     @Override

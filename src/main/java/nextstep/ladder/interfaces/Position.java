@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.interfaces;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,12 +10,11 @@ public class Position {
 
     private final List<Integer> position;
 
-
-    Position(List<Integer> position) {
+    public Position(List<Integer> position) {
         this.position = new ArrayList<>(position);
     }
 
-    void swap(int left, int right) {
+    public void swap(int left, int right) {
         validContainsIndex(left);
         validContainsIndex(right);
         swapValue(left, right);

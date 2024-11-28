@@ -1,7 +1,7 @@
 package nextstep.ladder.dto.validation;
 
 import java.util.List;
-import nextstep.ladder.domain.MinSizeValidator;
+import nextstep.ladder.domain.validator.MinSizeValidator;
 
 public class MinSizeValidation implements CommaSeparatedResultValidation {
 
