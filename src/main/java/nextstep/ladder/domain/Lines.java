@@ -1,19 +1,30 @@
 package nextstep.ladder.domain;
 
+
 import java.util.List;
 import java.util.Objects;
-import nextstep.ladder.generator.NonConsecutiveFlagGenerator;
+import java.util.stream.Collectors;
+import nextstep.ladder.util.ConsecutiveChecker;
 
 public class Lines {
 
-    private final List<Boolean> lines;
+    private final List<Line> lines;
 
-    public Lines(NonConsecutiveFlagGenerator nonConsecutiveFlagGenerator) {
-        this.lines = List.copyOf(nonConsecutiveFlagGenerator.create());
+    public Lines(List<Line> lines) {
+        if (ConsecutiveChecker.isConsecutiveLine(lines)) {
+            throw new IllegalStateException("연속되는 숫자 입니다");
+        }
+        this.lines = lines;
     }
 
-    public List<Boolean> getPoint() {
-        return lines;
+    public void move(Position position) {
+        for (Line line : lines) {
+            line.move(position);
+        }
+    }
+
+    public List<Boolean> getLines() {
+        return lines.stream().map(Line::canMove).collect(Collectors.toList());
     }
 
     @Override

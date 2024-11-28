@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
 
 import java.util.List;
+import nextstep.ladder.generator.GeneratorWidthSize;
 import nextstep.ladder.generator.NonConsecutiveFlagGenerator;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ public class NonConsecutiveFlagGeneratorTest {
         List<Boolean> result = List.of(true, true);
         NonConsecutiveFlagGenerator generator = createFakeGenerator(result);
 
-        assertThatIllegalStateException().isThrownBy(generator::create);
+        assertThatIllegalStateException().isThrownBy(() -> generator.create(new GeneratorWidthSize(2)));
     }
 
     @Test
@@ -22,7 +23,7 @@ public class NonConsecutiveFlagGeneratorTest {
         List<Boolean> result = List.of(true, false);
         NonConsecutiveFlagGenerator generator = createFakeGenerator(result);
 
-        assertThat(generator.create()).isEqualTo(result);
+        assertThat(generator.create(new GeneratorWidthSize(2))).isEqualTo(result);
     }
 
     private static NonConsecutiveFlagGeneratorFake createFakeGenerator(List<Boolean> result) {

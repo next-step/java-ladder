@@ -2,31 +2,42 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import nextstep.ladder.generator.NonConsecutiveFlagGenerator;
 
 public class Ladder {
 
     private final List<Lines> ladder;
+    private final LadderWidth width;
 
-    public Ladder(List<Lines> ladder) {
+    public Ladder(LadderWidth ladderWidth, List<Lines> ladder) {
         if (ladder.isEmpty()) {
             throw new IllegalArgumentException("사다리의 높이는 0이하 일 수 없습니다.");
         }
+        this.width = ladderWidth;
         this.ladder = List.copyOf(ladder);
     }
 
-    public Ladder(int height, NonConsecutiveFlagGenerator generator) {
-        this(toLadder(height, generator));
-    }
-
-    private static List<Lines> toLadder(int height, NonConsecutiveFlagGenerator generator) {
-        return Stream.generate(() -> new Lines(generator)).limit(height).collect(Collectors.toList());
+    public Ladder(int width, List<Lines> ladder) {
+        this(new LadderWidth(width), ladder);
     }
 
     public List<Lines> getLines() {
         return ladder;
+    }
+
+    public Position result() {
+        Position result = position();
+        moveAll(result);
+        return result;
+    }
+
+    private Position position() {
+        return width.position();
+    }
+
+    private void moveAll(Position position) {
+        for (Lines lines : ladder) {
+            lines.move(position);
+        }
     }
 
     @Override
@@ -45,4 +56,5 @@ public class Ladder {
     public int hashCode() {
         return Objects.hash(ladder);
     }
+
 }

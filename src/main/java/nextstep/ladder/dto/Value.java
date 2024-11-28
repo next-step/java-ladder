@@ -1,13 +1,13 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.dto;
 
 import java.util.Objects;
 
-public class Name {
+public class Value {
 
     private static final int MAX_LENGTH = 5;
     private final String name;
 
-    public Name(String name) {
+    public Value(String name) {
         if (inValid(name)) {
             throw new IllegalArgumentException("잘못된 입력입니다.");
         }
@@ -16,10 +16,6 @@ public class Name {
 
     private static boolean inValid(String name) {
         return name.length() > MAX_LENGTH || name.isBlank();
-    }
-
-    public int length() {
-        return name.length();
     }
 
     public String getName() {
@@ -34,8 +30,8 @@ public class Name {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Name name1 = (Name) o;
-        return Objects.equals(name, name1.name);
+        Value value1 = (Value) o;
+        return Objects.equals(name, value1.name);
     }
 
     @Override
