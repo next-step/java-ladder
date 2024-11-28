@@ -47,7 +47,7 @@ public class OutputView {
     }
 
     private static void renderLine(Lines lines) {
-        for (Boolean point : lines.getLines()) {
+        for (Boolean point : lines.toBooleans()) {
             System.out.print(pointFormat(point));
             System.out.print(HORIZONTAL_LINE);
         }
