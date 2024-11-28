@@ -1,12 +1,12 @@
 package nextstep.ladder.factory;
 
-import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.LadderImpl;
 import nextstep.ladder.generator.NonConsecutiveFlagGenerator;
 
 public class LadderFactory {
 
-    public static Ladder ladder(int height, int width, NonConsecutiveFlagGenerator generator) {
-        return new Ladder(width, LadderDataConverter.convert(height, width, generator));
+    public static LadderImpl ladder(int height, int width, NonConsecutiveFlagGenerator generator) {
+        return new LadderImpl(width, LadderDataConverter.convert(height, width, generator));
     }
 
 }
