@@ -25,7 +25,7 @@ public class LinesFactory {
         private static List<Line> toPoints(List<Boolean> lines) {
             ArrayList<Line> result = new ArrayList<>();
             for (int i = 0; i < lines.size(); i++) {
-                result.add(new Line(lines.get(i), i));
+                result.add(new LineImpl(lines.get(i), i));
             }
             return result;
         }

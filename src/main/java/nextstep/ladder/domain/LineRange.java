@@ -15,20 +15,6 @@ public class LineRange {
         position.swap(left, right);
     }
 
-    public boolean isContinue(LineRange lineRange) {
-        if (this.isNext(lineRange) || lineRange.isNext(this)) {
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isNext(LineRange lineRange) {
-        if (right == lineRange.left) {
-            return true;
-        }
-        return false;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
