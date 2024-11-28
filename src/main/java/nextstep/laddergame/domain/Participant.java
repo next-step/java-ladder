@@ -4,13 +4,19 @@ import java.util.Objects;
 
 public class Participant {
     private final String name;
+    private final Position position;
 
-    public Participant(String name) {
+    public Participant(String name, int position) {
         this.name = name;
+        this.position = new Position(position);
     }
 
     public String getName() {
         return name;
+    }
+
+    public Position getPosition() {
+        return position;
     }
 
     @Override

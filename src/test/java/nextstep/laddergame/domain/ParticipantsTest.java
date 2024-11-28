@@ -14,6 +14,9 @@ class ParticipantsTest {
     void values() {
         Participants given = new Participants(List.of("moon", "yoon", "ji"));
 
-        assertThat(given.values()).containsExactly(new Participant("moon"), new Participant("yoon"), new Participant("ji"));
+        assertThat(given.values()).containsExactly(
+                new Participant("moon", 0),
+                new Participant("yoon", 1),
+                new Participant("ji", 2));
     }
 }
