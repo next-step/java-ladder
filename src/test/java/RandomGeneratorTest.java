@@ -7,6 +7,6 @@ public class RandomGeneratorTest {
     void rand(){
         DotType randType = (new RandomGenerator()).rand();
 
-        assertThat(randType != DotType.NODE).isFalse();
+        assertThat(randType).isNotEqualTo(DotType.NODE);
     }
 }

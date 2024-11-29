@@ -8,6 +8,6 @@ public class RandomGenerator {
     }
 
     public DotType rand() {
-        return this.random.nextInt() % 2 == 0 ? DotType.EMPTY : DotType.BRIDGE;
+        return this.random.nextInt() % 5 < 3 ? DotType.EMPTY : DotType.BRIDGE; // 40% for Bridge
     }
 }

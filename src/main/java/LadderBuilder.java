@@ -8,17 +8,17 @@ public class LadderBuilder {
         this.randomGenerator = randomGenerator;
     }
 
-    public Ladder build(int playerCount, int height) {
+    public Ladder build(String[] players, int height) {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
             List<DotType> types = new ArrayList<>();
 
             boolean prevBridgeUsed = false;
-            for (int j = 0; j < playerCount; j++) {
+            for (int j = 0; j < players.length; j++) {
                 types.add(DotType.NODE);
 
-                if (j != playerCount - 1) {
+                if (j != players.length - 1) {
                     DotType randType = this.randomGenerator.rand();
 
                     if (prevBridgeUsed || randType.is(DotType.EMPTY)) {
@@ -35,6 +35,6 @@ public class LadderBuilder {
             lines.add(new Line(types));
         }
 
-        return new Ladder(lines);
+        return new Ladder(players, lines);
     }
 }

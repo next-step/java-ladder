@@ -13,15 +13,6 @@ public class Line {
         this.dots = Arrays.stream(types).collect(Collectors.toList());
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Line line = (Line) o;
-
-        return this.dots.equals(line.dots);
-    }
-
     public int size() {
         return this.dots.size();
     }
@@ -32,5 +23,21 @@ public class Line {
 
     public boolean isBridge(int i) {
         return this.dots.get(i).is(DotType.BRIDGE);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+
+        return this.dots.equals(line.dots);
+    }
+
+    @Override
+    public String toString() {
+        return this.dots.stream()
+                .map(DotType::print)
+                .collect(Collectors.joining(""));
     }
 }

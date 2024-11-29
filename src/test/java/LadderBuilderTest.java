@@ -8,7 +8,7 @@ public class LadderBuilderTest {
 
     @Test
     void build() {
-        Ladder ladder = ladderBuilder.build(3, 5);
+        Ladder ladder = ladderBuilder.build("pobi,crong,honux".split(","), 5);
 
         assertThat(ladder.playerCount()).isEqualTo(3);
         assertThat(ladder.height()).isEqualTo(5);
@@ -16,7 +16,7 @@ public class LadderBuilderTest {
 
     @Test
     void travel() {
-        Ladder ladder = ladderBuilder.build(3, 20);
+        Ladder ladder = ladderBuilder.build("pobi,crong,honux".split(","), 20);
 
         int travel_1 = ladder.travel(0);
         int travel_2 = ladder.travel(1);

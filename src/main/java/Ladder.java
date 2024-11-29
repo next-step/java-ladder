@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Ladder {
+    private final List<String> players;
     private final List<Line> lines;
 
-    public Ladder(List<Line> lines) {
+    public Ladder(String[] playerNames, List<Line> lines) {
+        this.players = Arrays.asList(playerNames);
         this.lines = lines;
     }
 
@@ -48,10 +52,36 @@ public class Ladder {
         return curDot.getX();
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        String padding = "  ";
+
+
+        for(String playerName : players) {
+            sb.append(padding);
+            sb.append(playerName);
+            for(int i = 0; i < 5 - playerName.length(); i++) {
+                sb.append(" ");
+            }
+        }
+
+        sb.append("\n");
+
+        for (Line line : lines) {
+            sb.append(line.toString());
+            sb.append("\n");
+        }
+
+        return sb.toString();
+    }
+
     private boolean availRight(Dot curDot) {
         Line line = this.lines.get(curDot.getY());
 
-        if (curDot.getX() == line.size() - 1) { return false; }
+        if (curDot.getX() == line.size() - 1) {
+            return false;
+        }
 
         return line.isBridge(curDot.getX() + 1);
     }
@@ -59,7 +89,9 @@ public class Ladder {
     private boolean availLeft(Dot curDot) {
         Line line = this.lines.get(curDot.getY());
 
-        if (curDot.getX() == 0) { return false; }
+        if (curDot.getX() == 0) {
+            return false;
+        }
 
         return line.isBridge(curDot.getX() - 1);
     }
