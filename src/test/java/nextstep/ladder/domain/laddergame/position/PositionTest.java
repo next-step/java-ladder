@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.ladderGame.position;
+package nextstep.ladder.domain.laddergame.position;
 
 import nextstep.ladder.domain.line.point.Point;
 import org.assertj.core.api.Assertions;
