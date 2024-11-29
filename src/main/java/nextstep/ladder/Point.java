@@ -32,6 +32,18 @@ public class Point {
                 '}';
     }
 
+    public static Point first(boolean right) {
+        return new Point(false, right);
+    }
+
+    public Point next(boolean right) {
+        return new Point(this.right, right);
+    }
+
+    public Point last() {
+        return new Point(this.right, false);
+    }
+
     public Direction move() {
         if (current) {
             return Direction.LEFT;

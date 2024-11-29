@@ -22,19 +22,19 @@ public class PointTest {
 
     @Test
     void 움직인_결과_조회__오른쪽() {
-        Point point = new Point(false, true);
+        Point point = Point.first(true);
         assertThat(point.move()).isEqualTo(Direction.RIGHT);
     }
 
     @Test
     void 움직인_결과_조회__왼쪽() {
-        Point point = new Point(true, false);
+        Point point = Point.first(true).next(false);
         assertThat(point.move()).isEqualTo(Direction.LEFT);
     }
 
     @Test
     void 움직인_결과_조회__아래() {
-        Point point = new Point(false, false);
+        Point point = Point.first(true).next(false).last();
         assertThat(point.move()).isEqualTo(Direction.DOWN);
     }
 
