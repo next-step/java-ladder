@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import nextstep.ladder.factory.LinesFactory;
 import nextstep.ladder.generator.GeneratorWidthSize;
 import nextstep.ladder.generator.NonConsecutiveFlagGenerator;
 

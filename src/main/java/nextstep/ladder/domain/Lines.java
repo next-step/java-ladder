@@ -1,17 +1,20 @@
 package nextstep.ladder.domain;
 
 
+import static nextstep.ladder.util.ConsecutiveChecker.isConsecutive;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import nextstep.ladder.util.ConsecutiveChecker;
+import nextstep.ladder.interfaces.Line;
+import nextstep.ladder.interfaces.Position;
 
 public class Lines {
 
     private final List<Line> lines;
 
     public Lines(List<Line> lines) {
-        if (ConsecutiveChecker.isConsecutiveLine(lines)) {
+        if (isConsecutive(toBooleanList(lines))) {
             throw new IllegalStateException("연속되는 숫자 입니다");
         }
         this.lines = lines;
@@ -24,6 +27,10 @@ public class Lines {
     }
 
     public List<Boolean> getLines() {
+        return toBooleanList(this.lines);
+    }
+
+    private List<Boolean> toBooleanList(List<Line> lines) {
         return lines.stream().map(Line::canMove).collect(Collectors.toList());
     }
 
