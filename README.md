@@ -62,23 +62,28 @@ TDD로 구현
 
 도메인
 1. point
-   current, right
-   둘다 true일 수는 없음
-   current > left로 이동
-   right > right로 이동
-   둘다 false > 그대로 아래로 이동
+  current, right
+  둘다 true일 수는 없음
+  current > left로 이동
+  right > right로 이동
+  둘다 false > 그대로 아래로 이동
 
-    오류 방지
-    - 첫번째 point 생성
-    - 다음 point 생성
-    - 마지막 point 생성
+  오류 방지
+  - 첫번째 point 생성
+  - 다음 point 생성
+  - 마지막 point 생성
 
 + Cross
   현재 위치 position
   point
 
-2. line
-   crosses
+  move
+  - right > index+1
+  - left > index-1
+  - down > index
+
+2. line 
+  crosses
 
 3. ladder
-   lines
+  lines
