@@ -2,15 +2,16 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.Objects;
+import nextstep.ladder.interfaces.Ladder;
 import nextstep.ladder.interfaces.Lines;
 import nextstep.ladder.interfaces.Position;
 
-public class Ladder {
+public class LadderImpl implements Ladder {
 
     private final List<Lines> ladder;
     private final LadderWidth width;
 
-    public Ladder(LadderWidth ladderWidth, List<Lines> ladder) {
+    public LadderImpl(LadderWidth ladderWidth, List<Lines> ladder) {
         if (ladder.isEmpty()) {
             throw new IllegalArgumentException("사다리의 높이는 0이하 일 수 없습니다.");
         }
@@ -18,14 +19,16 @@ public class Ladder {
         this.ladder = List.copyOf(ladder);
     }
 
-    public Ladder(int width, List<Lines> ladder) {
+    public LadderImpl(int width, List<Lines> ladder) {
         this(new LadderWidth(width), ladder);
     }
 
+    @Override
     public List<Lines> getLines() {
         return ladder;
     }
 
+    @Override
     public Position result() {
         Position result = position();
         moveAll(result);
@@ -50,7 +53,7 @@ public class Ladder {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Ladder ladder1 = (Ladder) o;
+        LadderImpl ladder1 = (LadderImpl) o;
         return Objects.equals(ladder, ladder1.ladder);
     }
 

@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import nextstep.ladder.factory.LadderFactory;
 import nextstep.ladder.factory.LinesFactory;
+import nextstep.ladder.interfaces.Ladder;
 import nextstep.ladder.interfaces.Position;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +21,7 @@ public class LadderTest {
         NonConsecutiveFlagGeneratorFake fakeGenerator = createFakeGenerator(booleans);
         Ladder ladder = LadderFactory.ladder(2, 2, fakeGenerator);
         assertThat(ladder).isEqualTo(
-                new Ladder(2, List.of(
+                new LadderImpl(2, List.of(
                         LinesFactory.lines(booleans),
                         LinesFactory.lines(booleans))));
     }
@@ -32,14 +33,14 @@ public class LadderTest {
         NonConsecutiveFlagGeneratorFake fakeGenerator = createFakeGenerator(booleans);
         Ladder ladder = LadderFactory.ladder(2, 2, fakeGenerator);
         assertThat(ladder).isEqualTo(
-                new Ladder(2, List.of(
+                new LadderImpl(2, List.of(
                         LinesFactory.lines(booleans),
                         LinesFactory.lines(booleans))));
     }
 
     @Test
     public void 라인이_존재하지_않을_수_없다() {
-        assertThatIllegalArgumentException().isThrownBy(() -> new Ladder(2, Collections.emptyList()));
+        assertThatIllegalArgumentException().isThrownBy(() -> new LadderImpl(2, Collections.emptyList()));
     }
 
     @Test
