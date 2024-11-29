@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 import java.util.Collections;
 import java.util.List;
+import nextstep.ladder.factory.LadderFactory;
 import nextstep.ladder.factory.LinesFactory;
 import nextstep.ladder.interfaces.Position;
 import org.junit.jupiter.api.Test;

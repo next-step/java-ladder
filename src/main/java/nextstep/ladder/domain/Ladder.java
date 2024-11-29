@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.Objects;
+import nextstep.ladder.interfaces.Lines;
 import nextstep.ladder.interfaces.Position;
 
 public class Ladder {

@@ -7,25 +7,28 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import nextstep.ladder.interfaces.Line;
+import nextstep.ladder.interfaces.Lines;
 import nextstep.ladder.interfaces.Position;
 
-public class Lines {
+public class LinesImpl implements Lines {
 
     private final List<Line> lines;
 
-    public Lines(List<Line> lines) {
+    public LinesImpl(List<Line> lines) {
         if (isConsecutive(toBooleanList(lines))) {
             throw new IllegalStateException("연속되는 숫자 입니다");
         }
         this.lines = lines;
     }
 
+    @Override
     public void move(Position position) {
         for (Line line : lines) {
             line.move(position);
         }
     }
 
+    @Override
     public List<Boolean> getLines() {
         return toBooleanList(this.lines);
     }
@@ -42,7 +45,7 @@ public class Lines {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Lines lines1 = (Lines) o;
+        LinesImpl lines1 = (LinesImpl) o;
         return Objects.equals(lines, lines1.lines);
     }
 
