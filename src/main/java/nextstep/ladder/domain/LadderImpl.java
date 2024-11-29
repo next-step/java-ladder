@@ -11,16 +11,16 @@ public class LadderImpl implements Ladder {
     private final List<Lines> ladder;
     private final LadderWidth width;
 
+    public LadderImpl(int width, List<Lines> ladder) {
+        this(new LadderWidth(width), ladder);
+    }
+
     public LadderImpl(LadderWidth ladderWidth, List<Lines> ladder) {
         if (ladder.isEmpty()) {
             throw new IllegalArgumentException("사다리의 높이는 0이하 일 수 없습니다.");
         }
         this.width = ladderWidth;
         this.ladder = List.copyOf(ladder);
-    }
-
-    public LadderImpl(int width, List<Lines> ladder) {
-        this(new LadderWidth(width), ladder);
     }
 
     @Override
