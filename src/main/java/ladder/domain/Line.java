@@ -62,14 +62,14 @@ public class Line {
     }
 
     public Players move(Players players) {
-        List<Name> nextLinePlayers = new ArrayList<>();
+        List<PlayerName> nextLinePlayers = new ArrayList<>();
 
-        List<Name> names = players.names();
+        List<PlayerName> names = players.names();
         names.forEach(name -> {
             int index = names.indexOf(name);
             Point point = points.get(index);
             int moveIndex = point.move().value();
-            Name movedName = names.get(index + moveIndex);
+            PlayerName movedName = names.get(index + moveIndex);
             nextLinePlayers.add(movedName);
         });
 

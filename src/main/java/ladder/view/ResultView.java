@@ -50,7 +50,7 @@ public class ResultView {
     }
 
     private static String toFormattedLine(Players players, List<Point> points) {
-        List<Name> names = players.names();
+        List<PlayerName> names = players.names();
         return IntStream.range(START_INCLUSIVE, names.size())
                 .boxed()
                 .map(index -> toFormattedHorizontal(index, points))

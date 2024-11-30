@@ -4,7 +4,7 @@ import ladder.exception.InvalidNameException;
 
 import java.util.Objects;
 
-public class Name {
+public abstract class Name {
     public static final String NOT_ALLOW_EMPTY_NAME_MESSAGE = "이름에 공백이 들어갈 수 없습니다.";
     public static final String NOT_ALLOW_EXCEED_MAX_NAME_LENGTH_MESSAGE = "이름을 5글자를 초과할수 없습니다.";
     public static final int DEFAULT_MAX_NAME_LENGTH = 5;

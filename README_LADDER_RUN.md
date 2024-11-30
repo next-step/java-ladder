@@ -113,8 +113,8 @@ jk : 5000
     - [ ] 이름을 출력한다
     - [ ] 게임결과를 도출한다("pobi")
     - [ ] 게임결과들을 도출한다("all")
-    * RewardName
-      - [ ] 생성
+    * RewardName extends Name
+      - [x] 생성
 * Lines
   - [x] 플레이어 모두 마지막까지 이동
   * Line
@@ -123,7 +123,7 @@ jk : 5000
       - [x] 플레이어 가로 우측 이동
       - [x] 플레이어 가로 이동 없음
 * Players
-  * Name
+  * PlayerName extends Name
     - [x] 생성
   * Vertical
     - [x] 생성

@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 public class Players {
 
     public static final String DELIMITER = ",";
-    private final List<Name> names;
+    private final List<PlayerName> names;
     private final Vertical vertical;
 
-    public Players(List<Name> names, Vertical vertical) {
+    public Players(List<PlayerName> names, Vertical vertical) {
         this.names = names;
         this.vertical = vertical;
     }
@@ -22,16 +22,16 @@ public class Players {
         return names.size();
     }
 
-    private static List<Name> toNames(String names) {
+    private static List<PlayerName> toNames(String names) {
         return Arrays.stream(names.split(DELIMITER))
                 .map(String::trim)
                 .collect(Collectors.toList())
                 .stream()
-                .map(Name::new)
+                .map(PlayerName::new)
                 .collect(Collectors.toList());
     }
 
-    public List<Name> names() {
+    public List<PlayerName> names() {
         return Collections.unmodifiableList(names);
     }
 

@@ -13,10 +13,10 @@ public class PlayersTest {
     public static final Players PLAYERS1 = new Players("pobi,crong,honux,jk");
 
     private Players players;
-    private Name playerName1;
-    private Name playerName2;
-    private Name playerName3;
-    private Name playerName4;
+    private PlayerName playerName1;
+    private PlayerName playerName2;
+    private PlayerName playerName3;
+    private PlayerName playerName4;
 
     private Point firstPoint;
     private Point next1Point;
@@ -25,10 +25,10 @@ public class PlayersTest {
 
     @BeforeEach
     void setUp() {
-        playerName1 = new Name("pobi");
-        playerName2 = new Name("crong");
-        playerName3 = new Name("honux");
-        playerName4 = new Name("jk");
+        playerName1 = new PlayerName("pobi");
+        playerName2 = new PlayerName("crong");
+        playerName3 = new PlayerName("honux");
+        playerName4 = new PlayerName("jk");
 
         firstPoint = Point.first(true);
         next1Point = firstPoint.next(false);
@@ -56,12 +56,12 @@ public class PlayersTest {
     @Test
     @DisplayName("플레이어 목록의 이름을 출력한다")
     void names() {
-        List<Name> actual = players.names();
-        List<Name> expected = List.of(
-                new Name("pobi"),
-                new Name("crong"),
-                new Name("honux"),
-                new Name("jk")
+        List<PlayerName> actual = players.names();
+        List<PlayerName> expected = List.of(
+                new PlayerName("pobi"),
+                new PlayerName("crong"),
+                new PlayerName("honux"),
+                new PlayerName("jk")
         );
 
         assertThat(actual).isEqualTo(expected);
@@ -69,7 +69,7 @@ public class PlayersTest {
 
     @Test
     void verticalPosition() {
-        players = new Players(List.of(new Name("pobi"), new Name("crong"), new Name("honux"), new Name("jk")), new Vertical(1));
+        players = new Players(List.of(new PlayerName("pobi"), new PlayerName("crong"), new PlayerName("honux"), new PlayerName("jk")), new Vertical(1));
 
         Vertical actual = players.vertical();
         Vertical expected = new Vertical(1);

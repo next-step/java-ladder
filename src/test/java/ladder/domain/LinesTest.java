@@ -112,10 +112,10 @@ public class LinesTest {
 
         Players actual = lines.move(new Players("pobi,honux,crong,jk"));
         Players expected = new Players(List.of(
-                new Name("pobi"),
-                new Name("jk"),
-                new Name("crong"),
-                new Name("honux")
+                new PlayerName("pobi"),
+                new PlayerName("jk"),
+                new PlayerName("crong"),
+                new PlayerName("honux")
         ), new Vertical(5));
 
         assertThat(actual).isEqualTo(expected);
