@@ -35,17 +35,6 @@ public class Players {
         return Collections.unmodifiableList(names);
     }
 
-    public Players moveLine(Line line) {
-        List<Name> result = new ArrayList<>();
-        names.forEach(name -> {
-            int index = names.indexOf(name);
-            Point point = line.getPoints().get(index);
-            int movePoint = point.move().value();
-            result.add(names.get(index + movePoint));
-        });
-        return new Players(result, vertical.move());
-    }
-
     public Vertical vertical() {
         return vertical;
     }
@@ -61,5 +50,14 @@ public class Players {
     @Override
     public int hashCode() {
         return Objects.hash(names, vertical);
+    }
+
+    @Override
+    public String
+    toString() {
+        return "Players{" +
+                "names=" + names +
+                ", vertical=" + vertical +
+                '}';
     }
 }
