@@ -7,13 +7,15 @@ public class Players {
 
     public static final String DELIMITER = ",";
     private final List<Name> names;
+    private final Vertical vertical;
 
-    public Players(List<Name> names) {
+    public Players(List<Name> names, Vertical vertical) {
         this.names = names;
+        this.vertical = vertical;
     }
 
     public Players(String names) {
-        this(toNames(names));
+        this(toNames(names), new Vertical());
     }
 
     public int size() {
@@ -29,19 +31,6 @@ public class Players {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Players players = (Players) o;
-        return Objects.equals(names, players.names);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(names);
-    }
-
     public List<Name> names() {
         return Collections.unmodifiableList(names);
     }
@@ -54,6 +43,23 @@ public class Players {
             int movePoint = point.move().value();
             result.add(names.get(index + movePoint));
         });
-        return new Players(result);
+        return new Players(result, vertical.move());
+    }
+
+    public Vertical vertical() {
+        return vertical;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Players players = (Players) o;
+        return Objects.equals(names, players.names) && Objects.equals(vertical, players.vertical);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(names, vertical);
     }
 }

@@ -58,4 +58,9 @@ public class LinesTest {
             actual.add(new Line(playersCount, falseGenerator));
         }).isInstanceOf(UnsupportedOperationException.class);
     }
+
+    @Test
+    void moveLines() {
+
+    }
 }

@@ -22,6 +22,8 @@ public class LineTest {
     private Point next1Point;
     private Point next2Point;
     private Point lastPoint;
+    private List<Point> points;
+    private Line line;
 
     @BeforeEach
     void setUp() {
@@ -29,6 +31,9 @@ public class LineTest {
         next1Point = firstPoint.next(false);
         next2Point = next1Point.next(true);
         lastPoint = next2Point.last();
+
+        points = List.of(firstPoint, next1Point, next2Point, lastPoint);
+        line = new Line(points);
     }
 
     @Test
@@ -57,7 +62,34 @@ public class LineTest {
         List<Point> actual = line.getPoints();
 
         assertThat(actual).isEqualTo(points);
+    }
+
+    @Test
+    @DisplayName("포인트들을 조회한다. 조회한 데이터는 불변이다")
+    void getPoints_불변() {
+        List<Point> points = List.of(firstPoint, next1Point, next2Point, lastPoint);
+        Line line = new Line(points);
+        List<Point> actual = line.getPoints();
+
         assertThatThrownBy(() -> actual.add(next2Point))
                 .isInstanceOf(UnsupportedOperationException.class);
+    }
+
+    @Test
+    @DisplayName("한개 라인을 이동한다.")
+    void move() {
+        //   p   c   h   j
+        // f | t | f | t | f
+        //   c   p   j   h
+        Players initPlayers = new Players("pobi,crong,honux,jk");
+        Players actual = line.move(initPlayers);
+        Players expected = new Players(List.of(
+                new Name("crong"),
+                new Name("pobi"),
+                new Name("jk"),
+                new Name("honux")
+        ), new Vertical(1));
+
+        assertThat(actual).isEqualTo(expected);
     }
 }

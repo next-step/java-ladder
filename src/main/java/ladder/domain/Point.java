@@ -34,6 +34,16 @@ public class Point {
         return right;
     }
 
+    public MoveStatus move() {
+        if (!this.left && this.right) {
+            return MoveStatus.RIGHT;
+        }
+        if (this.left && !this.right) {
+            return MoveStatus.LEFT;
+        }
+        return MoveStatus.STOP;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -53,15 +63,5 @@ public class Point {
                 "left=" + left +
                 ", right=" + right +
                 '}';
-    }
-
-    public MoveStatus move() {
-        if (!this.left && this.right) {
-            return MoveStatus.RIGHT;
-        }
-        if (this.left && !this.right) {
-            return MoveStatus.LEFT;
-        }
-        return MoveStatus.STOP;
     }
 }

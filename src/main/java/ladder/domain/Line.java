@@ -61,6 +61,21 @@ public class Line {
         return Collections.unmodifiableList(points);
     }
 
+    public Players move(Players players) {
+        List<Name> nextLinePlayers = new ArrayList<>();
+
+        List<Name> names = players.names();
+        names.forEach(name -> {
+            int index = names.indexOf(name);
+            Point point = points.get(index);
+            int moveIndex = point.move().value();
+            Name movedName = names.get(index + moveIndex);
+            nextLinePlayers.add(movedName);
+        });
+
+        return new Players(nextLinePlayers, players.vertical().move());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
