@@ -35,4 +35,8 @@ public class Participant {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    public boolean isNameEquals(String inputParticipantName) {
+        return inputParticipantName.equals(name);
+    }
 }
