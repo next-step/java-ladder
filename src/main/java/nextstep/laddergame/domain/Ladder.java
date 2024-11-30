@@ -20,8 +20,8 @@ public class Ladder {
         return position.next();
     }
 
-    public boolean isLineAlreadySetAt(int floor) {
-        return lines.isAlreadySetAt(floor);
+    public boolean isLineAlreadySetAt(int lineIndex) {
+        return lines.isAlreadySetAt(lineIndex);
     }
 
     @Override

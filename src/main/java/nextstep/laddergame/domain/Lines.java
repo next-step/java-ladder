@@ -20,8 +20,8 @@ public class Lines {
         return new Lines(Collections.nCopies(height, Boolean.FALSE));
     }
 
-    public boolean isAlreadySetAt(int floor) {
-        return Boolean.TRUE.equals(lines.get(floor));
+    public boolean isAlreadySetAt(int index) {
+        return Boolean.TRUE.equals(lines.get(index));
     }
 
     @Override

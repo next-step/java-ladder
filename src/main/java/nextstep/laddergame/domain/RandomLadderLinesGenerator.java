@@ -10,8 +10,8 @@ public class RandomLadderLinesGenerator implements LadderLinesGenerator {
     @Override
     public Lines generate(Optional<Ladder> beforeLadder, int maxHeight) {
         List<Boolean> newLines = IntStream.range(0, maxHeight)
-                .mapToObj(floor ->
-                        beforeLadder.isPresent() && beforeLadder.get().isLineAlreadySetAt(floor)
+                .mapToObj(lineIndex ->
+                        beforeLadder.isPresent() && beforeLadder.get().isLineAlreadySetAt(lineIndex)
                                 ? Boolean.FALSE
                                 : random.nextBoolean()
                 ).collect(Collectors.toList());
