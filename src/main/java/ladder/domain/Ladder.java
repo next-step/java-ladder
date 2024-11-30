@@ -2,9 +2,14 @@ package ladder.domain;
 
 import ladder.domain.generator.CrossGenerator;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
+    public static final int START_INCLUSIVE = 0;
     private final Lines lines;
     private final Players players;
 
@@ -36,5 +41,20 @@ public class Ladder {
 
     public Players getPlayers() {
         return players;
+    }
+
+    public Results results(Rewards rewards) {
+        Players endPlayers = lines.move(players);
+        Map<PlayerName, RewardName> results = new HashMap<>();
+        IntStream.range(START_INCLUSIVE, endPlayers.size())
+                .boxed()
+                .forEach(index -> {
+                    PlayerName key = endPlayers.names().get(index);
+                    System.out.println("key = " + key);
+                    RewardName value = rewards.names().get(index);
+                    System.out.println("value = " + value);
+                    results.put(key, value);
+                });
+        return new Results(results);
     }
 }

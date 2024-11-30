@@ -6,20 +6,20 @@ import java.util.stream.Collectors;
 public class Players {
 
     public static final String DELIMITER = ",";
-    private final List<PlayerName> names;
+    private final List<PlayerName> playerNames;
     private final Vertical vertical;
 
-    public Players(List<PlayerName> names, Vertical vertical) {
-        this.names = names;
+    public Players(List<PlayerName> playerNames, Vertical vertical) {
+        this.playerNames = playerNames;
         this.vertical = vertical;
     }
 
-    public Players(String names) {
-        this(toNames(names), new Vertical());
+    public Players(String playerNames) {
+        this(toNames(playerNames), new Vertical());
     }
 
     public int size() {
-        return names.size();
+        return playerNames.size();
     }
 
     private static List<PlayerName> toNames(String names) {
@@ -32,7 +32,7 @@ public class Players {
     }
 
     public List<PlayerName> names() {
-        return Collections.unmodifiableList(names);
+        return Collections.unmodifiableList(playerNames);
     }
 
     public Vertical vertical() {
@@ -44,19 +44,19 @@ public class Players {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Players players = (Players) o;
-        return Objects.equals(names, players.names) && Objects.equals(vertical, players.vertical);
+        return Objects.equals(playerNames, players.playerNames) && Objects.equals(vertical, players.vertical);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(names, vertical);
+        return Objects.hash(playerNames, vertical);
     }
 
     @Override
     public String
     toString() {
         return "Players{" +
-                "names=" + names +
+                "names=" + playerNames +
                 ", vertical=" + vertical +
                 '}';
     }

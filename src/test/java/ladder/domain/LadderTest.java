@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -62,5 +63,28 @@ public class LadderTest {
         Players actual = ladder.getPlayers();
 
         assertThat(actual).isEqualTo(players);
+    }
+
+    @Test
+    @DisplayName("결과를 생성한다")
+    void results() {
+        Players arrivalPlayers = new Players(List.of(
+                new PlayerName("pobi"),
+                new PlayerName("honux"),
+                new PlayerName("crong"),
+                new PlayerName("jk")
+        ), new Vertical());
+        Ladder ladder = new Ladder(arrivalPlayers, lines);
+        Rewards rewards = new Rewards("꽝,3000,꽝,5000");
+
+        Results actual = ladder.results(rewards);
+        Results expected = new Results(Map.of(
+                new PlayerName("pobi"), new RewardName("꽝"),
+                new PlayerName("honux"), new RewardName("3000"),
+                new PlayerName("crong"), new RewardName("꽝"),
+                new PlayerName("jk"), new RewardName("5000")
+        ));
+
+        assertThat(actual).isEqualTo(expected);
     }
 }

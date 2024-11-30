@@ -69,7 +69,12 @@ public class PlayersTest {
 
     @Test
     void verticalPosition() {
-        players = new Players(List.of(new PlayerName("pobi"), new PlayerName("crong"), new PlayerName("honux"), new PlayerName("jk")), new Vertical(1));
+        players = new Players(List.of(
+                new PlayerName("pobi"),
+                new PlayerName("crong"),
+                new PlayerName("honux"),
+                new PlayerName("jk")),
+                new Vertical(1));
 
         Vertical actual = players.vertical();
         Vertical expected = new Vertical(1);

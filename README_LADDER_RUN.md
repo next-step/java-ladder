@@ -108,13 +108,12 @@ jk : 5000
 
 ## ADDED_TODO
 ### Domain
+* Ladder
+- [x] 결과들을 생성한다
 * Rewards
-  * Reward
-    - [ ] 이름을 출력한다
-    - [ ] 게임결과를 도출한다("pobi")
-    - [ ] 게임결과들을 도출한다("all")
-    * RewardName extends Name
-      - [x] 생성
+  - [x] 이름을 출력한다
+  * RewardName extends Name
+    - [x] 생성
 * Lines
   - [x] 플레이어 모두 마지막까지 이동
   * Line
@@ -133,6 +132,11 @@ jk : 5000
     - [x] 좌측
     - [x] 우측
     - [x] 이동안함
+* Results
+  - [x] 생성
+  - [x] 게임결과를 도출한다("pobi")
+  - [x] 게임결과들을 도출한다("all")
+  * Map<PlayerName, RewardName> results
 ### View
 * InputView
   - [ ] 실행 결과를 입력받는다.(실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요))
