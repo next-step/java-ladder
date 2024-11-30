@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Vertical {
 
+    public static final int START = 0;
     private final int value;
 
     public Vertical(int value) {
@@ -11,7 +12,7 @@ public class Vertical {
     }
 
     public Vertical() {
-        this(0);
+        this(START);
     }
 
     public Vertical move() {

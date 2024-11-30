@@ -29,6 +29,7 @@ public class RewardsTest {
     }
 
     @Test
+    @DisplayName("보상을 생성한다")
     void create() {
         Rewards actual = new Rewards("꽝,5000,꽝,3000");
         Rewards expected = new Rewards(rewardNames);

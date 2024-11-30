@@ -50,9 +50,7 @@ public class Ladder {
                 .boxed()
                 .forEach(index -> {
                     PlayerName key = endPlayers.names().get(index);
-                    System.out.println("key = " + key);
                     RewardName value = rewards.names().get(index);
-                    System.out.println("value = " + value);
                     results.put(key, value);
                 });
         return new Results(results);

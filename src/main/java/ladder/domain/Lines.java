@@ -3,10 +3,8 @@ package ladder.domain;
 import ladder.domain.generator.CrossGenerator;
 
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 

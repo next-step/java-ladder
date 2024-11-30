@@ -47,14 +47,14 @@ public class PlayersTest {
     }
 
     @Test
-    @DisplayName("플레이어 목록의 size 를 출력한다")
+    @DisplayName("size 를 출력한다")
     void size() {
         int actual = players.size();
         assertThat(actual).isEqualTo(4);
     }
 
     @Test
-    @DisplayName("플레이어 목록의 이름을 출력한다")
+    @DisplayName("이름을 출력한다")
     void names() {
         List<PlayerName> actual = players.names();
         List<PlayerName> expected = List.of(
@@ -68,7 +68,8 @@ public class PlayersTest {
     }
 
     @Test
-    void verticalPosition() {
+    @DisplayName("현재 사다리 높이를 출력한다")
+    void vertical() {
         players = new Players(List.of(
                 new PlayerName("pobi"),
                 new PlayerName("crong"),

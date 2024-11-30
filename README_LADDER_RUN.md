@@ -122,6 +122,8 @@ jk : 5000
       - [x] 플레이어 가로 우측 이동
       - [x] 플레이어 가로 이동 없음
 * Players
+  - [x] 이름목록 출력한다
+  - [x] 현재 사다리 높이를 출력한다
   * PlayerName extends Name
     - [x] 생성
   * Vertical

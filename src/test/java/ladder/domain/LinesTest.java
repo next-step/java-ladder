@@ -95,6 +95,7 @@ public class LinesTest {
     }
 
     @Test
+    @DisplayName("플레이어 모두 마지막까지 이동")
     void move() {
         //    |-----|     |-----| pobi  honux crong jk    0
         //    |     |-----|     | honux pobi  jk    crong 1
