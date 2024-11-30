@@ -1,5 +1,6 @@
 package nextstep.laddergame.domain;
 
+import nextstep.laddergame.service.PositionDirection;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,5 +26,14 @@ class PositionTest {
         assertThat(actual)
                 .isNotSameAs(given)
                 .isEqualTo(new Position(1));
+    }
+
+    @DisplayName("PositionDirection 을 전달하면 Position 값을 이동시킨 객체를 반환한다.")
+    @Test
+    void move() {
+        Position given = new Position(1);
+
+        assertThat(given.move(PositionDirection.RIGHT)).isEqualTo(new Position(2));
+        assertThat(given.move(PositionDirection.LEFT)).isEqualTo(new Position(0));
     }
 }

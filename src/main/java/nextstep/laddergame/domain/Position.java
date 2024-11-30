@@ -1,5 +1,7 @@
 package nextstep.laddergame.domain;
 
+import nextstep.laddergame.service.PositionDirection;
+
 import java.util.Objects;
 
 public class Position {
@@ -19,6 +21,18 @@ public class Position {
         return new Position(this.position + 1);
     }
 
+    public Position move(PositionDirection direction) {
+        return new Position(position + direction.getValue());
+    }
+
+    public boolean isNotFirst() {
+        return position != 0;
+    }
+
+    public int value() {
+        return position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -34,5 +48,12 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(position);
+    }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "position=" + position +
+                '}';
     }
 }
