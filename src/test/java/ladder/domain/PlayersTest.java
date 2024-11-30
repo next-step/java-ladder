@@ -1,12 +1,15 @@
 package ladder.domain;
 
+import ladder.exception.PlayersException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static ladder.domain.Players.NOT_ENOUGH_PLAYERS_SIZE_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PlayersTest {
 
@@ -44,6 +47,15 @@ public class PlayersTest {
         Players expected = new Players(List.of(playerName1, playerName2, playerName3, playerName4), new Vertical());
 
         assertThat(players).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("플레이어 목록을 생성실패한다: 플레이어 목록이 1명 미만")
+    void create_실패_플레이어_목록이_1명_미만() {
+        assertThatThrownBy(() -> {
+            new Players(List.of(), new Vertical());
+        }).isInstanceOf(PlayersException.class)
+                .hasMessage(NOT_ENOUGH_PLAYERS_SIZE_MESSAGE);
     }
 
     @Test

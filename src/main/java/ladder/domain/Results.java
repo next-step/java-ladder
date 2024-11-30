@@ -15,6 +15,15 @@ public class Results {
         this.results = results;
     }
 
+    public RewardName result(PlayerName playerName) {
+        return Optional.ofNullable(results.get(playerName))
+                .orElseThrow(() -> new NoNameException(NO_NAME_MESSAGE));
+    }
+
+    public Map<PlayerName, RewardName> results() {
+        return Collections.unmodifiableMap(results);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -28,12 +37,10 @@ public class Results {
         return Objects.hash(results);
     }
 
-    public RewardName result(PlayerName playerName) {
-        return Optional.ofNullable(results.get(playerName))
-                .orElseThrow(() -> new NoNameException(NO_NAME_MESSAGE));
-    }
-
-    public Map<PlayerName, RewardName> results() {
-        return Collections.unmodifiableMap(results);
+    @Override
+    public String toString() {
+        return "Results{" +
+                "results=" + results +
+                '}';
     }
 }

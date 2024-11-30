@@ -1,13 +1,18 @@
 package ladder.domain;
 
+import ladder.exception.VerticalException;
+
 import java.util.Objects;
 
 public class Vertical {
-
+    public static final String VERTICAL_IS_LESS_THEN_ZERO = "사다리 높이는 0보다 작을수 없습니다.";
     public static final int START = 0;
     private final int value;
 
     public Vertical(int value) {
+        if (value < 0) {
+            throw new VerticalException(VERTICAL_IS_LESS_THEN_ZERO);
+        }
         this.value = value;
     }
 

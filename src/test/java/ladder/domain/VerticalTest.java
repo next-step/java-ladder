@@ -1,11 +1,15 @@
 package ladder.domain;
 
+import ladder.exception.VerticalException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static ladder.domain.Vertical.VERTICAL_IS_LESS_THEN_ZERO;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class VerticalTest {
+
     @Test
     @DisplayName("사다리의 현재 높이를 생성한다")
     void create() {
@@ -13,6 +17,15 @@ public class VerticalTest {
         Vertical expected = new Vertical(0);
 
         assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("사다리의 현재 높이를 생성실패: 0보다 작을 수 없다")
+    void create_실패_0보다_작을_수_없다() {
+        assertThatThrownBy(() -> {
+             new Vertical(-1);
+        }).isInstanceOf(VerticalException.class)
+                .hasMessage(VERTICAL_IS_LESS_THEN_ZERO);
     }
 
     @Test

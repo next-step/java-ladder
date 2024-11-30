@@ -20,7 +20,6 @@ public abstract class Name {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new InvalidNameException(NOT_ALLOW_EXCEED_MAX_NAME_LENGTH_MESSAGE);
         }
-
         this.name = name;
     }
 
@@ -43,5 +42,12 @@ public abstract class Name {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return "Name{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

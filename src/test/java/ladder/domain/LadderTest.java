@@ -75,7 +75,7 @@ public class LadderTest {
                 new PlayerName("jk")
         ), new Vertical());
         Ladder ladder = new Ladder(arrivalPlayers, lines);
-        Rewards rewards = new Rewards("꽝,3000,꽝,5000");
+        Rewards rewards = new Rewards("꽝,3000,꽝,5000", 4);
 
         Results actual = ladder.results(rewards);
         Results expected = new Results(Map.of(
