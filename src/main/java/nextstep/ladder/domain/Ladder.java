@@ -1,4 +1,4 @@
-package nextstep.ladder.interfaces;
+package nextstep.ladder.domain;
 
 import java.util.List;
 

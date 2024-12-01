@@ -3,6 +3,7 @@ package nextstep.ladder.factory;
 import java.util.Arrays;
 import java.util.List;
 import nextstep.ladder.domain.LinesImpl;
+import nextstep.ladder.domain.Lines;
 
 public class LinesFactory {
     public static LinesImpl lines(List<Boolean> lines) {

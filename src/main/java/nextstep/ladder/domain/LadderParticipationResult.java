@@ -2,7 +2,6 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.dto.CommaSeparatedResult;
 import nextstep.ladder.dto.ResultDto;
-import nextstep.ladder.interfaces.Position;
 
 public class LadderParticipationResult {
 

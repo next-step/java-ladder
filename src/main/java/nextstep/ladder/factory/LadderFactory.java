@@ -2,6 +2,7 @@ package nextstep.ladder.factory;
 
 import nextstep.ladder.domain.LadderImpl;
 import nextstep.ladder.generator.NonConsecutiveFlagGenerator;
+import nextstep.ladder.domain.Ladder;
 
 public class LadderFactory {
 

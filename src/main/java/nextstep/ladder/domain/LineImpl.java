@@ -1,8 +1,6 @@
 package nextstep.ladder.domain;
 
 import java.util.Objects;
-import nextstep.ladder.interfaces.Line;
-import nextstep.ladder.interfaces.Position;
 
 public class LineImpl implements Line {
 

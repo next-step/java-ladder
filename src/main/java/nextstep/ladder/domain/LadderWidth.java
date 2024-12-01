@@ -2,7 +2,6 @@ package nextstep.ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import nextstep.ladder.interfaces.Position;
 
 public class LadderWidth {
     private static final MinSizeValidator minSizeValidator = new MinSizeValidator();

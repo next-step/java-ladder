@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 import nextstep.ladder.dto.CommaSeparatedResult;
 import nextstep.ladder.dto.ResultDto;
-import nextstep.ladder.interfaces.Position;
 import org.junit.jupiter.api.Test;
 
 public class LadderParticipationResultTest {

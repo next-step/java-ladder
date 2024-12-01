@@ -4,8 +4,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import nextstep.ladder.dto.CommaSeparatedResult;
 import nextstep.ladder.dto.ResultDto;
-import nextstep.ladder.interfaces.Ladder;
-import nextstep.ladder.interfaces.Lines;
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Lines;
 
 public class OutputView {
 

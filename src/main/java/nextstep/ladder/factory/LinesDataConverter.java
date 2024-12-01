@@ -3,7 +3,7 @@ package nextstep.ladder.factory;
 import java.util.ArrayList;
 import java.util.List;
 import nextstep.ladder.domain.LineImpl;
-import nextstep.ladder.interfaces.Line;
+import nextstep.ladder.domain.Line;
 
 public class LinesDataConverter {
     static List<Line> convert(List<Boolean> points) {
