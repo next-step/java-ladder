@@ -14,33 +14,14 @@ public class Ladder {
         return this.lines.size();
     }
 
-    public long playerCount() {
-        return this.lines.get(0).nodeCount();
-    }
-
     public int travel(int playerNumber) {
-//        StepResult stepResult = new StepResult(new Dot(playerNumber * 2, 0, DotType.NODE), true);
-        StepResult stepResult = new StepResult(DotCache.get(playerNumber * 2, 0), true);
+        Step step = new Step(DotCache.get(playerNumber * 2, 0), true);
 
-        while (stepResult.lowerHeightThan(height())) {
-            stepResult = moveStep(stepResult);
+        while (step.lowerHeightThan(height())) {
+            step = step.forward(this.lines.get(step.getDotY()));
         }
 
-        return stepResult.playerNumber();
-    }
-
-    private StepResult moveStep(StepResult stepResult) {
-        Dot curDot = stepResult.getCurDot();
-
-        if (availLeft(curDot) && stepResult.getHorizontalMovable()) {
-            return stepResult.refresh(curDot.moveLeft(), false);
-        }
-
-        if (availRight(curDot) && stepResult.getHorizontalMovable()) {
-            return stepResult.refresh(curDot.moveRight(), false);
-        }
-
-        return stepResult.refresh(curDot.moveDown(), true);
+        return step.playerNumber();
     }
 
     @Override
@@ -56,13 +37,7 @@ public class Ladder {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        for(String playerName : players) {
-            sb.append(Constants.PADDING);
-            sb.append(playerName);
-            for(int i = 0; i < 5 - playerName.length(); i++) {
-                sb.append(" ");
-            }
-        }
+        appendPlayers(sb);
 
         sb.append("\n");
 
@@ -74,23 +49,11 @@ public class Ladder {
         return sb.toString();
     }
 
-    private boolean availRight(Dot curDot) {
-        Line line = this.lines.get(curDot.getY());
-
-        if (curDot.getX() == line.size() - 1) {
-            return false;
+    private void appendPlayers(StringBuilder sb) {
+        for (String playerName : this.players) {
+            sb.append(Constants.PADDING);
+            sb.append(playerName);
+            sb.append(" ".repeat(Math.max(0, 5 - playerName.length())));
         }
-
-        return line.isBridge(curDot.getX() + 1);
-    }
-
-    private boolean availLeft(Dot curDot) {
-        Line line = this.lines.get(curDot.getY());
-
-        if (curDot.getX() == 0) {
-            return false;
-        }
-
-        return line.isBridge(curDot.getX() - 1);
     }
 }

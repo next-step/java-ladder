@@ -10,7 +10,6 @@ public class LadderBuilderTest {
     void build() {
         Ladder ladder = ladderBuilder.build("pobi,crong,honux".split(","), 5);
 
-        assertThat(ladder.playerCount()).isEqualTo(3);
         assertThat(ladder.height()).isEqualTo(5);
     }
 

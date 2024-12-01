@@ -7,12 +7,24 @@ public class Point {
         this.y = y;
     }
 
-    public int getX() {
-        return x;
+    public int calcAddX(int n) {
+        return this.x + n;
     }
 
-    public int getY() {
-        return y;
+    public int calcDivX(int n) {
+        return this.x / n;
+    }
+
+    public int calcAddY(int n) {
+        return this.y + n;
+    }
+
+    public boolean xIs(int n) {
+        return this.x == n;
+    }
+
+    public boolean yIsLowerThan(int y) {
+        return this.y < y;
     }
 
     @Override

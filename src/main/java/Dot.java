@@ -7,12 +7,20 @@ public class Dot {
         this.type = type;
     }
 
-    public int getY() {
-        return this.point.getY();
+    public int calcAddX(int n) {
+        return this.point.calcAddX(n);
     }
 
-    public int getX() {
-        return this.point.getX();
+    public int calcAddY(int n) {
+        return this.point.calcAddY(n);
+    }
+
+    public boolean xIs(int n) {
+        return this.point.xIs(n);
+    }
+
+    public boolean yIsLowerThan(int n) {
+        return this.point.yIsLowerThan(n);
     }
 
     public boolean isNode() {
@@ -28,19 +36,23 @@ public class Dot {
             throw new RuntimeException();
         }
 
-        return this.point.getX() / 2;
+        return this.point.calcDivX(2);
     }
 
     public Dot moveLeft() {
-        return new Dot(PointCache.get(this.point.getX() - 2, this.point.getY()), this.type);
+        return new Dot(PointCache.get(this.point.calcAddX(-2), this.point.calcAddY(0)), this.type);
     }
 
     public Dot moveRight() {
-        return new Dot(PointCache.get(this.point.getX() + 2, this.point.getY()), this.type);
+        return new Dot(PointCache.get(this.point.calcAddX(2), this.point.calcAddY(0)), this.type);
     }
 
     public Dot moveDown() {
-        return new Dot(PointCache.get(this.point.getX(), this.point.getY() + 1), this.type);
+        return new Dot(PointCache.get(this.point.calcAddX(0), this.point.calcAddY(1)), this.type);
+    }
+
+    public String print() {
+        return DotType.print(this.type);
     }
 
     @Override
@@ -50,9 +62,5 @@ public class Dot {
         Dot dot = (Dot) o;
 
         return this.point == dot.point && this.type == dot.type;
-    }
-
-    public String print() {
-        return DotType.print(this.type);
     }
 }

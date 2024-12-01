@@ -12,7 +12,7 @@ public class Line {
 
         this.dots = new ArrayList<>();
 
-        for(int i = 0; i < dotTypes.size(); i++) {
+        for (int i = 0; i < dotTypes.size(); i++) {
             Point p = PointCache.get(lineNumber, i);
             Dot dot = new Dot(p, dotTypes.get(i));
 
