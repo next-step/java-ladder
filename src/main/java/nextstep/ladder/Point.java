@@ -37,6 +37,9 @@ public class Point {
     }
 
     public Point next(boolean right) {
+        if(this.right) {
+           return new Point(this.right, false);
+        }
         return new Point(this.right, right);
     }
 
