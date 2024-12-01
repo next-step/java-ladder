@@ -1,7 +1,8 @@
 package ladder.domain;
 
+import ladder.domain.enums.MoveStatus;
 import ladder.exception.PointException;
-import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +12,21 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 public class PointTest {
+
+    private Point first;
+    private Point next1;
+    private Point next2;
+    private Point last;
+
+    @BeforeEach
+    void setUp() {
+        // f t f f f
+        first = Point.first(true);
+        next1 = first.next(false);
+        next2 = next1.next(false);
+        last = next2.last();
+    }
+
     @Test
     @DisplayName("첫번째 포인트를 생성한다")
     void first() {
@@ -53,23 +69,46 @@ public class PointTest {
     @Test
     @DisplayName("현재 포인트를 출력한다")
     void getCurrent() {
-        // f t f t f
-        Point first = Point.first(true);
-        Point next1 = first.next(false);
-        Point next2 = next1.next(true);
-        Point last = next2.last();
-
-        boolean firstCurrent = first.getCurrent();
+        //  fir ne1 ne2 las
+        // f | t | f | f | f
+        boolean firstCurrent = first.getRight();
         boolean firstCurrentExpected = true;
 
-        boolean next1Current = next1.getCurrent();
+        boolean next1Current = next1.getRight();
         boolean next1CurrentExpected = false;
 
-        boolean next2Current = next2.getCurrent();
-        boolean next2CurrentExpected = true;
+        boolean next2Current = next2.getRight();
+        boolean next2CurrentExpected = false;
 
-        Assertions.assertThat(firstCurrent).isEqualTo(firstCurrentExpected);
-        Assertions.assertThat(next1Current).isEqualTo(next1CurrentExpected);
-        Assertions.assertThat(next2Current).isEqualTo(next2CurrentExpected);
+        assertThat(firstCurrent).isEqualTo(firstCurrentExpected);
+        assertThat(next1Current).isEqualTo(next1CurrentExpected);
+        assertThat(next2Current).isEqualTo(next2CurrentExpected);
+    }
+
+    @Test
+    @DisplayName("우측 이동")
+    void move_우측() {
+        MoveStatus actualFirst = first.move();
+        MoveStatus expectedFirst = MoveStatus.RIGHT;
+
+        assertThat(actualFirst).isEqualTo(expectedFirst);
+    }
+
+    @Test
+    @DisplayName("좌측 이동")
+    void move_좌측() {
+        MoveStatus actualNext1 = next1.move();
+        MoveStatus expectedNext1 = MoveStatus.LEFT;
+
+        assertThat(actualNext1).isEqualTo(expectedNext1);
+    }
+
+    @Test
+    @DisplayName("이동 없음")
+    void move_이동_없음() {
+        MoveStatus actualNext2 = next2.move();
+        MoveStatus expectedNext2 = MoveStatus.STOP;
+
+        assertThat(actualNext2).isEqualTo(expectedNext2);
     }
 }
