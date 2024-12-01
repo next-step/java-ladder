@@ -6,7 +6,7 @@ import nextstep.ladder.domain.Ladder;
 
 public class LadderFactory {
 
-    public static LadderImpl ladder(int height, int width, NonConsecutiveFlagGenerator generator) {
+    public static Ladder ladder(int height, int width, NonConsecutiveFlagGenerator generator) {
         return new LadderImpl(width, LadderDataConverter.convert(height, width, generator));
     }
 
