@@ -8,10 +8,8 @@ public enum DotType {
     }
 
     public static String print(DotType dotType) {
-        String padding = "  ";
-
-        if(dotType == EMPTY) { return "     "; }
-        if(dotType == NODE) { return padding + "  |  "; }
+        if (dotType == EMPTY) { return "     "; }
+        if (dotType == NODE) { return Constants.PADDING + "  |  "; }
 
         return "-----";
     }

@@ -32,7 +32,7 @@ public class LadderBuilder {
                 }
             }
 
-            lines.add(new Line(types));
+            lines.add(new Line(i, types));
         }
 
         return new Ladder(players, lines);

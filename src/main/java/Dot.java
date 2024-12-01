@@ -1,20 +1,26 @@
 public class Dot {
-    private int x;
-    private int y;
-    private DotType type;
+    private final Point point;
+    private final DotType type;
 
-    public Dot(int x, int y, DotType type) {
-        this.x = x;
-        this.y = y;
+    public Dot(Point point, DotType type) {
+        this.point = point;
         this.type = type;
     }
 
     public int getY() {
-        return this.y;
+        return this.point.getY();
     }
 
     public int getX() {
-        return this.x;
+        return this.point.getX();
+    }
+
+    public boolean isNode() {
+        return this.type == DotType.NODE;
+    }
+
+    public boolean isBridge() {
+        return this.type == DotType.BRIDGE;
     }
 
     public int playerNumber() {
@@ -22,19 +28,19 @@ public class Dot {
             throw new RuntimeException();
         }
 
-        return this.x / 2;
+        return this.point.getX() / 2;
     }
 
     public Dot moveLeft() {
-        return new Dot(this.x - 2, this.y, this.type);
+        return new Dot(PointCache.get(this.point.getX() - 2, this.point.getY()), this.type);
     }
 
     public Dot moveRight() {
-        return new Dot(this.x + 2, this.y, this.type);
+        return new Dot(PointCache.get(this.point.getX() + 2, this.point.getY()), this.type);
     }
 
     public Dot moveDown() {
-        return new Dot(this.x, this.y + 1, this.type);
+        return new Dot(PointCache.get(this.point.getX(), this.point.getY() + 1), this.type);
     }
 
     @Override
@@ -43,6 +49,10 @@ public class Dot {
         if (o == null || getClass() != o.getClass()) return false;
         Dot dot = (Dot) o;
 
-        return x == dot.x && y == dot.y && type == dot.type;
+        return this.point == dot.point && this.type == dot.type;
+    }
+
+    public String print() {
+        return DotType.print(this.type);
     }
 }

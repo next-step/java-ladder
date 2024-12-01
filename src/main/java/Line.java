@@ -1,16 +1,28 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Line {
-    private final List<DotType> dots;
+    private final int lineNumber;
+    private final List<Dot> dots;
 
-    public Line(List<DotType> dots) {
-        this.dots = dots;
+    public Line(int lineNumber, List<DotType> dotTypes) {
+        this.lineNumber = lineNumber;
+
+        this.dots = new ArrayList<>();
+
+        for(int i = 0; i < dotTypes.size(); i++) {
+            Point p = PointCache.get(lineNumber, i);
+            Dot dot = new Dot(p, dotTypes.get(i));
+
+            DotCache.put(p, dot);
+            this.dots.add(dot);
+        }
     }
 
-    public Line(DotType... types) {
-        this.dots = Arrays.stream(types).collect(Collectors.toList());
+    public Line(int lineNumber, DotType... types) {
+        this(lineNumber, Arrays.asList(types));
     }
 
     public int size() {
@@ -18,11 +30,11 @@ public class Line {
     }
 
     public long nodeCount() {
-        return this.dots.stream().filter(d -> d == DotType.NODE).count();
+        return this.dots.stream().filter(Dot::isNode).count();
     }
 
     public boolean isBridge(int i) {
-        return this.dots.get(i).is(DotType.BRIDGE);
+        return this.dots.get(i).isBridge();
     }
 
     @Override
@@ -31,13 +43,13 @@ public class Line {
         if (o == null || getClass() != o.getClass()) return false;
         Line line = (Line) o;
 
-        return this.dots.equals(line.dots);
+        return this.lineNumber == line.lineNumber && this.dots.equals(line.dots);
     }
 
     @Override
     public String toString() {
         return this.dots.stream()
-                .map(DotType::print)
+                .map(Dot::print)
                 .collect(Collectors.joining(""));
     }
 }

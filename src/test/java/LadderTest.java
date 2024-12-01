@@ -13,9 +13,9 @@ public class LadderTest {
 
         List<Line> lines = new ArrayList<>();
 
-        lines.add(new Line(DotType.NODE, DotType.EMPTY, DotType.NODE));
-        lines.add(new Line(DotType.NODE, DotType.BRIDGE, DotType.NODE));
-        lines.add(new Line(DotType.NODE, DotType.EMPTY, DotType.NODE));
+        lines.add(new Line(0, DotType.NODE, DotType.EMPTY, DotType.NODE));
+        lines.add(new Line(0, DotType.NODE, DotType.BRIDGE, DotType.NODE));
+        lines.add(new Line(0, DotType.NODE, DotType.EMPTY, DotType.NODE));
 
         assertThat(new Ladder(playerNames, lines)).isEqualTo(new Ladder(playerNames, lines));
     }

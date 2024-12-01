@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,6 +18,31 @@ public class Ladder {
         return this.lines.get(0).nodeCount();
     }
 
+    public int travel(int playerNumber) {
+//        StepResult stepResult = new StepResult(new Dot(playerNumber * 2, 0, DotType.NODE), true);
+        StepResult stepResult = new StepResult(DotCache.get(playerNumber * 2, 0), true);
+
+        while (stepResult.lowerHeightThan(height())) {
+            stepResult = moveStep(stepResult);
+        }
+
+        return stepResult.playerNumber();
+    }
+
+    private StepResult moveStep(StepResult stepResult) {
+        Dot curDot = stepResult.getCurDot();
+
+        if (availLeft(curDot) && stepResult.getHorizontalMovable()) {
+            return stepResult.refresh(curDot.moveLeft(), false);
+        }
+
+        if (availRight(curDot) && stepResult.getHorizontalMovable()) {
+            return stepResult.refresh(curDot.moveRight(), false);
+        }
+
+        return stepResult.refresh(curDot.moveDown(), true);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -28,38 +52,12 @@ public class Ladder {
         return this.lines.equals(ladder.lines);
     }
 
-    public int travel(int playerNumber) {
-        Dot curDot = new Dot(playerNumber * 2, 0, DotType.NODE);
-
-        boolean horizontalMovable = true;
-        while (curDot.getY() < height()) {
-            if (availLeft(curDot) && horizontalMovable) {
-                curDot = curDot.moveLeft();
-                horizontalMovable = false;
-                continue;
-            }
-
-            if(availRight(curDot) && horizontalMovable) {
-                curDot = curDot.moveRight();
-                horizontalMovable = false;
-                continue;
-            }
-
-            curDot = curDot.moveDown();
-            horizontalMovable = true;
-        }
-
-        return curDot.getX();
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        String padding = "  ";
-
 
         for(String playerName : players) {
-            sb.append(padding);
+            sb.append(Constants.PADDING);
             sb.append(playerName);
             for(int i = 0; i < 5 - playerName.length(); i++) {
                 sb.append(" ");

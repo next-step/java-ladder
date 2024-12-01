@@ -28,9 +28,5 @@ public class LadderBuilderTest {
 
         assertThat(travel_1).isNotEqualTo(travel_2);
         assertThat(travel_1).isNotEqualTo(travel_3);
-
-        assertThat(travel_1 % 2).isEqualTo(0);
-        assertThat(travel_2 % 2).isEqualTo(0);
-        assertThat(travel_3 % 2).isEqualTo(0);
     }
 }
