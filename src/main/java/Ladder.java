@@ -1,24 +1,29 @@
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
-    private final List<String> players;
-    private final List<Line> lines;
+    private final Players players;
+    private final Lines lines;
 
     public Ladder(String[] playerNames, List<Line> lines) {
-        this.players = Arrays.asList(playerNames);
-        this.lines = lines;
+        this(Arrays.asList(playerNames), lines);
+    }
+
+    public Ladder(List<String> players, List<Line> lines) {
+        this.players = new Players(players.stream().map(Player::new).collect(Collectors.toList()));
+        this.lines = new Lines(lines);
     }
 
     public int height() {
-        return this.lines.size();
+        return this.lines.height();
     }
 
     public int travel(int playerNumber) {
-        Step step = new Step(DotCache.get(playerNumber * 2, 0), true);
+        Step step = new Step(DotCache.get(playerNumber * 2, 0), 0, true);
 
         while (step.lowerHeightThan(height())) {
-            step = step.forward(this.lines.get(step.getDotY()));
+            step = step.forward(this.lines.heightAt(step.height()));
         }
 
         return step.playerNumber();
@@ -37,23 +42,10 @@ public class Ladder {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        appendPlayers(sb);
-
+        this.players.appendPlayers(sb);
         sb.append("\n");
-
-        for (Line line : lines) {
-            sb.append(line.toString());
-            sb.append("\n");
-        }
+        this.lines.appendLines(sb);
 
         return sb.toString();
-    }
-
-    private void appendPlayers(StringBuilder sb) {
-        for (String playerName : this.players) {
-            sb.append(Constants.PADDING);
-            sb.append(playerName);
-            sb.append(" ".repeat(Math.max(0, 5 - playerName.length())));
-        }
     }
 }

@@ -1,22 +1,25 @@
 
 public class Step {
     private boolean horizontalMovable;
+    private int curHeight;
     private Dot curDot;
 
-    public Step(Dot curDot, boolean horizontalMovable) {
+    public Step(Dot curDot, int curHeight, boolean horizontalMovable) {
         this.curDot = curDot;
+        this.curHeight = 0;
         this.horizontalMovable = horizontalMovable;
     }
 
-    public Step refresh(Dot curDot, boolean horizontalMovable) {
+    public Step refresh(Dot curDot, int curHeight, boolean horizontalMovable) {
         this.curDot = curDot;
+        this.curHeight = curHeight;
         this.horizontalMovable = horizontalMovable;
 
         return this;
     }
 
-    public int getDotY() {
-        return this.curDot.calcAddY(0);
+    public int height() {
+        return this.curHeight;
     }
 
     public int playerNumber() {
@@ -29,14 +32,14 @@ public class Step {
 
     public Step forward(Line line) {
         if (availLeft(line) && this.horizontalMovable) {
-            return this.refresh(curDot.moveLeft(), false);
+            return this.refresh(curDot.moveLeft(), this.curHeight, false);
         }
 
         if (availRight(line) && this.horizontalMovable) {
-            return this.refresh(curDot.moveRight(), false);
+            return this.refresh(curDot.moveRight(), this.curHeight, false);
         }
 
-        return this.refresh(curDot.moveDown(), true);
+        return this.refresh(curDot.moveDown(), this.curHeight + 1, true);
     }
 
     private boolean availRight(Line line) {

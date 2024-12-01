@@ -11,20 +11,12 @@ public class Dot {
         return this.point.calcAddX(n);
     }
 
-    public int calcAddY(int n) {
-        return this.point.calcAddY(n);
-    }
-
     public boolean xIs(int n) {
         return this.point.xIs(n);
     }
 
     public boolean yIsLowerThan(int n) {
         return this.point.yIsLowerThan(n);
-    }
-
-    public boolean isNode() {
-        return this.type == DotType.NODE;
     }
 
     public boolean isBridge() {
