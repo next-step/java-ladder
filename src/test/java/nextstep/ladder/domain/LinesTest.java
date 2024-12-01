@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
 
 import java.util.List;
+import nextstep.ladder.factory.LinesFactory;
 import org.junit.jupiter.api.Test;
 
 public class LinesTest {
