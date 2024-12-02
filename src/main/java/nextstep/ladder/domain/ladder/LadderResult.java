@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.ladder;
 
+import java.util.Collections;
 import java.util.List;
 
 public class LadderResult {
@@ -15,6 +16,10 @@ public class LadderResult {
         }
 
         this.ladderResult = ladderResult;
+    }
+
+    public List<String> getLadderResult() {
+        return Collections.unmodifiableList(ladderResult);
     }
 
     public String getResultByIndex(int index) {
