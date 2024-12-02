@@ -32,7 +32,7 @@ class PointsTest {
 
     @Test
     void getPoints() {
-        Points points = new Points(1, new SpecificLineGenerator());
+        Points points = new Points(2, new SpecificLineGenerator());
 
         List<Point> selectedPoints = points.getPoints();
 
