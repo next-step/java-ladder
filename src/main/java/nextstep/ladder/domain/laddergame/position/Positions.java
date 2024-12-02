@@ -36,4 +36,8 @@ public class Positions {
     public List<Position> getPositions() {
         return Collections.unmodifiableList(positions);
     }
+
+    public int getLastPosition() {
+        return positions.get(positions.size() - 1).getPosition();
+    }
 }

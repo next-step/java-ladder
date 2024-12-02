@@ -8,7 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-class LadderResultTest {
+public class LadderResultTest {
+    public static LadderResult ladderResult = new LadderResult(List.of("꽝", "5000원", "10000원", "15000원"));
 
     @Test
     void create_성공() {

@@ -16,4 +16,8 @@ public class LadderResult {
 
         this.ladderResult = ladderResult;
     }
+
+    public String getResultByIndex(int index) {
+        return ladderResult.get(index);
+    }
 }
