@@ -32,4 +32,13 @@ class PointTest {
 
         assertThat(point.canMoveLeft()).isFalse();
     }
+
+    @Test
+    @DisplayName("마지막 포인트는 오른쪽으로 이동할 수 없고, 왼쪽으로만 이동 가능성이 있어야 한다")
+    void last() {
+        Point point = Point.first(true);
+        Point lastPoint = point.last();
+
+        assertThat(lastPoint.canMoveRight()).isFalse();
+    }
 }

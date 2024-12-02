@@ -17,6 +17,10 @@ public class Point {
         return new Point(false, right);
     }
 
+    public Point last() {
+        return new Point(this.right, false);
+    }
+
     public Point next(boolean nextRight) {
         return new Point(this.right, nextRight);
     }
