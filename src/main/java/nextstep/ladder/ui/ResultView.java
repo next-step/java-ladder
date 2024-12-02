@@ -2,6 +2,7 @@ package nextstep.ladder.ui;
 
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.LadderResult;
+import nextstep.ladder.domain.laddergame.LadderGameResult;
 import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.line.point.Point;
 import nextstep.ladder.domain.player.Player;
@@ -71,4 +72,11 @@ public class ResultView {
         return stringBuilder.toString();
     }
 
+    public static void printGameResult(LadderGameResult ladderGameResult) {
+        String playerName = InputView.getResultPlayer();
+
+        if (!"all".equals(playerName)) {
+            System.out.println(ladderGameResult.getResult(playerName));
+        }
+    }
 }

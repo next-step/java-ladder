@@ -11,6 +11,7 @@ public class InputView {
     private static final String PLAYERS_NAME_TEXT = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
     private static final String LADDER_HEIGHT_TEXT = "\n최대 사다리 높이는 몇 개인가요?";
     private static final String LADDER_RESULT_TEXT = "\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)";
+    private static final String RESULT_PLAYER_MESSAGE = "\n결과를 보고 싶은 사람은?";
     private static final Scanner scanner = new Scanner(System.in);
     private static final String DELIMITER_COMMA = ",";
 
@@ -27,7 +28,7 @@ public class InputView {
     public static int getLadderHeight() {
         System.out.println(LADDER_HEIGHT_TEXT);
 
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
     }
 
     public static List<String> getLadderResult() {
@@ -37,6 +38,12 @@ public class InputView {
 
         return Arrays.stream(splitByDelimiter(inputLadderResult))
                      .collect(Collectors.toList());
+    }
+
+    public static String getResultPlayer() {
+        System.out.println(RESULT_PLAYER_MESSAGE);
+
+        return scanner.nextLine();
     }
 
     private static String[] splitByDelimiter(String text) {

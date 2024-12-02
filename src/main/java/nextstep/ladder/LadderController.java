@@ -2,6 +2,8 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.LadderResult;
+import nextstep.ladder.domain.laddergame.LadderGame;
+import nextstep.ladder.domain.laddergame.LadderGameResult;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.ResultView;
@@ -15,6 +17,12 @@ public class LadderController {
 
         Ladder ladder = new Ladder(players, ladderHeight);
 
-        ResultView.printLadder(ladder);
+        ResultView.printLadder(ladder, ladderResult);
+
+        LadderGame ladderGame = new LadderGame(ladder, ladderResult);
+        LadderGameResult ladderGameResult = ladderGame.play();
+
+        ResultView.printGameResult(ladderGameResult);
+
     }
 }
