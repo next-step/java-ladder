@@ -16,6 +16,9 @@ public class OutputView {
     private static final String EMPTY_LADDER_LINE = "|     ";
     private static final String SET_LADDER_LINE = "|-----";
 
+    private OutputView() {
+    }
+
     public static void printLadder(LadderGame ladderGame) {
         StringBuilder stringBuilder = new StringBuilder("사다리 결과").append(LINE_SEPARATOR).append(LINE_SEPARATOR);
         stringBuilder.append(createParticipantsName(ladderGame.getParticipants())).append(LINE_SEPARATOR);
@@ -32,7 +35,7 @@ public class OutputView {
     }
 
     private static String createLadder(LadderGame ladderGame) {
-        return IntStream.range(0, ladderGame.getMaxHeight())
+        return IntStream.range(0, ladderGame.getLaddersLineSize())
                 .mapToObj(height -> {
                     String output = IntStream.range(0, ladderGame.getLaddersSize())
                             .mapToObj(position -> ladderGame.getLadders().ladderAt(position).isLineAlreadySetAt(height) ? SET_LADDER_LINE : EMPTY_LADDER_LINE)

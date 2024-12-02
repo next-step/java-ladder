@@ -24,6 +24,10 @@ public class Lines {
         return Boolean.TRUE.equals(lines.get(index));
     }
 
+    public int totalSize() {
+        return Objects.isNull(lines) || lines.isEmpty() ? 0 : lines.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -16,6 +16,20 @@ public class Ladders {
         return ladders.size();
     }
 
+    public Position resolveFinalPosition(Position position) {
+        for (int lineIndex = 0; lineIndex < ladders.size(); lineIndex++) {
+            position = moveOrNot(position, lineIndex);
+        }
+        return position;
+    }
+
+    private Position moveOrNot(Position ladderFinalPosition, int lineIndex) {
+        if (isMovableLadder(ladderFinalPosition, lineIndex)) {
+            return ladderFinalPosition.move(resolveMoveDirection(ladderFinalPosition, lineIndex));
+        }
+        return ladderFinalPosition;
+    }
+
     public boolean isMovableLadder(Position ladderPosition, int lineIndex) {
         int positionValue = ladderPosition.value();
         if (ladders.get(positionValue).isLineAlreadySetAt(lineIndex)) {
@@ -43,6 +57,10 @@ public class Ladders {
 
     private Ladder getLeftLadder(Position position) {
         return ladders.get(position.value() - 1);
+    }
+
+    public Integer lineSize() {
+        return Objects.isNull(ladders) || ladders.isEmpty() ? 0 : ladders.get(0).lineSize();
     }
 
     @Override

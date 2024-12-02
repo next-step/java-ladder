@@ -40,4 +40,8 @@ public class Ladder {
     public int hashCode() {
         return Objects.hash(position, lines);
     }
+
+    public int lineSize() {
+        return Objects.isNull(lines) ? 0 : lines.totalSize();
+    }
 }
