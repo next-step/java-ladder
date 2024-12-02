@@ -1,6 +1,9 @@
 package nextstep.laddergame.domain;
 
+import nextstep.laddergame.service.PositionDirection;
+
 import java.util.Objects;
+import java.util.Optional;
 
 public class Ladder {
     private final Position position;
@@ -22,6 +25,25 @@ public class Ladder {
 
     public boolean isLineAlreadySetAt(int lineIndex) {
         return lines.isAlreadySetAt(lineIndex);
+    }
+
+    public boolean isMovable(Optional<Ladder> leftLadder, int lineIndex) {
+        if (isLineAlreadySetAt(lineIndex)) {
+            return true;
+        }
+        return leftLadder
+                .filter(ladder -> ladder.isLineAlreadySetAt(lineIndex))
+                .isPresent();
+    }
+
+    public PositionDirection resolveMoveDirection(Optional<Ladder> leftLadder, int lineIndex) {
+        if (isLineAlreadySetAt(lineIndex)) {
+            return PositionDirection.RIGHT;
+        }
+        return leftLadder
+                .filter(ladder -> ladder.isLineAlreadySetAt(lineIndex))
+                .map(ladder -> PositionDirection.LEFT)
+                .orElseThrow(() -> new IllegalArgumentException("사다리 라인이 놓여있지 않습니다."));
     }
 
     @Override

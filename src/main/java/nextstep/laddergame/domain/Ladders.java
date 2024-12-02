@@ -4,6 +4,7 @@ import nextstep.laddergame.service.PositionDirection;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Ladders {
     private final List<Ladder> ladders;
@@ -31,32 +32,22 @@ public class Ladders {
     }
 
     public boolean isMovableLadder(Position ladderPosition, int lineIndex) {
-        int positionValue = ladderPosition.value();
-        if (ladders.get(positionValue).isLineAlreadySetAt(lineIndex)) {
-            return true;
-        }
-        if (ladderPosition.isNotFirst() && getLeftLadder(ladderPosition).isLineAlreadySetAt(lineIndex)) {
-            return true;
-        }
-        return false;
+        return ladderAt(ladderPosition.value()).isMovable(getLeftLadder(ladderPosition), lineIndex);
     }
 
     public PositionDirection resolveMoveDirection(Position ladderPosition, int lineIndex) {
-        if (ladderAt(ladderPosition.value()).isLineAlreadySetAt(lineIndex)) {
-            return PositionDirection.RIGHT;
-        }
-        if (ladderPosition.isNotFirst() && getLeftLadder(ladderPosition).isLineAlreadySetAt(lineIndex)) {
-            return PositionDirection.LEFT;
-        }
-        throw new IllegalArgumentException("사다리 라인이 놓여있지 않습니다.");
+        return ladderAt(ladderPosition.value()).resolveMoveDirection(getLeftLadder(ladderPosition), lineIndex);
     }
 
     public Ladder ladderAt(int position) {
         return this.ladders.get(position);
     }
 
-    private Ladder getLeftLadder(Position position) {
-        return ladders.get(position.value() - 1);
+    private Optional<Ladder> getLeftLadder(Position position) {
+        if (position.isFirst()) {
+            return Optional.empty();
+        }
+        return Optional.of(ladders.get(position.value() - 1));
     }
 
     public Integer lineSize() {

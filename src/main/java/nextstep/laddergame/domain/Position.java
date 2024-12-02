@@ -25,8 +25,8 @@ public class Position {
         return new Position(position + direction.getValue());
     }
 
-    public boolean isNotFirst() {
-        return position != 0;
+    public boolean isFirst() {
+        return position == 0;
     }
 
     public int value() {
