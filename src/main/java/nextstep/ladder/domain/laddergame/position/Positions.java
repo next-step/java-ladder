@@ -18,22 +18,19 @@ public class Positions {
         this.positions = positions;
     }
 
-    public void add(List<Line> lines, int playerPosition) {
-        int indexPosition = toIndex(playerPosition);
-        Position position = new Position(indexPosition);
+    public Positions add(List<Line> lines, int playerPosition) {
+        Position position = new Position(playerPosition);
         positions.add(position);
 
         for (int i = 0; i < lines.size(); i++) {
-            Point currentPoint = lines.get(i).getPoints().get(indexPosition);
+            Point currentPoint = lines.get(i).getPoints().get(playerPosition);
 
             position = position.move(currentPoint);
             positions.add(position);
-            indexPosition = position.getPosition();
+            playerPosition = position.getPosition();
         }
-    }
 
-    private int toIndex(int playerPosition) {
-        return playerPosition - 1;
+        return new Positions(positions);
     }
 
     public List<Position> getPositions() {

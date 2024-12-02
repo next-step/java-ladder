@@ -21,7 +21,7 @@ class PositionsTest {
         Ladder ladder = LadderTest.getLadder();
 
         Positions positions = new Positions();
-        int playerPosition = 3;
+        int playerPosition = 2;
         positions.add(ladder.getLines(), playerPosition);
 
         List<Position> result = positions.getPositions();
