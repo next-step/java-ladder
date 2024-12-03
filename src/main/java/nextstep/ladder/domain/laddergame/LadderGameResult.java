@@ -6,6 +6,7 @@ import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.domain.player.Players;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderGameResult {
     private final Players players;
@@ -18,7 +19,6 @@ public class LadderGameResult {
         this.ladderResult = ladderResult;
     }
 
-    // 개인별 결과 얻기
     public String getResult(String playerName) {
         Positions playerPositions = positions.get(players.findIndexByName(playerName));
         int lastPosition = playerPositions.getLastPosition();
@@ -26,6 +26,10 @@ public class LadderGameResult {
         return ladderResult.getResultByIndex(lastPosition);
     }
 
-    // 모든 결과 얻기
+    public List<String> getResultAll() {
+        return players.getPlayers().stream()
+                      .map(player -> player.getName() + " : " + getResult(player.getName()))
+                      .collect(Collectors.toList());
+    }
 
 }
