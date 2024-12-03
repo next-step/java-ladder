@@ -4,8 +4,9 @@ import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.LadderResult;
 import nextstep.ladder.domain.laddergame.position.Positions;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderGame {
     private final Ladder ladder;
@@ -17,12 +18,9 @@ public class LadderGame {
     }
 
     public LadderGameResult play() {
-        List<Positions> positionsList = new ArrayList<>();
-
-        for (int i = 0; i < ladder.getPlayers().size(); i++) {
-            Positions positions = new Positions();
-            positionsList.add(positions.add(ladder.getLines(), i));
-        }
+        List<Positions> positionsList = IntStream.range(0, ladder.getPlayers().size())
+                                                 .mapToObj(i -> new Positions().add(ladder.getLines(), i))
+                                                 .collect(Collectors.toList());
 
         return new LadderGameResult(ladder.getPlayers(), positionsList, ladderResult);
     }
