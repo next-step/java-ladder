@@ -8,11 +8,13 @@ import nextstep.ladder.domain.line.point.Point;
 import nextstep.ladder.domain.player.Player;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ResultView {
     private static final String RESULT_MESSAGE = "\n사다리 결과\n";
+    private static final String PLAY_RESULT_MESSAGE = "\n실행 결과\n";
     private static final String VERTICAL_DELIMITER = "|";
     private static final String LINE_DASH = "-----";
     private static final String LINE_EMPTY = "     ";
@@ -75,8 +77,12 @@ public class ResultView {
     public static void printGameResult(LadderGameResult ladderGameResult) {
         String playerName = InputView.getResultPlayer();
 
-        if (!"all".equals(playerName)) {
-            System.out.println(ladderGameResult.getResult(playerName));
-        }
+        System.out.print(PLAY_RESULT_MESSAGE);
+        Optional.of(playerName)
+                .filter("all"::equals)
+                .ifPresentOrElse(
+                    name -> ladderGameResult.getResultAll().forEach(System.out::println),
+                    () -> System.out.println(ladderGameResult.getResult(playerName))
+                );
     }
 }
