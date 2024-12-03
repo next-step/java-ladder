@@ -36,4 +36,15 @@ class PositionTest {
         assertThat(given.move(PositionDirection.RIGHT)).isEqualTo(new Position(2));
         assertThat(given.move(PositionDirection.LEFT)).isEqualTo(new Position(0));
     }
+
+    @DisplayName("깊은 복사를 한다.")
+    @Test
+    void deepCopy() {
+        Position given = new Position(1);
+
+        Position actual = given.deepCopy();
+
+        assertThat(actual).isNotSameAs(given)
+                .isEqualTo(given);
+    }
 }

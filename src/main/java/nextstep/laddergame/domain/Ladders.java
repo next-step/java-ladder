@@ -17,11 +17,12 @@ public class Ladders {
         return ladders.size();
     }
 
-    public Position resolveFinalPosition(Position position) {
-        for (int lineIndex = 0; lineIndex < ladders.size(); lineIndex++) {
-            position = moveOrNot(position, lineIndex);
+    public Position resolveFinalPosition(Participant participant) {
+        Position finalPosition = participant.getPosition().deepCopy();
+        for (int lineIndex = 0; lineIndex < lineSize(); lineIndex++) {
+            finalPosition = moveOrNot(finalPosition, lineIndex);
         }
-        return position;
+        return finalPosition;
     }
 
     private Position moveOrNot(Position ladderFinalPosition, int lineIndex) {

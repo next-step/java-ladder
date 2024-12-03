@@ -17,6 +17,10 @@ public class Position {
         this.position = position;
     }
 
+    public Position deepCopy() {
+        return new Position(position);
+    }
+
     public Position next() {
         return new Position(this.position + 1);
     }
