@@ -22,11 +22,15 @@ public class LadderGame {
         this.ladderOutputs = ladderOutputs.stream().map(LadderOutput::new).collect(Collectors.toList());
     }
 
-    public LadderGameResult resolveGameResult(Participant participant) {
-        return new LadderGameResult(
-                participant,
-                ladderOutputs.get(
-                        ladders.resolveFinalPosition(participant.getPosition()).value()));
+    public List<LadderGameResult> resolveGameResults(List<String> participants) {
+        return participants.stream()
+                .map(participantName -> {
+                    Participant participant = getParticipant(participantName);
+                    return new LadderGameResult(
+                            participant,
+                            ladderOutputs.get(ladders.resolveFinalPosition(participant).value()));
+                }
+        ).collect(Collectors.toList());
     }
 
     public Participants getParticipants() {
