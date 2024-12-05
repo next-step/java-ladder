@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.nextstep;
 
 import ladder.exception.InvalidPlayerNameException;
 import org.junit.jupiter.api.DisplayName;

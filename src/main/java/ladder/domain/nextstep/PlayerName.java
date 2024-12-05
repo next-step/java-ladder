@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.nextstep;
 
 import ladder.exception.InvalidPlayerNameException;
 
@@ -13,15 +13,15 @@ public class PlayerName {
         this.name = name;
     }
 
+    public static PlayerName of(String name) {
+        return new PlayerName(name);
+    }
+
     private void validateName(String name) {
         String trimmed = name.trim();
         if (trimmed.isEmpty() || trimmed.length() > NAME_WIDTH) {
             throw new InvalidPlayerNameException();
         }
-    }
-
-    public static PlayerName of(String name) {
-        return new PlayerName(name);
     }
 
     public String name() {

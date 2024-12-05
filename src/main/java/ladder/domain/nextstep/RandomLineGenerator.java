@@ -1,10 +1,12 @@
-package ladder.domain;
+package ladder.domain.nextstep;
+
+import ladder.domain.engine.LineGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomLineGenerator implements LineGenerator{
+public class RandomLineGenerator implements LineGenerator {
 
     private final Random random = new Random();
 

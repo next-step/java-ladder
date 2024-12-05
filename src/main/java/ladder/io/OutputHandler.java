@@ -1,9 +1,9 @@
 package ladder.io;
 
 
-import ladder.domain.Ladder;
-import ladder.domain.Players;
-import ladder.domain.LadderResults;
+import ladder.domain.engine.Ladder;
+import ladder.domain.engine.LadderResults;
+import ladder.domain.nextstep.Players;
 
 public interface OutputHandler {
 

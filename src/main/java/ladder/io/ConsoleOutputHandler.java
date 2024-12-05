@@ -1,16 +1,16 @@
 package ladder.io;
 
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Player;
-import ladder.domain.Players;
-import ladder.domain.LadderResults;
+import ladder.domain.engine.Ladder;
+import ladder.domain.engine.LadderResults;
+import ladder.domain.engine.Line;
+import ladder.domain.nextstep.Player;
+import ladder.domain.nextstep.Players;
 
 import java.util.List;
 import java.util.Map;
 
-import static ladder.domain.PlayerName.NAME_WIDTH;
+import static ladder.domain.nextstep.PlayerName.NAME_WIDTH;
 
 public class ConsoleOutputHandler implements OutputHandler {
 
@@ -71,7 +71,7 @@ public class ConsoleOutputHandler implements OutputHandler {
         System.out.println(BAR);
     }
 
-    private void drawBridge(Boolean point) {
+    private void drawBridge(boolean point) {
         if (point) {
             System.out.print(DASH.repeat(NAME_WIDTH));
             return;

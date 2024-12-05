@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.domain.nextstep;
 
 public class Player {
 
@@ -8,7 +8,7 @@ public class Player {
         this.playerName = playerName;
     }
 
-    public static Player of(String name){
+    public static Player of(String name) {
         return new Player(PlayerName.of(name));
     }
 
