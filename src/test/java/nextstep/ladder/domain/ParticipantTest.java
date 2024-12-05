@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,5 +21,20 @@ class ParticipantTest {
             Participant participant = new Participant("사람이름5글자초과");
         }).isInstanceOf(IllegalArgumentException.class);
     }
+    /**
+    a b c d
+    |-| |-|
+    |-| |-|
+    |-| |-|
+    **/
+    @Test
+    @DisplayName("참가자 move함수를 이용해 사다리를 타고 최종 위치로 간다")
+    void move(){
+        Lines lines = LinesTest.lines();
+        Participant participant = new Participant("a");
+        participant.move(lines);
 
+        assertThat(participant.getPositionX()).isEqualTo(1);
+        assertThat(participant.getPositionY()).isEqualTo(3);
+    }
 }

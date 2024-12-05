@@ -13,7 +13,11 @@ public class Line {
         this(LineFactory.createLine(countOfPerson, lineStrategy));
     }
 
-    public Line(List<Boolean> points){
+    public Line(List<Boolean> points) {
+        this(new ArrayList<>(points), new ArrayList<>(), new ArrayList<>());
+    }
+
+    public Line(List<Boolean> points, List<Point> ladderPoints, List<Position> positions) {
         this.points = new ArrayList<>(points);
     }
 
