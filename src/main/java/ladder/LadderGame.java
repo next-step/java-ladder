@@ -1,9 +1,12 @@
 package ladder;
 
 
-import ladder.domain.Ladder;
-import ladder.domain.Players;
-import ladder.domain.LadderResults;
+import ladder.domain.engine.Ladder;
+import ladder.domain.engine.LadderCreator;
+import ladder.domain.engine.LadderResults;
+import ladder.domain.factory.LadderFactoryBean;
+import ladder.domain.nextstep.NextStepLadderResults;
+import ladder.domain.nextstep.Players;
 import ladder.io.InputHandler;
 import ladder.io.OutputHandler;
 
@@ -29,19 +32,21 @@ public class LadderGame {
         // 실행 결과 입력
         outputHandler.showCommentForPlayResults();
         List<String> playResultsFromUser = inputHandler.getPlayResultsFromUser();
-        LadderResults ladderResults = LadderResults.of(playResultsFromUser);
+        LadderResults ladderResults = NextStepLadderResults.of(playResultsFromUser);
 
         // 사다리 높이 입력
         outputHandler.showCommentForHeightOfLadder();
         int heightOfLadder = inputHandler.getHeightOfLadderFromUser();
-        Ladder ladder = Ladder.of(heightOfLadder, namesOfPeopleFromUser.size());
+        LadderCreator ladderCreator = LadderFactoryBean.createLadderCreator();
+        Ladder ladder = ladderCreator.create(heightOfLadder, namesOfPeopleFromUser.size());
 
         // 사다리 결과 출력
         outputHandler.showLadderGameResult(players, ladder, ladderResults);
 
         // 결과 출력
         ladderResults.processLadderGameOutcomes(players, ladder);
-        while (processResultRequest(ladderResults)) {}
+        while (processResultRequest(ladderResults)) {
+        }
     }
 
     private boolean processResultRequest(LadderResults ladderResults) {

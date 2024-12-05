@@ -1,7 +1,11 @@
-package ladder.domain;
+package ladder.domain.nextstep;
 
+import ladder.domain.engine.Ladder;
+import ladder.domain.engine.LadderCreator;
+import ladder.domain.factory.LadderFactoryBean;
 import ladder.exception.InvalidHeightOfLadderException;
 import ladder.exception.InvalidNumberOfPlayersException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,12 +14,19 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderTest {
 
+    private LadderCreator ladderCreator;
+
+    @BeforeEach
+    void setUp() {
+        ladderCreator = LadderFactoryBean.createLadderCreator();
+    }
+
     @DisplayName("사다리 최대 높이와 플레이서 수를 입력하면 사다리를 생성할 수 있다.")
     @Test
     void createLadderTest() {
         int heightOfLadder = 5;
         int numberOfPlayers = 4;
-        Ladder ladder = Ladder.of(heightOfLadder, numberOfPlayers);
+        Ladder ladder = ladderCreator.create(heightOfLadder, numberOfPlayers);
 
         assertThat(ladder.lines()).hasSize(heightOfLadder);
     }
@@ -26,7 +37,7 @@ class LadderTest {
         int heightOfLadder = 5;
         int numberOfPlayers = 0;
 
-        assertThatThrownBy(() -> Ladder.of(heightOfLadder, numberOfPlayers))
+        assertThatThrownBy(() -> ladderCreator.create(heightOfLadder, numberOfPlayers))
                 .isInstanceOf(InvalidNumberOfPlayersException.class)
                 .hasMessage("플레이어 수는 1명 이상입니다.");
     }
@@ -37,7 +48,7 @@ class LadderTest {
         int heightOfLadder = 0;
         int numberOfPlayers = 4;
 
-        assertThatThrownBy(() -> Ladder.of(heightOfLadder, numberOfPlayers))
+        assertThatThrownBy(() -> ladderCreator.create(heightOfLadder, numberOfPlayers))
                 .isInstanceOf(InvalidHeightOfLadderException.class)
                 .hasMessage("사다리 높이는 1 이상이어야 합니다.");
     }
