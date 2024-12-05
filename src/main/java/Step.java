@@ -22,7 +22,7 @@ public class Step {
         return this.curHeight;
     }
 
-    public int playerNumber() {
+    public int resultNumber() {
         return curDot.playerNumber();
     }
 

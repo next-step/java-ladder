@@ -9,6 +9,10 @@ public class Player {
         return name.length();
     }
 
+    public boolean is(String name) {
+        return this.name.equals(name);
+    }
+
     @Override
     public String toString() {
         return name;

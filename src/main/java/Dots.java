@@ -9,7 +9,7 @@ public class Dots {
         this.values = new ArrayList<>();
 
         for (int i = 0; i < types.size(); i++) {
-            Point p = PointCache.get(lineNumber, i);
+            Point p = PointCache.get(i, lineNumber);
             Dot dot = new Dot(p, types.get(i));
 
             DotCache.put(p, dot);

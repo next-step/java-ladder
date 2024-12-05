@@ -10,14 +10,14 @@ public class LadderBuilder {
         this.prevBridgeUsed = false;
     }
 
-    public Ladder build(String[] players, int height) {
+    public Ladder build(String[] players, String[] results, int height) {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
             lines.add(buildLine(i, players.length));
         }
 
-        return new Ladder(players, lines);
+        return new Ladder(players, results, lines);
     }
 
     private Line buildLine(int lineNumber, int playerCount) {

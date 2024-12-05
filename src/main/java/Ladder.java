@@ -1,17 +1,20 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Ladder {
     private final Players players;
+    private final Results results;
     private final Lines lines;
 
-    public Ladder(String[] playerNames, List<Line> lines) {
-        this(Arrays.asList(playerNames), lines);
+    public Ladder(String[] playerNames, String[] results, List<Line> lines) {
+        this(Arrays.asList(playerNames), Arrays.asList(results), lines);
     }
 
-    public Ladder(List<String> players, List<Line> lines) {
+    public Ladder(List<String> players, List<String> results, List<Line> lines) {
         this.players = new Players(players.stream().map(Player::new).collect(Collectors.toList()));
+        this.results = new Results(results.stream().map(Result::new).collect(Collectors.toList()));
         this.lines = new Lines(lines);
     }
 
@@ -19,14 +22,34 @@ public class Ladder {
         return this.lines.height();
     }
 
-    public int travel(int playerNumber) {
+    public List<TravelResult> travelAll() {
+        List<TravelResult> travelResults = new ArrayList<>();
+
+        for (int i = 0; i < this.players.size(); i++) {
+            travelResults.add(this.travel(i));
+        }
+
+        return travelResults;
+    }
+
+    public TravelResult travel(String playerName) {
+        int playerNumber = this.players.playerPosition(playerName);
+
+        if (playerNumber == Players.INVALID_PLAYER_NAME) {
+            return new TravelResult(playerName, "INVALID");
+        }
+
+        return this.travel(this.players.playerPosition(playerName));
+    }
+
+    public TravelResult travel(int playerNumber) {
         Step step = new Step(DotCache.get(playerNumber * 2, 0), 0, true);
 
         while (step.lowerHeightThan(height())) {
             step = step.forward(this.lines.heightAt(step.height()));
         }
 
-        return step.playerNumber();
+        return new TravelResult(this.players.nameAt(playerNumber), this.results.get(step.resultNumber()));
     }
 
     @Override
@@ -45,6 +68,7 @@ public class Ladder {
         this.players.appendPlayers(sb);
         sb.append("\n");
         this.lines.appendLines(sb);
+        this.results.appendResults(sb);
 
         return sb.toString();
     }
