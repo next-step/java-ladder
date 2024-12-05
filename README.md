@@ -73,7 +73,7 @@ TDD로 구현
   - 다음 point 생성
   - 마지막 point 생성
 
-+ Cross
+2. Cross
   현재 위치 position
   point
 
@@ -82,8 +82,21 @@ TDD로 구현
   - left > index-1
   - down > index
 
+- [x] 출력
+  - "-----", "     "
+
 2. line 
   crosses
 
+- [x] 출력 
+  - "|-----|      |-----|"
+
 3. ladder
   lines
+
+- [x] 출력
+  - "|-----|      |-----|"
+  - "|     |------|     |"
+  - "|-----|      |-----|"
+
+- [ ] 결과 조회

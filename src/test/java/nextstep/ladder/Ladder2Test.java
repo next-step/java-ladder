@@ -1,0 +1,45 @@
+package nextstep.ladder;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+public class Ladder2Test {
+
+    private static Ladder2 ladder;
+
+    @BeforeAll
+    static void setup() {
+        ladder = new Ladder2(Arrays.asList(
+            new Line2(
+                Arrays.asList(new Cross(0, new Point(false, false)), new Cross(0, new Point(false, true)), new Cross(0, new Point(true, false)))
+            ), new Line2(
+                Arrays.asList(new Cross(0, new Point(false, true)), new Cross(0, new Point(true, false)), new Cross(0, new Point(false, false)))
+            )
+        ));
+    }
+
+    @Test
+    void move() {
+        assertThat(ladder.move(0)).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("모든 사용자의 사다리 출력")
+    void printResult() {
+        System.out.println(ladder.getLadderForPrint("-----", "     "));
+    }
+
+//    @Test
+//    @DisplayName("모든 사용자의 사다리 결과")
+//    void getAllResult() {
+//        assertThat(ladder.getResult("all"))
+//                .isEqualTo("test2 : 결과3\n" +
+//                        "test3 : 결과1\n" +
+//                        "test : 결과2");
+//    }
+}

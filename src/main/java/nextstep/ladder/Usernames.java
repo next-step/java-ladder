@@ -37,4 +37,10 @@ public class Usernames {
                         .collect(Collectors.toList())
         );
     }
+
+    public String getUsernamesForPrint() {
+        return usernames.stream()
+                .map(d -> String.format("%-6s", d.getUsername()))
+                .collect(Collectors.joining());
+    }
 }

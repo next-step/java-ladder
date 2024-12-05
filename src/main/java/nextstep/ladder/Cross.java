@@ -18,4 +18,12 @@ public class Cross {
 
         return position;
     }
+
+    public String getCrossForPrint(String trueSymbol, String falseSymbol) {
+        if(point.move() == Direction.RIGHT) {
+            return trueSymbol;
+        }
+
+        return falseSymbol;
+    }
 }
