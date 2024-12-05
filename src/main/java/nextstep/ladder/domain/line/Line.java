@@ -8,12 +8,12 @@ import java.util.List;
 public class Line {
     private final Points points;
 
-    public Line(Points points) {
-        this.points = points;
+    public Line(int pointCount) {
+        this(new Points(pointCount, new RandomLineGenerator()));
     }
 
-    public static Line of(int count) {
-        return new Line(Points.of(count, new RandomLineGenerator()));
+    public Line(Points points) {
+        this.points = points;
     }
 
     public List<Point> getPoints() {

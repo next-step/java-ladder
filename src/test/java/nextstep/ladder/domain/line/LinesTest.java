@@ -6,8 +6,10 @@ import org.junit.jupiter.api.Test;
 class LinesTest {
 
     @Test
-    void of() {
-        Lines lines = Lines.of(3, 4);
+    void create() {
+        int ladderHeight = 3;
+        int ladderWidth = 4;
+        Lines lines = new Lines(ladderHeight, ladderWidth);
 
         Assertions.assertThat(lines).isNotNull();
         Assertions.assertThat(lines.getLines().size()).isEqualTo(3);

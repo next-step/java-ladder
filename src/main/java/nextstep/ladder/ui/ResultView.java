@@ -1,16 +1,20 @@
 package nextstep.ladder.ui;
 
 import nextstep.ladder.domain.ladder.Ladder;
+import nextstep.ladder.domain.ladder.LadderResult;
+import nextstep.ladder.domain.laddergame.LadderGameResult;
 import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.line.point.Point;
 import nextstep.ladder.domain.player.Player;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ResultView {
-    private static final String RESULT_MESSAGE = "\n실행결과\n";
+    private static final String RESULT_MESSAGE = "\n사다리 결과\n";
+    private static final String PLAY_RESULT_MESSAGE = "\n실행 결과\n";
     private static final String VERTICAL_DELIMITER = "|";
     private static final String LINE_DASH = "-----";
     private static final String LINE_EMPTY = "     ";
@@ -19,10 +23,11 @@ public class ResultView {
     private static final String EMPTY = " ";
     private static final String ALIGN_RIGHT_FIVE_CHAR_FORMAT = "%5s";
 
-    public static void printLadder(Ladder ladder) {
+    public static void printLadder(Ladder ladder, LadderResult ladderResult) {
         printResultMessage();
         printPlayersName(ladder.getPlayers());
         printLines(ladder.getLines(), ladder.getPlayers());
+        printLadderResult(ladderResult.getLadderResult());
     }
 
     public static void printResultMessage() {
@@ -46,7 +51,13 @@ public class ResultView {
             resultBuilder.append(ENTER);
         });
 
-        System.out.println(resultBuilder);
+        System.out.print(resultBuilder);
+    }
+
+    public static void printLadderResult(List<String> ladderResult) {
+        System.out.println(ladderResult.stream()
+                                       .map(result -> String.format(ALIGN_RIGHT_FIVE_CHAR_FORMAT, result))
+                                       .collect(Collectors.joining()));
     }
 
     public static String generatePrintingLine(Line line, int pointSize) {
@@ -63,4 +74,15 @@ public class ResultView {
         return stringBuilder.toString();
     }
 
+    public static void printGameResult(LadderGameResult ladderGameResult) {
+        String playerName = InputView.getResultPlayer();
+
+        System.out.print(PLAY_RESULT_MESSAGE);
+        Optional.of(playerName)
+                .filter("all"::equals)
+                .ifPresentOrElse(
+                    name -> ladderGameResult.getResultAll().forEach(System.out::println),
+                    () -> System.out.println(ladderGameResult.getResult(playerName))
+                );
+    }
 }

@@ -1,4 +1,4 @@
-package nextstep.ladder.domain;
+package nextstep.ladder.domain.player;
 
 import nextstep.ladder.domain.player.Player;
 import org.junit.jupiter.api.DisplayName;
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class PlayerTest {
+public class PlayerTest {
     public static final Player PLAYER1 = new Player("mina");
     public static final Player PLAYER2 = new Player("tori");
 
