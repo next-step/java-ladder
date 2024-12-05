@@ -1,6 +1,7 @@
 package nextstep.laddergame.domain;
 
-import java.util.ArrayList;
+import nextstep.laddergame.service.PositionDirection;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -12,26 +13,46 @@ public class Ladders {
         this.ladders = ladders;
     }
 
-    public static Ladders create(int participantsSize, int maxHeight, LadderLinesGenerator ladderLinesGenerator) {
-        List<Ladder> newLadders = new ArrayList<>();
-        Ladder beforeLadder = null;
-
-        for (int i = 0; i < participantsSize - 1; i++) {
-            Ladder ladder = Ladder.create(Optional.ofNullable(beforeLadder), maxHeight, ladderLinesGenerator);
-            newLadders.add(ladder);
-            beforeLadder = ladder;
-        }
-
-        newLadders.add(Ladder.createLastLadder(participantsSize, maxHeight));
-        return new Ladders(newLadders);
-    }
-
     public int size() {
         return ladders.size();
     }
 
-    public Ladder ladderAt(int line) {
-        return this.ladders.get(line);
+    public Position resolveFinalPosition(Participant participant) {
+        Position finalPosition = participant.getPosition().deepCopy();
+        for (int lineIndex = 0; lineIndex < lineSize(); lineIndex++) {
+            finalPosition = moveOrNot(finalPosition, lineIndex);
+        }
+        return finalPosition;
+    }
+
+    private Position moveOrNot(Position ladderFinalPosition, int lineIndex) {
+        if (isMovableLadder(ladderFinalPosition, lineIndex)) {
+            return ladderFinalPosition.move(resolveMoveDirection(ladderFinalPosition, lineIndex));
+        }
+        return ladderFinalPosition;
+    }
+
+    public boolean isMovableLadder(Position ladderPosition, int lineIndex) {
+        return ladderAt(ladderPosition.value()).isMovable(getLeftLadder(ladderPosition), lineIndex);
+    }
+
+    public PositionDirection resolveMoveDirection(Position ladderPosition, int lineIndex) {
+        return ladderAt(ladderPosition.value()).resolveMoveDirection(getLeftLadder(ladderPosition), lineIndex);
+    }
+
+    public Ladder ladderAt(int position) {
+        return this.ladders.get(position);
+    }
+
+    private Optional<Ladder> getLeftLadder(Position position) {
+        if (position.isFirst()) {
+            return Optional.empty();
+        }
+        return Optional.of(ladders.get(position.value() - 1));
+    }
+
+    public Integer lineSize() {
+        return Objects.isNull(ladders) || ladders.isEmpty() ? 0 : ladders.get(0).lineSize();
     }
 
     @Override
@@ -43,7 +64,7 @@ public class Ladders {
             return false;
         }
         Ladders ladders1 = (Ladders) o;
-        return Objects.equals(ladders, ladders1.ladders);  // false.
+        return Objects.equals(ladders, ladders1.ladders);
     }
 
     @Override

@@ -8,24 +8,24 @@ import java.util.Objects;
 public class Lines {
     private final List<Boolean> lines;
 
-    public Lines(List<Boolean> lines) {
-        this.lines = lines;
+    public Lines(Boolean... lines) {
+        this(Arrays.asList(lines));
     }
 
-    public Lines(Boolean... lines) {
-        this.lines = Arrays.asList(lines);
+    public Lines(List<Boolean> lines) {
+        this.lines = lines;
     }
 
     public static Lines empty(int height) {
         return new Lines(Collections.nCopies(height, Boolean.FALSE));
     }
 
-    public int size() {
-        return this.lines.size();
+    public boolean isAlreadySetAt(int index) {
+        return Boolean.TRUE.equals(lines.get(index));
     }
 
-    public boolean isAlreadySetAt(int floor) {
-        return Boolean.TRUE.equals(lines.get(floor));
+    public int totalSize() {
+        return Objects.isNull(lines) || lines.isEmpty() ? 0 : lines.size();
     }
 
     @Override

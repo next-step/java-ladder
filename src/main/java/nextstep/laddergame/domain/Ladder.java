@@ -1,35 +1,49 @@
 package nextstep.laddergame.domain;
 
+import nextstep.laddergame.service.PositionDirection;
+
 import java.util.Objects;
 import java.util.Optional;
 
 public class Ladder {
-    private static final Integer INIT_POSITION = 0;
-    private final Integer position;
+    private final Position position;
     private final Lines lines;
 
-    public Ladder(Integer position, Lines lines) {
+
+    public Ladder(int position, Lines lines) {
+        this(new Position(position), lines);
+    }
+
+    public Ladder(Position position, Lines lines) {
         this.position = position;
         this.lines = lines;
     }
 
-    public static Ladder create(Optional<Ladder> beforeLadder, int maxHeight, LadderLinesGenerator ladderLinesGenerator) {
-        return new Ladder(
-                beforeLadder.map(Ladder::nextPosition).orElse(INIT_POSITION),
-                ladderLinesGenerator.generate(beforeLadder, maxHeight)
-        );
+    public Position nextPosition() {
+        return position.next();
     }
 
-    public static Ladder createLastLadder(int laddersSize, int height) {
-        return new Ladder(laddersSize - 1, Lines.empty(height));
+    public boolean isLineAlreadySetAt(int lineIndex) {
+        return lines.isAlreadySetAt(lineIndex);
     }
 
-    private Integer nextPosition() {
-        return this.position + 1;
+    public boolean isMovable(Optional<Ladder> leftLadder, int lineIndex) {
+        if (isLineAlreadySetAt(lineIndex)) {
+            return true;
+        }
+        return leftLadder
+                .filter(ladder -> ladder.isLineAlreadySetAt(lineIndex))
+                .isPresent();
     }
 
-    public boolean isLineAlreadySetAt(int floor) {
-        return lines.isAlreadySetAt(floor);
+    public PositionDirection resolveMoveDirection(Optional<Ladder> leftLadder, int lineIndex) {
+        if (isLineAlreadySetAt(lineIndex)) {
+            return PositionDirection.RIGHT;
+        }
+        return leftLadder
+                .filter(ladder -> ladder.isLineAlreadySetAt(lineIndex))
+                .map(ladder -> PositionDirection.LEFT)
+                .orElseThrow(() -> new IllegalArgumentException("사다리 라인이 놓여있지 않습니다."));
     }
 
     @Override
@@ -47,5 +61,9 @@ public class Ladder {
     @Override
     public int hashCode() {
         return Objects.hash(position, lines);
+    }
+
+    public int lineSize() {
+        return Objects.isNull(lines) ? 0 : lines.totalSize();
     }
 }

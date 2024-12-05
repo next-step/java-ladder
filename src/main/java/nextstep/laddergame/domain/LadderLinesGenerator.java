@@ -7,8 +7,7 @@ import java.util.Optional;
 public interface LadderLinesGenerator {
     Lines generate(Optional<Ladder> beforeLadder, int maxHeight);
 
-
     default boolean isAllNonSet(List<Boolean> lines) {
-        return lines.stream().noneMatch(value -> value);
+        return lines.stream().noneMatch(line -> line);
     }
 }

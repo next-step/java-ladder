@@ -1,7 +1,10 @@
 package nextstep.laddergame.domain;
 
+import nextstep.laddergame.service.PositionDirection;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,23 +17,34 @@ class LadderTest {
     @DisplayName("사다리 Ladder 객체를 생성한다.")
     @Test
     void create() {
-        Integer position = 0;
+        int position = 2;
         Lines lines = new Lines(List.of(TRUE, FALSE, TRUE));
 
         Ladder actual = new Ladder(position, lines);
 
-        assertThat(actual).isEqualTo(new Ladder(0, new Lines(TRUE, FALSE, TRUE)));
+        assertThat(actual).isEqualTo(new Ladder(new Position(position), new Lines(TRUE, FALSE, TRUE)));
     }
 
-    @DisplayName("이전 사다리가 놓인 위치는 제외하고 사다리를 놓는다.")
+    @DisplayName("특정 높이의 사다리에서 움직일 수 있는 방향을 반환한다.")
     @Test
-    void create_by_randomLadderLinesGenerator() {
-        RandomLadderLinesGenerator randomLadderLinesGenerator = new RandomLadderLinesGenerator();
-        Ladder actual = Ladder.create(Optional.of(new Ladder(0, new Lines(List.of(TRUE, FALSE, TRUE)))), 3, randomLadderLinesGenerator);
+    void resolveMoveDirection() {
+        Ladder leftLadder = new Ladder(0, new Lines(List.of(false, true)));
+        Ladder given = new Ladder(1, new Lines(List.of(false, false)));
 
-        assertThat(actual).extracting("position")
-                .isEqualTo(1);
-        assertThat(actual.isLineAlreadySetAt(0)).isFalse();
-        assertThat(actual.isLineAlreadySetAt(2)).isFalse();
+        PositionDirection actual = given.resolveMoveDirection(Optional.of(leftLadder), 1);
+
+        assertThat(actual).isEqualTo(PositionDirection.LEFT);
+    }
+
+    @DisplayName("현재 위치의 사다리 혹은 왼쪽 사다리에 라인이 있으면 이동할 수 있다.")
+    @CsvSource(value = {"false,false", "true,true"})
+    @ParameterizedTest(name = "사다리세팅 여부: {0}, 이동가능 여부: {1}")
+    void isMovable(boolean lineSettingYN, boolean expected) {
+        Ladder leftLadder = new Ladder(0, new Lines(List.of(false, lineSettingYN)));
+        Ladder ladder = new Ladder(1, new Lines(List.of(false, false)));
+
+        boolean actual = ladder.isMovable(Optional.of(leftLadder), 1);
+
+        assertThat(actual).isEqualTo(expected);
     }
 }
