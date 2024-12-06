@@ -2,7 +2,6 @@ package ladder.domain;
 
 import ladder.domain.enums.MoveStatus;
 import ladder.exception.PointException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -55,15 +54,13 @@ public class PointTest {
     @Test
     @DisplayName("현재 포인트를 출력한다")
     void getCurrent() {
-
-        // f t f f f
+        // f t f f
         Point first = Point.first(true);
         Point next1 = first.next(false);
         Point next2 = next1.next(false);
-        Point last = next2.last();
 
-        //  fir ne1 ne2 las
-        // f | t | f | f | f
+        //  fir ne1 ne2
+        // f | t | f | f
         boolean firstCurrent = first.getRight();
         boolean firstCurrentExpected = true;
 
@@ -81,6 +78,7 @@ public class PointTest {
     @Test
     @DisplayName("우측 이동")
     void move_우측() {
+        // (f t)
         Point first = Point.first(true);
         MoveStatus actualFirst = first.move();
         MoveStatus expectedFirst = MoveStatus.RIGHT;
@@ -91,7 +89,7 @@ public class PointTest {
     @Test
     @DisplayName("좌측 이동")
     void move_좌측() {
-        // f t f f f
+        // f (t f)
         Point first = Point.first(true);
         Point next1 = first.next(false);
 
@@ -104,7 +102,7 @@ public class PointTest {
     @Test
     @DisplayName("이동 없음")
     void move_이동_없음() {
-        // f t f f f
+        // f t (f f)
         Point first = Point.first(true);
         Point next1 = first.next(false);
         Point next2 = next1.next(false);

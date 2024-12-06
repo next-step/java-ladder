@@ -12,8 +12,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PlayerNameTest {
-
-
     public static final PlayerName PLAYER_NAME_POBI = new PlayerName("pobi");
     public static final PlayerName PLAYER_NAME_CRONG = new PlayerName("crong");
     public static final PlayerName PLAYER_NAME_HONUX = new PlayerName("honux");

@@ -12,12 +12,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class RewardNameTest {
+    public static final RewardName REWARD_NAME_꽝 = new RewardName("꽝");
+    public static final RewardName REWARD_NAME_5000 = new RewardName("5000");
+    public static final RewardName REWARD_NAME_3000 = new RewardName("3000");
 
     @Test
     @DisplayName("이름을 생성한다")
     void create() {
-        Name actual = new RewardName("pobi");
-        Name expected = new RewardName("pobi");
+        Name actual = new RewardName("꽝");
+        Name expected = new RewardName("꽝");
         assertThat(actual).isEqualTo(expected);
     }
 
@@ -34,7 +37,7 @@ public class RewardNameTest {
     @DisplayName("이름 생성 오류: 5글자를 초과하면 이름생성 오류가 발생한다")
     void create_5글자초과_실패() {
         assertThatThrownBy(() -> {
-            Name name = new RewardName("pobi22");
+            Name name = new RewardName("123456");
         }).isInstanceOf(InvalidNameException.class)
                 .hasMessage(NOT_ALLOW_EXCEED_MAX_NAME_LENGTH_MESSAGE);
     }
@@ -42,7 +45,7 @@ public class RewardNameTest {
     @Test
     @DisplayName("이름의 길이를 출력한다")
     void length() {
-        Name name = new RewardName("pobi");
+        Name name = new RewardName("5000");
         int actual = name.length();
         assertThat(actual).isEqualTo(4);
     }
@@ -50,9 +53,9 @@ public class RewardNameTest {
     @Test
     @DisplayName("이름을 출력한다")
     void name() {
-        Name name = new RewardName("pobi");
+        Name name = new RewardName("4000");
         String actual = name.name();
 
-        assertThat(actual).isEqualTo("pobi");
+        assertThat(actual).isEqualTo("4000");
     }
 }
