@@ -13,27 +13,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class RewardsTest {
 
-    private RewardName rewardName1;
-    private RewardName rewardName2;
-    private RewardName rewardName3;
-    private List<RewardName> rewardNames;
-
-    @BeforeEach
-    void setUp() {
-        rewardName1 = new RewardName("꽝");
-        rewardName2 = new RewardName("5000");
-        rewardName3 = new RewardName("3000");
-        rewardNames = List.of(
-                rewardName1,
-                rewardName2,
-                rewardName1,
-                rewardName3
-        );
-    }
-
     @Test
     @DisplayName("보상을 생성한다")
     void create() {
+        List<RewardName> rewardNames = List.of(
+                new RewardName("꽝"),
+                new RewardName("5000"),
+                new RewardName("꽝"),
+                new RewardName("3000")
+        );
         Rewards actual = new Rewards("꽝,5000,꽝,3000", 4);
         Rewards expected = new Rewards(rewardNames, 4);
         assertThat(actual).isEqualTo(expected);
@@ -53,7 +41,12 @@ public class RewardsTest {
     void names() {
         Rewards rewards = new Rewards("꽝,5000,꽝,3000", 4);
         List<RewardName> actual = rewards.names();
-        List<RewardName> expected = rewardNames;
+        List<RewardName> expected = List.of(
+                new RewardName("꽝"),
+                new RewardName("5000"),
+                new RewardName("꽝"),
+                new RewardName("3000")
+        );
 
         assertThat(actual).isEqualTo(expected);
     }

@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import ladder.exception.NoNameException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,21 +12,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ResultsTest {
 
-    private Map<PlayerName, RewardName> resultMap;
-
-    @BeforeEach
-    void setUp() {
-        resultMap = Map.of(
+    @Test
+    void create() {
+        Results actual = new Results(Map.of(
                 new PlayerName("pobi"), new RewardName("꽝"),
                 new PlayerName("jk"), new RewardName("5000"),
                 new PlayerName("crong"), new RewardName("꽝"),
                 new PlayerName("honux"), new RewardName("3000")
-        );
-    }
-
-    @Test
-    void create() {
-        Results actual = new Results(resultMap);
+        ));
         Results expected = new Results(Map.of(
                 new PlayerName("jk"), new RewardName("5000"),
                 new PlayerName("pobi"), new RewardName("꽝"),
@@ -41,7 +33,12 @@ public class ResultsTest {
     @Test
     @DisplayName("플레이어 이름에 해당하는 결과 출력")
     void reward() {
-        Results results = new Results(resultMap);
+        Results results = new Results(Map.of(
+                new PlayerName("pobi"), new RewardName("꽝"),
+                new PlayerName("jk"), new RewardName("5000"),
+                new PlayerName("crong"), new RewardName("꽝"),
+                new PlayerName("honux"), new RewardName("3000")
+        ));
         RewardName actual = results.result(new PlayerName("pobi"));
         RewardName expected = new RewardName("꽝");
 
@@ -52,7 +49,12 @@ public class ResultsTest {
     @DisplayName("플레이어 이름이 없으면 오류")
     void reward_플레이어_이름_없으면_오류() {
         assertThatThrownBy(() -> {
-            Results results = new Results(resultMap);
+            Results results = new Results(Map.of(
+                    new PlayerName("pobi"), new RewardName("꽝"),
+                    new PlayerName("jk"), new RewardName("5000"),
+                    new PlayerName("crong"), new RewardName("꽝"),
+                    new PlayerName("honux"), new RewardName("3000")
+            ));
             results.result(new PlayerName("pppp"));
         }).isInstanceOf(NoNameException.class)
                 .hasMessage(NO_NAME_MESSAGE);
@@ -61,9 +63,19 @@ public class ResultsTest {
     @Test
     @DisplayName("결과 모두 출력")
     void rewards() {
-        Results results = new Results(resultMap);
+        Results results = new Results(Map.of(
+                new PlayerName("pobi"), new RewardName("꽝"),
+                new PlayerName("jk"), new RewardName("5000"),
+                new PlayerName("crong"), new RewardName("꽝"),
+                new PlayerName("honux"), new RewardName("3000")
+        ));
         Map<PlayerName, RewardName> actual = results.results();
-        Map<PlayerName, RewardName> expected = resultMap;
+        Map<PlayerName, RewardName> expected = Map.of(
+                new PlayerName("pobi"), new RewardName("꽝"),
+                new PlayerName("jk"), new RewardName("5000"),
+                new PlayerName("crong"), new RewardName("꽝"),
+                new PlayerName("honux"), new RewardName("3000")
+        );
 
         assertThat(actual).isEqualTo(expected);
     }

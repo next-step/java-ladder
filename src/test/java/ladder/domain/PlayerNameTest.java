@@ -13,6 +13,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PlayerNameTest {
 
+
+    public static final PlayerName PLAYER_NAME_POBI = new PlayerName("pobi");
+    public static final PlayerName PLAYER_NAME_CRONG = new PlayerName("crong");
+    public static final PlayerName PLAYER_NAME_HONUX = new PlayerName("honux");
+    public static final PlayerName PLAYER_NAME_JK = new PlayerName("jk");
+
     @Test
     @DisplayName("이름을 생성한다")
     void create() {

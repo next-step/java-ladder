@@ -1,45 +1,27 @@
 package ladder.domain;
 
 import ladder.exception.PlayersCountException;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static ladder.domain.Line.NOT_ALLOWED_PLAYER_ZERO_OR_MINUS_MESSAGE;
+import static ladder.domain.PlayersTest.POBI_HONUX_CRONG_JK;
 import static org.assertj.core.api.Assertions.*;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LineTest {
-
-    private Point firstPoint;
-    private Point next1Point;
-    private Point next2Point;
-    private Point lastPoint;
-    private List<Point> points;
-    private Line line;
-
-    @BeforeEach
-    void setUp() {
-        firstPoint = Point.first(true);
-        next1Point = firstPoint.next(false);
-        next2Point = next1Point.next(true);
-        lastPoint = next2Point.last();
-
-        points = List.of(firstPoint, next1Point, next2Point, lastPoint);
-        line = new Line(points);
-    }
 
     @Test
     @DisplayName("라인을 생성한다")
     void create() {
         assertThatNoException().isThrownBy(() -> {
+            Point firstPoint = Point.first(true);
+            Point next1Point = firstPoint.next(false);
+            Point next2Point = next1Point.next(true);
+            Point lastPoint = next2Point.last();
             new Line(List.of(firstPoint, next1Point, next2Point, lastPoint));
         });
     }
@@ -57,8 +39,14 @@ public class LineTest {
     @Test
     @DisplayName("포인트들을 조회한다")
     void getPoints() {
+        Point firstPoint = Point.first(true);
+        Point next1Point = firstPoint.next(false);
+        Point next2Point = next1Point.next(true);
+        Point lastPoint = next2Point.last();
+
         List<Point> points = List.of(firstPoint, next1Point, next2Point, lastPoint);
         Line line = new Line(points);
+
         List<Point> actual = line.getPoints();
 
         assertThat(actual).isEqualTo(points);
@@ -67,6 +55,11 @@ public class LineTest {
     @Test
     @DisplayName("포인트들을 조회한다. 조회한 데이터는 불변이다")
     void getPoints_불변() {
+        Point firstPoint = Point.first(true);
+        Point next1Point = firstPoint.next(false);
+        Point next2Point = next1Point.next(true);
+        Point lastPoint = next2Point.last();
+
         List<Point> points = List.of(firstPoint, next1Point, next2Point, lastPoint);
         Line line = new Line(points);
         List<Point> actual = line.getPoints();
@@ -78,16 +71,23 @@ public class LineTest {
     @Test
     @DisplayName("한개 라인을 이동한다.")
     void move() {
-        //   p   c   h   j
+        Point firstPoint = Point.first(true);
+        Point next1Point = firstPoint.next(false);
+        Point next2Point = next1Point.next(true);
+        Point lastPoint = next2Point.last();
+        Line line = new Line(List.of(firstPoint, next1Point, next2Point, lastPoint));
+
+        //   p   h   c   j
         // f | t | f | t | f
-        //   c   p   j   h
-        Players initPlayers = new Players("pobi,crong,honux,jk");
+        //   h   p   j   c
+        Players initPlayers = new Players(POBI_HONUX_CRONG_JK);
+
         Players actual = line.move(initPlayers);
         Players expected = new Players(List.of(
-                new PlayerName("crong"),
+                new PlayerName("honux"),
                 new PlayerName("pobi"),
                 new PlayerName("jk"),
-                new PlayerName("honux")
+                new PlayerName("crong")
         ), new Vertical(1));
 
         assertThat(actual).isEqualTo(expected);

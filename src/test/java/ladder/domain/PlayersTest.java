@@ -12,8 +12,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PlayersTest {
-
-    public static final Players PLAYERS1 = new Players("pobi,crong,honux,jk");
+//    public static final String PLAYER_INPUT_NAMES = "pobi,crong,honux,jk";
+    public static final String POBI_HONUX_CRONG_JK = "pobi,honux,crong,jk";
+    public static final Players PLAYERS1 = new Players(POBI_HONUX_CRONG_JK);
 
     private Players players;
     private PlayerName playerName1;

@@ -13,20 +13,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PointTest {
 
-    private Point first;
-    private Point next1;
-    private Point next2;
-    private Point last;
-
-    @BeforeEach
-    void setUp() {
-        // f t f f f
-        first = Point.first(true);
-        next1 = first.next(false);
-        next2 = next1.next(false);
-        last = next2.last();
-    }
-
     @Test
     @DisplayName("첫번째 포인트를 생성한다")
     void first() {
@@ -69,6 +55,13 @@ public class PointTest {
     @Test
     @DisplayName("현재 포인트를 출력한다")
     void getCurrent() {
+
+        // f t f f f
+        Point first = Point.first(true);
+        Point next1 = first.next(false);
+        Point next2 = next1.next(false);
+        Point last = next2.last();
+
         //  fir ne1 ne2 las
         // f | t | f | f | f
         boolean firstCurrent = first.getRight();
@@ -88,6 +81,7 @@ public class PointTest {
     @Test
     @DisplayName("우측 이동")
     void move_우측() {
+        Point first = Point.first(true);
         MoveStatus actualFirst = first.move();
         MoveStatus expectedFirst = MoveStatus.RIGHT;
 
@@ -97,6 +91,10 @@ public class PointTest {
     @Test
     @DisplayName("좌측 이동")
     void move_좌측() {
+        // f t f f f
+        Point first = Point.first(true);
+        Point next1 = first.next(false);
+
         MoveStatus actualNext1 = next1.move();
         MoveStatus expectedNext1 = MoveStatus.LEFT;
 
@@ -106,6 +104,11 @@ public class PointTest {
     @Test
     @DisplayName("이동 없음")
     void move_이동_없음() {
+        // f t f f f
+        Point first = Point.first(true);
+        Point next1 = first.next(false);
+        Point next2 = next1.next(false);
+
         MoveStatus actualNext2 = next2.move();
         MoveStatus expectedNext2 = MoveStatus.STOP;
 

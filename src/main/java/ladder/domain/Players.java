@@ -61,8 +61,7 @@ public class Players {
     }
 
     @Override
-    public String
-    toString() {
+    public String toString() {
         return "Players{" +
                 "names=" + playerNames +
                 ", vertical=" + vertical +
