@@ -11,7 +11,7 @@ public abstract class Name {
     public static final int MAX_NAME_LENGTH = 5;
     public static final String NAME_EMPTY_STRING = "";
 
-    private final String name;
+    protected final String name;
 
     public Name(String name) {
         if (name == null || name.equals(NAME_EMPTY_STRING)) {
@@ -23,13 +23,9 @@ public abstract class Name {
         this.name = name;
     }
 
-    public int length() {
-        return name.length();
-    }
+    public abstract int length();
 
-    public String name() {
-        return name;
-    }
+    public abstract String name();
 
     @Override
     public boolean equals(Object o) {
