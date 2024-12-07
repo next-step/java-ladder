@@ -1,9 +1,7 @@
 package ladder.view;
 
-import ladder.domain.engine.Ladder;
-import ladder.domain.engine.PlayerName;
-import ladder.domain.engine.Players;
-import ladder.domain.engine.Rewards;
+import ladder.domain.engine.*;
+import ladder.domain.factory.LadderFactory;
 import ladder.domain.ns.NsLadder;
 import ladder.domain.ns.generator.RandomCrossGenerator;
 import ladder.exception.NoNameException;
@@ -21,9 +19,11 @@ public class InputView {
     public static final String NOT_INPUT_TARGET_FIND_PLAYER_NAME_MESSAGE = "찾고자 하는 플레이어 이름을 입력하지 않았습니다.";
     public static final String PLAYERS_ALL = "all";
     private final Scanner scanner;
+    private final LadderCreator ladderCreator;
 
-    public InputView(Scanner scanner) {
+    public InputView(Scanner scanner, LadderCreator ladderCreator) {
         this.scanner = scanner;
+        this.ladderCreator = ladderCreator;
     }
 
     public Players inputNamesToPlayers() {
@@ -45,7 +45,7 @@ public class InputView {
 
     public Ladder inputVerticalSizeToLadder(Players players) {
         try {
-            return new NsLadder(players, inputVerticalSize(), new RandomCrossGenerator());
+            return ladderCreator.create(players, inputVerticalSize());
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return inputVerticalSizeToLadder(inputNamesToPlayers());

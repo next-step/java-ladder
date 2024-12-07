@@ -4,16 +4,19 @@ import ladder.domain.engine.Ladder;
 import ladder.domain.engine.PlayerName;
 import ladder.domain.engine.Players;
 import ladder.domain.engine.Rewards;
+import ladder.domain.factory.LadderFactory;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
 import java.util.List;
 import java.util.Scanner;
 
+import static ladder.domain.factory.LadderFactory.createNsLadderCreator;
+
 public class LadderController {
 
     public static void run() {
-        InputView inputView = new InputView(new Scanner(System.in));
+        InputView inputView = new InputView(new Scanner(System.in), createNsLadderCreator());
 
         Players players = inputView.inputNamesToPlayers();
         Rewards rewards = inputView.inputNamesToRewards(players);
