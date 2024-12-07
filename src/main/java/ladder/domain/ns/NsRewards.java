@@ -1,6 +1,7 @@
 package ladder.domain.ns;
 
 import ladder.domain.interfaces.Rewards;
+import ladder.domain.wrapper.RewardName;
 import ladder.exception.RewardsCountException;
 
 import java.util.Arrays;

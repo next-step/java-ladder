@@ -1,6 +1,6 @@
 package ladder.domain.interfaces;
 
-import ladder.domain.ns.RewardName;
+import ladder.domain.wrapper.RewardName;
 
 import java.util.List;
 

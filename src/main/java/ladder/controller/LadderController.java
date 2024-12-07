@@ -3,7 +3,7 @@ package ladder.controller;
 import ladder.domain.interfaces.Ladder;
 import ladder.domain.interfaces.Players;
 import ladder.domain.ns.NsRewards;
-import ladder.domain.ns.PlayerName;
+import ladder.domain.wrapper.PlayerName;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 

@@ -1,7 +1,7 @@
 package ladder.domain.ns;
 
-import ladder.domain.interfaces.enums.MoveStatus;
 import ladder.domain.interfaces.Point;
+import ladder.domain.interfaces.enums.MoveStatus;
 import ladder.exception.PointException;
 
 import java.util.Objects;
@@ -24,12 +24,12 @@ public class NsPoint implements Point {
     }
 
     @Override
-    public NsPoint next(boolean right) {
+    public Point next(boolean right) {
         return new NsPoint(this.right, right);
     }
 
     @Override
-    public NsPoint last() {
+    public Point last() {
         return new NsPoint(this.right, false);
     }
 

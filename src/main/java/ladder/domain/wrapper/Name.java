@@ -1,4 +1,4 @@
-package ladder.domain.ns;
+package ladder.domain.wrapper;
 
 import ladder.exception.InvalidNameException;
 

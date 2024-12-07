@@ -1,14 +1,15 @@
 package ladder.domain.ns;
 
 import ladder.domain.interfaces.Rewards;
+import ladder.domain.wrapper.RewardName;
 import ladder.exception.RewardsCountException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static ladder.domain.ns.RewardNameTest.*;
 import static ladder.domain.ns.NsRewards.PLAYERS_COUNT_REWARDS_COUNT_NOT_EQUAL_MESSAGE;
+import static ladder.domain.wrapper.RewardNameTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

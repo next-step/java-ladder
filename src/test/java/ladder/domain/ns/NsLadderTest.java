@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Map;
 
-import static ladder.domain.ns.PlayerNameTest.*;
 import static ladder.domain.ns.NsPlayersTest.POBI_HONUX_CRONG_JK;
-import static ladder.domain.ns.RewardNameTest.*;
 import static ladder.domain.ns.NsRewardsTest.꽝_5000_꽝_3000;
+import static ladder.domain.wrapper.PlayerNameTest.*;
+import static ladder.domain.wrapper.RewardNameTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class NsLadderTest {

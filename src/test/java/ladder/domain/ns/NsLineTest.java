@@ -12,8 +12,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.List;
 
 import static ladder.domain.ns.NsLine.NOT_ALLOWED_PLAYER_ZERO_OR_MINUS_MESSAGE;
-import static ladder.domain.ns.PlayerNameTest.*;
 import static ladder.domain.ns.NsPlayersTest.POBI_HONUX_CRONG_JK;
+import static ladder.domain.wrapper.PlayerNameTest.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class NsLineTest {
@@ -87,7 +87,7 @@ public class NsLineTest {
         Players initPlayers = new NsPlayers(POBI_HONUX_CRONG_JK);
 
         Players actual = line.move(initPlayers);
-        Players expected = new NsPlayers(List.of(PLAYER_NAME_HONUX, PLAYER_NAME_POBI, PLAYER_NAME_JK, PLAYER_NAME_CRONG), new Vertical(1));
+        Players expected = new NsPlayers(List.of(PLAYER_NAME_HONUX, PLAYER_NAME_POBI, PLAYER_NAME_JK, PLAYER_NAME_CRONG), new NsVertical(1));
 
         assertThat(actual).isEqualTo(expected);
     }

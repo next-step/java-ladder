@@ -1,9 +1,14 @@
 package ladder.domain.ns;
 
 import ladder.domain.interfaces.Players;
+import ladder.domain.interfaces.Vertical;
+import ladder.domain.wrapper.PlayerName;
 import ladder.exception.PlayersException;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class NsPlayers implements Players {
@@ -23,7 +28,7 @@ public class NsPlayers implements Players {
     }
 
     public NsPlayers(String playerNames) {
-        this(toNames(playerNames), new Vertical());
+        this(toNames(playerNames), new NsVertical());
     }
 
     public int size() {

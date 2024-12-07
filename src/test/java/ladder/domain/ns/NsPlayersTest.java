@@ -1,14 +1,16 @@
 package ladder.domain.ns;
 
 import ladder.domain.interfaces.Players;
+import ladder.domain.interfaces.Vertical;
+import ladder.domain.wrapper.PlayerName;
 import ladder.exception.PlayersException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static ladder.domain.ns.PlayerNameTest.*;
 import static ladder.domain.ns.NsPlayers.NOT_ENOUGH_PLAYERS_SIZE_MESSAGE;
+import static ladder.domain.wrapper.PlayerNameTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -19,7 +21,7 @@ public class NsPlayersTest {
     @DisplayName("플레이어 목록을 생성한다")
     void create() {
         Players actual = new NsPlayers(POBI_HONUX_CRONG_JK);
-        Players expected = new NsPlayers(List.of(PLAYER_NAME_POBI, PLAYER_NAME_HONUX, PLAYER_NAME_CRONG, PLAYER_NAME_JK), new Vertical());
+        Players expected = new NsPlayers(List.of(PLAYER_NAME_POBI, PLAYER_NAME_HONUX, PLAYER_NAME_CRONG, PLAYER_NAME_JK), new NsVertical());
 
         assertThat(actual).isEqualTo(expected);
     }
@@ -28,7 +30,7 @@ public class NsPlayersTest {
     @DisplayName("플레이어 목록을 생성실패한다: 플레이어 목록이 1명 미만")
     void create_실패_플레이어_목록이_1명_미만() {
         assertThatThrownBy(() -> {
-            new NsPlayers(List.of(), new Vertical());
+            new NsPlayers(List.of(), new NsVertical());
         }).isInstanceOf(PlayersException.class)
                 .hasMessage(NOT_ENOUGH_PLAYERS_SIZE_MESSAGE);
     }
@@ -55,10 +57,10 @@ public class NsPlayersTest {
     @DisplayName("현재 사다리 높이를 출력한다")
     void vertical() {
         Players players = new NsPlayers(List.of(PLAYER_NAME_POBI, PLAYER_NAME_HONUX, PLAYER_NAME_CRONG, PLAYER_NAME_JK),
-                new Vertical(1));
+                new NsVertical(1));
 
         Vertical actual = players.vertical();
-        Vertical expected = new Vertical(1);
+        Vertical expected = new NsVertical(1);
 
         assertThat(actual).isEqualTo(expected);
     }

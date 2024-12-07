@@ -1,7 +1,9 @@
 package ladder.domain.ns;
 
-import ladder.domain.interfaces.generator.CrossGenerator;
 import ladder.domain.interfaces.*;
+import ladder.domain.interfaces.generator.CrossGenerator;
+import ladder.domain.wrapper.PlayerName;
+import ladder.domain.wrapper.RewardName;
 
 import java.util.HashMap;
 import java.util.Map;

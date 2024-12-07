@@ -1,4 +1,4 @@
-package ladder.domain.ns;
+package ladder.domain.wrapper;
 
 public class PlayerName extends Name {
     public PlayerName(String value) {

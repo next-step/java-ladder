@@ -1,9 +1,10 @@
 package ladder.domain.ns;
 
-import ladder.domain.interfaces.generator.CrossGenerator;
 import ladder.domain.interfaces.Line;
 import ladder.domain.interfaces.Players;
 import ladder.domain.interfaces.Point;
+import ladder.domain.interfaces.generator.CrossGenerator;
+import ladder.domain.wrapper.PlayerName;
 import ladder.exception.PlayersCountException;
 import ladder.exception.PointException;
 

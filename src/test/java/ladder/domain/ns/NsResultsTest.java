@@ -1,15 +1,17 @@
 package ladder.domain.ns;
 
 import ladder.domain.interfaces.Results;
+import ladder.domain.wrapper.PlayerName;
+import ladder.domain.wrapper.RewardName;
 import ladder.exception.NoNameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
-import static ladder.domain.ns.PlayerNameTest.*;
 import static ladder.domain.ns.NsResults.NO_NAME_MESSAGE;
-import static ladder.domain.ns.RewardNameTest.*;
+import static ladder.domain.wrapper.PlayerNameTest.*;
+import static ladder.domain.wrapper.RewardNameTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

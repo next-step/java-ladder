@@ -1,7 +1,7 @@
 package ladder.domain.interfaces;
 
-import ladder.domain.ns.PlayerName;
-import ladder.domain.ns.Vertical;
+import ladder.domain.wrapper.PlayerName;
+import ladder.domain.ns.NsVertical;
 
 import java.util.List;
 

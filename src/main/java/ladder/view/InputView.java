@@ -1,12 +1,12 @@
 package ladder.view;
 
+import ladder.domain.interfaces.Ladder;
+import ladder.domain.interfaces.Players;
 import ladder.domain.ns.NsLadder;
 import ladder.domain.ns.NsPlayers;
 import ladder.domain.ns.NsRewards;
-import ladder.domain.ns.PlayerName;
 import ladder.domain.ns.generator.RandomCrossGenerator;
-import ladder.domain.interfaces.Ladder;
-import ladder.domain.interfaces.Players;
+import ladder.domain.wrapper.PlayerName;
 import ladder.exception.NoNameException;
 
 import java.util.List;

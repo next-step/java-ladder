@@ -1,6 +1,8 @@
 package ladder.domain.ns;
 
 import ladder.domain.interfaces.Results;
+import ladder.domain.wrapper.PlayerName;
+import ladder.domain.wrapper.RewardName;
 import ladder.exception.NoNameException;
 
 import java.util.Collections;

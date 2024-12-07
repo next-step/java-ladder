@@ -1,4 +1,4 @@
-package ladder.domain.ns;
+package ladder.domain.wrapper;
 
 public class RewardName extends Name {
     public RewardName(String value) {

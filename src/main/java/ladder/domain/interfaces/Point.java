@@ -1,12 +1,11 @@
 package ladder.domain.interfaces;
 
-import ladder.domain.ns.NsPoint;
 import ladder.domain.interfaces.enums.MoveStatus;
 
 public interface Point {
-    NsPoint next(boolean right);
+    Point next(boolean right);
 
-    NsPoint last();
+    Point last();
 
     boolean getRight();
 
