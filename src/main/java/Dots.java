@@ -29,7 +29,7 @@ public class Dots {
     @Override
     public String toString() {
         return this.values.stream()
-                .map(Dot::print)
+                .map(Dot::toString)
                 .collect(Collectors.joining(""));
     }
 

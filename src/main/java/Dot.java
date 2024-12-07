@@ -43,7 +43,8 @@ public class Dot {
         return new Dot(PointCache.get(this.point.calcAddX(0), this.point.calcAddY(1)), this.type);
     }
 
-    public String print() {
+    @Override
+    public String toString() {
         return DotType.print(this.type);
     }
 

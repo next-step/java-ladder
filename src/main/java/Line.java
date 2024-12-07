@@ -6,7 +6,7 @@ public class Line {
     private final Dots dots;
 
     public Line(int lineNumber, DotType... types) {
-        this(lineNumber, Arrays.asList(types));
+        this(lineNumber, List.of(types));
     }
 
     public Line(int lineNumber, List<DotType> dotTypes) {
