@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class RandomLadderFactory extends LadderFactory {
+public class RandomLadderFactory implements LadderFactory {
     @Override
     public Ladder createLadder(int ladderCount, int maxHeight, LineGenerator lineGenerator) {
         List<Line> lines = IntStream.range(0, maxHeight)
