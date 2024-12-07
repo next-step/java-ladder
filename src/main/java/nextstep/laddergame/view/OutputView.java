@@ -1,77 +1,78 @@
 package nextstep.laddergame.view;
 
-import nextstep.laddergame.domain.LadderGame;
-import nextstep.laddergame.domain.LadderOutput;
-import nextstep.laddergame.domain.Participants;
-import nextstep.laddergame.service.LadderGameResult;
+import nextstep.laddergame.domain.Ladder;
+import nextstep.laddergame.domain.LadderResult;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class OutputView {
     private static final String LINE_SEPARATOR = System.lineSeparator();
     private static final String TWICE_SPACES = "  ";
     private static final String THIRD_SPACES = "   ";
-    private static final String EMPTY_LADDER_LINE = "|     ";
-    private static final String SET_LADDER_LINE = "|-----";
+    private static final String EMPTY_LINE = "|     ";
+    private static final String SET_LINE = "|-----";
+    private static final String ALL_PARTICIPANTS = "all";
 
     private OutputView() {
     }
 
-    public static void printLadder(LadderGame ladderGame) {
+    public static void printLadder(List<String> participants, Ladder ladder, List<String> ladderOutputs) {
         StringBuilder stringBuilder = new StringBuilder("사다리 결과").append(LINE_SEPARATOR).append(LINE_SEPARATOR);
-        stringBuilder.append(createParticipantsName(ladderGame.getParticipants())).append(LINE_SEPARATOR);
-        stringBuilder.append(createLadder(ladderGame));
-        stringBuilder.append(createLadderGameOutput(ladderGame.getLadderOutputs())).append(LINE_SEPARATOR);
+        stringBuilder.append(createParticipantsName(participants)).append(LINE_SEPARATOR);
+        stringBuilder.append(createLadder(ladder));
+        stringBuilder.append(createLadderGameOutput(ladderOutputs)).append(LINE_SEPARATOR);
 
         System.out.println(stringBuilder);
     }
 
-    private static String createLadderGameOutput(List<LadderOutput> ladderOutputs) {
+    private static String createLadderGameOutput(List<String> ladderOutputs) {
         return ladderOutputs
-                .stream().map(ladderOutput -> ladderOutput.getWinningData() + TWICE_SPACES)
+                .stream().map(ladderOutput -> ladderOutput + TWICE_SPACES)
                 .collect(Collectors.joining());
     }
 
-    private static String createLadder(LadderGame ladderGame) {
-        return IntStream.range(0, ladderGame.getLaddersLineSize())
-                .mapToObj(height -> {
-                    String output = IntStream.range(0, ladderGame.getLaddersSize())
-                            .mapToObj(position -> ladderGame.getLadders().ladderAt(position).isLineAlreadySetAt(height) ? SET_LADDER_LINE : EMPTY_LADDER_LINE)
+    private static String createLadder(Ladder ladder) {
+        return ladder.values().stream()
+                .map(line -> {
+                    String output = line.values().stream()
+                            .map(cross -> cross.isSet() ? SET_LINE : EMPTY_LINE)
                             .collect(Collectors.joining());
                     return THIRD_SPACES + output + LINE_SEPARATOR;
                 })
                 .collect(Collectors.joining());
     }
 
-    private static String createParticipantsName(Participants participants) {
-        return participants.values()
-                .stream().map(participant -> participant.getName() + TWICE_SPACES)
+    private static String createParticipantsName(List<String> participants) {
+        return participants
+                .stream().map(participant -> participant + TWICE_SPACES)
                 .collect(Collectors.joining());
     }
 
-    public static void printGameResult(List<LadderGameResult> gameResults) {
-        System.out.println(new StringBuilder("실행 결과")
-                .append(LINE_SEPARATOR)
-                .append(createGameResult(gameResults))
-                .append(LINE_SEPARATOR));
-    }
+    public static void printGameResult(LadderResult ladderResult) {
+        boolean isAllParticipants = false;
+        while (!isAllParticipants) {
+            List<String> participantsForResult = InputView.enterParticipantNamesForResult();
+            isAllParticipants = isAllParticipants(participantsForResult);
 
-    private static String createGameResult(List<LadderGameResult> gameResults) {
-        if (gameResults.size() == 1) {
-            return createSingleGameResult(gameResults);
+            System.out.println(new StringBuilder("실행 결과")
+                    .append(LINE_SEPARATOR)
+                    .append(isAllParticipants ? createAllGameResult(ladderResult) : createSingleGameResult(participantsForResult, ladderResult))
+                    .append(LINE_SEPARATOR));
         }
-        return createAllGameResults(gameResults);
     }
 
-    private static String createSingleGameResult(List<LadderGameResult> gameResults) {
-        return gameResults.get(0).getWinningData();
-    }
-
-    private static String createAllGameResults(List<LadderGameResult> gameResults) {
-        return gameResults.stream()
-                .map(result -> String.format("%s : %s", result.getParticipant().getName(), result.getWinningData()))
+    private static String createAllGameResult(LadderResult ladderResult) {
+        return ladderResult.keys().stream()
+                .map(key -> String.format("%s : %s", key, ladderResult.outputOf(key)))
                 .collect(Collectors.joining((LINE_SEPARATOR)));
+    }
+
+    private static String createSingleGameResult(List<String> participantsForResult, LadderResult ladderResult) {
+        return ladderResult.outputOf(participantsForResult.get(0));
+    }
+
+    private static boolean isAllParticipants(List<String> names) {
+        return names.size() == 1 && ALL_PARTICIPANTS.equals(names.get(0));
     }
 }
