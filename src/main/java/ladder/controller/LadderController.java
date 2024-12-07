@@ -1,6 +1,9 @@
 package ladder.controller;
 
-import ladder.domain.*;
+import ladder.domain.interfaces.Ladder;
+import ladder.domain.interfaces.Players;
+import ladder.domain.ns.NsRewards;
+import ladder.domain.ns.PlayerName;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -13,7 +16,7 @@ public class LadderController {
         InputView inputView = new InputView(new Scanner(System.in));
 
         Players players = inputView.inputNamesToPlayers();
-        Rewards rewards = inputView.inputNamesToRewards(players);
+        NsRewards rewards = inputView.inputNamesToRewards(players);
         Ladder ladder = inputView.inputVerticalSizeToLadder(players);
 
         ResultView resultView = new ResultView();

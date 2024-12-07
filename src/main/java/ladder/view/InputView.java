@@ -1,17 +1,18 @@
 package ladder.view;
 
-import ladder.domain.*;
-import ladder.domain.generator.RandomCrossGenerator;
-import ladder.exception.InvalidNameException;
-import ladder.exception.LineException;
+import ladder.domain.ns.NsLadder;
+import ladder.domain.ns.NsPlayers;
+import ladder.domain.ns.NsRewards;
+import ladder.domain.ns.PlayerName;
+import ladder.domain.ns.generator.RandomCrossGenerator;
+import ladder.domain.interfaces.Ladder;
+import ladder.domain.interfaces.Players;
 import ladder.exception.NoNameException;
-import ladder.exception.PlayersCountException;
 
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
-import static ladder.domain.Results.NO_NAME_MESSAGE;
+import static ladder.domain.ns.NsResults.NO_NAME_MESSAGE;
 
 public class InputView {
     public static final String INPUT_NAMES_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
@@ -28,15 +29,15 @@ public class InputView {
 
     public Players inputNamesToPlayers() {
         try {
-            return new Players(inputNames());
+            return new NsPlayers(inputNames());
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return inputNamesToPlayers();
         }
     }
-    public Rewards inputNamesToRewards(Players players) {
+    public NsRewards inputNamesToRewards(Players players) {
         try {
-            return new Rewards(inputRewardNames(), players.size());
+            return new NsRewards(inputRewardNames(), players.size());
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return inputNamesToRewards(players);
@@ -45,7 +46,7 @@ public class InputView {
 
     public Ladder inputVerticalSizeToLadder(Players players) {
         try {
-            return new Ladder(players, inputVerticalSize(), new RandomCrossGenerator());
+            return new NsLadder(players, inputVerticalSize(), new RandomCrossGenerator());
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return inputVerticalSizeToLadder(inputNamesToPlayers());

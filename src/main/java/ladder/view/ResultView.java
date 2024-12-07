@@ -1,13 +1,16 @@
 package ladder.view;
 
-import ladder.domain.*;
+import ladder.domain.interfaces.*;
+import ladder.domain.ns.NsRewards;
+import ladder.domain.ns.PlayerName;
+import ladder.domain.ns.RewardName;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static ladder.domain.Name.DEFAULT_MAX_NAME_LENGTH;
+import static ladder.domain.ns.Name.DEFAULT_MAX_NAME_LENGTH;
 
 public class ResultView {
     public static final int START_INCLUSIVE = 0;
@@ -27,12 +30,12 @@ public class ResultView {
     public ResultView() {
     }
 
-    public void renderLadderAndRewards(Ladder ladder, Rewards rewards) {
+    public void renderLadderAndRewards(Ladder ladder, NsRewards rewards) {
         System.out.println(RESULT_MESSAGE);
         System.out.println(toLadder(ladder, rewards));
     }
 
-    public String toLadder(Ladder ladder, Rewards rewards) {
+    public String toLadder(Ladder ladder, NsRewards rewards) {
         Players players = ladder.getPlayers();
         List<Line> lines = ladder.getLines()
                 .getLines();
@@ -75,7 +78,7 @@ public class ResultView {
                 .collect(Collectors.joining(SPACE));
     }
 
-    private static String toFormattedNames(Rewards rewards) {
+    private static String toFormattedNames(NsRewards rewards) {
         return rewards.names()
                 .stream()
                 .map(name -> SPACE.repeat(DEFAULT_MAX_NAME_LENGTH - name.length()) + name.name())
