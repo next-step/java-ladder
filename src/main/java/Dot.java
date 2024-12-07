@@ -1,59 +1,34 @@
 public class Dot {
-    private final Point point;
-    private final DotType type;
+    private final boolean left;
+    private final boolean current;
 
-    public Dot(Point point, DotType type) {
-        this.point = point;
-        this.type = type;
-    }
-
-    public int calcAddX(int n) {
-        return this.point.calcAddX(n);
-    }
-
-    public boolean xIs(int n) {
-        return this.point.xIs(n);
-    }
-
-    public boolean yIsLowerThan(int n) {
-        return this.point.yIsLowerThan(n);
-    }
-
-    public boolean isBridge() {
-        return this.type == DotType.BRIDGE;
-    }
-
-    public int playerNumber() {
-        if (this.type != DotType.NODE) {
-            throw new RuntimeException();
+    public Dot(boolean left, boolean current) {
+        if (left && current) {
+            throw new IllegalArgumentException("cannot be true both of left and current value.");
         }
 
-        return this.point.calcDivX(2);
+        this.left = left;
+        this.current = current;
     }
 
-    public Dot moveLeft() {
-        return new Dot(PointCache.get(this.point.calcAddX(-2), this.point.calcAddY(0)), this.type);
+    public Dot chain(boolean current) {
+        return new Dot(this.current, current);
     }
 
-    public Dot moveRight() {
-        return new Dot(PointCache.get(this.point.calcAddX(2), this.point.calcAddY(0)), this.type);
-    }
+    public Direction move() {
+        if (left && !current) {
+            return Direction.LEFT;
+        }
 
-    public Dot moveDown() {
-        return new Dot(PointCache.get(this.point.calcAddX(0), this.point.calcAddY(1)), this.type);
+        if (!left && current) {
+            return Direction.RIGHT;
+        }
+
+        return Direction.PASS;
     }
 
     @Override
     public String toString() {
-        return DotType.print(this.type);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Dot dot = (Dot) o;
-
-        return this.point == dot.point && this.type == dot.type;
+        return "  o  " + (this.current ? "--" : "  ");
     }
 }

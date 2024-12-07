@@ -5,20 +5,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class DotTest {
     @Test
-    void create() {
-        Point p1 = PointCache.get(0, 0);
-        Point p2 = PointCache.get(0, 1);
-
-        DotCache.put(p1, new Dot(p1, DotType.NODE));
-        DotCache.put(p2, new Dot(p2, DotType.NODE));
-
-        assertThat(DotCache.get(0, 0).moveDown()).isEqualTo(DotCache.get(0, 1));
-    }
-
-    @Test
-    void invalid() {
-        assertThatThrownBy(
-                () -> (new Dot(new Point(1, 0), DotType.BRIDGE)).playerNumber()
-        ).isInstanceOf(RuntimeException.class);
+    void move() {
+        assertThat(new Dot(false, false).move()).isEqualTo(Direction.PASS);
+        assertThat(new Dot(true, false).move()).isEqualTo(Direction.LEFT);
+        assertThat(new Dot(false, true).move()).isEqualTo(Direction.RIGHT);
+        assertThatThrownBy(() -> new Dot(true, true)).isInstanceOf(IllegalArgumentException.class);
     }
 }

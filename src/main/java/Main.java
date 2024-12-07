@@ -4,12 +4,11 @@ public class Main {
         String[] resultNames = InputView.askResultNames();
         int ladderHeight = InputView.askLadderHeight();
 
-        Ladder ladder = (new LadderBuilder(new RandomGenerator())).build(names, resultNames, ladderHeight);
+        Ladder ladder = new LadderBuilder(new RandomGenerator()).build(names, resultNames, ladderHeight);
 
-        ResultView.printLadder(ladder);
+        ResultView.printV(ladder);
 
         String playerName = "";
-
         InputView.flush();
 
         while(!playerName.equals("all")) {
