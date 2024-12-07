@@ -1,7 +1,7 @@
-package ladder.domain.wrapper;
+package ladder.domain.engine;
 
-public class RewardName extends Name {
-    public RewardName(String value) {
+public class PlayerName extends Name {
+    public PlayerName(String value) {
         super(value);
     }
 

@@ -1,4 +1,4 @@
-package ladder.domain.interfaces;
+package ladder.domain.engine;
 
 import java.util.List;
 

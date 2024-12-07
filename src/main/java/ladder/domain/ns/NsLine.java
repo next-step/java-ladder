@@ -1,10 +1,10 @@
 package ladder.domain.ns;
 
-import ladder.domain.interfaces.Line;
-import ladder.domain.interfaces.Players;
-import ladder.domain.interfaces.Point;
-import ladder.domain.interfaces.generator.CrossGenerator;
-import ladder.domain.wrapper.PlayerName;
+import ladder.domain.engine.Line;
+import ladder.domain.engine.PlayerName;
+import ladder.domain.engine.Players;
+import ladder.domain.engine.Point;
+import ladder.domain.engine.generator.CrossGenerator;
 import ladder.exception.PlayersCountException;
 import ladder.exception.PointException;
 
@@ -18,23 +18,23 @@ public class NsLine implements Line {
     public static final int START_INCLUSIVE = 0;
     public static final int END_EXCLUSIVE_OFFSET = 1;
     public static final int MIN_PLAYERS_COUNT = 1;
-    private final List<Point> points;
+    private final List<ladder.domain.engine.Point> points;
 
     public NsLine(int playersCount, CrossGenerator generator) {
         this(generateLine(playersCount, generator));
     }
 
-    public NsLine(List<Point> points) {
+    public NsLine(List<ladder.domain.engine.Point> points) {
         this.points = new ArrayList<>(points);
     }
 
-    private static List<Point> generateLine(int playersCount, CrossGenerator generator) {
+    private static List<ladder.domain.engine.Point> generateLine(int playersCount, CrossGenerator generator) {
         if (playersCount < MIN_PLAYERS_COUNT) {
             throw new PlayersCountException(NOT_ALLOWED_PLAYER_ZERO_OR_MINUS_MESSAGE);
         }
 
-        List<Point> points = new ArrayList<>();
-        Point point = NsPoint.first(generator.generate());
+        List<ladder.domain.engine.Point> points = new ArrayList<>();
+        Point point = Point.first(generator.generate());
 
         for (int index = START_INCLUSIVE; index < playersCount; index++) {
             int endExclusive = playersCount - END_EXCLUSIVE_OFFSET;
@@ -78,7 +78,7 @@ public class NsLine implements Line {
             nextLinePlayers.add(movedName);
         });
 
-        return new NsPlayers(nextLinePlayers, players.vertical().move());
+        return new Players(nextLinePlayers, players.vertical().move());
     }
 
     @Override

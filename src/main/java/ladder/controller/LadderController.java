@@ -1,9 +1,9 @@
 package ladder.controller;
 
-import ladder.domain.interfaces.Ladder;
-import ladder.domain.interfaces.Players;
-import ladder.domain.ns.NsRewards;
-import ladder.domain.wrapper.PlayerName;
+import ladder.domain.engine.Ladder;
+import ladder.domain.engine.PlayerName;
+import ladder.domain.engine.Players;
+import ladder.domain.engine.Rewards;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
@@ -16,7 +16,7 @@ public class LadderController {
         InputView inputView = new InputView(new Scanner(System.in));
 
         Players players = inputView.inputNamesToPlayers();
-        NsRewards rewards = inputView.inputNamesToRewards(players);
+        Rewards rewards = inputView.inputNamesToRewards(players);
         Ladder ladder = inputView.inputVerticalSizeToLadder(players);
 
         ResultView resultView = new ResultView();
@@ -24,7 +24,7 @@ public class LadderController {
         resultView.renderLadderAndRewards(ladder, rewards);
 
         List<PlayerName> playerNames = inputView.inputResultPlayer(players);//결과를 보고 싶은 사람은?
-        resultView.renderResults(ladder.results(rewards), playerNames);
+        resultView.renderResults(ladder.playResults(rewards), playerNames);
     }
 
 }

@@ -1,9 +1,9 @@
-package ladder.domain.interfaces;
+package ladder.domain.engine;
 
 public interface Ladder {
     Lines getLines();
 
     Players getPlayers();
 
-    Results results(Rewards rewards);
+    Results playResults(Rewards rewards);
 }

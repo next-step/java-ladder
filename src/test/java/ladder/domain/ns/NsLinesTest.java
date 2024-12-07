@@ -1,18 +1,15 @@
 package ladder.domain.ns;
 
-import ladder.domain.interfaces.Line;
-import ladder.domain.interfaces.Lines;
-import ladder.domain.interfaces.Players;
-import ladder.domain.interfaces.Point;
+import ladder.domain.engine.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static ladder.domain.engine.PlayerNameTest.*;
+import static ladder.domain.engine.PlayersTest.POBI_HONUX_CRONG_JK;
 import static ladder.domain.ns.NsLadderTest.VERTICAL_LADDER_SIZE;
-import static ladder.domain.ns.NsPlayersTest.POBI_HONUX_CRONG_JK;
-import static ladder.domain.wrapper.PlayerNameTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -21,7 +18,7 @@ public class NsLinesTest {
     @Test
     @DisplayName("라인목록을 생성한다")
     void create() {
-        Players players = new NsPlayers(POBI_HONUX_CRONG_JK);
+        Players players = new Players(POBI_HONUX_CRONG_JK);
         Lines actual = new NsLines(players, VERTICAL_LADDER_SIZE, () -> false);
         Line falseLine = new NsLine(players.size(), () -> false);
         Lines expected = new NsLines(List.of(falseLine, falseLine, falseLine, falseLine, falseLine));
@@ -32,7 +29,7 @@ public class NsLinesTest {
     @Test
     @DisplayName("라인목록을 조회한다")
     void getLines() {
-        Players players = new NsPlayers(POBI_HONUX_CRONG_JK);
+        Players players = new Players(POBI_HONUX_CRONG_JK);
         Line falseLine = new NsLine(players.size(), () -> false);
         ArrayList<Line> lineList = new ArrayList<>(List.of(falseLine, falseLine, falseLine, falseLine, falseLine));
         Lines lines = new NsLines(lineList);
@@ -53,17 +50,17 @@ public class NsLinesTest {
         //    |     |-----|     | jk    honux pobi  crong 3
         //    |-----|     |-----| jk    pobi  honux crong 4
         //    results             pobi  jk    crong honux 5
-        Point p1_1 = NsPoint.first(true),
+        Point p1_1 = Point.first(true),
                 p1_2 = p1_1.next(false),
                 p1_3 = p1_2.next(true),
                 p1_4 = p1_3.last();
 
-        Point p2_1 = NsPoint.first(false),
+        Point p2_1 = Point.first(false),
                 p2_2 = p2_1.next(true),
                 p2_3 = p2_2.next(false),
                 p2_4 = p2_3.last();
 
-        Point p3_1 = NsPoint.first(true),
+        Point p3_1 = Point.first(true),
                 p3_2 = p3_1.next(false),
                 p3_3 = p3_2.next(false),
                 p3_4 = p3_3.last();
@@ -76,10 +73,10 @@ public class NsLinesTest {
                 new NsLine(List.of(p1_1, p1_2, p1_3, p1_4))
         ));
 
-        Players actual = lines.move(new NsPlayers(POBI_HONUX_CRONG_JK));
-        Players expected = new NsPlayers(
+        Players actual = lines.move(new Players(POBI_HONUX_CRONG_JK));
+        Players expected = new Players(
                 List.of(PLAYER_NAME_POBI, PLAYER_NAME_JK, PLAYER_NAME_CRONG, PLAYER_NAME_HONUX),
-                new NsVertical(5));
+                new Vertical(5));
 
         assertThat(actual).isEqualTo(expected);
     }

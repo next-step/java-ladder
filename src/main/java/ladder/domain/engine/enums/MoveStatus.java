@@ -1,4 +1,4 @@
-package ladder.domain.interfaces.enums;
+package ladder.domain.engine.enums;
 
 public enum MoveStatus {
     LEFT(-1),

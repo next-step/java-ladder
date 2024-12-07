@@ -1,18 +1,17 @@
 package ladder.view;
 
-import ladder.domain.interfaces.Ladder;
-import ladder.domain.interfaces.Players;
+import ladder.domain.engine.Ladder;
+import ladder.domain.engine.PlayerName;
+import ladder.domain.engine.Players;
+import ladder.domain.engine.Rewards;
 import ladder.domain.ns.NsLadder;
-import ladder.domain.ns.NsPlayers;
-import ladder.domain.ns.NsRewards;
 import ladder.domain.ns.generator.RandomCrossGenerator;
-import ladder.domain.wrapper.PlayerName;
 import ladder.exception.NoNameException;
 
 import java.util.List;
 import java.util.Scanner;
 
-import static ladder.domain.ns.NsResults.NO_NAME_MESSAGE;
+import static ladder.domain.engine.Results.NO_NAME_MESSAGE;
 
 public class InputView {
     public static final String INPUT_NAMES_MESSAGE = "참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)";
@@ -29,15 +28,15 @@ public class InputView {
 
     public Players inputNamesToPlayers() {
         try {
-            return new NsPlayers(inputNames());
+            return new Players(inputNames());
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return inputNamesToPlayers();
         }
     }
-    public NsRewards inputNamesToRewards(Players players) {
+    public Rewards inputNamesToRewards(Players players) {
         try {
-            return new NsRewards(inputRewardNames(), players.size());
+            return new Rewards(inputRewardNames(), players.size());
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return inputNamesToRewards(players);

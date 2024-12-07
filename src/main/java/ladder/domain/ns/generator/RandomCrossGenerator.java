@@ -1,6 +1,6 @@
 package ladder.domain.ns.generator;
 
-import ladder.domain.interfaces.generator.CrossGenerator;
+import ladder.domain.engine.generator.CrossGenerator;
 
 import java.util.Random;
 

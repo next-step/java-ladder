@@ -1,31 +1,28 @@
-package ladder.domain.ns;
+package ladder.domain.engine;
 
-import ladder.domain.interfaces.Results;
-import ladder.domain.wrapper.PlayerName;
-import ladder.domain.wrapper.RewardName;
 import ladder.exception.NoNameException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
-import static ladder.domain.ns.NsResults.NO_NAME_MESSAGE;
-import static ladder.domain.wrapper.PlayerNameTest.*;
-import static ladder.domain.wrapper.RewardNameTest.*;
+import static ladder.domain.engine.PlayerNameTest.*;
+import static ladder.domain.engine.Results.NO_NAME_MESSAGE;
+import static ladder.domain.engine.RewardNameTest.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class NsResultsTest {
+public class ResultsTest {
 
     @Test
     void create() {
-        Results actual = new NsResults(Map.of(
+        Results actual = new Results(Map.of(
                 PLAYER_NAME_POBI, REWARD_NAME_꽝,
                 PLAYER_NAME_JK, REWARD_NAME_5000,
                 PLAYER_NAME_CRONG, REWARD_NAME_꽝,
                 PLAYER_NAME_HONUX, REWARD_NAME_3000
         ));
-        Results expected = new NsResults(Map.of(
+        Results expected = new Results(Map.of(
                 PLAYER_NAME_JK, REWARD_NAME_5000,
                 PLAYER_NAME_POBI, REWARD_NAME_꽝,
                 PLAYER_NAME_CRONG, REWARD_NAME_꽝,
@@ -38,7 +35,7 @@ public class NsResultsTest {
     @Test
     @DisplayName("플레이어 이름에 해당하는 결과 출력")
     void reward() {
-        Results results = new NsResults(Map.of(
+        Results results = new Results(Map.of(
                 PLAYER_NAME_POBI, REWARD_NAME_꽝,
                 PLAYER_NAME_JK, REWARD_NAME_5000,
                 PLAYER_NAME_CRONG, REWARD_NAME_꽝,
@@ -54,7 +51,7 @@ public class NsResultsTest {
     @DisplayName("플레이어 이름이 없으면 오류")
     void reward_플레이어_이름_없으면_오류() {
         assertThatThrownBy(() -> {
-            Results results = new NsResults(Map.of(
+            Results results = new Results(Map.of(
                     PLAYER_NAME_POBI, REWARD_NAME_꽝,
                     PLAYER_NAME_JK, REWARD_NAME_5000,
                     PLAYER_NAME_CRONG, REWARD_NAME_꽝,
@@ -68,7 +65,7 @@ public class NsResultsTest {
     @Test
     @DisplayName("결과 모두 출력")
     void rewards() {
-        Results results = new NsResults(Map.of(
+        Results results = new Results(Map.of(
                 PLAYER_NAME_POBI, REWARD_NAME_꽝,
                 PLAYER_NAME_JK, REWARD_NAME_5000,
                 PLAYER_NAME_CRONG, REWARD_NAME_꽝,

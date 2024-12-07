@@ -1,9 +1,7 @@
 package ladder.domain.ns;
 
-import ladder.domain.interfaces.*;
-import ladder.domain.interfaces.generator.CrossGenerator;
-import ladder.domain.wrapper.PlayerName;
-import ladder.domain.wrapper.RewardName;
+import ladder.domain.engine.*;
+import ladder.domain.engine.generator.CrossGenerator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +33,7 @@ public class NsLadder implements Ladder {
     }
 
     @Override
-    public Results results(Rewards rewards) {
+    public Results playResults(Rewards rewards) {
         Players endPlayers = lines.move(players);
         Map<PlayerName, RewardName> results = new HashMap<>();
         IntStream.range(START_INCLUSIVE, endPlayers.size())
@@ -45,7 +43,7 @@ public class NsLadder implements Ladder {
                     RewardName value = rewards.names().get(index);
                     results.put(key, value);
                 });
-        return new NsResults(results);
+        return new Results(results);
     }
 
     @Override

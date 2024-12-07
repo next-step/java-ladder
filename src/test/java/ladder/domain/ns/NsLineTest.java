@@ -1,8 +1,9 @@
 package ladder.domain.ns;
 
-import ladder.domain.interfaces.Line;
-import ladder.domain.interfaces.Players;
-import ladder.domain.interfaces.Point;
+import ladder.domain.engine.Line;
+import ladder.domain.engine.Players;
+import ladder.domain.engine.Point;
+import ladder.domain.engine.Vertical;
 import ladder.exception.PlayersCountException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,9 +12,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+import static ladder.domain.engine.PlayerNameTest.*;
+import static ladder.domain.engine.PlayersTest.POBI_HONUX_CRONG_JK;
 import static ladder.domain.ns.NsLine.NOT_ALLOWED_PLAYER_ZERO_OR_MINUS_MESSAGE;
-import static ladder.domain.ns.NsPlayersTest.POBI_HONUX_CRONG_JK;
-import static ladder.domain.wrapper.PlayerNameTest.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class NsLineTest {
@@ -22,7 +23,7 @@ public class NsLineTest {
     @DisplayName("라인을 생성한다")
     void create() {
         assertThatNoException().isThrownBy(() -> {
-            Point firstPoint = NsPoint.first(true);
+            Point firstPoint = Point.first(true);
             Point next1Point = firstPoint.next(false);
             Point next2Point = next1Point.next(true);
             Point lastPoint = next2Point.last();
@@ -43,7 +44,7 @@ public class NsLineTest {
     @Test
     @DisplayName("포인트들을 조회한다")
     void getPoints() {
-        Point firstPoint = NsPoint.first(true);
+        Point firstPoint = Point.first(true);
         Point next1Point = firstPoint.next(false);
         Point next2Point = next1Point.next(true);
         Point lastPoint = next2Point.last();
@@ -59,7 +60,7 @@ public class NsLineTest {
     @Test
     @DisplayName("포인트들을 조회한다. 조회한 데이터는 불변이다")
     void getPoints_불변() {
-        Point firstPoint = NsPoint.first(true);
+        Point firstPoint = Point.first(true);
         Point next1Point = firstPoint.next(false);
         Point next2Point = next1Point.next(true);
         Point lastPoint = next2Point.last();
@@ -75,7 +76,7 @@ public class NsLineTest {
     @Test
     @DisplayName("한개 라인을 이동한다.")
     void move() {
-        Point firstPoint = NsPoint.first(true);
+        Point firstPoint = Point.first(true);
         Point next1Point = firstPoint.next(false);
         Point next2Point = next1Point.next(true);
         Point lastPoint = next2Point.last();
@@ -84,10 +85,10 @@ public class NsLineTest {
         //   p   h   c   j
         // f | t | f | t | f
         //   h   p   j   c
-        Players initPlayers = new NsPlayers(POBI_HONUX_CRONG_JK);
+        Players initPlayers = new Players(POBI_HONUX_CRONG_JK);
 
         Players actual = line.move(initPlayers);
-        Players expected = new NsPlayers(List.of(PLAYER_NAME_HONUX, PLAYER_NAME_POBI, PLAYER_NAME_JK, PLAYER_NAME_CRONG), new NsVertical(1));
+        Players expected = new Players(List.of(PLAYER_NAME_HONUX, PLAYER_NAME_POBI, PLAYER_NAME_JK, PLAYER_NAME_CRONG), new Vertical(1));
 
         assertThat(actual).isEqualTo(expected);
     }

@@ -1,7 +1,5 @@
-package ladder.domain.ns;
+package ladder.domain.engine;
 
-import ladder.domain.interfaces.Rewards;
-import ladder.domain.wrapper.RewardName;
 import ladder.exception.RewardsCountException;
 
 import java.util.Arrays;
@@ -9,19 +7,19 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class NsRewards implements Rewards {
+public class Rewards {
     public static final String DELIMITER = ",";
     public static final String PLAYERS_COUNT_REWARDS_COUNT_NOT_EQUAL_MESSAGE = "players 갯수와 rewards 갯수는 일치해야 합니다.";
     private final List<RewardName> rewardNames;
 
-    public NsRewards(List<RewardName> rewardNames, int playersCount) {
+    public Rewards(List<RewardName> rewardNames, int playersCount) {
         if (playersCount != rewardNames.size()) {
             throw new RewardsCountException(PLAYERS_COUNT_REWARDS_COUNT_NOT_EQUAL_MESSAGE);
         }
         this.rewardNames = rewardNames;
     }
 
-    public NsRewards(String rewards, int playersCount) {
+    public Rewards(String rewards, int playersCount) {
         this(toRewardNames(rewards), playersCount);
     }
 
@@ -31,7 +29,6 @@ public class NsRewards implements Rewards {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    @Override
     public List<RewardName> names() {
         return rewardNames;
     }
@@ -40,7 +37,7 @@ public class NsRewards implements Rewards {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        NsRewards rewards = (NsRewards) o;
+        Rewards rewards = (Rewards) o;
         return Objects.equals(rewardNames, rewards.rewardNames);
     }
 

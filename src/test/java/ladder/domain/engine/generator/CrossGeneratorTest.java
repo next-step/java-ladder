@@ -1,6 +1,5 @@
-package ladder.domain.interfaces.generator;
+package ladder.domain.engine.generator;
 
-import ladder.domain.interfaces.generator.CrossGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

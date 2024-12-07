@@ -1,9 +1,9 @@
 package ladder.domain.ns;
 
-import ladder.domain.interfaces.generator.CrossGenerator;
-import ladder.domain.interfaces.Line;
-import ladder.domain.interfaces.Lines;
-import ladder.domain.interfaces.Players;
+import ladder.domain.engine.Line;
+import ladder.domain.engine.Lines;
+import ladder.domain.engine.Players;
+import ladder.domain.engine.generator.CrossGenerator;
 
 import java.util.Collections;
 import java.util.List;
