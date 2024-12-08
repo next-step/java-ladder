@@ -1,31 +1,27 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.OptionalInt;
+import java.util.stream.IntStream;
 
 public class Ladder {
-    private final Players players;
-    private final Results results;
-    private final Lines lines;
+    private final List<Line> lines;
+    private final List<String> playerNames;
+    private final List<String> resultNames;
 
-    public Ladder(String[] playerNames, String[] results, List<Line> lines) {
-        this(Arrays.asList(playerNames), Arrays.asList(results), lines);
+    public Ladder(List<Line> lines, String[] playerNames, String[] resultNames) {
+        this(lines, List.of(playerNames), List.of(resultNames));
     }
 
-    public Ladder(List<String> players, List<String> results, List<Line> lines) {
-        this.players = new Players(players.stream().map(Player::new).collect(Collectors.toList()));
-        this.results = new Results(results.stream().map(Result::new).collect(Collectors.toList()));
-        this.lines = new Lines(lines);
-    }
-
-    public int height() {
-        return this.lines.height();
+    public Ladder(List<Line> lines, List<String> playerNames, List<String> resultNames) {
+        this.lines = lines;
+        this.playerNames = playerNames;
+        this.resultNames = resultNames;
     }
 
     public List<TravelResult> travelAll() {
         List<TravelResult> travelResults = new ArrayList<>();
 
-        for (int i = 0; i < this.players.size(); i++) {
+        for (int i = 0; i < playerCount(); i++) {
             travelResults.add(this.travel(i));
         }
 
@@ -33,42 +29,67 @@ public class Ladder {
     }
 
     public TravelResult travel(String playerName) {
-        int playerNumber = this.players.playerPosition(playerName);
+        OptionalInt index = IntStream.range(0, this.playerNames.size())
+                .filter(i -> playerName.equals(this.playerNames.get(i)))
+                .findFirst();
 
-        if (playerNumber == Players.INVALID_PLAYER_NAME) {
-            return new TravelResult(playerName, "INVALID");
+        if (index.isEmpty()) {
+            return new TravelResult("INVALID", "INVALID", Pos.invalid());
         }
 
-        return this.travel(this.players.playerPosition(playerName));
+        return this.travel(index.getAsInt());
     }
 
-    public TravelResult travel(int playerNumber) {
-        Step step = new Step(DotCache.get(playerNumber * 2, 0), 0, true);
+    public TravelResult travel(int startPlayer) {
+        Pos resultPos = this.move(startPlayer);
 
-        while (step.lowerHeightThan(height())) {
-            step = step.forward(this.lines.heightAt(step.height()));
+        return new TravelResult(
+                this.playerNames.get(startPlayer),
+                this.resultNames.get(resultPos.getX()),
+                resultPos
+        );
+    }
+
+    public Pos move(int startX) {
+        Pos curPos = new Pos(startX, 0);
+
+        for (Line line : lines) {
+            curPos = line.move(curPos.getX());
         }
 
-        return new TravelResult(this.players.nameAt(playerNumber), this.results.get(step.resultNumber()));
+        return curPos;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ladder ladder = (Ladder) o;
+    public int height() {
+        return lines.size();
+    }
 
-        return this.lines.equals(ladder.lines);
+    public int playerCount() {
+        if (lines.isEmpty()) return 0;
+
+        return lines.get(0).size();
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        this.players.appendPlayers(sb);
+        for (String playerName : playerNames) {
+            sb.append("    ");
+            sb.append(playerName);
+        }
         sb.append("\n");
-        this.lines.appendLines(sb);
-        this.results.appendResults(sb);
+
+        for (Line line : lines) {
+            sb.append(line.toString());
+            sb.append("\n");
+        }
+
+        for (String resultName : resultNames) {
+            sb.append("    ");
+            sb.append(resultName);
+        }
+        sb.append("\n");
 
         return sb.toString();
     }

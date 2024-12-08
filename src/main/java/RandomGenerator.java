@@ -7,7 +7,7 @@ public class RandomGenerator {
         random = new Random();
     }
 
-    public DotType rand() {
-        return this.random.nextInt() % 5 < 3 ? DotType.EMPTY : DotType.BRIDGE; // 40% for Bridge
+    public boolean rand() {
+        return this.random.nextInt() % 5 >= 3; // 40% for bridge
     }
 }

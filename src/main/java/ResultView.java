@@ -1,7 +1,7 @@
 import java.util.List;
 
 public class ResultView {
-    public static void printLadder(Ladder ladder) {
+    public static void printV(Ladder ladder) {
         System.out.println("사다리 결과");
         System.out.println(ladder);
     }
@@ -18,17 +18,17 @@ public class ResultView {
         List<TravelResult> travelResults = ladder.travelAll();
 
         for (TravelResult travelResult : travelResults) {
-            printResult(travelResult);
+            printMoveResult(travelResult);
         }
     }
 
     private static void printTravel(Ladder ladder, String playerName) {
         TravelResult travelResult = ladder.travel(playerName);
 
-        printResult(travelResult);
+        printMoveResult(travelResult);
     }
 
-    private static void printResult(TravelResult travelResult) {
-        System.out.println(travelResult.toString());
+    private static void printMoveResult(TravelResult travelResult) {
+        System.out.println(travelResult);
     }
 }

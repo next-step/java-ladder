@@ -3,47 +3,48 @@ import java.util.List;
 
 public class LadderBuilder {
     private final RandomGenerator randomGenerator;
-    private boolean prevBridgeUsed;
 
     public LadderBuilder(RandomGenerator randomGenerator) {
         this.randomGenerator = randomGenerator;
-        this.prevBridgeUsed = false;
     }
 
-    public Ladder build(String[] players, String[] results, int height) {
-        List<Line> lines = new ArrayList<>();
+    public Ladder build(String[] playerNames, String[] resultNames, int height) {
+        List<List<Boolean>> rands = new ArrayList<>();
 
         for (int i = 0; i < height; i++) {
-            lines.add(buildLine(i, players.length));
+            rands.add(genRandLine(playerNames.length));
         }
 
-        return new Ladder(players, results, lines);
+        return this.build(playerNames, resultNames, rands);
     }
 
-    private Line buildLine(int lineNumber, int playerCount) {
-        List<DotType> types = new ArrayList<>();
+    public Ladder build(String[] playerNames, String[] resultNames, List<List<Boolean>> rands) {
+        List<Line> lines = new ArrayList<>();
 
-        this.prevBridgeUsed = false;
-
-        for (int j = 0; j < playerCount - 1; j++) {
-            types.add(DotType.NODE);
-            types.add(buildBridgeDot());
+        for (int i = 0; i < rands.size(); i++) {
+            lines.add(new Line(i, rands.get(i)));
         }
 
-        types.add(DotType.NODE);
-
-        return new Line(lineNumber, types);
+        return new Ladder(lines, playerNames, resultNames);
     }
 
-    private DotType buildBridgeDot() {
-        DotType randType = this.randomGenerator.rand();
+    private List<Boolean> genRandLine(int playerNum) {
+        List<Boolean> randLine = new ArrayList<>();
 
-        if (this.prevBridgeUsed || randType.is(DotType.EMPTY)) {
-            this.prevBridgeUsed = false;
-            return DotType.EMPTY;
+        boolean prevRand = false;
+        for (int j = 0; j < playerNum - 1; j++) {
+            prevRand = genRand(prevRand, randLine);
         }
+//        randLine.add(false);
 
-        this.prevBridgeUsed = true;
-        return DotType.BRIDGE;
+        return randLine;
+    }
+
+    private boolean genRand(boolean prevRand, List<Boolean> randLine) {
+        boolean rand = prevRand ? false : this.randomGenerator.rand();
+
+        randLine.add(rand);
+
+        return rand;
     }
 }

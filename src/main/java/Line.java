@@ -1,38 +1,55 @@
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
     private final int lineNumber;
-    private final Dots dots;
+    private final List<Cross> crosses;
 
-    public Line(int lineNumber, DotType... types) {
-        this(lineNumber, Arrays.asList(types));
-    }
-
-    public Line(int lineNumber, List<DotType> dotTypes) {
+    public Line(int lineNumber, List<Boolean> currents) {
         this.lineNumber = lineNumber;
-        this.dots = new Dots(lineNumber, dotTypes);
+        this.crosses = new ArrayList<>();
+
+        if (currents.isEmpty()) { return; }
+
+        Cross curCross = Cross.first(currents.get(0), this.lineNumber);
+        this.crosses.add(curCross);
+
+        for (int i = 1; i < currents.size(); i++) {
+            curCross = curCross.add(currents.get(i));
+
+            this.crosses.add(curCross);
+        }
+
+        this.crosses.add(curCross.last());
     }
 
-    public int size() {
-        return this.dots.size();
-    }
+    public Pos move(int startX) {
+        Pos curPos = new Pos(startX, this.lineNumber);
+        Pos prevPos = curPos;
 
-    public boolean isBridge(int i) {
-        return this.dots.isBridge(i);
-    }
+        while(!curPos.yIs(this.lineNumber + 1)) {
+            Pos nextPos = this.crosses.get(curPos.getX()).move(prevPos);
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Line line = (Line) o;
+            prevPos = curPos;
+            curPos = nextPos;
+        }
 
-        return this.lineNumber == line.lineNumber && this.dots.equals(line.dots);
+        return curPos;
     }
 
     @Override
     public String toString() {
-        return this.dots.toString();
+        StringBuilder sb = new StringBuilder();
+
+        for (Cross cross : this.crosses) {
+            sb.append(cross.toString());
+            sb.append(" ");
+        }
+
+        return sb.toString();
+    }
+
+    public int size() {
+        return this.crosses.size();
     }
 }

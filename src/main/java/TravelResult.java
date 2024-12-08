@@ -1,15 +1,17 @@
 public class TravelResult {
     private final String playerName;
-    private final String result;
+    private final String resultName;
+    private final Pos pos;
 
-    public TravelResult(String playerName, String result) {
+    public TravelResult(String playerName, String resultName, Pos pos) {
         this.playerName = playerName;
-        this.result = result;
+        this.resultName = resultName;
+        this.pos = pos;
     }
 
     @Override
     public String toString() {
-        return this.playerName + " : " + this.result;
+        return this.playerName + " : " + this.resultName;
     }
 
     @Override
@@ -18,6 +20,6 @@ public class TravelResult {
         if (o == null || getClass() != o.getClass()) return false;
         TravelResult that = (TravelResult) o;
 
-        return this.result.equals(that.result);
+        return this.pos == that.pos;
     }
 }
