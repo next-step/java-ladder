@@ -1,41 +1,30 @@
 package nextstep.laddergame;
 
-import nextstep.laddergame.domain.*;
-import nextstep.laddergame.service.RandomLaddersFactory;
+import nextstep.laddergame.domain.Ladder;
+import nextstep.laddergame.domain.LadderResult;
+import nextstep.laddergame.service.PlayResult;
+import nextstep.laddergame.service.LadderFactory;
+import nextstep.laddergame.service.RandomLadderFactory;
+import nextstep.laddergame.service.RandomLineGenerator;
 import nextstep.laddergame.view.InputView;
 import nextstep.laddergame.view.OutputView;
 
 import java.util.List;
 
 public class LadderGameInterface {
-    private static final String ALL_PARTICIPANTS = "all";
 
     public static void main(String[] args) {
-        LadderGameInterface gameInterface = new LadderGameInterface();
-        gameInterface.start();
-    }
-
-    public void start() {
         List<String> participantsName = InputView.enterParticipantsName();
-        LadderGame ladderGame = new LadderGame(participantsName,
-                InputView.enterLadderResult(participantsName.size()),
-                InputView.enterLadderMaxHeight(),
-                new RandomLaddersFactory(),
-                new RandomLadderLinesGenerator());
+        Integer ladderMaxHeight = InputView.enterLadderMaxHeight();
+        List<String> ladderOutputs = InputView.enterLadderResult(participantsName.size());
 
-        OutputView.printLadder(ladderGame);
+        LadderFactory ladderFactory = new RandomLadderFactory();
+        Ladder ladder = ladderFactory.createLadder(participantsName.size(), ladderMaxHeight, new RandomLineGenerator());
+        OutputView.printLadder(participantsName, ladder, ladderOutputs);
 
-        boolean isAllParticipants = false;
-        while (!isAllParticipants) {
-            List<String> participantsForResult = InputView.enterParticipantNamesForResult();
-            isAllParticipants = isAllParticipants(participantsForResult);
+        PlayResult playResult = ladder.play(participantsName.size());
+        LadderResult ladderResult = playResult.map(participantsName, ladderOutputs);
 
-            OutputView.printGameResult(isAllParticipants
-                    ? ladderGame.resolveGameResults(participantsName) : ladderGame.resolveGameResults(participantsForResult));
-        }
-    }
-
-    public boolean isAllParticipants(List<String> names) {
-        return names.size() == 1 && ALL_PARTICIPANTS.equals(names.get(0));
+        OutputView.printGameResult(ladderResult);
     }
 }
