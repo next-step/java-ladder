@@ -1,13 +1,13 @@
 package ladder.view;
 
-import ladder.domain.*;
+import ladder.domain.engine.*;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static ladder.domain.Name.DEFAULT_MAX_NAME_LENGTH;
+import static ladder.domain.engine.Name.DEFAULT_MAX_NAME_LENGTH;
 
 public class ResultView {
     public static final int START_INCLUSIVE = 0;
