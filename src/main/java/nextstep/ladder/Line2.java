@@ -14,6 +14,7 @@ public class Line2 {
     public Line2(int countOfPerson) {
         createCrosses(countOfPerson);
     }
+
     public Line2(List<Cross> crosses) {
         this.crosses = crosses;
     }
@@ -27,6 +28,7 @@ public class Line2 {
         }
     }
 
+    //todo
     public int move(int position) {
         return this.crosses.get(position).move();
     }
@@ -36,5 +38,10 @@ public class Line2 {
                 + crosses.stream()
                 .map(cross -> cross.getCrossForPrint(trueSymbol, falseSymbol))
                 .collect(Collectors.joining(LINE_DELIMITER));
+    }
+
+    //todo
+    public int getCrossSize() {
+        return crosses.size();
     }
 }
