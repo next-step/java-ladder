@@ -3,11 +3,15 @@ package nextstep.ladder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class PointTest {
     private Point point;
+
+    private static final Random RANDOM = new Random();
 
     @BeforeEach
     void setUp() {
@@ -43,6 +47,16 @@ public class PointTest {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             Point point = new Point(true, true);
         });
+    }
+
+    @Test
+    void test() {
+        Point point = Point.first(RANDOM.nextBoolean());
+        System.out.println(point);
+        Point point2 = point.next(RANDOM.nextBoolean());
+        System.out.println(point2);
+        Point point3 = point2.last();
+        System.out.println(point3);
     }
 
 }
