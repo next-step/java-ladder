@@ -8,6 +8,7 @@ public class Usernames {
     private List<Username> usernames = new ArrayList<>();
 
     public Usernames(List<String> usernameStrs) {
+        //todo 이름 중복
         if (usernameStrs.size() == 0) {
             throw new IllegalArgumentException("참여자가 없습니다.");
         }
@@ -18,6 +19,12 @@ public class Usernames {
 
     public List<Username> getValues() {
         return usernames;
+    }
+
+
+    //todo 이렇게 작성해도 되는지??
+    public String getUsername(int index) {
+        return usernames.get(index).getUsername();
     }
 
     public int size() {
