@@ -1,17 +1,24 @@
 package nextstep.ladder;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Usernames {
     private List<Username> usernames = new ArrayList<>();
 
     public Usernames(List<String> usernameStrs) {
-        //todo 이름 중복
         if (usernameStrs.size() == 0) {
             throw new IllegalArgumentException("참여자가 없습니다.");
         }
+
+        Set<String> uniqueUsernames = new HashSet<>(usernameStrs);
+        if (uniqueUsernames.size() < usernameStrs.size()) {
+            throw new IllegalArgumentException("중복된 이름이 존재합니다.");
+        }
+
         this.usernames = usernameStrs.stream()
                 .map((str) -> new Username(str))
                 .collect(Collectors.toList());
