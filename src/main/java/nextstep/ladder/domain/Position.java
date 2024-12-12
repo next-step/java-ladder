@@ -18,11 +18,11 @@ public class Position {
     }
 
     public Position move(Direction direction) {
-        if (Direction.isRight(direction)) {
+        if (direction.isRight()) {
             return new Position(getMoveRightX(), getMoveY());
         }
 
-        if (Direction.isLeft(direction)) {
+        if (direction.isLeft()) {
             return new Position(getMoveLeftX(), getMoveY());
         }
 

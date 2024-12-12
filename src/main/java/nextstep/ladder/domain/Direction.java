@@ -25,14 +25,14 @@ public enum Direction {
         return Arrays.stream(Direction.values())
                 .filter(direction -> direction.directionOperation.getDirection(left, right))
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(RuntimeException::new);
     }
 
-    public static boolean isLeft(Direction direction) {
-        return direction == Direction.LEFT;
+    public boolean isLeft() {
+        return this == Direction.LEFT;
     }
 
-    public static boolean isRight(Direction direction) {
-        return direction == Direction.RIGHT;
+    public boolean isRight() {
+        return this == Direction.RIGHT;
     }
 }
