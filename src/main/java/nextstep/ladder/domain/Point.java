@@ -27,7 +27,7 @@ public class Point {
     }
 
     public Direction getDirection() {
-        return Direction.getDirection(left, right);
+        return Direction.of(left, right);
     }
 
     public boolean getLeft() {

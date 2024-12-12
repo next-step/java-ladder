@@ -10,19 +10,19 @@ class DirectionTest {
     @Test
     @DisplayName("getDirection 메소드를 통한 오른쪽 테스트")
     void right() {
-        assertThat(Direction.getDirection(false, true)).isEqualTo(Direction.RIGHT);
+        assertThat(Direction.of(false, true)).isEqualTo(Direction.RIGHT);
     }
 
     @Test
     @DisplayName("getDirection 메소드를 통한 왼쪽 테스트")
     void left() {
-        assertThat(Direction.getDirection(true,false)).isEqualTo(Direction.LEFT);
+        assertThat(Direction.of(true,false)).isEqualTo(Direction.LEFT);
     }
 
     @Test
     @DisplayName("getDirection 메소드를 통한 pass 테스트")
     void pass() {
-        assertThat(Direction.getDirection(false,false)).isEqualTo(Direction.PASS);
+        assertThat(Direction.of(false,false)).isEqualTo(Direction.PASS);
     }
 
 }

@@ -21,7 +21,7 @@ public enum Direction {
         this.directionOperation = directionOperation;
     }
 
-    public static Direction getDirection(boolean left, boolean right) {
+    public static Direction of(boolean left, boolean right) {
         return Arrays.stream(Direction.values())
                 .filter(direction -> direction.directionOperation.getDirection(left, right))
                 .findFirst()
