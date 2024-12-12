@@ -2,7 +2,7 @@ package nextstep.ladder.ui;
 
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.LadderResult;
-import nextstep.ladder.domain.laddergame.LadderGameResult2;
+import nextstep.ladder.domain.laddergame.LadderGameResult;
 import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.line.point.Point;
 import nextstep.ladder.domain.player.Player;
@@ -74,15 +74,15 @@ public class ResultView {
         return stringBuilder.toString();
     }
 
-    public static void printGameResult2(LadderGameResult2 ladderGameResult2) {
+    public static void printGameResult2(LadderGameResult ladderGameResult) {
         String playerName = InputView.getResultPlayer();
 
         System.out.print(PLAY_RESULT_MESSAGE);
         Optional.of(playerName)
                 .filter("all"::equals)
                 .ifPresentOrElse(
-                    name -> System.out.println(ladderGameResult2.getResultAll()),
-                    () -> System.out.println(ladderGameResult2.getResult(playerName))
+                    name -> System.out.println(ladderGameResult.getResultAll()),
+                    () -> System.out.println(ladderGameResult.getResult(playerName))
                 );
     }
 }

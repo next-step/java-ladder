@@ -1,7 +1,7 @@
 package nextstep.ladder.domain.laddergame.position;
 
 import nextstep.ladder.domain.ladder.LadderResult;
-import nextstep.ladder.domain.laddergame.LadderGameResult2;
+import nextstep.ladder.domain.laddergame.LadderGameResult;
 import nextstep.ladder.domain.player.Player;
 import nextstep.ladder.domain.player.Players;
 import org.assertj.core.api.Assertions;
@@ -48,7 +48,7 @@ class ResultPositionTest {
 
         LadderResult ladderResult = new LadderResult(List.of("꽝", "5000"));
 
-        LadderGameResult2 gameResult = resultPosition.match(players, ladderResult);
+        LadderGameResult gameResult = resultPosition.match(players, ladderResult);
 
         Assertions.assertThat(gameResult.getResult("test1")).isEqualTo("5000");
         Assertions.assertThat(gameResult.getResult("test2")).isEqualTo("꽝");

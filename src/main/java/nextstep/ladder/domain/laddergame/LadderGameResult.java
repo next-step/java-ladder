@@ -3,14 +3,14 @@ package nextstep.ladder.domain.laddergame;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LadderGameResult2 {
+public class LadderGameResult {
     private final Map<String, String> ladderGameResult;
 
-    public LadderGameResult2() {
+    public LadderGameResult() {
         this(new HashMap<>());
     }
 
-    public LadderGameResult2(Map<String, String> ladderGameResult) {
+    public LadderGameResult(Map<String, String> ladderGameResult) {
         this.ladderGameResult = ladderGameResult;
     }
 

@@ -8,7 +8,7 @@ import nextstep.ladder.domain.line.Line;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class LadderGame2 {
+public class LadderGame {
 
     public ResultPosition play(Ladder ladder) {
         ResultPosition resultPosition = new ResultPosition();

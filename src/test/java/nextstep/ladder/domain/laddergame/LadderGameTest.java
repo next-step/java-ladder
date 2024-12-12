@@ -5,11 +5,11 @@ import nextstep.ladder.domain.laddergame.position.ResultPosition;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class LadderGame2Test {
+class LadderGameTest {
 
     @Test
     void play() {
-        ResultPosition resultPosition = new LadderGame2().play(LadderTest.getLadder());
+        ResultPosition resultPosition = new LadderGame().play(LadderTest.getLadder());
 
         Assertions.assertThat(resultPosition.getFinishPosition(0)).isEqualTo(2);
         Assertions.assertThat(resultPosition.getFinishPosition(1)).isEqualTo(1);
