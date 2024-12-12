@@ -3,7 +3,10 @@ package nextstep.ladder;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.LadderResult;
 import nextstep.ladder.domain.laddergame.LadderGame;
+import nextstep.ladder.domain.laddergame.LadderGame2;
 import nextstep.ladder.domain.laddergame.LadderGameResult;
+import nextstep.ladder.domain.laddergame.LadderGameResult2;
+import nextstep.ladder.domain.laddergame.position.ResultPosition;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.ResultView;
@@ -19,10 +22,16 @@ public class LadderController {
 
         ResultView.printLadder(ladder, ladderResult);
 
+        // as-is
         LadderGame ladderGame = new LadderGame(ladder, ladderResult);
         LadderGameResult ladderGameResult = ladderGame.play();
 
         ResultView.printGameResult(ladderGameResult);
 
+        // to-be
+        ResultPosition resultPosition = new LadderGame2().play(ladder);
+        LadderGameResult2 ladderGameResult2 = resultPosition.match(players, ladderResult);
+
+        ResultView.printGameResult2(ladderGameResult2);
     }
 }
