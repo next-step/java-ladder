@@ -1,21 +1,24 @@
-package ladder.domain.nextstep;
+package ladder.domain.impl;
 
+import ladder.domain.MatchingResult;
 import ladder.domain.engine.Ladder;
 import ladder.domain.engine.Line;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class NextStepLadder implements Ladder {
+public class LadderImpl implements Ladder {
 
     private final List<Line> lines;
 
-    private NextStepLadder(List<Line> lines) {
+    private LadderImpl(List<Line> lines) {
         this.lines = lines;
     }
 
     public static Ladder of(List<Line> lines) {
-        return new NextStepLadder(lines);
+        return new LadderImpl(lines);
     }
 
     @Override
@@ -31,4 +34,15 @@ public class NextStepLadder implements Ladder {
         }
         return position;
     }
+
+    @Override
+    public MatchingResult play() {
+        Map<Integer, Integer> matchingResult = new HashMap<>();
+        for (int start = 0; start < lines.size() - 1; start++) {
+            int end = move(start);
+            matchingResult.put(start, end);
+        }
+        return MatchingResult.of(matchingResult);
+    }
+
 }

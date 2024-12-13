@@ -1,24 +1,20 @@
 package ladder.io;
 
 
+import ladder.domain.LadderResult;
+import ladder.domain.Players;
 import ladder.domain.engine.Ladder;
-import ladder.domain.engine.LadderResults;
-import ladder.domain.nextstep.Players;
+import ladder.domain.engine.Rewards;
 
 public interface OutputHandler {
 
-    void showCommentForNamesOfPlayers();
-
-    void showCommentForPlayResults();
-
-    void showCommentForHeightOfLadder();
-
-    void showLadderGameResult(Players players, Ladder ladder, LadderResults ladderResults);
+    void showLadderGameResult(Players players, Ladder ladder, Rewards ladderResults);
 
     void showCommentForWhoseResultWantToSee();
 
-    void showAllResults(LadderResults ladderResults);
+    void showAllResults(LadderResult ladderResult);
 
-    void showResultForPlayer(String nameOfPlayer, LadderResults ladderResults);
+    void showResultForPlayer(String nameOfPlayer, LadderResult ladderResult);
 
+    void printResult(LadderResult result);
 }
