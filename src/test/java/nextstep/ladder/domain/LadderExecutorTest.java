@@ -16,43 +16,15 @@ class LadderExecutorTest {
     }
 
     @Test
-    @DisplayName("사다리실행 시 참여자는 마지막 위치로 감")
-    void executeLadder() {
+    @DisplayName("사다리를 실행하고 결과를 수집")
+    void moveAndCollectResult() {
         LadderExecutor ladderExecutor = new LadderExecutor(LinesTest.lines(), participants);
-        ladderExecutor.executeLadder();
-        //해당 형식을 테스트에서만 사용하는데 디미터 법칙을 위해 LadderExecutor에 새로 메소드를 만들어야 할까?
-        assertThat(ladderExecutor.getParticipants().get(0).getPositionX()).isEqualTo(1);
-        assertThat(ladderExecutor.getParticipants().get(0).getPositionY()).isEqualTo(3);
+        MachingResult machingResult = ladderExecutor.play();
 
-        assertThat(ladderExecutor.getParticipants().get(1).getPositionX()).isEqualTo(0);
-        assertThat(ladderExecutor.getParticipants().get(1).getPositionY()).isEqualTo(3);
-
-        assertThat(ladderExecutor.getParticipants().get(2).getPositionX()).isEqualTo(3);
-        assertThat(ladderExecutor.getParticipants().get(2).getPositionY()).isEqualTo(3);
-
-        assertThat(ladderExecutor.getParticipants().get(3).getPositionX()).isEqualTo(2);
-        assertThat(ladderExecutor.getParticipants().get(3).getPositionY()).isEqualTo(3);
-
+        assertThat(machingResult.getMachingResultMap().get(0)).isEqualTo(1);
+        assertThat(machingResult.getMachingResultMap().get(1)).isEqualTo(0);
+        assertThat(machingResult.getMachingResultMap().get(2)).isEqualTo(3);
+        assertThat(machingResult.getMachingResultMap().get(3)).isEqualTo(2);
     }
-
-    @Test
-    @DisplayName("사다리실행클래스에서 마지막 위치를 구함")
-    void getParticipantFinalPosition() {
-        LadderExecutor ladderExecutor = new LadderExecutor(LinesTest.lines(), participants);
-        ladderExecutor.executeLadder();
-
-        assertThat(ladderExecutor.getParticipantFinalPosition(ladderExecutor.getParticipants().get(0)).getX()).isEqualTo(1);
-        assertThat(ladderExecutor.getParticipantFinalPosition(ladderExecutor.getParticipants().get(0)).getY()).isEqualTo(3);
-
-        assertThat(ladderExecutor.getParticipantFinalPosition(ladderExecutor.getParticipants().get(1)).getX()).isEqualTo(0);
-        assertThat(ladderExecutor.getParticipantFinalPosition(ladderExecutor.getParticipants().get(1)).getY()).isEqualTo(3);
-
-        assertThat(ladderExecutor.getParticipantFinalPosition(ladderExecutor.getParticipants().get(2)).getX()).isEqualTo(3);
-        assertThat(ladderExecutor.getParticipantFinalPosition(ladderExecutor.getParticipants().get(2)).getY()).isEqualTo(3);
-
-        assertThat(ladderExecutor.getParticipantFinalPosition(ladderExecutor.getParticipants().get(3)).getX()).isEqualTo(2);
-        assertThat(ladderExecutor.getParticipantFinalPosition(ladderExecutor.getParticipants().get(3)).getY()).isEqualTo(3);
-    }
-
 
 }

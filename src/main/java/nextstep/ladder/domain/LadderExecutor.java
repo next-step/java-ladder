@@ -1,6 +1,6 @@
 package nextstep.ladder.domain;
 
-import java.util.List;
+import java.util.Collections;
 
 public class LadderExecutor {
 
@@ -12,18 +12,21 @@ public class LadderExecutor {
         this.participants = participants;
     }
 
-    public void executeLadder() {
-        for (Participant participant : participants.getParticipants()) {
-            participant.move(lines);
+    public MachingResult play() {
+        MachingResult results = new MachingResult(Collections.emptyMap());
+        for (int i = 0; i < participants.size(); i++) {
+            Position position = new Position(i, 0);
+            moveAndCollectResult(results, position);
         }
+        return results;
     }
 
-    public List<Participant> getParticipants() {
-        return participants.getParticipants();
-    }
-
-    public Position getParticipantFinalPosition(Participant participant) {
-        return participant.getPosition();
+    private void moveAndCollectResult(MachingResult results, Position position) {
+        for (Line line : lines.getLines()) {
+            Point point = PointFactory.generatePoint(position.getX(), line);
+            position.move(point.getDirection());
+        }
+        results.addResult(position.getInitialX(), position.getX());
     }
 
 }

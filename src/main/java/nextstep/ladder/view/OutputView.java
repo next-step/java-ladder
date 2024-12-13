@@ -18,14 +18,12 @@ public class OutputView {
         POINTS_LINE.put(false, outputLineFalse());
     }
 
-    public void outputResult(Participants participants, Lines lines, LadderResult ladderResult) {
-        outputParticipants(participants);
-
+    public void outputResult(ExecuteResult executeResult, Lines lines, LadderResult ladderResult) {
         System.out.println();
 
         outputLadder(lines);
 
-        ouputExecuteResult(ladderResult.getExecuteResult());
+        ouputExecuteResult(executeResult);
     }
 
     private static void outputLadder(Lines lines) {
@@ -35,7 +33,7 @@ public class OutputView {
         });
     }
 
-    private void outputParticipants(Participants participants) {
+    public void outputParticipants(Participants participants) {
         participants.getParticipants().forEach(participant -> System.out.print(participant.toString() + " "));
     }
 
@@ -66,9 +64,8 @@ public class OutputView {
 
     public void outputParticipantAllResult(LadderResult ladderResult) {
         System.out.println("전체결과");
-
-        ladderResult.getPartitionList().forEach(
-                participant -> System.out.println(participant.getName() + ":" + participant.getResult())
+        ladderResult.getPlayerToReward().forEach(
+                (participant, result) -> System.out.println(participant.getName() + ":" + result)
         );
     }
 }

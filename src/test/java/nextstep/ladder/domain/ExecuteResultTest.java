@@ -28,6 +28,6 @@ class ExecuteResultTest {
     void getResultsWithPosition() {
         Position position = new Position(1,0);
         ExecuteResult executeResult = new ExecuteResult(3, "꽝,1000,꽝");
-        assertThat(executeResult.getResultsWithPosition(position)).isEqualTo("1000");
+        assertThat(executeResult.getResultsWithPosition(position.getX())).isEqualTo("1000");
     }
 }

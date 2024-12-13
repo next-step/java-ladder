@@ -41,7 +41,7 @@ public class ExecuteResult {
         return results;
     }
 
-    public String getResultsWithPosition(Position position) {
-        return results.get(position.getX());
+    public String getResultsWithPosition(int positionX) {
+        return results.get(positionX);
     }
 }

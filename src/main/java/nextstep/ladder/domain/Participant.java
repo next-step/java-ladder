@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.Objects;
+
 public class Participant {
     public static final int MAX_NAME_LENGTH = 5;
 
@@ -35,13 +37,6 @@ public class Participant {
         return String.format("%-5s", name);
     }
 
-    public void move(Lines lines) {
-        for (Line line : lines.getLines()) {
-            Point point = PointFactory.generatePoint(position.getX(), line);
-            position.move(point.getDirection());
-        }
-    }
-
     public int getPositionX() {
         return position.getX();
     }
@@ -58,4 +53,17 @@ public class Participant {
         return result;
     }
 
+    /* 이름으로만 같은 객체 간주 */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true; // 같은 객체 참조 여부
+        if (o == null || getClass() != o.getClass()) return false; // 클래스가 동일한지 확인
+        Participant that = (Participant) o;
+        return name.equals(that.name); // 이름이 동일한지 확인
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode(); // `name` 필드에 기반한 해시코드 반환
+    }
 }

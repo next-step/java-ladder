@@ -1,45 +1,31 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LadderResult {
 
-    private final ExecuteResult executeResult;
-    private final LadderExecutor ladderExecutor;
-    private final Participants participants;
+    private final Map<Participant, String> playerToReward;
 
-    public LadderResult(ExecuteResult executeResult, LadderExecutor ladderExecutor) {
-        this.executeResult = executeResult;
-        this.ladderExecutor = ladderExecutor;
-        this.participants = combineLadderResult();
+    public LadderResult() {
+        playerToReward = new HashMap<>();
     }
 
-    public Participants combineLadderResult() {
-        List<Participant> newParticipants = new ArrayList<>();
-        for (Participant participant : ladderExecutor.getParticipants()) {
-            Position position = ladderExecutor.getParticipantFinalPosition(participant);
-            String result = executeResult.getResultsWithPosition(position);
-            participant = new Participant(participant.getName(), position, result);
-            newParticipants.add(participant);
-        }
-        return new Participants(newParticipants);
+    public LadderResult(Map<Participant, String> playerToReward) {
+        this.playerToReward = new HashMap<>(playerToReward);
+
     }
 
-    public Participants getPartitions() {
-        return participants;
+    public void addResult(Participant participant, String result) {
+        playerToReward.put(participant, result);
     }
 
-    public List<Participant> getPartitionList() {
-        return participants.getParticipants();
+    public Map<Participant, String> getPlayerToReward() {
+        return playerToReward;
     }
 
-    public ExecuteResult getExecuteResult() {
-        return executeResult;
-    }
-
-    public String getParticipantResult(String participant) {
-       return participants.getParticipantResult(participant);
+    public String getReward(String name) {
+        return playerToReward.get(new Participant(name));
     }
 }
 
