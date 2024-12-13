@@ -1,4 +1,4 @@
-package ladder.domain.nextstep;
+package ladder.domain.impl;
 
 import ladder.domain.engine.Line;
 import ladder.domain.engine.LineGenerator;
@@ -7,20 +7,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class NextStepLine implements Line {
+public class LineImpl implements Line {
 
     private final List<Boolean> points;
 
-    private NextStepLine(List<Boolean> points) {
+    private LineImpl(List<Boolean> points) {
         this.points = new ArrayList<>(points);
     }
 
     public static Line of(int numberOfPlayers, LineGenerator lineGenerator) {
-        return new NextStepLine(lineGenerator.generate(numberOfPlayers));
+        return new LineImpl(lineGenerator.generate(numberOfPlayers));
     }
 
     public static Line of(List<Boolean> points) {
-        return new NextStepLine(points);
+        return new LineImpl(points);
     }
 
     public List<Boolean> points() {

@@ -1,20 +1,17 @@
 package ladder;
 
 
+import ladder.domain.LadderResult;
+import ladder.domain.MatchingResult;
+import ladder.domain.Players;
 import ladder.domain.engine.Ladder;
-import ladder.domain.engine.LadderCreator;
-import ladder.domain.engine.LadderResults;
-import ladder.domain.factory.LadderFactoryBean;
-import ladder.domain.nextstep.NextStepLadderResults;
-import ladder.domain.nextstep.Players;
+import ladder.domain.engine.Rewards;
+import ladder.domain.factory.LadderFactory;
 import ladder.io.InputHandler;
 import ladder.io.OutputHandler;
 
-import java.util.List;
-
 public class LadderGame {
 
-    public static final String ALL = "all";
     private final InputHandler inputHandler;
     private final OutputHandler outputHandler;
 
@@ -24,44 +21,15 @@ public class LadderGame {
     }
 
     public void run() {
-        // 참여하는 사람 이름 입력
-        outputHandler.showCommentForNamesOfPlayers();
-        List<String> namesOfPeopleFromUser = inputHandler.getNamesOfPlayersFromUser();
-        Players players = Players.of(namesOfPeopleFromUser);
+        Players players = inputHandler.createPlayers();
+        Rewards rewards = inputHandler.createRewards();
+        Ladder ladder = LadderFactory.createLadder(inputHandler.getHeightOfLadderFromUser(), players.size());
 
-        // 실행 결과 입력
-        outputHandler.showCommentForPlayResults();
-        List<String> playResultsFromUser = inputHandler.getPlayResultsFromUser();
-        LadderResults ladderResults = NextStepLadderResults.of(playResultsFromUser);
+        outputHandler.showLadderGameResult(players, ladder, rewards);
 
-        // 사다리 높이 입력
-        outputHandler.showCommentForHeightOfLadder();
-        int heightOfLadder = inputHandler.getHeightOfLadderFromUser();
-        LadderCreator ladderCreator = LadderFactoryBean.createLadderCreator();
-        Ladder ladder = ladderCreator.create(heightOfLadder, namesOfPeopleFromUser.size());
+        MatchingResult matchingResult = ladder.play();
+        LadderResult result = matchingResult.map(players, rewards);
 
-        // 사다리 결과 출력
-        outputHandler.showLadderGameResult(players, ladder, ladderResults);
-
-        // 결과 출력
-        ladderResults.processLadderGameOutcomes(players, ladder);
-        while (processResultRequest(ladderResults)) {
-        }
+        outputHandler.printResult(result);
     }
-
-    private boolean processResultRequest(LadderResults ladderResults) {
-        outputHandler.showCommentForWhoseResultWantToSee();
-        String playerName = inputHandler.getPlayerNameForResultFromUser();
-        if (isRequestForAllResults(playerName)) {
-            outputHandler.showAllResults(ladderResults);
-            return false;
-        }
-        outputHandler.showResultForPlayer(playerName, ladderResults);
-        return true;
-    }
-
-    private boolean isRequestForAllResults(String playerName) {
-        return playerName.equals(ALL);
-    }
-
 }

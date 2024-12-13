@@ -1,4 +1,4 @@
-package ladder.domain.nextstep;
+package ladder.domain;
 
 import ladder.exception.InvalidPlayerNameException;
 

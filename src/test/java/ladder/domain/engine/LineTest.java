@@ -1,6 +1,7 @@
-package ladder.domain.nextstep;
+package ladder.domain.engine;
 
-import ladder.domain.engine.Line;
+import ladder.domain.impl.LineImpl;
+import ladder.domain.impl.RandomLineGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ class LineTest {
     @Test
     void lineCreateTest() {
         int numberOfPlayers = 4;
-        Line line = NextStepLine.of(numberOfPlayers, new RandomLineGenerator());
+        Line line = LineImpl.of(numberOfPlayers, new RandomLineGenerator());
 
         assertThat(line.points()).hasSize(numberOfPlayers - 1);
     }
@@ -22,7 +23,7 @@ class LineTest {
     @DisplayName("왼쪽 사다리로 건너간다.")
     @Test
     void testMoveLeft() {
-        Line line = NextStepLine.of(List.of(true, false, false));
+        Line line = LineImpl.of(List.of(true, false, false));
 
         assertThat(line.move(1)).isEqualTo(0);
     }
@@ -30,7 +31,7 @@ class LineTest {
     @DisplayName("오른쪽 사다리로 건너간다.")
     @Test
     void testMoveRight() {
-        Line line = NextStepLine.of(List.of(false, true, false));
+        Line line = LineImpl.of(List.of(false, true, false));
 
         assertThat(line.move(1)).isEqualTo(2);
     }
@@ -38,7 +39,7 @@ class LineTest {
     @DisplayName("현재 사다리에 머문다.")
     @Test
     void testMoveStraight() {
-        Line line = NextStepLine.of(List.of(false, false, false));
+        Line line = LineImpl.of(List.of(false, false, false));
 
         assertThat(line.move(1)).isEqualTo(1);
     }

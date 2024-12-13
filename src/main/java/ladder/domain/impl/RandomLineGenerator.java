@@ -1,4 +1,4 @@
-package ladder.domain.nextstep;
+package ladder.domain.impl;
 
 import ladder.domain.engine.LineGenerator;
 
