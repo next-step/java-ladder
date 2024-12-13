@@ -5,20 +5,22 @@ import java.util.Arrays;
 public enum Direction {
     RIGHT((left, right) -> {
         return !left && right;
-    }),
+    }, 1),
 
     LEFT((left, right) -> {
         return left && !right;
-    }),
+    }, -1),
 
     PASS((left, right) -> {
         return !left && !right;
-    });
+    }, 0);
 
     private final DirectionOperation directionOperation;
+    private final int moveX;
 
-    Direction(DirectionOperation directionOperation) {
+    Direction(DirectionOperation directionOperation, int moveX) {
         this.directionOperation = directionOperation;
+        this.moveX = moveX;
     }
 
     public static Direction of(boolean left, boolean right) {
@@ -28,11 +30,13 @@ public enum Direction {
                 .orElseThrow(RuntimeException::new);
     }
 
-    public boolean isLeft() {
-        return this == Direction.LEFT;
+    public int moveX(int curreuntX) {
+        return this.moveX + curreuntX;
     }
 
-    public boolean isRight() {
-        return this == Direction.RIGHT;
+    public int moveY(int curreuntY) {
+        return ++curreuntY;
     }
+
 }
+

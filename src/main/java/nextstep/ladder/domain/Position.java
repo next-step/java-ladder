@@ -29,31 +29,7 @@ public class Position {
     }
 
     public Position move(Direction direction) {
-        if (direction.isRight()) {
-            return new Position(getMoveRightX(), getMoveY());
-        }
-
-        if (direction.isLeft()) {
-            return new Position(getMoveLeftX(), getMoveY());
-        }
-
-        return new Position(getPassX(), getMoveY());
-    }
-
-    private int getMoveLeftX() {
-        return --x;
-    }
-
-    private int getMoveRightX() {
-        return ++x;
-    }
-
-    private int getMoveY() {
-        return ++y;
-    }
-
-    private int getPassX() {
-        return x;
+        return new Position(diriectionMoveX(direction), diriectionMoveY(direction), initialX);
     }
 
     public int getX() {
@@ -68,5 +44,14 @@ public class Position {
         return initialX;
     }
 
+    private int diriectionMoveX(Direction direction) {
+        this.x = direction.moveX(this.x);
+        return this.x;
+    }
+
+    private int diriectionMoveY(Direction direction) {
+        this.y = direction.moveY(this.y);
+        return this.y;
+    }
 
 }
