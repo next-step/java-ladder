@@ -26,4 +26,5 @@ public class Cross {
 
         return falseSymbol;
     }
+
 }

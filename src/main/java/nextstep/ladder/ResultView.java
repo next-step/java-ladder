@@ -35,34 +35,23 @@ public class ResultView {
     }
 
     public static void printResult2(String resultUserName, Usernames usernames, Ladder2 ladder2, List<String> results) {
+        Map<String, String> resultMap = allResult(usernames, ladder2, results);
         if ("all".equals(resultUserName.toLowerCase())) {
-            String allResultStr = allResult(usernames, ladder2, results).entrySet()
+            String allResultStr = resultMap.entrySet()
                     .stream()
-                    .map(result -> {
-                        System.out.println(result);
-                        return result.getKey() + " : " + result.getValue();
-                    })
+                    .map(entry -> entry.getKey() + " : " + entry.getValue())
                     .collect(Collectors.joining("\n"));
             System.out.println(allResultStr);
+            return;
         }
-//        else {
-//            Map<String, String> resultMap = allResult(usernames, ladder2, results);
-//            String result = resultMap.get(resultUserName.toLowerCase());
-//            System.out.println(result);
-//        }
+        System.out.println(resultMap.get(resultUserName));
     }
 
     private static Map<String, String> allResult(Usernames usernames, Ladder2 ladder2, List<String> results) {
         Map<Integer, Integer> resultMap = ladder2.getAllResult();
 
         return IntStream.range(0, usernames.size()).boxed()
-                .collect(Collectors.toMap(
-                        i -> usernames.getValues().get(i).getUsername(),
-                        i -> results.get(resultMap.get(i))
-                ));
-
-//        return IntStream.range(0, usernames.size()).boxed()
-//                .collect(Collectors.toMap(usernames::getUsername, i -> results.get(resultMap.get(i))));
+                .collect(Collectors.toMap(usernames::getUsername, i -> results.get(resultMap.get(i))));
     }
 
 }

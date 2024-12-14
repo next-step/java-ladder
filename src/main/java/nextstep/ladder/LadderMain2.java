@@ -15,7 +15,6 @@ public class LadderMain2 {
         ResultView.printResults(results);
 
         String resultUserName = InputView.inputResultUserName();
-//        ResultView.printResult(ladder.getResult(resultUserName));
         ResultView.printResult2(resultUserName, usernames, ladder, results);
     }
 }

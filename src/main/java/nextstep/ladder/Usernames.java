@@ -29,10 +29,10 @@ public class Usernames {
     }
 
 
-//    //todo 이렇게 작성해도 되는지??
-//    public String getUsername(int index) {
-//        return usernames.get(index).getUsername();
-//    }
+    //    //todo 이렇게 작성해도 되는지??
+    public String getUsername(int index) {
+        return usernames.get(index).getUsername();
+    }
 
     public int size() {
         return usernames.size();

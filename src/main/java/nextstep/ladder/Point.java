@@ -5,7 +5,7 @@ public class Point {
     private boolean right;
 
     public Point(boolean current, boolean right) {
-        if(current && right) {
+        if (current && right) {
             throw new IllegalArgumentException("유효하지 않은 값입니다.");
         }
         this.current = current;
@@ -17,7 +17,7 @@ public class Point {
     }
 
     public String getLineSymbol(String trueSymbol, String falseSymbol) {
-        return right ? trueSymbol : falseSymbol;
+        return current ? trueSymbol : falseSymbol;
     }
 
     public int getResultIndex(int index) {
@@ -27,7 +27,7 @@ public class Point {
     @Override
     public String toString() {
         return "Point{" +
-                "left=" + current +
+                "current=" + current +
                 ", right=" + right +
                 '}';
     }
@@ -37,8 +37,8 @@ public class Point {
     }
 
     public Point next(boolean right) {
-        if(this.right) {
-           return new Point(this.right, false);
+        if (this.right) {
+            return new Point(this.right, false);
         }
         return new Point(this.right, right);
     }

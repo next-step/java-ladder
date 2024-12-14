@@ -24,7 +24,13 @@ public class Line2 {
 
         Point point = Point.first(RANDOM.nextBoolean());
         for (int i = 0; i < countOfPerson; i++) {
-            crosses.add(new Cross(i, i == 0 ? point : i == countOfPerson - 1 ? point.last() : point.next(RANDOM.nextBoolean())));
+            if (i == countOfPerson - 1) {
+                point = point.last();
+            }
+            if (i > 0 && i < countOfPerson - 1) {
+                point = point.next(RANDOM.nextBoolean());
+            }
+            crosses.add(new Cross(i, point));
         }
     }
 
