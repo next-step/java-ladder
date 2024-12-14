@@ -1,4 +1,4 @@
-package ladder.domain.nextstep;
+package ladder.domain.impl;
 
 import ladder.domain.engine.Ladder;
 import ladder.domain.engine.LadderCreator;
@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class NextStepLadderCreator implements LadderCreator {
+public class LadderCreatorImpl implements LadderCreator {
 
     private LineGenerator lineGenerator;
 
-    public NextStepLadderCreator(LineGenerator lineGenerator) {
+    public LadderCreatorImpl(LineGenerator lineGenerator) {
         this.lineGenerator = lineGenerator;
     }
 
@@ -24,11 +24,11 @@ public class NextStepLadderCreator implements LadderCreator {
         validateHeightOfLadder(heightOfLadder);
         validateNumberOfPlayers(numberOfPlayers);
 
-        List<Line> collect = IntStream.range(0, heightOfLadder)
-                .mapToObj(i -> NextStepLine.of(numberOfPlayers, lineGenerator))
+        List<Line> lines = IntStream.range(0, heightOfLadder)
+                .mapToObj(i -> LineImpl.of(numberOfPlayers, lineGenerator))
                 .collect(Collectors.toList());
 
-        return NextStepLadder.of(collect);
+        return LadderImpl.of(lines);
     }
 
     private void validateHeightOfLadder(int heightOfLadder) {

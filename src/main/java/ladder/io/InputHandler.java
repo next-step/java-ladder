@@ -1,14 +1,14 @@
 package ladder.io;
 
-import java.util.List;
+import ladder.domain.Players;
+import ladder.domain.engine.Rewards;
 
 public interface InputHandler {
 
-    List<String> getNamesOfPlayersFromUser();
+    Players createPlayers();
 
-    List<String> getPlayResultsFromUser();
+    Rewards createRewards();
 
     int getHeightOfLadderFromUser();
 
-    String getPlayerNameForResultFromUser();
 }
