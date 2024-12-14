@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,5 +21,4 @@ class ParticipantTest {
             Participant participant = new Participant("사람이름5글자초과");
         }).isInstanceOf(IllegalArgumentException.class);
     }
-
 }

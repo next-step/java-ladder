@@ -3,14 +3,17 @@ package nextstep.ladder.domain;
 import nextstep.ladder.strategy.LineStrategy;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Lines {
-    private final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines;
 
     public Lines() {
-        lines.addAll(Collections.emptyList());
+        this(new ArrayList<Line>());
+    }
+
+    public Lines(ArrayList<Line> lines) {
+        this.lines = new ArrayList<>(lines);
     }
 
     public void generateLine(int participantCnt, int maxLadder, LineStrategy lineStrategy) {

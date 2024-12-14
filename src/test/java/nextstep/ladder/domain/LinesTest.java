@@ -8,6 +8,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LinesTest {
 
+    public static Lines lines() {
+        LineStrategy lineStrategy = new TrueLineStrategy();
+        Lines lines = new Lines();
+        lines.generateLine(4, 3, lineStrategy);
+        return lines;
+    }
+
     @Test
     void 세명의참가자만큼_네줄로_사다리_생성() {
         LineStrategy lineStrategy = new TrueLineStrategy();
