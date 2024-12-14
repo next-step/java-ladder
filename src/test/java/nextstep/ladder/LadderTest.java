@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,27 +16,44 @@ public class LadderTest {
 
     @BeforeAll
     static void setup() {
-        ladder = new Ladder(
-                new Usernames(Arrays.asList("test", "test2", "test3")),
-                new Lines(Arrays.asList(
-                        new Line(new Points(Arrays.asList(new Point(false, false), new Point(false, true), new Point(true, false)))),
-                        new Line(new Points(Arrays.asList(new Point(false, true), new Point(true, false), new Point(false, false))))
-                ))
-                , Arrays.asList("결과1", "결과2", "결과3"));
+        ladder = new Ladder(Arrays.asList(
+                new Line(
+                        Arrays.asList(new Cross(0, new Point(false, false)), new Cross(1, new Point(false, true)), new Cross(2, new Point(true, false)))
+                ), new Line(
+                        Arrays.asList(new Cross(0, new Point(false, true)), new Cross(1, new Point(true, false)), new Cross(2, new Point(false, false)))
+                ), new Line(
+                        Arrays.asList(new Cross(0, new Point(false, false)), new Cross(1, new Point(false, true)), new Cross(2, new Point(true, false)))
+                )
+        ));
+    }
+
+    @Test
+    void move() {
+        assertThat(ladder.move(1)).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("모든 사용자의 사다리 출력")
+    void printResult() {
+        System.out.println(ladder.getLadderForPrint("-----", "     "));
+    }
+
+    @Test
+    @DisplayName("특정 사용자의 사다리 결과")
+    void getResultByUserIndex() {
+        assertThat(ladder.move(0))
+                .isEqualTo(2);
     }
 
     @Test
     @DisplayName("모든 사용자의 사다리 결과")
     void getAllResult() {
-        assertThat(ladder.getResult("all"))
-                .isEqualTo("test2 : 결과3\n" +
-                        "test3 : 결과1\n" +
-                        "test : 결과2");
-    }
+        Map<Integer, Integer> result = new HashMap<>();
+        result.put(0, 2);
+        result.put(1, 1);
+        result.put(2, 0);
 
-    @Test
-    @DisplayName("사용자별 사다리 결과")
-    void getResult() {
-        assertThat(ladder.getResult("test2")).isEqualTo("결과3");
+        assertThat(ladder.getAllResult())
+                .isEqualTo(result);
     }
 }

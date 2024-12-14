@@ -12,26 +12,6 @@ public class Point {
         this.right = right;
     }
 
-    public boolean getRight() {
-        return right;
-    }
-
-    public String getLineSymbol(String trueSymbol, String falseSymbol) {
-        return current ? trueSymbol : falseSymbol;
-    }
-
-    public int getResultIndex(int index) {
-        return current ? index - 1 : (right ? index + 1 : index);
-    }
-
-    @Override
-    public String toString() {
-        return "Point{" +
-                "current=" + current +
-                ", right=" + right +
-                '}';
-    }
-
     public static Point first(boolean right) {
         return new Point(false, right);
     }

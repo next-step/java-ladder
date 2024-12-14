@@ -18,12 +18,6 @@ public class PointTest {
         point = new Point(false, true);
     }
 
-
-    @Test
-    void 결과_인덱스_조회() {
-        assertThat(point.getResultIndex(0)).isEqualTo(1);
-    }
-
     @Test
     void 움직인_결과_조회__오른쪽() {
         Point point = Point.first(true);

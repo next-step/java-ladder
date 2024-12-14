@@ -7,12 +7,12 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Line2Test {
-    private static Line2 line;
+public class LineTest {
+    private static Line line;
 
     @BeforeAll
     static void setUpBeforeClass() {
-        line = new Line2(
+        line = new Line(
                 Arrays.asList(new Cross(0, new Point(false, true)), new Cross(0, new Point(true, false)), new Cross(0, new Point(false, false)))
         );
     }

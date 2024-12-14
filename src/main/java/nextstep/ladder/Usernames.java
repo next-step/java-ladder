@@ -24,11 +24,6 @@ public class Usernames {
                 .collect(Collectors.toList());
     }
 
-    public List<Username> getValues() {
-        return usernames;
-    }
-
-
     //    //todo 이렇게 작성해도 되는지??
     public String getUsername(int index) {
         return usernames.get(index).getUsername();
@@ -38,23 +33,9 @@ public class Usernames {
         return usernames.size();
     }
 
-    public int indexOf(String username) {
-        return usernames.indexOf(new Username(username));
-    }
-
-    public String toString() {
-        return String.join(
-                "",
-                this.usernames
-                        .stream()
-                        .map(str -> str.getUsernameForPrint())
-                        .collect(Collectors.toList())
-        );
-    }
-
     public String getUsernamesForPrint() {
         return usernames.stream()
-                .map(d -> String.format("%-6s", d.getUsername()))
+                .map(Username::getUsernameForPrint)
                 .collect(Collectors.joining());
     }
 }
