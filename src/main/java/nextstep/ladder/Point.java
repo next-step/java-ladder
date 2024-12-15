@@ -1,31 +1,40 @@
 package nextstep.ladder;
 
 public class Point {
-    private boolean left;
+    private boolean current;
     private boolean right;
 
-    public Point(boolean left, boolean right) {
-        this.left = left;
+    public Point(boolean current, boolean right) {
+        if (current && right) {
+            throw new IllegalArgumentException("유효하지 않은 값입니다.");
+        }
+        this.current = current;
         this.right = right;
     }
 
-    public boolean getRight() {
-        return right;
+    public static Point first(boolean right) {
+        return new Point(false, right);
     }
 
-    public String getLineSymbol(String trueSymbol, String falseSymbol) {
-        return right ? trueSymbol : falseSymbol;
+    public Point next(boolean right) {
+        if (this.right) {
+            return new Point(this.right, false);
+        }
+        return new Point(this.right, right);
     }
 
-    public int getResultIndex(int index) {
-        return left ? index - 1 : (right ? index + 1 : index);
+    public Point last() {
+        return new Point(this.right, false);
     }
 
-    @Override
-    public String toString() {
-        return "Point{" +
-                "left=" + left +
-                ", right=" + right +
-                '}';
+    public Direction move() {
+        if (current) {
+            return Direction.LEFT;
+        }
+        if (right) {
+            return Direction.RIGHT;
+        }
+
+        return Direction.DOWN;
     }
 }

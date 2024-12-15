@@ -1,14 +1,25 @@
 package nextstep.ladder;
 
-//import org.junit.jupiter.api.DisplayName;
-//import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LineTest {
-//    @Test
-//    @DisplayName("중복되는 가로선이 없는지 출력 확인")
-//    void check() {
-//        Line line2 = new Line(6);
-//        System.out.println(line2.toString("-----", "     "));
-//    }
+    private static Line line;
+
+    @BeforeAll
+    static void setUpBeforeClass() {
+        line = new Line(
+                Arrays.asList(new Cross(0, new Point(false, true)), new Cross(0, new Point(true, false)), new Cross(0, new Point(false, false)))
+        );
+    }
+
+    @Test
+    void move() {
+        assertThat(line.move(0)).isEqualTo(1);
+    }
 
 }
