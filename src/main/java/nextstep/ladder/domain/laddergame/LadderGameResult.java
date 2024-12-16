@@ -1,36 +1,38 @@
 package nextstep.ladder.domain.laddergame;
 
-import nextstep.ladder.domain.ladder.LadderResult;
-import nextstep.ladder.domain.laddergame.position.PlayerPositions;
-import nextstep.ladder.domain.laddergame.position.Positions;
-import nextstep.ladder.domain.player.Player;
-import nextstep.ladder.domain.player.Players;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LadderGameResult {
+    private final Map<String, String> ladderGameResult;
 
-    private final PlayerPositions playerPositions;
-    private final LadderResult ladderResult;
-
-    public LadderGameResult(List<Player> players, List<Positions> positions, LadderResult ladderResult) {
-        this(new PlayerPositions(new Players(players), positions), ladderResult);
+    public LadderGameResult() {
+        this(new HashMap<>());
     }
 
-    public LadderGameResult(PlayerPositions playerPositions, LadderResult ladderResult) {
-        this.playerPositions = playerPositions;
-        this.ladderResult = ladderResult;
+    public LadderGameResult(Map<String, String> ladderGameResult) {
+        this.ladderGameResult = ladderGameResult;
     }
 
-    public String getResult(String playerName) {
-        return ladderResult.getResultByIndex(playerPositions.getLastPosition(playerName));
+    public void add(String name, String result) {
+        ladderGameResult.put(name, result);
     }
 
-    public List<String> getResultAll() {
-        return playerPositions.getPlayers().stream()
-                              .map(player -> player.getName() + " : " + getResult(player.getName()))
-                              .collect(Collectors.toList());
+    public String getResult(String name) {
+        return ladderGameResult.get(name);
+    }
+
+    public StringBuilder getResultAll() {
+        StringBuilder result = new StringBuilder();
+
+        ladderGameResult.forEach((key, value) -> {
+            result.append(key)
+                  .append(" : ")
+                  .append(value)
+                  .append("\n");
+        });
+
+        return result;
     }
 
 }

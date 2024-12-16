@@ -74,14 +74,14 @@ public class ResultView {
         return stringBuilder.toString();
     }
 
-    public static void printGameResult(LadderGameResult ladderGameResult) {
+    public static void printGameResult2(LadderGameResult ladderGameResult) {
         String playerName = InputView.getResultPlayer();
 
         System.out.print(PLAY_RESULT_MESSAGE);
         Optional.of(playerName)
                 .filter("all"::equals)
                 .ifPresentOrElse(
-                    name -> ladderGameResult.getResultAll().forEach(System.out::println),
+                    name -> System.out.println(ladderGameResult.getResultAll()),
                     () -> System.out.println(ladderGameResult.getResult(playerName))
                 );
     }

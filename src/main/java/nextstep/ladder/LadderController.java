@@ -4,6 +4,7 @@ import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.LadderResult;
 import nextstep.ladder.domain.laddergame.LadderGame;
 import nextstep.ladder.domain.laddergame.LadderGameResult;
+import nextstep.ladder.domain.laddergame.position.ResultPosition;
 import nextstep.ladder.domain.player.Players;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.ResultView;
@@ -19,10 +20,9 @@ public class LadderController {
 
         ResultView.printLadder(ladder, ladderResult);
 
-        LadderGame ladderGame = new LadderGame(ladder, ladderResult);
-        LadderGameResult ladderGameResult = ladderGame.play();
+        ResultPosition resultPosition = new LadderGame().play(ladder);
+        LadderGameResult ladderGameResult = resultPosition.match(players, ladderResult);
 
-        ResultView.printGameResult(ladderGameResult);
-
+        ResultView.printGameResult2(ladderGameResult);
     }
 }
