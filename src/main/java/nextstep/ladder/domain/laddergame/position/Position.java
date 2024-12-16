@@ -14,15 +14,7 @@ public class Position {
     }
 
     public Position move(Point point) {
-        if (point.canMoveLeft()) {
-            return new Position(position - 1);
-        }
-
-        if (point.canMoveRight()) {
-            return new Position(position + 1);
-        }
-
-        return new Position(position);
+        return new Position(position + MoveDirection.move(point.canMoveLeft(), point.canMoveRight()));
     }
 
     public int getPosition() {
