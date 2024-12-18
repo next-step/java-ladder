@@ -1,11 +1,12 @@
 package nextstep.ladder.domain;
 
+import engine.LinesCreator;
 import nextstep.ladder.strategy.LineStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NextStepLines {
+public class NextStepLines implements LinesCreator {
     private final List<Line> lines;
 
     public NextStepLines() {
@@ -27,10 +28,6 @@ public class NextStepLines {
         lines.add(line);
     }
 
-    public int size() {
-        return lines.size();
-    }
-
     public List<Line> getLines() {
         return lines;
     }
@@ -41,5 +38,9 @@ public class NextStepLines {
 
     public boolean getPoint(int linesIdx, int lineIdx) {
         return lines.get(linesIdx).getLine(lineIdx);
+    }
+
+    public int size() {
+        return lines.size();
     }
 }

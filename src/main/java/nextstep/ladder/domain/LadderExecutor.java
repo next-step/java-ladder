@@ -1,14 +1,16 @@
 package nextstep.ladder.domain;
 
+import engine.LinesCreator;
+
 import java.util.Collections;
 
 public class LadderExecutor {
 
-    private NextStepLines nextStepLines;
+    private LinesCreator linesCreator;
     private Participants participants;
 
-    public LadderExecutor(NextStepLines nextStepLines, Participants participants) {
-        this.nextStepLines = nextStepLines;
+    public LadderExecutor(LinesCreator linesCreator, Participants participants) {
+        this.linesCreator = linesCreator;
         this.participants = participants;
     }
 
@@ -22,7 +24,7 @@ public class LadderExecutor {
     }
 
     private void moveAndCollectResult(MachingResult results, Position position) {
-        for (Line line : nextStepLines.getLines()) {
+        for (Line line : linesCreator.getLines()) {
             Point point = PointFactory.generatePoint(position.getX(), line);
             position.move(point.getDirection());
         }
