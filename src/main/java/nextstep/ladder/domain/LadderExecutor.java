@@ -4,11 +4,11 @@ import java.util.Collections;
 
 public class LadderExecutor {
 
-    private Lines lines;
+    private NextStepLines nextStepLines;
     private Participants participants;
 
-    public LadderExecutor(Lines lines, Participants participants) {
-        this.lines = lines;
+    public LadderExecutor(NextStepLines nextStepLines, Participants participants) {
+        this.nextStepLines = nextStepLines;
         this.participants = participants;
     }
 
@@ -22,7 +22,7 @@ public class LadderExecutor {
     }
 
     private void moveAndCollectResult(MachingResult results, Position position) {
-        for (Line line : lines.getLines()) {
+        for (Line line : nextStepLines.getLines()) {
             Point point = PointFactory.generatePoint(position.getX(), line);
             position.move(point.getDirection());
         }

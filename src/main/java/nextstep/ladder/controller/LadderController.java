@@ -4,7 +4,7 @@ import nextstep.ladder.domain.LadderExecutor;
 import nextstep.ladder.domain.LadderFactory;
 import nextstep.ladder.domain.ExecuteResult;
 import nextstep.ladder.domain.LadderResult;
-import nextstep.ladder.domain.Lines;
+import nextstep.ladder.domain.NextStepLines;
 import nextstep.ladder.domain.MachingResult;
 import nextstep.ladder.domain.Participants;
 import nextstep.ladder.view.InputView;
@@ -28,15 +28,15 @@ public class LadderController {
 
         ExecuteResult executeResult = new ExecuteResult(participants.size(), executeResultStr);
 
-        Lines lines = LadderFactory.createLadder(participants, maxLadder);
+        NextStepLines nextStepLines = LadderFactory.createLadder(participants, maxLadder);
 
-        LadderExecutor ladderExecutor = new LadderExecutor(lines, participants);
+        LadderExecutor ladderExecutor = new LadderExecutor(nextStepLines, participants);
         MachingResult machingResult = ladderExecutor.play();
 
         LadderResult ladderResult = machingResult.map(participants, executeResult);
 
         outputView.outputParticipants(participants);
-        outputView.outputResult(executeResult, lines, ladderResult);
+        outputView.outputResult(executeResult, nextStepLines, ladderResult);
 
         String participant = inputView.inputParticipantResult();
         outputView.outputParticipantResult(ladderResult.getReward(participant));

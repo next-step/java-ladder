@@ -5,14 +5,14 @@ import nextstep.ladder.strategy.LineStrategy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lines {
+public class NextStepLines {
     private final List<Line> lines;
 
-    public Lines() {
+    public NextStepLines() {
         this(new ArrayList<Line>());
     }
 
-    public Lines(ArrayList<Line> lines) {
+    public NextStepLines(ArrayList<Line> lines) {
         this.lines = new ArrayList<>(lines);
     }
 
