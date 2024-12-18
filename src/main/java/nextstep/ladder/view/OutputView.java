@@ -1,8 +1,9 @@
 package nextstep.ladder.view;
 
+import engine.LinesCreator;
 import nextstep.ladder.domain.ExecuteResult;
 import nextstep.ladder.domain.LadderResult;
-import nextstep.ladder.domain.Lines;
+import nextstep.ladder.domain.NextStepLines;
 import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.Participants;
 
@@ -18,16 +19,16 @@ public class OutputView {
         POINTS_LINE.put(false, outputLineFalse());
     }
 
-    public void outputResult(ExecuteResult executeResult, Lines lines, LadderResult ladderResult) {
+    public void outputResult(ExecuteResult executeResult, LinesCreator linesCreator, LadderResult ladderResult) {
         System.out.println();
 
-        outputLadder(lines);
+        outputLadder(linesCreator);
 
         ouputExecuteResult(executeResult);
     }
 
-    private static void outputLadder(Lines lines) {
-        lines.getLines().forEach(line -> {
+    private static void outputLadder(LinesCreator linesCreator) {
+        ((NextStepLines) linesCreator).getLines().forEach(line -> {
             line.getPoints().forEach(points -> System.out.print(POINTS_LINE.get(points)));
             System.out.println("|");
         });
