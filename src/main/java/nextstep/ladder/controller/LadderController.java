@@ -39,13 +39,23 @@ public class LadderController {
         outputView.outputParticipants(participants);
         outputView.outputResult(executeResult, linesCreator, ladderResult);
 
-        String participant = inputView.inputParticipantResult();
-        outputView.outputParticipantResult(ladderResult.getReward(participant));
-
-        participant = inputView.inputParticipantResult();
-        outputView.outputParticipantResult(ladderResult.getReward(participant));
+        inputOutputFindResult(ladderResult);
 
         outputView.outputParticipantAllResult(ladderResult);
+    }
+
+    private void inputOutputFindResult(LadderResult ladderResult) {
+        String participant = inputOutputResult(ladderResult);
+
+        if (!"all".equals(participant)) {
+            inputOutputResult(ladderResult);
+        }
+    }
+
+    private String inputOutputResult(LadderResult ladderResult) {
+        String participant = inputView.inputParticipantResult();
+        outputView.outputParticipantResult(ladderResult.getReward(participant));
+        return participant;
     }
 
 }
