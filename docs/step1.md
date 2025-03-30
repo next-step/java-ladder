@@ -3,5 +3,5 @@
 ## TODO
 
 - [X] 람다 실습
-- [ ] 스트림 실습
-- [ ] Optional 실습
+- [X] 스트림 실습
+- [X] Optional 실습
