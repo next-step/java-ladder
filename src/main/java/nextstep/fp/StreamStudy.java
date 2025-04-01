@@ -27,12 +27,13 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        words = words.stream()
+        words.stream()
                 .filter(word -> word.length() > 12)
-                .map(word -> word.toLowerCase())
+                .map(String::toLowerCase)
                 .distinct()
                 .sorted((word1, word2) -> Integer.compare(word2.length(), word1.length()))
-                .collect(Collectors.toList());
+                .limit(100)
+                .forEach(System.out::println);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
