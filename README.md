@@ -13,9 +13,9 @@
 ### 람다
 - [x] 람다 실습 1
   > - 익명 클래스를 람다로 전환 : nextstep.fp.CarTest 이동, 정지 method
-- [ ] 람다 실습 2 
+- [x] 람다 실습 2 
   > - 람다를 활용해 중복 제거 : nextstep.fp.Lambda의 sumAll, sumAllEven, sumAllOverThree method
-- [ ] 흰트
+- [x] 흰트
   > - 변경되는 부분과 변경되지 않는 부분의 코드를 분리한다.
   > - 변경되는 부분을 인터페이스로 추출한다.
   > - 인터페이스에 대한 구현체를 익명 클래스(anonymous class)로 구현해 메소드의 인자로 전달한다.
