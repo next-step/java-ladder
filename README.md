@@ -15,7 +15,7 @@
   > - 익명 클래스를 람다로 전환 : nextstep.fp.CarTest 이동, 정지 method
 - [x] 람다 실습 2 
   > - 람다를 활용해 중복 제거 : nextstep.fp.Lambda의 sumAll, sumAllEven, sumAllOverThree method
-- [x] 흰트
+- [x] 힌트
   > - 변경되는 부분과 변경되지 않는 부분의 코드를 분리한다.
   > - 변경되는 부분을 인터페이스로 추출한다.
   > - 인터페이스에 대한 구현체를 익명 클래스(anonymous class)로 구현해 메소드의 인자로 전달한다.
@@ -76,3 +76,6 @@
   > - Arrays.stream()을 이용해 배열을 stream으로 생성할 수 있다.
   > - 일치하는 값 하나를 추출할 때 findFirst() 메소드를 활용 가능하다.
   > - Optional의 orElseThrow() 메소드 활용해 구현한다.
+
+### 코멘트
+- [x] 함수형 인터페이스는 애너테이션 `@FunctionalInterface`으로 선언

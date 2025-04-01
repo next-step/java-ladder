@@ -45,6 +45,7 @@ public class Lambda {
                 .orElse(0);
     }
 
+    @FunctionalInterface
     public interface SumCondition {
         boolean match(int number);
     }
