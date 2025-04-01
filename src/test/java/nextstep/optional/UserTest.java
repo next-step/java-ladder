@@ -1,5 +1,6 @@
 package nextstep.optional;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static nextstep.optional.User.ageIsInRange1;
