@@ -11,7 +11,7 @@
 ---
 ## STEP1. 스트림, 람다, Optional
 ### 람다
-- [ ] 람다 실습 1
+- [x] 람다 실습 1
   > - 익명 클래스를 람다로 전환 : nextstep.fp.CarTest 이동, 정지 method
 - [ ] 람다 실습 2 
   > - 람다를 활용해 중복 제거 : nextstep.fp.Lambda의 sumAll, sumAllEven, sumAllOverThree method
