@@ -36,7 +36,7 @@
   > - 익명 클래스를 자바 8의 람다를 활용해 구현한다.
 
 ### 스트림
-- [ ] map, reduce, filter 실습 1 
+- [x] map, reduce, filter 실습 1 
   > - List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구한다. 지금까지 학습한 map, reduce, filter를 활용해 구현해야 한다.
   > - nextstep.fp.StreamStudyTest 클래스의 sumOverThreeAndDouble() 테스트를 pass해야 한다.
 - [ ] map, reduce, filter 실습 2
