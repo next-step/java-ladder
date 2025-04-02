@@ -3,6 +3,7 @@ package laddergame.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Users {
     public static final String DELIMETER = ",";
@@ -18,5 +19,11 @@ public class Users {
 
     public int getUserCount() {
         return users.size();
+    }
+
+    public String getUserNames() {
+        return users.stream()
+                .map(user -> user.getName())
+                .collect(Collectors.joining());
     }
 }

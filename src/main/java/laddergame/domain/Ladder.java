@@ -12,4 +12,8 @@ public class Ladder {
         }
     }
 
+    public List<Line> getPoints() {
+        return points;
+    }
+
 }

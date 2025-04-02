@@ -10,7 +10,7 @@ public class UserTest {
     @DisplayName("유저 생성 테스트")
     @Test
     void create_user() {
-        assertThat(new User("pobi")).extracting("name").isEqualTo("pobi");
+        assertThat(new User("pobi").getName().trim()).isEqualTo("pobi");
         assertThatIllegalArgumentException().isThrownBy(() -> new User("pobiac"));
     }
 }
