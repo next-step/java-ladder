@@ -7,3 +7,9 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+## 요구 사항
+### 람다, 스트림, Optional
+- 람다
+  - [x] 람다 실습 1 - 익명 클래스를 람다로 전환
+  - [ ] 람다 실습 2 - 람다를 활용해 중복 제거
