@@ -15,4 +15,4 @@
   - [x] 람다 실습 2 - 람다를 활용해 중복 제거
 - 스트림
   - [x] StreamStudy 클래스의 sumOverThreeAndDouble 구현
-  - [ ] StreamStudy 클래스의 printLongestWordTop100 구현
+  - [x] StreamStudy 클래스의 printLongestWordTop100 구현
