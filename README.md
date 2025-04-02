@@ -9,6 +9,9 @@
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
 
 ## 1단계
-- [ ] 람다
+- [x] 람다
   - [x] 실습 1
-  - [ ] 실습 2
+  - [x] 실습 2
+- [ ] 스트림
+  - [ ] map, reduce, filter 실습 1
+  - [ ] map, reduce, filter 실습 2
