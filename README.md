@@ -12,6 +12,10 @@
 - [x] 람다
   - [x] 실습 1
   - [x] 실습 2
-- [ ] 스트림
-  - [ ] map, reduce, filter 실습 1
-  - [ ] map, reduce, filter 실습 2
+- [x] 스트림
+  - [x] map, reduce, filter 실습 1
+  - [x] map, reduce, filter 실습 2
+- [ ] Optional
+  - [ ] Optional을 활용해 조건에 따른 반환
+  - [ ] Optional에서 값을 반환
+  - [ ] Optional에서 exception 처리
