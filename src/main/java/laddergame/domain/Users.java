@@ -15,4 +15,8 @@ public class Users {
             users.add(new User(name));
         }
     }
+
+    public int getUserCount() {
+        return users.size();
+    }
 }
