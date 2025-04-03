@@ -24,7 +24,7 @@ class LadderTest {
 
     @Test
     void ladder의_모든_legs는_name이_달라야_한다() {
-        List<Leg> legs = LegFactory.createLegs(Arrays.asList("test1", "test1"), 5);
+        List<Leg> legs = Leg.createLegs(Arrays.asList("test1", "test1"), 5);
 
         IllegalArgumentException e = catchIllegalArgumentException(() -> new Ladder(legs));
 

@@ -2,7 +2,6 @@ package nextstep.ladder.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Leg {
     private final ParticipantName name;
@@ -11,6 +10,12 @@ public class Leg {
     public Leg(String name, int height) {
         this.name = new ParticipantName(name);
         this.junctions = Junction.createJunctions(height);
+    }
+
+    public static List<Leg> createLegs(List<String> names, int height) {
+        return names.stream()
+            .map(name -> new Leg(name, height))
+            .collect(Collectors.toList());
     }
 
     public Junction getJunction(int level) {
