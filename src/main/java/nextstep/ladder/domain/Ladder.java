@@ -2,6 +2,7 @@ package nextstep.ladder.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Ladder {
     private final List<Leg> legs;
@@ -25,8 +26,19 @@ public class Ladder {
             return;
         }
 
-        Rung.createRungs(this, createRungStrategy);
+        for (int level = 0; level < getHeight(); level++) {
+            Row row = getRow(level);
+            row.createRungs(createRungStrategy);
+        }
+
         rungsCreated = true;
+    }
+
+    public Row getRow(int level) {
+        List<Junction> junctions = getLegs().stream()
+            .map(leg -> leg.getJunction(level))
+            .collect(Collectors.toList());
+        return new Row(junctions);
     }
 
     private void validate() {
