@@ -2,7 +2,9 @@ package nextstep.ladder.domain;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
+import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,10 +25,9 @@ class LadderTest {
 
     @Test
     void ladder의_모든_legs는_name이_달라야_한다() {
-        Leg test1 = new Leg("test1", 5);
-        Leg test2 = new Leg("test1", 5);
+        List<Leg> legs = LegFactory.createLegs(Arrays.asList("test1", "test1"), 5);
 
-        IllegalArgumentException e = catchIllegalArgumentException(() -> new Ladder(Arrays.asList(test1, test2)));
+        IllegalArgumentException e = catchIllegalArgumentException(() -> new Ladder(legs));
 
         assertThat(e).hasMessage("사다리의 모든 다리는 이름이 달라야 합니다.");
     }
