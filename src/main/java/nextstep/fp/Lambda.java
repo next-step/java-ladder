@@ -2,6 +2,7 @@ package nextstep.fp;
 
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
@@ -56,10 +57,9 @@ public class Lambda {
     }
 
     public static int sumAllByPredicate(List<Integer> numbers, Predicate<Integer> predicate) {
-        int total = 0;
-        for (int number : numbers) {
-            total += predicate.test(number) ? number : 0;
-        }
-        return total;
+        return numbers.stream()
+                .filter(predicate)
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 }
