@@ -1,6 +1,7 @@
 package nextstep.fp;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
@@ -50,6 +51,14 @@ public class Lambda {
             if (number > 3) {
                 total += number;
             }
+        }
+        return total;
+    }
+
+    public static int sumAllByPredicate(List<Integer> numbers, Predicate<Integer> predicate) {
+        int total = 0;
+        for (int number : numbers) {
+            total += predicate.test(number) ? number : 0;
         }
         return total;
     }
