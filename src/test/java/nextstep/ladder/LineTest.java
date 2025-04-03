@@ -49,9 +49,9 @@ class LineTest {
     @Test
     void 양옆에_선이있으면_이동() {
         Line line = new Line(List.of(true, false, true));
-        assertThat(line.go(0)).isEqualTo(1);
-        assertThat(line.go(1)).isEqualTo(0);
-        assertThat(line.go(2)).isEqualTo(3);
-        assertThat(line.go(3)).isEqualTo(2);
+        assertThat(line.move(0)).isEqualTo(1);
+        assertThat(line.move(1)).isEqualTo(0);
+        assertThat(line.move(2)).isEqualTo(3);
+        assertThat(line.move(3)).isEqualTo(2);
     }
 }

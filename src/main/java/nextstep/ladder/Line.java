@@ -37,7 +37,7 @@ public class Line {
         return new Line(points);
     }
 
-    public int go(int start) {
+    public int move(int start) {
         if (start < this.points.size() && this.points.get(start)) {
             return start + 1;
         }
@@ -45,6 +45,10 @@ public class Line {
             return start - 1;
         }
         return start;
+    }
+
+    public int getWidth() {
+        return this.points.size();
     }
 
     public List<Boolean> getPoints() {
