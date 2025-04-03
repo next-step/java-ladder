@@ -10,9 +10,7 @@ public class Leg {
 
     public Leg(String name, int height) {
         this.name = new ParticipantName(name);
-        this.junctions = IntStream.range(0, height)
-            .mapToObj(i -> new Junction())
-            .collect(Collectors.toList());
+        this.junctions = Junction.createJunctions(height);
     }
 
     public Junction getJunction(int level) {

@@ -14,9 +14,7 @@ class RowTest {
 
     @Test
     void CreateIfPossibleRungStrategy는_가능하다면_rung을_만든다() {
-        List<Junction> junctions = IntStream.range(0, 3)
-            .mapToObj(i -> new Junction())
-            .collect(Collectors.toList());
+        List<Junction> junctions = Junction.createJunctions(3);
 
         Row row = new Row(junctions);
         row.createRungs(new CreateIfPossibleRungStrategy());
@@ -39,9 +37,7 @@ class RowTest {
 
     @Test
     void NoCreateRungStrategy는_rung을_만들지_않는다() {
-        List<Junction> junctions = IntStream.range(0, 2)
-            .mapToObj(i -> new Junction())
-            .collect(Collectors.toList());
+        List<Junction> junctions = Junction.createJunctions(2);
 
         Row row = new Row(junctions);
         row.createRungs(new NeverCreateRungStrategy());
@@ -59,9 +55,7 @@ class RowTest {
 
     @Test
     void getJunction_에서_벗어나는_인덱스에_접근하면_예외가_발생한다() {
-        List<Junction> junctions = IntStream.range(0, 2)
-            .mapToObj(i -> new Junction())
-            .collect(Collectors.toList());
+        List<Junction> junctions = Junction.createJunctions(2);
 
         Row row = new Row(junctions);
 
