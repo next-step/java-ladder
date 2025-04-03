@@ -1,6 +1,6 @@
 ## 기능 구현 명세 (람다)
 - [x] CarTest 테스트 코드에서 MoveStrategy에 대한 익명 클래스를 람다로 변경
-- [ ] nextstep.fp.Lambda의 sumAll, sumAllEven, sumAllOverThree method 소스 코드를 확인하고 중복 제거
+- [x] nextstep.fp.Lambda의 sumAll, sumAllEven, sumAllOverThree method 소스 코드를 확인하고 중복 제거
 
 ## 힌트
 변경되는 부분과 변경되지 않는 부분의 코드를 분리한다.
