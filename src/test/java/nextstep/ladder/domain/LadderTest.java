@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -59,7 +58,7 @@ class LadderTest {
         Leg leg2 = ladder.getLegs().get(1);
         Leg leg3 = ladder.getLegs().get(2);
 
-        ladder.createRungs(new ConnectIfPossibleRungStrategy());
+        ladder.createRungs(new CreateIfPossibleCreateRungStrategy());
 
         for (int i = 0; i < height; i++) {
             Junction junction1 = leg1.getJunction(i);
@@ -89,7 +88,7 @@ class LadderTest {
         Leg leg1 = ladder.getLegs().get(0);
         Leg leg2 = ladder.getLegs().get(1);
 
-        ladder.createRungs(new NoConnectRungStrategy());
+        ladder.createRungs(new NoCreateCreateRungStrategy());
 
         for (int i = 0; i < height; i++) {
             Junction junction1 = leg1.getJunction(i);

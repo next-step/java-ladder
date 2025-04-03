@@ -1,8 +1,8 @@
 package nextstep.ladder.domain;
 
-public class ConnectIfPossibleRungStrategy implements RungStrategy {
+public class CreateIfPossibleCreateRungStrategy implements CreateRungStrategy {
     @Override
-    public void connect(Junction curr, Junction right) {
+    public void create(Junction curr, Junction right) {
         if (curr.hasConnect()) {
             return;
         }

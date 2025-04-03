@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class Rung {
 
-    public static void createRungs(Ladder ladder, RungStrategy rungStrategy) {
+    public static void createRungs(Ladder ladder, CreateRungStrategy createRungStrategy) {
         for (int i = 0; i < ladder.getHeight(); i++) {
             final int level = i;
 
@@ -13,15 +13,15 @@ public class Rung {
                 .map(leg -> leg.getJunction(level))
                 .collect(Collectors.toList());
 
-            createRungs(junctions, rungStrategy);
+            createRungs(junctions, createRungStrategy);
         }
     }
 
-    private static void createRungs(List<Junction> junctions, RungStrategy rungStrategy) {
+    private static void createRungs(List<Junction> junctions, CreateRungStrategy createRungStrategy) {
         for (int i = 0; i < junctions.size() - 1; i++) {
             Junction junction = junctions.get(i);
             Junction rightJunction = junctions.get(i + 1);
-            rungStrategy.connect(junction, rightJunction);
+            createRungStrategy.create(junction, rightJunction);
         }
     }
 
