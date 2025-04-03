@@ -1,9 +1,6 @@
 package ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class LadderFactory {
     private List<String> names;
@@ -49,5 +46,9 @@ public class LadderFactory {
 
         }
         return lines;
+    }
+
+    public List<String> getNames() {
+        return Collections.unmodifiableList(names);
     }
 }

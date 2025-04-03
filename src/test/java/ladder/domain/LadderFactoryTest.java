@@ -40,5 +40,11 @@ class LadderFactoryTest {
         assertThat(new LadderFactory("red,blue,green",3).getLadder(() -> true))
                 .allMatch(width -> !width.equals(List.of(true, true)));
     }
+
+    @Test
+    @DisplayName("사다리 타기 참여자의 이름을 얻는다.")
+    void getNames() {
+        assertThat(new LadderFactory("red,blue,green", 1).getNames()).contains("red", "blue", "green");
+    }
 }
 
