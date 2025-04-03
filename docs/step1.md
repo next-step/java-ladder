@@ -27,7 +27,7 @@ String.toLowerCase() method 활용
   - [x] nextstep.optional.UserTest의 테스트가 모두 pass
 - [x] nextstep.optional.Users의 getUser() 메소드를 자바 8의 stream과 Optional을 활용해 구현
   - [x] UsersTest의 단위 테스트가 통과
-- [ ] nextstep.optional.ExpressionTest의 테스트가 통과하도록 Expression의 of 메소드를 구현
+- [x] nextstep.optional.ExpressionTest의 테스트가 통과하도록 Expression의 of 메소드를 구현`
 
 ## 힌트
 Guide To Java 8 Optional 문서를 참고해 Optional 사용 방법을 익힌다.
