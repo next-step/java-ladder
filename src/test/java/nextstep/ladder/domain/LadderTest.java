@@ -47,7 +47,7 @@ class LadderTest {
     }
 
     @Test
-    void ConnectIfPossibleRungStrategy는_가능하다면_rung을_만든다() {
+    void CreateIfPossibleRungStrategy는_가능하다면_rung을_만든다() {
         int height = 5;
 
         List<Leg> legs
@@ -58,7 +58,7 @@ class LadderTest {
         Leg leg2 = ladder.getLegs().get(1);
         Leg leg3 = ladder.getLegs().get(2);
 
-        ladder.createRungs(new CreateIfPossibleCreateRungStrategy());
+        ladder.createRungs(new CreateIfPossibleRungStrategy());
 
         for (int i = 0; i < height; i++) {
             Junction junction1 = leg1.getJunction(i);
@@ -79,7 +79,7 @@ class LadderTest {
     }
 
     @Test
-    void NoConnectRungStrategy는_rung을_만들지_않는다() {
+    void NoCreateRungStrategy는_rung을_만들지_않는다() {
         int height = 5;
 
         List<Leg> legs = LegFactory.createLegs(Arrays.asList("test1", "test2"), height);
@@ -88,7 +88,7 @@ class LadderTest {
         Leg leg1 = ladder.getLegs().get(0);
         Leg leg2 = ladder.getLegs().get(1);
 
-        ladder.createRungs(new NoCreateCreateRungStrategy());
+        ladder.createRungs(new NoCreateRungStrategy());
 
         for (int i = 0; i < height; i++) {
             Junction junction1 = leg1.getJunction(i);
