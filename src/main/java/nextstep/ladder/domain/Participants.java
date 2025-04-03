@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,5 +16,13 @@ public class Participants {
                 .map(Participant::new)
                 .collect(Collectors.toList());
         return new Participants(participants);
+    }
+
+    public int size() {
+        return this.participants.size();
+    }
+
+    public List<Participant> getParticipants() {
+        return Collections.unmodifiableList(participants);
     }
 }

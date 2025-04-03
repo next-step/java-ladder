@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -45,6 +46,10 @@ public class Ladder {
         return IntStream.range(0, height)
                 .mapToObj(i -> Line.createRandomLine(width, random))
                 .collect(Collectors.toList());
+    }
+
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
     }
 
     @Override
