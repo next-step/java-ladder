@@ -23,8 +23,8 @@ distinct() method 활용
 String.toLowerCase() method 활용
 
 ## 기능 구현 명세 (Optional)
-- [ ] ageIsInRange1() 메소드와 같은 기능을 하는 ageIsInRange2() 메소드를 구현
-  - [ ] nextstep.optional.UserTest의 테스트가 모두 pass
+- [x] ageIsInRange1() 메소드와 같은 기능을 하는 ageIsInRange2() 메소드를 구현
+  - [x] nextstep.optional.UserTest의 테스트가 모두 pass
 - [ ] nextstep.optional.Users의 getUser() 메소드를 자바 8의 stream과 Optional을 활용해 구현
   - [ ] UsersTest의 단위 테스트가 통과
 - [ ] nextstep.optional.ExpressionTest의 테스트가 통과하도록 Expression의 of 메소드를 구현
