@@ -11,7 +11,7 @@
 ## step1
 - [x] CarTest의 익명 클래스를 람다로 전환
 - [x] sumAll, sumAllEven method 람다를 활용해 중복 제거
-- [] countWords method filter 적용
+- [x] countWords method filter 적용
 - [] doubleNumbers method map 적용
 - [] sumAll method reduce 적용
 - [] war-and-peace.txt List에 담긴 모든 숫자 중 3보다 큰 숫자를 2배 한 후 모든 값의 합을 구한다 (map, reduce, filter를 활용)
