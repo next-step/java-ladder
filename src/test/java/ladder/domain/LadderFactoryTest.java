@@ -1,7 +1,10 @@
 package ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -26,9 +29,16 @@ class LadderFactoryTest {
     @Test
     @DisplayName("사다리 타기는 (참여하는 사람의 수 - 1) 만큼 라인이 생성된다.")
     void getLadder() {
-        assertThat(new LadderFactory("red,blue,green",3).getLadder())
+        assertThat(new LadderFactory("red,blue,green",3).getLadder(() -> true))
                 .hasSize(3)
                 .allMatch(width -> width.size() == 2);
+    }
+
+    @Test
+    @DisplayName("사다리 타기는 라인이 겹치지 않는다.")
+    void lineShouldNotOverlap() {
+        assertThat(new LadderFactory("red,blue,green",3).getLadder(() -> true))
+                .allMatch(width -> !width.equals(List.of(true, true)));
     }
 }
 

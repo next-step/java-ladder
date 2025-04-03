@@ -3,6 +3,7 @@ package ladder.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class LadderFactory {
     private List<String> names;
@@ -27,14 +28,26 @@ public class LadderFactory {
 
     }
 
-    public List<List<Boolean>> getLadder() {
+    public List<List<Boolean>> getLadder(LineGenerator generator) {
         List<List<Boolean>> result = new ArrayList<>();
         for (int i=0; i<height; i++) {
-            result.add(new ArrayList<>());
-            for(int j=0; j<names.size()-1; j++) {
-                result.get(i).add(true);
-            }
+            result.add(createLines(generator));
         }
         return result;
+    }
+
+    private List<Boolean> createLines(LineGenerator generator) {
+        List<Boolean> lines = new ArrayList<>();
+
+        for(int i=0; i<names.size()-1; i++) {
+            if(i>0 && lines.get(i-1) != null && lines.get(i-1)) {
+                lines.add(false);
+                continue;
+            }
+            boolean connected = generator.isConnected();
+            lines.add(connected);
+
+        }
+        return lines;
     }
 }
