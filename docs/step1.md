@@ -11,7 +11,7 @@
 
 ## 기능 구현 명세 (스트림)
 - [x] nextstep.fp.StreamStudyTest 클래스의 sumOverThreeAndDouble() 테스트를 pass
-- [ ] nextstep.fp.StreamStudy 클래스의 printLongestWordTop100() 메서드를 구현
+- [x] nextstep.fp.StreamStudy 클래스의 printLongestWordTop100() 메서드를 구현
 
 ## 힌트
 단어의 길이가 12자를 초과하는 단어를 추출한다.
