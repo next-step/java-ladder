@@ -3,6 +3,7 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,4 +23,12 @@ class LadderFactoryTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("사다리 타기는 (참여하는 사람의 수 - 1) 만큼 라인이 생성된다.")
+    void getLadder() {
+        assertThat(new LadderFactory("red,blue,green",3).getLadder())
+                .hasSize(3)
+                .allMatch(width -> width.size() == 2);
+    }
 }
+
