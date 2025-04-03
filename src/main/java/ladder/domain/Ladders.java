@@ -39,7 +39,7 @@ public class Ladders {
         return lines;
     }
 
-    public List<List<Boolean>> get() {
+    public List<List<Boolean>> getAll() {
         return Collections.unmodifiableList(ladders);
     }
 }
