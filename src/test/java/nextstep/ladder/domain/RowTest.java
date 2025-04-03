@@ -2,24 +2,23 @@ package nextstep.ladder.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchIllegalArgumentException;
 import static org.assertj.core.api.Assertions.catchIndexOutOfBoundsException;
 
 class RowTest {
 
     @Test
     void CreateIfPossibleRungStrategy는_가능하다면_rung을_만든다() {
-        int height = 5;
+        List<Junction> junctions = IntStream.range(0, 3)
+            .mapToObj(i -> new Junction())
+            .collect(Collectors.toList());
 
-        List<Leg> legs
-            = LegFactory.createLegs(Arrays.asList("test1", "test2", "test3"), height);
-        Ladder ladder = new Ladder(legs);
-        Row row = ladder.getRow(2);
+        Row row = new Row(junctions);
         row.createRungs(new CreateIfPossibleRungStrategy());
 
         Junction j1 = row.getJunction(0);
@@ -40,12 +39,12 @@ class RowTest {
 
     @Test
     void NoCreateRungStrategy는_rung을_만들지_않는다() {
-        int height = 5;
+        List<Junction> junctions = IntStream.range(0, 2)
+            .mapToObj(i -> new Junction())
+            .collect(Collectors.toList());
 
-        List<Leg> legs = LegFactory.createLegs(Arrays.asList("test1", "test2"), height);
-        Ladder ladder = new Ladder(legs);
-        Row row = ladder.getRow(2);
-        row.createRungs(new NoCreateRungStrategy());
+        Row row = new Row(junctions);
+        row.createRungs(new NeverCreateRungStrategy());
 
         Junction j1 = row.getJunction(0);
         assertThat(j1.hasLeft()).isFalse();
@@ -60,11 +59,11 @@ class RowTest {
 
     @Test
     void getJunction_에서_벗어나는_인덱스에_접근하면_예외가_발생한다() {
-        int height = 5;
+        List<Junction> junctions = IntStream.range(0, 2)
+            .mapToObj(i -> new Junction())
+            .collect(Collectors.toList());
 
-        List<Leg> legs = LegFactory.createLegs(Arrays.asList("test1", "test2"), height);
-        Ladder ladder = new Ladder(legs);
-        Row row = ladder.getRow(2);
+        Row row = new Row(junctions);
 
         IndexOutOfBoundsException e = catchIndexOutOfBoundsException(() -> row.getJunction(3));
 

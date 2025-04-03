@@ -34,7 +34,7 @@ public class Ladder {
         rungsCreated = true;
     }
 
-    public Row getRow(int level) {
+    private Row getRow(int level) {
         List<Junction> junctions = getLegs().stream()
             .map(leg -> leg.getJunction(level))
             .collect(Collectors.toList());
