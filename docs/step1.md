@@ -10,7 +10,7 @@
 인터페이스는 다음과 같은 형태로 추출할 수 있다.
 
 ## 기능 구현 명세 (스트림)
-- [ ] nextstep.fp.StreamStudyTest 클래스의 sumOverThreeAndDouble() 테스트를 pass
+- [x] nextstep.fp.StreamStudyTest 클래스의 sumOverThreeAndDouble() 테스트를 pass
 - [ ] nextstep.fp.StreamStudy 클래스의 printLongestWordTop100() 메서드를 구현
 
 ## 힌트
