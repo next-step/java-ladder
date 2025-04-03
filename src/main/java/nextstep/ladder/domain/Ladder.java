@@ -21,10 +21,6 @@ public class Ladder {
         return Collections.unmodifiableList(legs);
     }
 
-    public void createRungs() {
-        createRungs(new RandomRungStrategy());
-    }
-
     public void createRungs(RungStrategy rungStrategy) {
         if (!rungsCreated) {
             Rung.createRungs(this, rungStrategy);

@@ -7,7 +7,7 @@ public class LadderFactory {
     public static Ladder createLadder(List<String> names, int height) {
         List<Leg> legs = LegFactory.createLegs(names, height);
         Ladder ladder = new Ladder(legs);
-        ladder.createRungs();
+        ladder.createRungs(new RandomRungStrategy());
         return ladder;
     }
 }
