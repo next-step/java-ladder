@@ -6,7 +6,8 @@ import java.util.stream.Collectors;
 public class LadderFactory {
     public static Ladder createLadder(List<String> names, int height) {
         List<Leg> legs = LegFactory.createLegs(names, height);
-        Rung.createRungs(legs, height);
-        return new Ladder(legs);
+        Ladder ladder = new Ladder(legs);
+        ladder.createRungs();
+        return ladder;
     }
 }

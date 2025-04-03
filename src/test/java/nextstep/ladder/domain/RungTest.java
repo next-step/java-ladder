@@ -15,12 +15,13 @@ class RungTest {
 
         List<Leg> legs
             = LegFactory.createLegs(Arrays.asList("test1", "test2", "test3"), height);
+        Ladder ladder = new Ladder(legs);
 
-        Leg leg1 = legs.get(0);
-        Leg leg2 = legs.get(1);
-        Leg leg3 = legs.get(2);
+        Leg leg1 = ladder.getLegs().get(0);
+        Leg leg2 = ladder.getLegs().get(1);
+        Leg leg3 = ladder.getLegs().get(2);
 
-        Rung.createRungs(legs, height, new ConnectIfPossibleRungStrategy());
+        ladder.createRungs(new ConnectIfPossibleRungStrategy());
 
         for (int i = 0; i < height; i++) {
             Junction junction1 = leg1.getJunction(i);
@@ -45,11 +46,12 @@ class RungTest {
         int height = 5;
 
         List<Leg> legs = LegFactory.createLegs(Arrays.asList("test1", "test2"), height);
+        Ladder ladder = new Ladder(legs);
 
-        Leg leg1 = legs.get(0);
-        Leg leg2 = legs.get(1);
+        Leg leg1 = ladder.getLegs().get(0);
+        Leg leg2 = ladder.getLegs().get(1);
 
-        Rung.createRungs(legs, height, new NoConnectRungStrategy());
+        ladder.createRungs(new NoConnectRungStrategy());
 
         for (int i = 0; i < height; i++) {
             Junction junction1 = leg1.getJunction(i);

@@ -5,15 +5,11 @@ import java.util.stream.Collectors;
 
 public class Rung {
 
-    public static void createRungs(List<Leg> legs, int height) {
-        createRungs(legs, height, new RandomRungStrategy());
-    }
-
-    public static void createRungs(List<Leg> legs, int height, RungStrategy rungStrategy) {
-        for (int i = 0; i < height; i++) {
+    public static void createRungs(Ladder ladder, RungStrategy rungStrategy) {
+        for (int i = 0; i < ladder.getHeight(); i++) {
             final int level = i;
 
-            List<Junction> junctions = legs.stream()
+            List<Junction> junctions = ladder.getLegs().stream()
                 .map(leg -> leg.getJunction(level))
                 .collect(Collectors.toList());
 

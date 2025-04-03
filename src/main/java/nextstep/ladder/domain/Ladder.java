@@ -2,8 +2,10 @@ package nextstep.ladder.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class Ladder {
+    public boolean rungsCreated = false;
     private final List<Leg> legs;
 
     public Ladder(List<Leg> legs) {
@@ -17,6 +19,17 @@ public class Ladder {
 
     public List<Leg> getLegs() {
         return Collections.unmodifiableList(legs);
+    }
+
+    public void createRungs() {
+        createRungs(new RandomRungStrategy());
+    }
+
+    public void createRungs(RungStrategy rungStrategy) {
+        if (!rungsCreated) {
+            Rung.createRungs(this, rungStrategy);
+            rungsCreated = true;
+        }
     }
 
     private void validate() {
