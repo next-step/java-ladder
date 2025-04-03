@@ -1,7 +1,5 @@
 package laddergame.domain;
 
-import java.util.List;
-
 public class LadderGame {
     private final Ladder ladder;
     private final Users users;

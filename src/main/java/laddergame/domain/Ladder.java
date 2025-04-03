@@ -8,7 +8,7 @@ public class Ladder {
 
     public Ladder(int lineNumber, int columnNumber) {
         for (int i = 0; i < lineNumber; ++i) {
-            points.add(new Line(columnNumber));
+            points.add(new Line(columnNumber, new RandomSelectStrategy()));
         }
     }
 
