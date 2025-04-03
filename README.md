@@ -10,7 +10,7 @@
 
 ## step1
 - [x] CarTest의 익명 클래스를 람다로 전환
-- [] sumAll, sumAllEven method 람다를 활용해 중복 제거
+- [x] sumAll, sumAllEven method 람다를 활용해 중복 제거
 - [] countWords method filter 적용
 - [] doubleNumbers method map 적용
 - [] sumAll method reduce 적용
