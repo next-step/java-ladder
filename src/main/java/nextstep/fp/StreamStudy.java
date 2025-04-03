@@ -24,10 +24,12 @@ public class StreamStudy {
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
          words.stream()
+             .filter(word -> word.length() > 12)
              .sorted((s1, s2) -> Integer.compare(s2.length(), s1.length()))
+             .distinct()
              .limit(100)
+             .map(String::toLowerCase)
              .forEach(System.out::println);
-
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
@@ -39,6 +41,6 @@ public class StreamStudy {
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+        return numbers.stream().filter(number -> number > 3).map(number -> number * 2).reduce(0, Integer::sum);
     }
 }
