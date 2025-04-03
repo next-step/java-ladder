@@ -7,3 +7,25 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+### Step2 - 사다리(생성)
+#### 필요 객체
+* InputView - 문자 리스트 입력
+* OutputView - 사다리 결과 출력
+* ladderGame - 사다리 게임을 표현하는 객체
+* participant - string name : 5글자 검증
+* ladder - 아래와 같은 형태의 2차원 배열을 표현해야 함
+```
+  1 0 1
+  0 1 0
+  1 0 0
+  0 1 0
+  1 0 1
+```
+* line - 사다리 한 줄을 표현하는 객체
+```
+1 0 1
+```
+* lineMaker - 사다리 한 줄을 만드는 객체
+  * 랜덤으로 0과 1을 생성
+  * 1 이 연속으로 2개 이상 생성되지 않도록 한다.
