@@ -14,6 +14,6 @@ public class LadderApplication {
 
         LadderFactory ladderFactory = new LadderFactory(inputView.inputNames(), inputView.inputHeight());
         outputView.printNames(ladderFactory.getNames());
-        outputView.printLadders(ladderFactory.getLadder(new RandomLineGenerator()));
+        outputView.printLadders(ladderFactory.getLadder());
     }
 }
