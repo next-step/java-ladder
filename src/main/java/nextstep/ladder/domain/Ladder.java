@@ -4,8 +4,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Ladder {
-    public boolean rungsCreated = false;
     private final List<Leg> legs;
+    public boolean rungsCreated = false;
 
     public Ladder(List<Leg> legs) {
         this.legs = legs;
@@ -20,11 +20,13 @@ public class Ladder {
         return Collections.unmodifiableList(legs);
     }
 
-    public void createRungs(CreateRungStrategy createRungStrategy) {
-        if (!rungsCreated) {
-            Rung.createRungs(this, createRungStrategy);
-            rungsCreated = true;
+    public synchronized void createRungs(CreateRungStrategy createRungStrategy) {
+        if (rungsCreated) {
+            return;
         }
+
+        Rung.createRungs(this, createRungStrategy);
+        rungsCreated = true;
     }
 
     private void validate() {
