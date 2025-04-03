@@ -18,5 +18,5 @@
   - 단어 중복을 허용하지 않는다. 즉, 서로 다른 단어 100개를 추출
   - 출한 100개의 단어를 출력한다. 모든 단어는 소문자로 출력
 - [x] ageIsInRange1() 메소드 기능 Optional을 활용해 ageIsInRange2() 메소드에 구현
-- [] getUser() 메소드를 자바 8의 stream과 Optional을 활용해 구현
+- [x] getUser() 메소드를 자바 8의 stream과 Optional을 활용해 구현
 - [] Expression의 of 메소드 구현
