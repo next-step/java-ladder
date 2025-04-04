@@ -6,7 +6,8 @@ import ladder.domain.Row;
 
 public class OutputView {
     private static final int NAME_BOX_SIZE = 6;
-    private static final String EMPTY = "     |";
+    private static final String BUFFER = "   ";
+    private static final String NO_BRIDGE = "     |";
     private static final String BRIDGE = "-----|";
 
     public static void printGeneratedLadderResult(Players players, Ladder ladder) {
@@ -16,7 +17,7 @@ public class OutputView {
     }
 
     private static void printPlayerNames(Players players) {
-        System.out.print("   ");
+        System.out.print(BUFFER);
 
         players.getPlayers()
                 .forEach((player) -> System.out.print(centerAlign(player.getName())));
@@ -34,10 +35,10 @@ public class OutputView {
     }
 
     private static String generateRowString(Row row, int playerCount) {
-        StringBuilder rowString = new StringBuilder(EMPTY);
+        StringBuilder rowString = new StringBuilder(NO_BRIDGE);
 
         for (int i = 0; i < playerCount - 1; i++) {
-            rowString.append(row.shouldBuildBridge(i) ? BRIDGE : EMPTY);
+            rowString.append(row.shouldBuildBridge(i) ? BRIDGE : NO_BRIDGE);
         }
 
         return rowString.toString();
