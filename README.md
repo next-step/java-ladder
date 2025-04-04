@@ -27,3 +27,5 @@
 - [x] Views 구현
 - [x] LadderGameApplication 구현
 - [ ] 리팩토링
+  - [ ] Player 구현
+  - [ ] Views 리팩토링

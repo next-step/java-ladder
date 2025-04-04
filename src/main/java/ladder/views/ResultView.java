@@ -2,6 +2,7 @@ package ladder.views;
 
 import ladder.domain.Ladder;
 import ladder.domain.LadderLine;
+import ladder.domain.Player;
 import ladder.domain.Players;
 
 public class ResultView {
@@ -12,9 +13,11 @@ public class ResultView {
             LadderLine ladderLine = ladder.getLadderLine(i);
             for (int j = 0; j < ladderLine.size(); j++) {
                 if (ladderLine.getPoint(j)) {
-                    sb.append("-----|");
+                    sb.append("-".repeat(5));
+                    sb.append("|");
                 } else {
-                    sb.append("     |");
+                    sb.append(" ".repeat(5));
+                    sb.append("|");
                 }
             }
             System.out.println(sb);
@@ -24,7 +27,8 @@ public class ResultView {
     public static void printPlayer(Players players) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < players.count(); i++) {
-            String nameAtIndex = players.getNameAtIndex(i);
+            Player playerAtIndex = players.getPlayerAtIndex(i);
+            String nameAtIndex = playerAtIndex.name();
             sb.append(nameAtIndex);
             sb.append(" ".repeat(6 - nameAtIndex.length()));
         }
