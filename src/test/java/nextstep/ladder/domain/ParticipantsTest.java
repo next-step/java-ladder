@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class ParticipantsTest {
     @Test
     void create() {
-        assertThat(new Participants(new String[]{"p1"})).isEqualTo(new Participants(List.of("p1")));
+        assertThat(new Participants(new String[]{"p1", "p2"})).isEqualTo(new Participants(List.of("p1", "p2")));
     }
 
     @Test
@@ -22,9 +22,16 @@ public class ParticipantsTest {
 
     @Test
     void invalid_name() {
-        assertThatThrownBy(() -> new Participants(new String[]{"p123456"}))
+        assertThatThrownBy(() -> new Participants(new String[]{"p123", "p123456"}))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(Participants.TOO_LENGTH_ERROR_MESSAGE);
+    }
+
+    @Test
+    void invalid_name_size() {
+        assertThatThrownBy(() -> new Participants(new String[]{"p123"}))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(Participants.TOO_FEW_PARTICIPANTS_MESSAGE);
     }
 
     @Test

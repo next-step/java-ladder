@@ -28,7 +28,7 @@ public class LadderLine {
         }
     }
 
-    public List<Boolean> getLine() {
+    public List<Boolean> getBridgeStatus() {
         return values;
     }
 
