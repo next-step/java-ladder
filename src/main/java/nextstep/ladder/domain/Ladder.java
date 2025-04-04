@@ -26,10 +26,11 @@ public class Ladder {
             throw new RuntimeException("사다리의 높이와 가로선의 갯수는 같아야 합니다. " +
                     "현재 높이: " + height + " 현재 가로선 갯수: " + lines.size());
         }
-        boolean hasInconsistentWidth = lines.stream()
-                .anyMatch(line -> width - 1 != line.getWidth());
-        if (hasInconsistentWidth) {
-            throw new RuntimeException("사다리의 폭-1 과 가로선의 폭은 같아야 합니다. 현재 사다리의 폭: " + width);
+        for (Line line : lines) {
+            if (width - 1 != line.getWidth()) {
+                throw new RuntimeException("사다리의 폭-1 과 가로선의 폭은 같아야 합니다. " +
+                        "현재 사다리의 폭: " + width + " 현재 가로선의 폭: " + line.getWidth());
+            }
         }
     }
 
