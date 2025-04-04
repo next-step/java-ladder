@@ -1,8 +1,6 @@
 package laddergame.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Users {
@@ -39,5 +37,13 @@ public class Users {
 
     public List<String> getResults() {
         return results;
+    }
+
+    public Map<User, String> makeGameResult(Map<Integer, Integer> ladderResult) {
+        Map<User, String> gameResult = new LinkedHashMap<>();
+        for (Map.Entry<Integer, Integer> result: ladderResult.entrySet()) {
+            gameResult.put(users.get(result.getKey()), results.get(result.getValue()));
+        }
+        return gameResult;
     }
 }

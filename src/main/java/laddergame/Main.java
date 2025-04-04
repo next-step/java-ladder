@@ -9,8 +9,10 @@ public class Main {
         String namesString = InputView.inputUsers();
         int maxLadderHeight = InputView.inputMaxLadderHeight();
         String resultsString = InputView.inputResults();
-        LadderGame ladderGame = new LadderGame(namesString, resultsString, maxLadderHeight);
 
+        LadderGame ladderGame = new LadderGame(namesString, resultsString, maxLadderHeight);
         OutputView.printGameMap(ladderGame.getUserNames(), ladderGame.getResults(), ladderGame.getLadder());
+
+        OutputView.printResult(ladderGame.play());
     }
 }

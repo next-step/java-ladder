@@ -1,11 +1,9 @@
 package laddergame.view;
 
-import laddergame.domain.Ladder;
-import laddergame.domain.Line;
-import laddergame.domain.Name;
-import laddergame.domain.Point;
+import laddergame.domain.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static laddergame.domain.Name.MAX_NAME_LENGTH;
@@ -22,6 +20,7 @@ public class OutputView {
                 .map(line -> makeLineString(line))
                 .forEach(System.out::println);
         System.out.println(makeResultString(results));
+        System.out.println();
     }
 
     private static String makeNameString(List<Name> userNames) {
@@ -45,5 +44,13 @@ public class OutputView {
                     return LADDER_WITHOUT_HORIZONTAL_LINE;
                 })
                 .collect(Collectors.joining());
+    }
+
+    public static void printResult(Map<User, String> gameResult) {
+        System.out.println("실행 결과");
+        for (Map.Entry<User, String> result: gameResult.entrySet()) {
+            System.out.println(result.getKey().getName().getName() + " : " + result.getValue());
+        }
+        System.out.println();
     }
 }

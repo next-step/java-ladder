@@ -25,4 +25,14 @@ public class Line {
     public List<Point> getLine() {
         return points;
     }
+
+    public int down(int inputColumn) {
+        if (points.get(inputColumn).equals(new Point(true))) {
+            return inputColumn - 1;
+        }
+        if (inputColumn + 1 < points.size() && points.get(inputColumn + 1).equals(new Point(true))) {
+            return inputColumn + 1;
+        }
+        return inputColumn;
+    }
 }
