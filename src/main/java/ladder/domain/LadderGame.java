@@ -12,4 +12,8 @@ public class LadderGame {
     public Ladder createLadder() {
         return new Ladder(height, players.count() - 1);
     }
+
+    public Players players() {
+        return players;
+    }
 }

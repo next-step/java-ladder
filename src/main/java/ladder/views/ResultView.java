@@ -1,9 +1,6 @@
 package ladder.views;
 
-import ladder.domain.Ladder;
-import ladder.domain.LadderLine;
-import ladder.domain.Player;
-import ladder.domain.Players;
+import ladder.domain.*;
 
 public class ResultView {
     public static void printLadder(Ladder ladder) {
@@ -33,5 +30,14 @@ public class ResultView {
             sb.append(" ".repeat(6 - nameAtIndex.length()));
         }
         System.out.println(sb);
+    }
+
+    public static void printResult(LadderGame ladderGame) {
+        System.out.println(System.lineSeparator());
+        System.out.println("실행결과");
+
+        ResultView.printPlayer(ladderGame.players());
+        Ladder ladder = ladderGame.createLadder();
+        ResultView.printLadder(ladder);
     }
 }
