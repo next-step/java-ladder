@@ -10,14 +10,29 @@ public class LadderLine {
     }
 
     public int move(int startPosition) {
-        if (points.get(startPosition)) {
-            return startPosition + 1;
+        if (startPosition < 0 || startPosition > points.size()) {
+            throw new IllegalArgumentException("Invalid start position");
         }
 
-        if (points.get(startPosition - 1)) {
-            return startPosition - 1;
-        }
+        if (isRightConnected(startPosition)) return startPosition + 1;
+        if (isLeftConnected(startPosition)) return startPosition - 1;
 
         return startPosition;
+    }
+
+    private boolean isLeftConnected(int startPosition) {
+        if (startPosition == 0) {
+            return false;
+        }
+
+        return points.get(startPosition - 1);
+    }
+
+    private boolean isRightConnected(int startPosition) {
+        if (startPosition == points.size()) {
+            return false;
+        }
+
+        return points.get(startPosition);
     }
 }
