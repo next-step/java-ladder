@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 
+import nextstep.ladder.view.ResultView;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -61,5 +62,25 @@ class LadderTest {
                         new Line(List.of(true))
         )
         ));
+    }
+
+    @Test
+    void 결과_찾기() {
+        /*
+          0     1     2
+          |-----|     |
+          |     |-----|
+          |-----|     |
+          0     1     2
+         */
+        Ladder ladder = new Ladder(3, 3, List.of(
+                new Line(List.of(true, false)),
+                new Line(List.of(false, true)),
+                new Line(List.of(true, false))
+        ));
+
+        assertThat(ladder.findEndPosition(0)).isEqualTo(2);
+        assertThat(ladder.findEndPosition(1)).isEqualTo(1);
+        assertThat(ladder.findEndPosition(2)).isEqualTo(0);
     }
 }
