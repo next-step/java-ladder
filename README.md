@@ -28,6 +28,6 @@
 - [x] LadderGameApplication 구현
 - [ ] 리팩토링
   - [x] Player 구현
-  - [ ] Views 리팩토링
+  - [x] Views 리팩토링
     - [x] LottoGameApplication 에서 메소드 분리
-    - [ ] 기능 단위로 메소드 분리
+    - [x] ResultView 기능 단위로 메소드 분리

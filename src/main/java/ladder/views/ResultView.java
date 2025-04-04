@@ -2,35 +2,12 @@ package ladder.views;
 
 import ladder.domain.*;
 
-public class ResultView {
-    public static void printLadder(Ladder ladder) {
-        for (int i = 0; i < ladder.height(); i++) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("|");
-            LadderLine ladderLine = ladder.getLadderLine(i);
-            for (int j = 0; j < ladderLine.size(); j++) {
-                if (ladderLine.getPoint(j)) {
-                    sb.append("-".repeat(5));
-                    sb.append("|");
-                } else {
-                    sb.append(" ".repeat(5));
-                    sb.append("|");
-                }
-            }
-            System.out.println(sb);
-        }
-    }
+import java.util.stream.IntStream;
 
-    public static void printPlayer(Players players) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < players.count(); i++) {
-            Player playerAtIndex = players.getPlayerAtIndex(i);
-            String nameAtIndex = playerAtIndex.name();
-            sb.append(nameAtIndex);
-            sb.append(" ".repeat(6 - nameAtIndex.length()));
-        }
-        System.out.println(sb);
-    }
+public class ResultView {
+
+    public static final String LADDER_SEPARATOR = "|";
+    public static final int SEGMENT_COUNT = 5;
 
     public static void printResult(LadderGame ladderGame) {
         System.out.println(System.lineSeparator());
@@ -39,5 +16,37 @@ public class ResultView {
         ResultView.printPlayer(ladderGame.players());
         Ladder ladder = ladderGame.createLadder();
         ResultView.printLadder(ladder);
+    }
+
+    public static void printPlayer(Players players) {
+        StringBuilder sb = new StringBuilder();
+        IntStream.range(0, players.count())
+                .mapToObj(i -> getNameWithSpace(players.getPlayerAtIndex(i)))
+                .forEachOrdered(sb::append);
+        System.out.println(sb);
+    }
+
+    public static void printLadder(Ladder ladder) {
+        IntStream.range(0, ladder.height())
+                .forEachOrdered(i -> printLadderLine(ladder.getLadderLine(i)));
+    }
+
+    private static String getNameWithSpace(Player playerAtIndex) {
+        String nameAtIndex = playerAtIndex.name();
+        return nameAtIndex + " ".repeat(SEGMENT_COUNT - nameAtIndex.length());
+    }
+
+    private static void printLadderLine(LadderLine ladderLine) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(LADDER_SEPARATOR);
+        IntStream.range(0, ladderLine.size())
+                .mapToObj(i -> getLine(ladderLine, i))
+                .forEachOrdered(sb::append);
+        System.out.println(sb);
+    }
+
+    private static String getLine(LadderLine ladderLine, int index) {
+        String lineSegment = ladderLine.getPoint(index) ? "-" : " ";
+        return lineSegment.repeat(SEGMENT_COUNT) + LADDER_SEPARATOR;
     }
 }
