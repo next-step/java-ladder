@@ -1,6 +1,5 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Row {
@@ -11,11 +10,11 @@ public class Row {
         this.junctions = junctions;
     }
 
-    public void createRungs(CreateRungStrategy createRungStrategy) {
+    public void applyRungs(RungStrategy rungStrategy) {
         for (int i = 0; i < junctions.size() - 1; i++) {
             Junction junction = junctions.get(i);
             Junction rightJunction = junctions.get(i + 1);
-            createRungStrategy.create(junction, rightJunction);
+            rungStrategy.apply(junction, rightJunction);
         }
     }
 

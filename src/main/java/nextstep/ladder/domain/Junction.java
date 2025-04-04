@@ -5,20 +5,20 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Junction {
-    private Junction left;
-    private Junction right;
+    private boolean left;
+    private boolean right;
 
     public boolean hasLeft() {
-        return left != null;
+        return left;
     }
 
     public boolean hasRight() {
-        return right != null;
+        return right;
     }
 
     public void connectRight(Junction right) {
-        this.right = right;
-        right.left = this;
+        this.right = true;
+        right.left = true;
     }
 
     public boolean hasConnect() {

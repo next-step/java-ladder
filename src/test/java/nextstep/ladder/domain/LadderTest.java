@@ -46,4 +46,20 @@ class LadderTest {
         assertThat(e).hasMessage("사다리의 다리는 null이거나 비어있을 수 없습니다.");
     }
 
+    @Test
+    void applyRungs_메서드는_한번만_실행된다() {
+        List<String> names = Arrays.asList("1", "2", "3");
+        int height = 5;
+        int linkCount = (names.size() - 1) * height;
+
+        List<Leg> legs = Leg.createLegs(names, height);
+        Ladder ladder = new Ladder(legs);
+
+        MockRungStrategy mockRungStrategy = new MockRungStrategy();
+
+        for (int i = 0; i < 10; i++) {
+            ladder.applyRungs(mockRungStrategy);
+            assertThat(mockRungStrategy.getApplyCallCount()).isEqualTo(linkCount);
+        }
+    }
 }

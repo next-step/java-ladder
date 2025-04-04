@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Ladder {
     private final List<Leg> legs;
-    public boolean rungsCreated = false;
+    private boolean applyRungsCalled = false;
 
     public Ladder(List<Leg> legs) {
         this.legs = legs;
@@ -21,17 +21,17 @@ public class Ladder {
         return Collections.unmodifiableList(legs);
     }
 
-    public synchronized void createRungs(CreateRungStrategy createRungStrategy) {
-        if (rungsCreated) {
+    public synchronized void applyRungs(RungStrategy rungStrategy) {
+        if (applyRungsCalled) {
             return;
         }
 
         for (int level = 0; level < getHeight(); level++) {
             Row row = getRow(level);
-            row.createRungs(createRungStrategy);
+            row.applyRungs(rungStrategy);
         }
 
-        rungsCreated = true;
+        applyRungsCalled = true;
     }
 
     private Row getRow(int level) {
