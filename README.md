@@ -20,4 +20,5 @@
   - [x] Optional에서 값을 반환
   - [x] Optional에서 exception 처리
 ## 2단계
-- [ ] LadderLine 구현
+- [x] LadderLine 구현
+- [x] LadderLineGenerator 구현
