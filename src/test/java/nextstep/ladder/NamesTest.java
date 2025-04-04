@@ -10,7 +10,7 @@ class NamesTest {
     @DisplayName("이름들을 쉼표 단위로 구분한다")
     void splitNames() {
         Names names = Names.of("pobi,honux,crong,jk");
-        Assertions.assertThat(names.getNames()).containsExactly(
+        Assertions.assertThat(names.getListNames()).containsExactly(
                 Name.of("pobi"),
                 Name.of("honux"),
                 Name.of("crong"),

@@ -20,7 +20,7 @@ public class Names {
         );
     }
 
-    public List<Name> getNames() {
+    public List<Name> getListNames() {
         return names;
     }
 }
