@@ -31,15 +31,15 @@ public class GameEntities {
         return new GameEntities(participants, rewards);
     }
 
-    public int findParticipantIndexByParticipantName(String participantName) {
+    public int findParticipantPositionByParticipantName(String participantName) {
         return IntStream.range(0, participants.size())
                 .filter(i -> participants.get(i).hasName(participantName))
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(() -> new RuntimeException("일치하는 참가자가 없습니다."));
     }
 
-    public Reward findRewardByIndex(int rewardIndex) {
-        return rewards.get(rewardIndex);
+    public Reward findRewardByPosition(int rewardPosition) {
+        return rewards.get(rewardPosition);
     }
 
 
