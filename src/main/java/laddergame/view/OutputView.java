@@ -4,6 +4,7 @@ import laddergame.domain.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static laddergame.domain.Name.MAX_NAME_LENGTH;
@@ -46,8 +47,20 @@ public class OutputView {
                 .collect(Collectors.joining());
     }
 
-    public static void printResult(Map<User, String> gameResult) {
+    public static void printResult(Map<User, String> gameResult, String target) {
+        System.out.println();
         System.out.println("실행 결과");
+        if (target.equals("all")) {
+            printEveryResult(gameResult);
+            return;
+        }
+        String result = Optional.ofNullable(gameResult.get(new User(target)))
+                        .orElseThrow(() -> new IllegalArgumentException("해당 참여자는 존재하지 않습니다."));
+        System.out.println(target + " : " + result);
+        System.out.println();
+    }
+
+    private static void printEveryResult(Map<User, String> gameResult) {
         for (Map.Entry<User, String> result: gameResult.entrySet()) {
             System.out.println(result.getKey().getName().getName() + " : " + result.getValue());
         }

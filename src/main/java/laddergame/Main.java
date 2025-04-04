@@ -13,6 +13,7 @@ public class Main {
         LadderGame ladderGame = new LadderGame(namesString, resultsString, maxLadderHeight);
         OutputView.printGameMap(ladderGame.getUserNames(), ladderGame.getResults(), ladderGame.getLadder());
 
-        OutputView.printResult(ladderGame.play());
+        String target = InputView.inputTarget();
+        OutputView.printResult(ladderGame.play(), target);
     }
 }
