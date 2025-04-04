@@ -50,4 +50,8 @@ public class GameEntities {
     public List<Participant> getParticipants() {
         return Collections.unmodifiableList(participants);
     }
+
+    public List<Reward> getRewards() {
+        return Collections.unmodifiableList(rewards);
+    }
 }

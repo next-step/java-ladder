@@ -3,21 +3,26 @@ package nextstep.ladder.view;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participant;
 import nextstep.ladder.domain.GameEntities;
+import nextstep.ladder.domain.Reward;
+
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 
 public class ResultView {
 
     public static void printResult(GameEntities gameEntities, Ladder ladder) {
         System.out.println("실행결과");
-        printParticipantNames(gameEntities);
+        printEntities(gameEntities.getParticipants(), Participant::getName);
         printLadder(ladder);
+        printEntities(gameEntities.getRewards(), Reward::getReward);
     }
 
-    private static void printParticipantNames(GameEntities gameEntities) {
-        System.out.print(" ");
-        gameEntities.getParticipants()
+    private static <T> void printEntities(List<T> entities, Function<T, String> formatter) {
+        entities
                 .stream()
-                .map(Participant::getName)
+                .map(formatter)
                 .forEach(ResultView::printFormattedName);
         System.out.println();
     }
@@ -32,7 +37,7 @@ public class ResultView {
     }
 
     private static void printLine(nextstep.ladder.domain.Line line) {
-        System.out.print(" ".repeat(6) + "|");
+        System.out.print(" ".repeat(5) + "|");
         line.getPoints()
                 .forEach(ResultView::printPoint);
         System.out.println();
@@ -41,5 +46,14 @@ public class ResultView {
     private static void printPoint(boolean point) {
         System.out.print((point ? "-" : " ").repeat(5));
         System.out.print("|");
+    }
+
+    public static void printReward(Reward reward) {
+        System.out.println(reward.getReward());
+    }
+
+    public static void printAllResult(Map<Participant, Reward> allResult) {
+        allResult.forEach((participant, Reward) ->
+                System.out.println(participant.getName() + " : " + Reward.getReward()));
     }
 }
