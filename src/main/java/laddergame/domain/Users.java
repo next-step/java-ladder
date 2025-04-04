@@ -1,19 +1,18 @@
 package laddergame.domain;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Users {
     public static final String DELIMETER = ",";
 
-    private final List<User> users;
+    private List<Name> users;
     private final List<String> results;
 
     public Users(String nameString, String resultString) {
         users = new ArrayList<>();
         List<String> names = Arrays.asList(nameString.split(DELIMETER));
         for (String name: names) {
-            users.add(new User(name));
+            users.add(new Name(name));
         }
         results = Arrays.asList(resultString.split(DELIMETER));
         validate();
@@ -30,17 +29,15 @@ public class Users {
     }
 
     public List<Name> getUserNames() {
-        return users.stream()
-                .map(user -> user.getName())
-                .collect(Collectors.toList());
+        return users;
     }
 
     public List<String> getResults() {
         return results;
     }
 
-    public Map<User, String> makeGameResult(Map<Integer, Integer> ladderResult) {
-        Map<User, String> gameResult = new LinkedHashMap<>();
+    public Map<Name, String> makeGameResult(Map<Integer, Integer> ladderResult) {
+        Map<Name, String> gameResult = new LinkedHashMap<>();
         for (Map.Entry<Integer, Integer> result: ladderResult.entrySet()) {
             gameResult.put(users.get(result.getKey()), results.get(result.getValue()));
         }

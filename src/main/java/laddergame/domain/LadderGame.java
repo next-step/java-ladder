@@ -12,7 +12,7 @@ public class LadderGame {
         ladder = new Ladder(maxLadderHeight, users.getUserCount(), new RandomSelectStrategy());
     }
 
-    public Map<User, String> play() {
+    public Map<Name, String> play1() {
         Map<Integer, Integer> ladderResult = ladder.makeGameResult();
         return users.makeGameResult(ladderResult);
     }

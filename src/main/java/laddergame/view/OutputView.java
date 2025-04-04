@@ -47,22 +47,22 @@ public class OutputView {
                 .collect(Collectors.joining());
     }
 
-    public static void printResult(Map<User, String> gameResult, String target) {
+    public static void printResult(Map<Name, String> gameResult, String target) {
         System.out.println();
         System.out.println("실행 결과");
         if (target.equals("all")) {
             printEveryResult(gameResult);
             return;
         }
-        String result = Optional.ofNullable(gameResult.get(new User(target)))
-                        .orElseThrow(() -> new IllegalArgumentException("해당 참여자는 존재하지 않습니다."));
+        String result = Optional.ofNullable(gameResult.get(new Name(target)))
+                .orElseThrow(() -> new IllegalArgumentException("해당 참여자는 존재하지 않습니다."));
         System.out.println(target + " : " + result);
         System.out.println();
     }
 
-    private static void printEveryResult(Map<User, String> gameResult) {
-        for (Map.Entry<User, String> result: gameResult.entrySet()) {
-            System.out.println(result.getKey().getName().getName() + " : " + result.getValue());
+    private static void printEveryResult(Map<Name, String> gameResult) {
+        for (Map.Entry<Name, String> result: gameResult.entrySet()) {
+            System.out.println(result.getKey().getName() + " : " + result.getValue());
         }
         System.out.println();
     }

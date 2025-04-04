@@ -17,6 +17,6 @@ public class LadderGameTest {
     @DisplayName("사다리 게임 진행")
     @Test
     void play_ladder_game() {
-        assertThatNoException().isThrownBy(() -> new LadderGame("pobi,crong", "1,2", 3).play());
+        assertThatNoException().isThrownBy(() -> new LadderGame("pobi,crong", "1,2", 3).play1());
     }
 }
