@@ -12,7 +12,7 @@ public class Ladder {
     }
 
     public static Ladder generateLadder(Players players, Height height) {
-        return generateLadder(players.getPlayerCount(), height.getValue());
+        return generateLadder(players.getPlayerCount(), height.getHeight());
     }
 
     public static Ladder generateLadder(int players, int height) {
