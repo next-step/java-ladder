@@ -11,6 +11,10 @@ public class Ladder {
         this.rows = rows;
     }
 
+    public static Ladder generateLadder(Players players, Height height) {
+        return generateLadder(players.getPlayerCount(), height.getValue());
+    }
+
     public static Ladder generateLadder(int players, int height) {
         return new Ladder(IntStream.range(0, height)
                 .mapToObj(i -> Row.generateRow(players))

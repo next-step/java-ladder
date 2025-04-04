@@ -12,7 +12,15 @@ public class Players {
 
     public static Players of(List<String> playerNames) {
         return new Players(playerNames.stream()
-                        .map(Player::new)
-                        .collect(Collectors.toList()));
+                .map(Player::new)
+                .collect(Collectors.toList()));
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public int getPlayerCount() {
+        return players.size();
     }
 }
