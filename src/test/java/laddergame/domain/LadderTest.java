@@ -9,9 +9,7 @@ public class LadderTest {
     @DisplayName("사다리 생성 테스트")
     @Test
     void create_ladder() {
-        assertThat(new Ladder(2, 3))
-                .extracting("points")
-                .asList()
+        assertThat(new Ladder(2, 3).getPoints())
                 .hasSize(2);
     }
 }

@@ -9,9 +9,7 @@ public class LineTest {
     @DisplayName("사다리 행 생성 테스트")
     @Test
     void create_line() {
-        assertThat(new Line(3, () -> true))
-                .extracting("points")
-                .asList()
+        assertThat(new Line(3, () -> true).getLine())
                 .containsExactly(new Point(false), new Point(true), new Point(false));
     }
 }
