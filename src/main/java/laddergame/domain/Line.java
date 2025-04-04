@@ -4,31 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<Point> points = new ArrayList<>();
 
     public Line(int countOfPerson, SelectStrategy selectStrategy) {
         initializePoints(countOfPerson);
         selectPoints(selectStrategy);
     }
-
     private void initializePoints(int countOfPerson) {
         for (int i = 0; i < countOfPerson; ++i) {
-            points.add(false);
+            points.add(new Point());
         }
     }
 
     private void selectPoints(SelectStrategy selectStrategy) {
         for (int i = 1; i < points.size(); ++i) {
-            if (points.get(i-1)) {
-                continue;
-            }
-            if (selectStrategy.canSelect()) {
-                points.set(i, true);
-            }
+            points.get(i).selectPoint(points.get(i-1), selectStrategy);
         }
     }
 
-    public List<Boolean> getLine() {
+    public List<Point> getLine() {
         return points;
     }
 }

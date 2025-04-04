@@ -12,6 +12,6 @@ public class LineTest {
         assertThat(new Line(3, () -> true))
                 .extracting("points")
                 .asList()
-                .containsExactly(false, true, false);
+                .containsExactly(new Point(false), new Point(true), new Point(false));
     }
 }

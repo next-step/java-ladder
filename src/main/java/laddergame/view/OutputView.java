@@ -3,6 +3,7 @@ package laddergame.view;
 import laddergame.domain.Ladder;
 import laddergame.domain.Line;
 import laddergame.domain.Name;
+import laddergame.domain.Point;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,6 +11,9 @@ import java.util.stream.Collectors;
 import static laddergame.domain.Name.MAX_NAME_LENGTH;
 
 public class OutputView {
+    public static final String LADDER_WITH_HORIZONTAL_LINE = "-----|";
+    public static final String LADDER_WITHOUT_HORIZONTAL_LINE = "     |";
+
     public static void printGameMap(List<Name> userNames, Ladder ladder) {
         System.out.println(makeNameString(userNames));
         ladder.getPoints().stream()
@@ -25,7 +29,12 @@ public class OutputView {
 
     private static String makeLineString(Line line) {
         return line.getLine().stream()
-                .map(point -> point ? "-----|" : "     |")
+                .map(point -> {
+                    if (point.equals(new Point(true))) {
+                        return LADDER_WITH_HORIZONTAL_LINE;
+                    }
+                    return LADDER_WITHOUT_HORIZONTAL_LINE;
+                })
                 .collect(Collectors.joining());
     }
 }
