@@ -2,7 +2,6 @@ package laddergame.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Line {
     private final List<Boolean> points = new ArrayList<>();
@@ -29,11 +28,7 @@ public class Line {
         }
     }
 
-
-
-    public String getLineString() {
-        return points.stream()
-                .map(point -> point ? "-----|" : "     |")
-                .collect(Collectors.joining());
+    public List<Boolean> getLine() {
+        return points;
     }
 }
