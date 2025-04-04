@@ -7,11 +7,11 @@ public class Participant {
     private final String name;
 
     public Participant(String name) {
-        validateName(name);
+        validate(name);
         this.name = name;
     }
 
-    private void validateName(String name) {
+    private void validate(String name) {
         if (name == null || name.trim().isEmpty()) {
             throw new RuntimeException("이름은 비어있을 수 없습니다.");
         }

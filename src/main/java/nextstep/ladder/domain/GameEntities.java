@@ -1,0 +1,40 @@
+package nextstep.ladder.domain;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class GameEntities {
+    private final List<Participant> participants;
+    private final List<Reward> rewards;
+
+    public GameEntities(List<Participant> participants, List<Reward> rewards) {
+        this.participants = participants;
+        this.rewards = rewards;
+    }
+
+    private void validate(List<Participant> participants, List<Reward> rewards) {
+        if (participants.size() != rewards.size()) {
+            throw new RuntimeException("사용자 수와 보상의 수는 같아야 합니다.");
+        }
+    }
+
+    public static GameEntities from(List<String> participantNames, List<String> rewardNames) {
+        List<Participant> participants = participantNames.stream()
+                .map(Participant::new)
+                .collect(Collectors.toList());
+
+        List<Reward> rewards = rewardNames.stream()
+                .map(Reward::new)
+                .collect(Collectors.toList());
+        return new GameEntities(participants, rewards);
+    }
+
+    public int size() {
+        return this.participants.size();
+    }
+
+    public List<Participant> getParticipants() {
+        return Collections.unmodifiableList(participants);
+    }
+}

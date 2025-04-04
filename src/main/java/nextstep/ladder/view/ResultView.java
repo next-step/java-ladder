@@ -2,20 +2,20 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participant;
-import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.GameEntities;
 
 
 public class ResultView {
 
-    public static void printResult(Participants participants, Ladder ladder) {
+    public static void printResult(GameEntities gameEntities, Ladder ladder) {
         System.out.println("실행결과");
-        printParticipantNames(participants);
+        printParticipantNames(gameEntities);
         printLadder(ladder);
     }
 
-    private static void printParticipantNames(Participants participants) {
+    private static void printParticipantNames(GameEntities gameEntities) {
         System.out.print(" ");
-        participants.getParticipants()
+        gameEntities.getParticipants()
                 .stream()
                 .map(Participant::getName)
                 .forEach(ResultView::printFormattedName);

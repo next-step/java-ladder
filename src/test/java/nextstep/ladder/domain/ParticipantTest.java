@@ -11,7 +11,7 @@ class ParticipantTest {
     void 이름은_공백이거나_null_일_수_없다() {
         assertThatThrownBy(() -> new Participant(null))
                 .isInstanceOf(RuntimeException.class)
-                .hasMessage("이름은 비어있을 수 없습니다.");
+                .hasMessage("이름은 null일 수 없습니다.");
 
         assertThatThrownBy(() -> new Participant(""))
                 .isInstanceOf(RuntimeException.class)
