@@ -16,4 +16,8 @@ public class Players {
     public int count() {
         return players.size();
     }
+
+    public String getNameAtIndex(int i) {
+        return players.get(i);
+    }
 }

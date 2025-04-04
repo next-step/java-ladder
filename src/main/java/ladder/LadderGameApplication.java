@@ -3,6 +3,7 @@ package ladder;
 import ladder.domain.Ladder;
 import ladder.domain.LadderGame;
 import ladder.domain.Players;
+import ladder.views.ResultView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,15 +17,16 @@ public class LadderGameApplication {
         String[] names = input.split(",");
         List<String> playerStrings = Arrays.asList(names);
         Players players = new Players(playerStrings);
+
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        int maxHeight = Integer.parseInt(scanner.nextLine());
+        int height = Integer.parseInt(scanner.nextLine());
+        System.out.println(System.lineSeparator());
 
         System.out.println("실행결과");
-        LadderGame ladderGame = new LadderGame(players, maxHeight);
-        Ladder ladder = ladderGame.createLadder();
-        for (int i = 0; i < ladder.height(); i++) {
-            System.out.println("사다리 " + (i + 1) + ": " + ladder.getLadderLine(i));
-        }
 
+        LadderGame ladderGame = new LadderGame(players, height);
+        ResultView.printPlayer(players);
+        Ladder ladder = ladderGame.createLadder();
+        ResultView.printLadder(ladder);
     }
 }

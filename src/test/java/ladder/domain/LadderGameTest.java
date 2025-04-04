@@ -13,8 +13,8 @@ public class LadderGameTest {
     void createLadderGame() {
         // given
         Players players = new Players(List.of("more", "much", "less"));
-        int width = 4;
-        LadderGame ladderGame = new LadderGame(players, width);
+        int height = 4;
+        LadderGame ladderGame = new LadderGame(players, height);
 
         // when
         Ladder ladder = ladderGame.createLadder();
@@ -22,8 +22,8 @@ public class LadderGameTest {
         // then
         Assertions.assertThat(ladder)
                 .satisfies(l -> {
-                    Assertions.assertThat(l.height()).isEqualTo(players.count());
-                    Assertions.assertThat(l.width()).isEqualTo(width);
+                    Assertions.assertThat(l.width()).isEqualTo(players.count() - 1);
+                    Assertions.assertThat(l.height()).isEqualTo(height);
                 });
 
     }

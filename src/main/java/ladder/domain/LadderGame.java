@@ -2,14 +2,14 @@ package ladder.domain;
 
 public class LadderGame {
     private final Players players;
-    private final int width;
+    private final int height;
 
-    public LadderGame(Players players, int width) {
+    public LadderGame(Players players, int height) {
         this.players = players;
-        this.width = width;
+        this.height = height;
     }
 
     public Ladder createLadder() {
-        return new Ladder(players.count(), width);
+        return new Ladder(height, players.count() - 1);
     }
 }

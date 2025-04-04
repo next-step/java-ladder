@@ -24,6 +24,6 @@
 - [x] LadderLineGenerator 구현
 - [x] LadderGame, Ladder 구현
 - [x] Players 구현
-- [ ] Views 구현
-- [ ] LadderGameApplication 구현
+- [x] Views 구현
+- [x] LadderGameApplication 구현
 - [ ] 리팩토링
