@@ -1,4 +1,27 @@
 package ladder.domain;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class Ladder {
+    private final List<Row> rows;
+
+    private Ladder(List<Row> rows) {
+        this.rows = rows;
+    }
+
+    public static Ladder generateLadder(int players, int height) {
+        return new Ladder(IntStream.range(0, height)
+                .mapToObj(i -> Row.generateRow(players))
+                .collect(Collectors.toList()));
+    }
+
+    public int getLadderHeight() {
+        return rows.size();
+    }
+
+    public List<Row> getRows() {
+        return rows;
+    }
 }
