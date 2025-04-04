@@ -14,16 +14,25 @@ public class OutputView {
     public static final String LADDER_WITH_HORIZONTAL_LINE = "-----|";
     public static final String LADDER_WITHOUT_HORIZONTAL_LINE = "     |";
 
-    public static void printGameMap(List<Name> userNames, Ladder ladder) {
+    public static void printGameMap(List<Name> userNames, List<String> results, Ladder ladder) {
+        System.out.println();
+        System.out.println("사다리 결과");
         System.out.println(makeNameString(userNames));
         ladder.getPoints().stream()
                 .map(line -> makeLineString(line))
                 .forEach(System.out::println);
+        System.out.println(makeResultString(results));
     }
 
     private static String makeNameString(List<Name> userNames) {
         return userNames.stream()
                 .map(name -> " ".repeat(1 + MAX_NAME_LENGTH - name.getName().length()) + name.getName())
+                .collect(Collectors.joining());
+    }
+
+    private static String makeResultString(List<String> results) {
+        return results.stream()
+                .map(result -> " ".repeat(1 + MAX_NAME_LENGTH - result.length()) + result)
                 .collect(Collectors.joining());
     }
 
