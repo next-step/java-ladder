@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.Height;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ public class LadderGameTest {
         // given
         Players players = new Players(List.of("more", "much", "less"));
         int height = 4;
-        LadderGame ladderGame = new LadderGame(players, height);
+        LadderGame ladderGame = new LadderGame(players, new Height(height));
 
         // when
         Ladder ladder = ladderGame.createLadder();

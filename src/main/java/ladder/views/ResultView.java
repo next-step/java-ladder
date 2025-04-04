@@ -31,11 +31,6 @@ public class ResultView {
                 .forEachOrdered(i -> printLadderLine(ladder.getLadderLine(i)));
     }
 
-    private static String getNameWithSpace(Player playerAtIndex) {
-        String nameAtIndex = playerAtIndex.name();
-        return nameAtIndex + " ".repeat(SEGMENT_COUNT - nameAtIndex.length());
-    }
-
     private static void printLadderLine(LadderLine ladderLine) {
         StringBuilder sb = new StringBuilder();
         sb.append(LADDER_SEPARATOR);
@@ -43,6 +38,11 @@ public class ResultView {
                 .mapToObj(i -> getLine(ladderLine, i))
                 .forEachOrdered(sb::append);
         System.out.println(sb);
+    }
+
+    private static String getNameWithSpace(Player playerAtIndex) {
+        String nameAtIndex = playerAtIndex.name();
+        return nameAtIndex + " ".repeat(SEGMENT_COUNT - nameAtIndex.length());
     }
 
     private static String getLine(LadderLine ladderLine, int index) {

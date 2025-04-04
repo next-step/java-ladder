@@ -26,8 +26,9 @@
 - [x] Players 구현
 - [x] Views 구현
 - [x] LadderGameApplication 구현
-- [ ] 리팩토링
+- [x] 리팩토링
   - [x] Player 구현
   - [x] Views 리팩토링
     - [x] LottoGameApplication 에서 메소드 분리
     - [x] ResultView 기능 단위로 메소드 분리
+  - [x] Height 구현

@@ -1,5 +1,6 @@
 package ladder.views;
 
+import ladder.Height;
 import ladder.domain.Players;
 
 import java.util.Arrays;
@@ -17,9 +18,10 @@ public class InputView {
         return new Players(playerStrings);
     }
 
-    public static int createIntegerWithQuery(String query) {
+    public static Height createIntegerWithQuery(String query) {
         System.out.println(System.lineSeparator());
         System.out.println(query);
-        return Integer.parseInt(scanner.nextLine());
+        int parsedInt = Integer.parseInt(scanner.nextLine());
+        return new Height(parsedInt);
     }
 }
