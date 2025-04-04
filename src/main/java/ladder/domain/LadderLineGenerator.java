@@ -9,16 +9,18 @@ public class LadderLineGenerator {
     
     private LadderLineGenerator() {}
 
-    public static List<Boolean> generateLadderLine(int size) {
+    public static LadderLine generateLadderLine(int size) {
         if (size < 1) {
             throw new IllegalArgumentException("사다리의 길이는 1 이상이어야 합니다.");
         }
 
         AtomicBoolean previousValue = new AtomicBoolean(false);
 
-        return IntStream.range(0, size)
+        List<Boolean> ladderPointStatuses = IntStream.range(0, size)
                 .mapToObj(i -> determineNextValue(previousValue))
                 .collect(Collectors.toList());
+
+        return new LadderLine(ladderPointStatuses);
     }
 
     private static boolean determineNextValue(AtomicBoolean previousValue) {

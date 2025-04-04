@@ -1,12 +1,11 @@
 package ladder.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import java.util.stream.IntStream;
 
 public class LadderLineGeneratorTest {
 
@@ -15,15 +14,13 @@ public class LadderLineGeneratorTest {
     @ParameterizedTest
     void generateLadderLine(int size) {
         // when
-        List<Boolean> generatedLine = LadderLineGenerator.generateLadderLine(size);
+        LadderLine generatedLine = LadderLineGenerator.generateLadderLine(size);
 
         // then
-        // "List<Boolean>"에서 true가 연속 발생하지 않음을 확인
-        for (int i = 0; i < generatedLine.size() - 1; i++) {
-            assertThat(generatedLine.get(i) && generatedLine.get(i + 1))
-                    .as("연속된 true가 발생하면 안 됩니다 (인덱스: %d, %d)", i, i + 1)
-                    .isFalse();
-        }
+        Assertions.assertThat(IntStream.range(0, generatedLine.size() - 1)
+                .anyMatch(i -> generatedLine.getPoint(i) && generatedLine.getPoint(i + 1)))
+                .as("연속된 true가 발생하면 안 됩니다")
+                .isFalse();
     }
 
 }

@@ -22,3 +22,4 @@
 ## 2단계
 - [x] LadderLine 구현
 - [x] LadderLineGenerator 구현
+- [x] LadderGame, Ladder 구현

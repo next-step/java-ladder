@@ -20,6 +20,17 @@ public class LadderLine {
         return startPosition;
     }
 
+    public int size() {
+        return points.size();
+    }
+
+    public boolean getPoint(int index) {
+        if (index < 0 || index >= points.size()) {
+            throw new IllegalArgumentException("Invalid index");
+        }
+        return points.get(index);
+    }
+
     private boolean isLeftConnected(int startPosition) {
         if (startPosition == 0) {
             return false;
