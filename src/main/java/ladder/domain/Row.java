@@ -46,16 +46,16 @@ public class Row {
                 .noneMatch(i -> bridges.get(i).isContinuous(bridges.get(i + 1)));
     }
 
+    public static int calculateMaxBuildableBridges(int players) {
+        return players / 2;
+    }
+
     private static int getRandomBridgeCount(int players) {
         return RANDOM.nextInt(calculateMaxBuildableBridges(players) + 1);
     }
 
     private static int getRandomBridgePosition(int players) {
         return RANDOM.nextInt(players - 1);
-    }
-
-    public static int calculateMaxBuildableBridges(int players) {
-        return players / 2;
     }
 
 }
