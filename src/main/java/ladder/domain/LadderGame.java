@@ -1,15 +1,15 @@
 package ladder.domain;
 
 public class LadderGame {
-    private final int height;
+    private final Players players;
     private final int width;
 
-    public LadderGame(int height, int width) {
-        this.height = height;
+    public LadderGame(Players players, int width) {
+        this.players = players;
         this.width = width;
     }
 
     public Ladder createLadder() {
-        return new Ladder(height, width);
+        return new Ladder(players.count(), width);
     }
 }

@@ -23,3 +23,4 @@
 - [x] LadderLine 구현
 - [x] LadderLineGenerator 구현
 - [x] LadderGame, Ladder 구현
+- [x] Players 구현
