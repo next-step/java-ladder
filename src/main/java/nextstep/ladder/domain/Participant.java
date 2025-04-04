@@ -20,6 +20,10 @@ public class Participant {
         }
     }
 
+    public boolean hasName(String name) {
+        return Objects.equals(this.name, name);
+    }
+
     public String getName() {
         return name;
     }

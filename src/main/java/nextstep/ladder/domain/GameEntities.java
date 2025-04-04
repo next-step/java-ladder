@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class GameEntities {
     private final List<Participant> participants;
@@ -29,6 +30,18 @@ public class GameEntities {
                 .collect(Collectors.toList());
         return new GameEntities(participants, rewards);
     }
+
+    public int findParticipantIndexByParticipantName(String participantName) {
+        return IntStream.range(0, participants.size())
+                .filter(i -> participants.get(i).hasName(participantName))
+                .findFirst()
+                .orElseThrow();
+    }
+
+    public Reward findRewardByIndex(int rewardIndex) {
+        return rewards.get(rewardIndex);
+    }
+
 
     public int size() {
         return this.participants.size();
