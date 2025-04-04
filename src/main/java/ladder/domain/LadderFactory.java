@@ -4,7 +4,8 @@ import java.util.List;
 
 public class LadderFactory {
     private final Names names;
-    private final Ladders ladders;
+    private final Lines lines
+            ;
 
     public LadderFactory(String namesText, int height) {
         this(namesText, height, new RandomLineGenerator());
@@ -12,11 +13,11 @@ public class LadderFactory {
 
     public LadderFactory(String namesText, int height, LineGenerator lineGenerator) {
         this.names = new Names(namesText);
-        this.ladders = new Ladders(height, names.connectSize(), lineGenerator);
+        this.lines = new Lines(height, names.connectSize(), lineGenerator);
     }
 
     public List<List<Boolean>> getLadder() {
-        return ladders.getAll();
+        return lines.getList();
     }
 
     public List<String> getNames() {

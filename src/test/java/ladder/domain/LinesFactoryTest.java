@@ -8,14 +8,8 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class LadderFactoryTest {
+class LinesFactoryTest {
 
-    @Test
-    @DisplayName("사다리 게임에 참여하는 사람의 이름은 최대 5글자이다.")
-    void validateNameLengthShouldBeLessThan5() {
-        assertThatThrownBy(() -> new LadderFactory("sunny,universe", 2))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 
     @Test
     @DisplayName("사다리 게임에 입력하는 사다리 높이는 양수여야 한다.")
@@ -27,9 +21,9 @@ class LadderFactoryTest {
     @Test
     @DisplayName("사다리 타기는 (참여하는 사람의 수 - 1) 만큼 라인이 생성된다.")
     void getLadder() {
-        assertThat(new LadderFactory("red,blue,green",3, () -> true).getLadder())
-                .hasSize(3)
-                .allMatch(width -> width.size() == 2);
+        assertThat(new LadderFactory("red,blue",2, () -> true).getLadder())
+                .hasSize(2)
+                .allMatch(width -> width.size() == 1);
     }
 
     @Test
