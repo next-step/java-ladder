@@ -1,13 +1,16 @@
 package laddergame.view;
 
-import laddergame.domain.*;
+import laddergame.domain.ladder.Ladder;
+import laddergame.domain.ladder.Line;
+import laddergame.domain.ladder.Point;
+import laddergame.domain.user.Name;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static laddergame.domain.Name.MAX_NAME_LENGTH;
+import static laddergame.domain.user.Name.MAX_NAME_LENGTH;
 
 public class OutputView {
     public static final String LADDER_WITH_HORIZONTAL_LINE = "-----|";

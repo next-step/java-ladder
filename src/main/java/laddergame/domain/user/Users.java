@@ -1,4 +1,4 @@
-package laddergame.domain;
+package laddergame.domain.user;
 
 import java.util.*;
 
