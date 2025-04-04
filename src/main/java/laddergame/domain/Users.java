@@ -21,9 +21,9 @@ public class Users {
         return users.size();
     }
 
-    public String getUserNames() {
+    public List<Name> getUserNames() {
         return users.stream()
                 .map(user -> user.getName())
-                .collect(Collectors.joining());
+                .collect(Collectors.toList());
     }
 }
