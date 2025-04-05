@@ -2,6 +2,6 @@
 
 ## # 요구사항
 
-- [ ] 람다(Lambda)
-- [ ] 스트림(Stream)
-- [ ] 옵셔널(Optional)
+- [x] 람다(Lambda)
+- [x] 스트림(Stream)
+- [x] 옵셔널(Optional)
