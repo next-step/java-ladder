@@ -15,8 +15,6 @@ public class Name {
         return new Name(name);
     }
 
-
-
     private static void validate(String name) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("참여자의 이름은 공백일 수 없습니다.");
@@ -38,5 +36,10 @@ public class Name {
     @Override
     public int hashCode() {
         return Objects.hashCode(name);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%-5s", name);
     }
 }
