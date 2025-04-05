@@ -11,15 +11,11 @@ public class Line {
         this.points = points;
     }
 
-    public Line(int size) {
+    public Line(int size, ConnectStrategy connectStrategy) {
         this.points = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
-            this.points.add(Boolean.FALSE);
+            this.points.add(connectStrategy.connect(i));
         }
-    }
-
-    public boolean hasSize(int size) {
-        return points.size() == size;
     }
 
     @Override
