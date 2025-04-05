@@ -25,6 +25,12 @@ public class Lambda {
             }
         }).start();
     }
+    
+    public static int sum(List<Integer> numbers, Conditional conditional) {
+        return numbers.stream()
+            .filter(conditional::test)
+            .reduce(0, Integer::sum);
+    }
 
     public static int sumAll(List<Integer> numbers) {
         // before        
@@ -35,8 +41,12 @@ public class Lambda {
         // return total;
 
         // after
-        return numbers.stream()
-            .reduce(0, Integer::sum);
+        return sum(numbers, new Conditional() {
+            @Override
+            public boolean test(Integer number) {
+                return true;
+            }
+        });
     }
 
     public static int sumAllEven(List<Integer> numbers) {
@@ -50,9 +60,12 @@ public class Lambda {
         // return total;
 
         // after
-        return numbers.stream()
-            .filter(number -> number % 2 == 0)
-            .reduce(0, Integer::sum);
+        return sum(numbers, new Conditional() {
+            @Override
+            public boolean test(Integer number) {
+                return number % 2 == 0;
+            }
+        });
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
@@ -66,8 +79,11 @@ public class Lambda {
         // return total;
 
         // after
-        return numbers.stream()
-            .filter(number -> number > 3)
-            .reduce(0, Integer::sum);
+        return sum(numbers, new Conditional() {
+            @Override
+            public boolean test(Integer number) {
+                return number > 3;
+            }
+        });
     }
 }
