@@ -1,8 +1,8 @@
 package ladder.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Points {
@@ -14,9 +14,18 @@ public class Points {
     }
 
     public Points(int size, ConnectStrategy connectStrategy) {
-        this(IntStream.range(0, size)
-                .mapToObj(i -> new Point(connectStrategy, i))
-                .collect(Collectors.toList()));
+        this(generatePoints(size, connectStrategy));
+    }
+
+    public List<Point> values() {
+        return points;
+    }
+
+    private static List<Point> generatePoints(int size, ConnectStrategy connectStrategy) {
+        List<Point> points = new ArrayList<>(size);
+        IntStream.range(0, size)
+                .forEach(i -> points.add(new Point(connectStrategy.connect(i, i != 0 && points.get(i - 1).connected()))));
+        return points;
     }
 
     public void validate() {
@@ -29,7 +38,7 @@ public class Points {
     }
 
     private boolean continuousConnected(int idx) {
-        return points.get(idx).rightConnected() && points.get(idx+1).rightConnected();
+        return points.get(idx).connected() && points.get(idx+1).connected();
     }
 
     @Override

@@ -14,6 +14,10 @@ public class Line {
         this.points = new Points(size, connectStrategy);
     }
 
+    public Points points() {
+        return points;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

@@ -1,5 +1,5 @@
 package ladder.domain;
 
 public interface ConnectStrategy {
-    boolean connect(int idx);
+    boolean connect(int idx, boolean preConnected);
 }

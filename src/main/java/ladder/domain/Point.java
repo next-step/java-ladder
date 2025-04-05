@@ -9,11 +9,7 @@ public class Point {
         this.rightConnected = rightConnected;
     }
 
-    public Point(ConnectStrategy connectStrategy, int idx) {
-        this(connectStrategy.connect(idx));
-    }
-
-    public boolean rightConnected() {
+    public boolean connected() {
         return rightConnected;
     }
 
