@@ -27,30 +27,22 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        return sumAll(numbers, n -> true); // 항상 true → 모든 숫자 합
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
+        return sumAll(numbers, n -> n % 2 == 0); // 짝수만
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+        return sumAll(numbers, n -> n > 3); // 3보다 큰 수만
     }
+
+    public static int sumAll(List<Integer> numbers, Conditional condition) {
+        return numbers.stream()
+            .filter(condition::check)
+            .mapToInt(Integer::intValue)
+            .sum();
+    }
+
 }
