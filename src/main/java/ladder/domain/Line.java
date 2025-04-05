@@ -1,21 +1,17 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Line {
-    private final List<Boolean> points;
+    private final Points points;
 
     public Line(List<Boolean> points) {
-        this.points = points;
+        this.points = new Points(points);
     }
 
     public Line(int size, ConnectStrategy connectStrategy) {
-        this.points = new ArrayList<>(size);
-        for (int i = 0; i < size; i++) {
-            this.points.add(connectStrategy.connect(i));
-        }
+        this.points = new Points(size, connectStrategy);
     }
 
     @Override
