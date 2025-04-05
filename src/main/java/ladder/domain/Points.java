@@ -15,7 +15,7 @@ public class Points {
 
     public Points(int size, ConnectStrategy connectStrategy) {
         this(IntStream.range(0, size)
-                .mapToObj(connectStrategy::connect)
+                .mapToObj(i -> new Point(connectStrategy, i))
                 .collect(Collectors.toList()));
     }
 

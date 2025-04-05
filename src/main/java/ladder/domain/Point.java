@@ -3,16 +3,14 @@ package ladder.domain;
 import java.util.Objects;
 
 public class Point {
-    private final boolean leftConnected;
     private final boolean rightConnected;
 
-    public Point(boolean leftConnected, boolean rightConnected) {
-        this.leftConnected = leftConnected;
+    public Point(boolean rightConnected) {
         this.rightConnected = rightConnected;
     }
 
-    public boolean leftConnected() {
-        return leftConnected;
+    public Point(ConnectStrategy connectStrategy, int idx) {
+        this(connectStrategy.connect(idx));
     }
 
     public boolean rightConnected() {
@@ -23,11 +21,11 @@ public class Point {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Point point = (Point) o;
-        return leftConnected == point.leftConnected && rightConnected == point.rightConnected;
+        return rightConnected == point.rightConnected;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(leftConnected, rightConnected);
+        return Objects.hashCode(rightConnected);
     }
 }
