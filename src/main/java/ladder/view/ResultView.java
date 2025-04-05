@@ -11,7 +11,7 @@ public class ResultView {
     }
 
     private static void printPeople(People people) {
-        people.values().forEach(v -> System.out.printf("%-6s", v));
+        people.values().forEach(v -> System.out.printf("%-6s", v.name()));
         System.out.println();
     }
 
