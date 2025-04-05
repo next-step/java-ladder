@@ -13,7 +13,7 @@ public class ConsoleOutputView implements OutputViewInterface {
 
     @Override
     public void printNames(List<Participant> names) {
-        names.forEach(name -> System.out.printf("%6s", name));
+        names.forEach(name -> System.out.printf("%6s", name.toString()));
         System.out.println();
     }
 

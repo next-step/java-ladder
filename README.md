@@ -20,9 +20,13 @@
 * LadderGame - 사다리 게임을 표현하는 객체
   * 생성자에서 InputView, OutputView를 받는다
   * play - 사다리 게임을 시작하는 메소드
-* Participants - 게임 참가자 리스트 객체
-  * 참가자 이름에 대한 검증
-  * getNames - 참가자 이름 리스트를 반환
+* Participants - Participant 리스트 객체
+  * 참가자 숫자에 대한 검증(2명 이상)
+  * getNames - Participant 리스트를 반환
+  * size - Participant 리스트 사이즈 반환
+* Participant - 게임 참가자 객체
+  * 이름에 대한 검증(0-5 글자)
+  * getName - 참가자 이름을 반환
 * Ladder - 아래와 같은 형태의 2차원 배열을 표현하는 객체
 ```
   1 0 1
@@ -31,6 +35,9 @@
   0 1 0
   1 0 1
 ```
+  * generate - 사다리 생성 메소드
+    * 사다리의 높이와 참여자 목록 입력받아 Ladder 객체 생성
+    * 사다리 높이에 대한 검증(1이상)
   * getNames - 사다리의 참가자 이름을 반환
   * getLadder - 사다리의 2차원 배열을 반환
 * LadderLine - 사다리 한 줄을 표현하는 객체

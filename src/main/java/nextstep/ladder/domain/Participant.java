@@ -24,6 +24,11 @@ public class Participant {
     }
 
     @Override
+    public String toString() {
+        return value;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Participant that = (Participant) o;
