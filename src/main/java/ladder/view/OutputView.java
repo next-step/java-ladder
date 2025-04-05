@@ -38,7 +38,8 @@ public class OutputView {
         StringBuilder rowString = new StringBuilder(NO_BRIDGE);
 
         for (int i = 0; i < playerCount - 1; i++) {
-            rowString.append(row.shouldBuildBridge(i) ? BRIDGE : NO_BRIDGE);
+            boolean shouldBuildBridge = row.shouldBuildBridge(i);
+            rowString.append(shouldBuildBridge ? BRIDGE : NO_BRIDGE);
         }
 
         return rowString.toString();

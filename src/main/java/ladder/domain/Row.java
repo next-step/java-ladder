@@ -31,14 +31,10 @@ public class Row {
         Set<Bridge> bridgeSet = new TreeSet<>();
 
         while (bridgeSet.size() < bridgeCount) {
-            bridgeSet.add(new Bridge(getRandomBridgePosition(players)));
+            bridgeSet.add(Bridge.generateRandomBridge(players));
         }
 
         return bridgeSet;
-    }
-
-    public boolean shouldBuildBridge(int position) {
-        return bridges.contains(new Bridge(position));
     }
 
     public static boolean isBuildable(List<Bridge> bridges) {
@@ -46,16 +42,16 @@ public class Row {
                 .noneMatch(i -> bridges.get(i).isContinuous(bridges.get(i + 1)));
     }
 
-    public static int calculateMaxBuildableBridges(int players) {
-        return players / 2;
+    public boolean shouldBuildBridge(int position) {
+        return bridges.contains(new Bridge(position));
     }
 
     private static int getRandomBridgeCount(int players) {
         return RANDOM.nextInt(calculateMaxBuildableBridges(players) + 1);
     }
 
-    private static int getRandomBridgePosition(int players) {
-        return RANDOM.nextInt(players - 1);
+    public static int calculateMaxBuildableBridges(int players) {
+        return players / 2;
     }
 
 }
