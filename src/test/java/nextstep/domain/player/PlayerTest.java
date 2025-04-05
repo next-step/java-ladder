@@ -1,5 +1,6 @@
-package nextstep.domain;
+package nextstep.domain.player;
 
+import nextstep.domain.player.Player;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

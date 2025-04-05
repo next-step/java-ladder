@@ -1,4 +1,4 @@
-package nextstep.domain;
+package nextstep.domain.player;
 
 public class Name {
     private static final int MAX_NAME_LENGHT = 5;
