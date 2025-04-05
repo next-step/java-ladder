@@ -22,14 +22,22 @@ public class LadderLine {
         }
 
         for (int i = 0; i < lines.size() - 1; i++) {
-            if (lines.get(i) && lines.get(i + 1)) {
-                throw new IllegalArgumentException(INVALID_LINE_VALUE_MESSAGE);
-            }
+            validPairValue(lines.get(i), lines.get(i + 1));
+        }
+    }
+
+    private static void validPairValue(boolean current, boolean next) {
+        if (current && next) {
+            throw new IllegalArgumentException(INVALID_LINE_VALUE_MESSAGE);
         }
     }
 
     public List<Boolean> getBridgeStatus() {
         return values;
+    }
+
+    public int size() {
+        return values.size();
     }
 
     public static LadderLine generate(int size) {
@@ -41,19 +49,24 @@ public class LadderLine {
     }
 
     private static List<Boolean> getRandomBooleans(int size) {
-        Random random = new Random();
         List<Boolean> result = new ArrayList<>();
 
         boolean previous = false;
         for (int i = 0; i < size; i++) {
-            boolean current = random.nextBoolean();
-            if (previous && current) {
-                current = false;
-            }
+            boolean current = getNextBridge(previous);
             result.add(current);
             previous = current;
         }
         return result;
+    }
+
+    private static boolean getNextBridge(boolean previous) {
+        if (previous) {
+            return false;
+        }
+
+        Random random = new Random();
+        return random.nextBoolean();
     }
 
     @Override

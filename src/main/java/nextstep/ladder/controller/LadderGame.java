@@ -21,7 +21,7 @@ public class LadderGame {
         outputView.printPrompt(MAX_LADDER_HEIGHT_PROMPT);
         int maxLadderHeight = inputView.getNumberInput();
 
-        Ladder ladder = new Ladder(maxLadderHeight, names);
+        Ladder ladder = Ladder.generate(maxLadderHeight, names);
         outputView.printNames(ladder.getNames());
         outputView.printLadder(ladder.getLines());
     }

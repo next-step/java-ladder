@@ -1,6 +1,7 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.LadderLine;
+import nextstep.ladder.domain.Participant;
 
 import java.util.List;
 
@@ -11,10 +12,8 @@ public class ConsoleOutputView implements OutputViewInterface {
     }
 
     @Override
-    public void printNames(String[] names) {
-        for (String name : names) {
-            System.out.printf("%6s", name);
-        }
+    public void printNames(List<Participant> names) {
+        names.forEach(name -> System.out.printf("%6s", name));
         System.out.println();
     }
 
@@ -25,9 +24,9 @@ public class ConsoleOutputView implements OutputViewInterface {
             ladderLine.getBridgeStatus().forEach(ladderPoint -> {
                 if (ladderPoint) {
                     System.out.print("-----|");
-                } else {
-                    System.out.print("     |");
+                    return;
                 }
+                System.out.print("     |");
             });
             System.out.println();
         });
