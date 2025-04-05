@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Line {
     private final Points points;
 
-    public Line(List<Boolean> points) {
+    public Line(List<Point> points) {
         this.points = new Points(points);
     }
 

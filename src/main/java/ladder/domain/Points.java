@@ -1,33 +1,35 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Points {
-    private final List<Boolean> points;
+    private final List<Point> points;
 
-    public Points(List<Boolean> points) {
+    public Points(List<Point> points) {
         this.points = points;
         validate();
     }
 
     public Points(int size, ConnectStrategy connectStrategy) {
-        this.points = new ArrayList<>(size);
-        for (int i = 0; i < size; i++) {
-            points.add(connectStrategy.connect(i));
-        }
-        validate();
+        this(IntStream.range(0, size)
+                .mapToObj(connectStrategy::connect)
+                .collect(Collectors.toList()));
     }
 
     public void validate() {
         IntStream.range(0, points.size()-1)
-                .filter(i -> points.get(i) && points.get(i+1))
+                .filter(this::continuousConnected)
                 .findFirst()
                 .ifPresent(i -> {
                     throw new IllegalArgumentException("각 포인트는 연속적으로 연결될 수 없음");
                 });
+    }
+
+    private boolean continuousConnected(int idx) {
+        return points.get(idx).rightConnected() && points.get(idx+1).rightConnected();
     }
 
     @Override
