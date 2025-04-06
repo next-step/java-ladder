@@ -7,3 +7,8 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+요구사항
+- [x] 참여할 사람 이름 입력 받기
+- [x] 최대 사다리 높이 입력 받기
+- [x] 사다리 게임을 위한 사다리 생성 후 출력 하기
