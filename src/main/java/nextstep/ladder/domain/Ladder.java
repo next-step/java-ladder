@@ -10,7 +10,7 @@ public class Ladder {
 
     public Ladder(List<Leg> legs) {
         this.legs = legs;
-        validate();
+        validate(legs);
     }
 
     public int getHeight() {
@@ -41,20 +41,20 @@ public class Ladder {
         return new Row(junctions);
     }
 
-    private void validate() {
-        validateLegs();
-        validateLegsHeight();
-        validateLegsNames();
+    private static void validate(List<Leg> legs) {
+        validateLegs(legs);
+        validateLegsHeight(legs);
+        validateLegsNames(legs);
     }
 
-    private void validateLegs() {
+    private static void validateLegs(List<Leg> legs) {
         if (legs == null || legs.isEmpty()) {
             throw new IllegalArgumentException("사다리의 다리는 null이거나 비어있을 수 없습니다.");
         }
     }
 
-    private void validateLegsHeight() {
-        int height = getHeight();
+    private static void validateLegsHeight(List<Leg> legs) {
+        int height = legs.get(0).getHeight();
 
         boolean isInvalidHeight = legs.stream()
             .anyMatch(leg -> leg.getHeight() != height);
@@ -64,7 +64,7 @@ public class Ladder {
         }
     }
 
-    private void validateLegsNames() {
+    private static void validateLegsNames(List<Leg> legs) {
         long distinctNameCount = legs.stream()
             .map(Leg::getName)
             .distinct()
