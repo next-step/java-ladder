@@ -4,6 +4,10 @@ public class PointX implements Comparable<PointX> {
    private final int x;
    private Ladder ladder = null;
 
+   public PointX(int x) {
+      this.x = x;
+   }
+
    public PointX(int x, Ladder ladder) {
       validate(x);
       this.x = x;
@@ -16,6 +20,16 @@ public class PointX implements Comparable<PointX> {
 
    public Ladder ladder() {
       return ladder;
+   }
+
+   public void createLadder() {
+      if (ladder == null) {
+         ladder = new Ladder();
+      }
+   }
+
+   public void destroyLadder() {
+      ladder = null;
    }
 
    private void validate(int x) {

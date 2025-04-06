@@ -9,9 +9,13 @@ public class NameList {
         validate(names);
         this.names = names;
     }
-    
+
     public List<String> value() {
         return names;
+    }
+
+    public int size() {
+        return names.size();
     }
 
     private void validate(List<String> names) {

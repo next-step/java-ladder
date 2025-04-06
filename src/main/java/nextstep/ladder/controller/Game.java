@@ -2,7 +2,9 @@ package nextstep.ladder.controller;
 
 import java.util.List;
 
+import nextstep.ladder.module.Board;
 import nextstep.ladder.module.Height;
+import nextstep.ladder.module.NameList;
 
 public class Game {
     
@@ -15,7 +17,7 @@ public class Game {
     }
     
     public Board createBoard() {
-        return new Board(peopleNames.size(), height);
+        return new Board(new NameList(peopleNames), height);
     }    
 
 }
