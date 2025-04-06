@@ -7,7 +7,7 @@ import nextstep.ladder.module.Height;
 import nextstep.ladder.module.NameList;
 
 public class Game {
-    
+
     private final List<String> peopleNames;
     private final Height height;
 
@@ -15,9 +15,9 @@ public class Game {
         this.peopleNames = peopleNames;
         this.height = height;
     }
-    
+
     public Board createBoard() {
         return new Board(new NameList(peopleNames), height);
-    }    
+    }
 
 }

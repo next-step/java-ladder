@@ -53,12 +53,12 @@ public class Line {
                 points.get(i).createLadder();
             }
         });
-        for (int i=1; i<points.size() - 1; i++) {
-            if (points.get(i).ladder() != null && points.get(i+1).ladder() != null) {
+        for (int i = 1; i < points.size() - 1; i++) {
+            if (points.get(i).ladder() != null && points.get(i + 1).ladder() != null) {
                 if (RANDOM.nextBoolean()) {
                     points.get(i).destroyLadder();
                 } else {
-                    points.get(i+1).destroyLadder();
+                    points.get(i + 1).destroyLadder();
                 }
             }
         }
@@ -66,9 +66,7 @@ public class Line {
 
     @Override
     public String toString() {
-        return points.stream()
-            .map(PointX::toString)
-            .collect(Collectors.joining(""));
+        return points.stream().map(PointX::toString).collect(Collectors.joining(""));
     }
 
 }

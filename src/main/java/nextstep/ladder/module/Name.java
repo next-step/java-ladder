@@ -1,7 +1,7 @@
 package nextstep.ladder.module;
 
 public class Name {
-    
+
     private final String name;
 
     public Name(String name) {
