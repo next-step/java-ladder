@@ -25,32 +25,65 @@ public class Lambda {
             }
         }).start();
     }
+    
+    public static int sum(List<Integer> numbers, Conditional conditional) {
+        return numbers.stream()
+            .filter(conditional::test)
+            .reduce(0, Integer::sum);
+    }
 
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        // before        
+        // int total = 0;
+        // for (int number : numbers) {
+        //     total += number;
+        // }
+        // return total;
+
+        // after
+        return sum(numbers, new Conditional() {
+            @Override
+            public boolean test(Integer number) {
+                return true;
+            }
+        });
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
+        // before 
+        // int total = 0;
+        // for (int number : numbers) {
+        //     if (number % 2 == 0) {
+        //         total += number;
+        //     }
+        // }
+        // return total;
+
+        // after
+        return sum(numbers, new Conditional() {
+            @Override
+            public boolean test(Integer number) {
+                return number % 2 == 0;
             }
-        }
-        return total;
+        });
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
+        // before 
+        // int total = 0;
+        // for (int number : numbers) {
+        //     if (number > 3) {
+        //         total += number;
+        //     }
+        // }
+        // return total;
+
+        // after
+        return sum(numbers, new Conditional() {
+            @Override
+            public boolean test(Integer number) {
+                return number > 3;
             }
-        }
-        return total;
+        });
     }
 }
