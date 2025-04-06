@@ -28,13 +28,10 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers, Predicate<Integer> predicate) {
-        int total = 0;
-        for (int number : numbers) {
-            if (predicate.test(number)) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers
+            .stream()
+            .filter(predicate)
+            .reduce(0, Integer::sum);
     }
 
     public static int sumAll(List<Integer> numbers) {
