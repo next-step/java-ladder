@@ -1,6 +1,6 @@
 package nextstep.ladder.module;
 
-public class PointX {
+public class PointX implements Comparable<PointX> {
    private final int x;
    private Ladder ladder = null;
 
@@ -23,5 +23,9 @@ public class PointX {
          throw new IllegalArgumentException("x는 0 이상이어야 합니다.");
       }
    }
-   
+
+   @Override
+   public int compareTo(PointX other) {
+      return Integer.compare(this.x, other.x);
+   }
 }
