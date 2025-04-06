@@ -1,15 +1,13 @@
 package nextstep.ladder.module;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Board {
     private final NameList names;
     private final Height height;
     private List<Line> lines;
-    
-    
+
     public Board(NameList names, Height height) {
         this.names = names;
         this.height = height;
