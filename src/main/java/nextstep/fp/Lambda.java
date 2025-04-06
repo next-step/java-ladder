@@ -33,14 +33,6 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        // before        
-        // int total = 0;
-        // for (int number : numbers) {
-        //     total += number;
-        // }
-        // return total;
-
-        // after
         return sum(numbers, new Conditional() {
             @Override
             public boolean test(Integer number) {
@@ -50,16 +42,6 @@ public class Lambda {
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        // before 
-        // int total = 0;
-        // for (int number : numbers) {
-        //     if (number % 2 == 0) {
-        //         total += number;
-        //     }
-        // }
-        // return total;
-
-        // after
         return sum(numbers, new Conditional() {
             @Override
             public boolean test(Integer number) {
@@ -69,16 +51,6 @@ public class Lambda {
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        // before 
-        // int total = 0;
-        // for (int number : numbers) {
-        //     if (number > 3) {
-        //         total += number;
-        //     }
-        // }
-        // return total;
-
-        // after
         return sum(numbers, new Conditional() {
             @Override
             public boolean test(Integer number) {
