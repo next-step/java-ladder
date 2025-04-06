@@ -7,3 +7,44 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+### Step2 - 사다리(생성)
+#### 필요 객체
+* InputView - 문자 리스트 입력
+  * getStringListInput - delimiter로 구분된 문자열을 입력받아 String[] 형태로 반환
+  * getNumberInput - 숫자 입력
+* OutputView - 사다리 결과 출력
+  * printPrompt - 프롬프트 출력
+  * printNames - 이름 리스트 출력
+  * printLadder - 사다리 출력
+* LadderGame - 사다리 게임을 표현하는 객체
+  * 생성자에서 InputView, OutputView를 받는다
+  * play - 사다리 게임을 시작하는 메소드
+* Participants - Participant 리스트 객체
+  * 참가자 숫자에 대한 검증(2명 이상)
+  * getNames - Participant 리스트를 반환
+  * size - Participant 리스트 사이즈 반환
+* Participant - 게임 참가자 객체
+  * 이름에 대한 검증(0-5 글자)
+  * getName - 참가자 이름을 반환
+* Ladder - 아래와 같은 형태의 2차원 배열을 표현하는 객체
+```
+  1 0 1
+  0 1 0
+  1 0 0
+  0 1 0
+  1 0 1
+```
+  * generate - 사다리 생성 메소드
+    * 사다리의 높이와 참여자 목록 입력받아 Ladder 객체 생성
+    * 사다리 높이에 대한 검증(1이상)
+  * getNames - 사다리의 참가자 이름을 반환
+  * getLadder - 사다리의 2차원 배열을 반환
+* LadderLine - 사다리 한 줄을 표현하는 객체
+```
+1 0 1
+```
+  * getBridgeStatus - 사다리 한 줄의 다리 상태를 반환
+  * ladderLine.generator - 사다리 한 줄을 만드는 static 메소드
+    * 랜덤으로 0과 1을 생성
+    * 1 이 연속으로 2개 이상 생성되지 않도록 한다.
