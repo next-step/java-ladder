@@ -18,6 +18,16 @@ public class Players {
         return new Players(players);
     }
 
+    public int numOfPlayers() {
+        return players.size();
+    }
+
+    public List<String> namesOfPlayers() {
+        return players.stream()
+                .map(Player::toString)
+                .collect(Collectors.toList());
+    }
+
     @Override
     public String toString() {
         return players.stream()
