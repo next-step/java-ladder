@@ -12,12 +12,8 @@ public class Names {
         this.names = names;
     }
 
-    public static Names of(String names) {
-        return new Names(
-                Arrays.stream(names.split(","))
-                        .map(Name::of)
-                        .collect(Collectors.toList())
-        );
+    public static Names of(List<Name> names) {
+        return new Names(names);
     }
 
     public List<Name> getListNames() {
