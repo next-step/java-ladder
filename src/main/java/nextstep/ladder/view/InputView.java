@@ -1,8 +1,10 @@
 package nextstep.ladder.view;
 
 import java.util.Scanner;
+import nextstep.ladder.domain.Height;
 
 public class InputView {
+
     private final static Scanner scanner = new Scanner(System.in);
 
     public static String getInputPlayerNames() {
@@ -10,8 +12,8 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static Integer getLaddersHeight() {
+    public static Height getLaddersHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
-        return Integer.parseInt(scanner.nextLine());
+        return new Height(Integer.parseInt(scanner.nextLine()));
     }
 }

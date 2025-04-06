@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -8,13 +9,13 @@ public class Ladder {
 
     private final List<Line> lines;
 
-    public Ladder(int numberOfPeople, int height) {
-        this.lines = IntStream.range(0, height)
+    public Ladder(int numberOfPeople, Height height) {
+        this.lines = IntStream.range(0, height.getHeight())
             .mapToObj(i -> new Line(numberOfPeople))
             .collect(Collectors.toList());
     }
 
     public List<Line> lines() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 }

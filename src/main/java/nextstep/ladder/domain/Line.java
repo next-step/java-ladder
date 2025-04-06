@@ -1,25 +1,34 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-
 public class Line {
+    private static final Random RANDOM = new Random();
 
     private final List<Point> points;
 
     public Line(int countOfPerson) {
         this.points = new ArrayList<>();
-        Random random = new Random();
-
         for (int i = 0; i < countOfPerson - 1; i++) {
-            boolean canDraw = (i == 0 || !points.get(i - 1).hasRight()); // 이전이 true면 이번엔 false
-            points.add(new Point(canDraw && random.nextBoolean()));
+            points.add(createRandomPoint(i));
         }
     }
 
-    public List<Point> points() {
-        return points;
+    private Point createRandomPoint(int index) {
+        return canDrawRight(index) ?
+            new Point(RANDOM.nextBoolean()) : Point.withoutRight(); // Point에 factory method 추가
     }
 
+    private boolean canDrawRight(int index) {
+        if (index == 0) {
+            return true;
+        }
+        return !points.get(index - 1).hasRight();
+    }
+
+    public List<Point> points() {
+        return Collections.unmodifiableList(points);
+    }
 }
