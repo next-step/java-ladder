@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -36,12 +37,12 @@ public class Line {
     }
 
     public void createLadders() {
-        IntStream.range(0, points.size()-1).forEach(i -> {
+        IntStream.range(1, points.size()).forEach(i -> {
             if (RANDOM.nextBoolean()) {
                 points.get(i).createLadder();
             }
         });
-        for (int i=0; i<points.size()-1; i++) {
+        for (int i=1; i<points.size(); i++) {
             if (points.get(i).ladder() != null && points.get(i+1).ladder() != null) {
                 if (RANDOM.nextBoolean()) {
                     points.get(i).destroyLadder();
@@ -50,6 +51,13 @@ public class Line {
                 }
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return points.stream()
+            .map(PointX::toString)
+            .collect(Collectors.joining("|"));
     }
 
 }

@@ -1,23 +1,32 @@
 package nextstep.ladder.module;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Board {
-    private final NameList nameList;
+    private final NameList names;
     private final Height height;
     private List<Line> lines;
     
     
-    public Board(NameList nameList, Height height) {
-        this.nameList = nameList;
+    public Board(NameList names, Height height) {
+        this.names = names;
         this.height = height;
+    }
+
+    public NameList names() {
+        return names;
+    }
+
+    public List<Line> lines() {
+        return lines;
     }
 
     public void createLines() {
         lines = new ArrayList<>();
         for (int i = 0; i < height.value(); i++) {
-            lines.add(new Line(nameList.size()));
+            lines.add(new Line(names.size()));
         }
     }
 

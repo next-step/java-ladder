@@ -42,4 +42,10 @@ public class PointX implements Comparable<PointX> {
    public int compareTo(PointX other) {
       return Integer.compare(this.x, other.x);
    }
+
+   @Override
+   public String toString() {
+      return ladder == null ? "   |" : "---|";
+   }
+
 }

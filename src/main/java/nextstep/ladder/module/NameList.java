@@ -2,7 +2,7 @@ package nextstep.ladder.module;
 
 import java.util.List;
 
-public class NameList {
+public class NameList implements Iterable<String> {
     private final List<String> names;
 
     public NameList(List<String> names) {
@@ -16,6 +16,11 @@ public class NameList {
 
     public int size() {
         return names.size();
+    }
+
+    @Override
+    public java.util.Iterator<String> iterator() {
+        return names.iterator();
     }
 
     private void validate(List<String> names) {
