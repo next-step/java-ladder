@@ -18,6 +18,15 @@ public class View {
         return Names.of(names);
     }
 
+    public static Results getResults(Names names) {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String inputResults = SCANNER.nextLine();
+        List<Result> results = Arrays.stream(inputResults.split(","))
+                .map(Result::of)
+                .collect(Collectors.toList());
+        return Results.of(results, names.getLength());
+    }
+
     public static LadderHeight getLadderHeight() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         LadderHeight height = LadderHeight.of(SCANNER.nextInt());
@@ -25,7 +34,7 @@ public class View {
         return height;
     }
 
-    public static void printLadder(Ladder ladder) {
+    public static void printLadder(Ladder ladder, Results results) {
         System.out.println("실행 결과");
         ladder.getNames()
                 .getListNames()
@@ -37,6 +46,9 @@ public class View {
                     printLine(line);
                     System.out.println();
                 });
+        results.getListResults()
+                .forEach(result -> System.out.printf("%5s ", result.get()));
+        System.out.println();
     }
 
     private static void printLine(Line line) {
