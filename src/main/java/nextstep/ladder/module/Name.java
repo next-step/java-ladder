@@ -1,5 +1,5 @@
 package nextstep.ladder.module;
 
-public class Ladder {
+public class Name {
     
 }
