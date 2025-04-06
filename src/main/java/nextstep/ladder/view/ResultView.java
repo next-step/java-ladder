@@ -9,6 +9,7 @@ public class ResultView {
         System.out.println("실행 결과");
         System.out.println();
         printPeopleNames(board);
+        printLinesAndLadders(board);
     }
 
     private void printPeopleNames(Board board) {
@@ -20,7 +21,7 @@ public class ResultView {
 
     private void printLinesAndLadders(Board board) {
         for (Line line : board.lines()) {
-            System.out.println(line.toString());
+            System.out.println(line);
         }
     }
 }

@@ -45,7 +45,7 @@ public class PointX implements Comparable<PointX> {
 
    @Override
    public String toString() {
-      return ladder == null ? "   |" : "---|";
+      return ladder == null ? "     |" : "-----|";
    }
 
 }
