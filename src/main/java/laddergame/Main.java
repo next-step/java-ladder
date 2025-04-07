@@ -14,6 +14,6 @@ public class Main {
         OutputView.printGameMap(ladderGame.getUserNames(), ladderGame.getResults(), ladderGame.getLadder());
 
         String target = InputView.inputTarget();
-        OutputView.printResult(ladderGame.play1(), target);
+        OutputView.printResult(ladderGame.play(), target);
     }
 }

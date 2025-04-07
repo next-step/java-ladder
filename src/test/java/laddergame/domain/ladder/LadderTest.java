@@ -10,7 +10,7 @@ public class LadderTest {
     @DisplayName("사다리 생성 테스트")
     @Test
     void create_ladder() {
-        assertThat(new Ladder(2, 3, () -> true).getPoints())
+        assertThat(new Ladder(2, 3, () -> true).getLines())
                 .hasSize(2);
     }
 

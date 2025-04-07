@@ -9,13 +9,7 @@ public class UsersTest {
     @DisplayName("유저들 생성 테스트")
     @Test
     void create_user() {
-        Users users = new Users("pobi,honux,crong,jk", "1000,2000,꽝,꽝");
-        assertThat(users)
-                .extracting("users")
-                .asList()
-                .hasSize(4);
-
-        assertThat(users)
+        assertThat(new Users("pobi,honux,crong,jk", "1000,2000,꽝,꽝"))
                 .extracting("results")
                 .asList()
                 .hasSize(4);

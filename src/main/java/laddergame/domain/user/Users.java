@@ -5,16 +5,12 @@ import java.util.*;
 public class Users {
     public static final String DELIMETER = ",";
 
-    private List<Name> users;
+    private Names users;
     private final List<String> results;
 
     public Users(String nameString, String resultString) {
-        users = new ArrayList<>();
-        List<String> names = Arrays.asList(nameString.split(DELIMETER));
-        for (String name: names) {
-            users.add(new Name(name));
-        }
-        results = Arrays.asList(resultString.split(DELIMETER));
+        this.users = new Names(nameString.split(DELIMETER));
+        this.results = Arrays.asList(resultString.split(DELIMETER));
         validate();
     }
 
@@ -29,7 +25,7 @@ public class Users {
     }
 
     public List<Name> getUserNames() {
-        return users;
+        return users.getNames();
     }
 
     public List<String> getResults() {
@@ -39,7 +35,7 @@ public class Users {
     public Map<Name, String> makeGameResult(Map<Integer, Integer> ladderResult) {
         Map<Name, String> gameResult = new LinkedHashMap<>();
         for (Map.Entry<Integer, Integer> result: ladderResult.entrySet()) {
-            gameResult.put(users.get(result.getKey()), results.get(result.getValue()));
+            gameResult.put(users.getNames().get(result.getKey()), results.get(result.getValue()));
         }
         return gameResult;
     }

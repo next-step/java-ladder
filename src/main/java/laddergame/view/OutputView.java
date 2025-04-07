@@ -20,7 +20,7 @@ public class OutputView {
         System.out.println();
         System.out.println("사다리 결과");
         System.out.println(makeNameString(userNames));
-        ladder.getPoints().stream()
+        ladder.getLines().stream()
                 .map(line -> makeLineString(line))
                 .forEach(System.out::println);
         System.out.println(makeResultString(results));

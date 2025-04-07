@@ -17,7 +17,7 @@ public class LadderGame {
         ladder = new Ladder(maxLadderHeight, users.getUserCount(), new RandomSelectStrategy());
     }
 
-    public Map<Name, String> play1() {
+    public Map<Name, String> play() {
         Map<Integer, Integer> ladderResult = ladder.makeGameResult();
         return users.makeGameResult(ladderResult);
     }
