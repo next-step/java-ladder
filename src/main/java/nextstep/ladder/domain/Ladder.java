@@ -1,7 +1,9 @@
 package nextstep.ladder.domain;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Ladder {
@@ -9,8 +11,8 @@ public class Ladder {
     private boolean applyRungsCalled = false;
 
     public Ladder(List<Leg> legs) {
-        this.legs = legs;
         validate(legs);
+        this.legs = legs;
     }
 
     public int getHeight() {
@@ -39,6 +41,21 @@ public class Ladder {
             .map(leg -> leg.getJunction(level))
             .collect(Collectors.toList());
         return new Row(junctions);
+    }
+
+    public LadderResult run() {
+        Map<ParticipantName, String> results = new HashMap<>();
+
+        for (Leg leg : legs) {
+            ParticipantName name = leg.getName();
+
+            Junction start = leg.getJunction(0);
+            Junction result = start.moveToResult(name);
+
+            results.put(name, result.getResult());
+        }
+
+        return new LadderResult(results);
     }
 
     private static void validate(List<Leg> legs) {
@@ -74,4 +91,6 @@ public class Ladder {
             throw new IllegalArgumentException("사다리의 모든 다리는 이름이 달라야 합니다.");
         }
     }
+
+
 }
