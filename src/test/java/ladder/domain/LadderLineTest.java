@@ -52,4 +52,13 @@ public class LadderLineTest {
             ladderLine.move(position);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("LadderLine 생성 시 true가 연속된 리스트가 입력되면 안됨")
+    @Test
+    void generateLadderLine() {
+        Assertions.assertThatThrownBy(() -> new LadderLine(List.of(true, true, true)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Invalid points");
+
+    }
 }

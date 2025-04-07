@@ -36,9 +36,9 @@
   - [x] Player
     - [x] 상수 추가
     - [x] isEmpty / isBlank 선택
-  - [ ] LadderLineGenerator
-    - [ ] 상수 추가
-    - [ ] 테스트 편의 위해 인터페이스 도입
+  - [x] LadderLineGenerator
+    - [x] 상수 추가
+    - [x] 테스트 편의 위해 인터페이스 도입
   - [ ] Ladder
   - [x] LadderLine
     - [x] is -> has

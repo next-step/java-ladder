@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import ladder.Height;
+import ladder.domain.ladderlinegenerator.RandomLadderLineGenerator;
 
 public class LadderGame {
     private final Players players;
@@ -12,7 +13,7 @@ public class LadderGame {
     }
 
     public Ladder createLadder() {
-        return new Ladder(height.value(), players.count() - 1);
+        return new Ladder(height.value(), players.count() - 1, new RandomLadderLineGenerator());
     }
 
     public Players players() {

@@ -1,11 +1,15 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class LadderLine {
     private final List<Boolean> points;
 
     public LadderLine(List<Boolean> points) {
+        if (!isValid(points)) {
+            throw new IllegalArgumentException("Invalid points");
+        }
         this.points = points;
     }
 
@@ -29,6 +33,15 @@ public class LadderLine {
             throw new IllegalArgumentException("Invalid index");
         }
         return points.get(index);
+    }
+
+    private boolean isValid(List<Boolean> points) {
+        return !isEmpty(points) && IntStream.range(0, points.size() - 1)
+                .noneMatch(i -> points.get(i) && points.get(i + 1));
+    }
+
+    private boolean isEmpty(List<Boolean> points) {
+        return points == null || points.isEmpty();
     }
 
     private boolean isLeftConnected(int startPosition) {

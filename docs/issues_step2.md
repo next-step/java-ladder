@@ -8,6 +8,8 @@
 - List<Boolean> 내부의 값은 사다리 줄이 있는지 없는지를 나타낸다.
 ### LadderLineGenerator
 - 내부에서 상태를 가지고 있을 필요가 없어서 static 메소드 제공하는 형태로 구현
+  - 무작위 값을 사용하는 메소드가 존재해 테스트가 어려우므로 인터페이스 의존
+  - LadderLine에서 List<Boolean>을 검증하는 메소드 필요
 ### LadderGame
 - 참여 인원, 사다리 높이를 입력받아 사다리 객체를 생성한다.
 ### Player
