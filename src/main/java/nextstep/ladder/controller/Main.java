@@ -18,8 +18,6 @@ public class Main {
 
         Game game = new Game(peopleNames, height);
         Board board = game.createBoard();
-        board.createLines();
-        board.createLadders();
 
         resultView.printBoard(board);
     }

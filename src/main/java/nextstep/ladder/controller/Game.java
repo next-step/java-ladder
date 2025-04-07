@@ -1,9 +1,11 @@
 package nextstep.ladder.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import nextstep.ladder.module.Board;
 import nextstep.ladder.module.Height;
+import nextstep.ladder.module.Line;
 import nextstep.ladder.module.NameList;
 
 public class Game {
@@ -17,7 +19,11 @@ public class Game {
     }
 
     public Board createBoard() {
-        return new Board(new NameList(peopleNames), height);
+        List<Line> lines = new ArrayList<>();
+        for (int i = 0; i < height.value(); i++) {
+            lines.add(new Line(peopleNames.size()));
+        }
+        lines.forEach(Line::createLadders);
+        return new Board(lines, new NameList(peopleNames));
     }
-
 }
