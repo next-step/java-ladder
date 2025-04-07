@@ -1,14 +1,14 @@
 package nextstep.ladder.module;
 
-public class Ladder {
+public class Bridge {
 
     private final boolean isBuilt;
 
-    public Ladder() {
+    public Bridge() {
         this.isBuilt = false;
     }
 
-    public Ladder(boolean isBuilt) {
+    public Bridge(boolean isBuilt) {
         this.isBuilt = isBuilt;
     }
 

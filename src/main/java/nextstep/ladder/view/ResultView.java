@@ -2,7 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.module.Board;
 import nextstep.ladder.module.Line;
-import nextstep.ladder.module.PointX;
+import nextstep.ladder.module.Point;
 
 public class ResultView {
 
@@ -28,7 +28,7 @@ public class ResultView {
     }
 
     private void printLine(Line line) {
-        for (PointX point : line.points()) {
+        for (Point point : line.points()) {
             System.out.printf("%5s", point.ladder().isBuilt() ? "-----|" : "     |");
         }
         System.out.println();

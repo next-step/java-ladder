@@ -1,15 +1,15 @@
 package nextstep.ladder.module;
 
-public class PointX implements Comparable<PointX> {
+public class Point implements Comparable<Point> {
    private final int x;
-   private Ladder ladder;
+   private Bridge ladder;
 
-   public PointX(int x) {
+   public Point(int x) {
       this.x = x;
-      this.ladder = new Ladder(false);
+      this.ladder = new Bridge(false);
    }
 
-   public PointX(int x, Ladder ladder) {
+   public Point(int x, Bridge ladder) {
       validate(x);
       this.x = x;
       this.ladder = ladder;
@@ -19,16 +19,16 @@ public class PointX implements Comparable<PointX> {
       return x;
    }
 
-   public Ladder ladder() {
+   public Bridge ladder() {
       return ladder;
    }
 
    public void createLadder() {
-      ladder = new Ladder(true);
+      ladder = new Bridge(true);
    }
 
    public void destroyLadder() {
-      ladder = new Ladder(false);
+      ladder = new Bridge(false);
    }
 
    private void validate(int x) {
@@ -38,7 +38,7 @@ public class PointX implements Comparable<PointX> {
    }
 
    @Override
-   public int compareTo(PointX other) {
+   public int compareTo(Point other) {
       return Integer.compare(this.x, other.x);
    }
 

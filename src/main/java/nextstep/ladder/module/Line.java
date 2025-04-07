@@ -9,26 +9,26 @@ import java.util.stream.IntStream;
 
 public class Line {
     private static final Random RANDOM = new Random();
-    private final List<PointX> points;
+    private final List<Point> points;
 
     public Line(int size) {
         points = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            points.add(new PointX(i));
+            points.add(new Point(i));
         }
     }
 
-    public Line(List<PointX> points) {
+    public Line(List<Point> points) {
         Collections.sort(points);
         validate(points);
         this.points = points;
     }
 
-    public List<PointX> points() {
+    public List<Point> points() {
         return points;
     }
 
-    private void validate(List<PointX> points) {
+    private void validate(List<Point> points) {
         int start = points.get(0).value();
         int end = points.get(points.size() - 1).value();
         if (start != 0 || end != points.size() - 1) {

@@ -24,5 +24,5 @@
 - [x] `PointX` 의 "ladder" 변경
 - [x] 출력 포맷을 UI 로 넘기기
 - [x] 모든 테스트 통과하기
-- [ ] `PointX` 의 네이밍 변경
-- [ ] `Ladder` 의 네이밍 변경
+- [x] `PointX` 의 네이밍 변경
+- [x] `Ladder` 의 네이밍 변경
