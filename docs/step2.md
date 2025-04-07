@@ -4,7 +4,7 @@
 
 - [x] Person 클래스 구현
 - [x] Players 클래스 구현
-- [ ] Line 클래스 구현
+- [x] Line 클래스 구현
 - [ ] Ladder 클래스 구현
 - [ ] InputView 클래스 구현
 - [ ] ResultView 클래스 구현
