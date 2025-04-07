@@ -7,45 +7,23 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LambdaTest {
-    private List<Integer> numbers;
+    private final List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
 
-    @BeforeEach
-    public void setup() {
-        numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+    @Test
+    void 전체_합_계산() {
+        assertEquals(21, Lambda.sumAll(numbers));
     }
 
     @Test
-    public void printAllOld() throws Exception {
-        Lambda.printAllOld(numbers);
+    void 짝수_합_계산() {
+        assertEquals(12, Lambda.sumAllEven(numbers));
     }
 
     @Test
-    public void printAllLambda() throws Exception {
-        Lambda.printAllLambda(numbers);
-    }
-
-    @Test
-    public void runThread() throws Exception {
-        Lambda.runThread();
-    }
-
-    @Test
-    public void sumAll() throws Exception {
-        int sum = Lambda.sumAll(numbers);
-        assertThat(sum).isEqualTo(21);
-    }
-
-    @Test
-    public void sumAllEven() throws Exception {
-        int sum = Lambda.sumAllEven(numbers);
-        assertThat(sum).isEqualTo(12);
-    }
-
-    @Test
-    public void sumAllOverThree() throws Exception {
-        int sum = Lambda.sumAllOverThree(numbers);
-        assertThat(sum).isEqualTo(15);
+    void 세_초과_숫자_합_계산() {
+        assertEquals(15, Lambda.sumAllOverThree(numbers));
     }
 }
