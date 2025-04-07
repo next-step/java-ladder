@@ -24,7 +24,7 @@ public class Line {
         this.points = points;
     }
 
-    public List<PointX> value() {
+    public List<PointX> points() {
         return points;
     }
 
@@ -52,10 +52,5 @@ public class Line {
             .filter(i -> !points.get(i-1).ladder().isBuilt())
             .filter(i -> RANDOM.nextBoolean())
             .forEach(i -> points.get(i).createLadder());
-    }
-
-    @Override
-    public String toString() {
-        return points.stream().map(PointX::toString).collect(Collectors.joining(""));
     }
 }
