@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
-    private final List<PointX> points;
     private static final Random RANDOM = new Random();
+    private final List<PointX> points;
 
     public Line(int size) {
         points = new ArrayList<>();
