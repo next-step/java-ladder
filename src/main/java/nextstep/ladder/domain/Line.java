@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+
 public class Line {
+
     private static final Random RANDOM = new Random();
 
     private final List<Point> points;
@@ -14,6 +16,10 @@ public class Line {
         for (int i = 0; i < countOfPerson - 1; i++) {
             points.add(createRandomPoint(i));
         }
+    }
+
+    public Line(List<Point> points) {
+        this.points = points;
     }
 
     private Point createRandomPoint(int index) {
@@ -30,5 +36,15 @@ public class Line {
 
     public List<Point> points() {
         return Collections.unmodifiableList(points);
+    }
+
+    public int move(int index) {
+        if (index < points.size() && points.get(index).hasRight()) {
+            return index + 1;
+        }
+        if (index > 0 && points.get(index - 1).hasRight()) {
+            return index - 1;
+        }
+        return index;
     }
 }

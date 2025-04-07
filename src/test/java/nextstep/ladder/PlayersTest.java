@@ -19,4 +19,13 @@ public class PlayersTest {
             .collect(Collectors.toList()))
             .containsExactly("pobi", "crong", "jk");
     }
+
+    @Test
+    public void 플레이어의_인덱스정보를_가져온다() {
+        String names = "pobi,crong,jk";
+        Players players = Players.of(names);
+        assertThat(players.findPlayerIndex("pobi")).isEqualTo(0);
+        assertThat(players.findPlayerIndex("crong")).isEqualTo(1);
+        assertThat(players.findPlayerIndex("jk")).isEqualTo(2);
+    }
 }

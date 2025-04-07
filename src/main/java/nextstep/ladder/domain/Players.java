@@ -32,4 +32,13 @@ public class Players {
         return new Players(createPlayers(players));
     }
 
+    public int findPlayerIndex(String name) {
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).name().equals(name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
 }
