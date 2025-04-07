@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,8 +11,9 @@ public class GameEntities {
     private final List<Reward> rewards;
 
     public GameEntities(List<Participant> participants, List<Reward> rewards) {
-        this.participants = participants;
-        this.rewards = rewards;
+        validate(participants, rewards);
+        this.participants = new ArrayList<>(participants);
+        this.rewards = new ArrayList<>(rewards);
     }
 
     private void validate(List<Participant> participants, List<Reward> rewards) {

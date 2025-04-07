@@ -29,8 +29,8 @@ public class LadderGameController {
                 Reward reward = ladderGame.findRewardByParticipantName(participantName);
                 ResultView.printReward(reward);
             } else {
-                Map<Participant, Reward> allResult = ladderGame.findAllResult();
-                ResultView.printAllResult(allResult);
+                LadderGameResults ladderGameResults = ladderGame.findAllResult();
+                ResultView.printAllResult(ladderGameResults);
                 break;
             }
         }

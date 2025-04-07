@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -18,12 +19,12 @@ public class LadderGame {
         return gameEntities.findRewardByPosition(rewardPosition);
     }
 
-    public Map<Participant, Reward> findAllResult() {
-        return gameEntities.getParticipants()
+    public LadderGameResults findAllResult() {
+        List<LadderGameResult> collect = gameEntities.getParticipants()
                 .stream()
-                .collect(Collectors.toMap(
-                        participant -> participant,
-                        participant -> findRewardByParticipantName(participant.getName())
-                ));
+                .map(participant -> new LadderGameResult(participant, findRewardByParticipantName(participant.getName())))
+                .collect(Collectors.toList());
+
+        return new LadderGameResults(collect);
     }
 }

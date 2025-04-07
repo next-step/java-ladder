@@ -44,10 +44,18 @@ public class LadderGameTest {
 
     @Test
     void 모든_결과_찾기() {
-        assertThat(ladderGame.findAllResult()).isEqualTo(Map.of(
-                new Participant("p0"), new Reward("r2"),
-                new Participant("p1"), new Reward("r1"),
-                new Participant("p2"), new Reward("r0")
+        assertThat(ladderGame.findAllResult()).isEqualTo(new LadderGameResults(
+                List.of(
+                        new LadderGameResult(
+                                new Participant("p0"), new Reward("r2")
+                        ),
+                        new LadderGameResult(
+                                new Participant("p1"), new Reward("r1")
+                        ),
+                        new LadderGameResult(
+                                new Participant("p2"), new Reward("r0")
+                        )
+                )
         ));
     }
 }

@@ -1,12 +1,8 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Participant;
-import nextstep.ladder.domain.GameEntities;
-import nextstep.ladder.domain.Reward;
+import nextstep.ladder.domain.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.function.Function;
 
 
@@ -36,7 +32,7 @@ public class ResultView {
                 .forEach(ResultView::printLine);
     }
 
-    private static void printLine(nextstep.ladder.domain.Line line) {
+    private static void printLine(Line line) {
         System.out.print(" ".repeat(5) + "|");
         line.getPoints()
                 .forEach(ResultView::printPoint);
@@ -52,8 +48,8 @@ public class ResultView {
         System.out.println(reward.getReward());
     }
 
-    public static void printAllResult(Map<Participant, Reward> allResult) {
-        allResult.forEach((participant, Reward) ->
-                System.out.println(participant.getName() + " : " + Reward.getReward()));
+    public static void printAllResult(LadderGameResults ladderGameResults) {
+        ladderGameResults.forEach(ladderGameResult ->
+                System.out.println(ladderGameResult.getParticipant().getName() + " : " + ladderGameResult.getReward().getReward()));
     }
 }
