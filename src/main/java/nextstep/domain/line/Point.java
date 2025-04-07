@@ -1,12 +1,12 @@
 package nextstep.domain.line;
 
-import nextstep.generator.RandomNumberGenerator;
+import nextstep.generator.LineGenerator;
 
 public class Point {
     private final boolean point;
 
-    public Point(RandomNumberGenerator randomNumberGenerator) {
-        this.point = randomNumberGenerator.generate();
+    public Point(LineGenerator lineGenerator) {
+        this.point = lineGenerator.generate();
     }
 
     public Point(boolean point) {

@@ -1,5 +1,6 @@
 package nextstep.domain.line;
 
+import nextstep.generator.LineGenerator;
 import nextstep.generator.RandomNumberGenerator;
 
 import java.util.ArrayList;
@@ -17,10 +18,10 @@ public class Line {
         checkValidPoints();
     }
 
-    public Line(int playerCounts, RandomNumberGenerator randomNumberGenerator) {
+    public Line(int playerCounts, LineGenerator lineGenerator) {
         points = new ArrayList<>();
         for (int index = 0; index < playerCounts; index++) {
-            points.add(createLine(index, randomNumberGenerator));
+            points.add(createLine(index, lineGenerator));
         }
         checkValidPoints();
     }
@@ -32,14 +33,14 @@ public class Line {
                 .ifPresent(index -> {throw new RuntimeException("연속으로 선이 이어지만 안됩니다.");});
     }
 
-    private Point createLine(int index, RandomNumberGenerator randomNumberGenerator) {
+    private Point createLine(int index, LineGenerator lineGenerator) {
         if(index == 0) {
-            return new Point(randomNumberGenerator);
+            return new Point(lineGenerator);
         }
         if(points.get(index -1).isConnected()) {
             return new Point(false);
         }
-        return new Point(randomNumberGenerator);
+        return new Point(lineGenerator);
     }
 
     public List<Point> getPoints() {
