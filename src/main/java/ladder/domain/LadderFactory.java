@@ -4,8 +4,7 @@ import java.util.List;
 
 public class LadderFactory {
     private final Names names;
-    private final Lines lines
-            ;
+    private final Lines lines;
 
     public LadderFactory(String namesText, int height) {
         this(namesText, height, new RandomLineGenerator());
