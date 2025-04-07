@@ -36,5 +36,4 @@ public class NameList implements Iterable<String> {
             throw new IllegalArgumentException("이름 리스트는 최소 2개의 이름을 포함해야 합니다.");
         }
     }
-
 }

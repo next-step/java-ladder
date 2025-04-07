@@ -9,8 +9,8 @@ import nextstep.ladder.view.ResultView;
 
 public class Main {
 
-    private final static InputView inputView = new InputView();
-    private final static ResultView resultView = new ResultView();
+    private static final InputView inputView = new InputView();
+    private static final ResultView resultView = new ResultView();
 
     public static void main(String[] args) {
         List<String> peopleNames = inputView.getPeopleNames();

@@ -31,5 +31,4 @@ public class Board {
     public void createLadders() {
         lines.forEach(Line::createLadders);
     }
-
 }
