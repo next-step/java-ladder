@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.stream.IntStream;
 
 public class Row {
+    private static final int MAX_BRIDGES_PER_ROW_DIVISOR = 2;
     private static final Random RANDOM = new Random();
     private final Set<Bridge> bridges;
 
@@ -51,7 +52,7 @@ public class Row {
     }
 
     public static int calculateMaxBuildableBridges(int players) {
-        return players / 2;
+        return players / MAX_BRIDGES_PER_ROW_DIVISOR;
     }
 
 }
