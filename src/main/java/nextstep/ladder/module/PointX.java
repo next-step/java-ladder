@@ -2,10 +2,11 @@ package nextstep.ladder.module;
 
 public class PointX implements Comparable<PointX> {
    private final int x;
-   private Ladder ladder = new Ladder(false);
+   private Ladder ladder;
 
    public PointX(int x) {
       this.x = x;
+      this.ladder = new Ladder(false);
    }
 
    public PointX(int x, Ladder ladder) {
@@ -23,9 +24,7 @@ public class PointX implements Comparable<PointX> {
    }
 
    public void createLadder() {
-      if (ladder == null) {
-         ladder = new Ladder(true);
-      }
+      ladder = new Ladder(true);
    }
 
    public void destroyLadder() {
@@ -45,7 +44,7 @@ public class PointX implements Comparable<PointX> {
 
    @Override
    public String toString() {
-      return ladder.isBuilt() ? "     |" : "-----|";
+      return ladder.isBuilt() ? "-----|" : "     |";
    }
 
 }

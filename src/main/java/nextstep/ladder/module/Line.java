@@ -41,27 +41,17 @@ public class Line {
             throw new IllegalArgumentException("Line의 시작은 사다리가 없어야 합니다.");
         }
         for (int i = 1; i < points.size(); i++) {
-            if (points.get(i).ladder() != null && points.get(i + 1).ladder() != null) {
+            if (points.get(i).ladder().isBuilt() && points.get(i + 1).ladder().isBuilt()) {
                 throw new IllegalArgumentException("Line에서 연속된 사다리가 있으면 안됩니다.");
             }
         }
     }
 
     public void createLadders() {
-        IntStream.range(1, points.size()).forEach(i -> {
-            if (RANDOM.nextBoolean()) {
-                points.get(i).createLadder();
-            }
-        });
-        for (int i = 1; i < points.size() - 1; i++) {
-            if (points.get(i).ladder() != null && points.get(i + 1).ladder() != null) {
-                if (RANDOM.nextBoolean()) {
-                    points.get(i).destroyLadder();
-                } else {
-                    points.get(i + 1).destroyLadder();
-                }
-            }
-        }
+        IntStream.range(1, points.size())
+            .filter(i -> !points.get(i-1).ladder().isBuilt())
+            .filter(i -> RANDOM.nextBoolean())
+            .forEach(i -> points.get(i).createLadder());
     }
 
     @Override
