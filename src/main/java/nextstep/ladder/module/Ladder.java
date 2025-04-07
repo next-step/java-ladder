@@ -4,6 +4,10 @@ public class Ladder {
 
     private final boolean isBuilt;
 
+    public Ladder() {
+        this.isBuilt = false;
+    }
+
     public Ladder(boolean isBuilt) {
         this.isBuilt = isBuilt;
     }

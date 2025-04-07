@@ -29,10 +29,10 @@ public class PointXTest {
     @Test
     @DisplayName("ladder 가 있을 때 출력 점검")
     void givenLadder_whenToString_thenPrintLadder() {
-        PointX pointX = new PointX(0, new Ladder());
+        PointX pointX = new PointX(0, new Ladder(true));
         System.setOut(new PrintStream(outputStream));
         System.out.printf("%s", pointX);
-        assertThat(outputStream.toString()).isEqualTo("---|");
+        assertThat(outputStream.toString()).isEqualTo("-----|");
     }
 
     @Test
@@ -41,7 +41,7 @@ public class PointXTest {
         PointX pointX = new PointX(0);
         System.setOut(new PrintStream(outputStream));
         System.out.printf("%s", pointX);
-        assertThat(outputStream.toString()).isEqualTo("   |");
+        assertThat(outputStream.toString()).isEqualTo("     |");
     }
    
 }

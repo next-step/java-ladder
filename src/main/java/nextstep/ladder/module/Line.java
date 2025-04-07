@@ -37,7 +37,7 @@ public class Line {
         if (points.size() < 2) {
             throw new IllegalArgumentException("Line의 크기는 2 이상이어야 합니다.");
         }
-        if (points.get(0).ladder() != null) {
+        if (points.get(0).ladder().isBuilt()) {
             throw new IllegalArgumentException("Line의 시작은 사다리가 없어야 합니다.");
         }
         for (int i = 1; i < points.size(); i++) {
