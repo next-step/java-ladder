@@ -10,11 +10,9 @@ import java.util.stream.IntStream;
 
 public class Ladder {
     private final List<Line> lines;
-    private Height height;
 
     public Ladder(Players players, Height height) {
         this.lines = makeLadder(players, height);
-        this.height = height;
     }
 
     private List<Line> makeLadder(Players players, Height height) {
@@ -28,7 +26,4 @@ public class Ladder {
         return lines;
     }
 
-    public int getLadderHeight(){
-        return height.getHeight();
-    }
 }
