@@ -9,35 +9,40 @@ import java.util.stream.IntStream;
 public class Line {
     private final List<Boolean> line;
 
-    public Line(int width, LineGenerator generator) {
-        this(createLine(width, generator));
+    public Line(int size, LineGenerator generator) {
+        this(createLine(size, generator));
     }
 
     public Line(boolean... line) {
-        this(boxed(line));
+        this(createLine(line));
     }
 
     public Line(List<Boolean> line) {
         this.line = line;
     }
 
-    private static List<Boolean> boxed(boolean[] line) {
+    private static List<Boolean> createLine(int size, LineGenerator generator) {
+        if (size < 1) {
+            throw new IllegalArgumentException("Line size should be greater than 0");
+        }
+        return createLine(generate(size, generator));
+    }
+
+    private static List<Boolean> createLine(boolean[] line) {
         return IntStream.range(0, line.length)
                 .mapToObj(i -> line[i])
                 .collect(Collectors.toList());
     }
 
-    private static List<Boolean> createLine(int width, LineGenerator generator) {
-        List<Boolean> lines = IntStream.range(0, width)
-                .mapToObj(i -> generator.isConnected())
-                .collect(Collectors.toList());
+    private static boolean[] generate(int size, LineGenerator generator) {
+        boolean[] line = new boolean[size];
+        line[0] = generator.isConnected();
 
-        for (int i = 1; i < width; i++) {
-            if (lines.get(i - 1) && lines.get(i)) {
-                lines.set(i, false);
-            }
+        for (int i = 1; i < size; i++) {
+            line[i] = (!line[i - 1] && generator.isConnected());
         }
-        return lines;
+
+        return line;
     }
 
     public List<Boolean> getList() {
@@ -56,4 +61,5 @@ public class Line {
     public int hashCode() {
         return Objects.hashCode(line);
     }
+
 }

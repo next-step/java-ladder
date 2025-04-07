@@ -19,7 +19,7 @@ class LineTest {
     @Test
     @DisplayName("사다리의 라인 하나가 반환된다.")
     void getList() {
-        assertThat(new Line(List.of(true, false, true)).getList()).isEqualTo(List.of(true, false, true));
+        assertThat(new Line(true, false, true).getList()).isEqualTo(List.of(true, false, true));
     }
 
 }
