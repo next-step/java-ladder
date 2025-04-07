@@ -32,3 +32,14 @@
     - [x] LottoGameApplication 에서 메소드 분리
     - [x] ResultView 기능 단위로 메소드 분리
   - [x] Height 구현
+- [ ] 피드백
+  - [x] Player
+    - [x] 상수 추가
+    - [x] isEmpty / isBlank 선택
+  - [ ] LadderLineGenerator
+    - [ ] 상수 추가
+    - [ ] 테스트 편의 위해 인터페이스 도입
+  - [ ] Ladder
+  - [ ] LadderLine
+    - [ ] is -> has
+    - [ ] 조건문 통합

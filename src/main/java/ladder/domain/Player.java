@@ -14,13 +14,13 @@ public class Player {
     }
 
     private void checkNameLength(String name) {
-        if (name.length() > 5) {
+        if (name.length() > LadderConstants.MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("Player name cannot be longer than 5 characters");
         }
     }
 
     private void checkNullOrEmpty(String name) {
-        if (name == null || name.isEmpty()) {
+        if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Player name cannot be null or empty");
         }
     }
