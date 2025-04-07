@@ -1,7 +1,6 @@
 package nextstep.fp;
 
 import java.util.List;
-import java.util.function.IntPredicate;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
@@ -29,7 +28,7 @@ public class Lambda {
 
     public static int sumAllByCondition(List<Integer> numbers, Condition condition) {
         return numbers.stream()
-                .filter(condition::test)
+                .filter(condition::doSomething)
                 .mapToInt(Integer::intValue)
                 .sum();
     }
