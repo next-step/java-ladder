@@ -12,8 +12,8 @@ class LineTest {
     @Test
     @DisplayName("사다리 라인을 생성한다.")
     void createLine() {
-        assertThat(new Line(3, () -> true).getList()).isEqualTo(List.of(true, false, true));
-        assertThat(new Line(3, () -> false).getList()).isEqualTo(List.of(false, false, false));
+        assertThat(new Line(3, () -> true)).isEqualTo(new Line(true, false, true));
+        assertThat(new Line(3, () -> false)).isEqualTo(new Line(false, false, false));
     }
 
     @Test
