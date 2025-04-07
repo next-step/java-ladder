@@ -7,8 +7,12 @@ import java.util.List;
 public class Names {
     private final List<String> names;
 
-    public Names(String text) {
-        this.names = Arrays.asList(text.split(","));
+    public Names(String... names) {
+        this(Arrays.asList(names));
+    }
+
+    public Names(List<String> names) {
+        this.names = names;
         validateNameMaxLength(names);
     }
 

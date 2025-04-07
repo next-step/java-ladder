@@ -6,13 +6,13 @@ public class LadderFactory {
     private final Names names;
     private final Lines lines;
 
-    public LadderFactory(String namesText, int height) {
-        this(namesText, height, new RandomLineGenerator());
+    public LadderFactory(List<String> names, int height) {
+        this(names, height, new RandomLineGenerator());
     }
 
-    public LadderFactory(String namesText, int height, LineGenerator lineGenerator) {
-        this.names = new Names(namesText);
-        this.lines = new Lines(height, names.connectSize(), lineGenerator);
+    public LadderFactory(List<String> names, int height, LineGenerator lineGenerator) {
+        this.names = new Names(names);
+        this.lines = new Lines(height, this.names.connectSize(), lineGenerator);
     }
 
     public List<List<Boolean>> getLadder() {
