@@ -22,7 +22,7 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public List<Line> getAllLines(){
+    public List<Line> getAllLines() {
         return lines;
     }
 

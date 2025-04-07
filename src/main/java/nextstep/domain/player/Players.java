@@ -10,7 +10,7 @@ public class Players {
         this.players = players;
     }
 
-    public int getPlayersCount(){
+    public int getPlayersCount() {
         return players.size();
     }
 

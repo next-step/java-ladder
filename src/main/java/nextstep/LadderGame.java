@@ -14,6 +14,4 @@ public class LadderGame {
         Ladder ladder = new Ladder(players, height);
         ResultView.getLadderView(players, ladder);
     }
-
-
 }

@@ -9,10 +9,6 @@ public class Player {
         this.name = new Name(name);
     }
 
-    public Player(Name name) {
-        this.name = name;
-    }
-
     public String getPlayerName() {
         return name.getName();
     }
