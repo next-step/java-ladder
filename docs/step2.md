@@ -6,5 +6,5 @@
 - [x] Players 클래스 구현
 - [x] Line 클래스 구현
 - [x] Ladder 클래스 구현
-- [ ] InputView 클래스 구현
-- [ ] ResultView 클래스 구현
+- [x] InputView 클래스 구현
+- [x] ResultView 클래스 구현
