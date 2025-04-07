@@ -18,8 +18,12 @@ public class Bridge implements Comparable<Bridge> {
         return RANDOM.nextInt(players - 1);
     }
 
-    public boolean isContinuous(Bridge nextBridge) {
-        return startPosition + 1 == nextBridge.startPosition;
+    public Bridge getLeftBridge() {
+        return new Bridge(startPosition - 1);
+    }
+
+    public Bridge getRightBridge() {
+        return new Bridge(startPosition + 1);
     }
 
     @Override

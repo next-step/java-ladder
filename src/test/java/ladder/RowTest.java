@@ -5,6 +5,8 @@ import ladder.domain.Row;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -23,8 +25,20 @@ public class RowTest {
         Bridge second = new Bridge(1);
         Bridge third = new Bridge(2);
 
-        assertThat(Row.isBuildable(List.of(first, second))).isFalse();
-        assertThat(Row.isBuildable(List.of(first, third))).isTrue();
-        assertThat(Row.isBuildable(List.of(second, third))).isFalse();
+        Set<Bridge> unbuildableBridges = new TreeSet<>();
+        unbuildableBridges.add(first);
+        unbuildableBridges.add(second);
+        unbuildableBridges.add(third);
+
+        Set<Bridge> buildableBridges1 = new TreeSet<>();
+        buildableBridges1.add(first);
+        buildableBridges1.add(third);
+
+        Set<Bridge> buildableBridges2 = new TreeSet<>();
+        buildableBridges2.add(second);
+
+        assertThat(Row.isBuildable(unbuildableBridges)).isFalse();
+        assertThat(Row.isBuildable(buildableBridges1)).isTrue();
+        assertThat(Row.isBuildable(buildableBridges2)).isTrue();
     }
 }

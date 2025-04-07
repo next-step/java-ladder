@@ -1,7 +1,8 @@
 package ladder.domain;
 
-import java.util.*;
-import java.util.stream.IntStream;
+import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Row {
     private static final int MAX_BRIDGES_PER_ROW_DIVISOR = 2;
@@ -19,8 +20,7 @@ public class Row {
         for (int attempt = 0; attempt < maxAttempts; attempt++) {
             Set<Bridge> bridgeSet = generateBridgeCombinations(players, bridgeCount);
 
-            List<Bridge> bridgeList = new ArrayList<>(bridgeSet);
-            if (isBuildable(bridgeList)) {
+            if (isBuildable(bridgeSet)) {
                 return new Row(bridgeSet);
             }
         }
@@ -38,9 +38,17 @@ public class Row {
         return bridgeSet;
     }
 
-    public static boolean isBuildable(List<Bridge> bridges) {
-        return IntStream.range(0, bridges.size() - 1)
-                .noneMatch(i -> bridges.get(i).isContinuous(bridges.get(i + 1)));
+    public static boolean isBuildable(Set<Bridge> bridges) {
+        for (Bridge bridge : bridges) {
+            Bridge leftBridge = bridge.getLeftBridge();
+            Bridge rightBridge = bridge.getRightBridge();
+
+            if (bridges.contains(leftBridge) || bridges.contains(rightBridge)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public boolean shouldBuildBridge(int position) {
