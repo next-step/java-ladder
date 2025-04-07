@@ -32,18 +32,10 @@ public class LadderLine {
     }
 
     private boolean isLeftConnected(int startPosition) {
-        if (startPosition == 0) {
-            return false;
-        }
-
-        return points.get(startPosition - 1);
+        return startPosition > 0 && points.get(startPosition - 1);
     }
 
     private boolean isRightConnected(int startPosition) {
-        if (startPosition == points.size()) {
-            return false;
-        }
-
-        return points.get(startPosition);
+        return startPosition < points.size() && points.get(startPosition);
     }
 }
