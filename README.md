@@ -40,6 +40,7 @@
     - [x] 상수 추가
     - [x] 테스트 편의 위해 인터페이스 도입
   - [ ] Ladder
+    - [ ] LadderLine 리스트 반환 메소드 추가 
   - [x] LadderLine
     - [x] is -> has
     - [x] 조건문 통합

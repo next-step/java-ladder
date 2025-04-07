@@ -27,8 +27,7 @@ public class ResultView {
     }
 
     public static void printLadder(Ladder ladder) {
-        IntStream.range(0, ladder.height())
-                .forEachOrdered(i -> printLadderLine(ladder.getLadderLine(i)));
+        ladder.getLadderLinesCopy().forEach(ResultView::printLadderLine);
     }
 
     private static void printLadderLine(LadderLine ladderLine) {

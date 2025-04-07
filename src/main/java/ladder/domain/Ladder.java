@@ -28,10 +28,9 @@ public class Ladder {
         return ladderLines.get(0).size();
     }
 
-    public LadderLine getLadderLine(int index) {
-        if (index < 0 || index >= ladderLines.size()) {
-            throw new IllegalArgumentException("Invalid index");
-        }
-        return ladderLines.get(index);
+    public List<LadderLine> getLadderLinesCopy() {
+        return ladderLines.stream()
+                .map(LadderLine::copy)
+                .collect(Collectors.toList());
     }
 }

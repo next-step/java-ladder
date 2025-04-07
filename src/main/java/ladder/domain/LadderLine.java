@@ -51,4 +51,9 @@ public class LadderLine {
     private boolean isRightConnected(int startPosition) {
         return startPosition < points.size() && points.get(startPosition);
     }
+
+    public LadderLine copy() {
+        List<Boolean> copiedPoints = List.copyOf(points);
+        return new LadderLine(copiedPoints);
+    }
 }
