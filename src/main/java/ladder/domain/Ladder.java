@@ -11,13 +11,13 @@ public class Ladder {
         this.rows = rows;
     }
 
-    public static Ladder generateLadder(Players players, Height height) {
-        return generateLadder(players.getPlayerCount(), height.getHeight());
+    public static Ladder generateRandomLadder(Players players, Height height) {
+        return generateRandomLadder(players.getPlayerCount(), height.getHeight());
     }
 
-    public static Ladder generateLadder(int players, int height) {
+    public static Ladder generateRandomLadder(int playerCount, int height) {
         return new Ladder(IntStream.range(0, height)
-                .mapToObj(i -> Row.generateRow(players))
+                .mapToObj(i -> Row.generateRow(playerCount, new RandomRowGenerator()))
                 .collect(Collectors.toList()));
     }
 

@@ -12,7 +12,7 @@ class LadderTest {
         int players = 5;
         int height = 5;
 
-        Ladder ladder = Ladder.generateLadder(players, height);
+        Ladder ladder = Ladder.generateRandomLadder(players, height);
         int actual = ladder.getLadderHeight();
 
         assertThat(actual).isEqualTo(height);
