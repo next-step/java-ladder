@@ -1,34 +1,17 @@
 package ladder.domain;
 
-import java.util.Random;
+public enum Bridge {
+    CONNECTED(true),
+    DISCONNECTED(false);
 
-public class Bridge implements Comparable<Bridge> {
-    private static final Random RANDOM = new Random();
-    private final int startPosition;
+    private final boolean connected;
 
-    public Bridge(int startPosition) {
-        this.startPosition = startPosition;
+    Bridge(boolean connected) {
+        this.connected = connected;
     }
 
-    public static Bridge generateRandomBridge(int players) {
-        return new Bridge(getRandomBridgePosition(players));
+    public static Bridge of(boolean connected) {
+        return connected ? CONNECTED : DISCONNECTED;
     }
-
-    private static int getRandomBridgePosition(int players) {
-        return RANDOM.nextInt(players - 1);
-    }
-
-    public Bridge getLeftBridge() {
-        return new Bridge(startPosition - 1);
-    }
-
-    public Bridge getRightBridge() {
-        return new Bridge(startPosition + 1);
-    }
-
-    @Override
-    public int compareTo(Bridge o) {
-        return startPosition - o.startPosition;
-    }
-
 }
+

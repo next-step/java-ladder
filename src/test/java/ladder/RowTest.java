@@ -2,11 +2,10 @@ package ladder;
 
 import ladder.domain.Bridge;
 import ladder.domain.Row;
+import ladder.generator.FixedBridgeGenerator;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,25 +19,20 @@ public class RowTest {
     }
 
     @Test
-    public void 설치하려는_발판_조합_유효성_검사() {
-        Bridge first = new Bridge(0);
-        Bridge second = new Bridge(1);
-        Bridge third = new Bridge(2);
+    public void 행_생성시_발판의_연속적인_설치를_막는다() {
+        int playerCount = 5;
 
-        Set<Bridge> unbuildableBridges = new TreeSet<>();
-        unbuildableBridges.add(first);
-        unbuildableBridges.add(second);
-        unbuildableBridges.add(third);
+        Bridge first = Bridge.CONNECTED;
+        Bridge second = Bridge.CONNECTED;
+        Bridge third = Bridge.CONNECTED;
+        Bridge fourth = Bridge.CONNECTED;
+        Queue<Bridge> bridges = new LinkedList<>(List.of(first, second, third, fourth));
 
-        Set<Bridge> buildableBridges1 = new TreeSet<>();
-        buildableBridges1.add(first);
-        buildableBridges1.add(third);
+        Row row = Row.generateRow(playerCount, new FixedBridgeGenerator(bridges));
 
-        Set<Bridge> buildableBridges2 = new TreeSet<>();
-        buildableBridges2.add(second);
+        for (int i = 1; i < playerCount; i++) {
+            assertThat(row.isConnected(i - 1) && row.isConnected(i)).isFalse();
+        }
 
-        assertThat(Row.isBuildable(unbuildableBridges)).isFalse();
-        assertThat(Row.isBuildable(buildableBridges1)).isTrue();
-        assertThat(Row.isBuildable(buildableBridges2)).isTrue();
     }
 }

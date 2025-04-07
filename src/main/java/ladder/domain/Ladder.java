@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.generator.RandomBridgeGenerator;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -17,7 +19,7 @@ public class Ladder {
 
     public static Ladder generateRandomLadder(int playerCount, int height) {
         return new Ladder(IntStream.range(0, height)
-                .mapToObj(i -> Row.generateRow(playerCount, new RandomRowGenerator()))
+                .mapToObj(i -> Row.generateRow(playerCount, new RandomBridgeGenerator()))
                 .collect(Collectors.toList()));
     }
 

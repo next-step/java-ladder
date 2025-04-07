@@ -1,39 +1,50 @@
 package ladder.domain;
 
-import java.util.Random;
-import java.util.Set;
+import ladder.generator.BridgeGenerator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Row {
     private static final int MAX_BRIDGES_PER_ROW_DIVISOR = 2;
-    private final Set<Bridge> bridges;
+    private final List<Bridge> bridges;
 
-    private Row(Set<Bridge> bridges) {
+    private Row(List<Bridge> bridges) {
         this.bridges = bridges;
     }
 
-    public static Row generateRow(int playerCount, RowGenerator rowGenerator) {
-        return new Row(rowGenerator.generate(playerCount));
-    }
+    public static Row generateRow(int playerCount, BridgeGenerator bridgeGenerator) {
+        List<Bridge> bridges = new ArrayList<>();
 
-    public static boolean isBuildable(Set<Bridge> bridges) {
-        for (Bridge bridge : bridges) {
-            Bridge leftBridge = bridge.getLeftBridge();
-            Bridge rightBridge = bridge.getRightBridge();
+        for (int i = 0; i < playerCount - 1; i++) {
+            Bridge bridge = bridgeGenerator.generate();
 
-            if (bridges.contains(leftBridge) || bridges.contains(rightBridge)) {
-                return false;
-            }
+            boolean connectedWithPrevious = isConnectedWithPrevious(bridge, i, bridges);
+            bridges.add(connectedWithPrevious ? Bridge.DISCONNECTED : bridge);
         }
 
-        return true;
+        return new Row(bridges);
     }
 
-    public boolean shouldBuildBridge(int position) {
-        return bridges.contains(new Bridge(position));
+    private static boolean isConnectedWithPrevious(Bridge bridge, int position, List<Bridge> bridges) {
+        return bridge == Bridge.CONNECTED && isPreviousConnected(position, bridges);
+    }
+
+    private static boolean isPreviousConnected(int position, List<Bridge> bridges) {
+        int left = position - 1;
+
+        if (left < 0) {
+            return false;
+        }
+
+        return bridges.get(left) == Bridge.CONNECTED;
     }
 
     public static int calculateMaxBuildableBridges(int players) {
         return players / MAX_BRIDGES_PER_ROW_DIVISOR;
     }
 
+    public boolean isConnected(int position) {
+        return bridges.get(position) == Bridge.CONNECTED;
+    }
 }
