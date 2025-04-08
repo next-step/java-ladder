@@ -10,4 +10,8 @@ public class Parser {
                 .map(String::trim)
                 .collect(Collectors.toList());
     }
+
+    public static int toInt(String input) {
+        return Integer.parseInt(input);
+    }
 }
