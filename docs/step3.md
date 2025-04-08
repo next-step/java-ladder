@@ -68,6 +68,6 @@ jk : 5000
 ### 로직 관련
 - [x] Row 에서 Bridge 가 있는 경우 이동하고 위치 반환
 - [x] Ladder 에서 시작 위치를 입력하면 도착지 위치를 반환
-- [ ] Prizes, Prize 클래스 추가
+- [x] Prizes, Prize 클래스 추가
 - [ ] LadderGame 클래스 추가
   - [ ] 사다리 타기 결과 반환
