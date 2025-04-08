@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import ladder.generator.BridgeGenerator;
-import ladder.generator.RandomBridgeGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
