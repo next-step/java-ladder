@@ -12,4 +12,17 @@ public class Ladder {
   public List<Line> lines() {
     return lines;
   }
+
+  public int height() {
+    return lines.size();
+  }
+
+  public int width() {
+    if (lines.isEmpty()) return 0;
+    return lines.get(0).width();
+  }
+
+  public Line lineAt(int index) {
+    return lines.get(index);
+  }
 }

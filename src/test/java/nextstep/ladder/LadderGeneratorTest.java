@@ -8,11 +8,12 @@ import org.junit.jupiter.api.Test;
 class LadderGeneratorTest {
 
   @Test
-  @DisplayName("입력받은 가로, 세로 높이 크기의 사다리가 생성된다.")
+  @DisplayName("입력받은 가로-1, 세로 높이 크기의 사다리가 생성된다.")
   void generate_ladder() {
-    Ladder ladder = LadderGenerator.generate(5, 4);
-    assertThat(ladder.lines()).hasSize(4);
-    assertThat(ladder.lines().get(0).points()).hasSize(5);
+    Ladder ladder = LadderGenerator.generate(5, 6);
+
+    assertThat(ladder.height()).isEqualTo(6);
+    assertThat(ladder.width()).isEqualTo(4); // 5명 → 4개의 가로 연결점
   }
 
 }
