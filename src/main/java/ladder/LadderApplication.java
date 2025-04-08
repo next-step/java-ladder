@@ -12,7 +12,7 @@ public class LadderApplication {
         Players players = Players.of(InputView.getPlayerNames());
         Height ladderHeight = new Height(InputView.getLadderHeight());
 
-        Ladder ladder = Ladder.generateLadder(players, ladderHeight, new RandomBridgeGenerator());
+        Ladder ladder = Ladder.generateLadder(players.getPlayerCount(), ladderHeight.getHeight(), new RandomBridgeGenerator());
         OutputView.printGeneratedLadderResult(players, ladder);
     }
 }
