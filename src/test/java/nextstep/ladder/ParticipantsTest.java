@@ -11,6 +11,6 @@ class ParticipantsTest {
   @DisplayName("참가자 이름은 최대 5글자까지 부여할 수 있다.")
   void name_length_limit() {
     Participants participants = Participants.of(List.of("abcdefghij"));
-    assertThat(participants.getNames()).containsExactly("abcde");
+    assertThat(participants.names()).containsExactly("abcde");
   }
 }
