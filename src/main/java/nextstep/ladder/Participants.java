@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Participants {
-  private static final int MAX_NAME_LENGTH = 5;
+  public static final int MAX_NAME_LENGTH = 5;
   private final List<String> names;
 
   private Participants(List<String> names) {
