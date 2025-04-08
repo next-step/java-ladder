@@ -3,6 +3,7 @@ package nextstep;
 import nextstep.domain.ladder.Height;
 import nextstep.domain.ladder.Ladder;
 import nextstep.domain.player.Players;
+import nextstep.generator.RandomNumberGenerator;
 import nextstep.view.InputView;
 import nextstep.view.ResultView;
 
@@ -11,7 +12,8 @@ public class LadderGame {
         Players players = InputView.getPlayersName();
         Height height = InputView.getMaxLadderHeight();
 
-        Ladder ladder = new Ladder(players, height);
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        Ladder ladder = new Ladder(players, height, randomNumberGenerator);
         ResultView.printLadderView(players, ladder);
     }
 }
