@@ -18,7 +18,10 @@ public class Ladder {
   }
 
   public int width() {
-    if (lines.isEmpty()) return 0;
+    if (lines.isEmpty()) {
+      return 0;
+    }
+
     return lines.get(0).width();
   }
 
