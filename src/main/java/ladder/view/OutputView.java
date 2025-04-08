@@ -1,9 +1,8 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Players;
-import ladder.domain.Prizes;
-import ladder.domain.Row;
+import ladder.domain.*;
+
+import java.util.Map;
 
 public class OutputView {
     private static final int NAME_BOX_SIZE = 6;
@@ -62,5 +61,21 @@ public class OutputView {
         int rearPadding = namePaddingSize - frontPadding;
 
         return " ".repeat(frontPadding) + name + " ".repeat(rearPadding);
+    }
+
+    public static void printPlayerResult(Map<Player, Prize> gameResult, String targetName) {
+        System.out.println("\n실행 결과");
+
+        if ("all".equals(targetName)) {
+            printGameResult(gameResult);
+            return;
+        }
+
+        Prize prize = gameResult.get(new Player(targetName));
+        System.out.println(prize.getPrize());
+    }
+
+    private static void printGameResult(Map<Player, Prize> gameResult) {
+        gameResult.forEach(((player, prize) -> System.out.println(player.getName() + " : " + prize.getPrize())));
     }
 }

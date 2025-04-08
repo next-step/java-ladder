@@ -5,6 +5,8 @@ import ladder.generator.RandomBridgeGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
+import java.util.Map;
+
 public class LadderApplication {
     public static void main(String[] args) {
         Players players = Players.of(InputView.getPlayerNames());
@@ -15,5 +17,19 @@ public class LadderApplication {
         OutputView.printGeneratedLadderResult(players, prizes, ladder);
 
         LadderGame ladderGame = new LadderGame(players, prizes, ladder);
+        Map<Player, Prize> gameResult = ladderGame.playGame();
+
+        askPlayerResultUntilAll(gameResult);
+    }
+
+    private static void askPlayerResultUntilAll(Map<Player, Prize> gameResult) {
+        while (true) {
+            String targetName = InputView.getResultTargetName();
+            OutputView.printPlayerResult(gameResult, targetName);
+
+            if ("all".equalsIgnoreCase(targetName)) {
+                break;
+            }
+        }
     }
 }
