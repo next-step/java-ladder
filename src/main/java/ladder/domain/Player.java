@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.Objects;
+
 public class Player {
     private static final int MAX_NAME_SIZE = 5;
     private final String name;
@@ -21,5 +23,18 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Player player = (Player) object;
+        return Objects.equals(name, player.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

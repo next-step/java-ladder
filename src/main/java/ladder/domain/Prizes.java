@@ -16,7 +16,8 @@ public class Prizes {
                 .collect(Collectors.toList()));
     }
 
-    public String getPrize(int position) {
-        return prizeList.get(position).getPrize();
+    public Prize getPrizeByPosition(int position) {
+        return prizeList.get(position);
     }
+
 }

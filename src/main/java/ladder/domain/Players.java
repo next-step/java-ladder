@@ -20,7 +20,12 @@ public class Players {
         return players;
     }
 
+    public Player getPlayerByPosition(int position) {
+        return players.get(position);
+    }
+
     public int getPlayerCount() {
         return players.size();
     }
+
 }
