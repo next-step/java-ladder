@@ -5,6 +5,8 @@ import nextstep.domain.line.Line;
 import nextstep.domain.line.Point;
 import nextstep.domain.player.Players;
 
+import java.util.stream.Collectors;
+
 public class ResultView {
     private static final String BLANK = " ";
     private static final String WALL = "|";
@@ -13,29 +15,27 @@ public class ResultView {
     private static final String RESULT_MESSAGE = "실행결과";
     private static final int MAX_NAME_LENGTH = 6;
 
-    public static void getLadderView(Players players, Ladder ladder) {
+    public static void printLadderView(Players players, Ladder ladder) {
         System.out.println(RESULT_MESSAGE);
         System.out.println();
 
-        getPlayersName(players);
-        getLadderResult(ladder);
+        printPlayerNames(players);
+        printLadderResult(ladder);
     }
 
-    private static void getPlayersName(Players players) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for(String name: players.getPlayerNames()) {
-            appendBlankName(stringBuilder, name);
-            stringBuilder.append(name);
-        }
-        System.out.println(stringBuilder);
+    private static void printPlayerNames(Players players) {
+        String allPlayersName = players.getPlayerNames().stream()
+                .map(ResultView::printFullPlayerNames)
+                .collect(Collectors.joining());
+        System.out.println(allPlayersName);
     }
 
-    private static void getLadderResult(Ladder ladder) {
+    private static void printLadderResult(Ladder ladder) {
         ladder.getAllLines()
-                .forEach(ResultView::getLineResult);
+                .forEach(ResultView::printLines);
     }
 
-    private static void getLineResult(Line line){
+    private static void printLines(Line line){
         System.out.print(EMPTY_LINE);
         line.getPoints().forEach(point ->
             System.out.print(WALL+ isLineOrBlank(point)));
@@ -49,7 +49,7 @@ public class ResultView {
         return EMPTY_LINE;
     }
 
-    private static void appendBlankName(StringBuilder stringBuilder, String name){
-        stringBuilder.append(BLANK.repeat(MAX_NAME_LENGTH - name.length()));
+    private static String printFullPlayerNames(String name){
+        return BLANK.repeat(MAX_NAME_LENGTH - name.length()) + name;
     }
 }
