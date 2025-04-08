@@ -3,6 +3,7 @@ package ladder;
 import ladder.domain.Height;
 import ladder.domain.Ladder;
 import ladder.domain.Players;
+import ladder.generator.RandomBridgeGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -11,7 +12,7 @@ public class LadderApplication {
         Players players = Players.of(InputView.getPlayerNames());
         Height ladderHeight = new Height(InputView.getLadderHeight());
 
-        Ladder ladder = Ladder.generateRandomLadder(players, ladderHeight);
+        Ladder ladder = Ladder.generateLadder(players, ladderHeight, new RandomBridgeGenerator());
         OutputView.printGeneratedLadderResult(players, ladder);
     }
 }
