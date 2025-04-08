@@ -8,21 +8,21 @@ import ladder.exception.LadderInvalidException;
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(int countOfLines, int countOfPersons) {
-        validateInput(countOfLines, countOfPersons);
-        this.lines = createLines(countOfLines, countOfPersons);
+    public Ladder(int ladderHeight, int countOfPersons) {
+        validateInput(ladderHeight, countOfPersons);
+        this.lines = createLines(ladderHeight, countOfPersons);
     }
 
-    private void validateInput(int countOfLines, int countOfPersons) {
-        if (countOfLines < 1 || countOfPersons < 2) {
+    private void validateInput(int ladderHeight, int countOfPersons) {
+        if (ladderHeight < 1 || countOfPersons < 2) {
             throw new LadderInvalidException();
         }
     }
 
-    private List<Line> createLines(int countOfLines, int countOfPersons) {
+    private List<Line> createLines(int ladderHeight, int countOfPersons) {
         List<Line> lines = new ArrayList<>();
 
-        for (int i = 0; i < countOfLines; i++) {
+        for (int i = 0; i < ladderHeight; i++) {
             lines.add(new Line(countOfPersons));
         }
 
