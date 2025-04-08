@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.domain.Ladder;
+import ladder.generator.RandomBridgeGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,7 +13,7 @@ class LadderTest {
         int players = 5;
         int height = 5;
 
-        Ladder ladder = Ladder.generateRandomLadder(players, height);
+        Ladder ladder = Ladder.generateLadder(players, height, new RandomBridgeGenerator());
         int actual = ladder.getLadderHeight();
 
         assertThat(actual).isEqualTo(height);
