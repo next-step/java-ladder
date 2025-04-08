@@ -19,6 +19,7 @@ class LineTest {
     assertThat(points).hasSize(count - 1);
   }
 
+  @Test
   @DisplayName("라인은 연속된 true(가로선 겹침)를 허용하지 않는다.")
   void line_should_not_have_consecutive_true() {
     Line line = new Line(10);
