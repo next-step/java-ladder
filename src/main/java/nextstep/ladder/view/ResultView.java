@@ -1,23 +1,24 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.Participant;
-import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.*;
+
+import java.util.List;
+import java.util.function.Function;
 
 
 public class ResultView {
 
-    public static void printResult(Participants participants, Ladder ladder) {
+    public static void printResult(GameEntities gameEntities, Ladder ladder) {
         System.out.println("실행결과");
-        printParticipantNames(participants);
+        printEntities(gameEntities.getParticipants(), Participant::getName);
         printLadder(ladder);
+        printEntities(gameEntities.getRewards(), Reward::getReward);
     }
 
-    private static void printParticipantNames(Participants participants) {
-        System.out.print(" ");
-        participants.getParticipants()
+    private static <T> void printEntities(List<T> entities, Function<T, String> formatter) {
+        entities
                 .stream()
-                .map(Participant::getName)
+                .map(formatter)
                 .forEach(ResultView::printFormattedName);
         System.out.println();
     }
@@ -31,8 +32,8 @@ public class ResultView {
                 .forEach(ResultView::printLine);
     }
 
-    private static void printLine(nextstep.ladder.domain.Line line) {
-        System.out.print(" ".repeat(6) + "|");
+    private static void printLine(Line line) {
+        System.out.print(" ".repeat(5) + "|");
         line.getPoints()
                 .forEach(ResultView::printPoint);
         System.out.println();
@@ -41,5 +42,14 @@ public class ResultView {
     private static void printPoint(boolean point) {
         System.out.print((point ? "-" : " ").repeat(5));
         System.out.print("|");
+    }
+
+    public static void printReward(Reward reward) {
+        System.out.println(reward.getReward());
+    }
+
+    public static void printAllResult(LadderGameResults ladderGameResults) {
+        ladderGameResults.forEach(ladderGameResult ->
+                System.out.println(ladderGameResult.getParticipant().getName() + " : " + ladderGameResult.getReward().getReward()));
     }
 }

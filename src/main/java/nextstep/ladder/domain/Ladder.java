@@ -8,14 +8,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Ladder {
-    private final int height;
-    private final int width;
     private final List<Line> lines;
 
     public Ladder(int height, int width, List<Line> lines) {
         validate(height, width, lines);
-        this.height = height;
-        this.width = width;
         this.lines = lines;
     }
 
@@ -30,10 +26,11 @@ public class Ladder {
             throw new RuntimeException("사다리의 높이와 가로선의 갯수는 같아야 합니다. " +
                     "현재 높이: " + height + " 현재 가로선 갯수: " + lines.size());
         }
-        boolean hasInconsistentWidth = lines.stream()
-                .anyMatch(line -> width - 1 != line.getWidth());
-        if (hasInconsistentWidth) {
-            throw new RuntimeException("사다리의 폭-1 과 가로선의 폭은 같아야 합니다. 현재 사다리의 폭: " + width);
+        for (Line line : lines) {
+            if (width - 1 != line.getWidth()) {
+                throw new RuntimeException("사다리의 폭-1 과 가로선의 폭은 같아야 합니다. " +
+                        "현재 사다리의 폭: " + width + " 현재 가로선의 폭: " + line.getWidth());
+            }
         }
     }
 
@@ -48,6 +45,13 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
+
+    public int findEndPosition(int startPosition) {
+        return lines.stream()
+                .reduce(startPosition, (position, line) -> line.move(position), (prev, cur) -> cur);
+    }
+
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
@@ -57,11 +61,11 @@ public class Ladder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ladder ladder = (Ladder) o;
-        return height == ladder.height && width == ladder.width && Objects.equals(lines, ladder.lines);
+        return Objects.equals(lines, ladder.lines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(height, width, lines);
+        return Objects.hashCode(lines);
     }
 }

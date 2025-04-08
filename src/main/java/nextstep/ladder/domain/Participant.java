@@ -7,17 +7,21 @@ public class Participant {
     private final String name;
 
     public Participant(String name) {
-        validateName(name);
+        validate(name);
         this.name = name;
     }
 
-    private void validateName(String name) {
+    private void validate(String name) {
         if (name == null || name.trim().isEmpty()) {
             throw new RuntimeException("이름은 비어있을 수 없습니다.");
         }
         if (name.length() > MAX_NAME_LENGTH) {
             throw new RuntimeException("이름은 최대 " + MAX_NAME_LENGTH + "글자까지 가능합니다.");
         }
+    }
+
+    public boolean hasName(String name) {
+        return Objects.equals(this.name, name);
     }
 
     public String getName() {

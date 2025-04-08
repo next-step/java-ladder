@@ -23,4 +23,17 @@ class ParticipantTest {
                 .isInstanceOf(RuntimeException.class)
                 .hasMessageStartingWith("이름은 최대");
     }
+
+    @Test
+    void 같은_이름() {
+        Participant participant = new Participant("1");
+        assertThat(participant.hasName("1")).isTrue();
+        assertThat(participant.hasName("2")).isFalse();
+    }
+
+    @Test
+    void 다른_이름() {
+        Participant participant = new Participant("1");
+        assertThat(participant.hasName("2")).isFalse();
+    }
 }

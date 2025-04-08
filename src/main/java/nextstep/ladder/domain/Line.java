@@ -1,9 +1,6 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -12,7 +9,7 @@ public class Line {
 
     public Line(List<Boolean> points) {
         validate(points);
-        this.points = points;
+        this.points = new ArrayList<>(points);
     }
 
     private void validate(List<Boolean> points) {

@@ -12,6 +12,12 @@ public class InputView {
         return parseNames(namesInput);
     }
 
+    public static List<String> inputRewardNames() {
+        System.out.println("실행 결과를 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        String namesInput = SCANNER.nextLine();
+        return parseNames(namesInput);
+    }
+
     private static List<String> parseNames(String namesInput) {
         return Arrays.stream(namesInput.split(","))
                 .collect(Collectors.toList());
@@ -22,7 +28,7 @@ public class InputView {
         return inputNum();
     }
 
-    public static int inputNum() {
+    private static int inputNum() {
         try {
             int num = SCANNER.nextInt();
             SCANNER.nextLine();
@@ -32,4 +38,8 @@ public class InputView {
         }
     }
 
+    public static String inputParticipantName() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return SCANNER.nextLine();
+    }
 }
