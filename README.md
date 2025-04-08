@@ -19,3 +19,28 @@
   - [x] Optional을 활용해 조건에 따른 반환
   - [x] Optional에서 값을 반환
   - [x] Optional에서 exception 처리
+## 2단계
+- [x] LadderLine 구현
+- [x] LadderLineGenerator 구현
+- [x] LadderGame, Ladder 구현
+- [x] Players 구현
+- [x] Views 구현
+- [x] LadderGameApplication 구현
+- [x] 리팩토링
+  - [x] Player 구현
+  - [x] Views 리팩토링
+    - [x] LottoGameApplication 에서 메소드 분리
+    - [x] ResultView 기능 단위로 메소드 분리
+  - [x] Height 구현
+- [x] 피드백
+  - [x] Player
+    - [x] 상수 추가
+    - [x] isEmpty / isBlank 선택
+  - [x] LadderLineGenerator
+    - [x] 상수 추가
+    - [x] 테스트 편의 위해 인터페이스 도입
+  - [x] Ladder
+    - [x] LadderLine 리스트 반환 메소드 추가 
+  - [x] LadderLine
+    - [x] is -> has
+    - [x] 조건문 통합

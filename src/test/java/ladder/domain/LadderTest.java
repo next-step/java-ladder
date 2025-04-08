@@ -1,0 +1,78 @@
+package ladder.domain;
+
+import ladder.domain.ladderlinegenerator.RandomLadderLineGenerator;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+public class LadderTest {
+
+    @DisplayName("사다리 생성 시 높이와 너비가 1 미만이면 예외 발생")
+    @ParameterizedTest
+    @CsvSource({"0, 1", "1, 0", "0, 0"})
+    void createLadderWithInvalidSize(int height, int width) {
+        // given
+        LadderLineGenerator generator = new RandomLadderLineGenerator();
+
+        // when & then
+        assertThatThrownBy(() -> new Ladder(height, width, generator))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Height and width must be at least 1");
+    }
+
+    @DisplayName("사다리 높이 반환")
+    @Test
+    void getHeight() {
+        // given
+        int height = 5;
+        int width = 4;
+        LadderLineGenerator generator = new RandomLadderLineGenerator();
+        Ladder ladder = new Ladder(height, width, generator);
+
+        // when
+        int actualHeight = ladder.height();
+
+        // then
+        assertThat(actualHeight).isEqualTo(height);
+    }
+
+    @DisplayName("사다리 너비를 반환")
+    @Test
+    void getWidth() {
+        // given
+        int height = 5;
+        int width = 4;
+        LadderLineGenerator generator = new RandomLadderLineGenerator();
+        Ladder ladder = new Ladder(height, width, generator);
+
+        // when
+        int actualWidth = ladder.width();
+
+        // then
+        assertThat(actualWidth).isEqualTo(width);
+    }
+
+    @DisplayName("LadderLine 의 깊은 복제를 반환")
+    @Test
+    void getLadderLinesCopy() {
+        // given
+        int height = 3;
+        int width = 4;
+        LadderLineGenerator generator = new RandomLadderLineGenerator();
+        Ladder ladder = new Ladder(height, width, generator);
+
+        // when
+        List<LadderLine> copiedLines = ladder.getLadderLinesCopy();
+
+        // then
+        assertThat(copiedLines)
+                .hasSize(height)
+                .allSatisfy(line -> assertThat(line).isNotSameAs(ladder.getLadderLinesCopy().get(copiedLines.indexOf(line))));
+    }
+} 
