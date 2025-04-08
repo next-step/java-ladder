@@ -7,10 +7,6 @@ public class Point {
         this.point = point;
     }
 
-    public boolean isConsecutive(Point point) {
-        return this.point && point.point;
-    }
-
     public boolean isPresent() {
         return point;
     }

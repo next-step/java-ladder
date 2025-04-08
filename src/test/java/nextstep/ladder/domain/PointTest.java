@@ -8,22 +8,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PointTest {
 
     @Test
-    void 점_유무() {
+    void 점_없음() {
         Point point = new Point(false);
         assertThat(point.isPresent()).isFalse();
     }
 
     @Test
-    void 연속되지않은_점() {
-        Point point1 = new Point(true);
-        Point point2 = new Point(false);
-        assertThat(point1.isConsecutive(point2)).isFalse();
-    }
-
-    @Test
-    void 연속된_점() {
-        Point point1 = new Point(true);
-        Point point2 = new Point(true);
-        assertThat(point1.isConsecutive(point2)).isTrue();
+    void 점_있음() {
+        Point point = new Point(true);
+        assertThat(point.isPresent()).isTrue();
     }
 }
