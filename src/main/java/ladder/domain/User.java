@@ -5,6 +5,7 @@ import java.util.Objects;
 import ladder.exception.UserNameInvalidException;
 
 public class User {
+    private static final int MAX_LENGTH = 5;
     private final String name;
 
     public User(String name) {
@@ -17,7 +18,7 @@ public class User {
             throw new UserNameInvalidException();
         }
 
-        if (name.length() > 5) {
+        if (name.length() > MAX_LENGTH) {
             throw new UserNameInvalidException();
         }
     }
