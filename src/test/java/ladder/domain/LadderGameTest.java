@@ -9,13 +9,14 @@ import java.util.List;
 
 public class LadderGameTest {
 
-    @DisplayName("사다리 게임 생성")
+    @DisplayName("결과를 포함하는 사다리 게임 생성")
     @Test
-    void createLadderGame() {
+    void createLadderGameWithResults() {
         // given
         Players players = new Players(List.of("more", "much", "less"));
+        List<String> results = List.of("result1", "result2", "result3");
         int height = 4;
-        LadderGame ladderGame = new LadderGame(players, new Height(height));
+        LadderGame ladderGame = new LadderGame(players, results, new Height(height));
 
         // when
         Ladder ladder = ladderGame.createLadder();
@@ -26,7 +27,6 @@ public class LadderGameTest {
                     Assertions.assertThat(l.width()).isEqualTo(players.count() - 1);
                     Assertions.assertThat(l.height()).isEqualTo(height);
                 });
-
     }
 
 }
