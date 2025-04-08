@@ -19,6 +19,16 @@ public class Ladder {
                 .collect(Collectors.toList()));
     }
 
+    public int move(int position) {
+        int resultPosition = position;
+
+        for (Row row : rows) {
+            resultPosition = row.move(resultPosition);
+        }
+
+        return resultPosition;
+    }
+
     public int getLadderHeight() {
         return rows.size();
     }
