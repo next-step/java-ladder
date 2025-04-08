@@ -14,7 +14,7 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public Map<Player, Prize> playGame() {
+    public LadderGameResult playGame() {
         Map<Player, Prize> ladderGameResult = new HashMap<>();
 
         for (int position = 0; position < players.getPlayerCount(); position++) {
@@ -24,6 +24,6 @@ public class LadderGame {
             ladderGameResult.put(player, prize);
         }
 
-        return ladderGameResult;
+        return new LadderGameResult(ladderGameResult);
     }
 }

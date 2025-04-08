@@ -1,5 +1,6 @@
-package ladder.domain;
+package ladder;
 
+import ladder.domain.*;
 import ladder.generator.FixedBridgeGenerator;
 import org.junit.jupiter.api.Test;
 
@@ -29,11 +30,11 @@ class LadderGameTest {
         Ladder ladder = Ladder.generateLadder(players.getPlayerCount(), height, new FixedBridgeGenerator(bridges));
 
         LadderGame ladderGame = new LadderGame(players, prizes, ladder);
-        Map<Player, Prize> gameResult = ladderGame.playGame();
+        LadderGameResult gameResult = ladderGame.playGame();
 
-        assertThat(gameResult.get(new Player("참가자1"))).isEqualTo(new Prize("3000"));
-        assertThat(gameResult.get(new Player("참가자2"))).isEqualTo(new Prize("5000"));
-        assertThat(gameResult.get(new Player("참가자3"))).isEqualTo(new Prize("꽝"));
+        assertThat(gameResult.findPrizeByPlayerName("참가자1")).isEqualTo(new Prize("3000"));
+        assertThat(gameResult.findPrizeByPlayerName("참가자2")).isEqualTo(new Prize("5000"));
+        assertThat(gameResult.findPrizeByPlayerName("참가자3")).isEqualTo(new Prize("꽝"));
     }
 
 }

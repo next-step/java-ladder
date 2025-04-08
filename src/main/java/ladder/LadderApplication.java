@@ -17,12 +17,12 @@ public class LadderApplication {
         OutputView.printGeneratedLadderResult(players, prizes, ladder);
 
         LadderGame ladderGame = new LadderGame(players, prizes, ladder);
-        Map<Player, Prize> gameResult = ladderGame.playGame();
+        LadderGameResult gameResult = ladderGame.playGame();
 
         askPlayerResultUntilAll(gameResult);
     }
 
-    private static void askPlayerResultUntilAll(Map<Player, Prize> gameResult) {
+    private static void askPlayerResultUntilAll(LadderGameResult gameResult) {
         while (true) {
             String targetName = InputView.getResultTargetName();
             OutputView.printPlayerResult(gameResult, targetName);

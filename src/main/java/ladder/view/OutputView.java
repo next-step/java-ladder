@@ -63,19 +63,20 @@ public class OutputView {
         return " ".repeat(frontPadding) + name + " ".repeat(rearPadding);
     }
 
-    public static void printPlayerResult(Map<Player, Prize> gameResult, String targetName) {
+    public static void printPlayerResult(LadderGameResult gameResult, String targetName) {
         System.out.println("\n실행 결과");
 
         if ("all".equals(targetName)) {
-            printGameResult(gameResult);
+            printAllPlayersResult(gameResult);
             return;
         }
 
-        Prize prize = gameResult.get(new Player(targetName));
+        Prize prize = gameResult.findPrizeByPlayerName(targetName);
         System.out.println(prize.getPrize());
     }
 
-    private static void printGameResult(Map<Player, Prize> gameResult) {
-        gameResult.forEach(((player, prize) -> System.out.println(player.getName() + " : " + prize.getPrize())));
+    private static void printAllPlayersResult(LadderGameResult gameResult) {
+        Map<Player, Prize> gameResultMap = gameResult.getGameResult();
+        gameResultMap.forEach(((player, prize) -> System.out.println(player.getName() + " : " + prize.getPrize())));
     }
 }
