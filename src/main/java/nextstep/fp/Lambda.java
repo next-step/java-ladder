@@ -26,31 +26,26 @@ public class Lambda {
         }).start();
     }
 
+    public static int sum(List<Integer> numbers, LambdaFilter lambdaFilter) {
+        return numbers.stream()
+                .filter(lambdaFilter::filterNumber)
+                .reduce(0, Integer::sum);
+    }
+
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        return numbers.stream()
+                .reduce(0, Integer::sum);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+                .filter(x -> x % 2 == 0)
+                .reduce(0, Integer::sum);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number > 3) {
-                total += number;
-            }
-        }
-        return total;
+        return numbers.stream()
+                .filter(x -> x > 3)
+                .reduce(0, Integer::sum);
     }
 }
