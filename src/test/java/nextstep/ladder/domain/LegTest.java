@@ -69,8 +69,7 @@ class LegTest {
         assertThat(e).hasMessage("참여할 사람의 수와 실행 결과의 수가 다릅니다.");
     }
 
-    public static Leg createLeg1() {
-        return new Leg("next", "꽝", 0);
+    public static List<Leg> createLegsByNames(List<String> names) {
+        return Leg.createLegs(names, names, 5);
     }
-
 }

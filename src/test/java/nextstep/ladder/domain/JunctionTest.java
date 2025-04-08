@@ -12,8 +12,8 @@ class JunctionTest {
 
     @Test
     public void junction은_오른쪽으로_연결할_수_있다() {
-        Junction junction = createJunction1();
-        Junction rightJunction = createJunction1();
+        Junction junction = createJunction();
+        Junction rightJunction = createJunction();
 
         junction.connectRight(rightJunction);
 
@@ -27,8 +27,8 @@ class JunctionTest {
 
     @Test
     public void junction은_아래쪽으로_연결할_수_있다() {
-        Junction junction = createJunction1();
-        Junction downJunction = createJunction1();
+        Junction junction = createJunction();
+        Junction downJunction = createJunction();
 
         junction.connectDown(downJunction);
 
@@ -39,20 +39,20 @@ class JunctionTest {
     @Test
     void 이동할_곳이_없으면_제자리다() {
         ParticipantName name = new ParticipantName("1");
-        Junction junction = createJunction1();
+        Junction junction = createJunction();
 
         Junction result = junction.moveToResult(name);
 
         assertThat(result).isEqualTo(junction);
     }
 
-    public static Junction createJunction1() {
-        Leg leg = LegTest.createLeg1();
+    public static Junction createJunction() {
+        Leg leg = new LegBuilder().build();
         return new Junction(leg);
     }
 
-    public static List<Junction> createJunctions1(int size) {
-        Leg leg = LegTest.createLeg1();
+    public static List<Junction> createJunctions(int size) {
+        Leg leg = new LegBuilder().build();
         return IntStream.range(0, size)
             .mapToObj(i -> new Junction(leg))
             .collect(Collectors.toList());

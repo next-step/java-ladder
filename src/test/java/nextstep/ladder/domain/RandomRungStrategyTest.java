@@ -4,14 +4,14 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import static nextstep.ladder.domain.JunctionTest.createJunctions1;
+import static nextstep.ladder.domain.JunctionTest.createJunctions;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RandomRungStrategyTest {
 
     @Test
     public void rung이_항상_만들어지는_케이스() {
-        List<Junction> junctions = createJunctions1(3);
+        List<Junction> junctions = createJunctions(3);
 
         Row row = new Row(junctions);
 
@@ -40,7 +40,7 @@ class RandomRungStrategyTest {
 
     @Test
     public void rung이_항상_만들어지지_않는_케이스() {
-        List<Junction> junctions = createJunctions1(2);
+        List<Junction> junctions = createJunctions(2);
 
         Row row = new Row(junctions);
 

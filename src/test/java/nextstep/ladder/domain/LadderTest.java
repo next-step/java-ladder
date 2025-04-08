@@ -24,8 +24,7 @@ class LadderTest {
     @Test
     void ladder의_모든_legs는_name이_달라야_한다() {
         List<String> names = List.of("t1", "t1");
-        List<String> results = List.of("1", "2");
-        List<Leg> legs = Leg.createLegs(names, results, 5);
+        List<Leg> legs = LegTest.createLegsByNames(names);
 
         IllegalArgumentException e = catchIllegalArgumentException(() -> new Ladder(legs));
 
@@ -50,11 +49,10 @@ class LadderTest {
     @Test
     void applyRungs_메서드는_한번만_실행된다() {
         List<String> names = List.of("1", "2", "3");
-        List<String> results = List.of("1", "2", "3");
         int height = 5;
         int linkCount = (names.size() - 1) * height;
 
-        List<Leg> legs = Leg.createLegs(names, results, height);
+        List<Leg> legs = LegTest.createLegsByNames(names);
         Ladder ladder = new Ladder(legs);
 
         MockRungStrategy mockRungStrategy = new MockRungStrategy();
