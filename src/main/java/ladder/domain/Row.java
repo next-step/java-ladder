@@ -45,6 +45,23 @@ public class Row {
     }
 
     public boolean isConnected(int position) {
+        if (position >= bridges.size() - 1) {
+            return false;
+        }
+
         return bridges.get(position) == Bridge.CONNECTED;
+    }
+
+    public int move(int position) {
+
+        if (isPreviousConnected(position, bridges)) {
+            return position - 1;
+        }
+
+        if (isConnected(position)) {
+            return position + 1;
+        }
+
+        return position;
     }
 }

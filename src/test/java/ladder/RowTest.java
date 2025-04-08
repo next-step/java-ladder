@@ -35,4 +35,18 @@ public class RowTest {
         }
 
     }
+
+    @Test
+    public void 발판의_유무를_고려하여_움직인다() {
+        int playerCount = 3;
+
+        Bridge first = Bridge.CONNECTED;
+        Bridge second = Bridge.DISCONNECTED;
+        Queue<Bridge> bridges = new LinkedList<>(List.of(first, second));
+        Row row = Row.generateRow(playerCount, new FixedBridgeGenerator(bridges));
+
+        assertThat(row.move(0)).isEqualTo(1);
+        assertThat(row.move(1)).isEqualTo(0);
+        assertThat(row.move(2)).isEqualTo(2);
+    }
 }
