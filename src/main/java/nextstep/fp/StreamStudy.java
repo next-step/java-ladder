@@ -5,11 +5,13 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class StreamStudy {
+
+    public static final int MIN_WORD_LENGTH = 12;
+    public static final int MAX_WORD_LIMIT = 100;
 
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
@@ -18,7 +20,7 @@ public class StreamStudy {
 
         long count = 0;
         for (String w : words) {
-            if (w.length() > 12) count++;
+            if (w.length() > MIN_WORD_LENGTH) count++;
         }
         return count;
     }
@@ -33,10 +35,10 @@ public class StreamStudy {
 //        단어 중복을 허용하지 않는다. 즉, 서로 다른 단어 100개를 추출해야 한다.
 //        추출한 100개의 단어를 출력한다. 모든 단어는 소문자로 출력해야 한다.
         words.stream()
-                .filter(word -> word.length() > 12)
+                .filter(word -> word.length() > MIN_WORD_LENGTH)
                 .sorted((o1, o2) -> o2.length() - o1.length())
                 .distinct()
-                .limit(100)
+                .limit(MAX_WORD_LIMIT)
                 .forEach(word -> System.out.println(word.toLowerCase()));
     }
 
