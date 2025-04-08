@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Prizes {
-    private final List<Prize> prizeList;
+    private final List<Prize> prizes;
 
-    private Prizes(List<Prize> prizeList) {
-        this.prizeList = prizeList;
+    private Prizes(List<Prize> prizes) {
+        this.prizes = prizes;
     }
 
     public static Prizes of(List<String> prizeList) {
@@ -17,7 +17,10 @@ public class Prizes {
     }
 
     public Prize getPrizeByPosition(int position) {
-        return prizeList.get(position);
+        return prizes.get(position);
     }
 
+    public List<Prize> getPrizes() {
+        return prizes;
+    }
 }
