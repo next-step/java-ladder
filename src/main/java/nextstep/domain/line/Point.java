@@ -2,18 +2,37 @@ package nextstep.domain.line;
 
 import nextstep.generator.LineGenerator;
 
+import java.util.Objects;
+
 public class Point {
-    private final boolean point;
+    private final boolean isConnected;
 
     public Point(LineGenerator lineGenerator) {
-        this.point = lineGenerator.generate();
+        this.isConnected = lineGenerator.generate();
     }
 
     public Point(boolean point) {
-        this.point = point;
+        this.isConnected = point;
     }
 
     public boolean isConnected() {
-        return point;
+        return isConnected;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == this) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        Point point = (Point) object;
+        return point.isConnected == this.isConnected;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(isConnected);
     }
 }
