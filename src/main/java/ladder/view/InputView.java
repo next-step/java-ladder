@@ -16,4 +16,9 @@ public class InputView {
         System.out.println(INPUT_USER_NAME);
         return scanner.nextLine();
     }
+
+    public int inputLadderHeight() {
+        System.out.println(INPUT_LADDER_HEIGHT);
+        return Integer.parseInt(scanner.nextLine());
+    }
 }
