@@ -5,15 +5,13 @@ import ladder.generator.RandomBridgeGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
-import java.util.Map;
-
 public class LadderApplication {
     public static void main(String[] args) {
         Players players = Players.of(InputView.getPlayerNames());
         Prizes prizes = Prizes.of(InputView.getPrizeNames());
-        Height ladderHeight = new Height(InputView.getLadderHeight());
+        Height height = new Height(InputView.getLadderHeight());
 
-        Ladder ladder = Ladder.generateLadder(players.getPlayerCount(), ladderHeight.getHeight(), new RandomBridgeGenerator());
+        Ladder ladder = Ladder.generateLadder(players.getPlayerCount(), height.getHeight(), new RandomBridgeGenerator());
         OutputView.printGeneratedLadderResult(players, prizes, ladder);
 
         LadderGame ladderGame = new LadderGame(players, prizes, ladder);
