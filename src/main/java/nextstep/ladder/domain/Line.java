@@ -5,17 +5,20 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
-    private final List<Boolean> points;
+    private final List<Point> points;
 
     public Line(List<Boolean> points) {
-        validate(points);
-        this.points = new ArrayList<>(points);
+        List<Point> pointList = points.stream()
+                .map(Point::new)
+                .collect(Collectors.toList());
+        validate(pointList);
+        this.points = pointList;
     }
 
-    private void validate(List<Boolean> points) {
+    private void validate(List<Point> points) {
         for (int i = 1; i < points.size(); i++) {
-            if (points.get(i - 1) && points.get(i)) {
-                throw new RuntimeException("연속으로 가로선이 존재할 수는 없습니다.");
+            if (points.get(i - 1).isPresent() && points.get(i).isPresent()) {
+                throw new RuntimeException("연속으로 가로점이 존재할 수는 없습니다.");
             }
         }
     }
@@ -36,10 +39,10 @@ public class Line {
     }
 
     public int move(int start) {
-        if (start < this.points.size() && this.points.get(start)) {
+        if (start < points.size() && points.get(start).isPresent()) {
             return start + 1;
         }
-        if (start > 0 && this.points.get(start - 1)) {
+        if (start > 0 && points.get(start - 1).isPresent()) {
             return start - 1;
         }
         return start;
@@ -49,10 +52,9 @@ public class Line {
         return this.points.size();
     }
 
-    public List<Boolean> getPoints() {
+    public List<Point> getPoints() {
         return Collections.unmodifiableList(points);
     }
-
 
     @Override
     public boolean equals(Object o) {

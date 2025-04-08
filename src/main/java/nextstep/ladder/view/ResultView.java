@@ -35,12 +35,13 @@ public class ResultView {
     private static void printLine(Line line) {
         System.out.print(" ".repeat(5) + "|");
         line.getPoints()
+                .stream().map(Point::isPresent)
                 .forEach(ResultView::printPoint);
         System.out.println();
     }
 
-    private static void printPoint(boolean point) {
-        System.out.print((point ? "-" : " ").repeat(5));
+    private static void printPoint(boolean isPresent) {
+        System.out.print((isPresent ? "-" : " ").repeat(5));
         System.out.print("|");
     }
 

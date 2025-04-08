@@ -16,9 +16,9 @@ class LineTest {
         Line line = new Line(points);
 
         assertThat(line.getPoints()).containsExactly(
-                true,
-                false,
-                true
+                new Point(true),
+                new Point(false),
+                new Point(true)
         );
     }
 
@@ -27,7 +27,7 @@ class LineTest {
         List<Boolean> points = List.of(false, true, true, false);
         assertThatThrownBy(() -> new Line(points))
                 .isInstanceOf(RuntimeException.class)
-                .hasMessage("연속으로 가로선이 존재할 수는 없습니다.");
+                .hasMessage("연속으로 가로점이 존재할 수는 없습니다.");
     }
 
     @Test
