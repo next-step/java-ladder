@@ -6,6 +6,8 @@ import java.util.List;
 import ladder.exception.LadderInvalidException;
 
 public class Ladder {
+    private static final int MIN_HEIGHT = 1;
+    private static final int MIN_PERSON_COUNT = 2;
     private final List<Line> lines;
 
     public Ladder(int ladderHeight, int countOfPersons) {
@@ -14,7 +16,7 @@ public class Ladder {
     }
 
     private void validateInput(int ladderHeight, int countOfPersons) {
-        if (ladderHeight < 1 || countOfPersons < 2) {
+        if (ladderHeight < MIN_HEIGHT || countOfPersons < MIN_PERSON_COUNT) {
             throw new LadderInvalidException();
         }
     }
