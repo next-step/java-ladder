@@ -1,11 +1,12 @@
-package nextstep.ladder;
+package nextstep.ladder.player;
 
-public class Person {
+public class Player {
     private static final int MAX_NAME_LENGTH = 5;
+    private static final String BLANK = " ";
 
     public String name;
 
-    public Person(String name) {
+    public Player(String name) {
         validate(name);
         this.name = name;
     }
@@ -29,5 +30,9 @@ public class Person {
 
     public String toString() {
         return name;
+    }
+
+    public String toStringWithBlank() {
+        return name + BLANK.repeat(MAX_NAME_LENGTH + 1 - name.length());
     }
 }

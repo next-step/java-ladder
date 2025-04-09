@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.parser;
 
 public class StringParser {
     private static final String DELIMITER = ",";
