@@ -1,14 +1,14 @@
 package nextstep.domain.line;
 
-import nextstep.generator.LineGenerator;
+import nextstep.generator.PointGenerator;
 
 import java.util.Objects;
 
 public class Point {
     private final boolean isConnected;
 
-    public Point(LineGenerator lineGenerator) {
-        this.isConnected = lineGenerator.generate();
+    public Point(PointGenerator pointGenerator) {
+        this.isConnected = pointGenerator.generate();
     }
 
     public Point(boolean point) {

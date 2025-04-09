@@ -1,6 +1,6 @@
 package nextstep.domain.line;
 
-import nextstep.generator.LineGenerator;
+import nextstep.generator.PointGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +18,10 @@ public class Line {
         checkValidPoints();
     }
 
-    public Line(int playerCounts, LineGenerator lineGenerator) {
+    public Line(int playerCounts, PointGenerator pointGenerator) {
         points = new ArrayList<>();
         for (int index = 0; index < playerCounts -1 ; index++) {
-            points.add(createLine(index, lineGenerator));
+            points.add(createLine(index, pointGenerator));
         }
         checkValidPoints();
     }
@@ -35,14 +35,14 @@ public class Line {
                 });
     }
 
-    private Point createLine(int index, LineGenerator lineGenerator) {
+    private Point createLine(int index, PointGenerator pointGenerator) {
         if (index == 0) {
-            return new Point(lineGenerator);
+            return new Point(pointGenerator);
         }
         if (points.get(index - 1).isConnected()) {
             return new Point(false);
         }
-        return new Point(lineGenerator);
+        return new Point(pointGenerator);
     }
 
     public List<Point> getPoints() {

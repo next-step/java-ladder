@@ -1,6 +1,6 @@
 package nextstep.generator;
 
 @FunctionalInterface
-public interface LineGenerator {
+public interface PointGenerator {
     boolean generate();
 }
