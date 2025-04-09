@@ -31,4 +31,23 @@ class LadderTest {
         .isThrownBy(() -> new Ladder(null))
         .withMessageContaining("Ladder는 높이가 1 이상이어야 합니다.");
   }
+
+  @Test
+  @DisplayName("사다리를 타고 최종 위치로 이동한다")
+  void move() {
+    // 3명 기준, index 0 ~ 2
+    // Line1: 0 <-> 1
+    // Line2: 1 <-> 2
+    // Line3: 2 <-> 1
+
+    Line line1 = new Line(List.of(true, false));  // 0→1
+    Line line2 = new Line(List.of(false, true));  // 1→2
+    Line line3 = new Line(List.of(true, false));  // 2→1
+
+    Ladder ladder = new Ladder(List.of(line1, line2, line3));
+
+    assertThat(ladder.move(0)).isEqualTo(2); // 0→1→2→2
+    assertThat(ladder.move(1)).isEqualTo(1); // 1→1→2→1
+    assertThat(ladder.move(2)).isEqualTo(0); // 2→2→1→0
+  }
 }
