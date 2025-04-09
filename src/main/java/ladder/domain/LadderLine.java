@@ -13,15 +13,23 @@ public class LadderLine {
         this.points = points;
     }
 
-    public int move(int startPosition) {
-        if (startPosition < 0 || startPosition > points.size()) {
-            throw new IllegalArgumentException("Invalid start position");
-        }
+    public Position move(Position startPosition) {
+        validatePosition(startPosition);
 
-        if (isRightConnected(startPosition)) return startPosition + 1;
-        if (isLeftConnected(startPosition)) return startPosition - 1;
+        if (isRightConnected(startPosition.value())) return startPosition.add(1);
+        if (isLeftConnected(startPosition.value())) return startPosition.subtract(1);
 
         return startPosition;
+    }
+
+    private void validatePosition(Position startPosition) {
+        if (startPosition == null) {
+            throw new IllegalArgumentException("Start position cannot be null");
+        }
+
+        if (startPosition.value() > points.size()) {
+            throw new IllegalArgumentException("Start position out of bounds");
+        }
     }
 
     public int size() {

@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -15,7 +14,7 @@ public class Players {
         }
 
         this.players = IntStream.range(0, players.size())
-                .mapToObj(i -> new Player(players.get(i), i))
+                .mapToObj(i -> new Player(players.get(i), new Position(i)))
                 .collect(Collectors.toList());
     }
 
@@ -37,9 +36,13 @@ public class Players {
         }
 
         List<Integer> result = new ArrayList<>(players.size());
-        players.sort(Comparator.comparingInt(Player::getPosition));
-        for (int i = 0; i < players.size(); i++) {
-            Player player = players.get(i);
+        players.sort((p1, p2) -> {
+            if (p1.getPosition().value() == p2.getPosition().value()) {
+                return 0;
+            }
+            return Integer.compare(p1.getPosition().value(), p2.getPosition().value());
+        });
+        for (Player player : players) {
             player.setPosition(ladder.traverse(player.getPosition()));
         }
         return result;

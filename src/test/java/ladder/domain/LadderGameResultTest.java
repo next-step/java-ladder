@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 public class LadderGameResultTest {
     @DisplayName("사다리 게임 실행 결과 확인")
     @Test
@@ -27,7 +25,7 @@ public class LadderGameResultTest {
         // then
         for (int i = 0; i < players.count(); i++) {
             Player player = players.getPlayerAtIndex(i);
-            Assertions.assertThat(gameResult.getResultFor(player)).isEqualTo(i);
+            Assertions.assertThat(gameResult.getResultFor(player)).isEqualTo(results.get(i));
         }
     }
 

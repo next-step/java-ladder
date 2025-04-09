@@ -41,14 +41,10 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public int traverse(int i) {
-        if (i < 0 || i >= width()) {
-            throw new IllegalArgumentException("Invalid index");
-        }
-
+    public Position traverse(Position position) {
         for (LadderLine ladderLine : ladderLines) {
-            i = ladderLine.move(i);
+            position = ladderLine.move(position);
         }
-        return i;
+        return position;
     }
 }

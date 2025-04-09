@@ -16,6 +16,6 @@ public class LadderGameResult {
     }
 
     public String getResultFor(Player player) {
-        return results.get(player.getPosition());
+        return results.get(player.getPosition().value());
     }
 }

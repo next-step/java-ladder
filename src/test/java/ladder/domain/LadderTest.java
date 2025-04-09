@@ -88,10 +88,10 @@ public class LadderTest {
         int expected = 0;
 
         // when
-        int actual = ladder.traverse(0);
+        Position actual = ladder.traverse(new Position(0));
 
         // then
-        assertThat(actual).isEqualTo(expected);
+        assertThat(actual).isEqualTo(new Position(expected));
     }
 
     @DisplayName("큰 사다리 결과 반환")
@@ -105,10 +105,10 @@ public class LadderTest {
         int expected = 2;
 
         // when
-        int actual = ladder.traverse(2);
+        Position actual = ladder.traverse(new Position(2));
 
         // then
-        assertThat(actual).isEqualTo(expected);
+        assertThat(actual).isEqualTo(new Position(expected));
     }
 
     @DisplayName("복잡한 사다리 결과 반환")
@@ -123,12 +123,16 @@ public class LadderTest {
         Ladder ladder = new Ladder(List.of(ladderLineFirst, ladderLineSecond));
 
         // when
-        List<Integer> actual = List.of(ladder.traverse(0),
-                ladder.traverse(1),
-                ladder.traverse(2));
+        Position positionZero = new Position(0);
+        Position positionOne = new Position(1);
+        Position positionTwo = new Position(2);
+
+        List<Position> actual = List.of(ladder.traverse(positionZero),
+                ladder.traverse(positionOne),
+                ladder.traverse(positionTwo));
 
         // then
-        List<Integer> expected = List.of(2, 0, 1);
+        List<Position> expected = List.of(positionTwo, positionZero, positionOne);
         assertThat(actual).isEqualTo(expected);
     }
 } 

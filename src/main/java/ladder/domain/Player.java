@@ -2,9 +2,9 @@ package ladder.domain;
 
 public class Player {
     private final String name;
-    private int position;
+    private Position position;
 
-    public Player(String name, int position) {
+    public Player(String name, Position position) {
         validateName(name);
         this.name = name;
         this.position = position;
@@ -31,14 +31,11 @@ public class Player {
         return name;
     }
 
-    public Integer getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    public void setPosition(Integer position) {
-        if (position < 0) {
-            throw new IllegalArgumentException("Position cannot be negative");
-        }
+    public void setPosition(Position position) {
         this.position = position;
     }
 }

@@ -48,4 +48,7 @@
 - [ ] 사다리 게임 결과 표시
   - [x] LadderGame에 결과 추가
   - [x] Ladder에서 사다리 진행 결과 확인
-  - [ ] LadderGame에서 사다리 게임 실행
+  - [x] LadderGame에서 사다리 게임 실행
+    - [ ] 리팩토링
+      - [x] Position 구현
+      - [ ] setPosition 제거
