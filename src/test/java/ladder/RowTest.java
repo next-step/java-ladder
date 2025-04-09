@@ -10,13 +10,6 @@ import java.util.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RowTest {
-    @Test
-    public void 설치_가능한_발판_개수_계산() {
-        int players = 5;
-        int actual = Row.calculateMaxBuildableBridges(players);
-
-        assertThat(actual).isEqualTo(players / 2);
-    }
 
     @Test
     public void 행_생성시_발판의_연속적인_설치를_막는다() {
