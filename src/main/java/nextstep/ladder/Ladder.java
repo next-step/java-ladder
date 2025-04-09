@@ -32,4 +32,9 @@ public class Ladder {
   public Line lineAt(int index) {
     return lines.get(index);
   }
+
+  public int move(int index) {
+    return lines.stream()
+        .reduce(index, (position, line) -> line.move(position), (a, b) -> b);
+  }
 }
