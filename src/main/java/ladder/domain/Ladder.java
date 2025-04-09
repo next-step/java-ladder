@@ -14,9 +14,7 @@ public class Ladder {
         }
 
         this.width = width;
-        this.ladderLines = IntStream.range(0, height)
-                .mapToObj(i -> new LadderLine(ladderLineGenerator.generateLadderLine(width)))
-                .collect(Collectors.toList());
+        this.ladderLines = initializeLadderLines(height, width, ladderLineGenerator);
     }
 
     public Ladder(List<LadderLine> ladderLines) {
@@ -46,5 +44,11 @@ public class Ladder {
             position = ladderLine.move(position);
         }
         return position;
+    }
+
+    private List<LadderLine> initializeLadderLines(int height, int width, LadderLineGenerator ladderLineGenerator) {
+        return IntStream.range(0, height)
+                .mapToObj(i -> new LadderLine(ladderLineGenerator.generateLadderLine(width - 1)))
+                .collect(Collectors.toList());
     }
 }

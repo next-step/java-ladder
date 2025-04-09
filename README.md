@@ -49,8 +49,9 @@
   - [x] LadderGame에 결과 추가
   - [x] Ladder에서 사다리 진행 결과 확인
   - [x] LadderGame에서 사다리 게임 실행
-    - [ ] 리팩토링
+    - [x] 리팩토링
       - [x] Position 구현
       - [x] setPosition 제거
-      - [ ] LadderGameResult.getResultFor 리팩토링
-      - [ ] PlayerName 구현
+      - [x] LadderGameResult.getResultFor 리팩토링
+  - [ ] Views 구현
+    - [ ] 실행 결과 입력 받기

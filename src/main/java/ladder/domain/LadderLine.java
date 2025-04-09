@@ -44,12 +44,12 @@ public class LadderLine {
     }
 
     private boolean isValid(List<Boolean> points) {
-        return !isEmpty(points) && IntStream.range(0, points.size() - 1)
+        return !isNull(points) && IntStream.range(0, points.size() - 1)
                 .noneMatch(i -> points.get(i) && points.get(i + 1));
     }
 
-    private boolean isEmpty(List<Boolean> points) {
-        return points == null || points.isEmpty();
+    private boolean isNull(List<Boolean> points) {
+        return points == null;
     }
 
     private boolean isLeftConnected(int startPosition) {
