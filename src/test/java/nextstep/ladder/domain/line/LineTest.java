@@ -5,6 +5,7 @@ import nextstep.ladder.domain.user.LadderUsersTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class LineTest {
@@ -12,12 +13,12 @@ class LineTest {
     private final LineCreateStrategy lineCreateStrategyStub = new LineCreateStrategy() {
         @Override
         public boolean createFirstPoint() {
-            return false;
+            return true;
         }
 
         @Override
         public boolean createNextPoint(boolean prevPoint) {
-            return false;
+            return !prevPoint;
         }
     };
 
@@ -25,5 +26,12 @@ class LineTest {
     @Test
     public void testConstructor() {
         assertDoesNotThrow(() -> new Line(LadderUsersTest.LadderUSERS1, lineCreateStrategyStub));
+    }
+
+    @DisplayName("사다리 Line 출력 포멧")
+    @Test
+    public void testToString() {
+        Line line = new Line(LadderUsersTest.LadderUSERS1, lineCreateStrategyStub);
+        assertThat(line.toString()).isEqualTo("|-----|     |-----|     |");
     }
 }
