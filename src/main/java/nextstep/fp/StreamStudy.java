@@ -47,6 +47,6 @@ public class StreamStudy {
         return numbers.stream()
                 .filter(number -> number > 3)
                 .mapToLong(number -> number * 2)
-                .sum();
+                .reduce(0, Long::sum); // vs sum()
     }
 }
