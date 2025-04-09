@@ -9,6 +9,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Line {
+    private static final String WALL = "|";
+    private static final String LINE = "-----";
+    private static final String EMPTY_LINE = "     ";
+
     private final List<Point> points;
 
     public Line(List<Boolean> points) {
@@ -64,5 +68,19 @@ public class Line {
     @Override
     public int hashCode() {
         return Objects.hashCode(points);
+    }
+
+    @Override
+    public String toString() {
+        return points.stream()
+                .map(point -> WALL + isLineOrBlank(point))
+                .collect(Collectors.joining("", EMPTY_LINE, WALL));
+    }
+
+    private static String isLineOrBlank(Point point){
+        if(point.isConnected()) {
+            return LINE;
+        }
+        return EMPTY_LINE;
     }
 }

@@ -31,22 +31,9 @@ public class ResultView {
     }
 
     private static void printLadderResult(Ladder ladder) {
-        ladder.getAllLines()
-                .forEach(ResultView::printLines);
-    }
-
-    private static void printLines(Line line){
-        System.out.print(EMPTY_LINE);
-        line.getPoints().forEach(point ->
-            System.out.print(WALL+ isLineOrBlank(point)));
-        System.out.println(WALL);
-    }
-
-    private static String isLineOrBlank(Point point){
-        if(point.isConnected()) {
-            return LINE;
-        }
-        return EMPTY_LINE;
+        ladder.getAllLines().stream()
+                .map(Line::toString)
+                .forEach(System.out::println);
     }
 
     private static String printFullPlayerNames(String name){
