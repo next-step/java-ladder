@@ -24,7 +24,7 @@ public class RowTest {
         Row row = Row.generateRow(playerCount, new FixedBridgeGenerator(bridges));
 
         for (int i = 1; i < playerCount; i++) {
-            assertThat(row.isConnected(i - 1) && row.isConnected(i)).isFalse();
+            assertThat(row.isConnectedToRight(i - 1) && row.isConnectedToRight(i)).isFalse();
         }
 
     }

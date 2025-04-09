@@ -47,20 +47,12 @@ public class OutputView {
     private static String generateRowString(Row row, int playerCount) {
         StringBuilder rowString = new StringBuilder(NO_BRIDGE);
 
-        for (int i = 0; i < playerCount - 1; i++) {
-            rowString.append(row.isConnected(i) ? BRIDGE : NO_BRIDGE);
+        int numberOfBridges = playerCount - 1;
+        for (int i = 0; i < numberOfBridges; i++) {
+            rowString.append(row.isConnectedToRight(i) ? BRIDGE : NO_BRIDGE);
         }
 
         return rowString.toString();
-    }
-
-    private static String centerAlign(String name) {
-        int namePaddingSize = NAME_BOX_SIZE - name.length();
-
-        int frontPadding = namePaddingSize / 2;
-        int rearPadding = namePaddingSize - frontPadding;
-
-        return " ".repeat(frontPadding) + name + " ".repeat(rearPadding);
     }
 
     public static void printPlayerResult(LadderGameResult gameResult, String targetName) {
@@ -78,5 +70,14 @@ public class OutputView {
     private static void printAllPlayersResult(LadderGameResult gameResult) {
         Map<Player, Prize> gameResultMap = gameResult.getGameResult();
         gameResultMap.forEach(((player, prize) -> System.out.println(player.getName() + " : " + prize.getPrize())));
+    }
+
+    private static String centerAlign(String name) {
+        int namePaddingSize = NAME_BOX_SIZE - name.length();
+
+        int frontPadding = namePaddingSize / 2;
+        int rearPadding = namePaddingSize - frontPadding;
+
+        return " ".repeat(frontPadding) + name + " ".repeat(rearPadding);
     }
 }

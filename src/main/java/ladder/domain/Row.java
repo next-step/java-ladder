@@ -4,6 +4,7 @@ import ladder.generator.BridgeGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Row {
     private final List<Bridge> bridges;
@@ -15,48 +16,49 @@ public class Row {
     public static Row generateRow(int playerCount, BridgeGenerator bridgeGenerator) {
         List<Bridge> bridges = new ArrayList<>();
 
-        for (int i = 0; i < playerCount - 1; i++) {
-            Bridge bridge = bridgeGenerator.generate();
-
-            boolean connectedWithPrevious = isConnectedWithPrevious(bridge, i, bridges);
-            bridges.add(connectedWithPrevious ? Bridge.DISCONNECTED : bridge);
+        int numberOfBridges = playerCount - 1;
+        for (int position = 0; position < numberOfBridges; position++) {
+            bridges.add(generateValidBridge(position, bridges, bridgeGenerator));
         }
 
         return new Row(bridges);
     }
 
-    private static boolean isConnectedWithPrevious(Bridge bridge, int position, List<Bridge> bridges) {
-        return bridge == Bridge.CONNECTED && isPreviousConnected(position, bridges);
+    public int move(int position) {
+        if (isConnectedToLeft(position, bridges)) {
+            return position - 1;
+        }
+
+        if (isConnectedToRight(position)) {
+            return position + 1;
+        }
+
+        return position;
     }
 
-    private static boolean isPreviousConnected(int position, List<Bridge> bridges) {
-        int left = position - 1;
+    private static Bridge generateValidBridge(int position, List<Bridge> bridges, BridgeGenerator bridgeGenerator) {
+        Bridge bridge = bridgeGenerator.generate();
+        if (bridge == Bridge.CONNECTED && isConnectedToLeft(position, bridges)) {
+            return Bridge.DISCONNECTED;
+        }
 
-        if (left < 0) {
+        return bridge;
+    }
+
+    private static boolean isConnectedToLeft(int position, List<Bridge> bridges) {
+        if (position <= 0) {
             return false;
         }
 
-        return bridges.get(left) == Bridge.CONNECTED;
+        return bridges.get(position - 1) == Bridge.CONNECTED;
     }
 
-    public boolean isConnected(int position) {
+    public boolean isConnectedToRight(int position) {
         if (position >= bridges.size()) {
             return false;
         }
 
         return bridges.get(position) == Bridge.CONNECTED;
-    }
-
-    public int move(int position) {
-        if (isPreviousConnected(position, bridges)) {
-            return position - 1;
-        }
-
-        if (isConnected(position)) {
-            return position + 1;
-        }
-
-        return position;
     }
 
 }
