@@ -19,4 +19,8 @@ public class LadderGame {
         Players traversed = players.traverse(ladder);
         return new LadderGameResult(traversed, results);
     }
+
+    public List<String> getResults() {
+        return results;
+    }
 }

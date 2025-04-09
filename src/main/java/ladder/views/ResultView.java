@@ -2,6 +2,7 @@ package ladder.views;
 
 import ladder.domain.*;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 public class ResultView {
@@ -10,11 +11,19 @@ public class ResultView {
     public static final int SEGMENT_COUNT = 5;
 
     public static void printResult(Ladder ladder, LadderGame ladderGame) {
-        System.out.println(System.lineSeparator());
+        System.out.println();
         System.out.println("실행결과");
 
         ResultView.printPlayer(ladderGame.players());
         ResultView.printLadder(ladder);
+        ResultView.printResults(ladderGame.getResults());
+    }
+
+    private static void printResults(List<String> results) {
+        StringBuilder sb = new StringBuilder();
+        results.stream().map(ResultView::getStringWithSpace)
+                .forEachOrdered(sb::append);
+        System.out.println(sb);
     }
 
     public static void printPlayer(Players players) {
@@ -40,7 +49,11 @@ public class ResultView {
 
     private static String getNameWithSpace(Player playerAtIndex) {
         String nameAtIndex = playerAtIndex.name();
-        return nameAtIndex + " ".repeat(SEGMENT_COUNT - nameAtIndex.length());
+        return getStringWithSpace(nameAtIndex);
+    }
+
+    private static String getStringWithSpace(String nameAtIndex) {
+        return nameAtIndex + " ".repeat(SEGMENT_COUNT - nameAtIndex.length() + 1);
     }
 
     private static String getLine(LadderLine ladderLine, int index) {

@@ -54,4 +54,4 @@
       - [x] setPosition 제거
       - [x] LadderGameResult.getResultFor 리팩토링
   - [ ] Views 구현
-    - [ ] 실행 결과 입력 받기
+    - [x] 실행결과 입력 받기 및 실행결과 표시
