@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.line;
 
+import nextstep.ladder.domain.line.strategy.LineCreateStrategy;
 import nextstep.ladder.domain.user.LadderUsersTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

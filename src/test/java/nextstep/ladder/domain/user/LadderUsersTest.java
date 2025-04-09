@@ -9,8 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LadderUsersTest {
     public static LadderUsers LadderUSERS1 = new LadderUsers("pobi,honux,crong,jk");
 
-
-    @DisplayName("Users 인스턴스 만들기")
+    @DisplayName("LadderUsers 인스턴스 만들기")
     @Test
     public void testConstructor() {
         assertDoesNotThrow(() -> new LadderUsers("pobi,honux,crong,jk"));

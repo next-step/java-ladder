@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.line;
+package nextstep.ladder.domain.line.strategy;
 
 public interface LineCreateStrategy {
     boolean createFirstPoint();

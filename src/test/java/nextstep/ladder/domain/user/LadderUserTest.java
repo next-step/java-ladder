@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LadderUserTest {
 
-    @DisplayName("User 인스턴스 만들기")
+    @DisplayName("LadderUser 인스턴스 만들기")
     @Test
     public void testConstructor() {
         assertDoesNotThrow(() -> new LadderUser("jk"));
