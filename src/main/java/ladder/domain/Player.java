@@ -2,7 +2,7 @@ package ladder.domain;
 
 public class Player {
     private final String name;
-    private final int position;
+    private int position;
 
     public Player(String name, int position) {
         validateName(name);
@@ -33,5 +33,12 @@ public class Player {
 
     public Integer getPosition() {
         return position;
+    }
+
+    public void setPosition(Integer position) {
+        if (position < 0) {
+            throw new IllegalArgumentException("Position cannot be negative");
+        }
+        this.position = position;
     }
 }

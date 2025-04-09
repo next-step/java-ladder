@@ -1,6 +1,7 @@
 package ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -35,11 +36,12 @@ public class Players {
             throw new IllegalArgumentException("Ladder width must match the number of players");
         }
 
-        List<Integer> result = new ArrayList<>();
+        List<Integer> result = new ArrayList<>(players.size());
+        players.sort(Comparator.comparingInt(Player::getPosition));
         for (int i = 0; i < players.size(); i++) {
-            result.add(ladder.traverse(i));
+            Player player = players.get(i);
+            player.setPosition(ladder.traverse(player.getPosition()));
         }
-
         return result;
     }
 }

@@ -18,7 +18,7 @@ public class LadderGame {
     }
 
     public LadderGameResult play(Ladder ladder) {
-        List<Integer> result = players.traverse(ladder);
-        return new LadderGameResult(players, result);
+        players.traverse(ladder);
+        return new LadderGameResult(players, results);
     }
 }
