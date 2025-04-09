@@ -53,3 +53,4 @@
       - [x] Position 구현
       - [x] setPosition 제거
       - [ ] LadderGameResult.getResultFor 리팩토링
+      - [ ] PlayerName 구현
