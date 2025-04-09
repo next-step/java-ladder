@@ -16,7 +16,7 @@ public class Line {
     Random random = new Random();
 
     for (int i = 0; i < count - 1; i++) {
-      result.add(canDrawLine(result, i) ? random.nextBoolean() : false);
+      result.add(canDrawLine(result, i) && random.nextBoolean());
     }
 
     return result;

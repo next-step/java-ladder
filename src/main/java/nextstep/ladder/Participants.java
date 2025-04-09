@@ -10,6 +10,10 @@ public class Participants {
   private final List<String> names;
 
   private Participants(List<String> names) {
+    if (names.size() < 2) {
+      throw new IllegalArgumentException("참여자는 2명 이상이어야 합니다.");
+    }
+
     this.names = names;
   }
 

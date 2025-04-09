@@ -6,6 +6,10 @@ public class Ladder {
   private final List<Line> lines;
 
   public Ladder(List<Line> lines) {
+    if (lines == null || lines.isEmpty()) {
+      throw new IllegalArgumentException("Ladder는 높이가 1 이상이어야 합니다.");
+    }
+
     this.lines = lines;
   }
 
