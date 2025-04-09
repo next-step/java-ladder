@@ -1,9 +1,10 @@
 package laddergameRDD;
 
+import laddergameRDD.domain.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static laddergameRDD.Constants.*;
+import static laddergameRDD.common.Constants.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 

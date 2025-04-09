@@ -1,6 +1,6 @@
-package laddergameRDD;
+package laddergameRDD.domain;
 
-import static laddergameRDD.Constants.*;
+import static laddergameRDD.common.Constants.*;
 
 public class Point {
     private final boolean previous;

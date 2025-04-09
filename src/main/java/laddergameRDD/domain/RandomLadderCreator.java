@@ -1,4 +1,7 @@
-package laddergameRDD;
+package laddergameRDD.domain;
+
+import laddergameRDD.engine.LadderCreator;
+import laddergameRDD.engine.SelectStrategy;
 
 public class RandomLadderCreator implements LadderCreator {
     @Override

@@ -1,10 +1,10 @@
 package laddergameRDD;
 
+import laddergameRDD.domain.Row;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class RowTest {
     @DisplayName("사다리 한 줄을 내려가는 기능 정상 동작")

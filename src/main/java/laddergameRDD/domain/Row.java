@@ -1,4 +1,6 @@
-package laddergameRDD;
+package laddergameRDD.domain;
+
+import laddergameRDD.engine.SelectStrategy;
 
 import java.util.ArrayList;
 import java.util.List;

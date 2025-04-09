@@ -1,4 +1,4 @@
-package laddergameRDD;
+package laddergameRDD.common;
 
 public class Constants {
     public static final int LEFT = -1;
