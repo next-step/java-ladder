@@ -11,11 +11,15 @@ public class LadderGameResult {
         this.results = results;
     }
 
-    public Players players() {
-        return players;
+    public String getResultFor(Player targetPlayer) {
+        String name = targetPlayer.name();
+        for (int i = 0; i < players.count(); i++) {
+            Player selectedPlayer = players.getPlayerAtIndex(i);
+            if (selectedPlayer.name().equals(name)) {
+                return results.get(selectedPlayer.getPosition().value());
+            }
+        }
+        throw new IllegalArgumentException("Player not found in the game results");
     }
 
-    public String getResultFor(Player player) {
-        return results.get(player.getPosition().value());
-    }
 }

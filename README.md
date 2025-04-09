@@ -51,4 +51,5 @@
   - [x] LadderGame에서 사다리 게임 실행
     - [ ] 리팩토링
       - [x] Position 구현
-      - [ ] setPosition 제거
+      - [x] setPosition 제거
+      - [ ] LadderGameResult.getResultFor 리팩토링

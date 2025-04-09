@@ -1,14 +1,12 @@
 package ladder.domain;
 
-import ladder.Height;
-
 import java.util.List;
 
 public class LadderGame {
     private final Players players;
     private final List<String> results;
 
-    public LadderGame(Players players, List<String> results, Height height) {
+    public LadderGame(Players players, List<String> results) {
         this.players = players;
         this.results = results;
     }
@@ -18,7 +16,7 @@ public class LadderGame {
     }
 
     public LadderGameResult play(Ladder ladder) {
-        players.traverse(ladder);
-        return new LadderGameResult(players, results);
+        Players traversed = players.traverse(ladder);
+        return new LadderGameResult(traversed, results);
     }
 }

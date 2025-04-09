@@ -15,7 +15,8 @@ public class InputView {
         String input = scanner.nextLine();
         String[] names = input.split(",");
         List<String> playerStrings = Arrays.asList(names);
-        return new Players(playerStrings);
+
+        return Players.createWithNames(playerStrings);
     }
 
     public static Height createIntegerWithQuery(String query) {

@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import ladder.Height;
 import ladder.domain.ladderlinegenerator.FalseLadderLineGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -13,10 +12,10 @@ public class LadderGameResultTest {
     @Test
     void ladderGameResultTest() {
         // given
-        Players players = new Players(List.of("more", "much", "less"));
+        Players players = Players.createWithNames(List.of("more", "much", "less"));
         List<String> results = List.of("result1", "result2", "result3");
         int height = 4;
-        LadderGame ladderGame = new LadderGame(players, results, new Height(height));
+        LadderGame ladderGame = new LadderGame(players, results);
         Ladder ladder = new Ladder(height, players.count(), new FalseLadderLineGenerator());
 
         // when
@@ -40,10 +39,10 @@ public class LadderGameResultTest {
         LadderLine ladderLineSecond = new LadderLine(points2);
 
         Ladder ladder = new Ladder(List.of(ladderLineFirst, ladderLineSecond));
-        Players players = new Players(List.of("more", "much", "less"));
+        Players players = Players.createWithNames(List.of("more", "much", "less"));
         List<String> results = List.of("result1", "result2", "result3");
 
-        LadderGame ladderGame = new LadderGame(players, results, new Height(ladder.height()));
+        LadderGame ladderGame = new LadderGame(players, results);
 
         // when
         LadderGameResult gameResult = ladderGame.play(ladder);

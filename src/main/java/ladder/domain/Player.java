@@ -2,12 +2,20 @@ package ladder.domain;
 
 public class Player {
     private final String name;
-    private Position position;
+    private final Position position;
 
     public Player(String name, Position position) {
         validateName(name);
         this.name = name;
         this.position = position;
+    }
+
+    public String name() {
+        return name;
+    }
+
+    public Position getPosition() {
+        return position;
     }
 
     private void validateName(String name) {
@@ -25,17 +33,5 @@ public class Player {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Player name cannot be null or empty");
         }
-    }
-
-    public String name() {
-        return name;
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
     }
 }
