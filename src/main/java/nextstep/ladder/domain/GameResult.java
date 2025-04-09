@@ -12,6 +12,6 @@ public class GameResult {
 
     public String finalResult(int startIndex) {
         int finalIndex = ladder.finalIndex(startIndex);
-        return results.getResults().get(finalIndex).getResult();
+        return results.getResult(finalIndex);
     }
 }

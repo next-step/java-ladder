@@ -22,7 +22,7 @@ public class LadderController {
             if (input.equals("all")) {
                 printAllResults();
             } else {
-                printSingleResult(input);
+                printSingleResultByName(input);
             }
         }
     }
@@ -36,14 +36,13 @@ public class LadderController {
             });
     }
 
-    private void printSingleResult(String input) {
-        if (players.findPlayerIndex(input) != -1) {
-            System.out.println("실행 결과");
-            int playerIndex = players.findPlayerIndex(input);
-            System.out.println(gameResult.finalResult(playerIndex));
-        } else {
-            System.out.println("없는 이름입니다.");
-        }
+    private void printSingleResultByName(String name) {
+        players.findPlayerByName(name)
+            .map(person -> gameResult.finalResult(person.getStartPosition()))
+            .ifPresentOrElse(
+                System.out::println,
+                () -> System.out.println("없는 이름입니다.")
+            );
     }
 
 }

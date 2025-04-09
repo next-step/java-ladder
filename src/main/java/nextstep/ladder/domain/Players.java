@@ -1,9 +1,10 @@
 package nextstep.ladder.domain;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Players {
 
@@ -14,9 +15,9 @@ public class Players {
     }
 
     private static List<Person> createPlayers(String players) {
-        return Arrays.stream(players.split(","))
-            .map(String::trim)
-            .map(Person::new)
+        String[] names = players.split(",");
+        return IntStream.range(0, names.length)
+            .mapToObj(i -> new Person(names[i].trim(), i))
             .collect(Collectors.toList());
     }
 
@@ -41,4 +42,9 @@ public class Players {
         return -1;
     }
 
+    public Optional<Person> findPlayerByName(String name) {
+        return players.stream()
+            .filter(person -> person.matchByName(name)) // person에게 물어보는 구조
+            .findFirst();
+    }
 }

@@ -39,12 +39,20 @@ public class Line {
     }
 
     public int move(int index) {
-        if (index < points.size() && points.get(index).hasRight()) {
+        if (hasRightLine(index)) {
             return index + 1;
         }
-        if (index > 0 && points.get(index - 1).hasRight()) {
+        if (hasLeftLine(index)) {
             return index - 1;
         }
         return index;
+    }
+
+    private boolean hasRightLine(int index) {
+        return index < points.size() && points.get(index).hasRight();
+    }
+
+    private boolean hasLeftLine(int index) {
+        return index > 0 && points.get(index - 1).hasRight();
     }
 }

@@ -17,6 +17,10 @@ public class Results {
         return results;
     }
 
+    public String getResult(int index) {
+        return results.get(index).getResult();
+    }
+
     public static Results of(String results) {
         return new Results(createResults(results));
     }
