@@ -10,17 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class LineTest {
 
-    private final LineCreateStrategy lineCreateStrategyStub = new LineCreateStrategy() {
-        @Override
-        public boolean createFirstPoint() {
-            return true;
-        }
-
-        @Override
-        public boolean createNextPoint(boolean prevPoint) {
-            return !prevPoint;
-        }
-    };
+    private final LineCreateStrategy lineCreateStrategyStub = prevPoint -> !prevPoint;
 
     @DisplayName("Line 인스턴스 만들기")
     @Test

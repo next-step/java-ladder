@@ -1,6 +1,6 @@
 package nextstep.ladder.domain.line.strategy;
 
+@FunctionalInterface
 public interface LineCreateStrategy {
-    boolean createFirstPoint();
-    boolean createNextPoint(boolean prevPoint);
+    boolean create(boolean prevPoint);
 }
