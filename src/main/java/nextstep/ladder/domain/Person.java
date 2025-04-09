@@ -3,11 +3,17 @@ package nextstep.ladder.domain;
 public class Person {
 
     private final String name;
+    private final int startPosition;
 
-    public Person(String name) {
+    public Person(String name, int startPosition) {
         checkNameLength(name);
         checkNameNotNull(name);
         this.name = name;
+        this.startPosition = startPosition;
+    }
+
+    public Person(String name) {
+        this(name, 0);
     }
 
     private void checkNameLength(String name) {
@@ -24,5 +30,13 @@ public class Person {
 
     public String name() {
         return name;
+    }
+
+    public boolean matchByName(String name) {
+        return this.name.equals(name);
+    }
+
+    public int getStartPosition() {
+        return startPosition;
     }
 }

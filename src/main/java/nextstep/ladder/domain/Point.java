@@ -8,6 +8,10 @@ public class Point {
         this.right = right;
     }
 
+    public static Point withoutRight() {
+        return new Point(false);
+    }
+
     public boolean hasRight() {
         return right;
     }

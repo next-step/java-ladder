@@ -2,6 +2,7 @@ package nextstep.ladder.view;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Players;
+import nextstep.ladder.domain.Results;
 
 public class ResultView {
 
@@ -22,5 +23,12 @@ public class ResultView {
             });
             System.out.println("|");
         });
+    }
+
+    public static void printResults(Results results) {
+        results.getResults().forEach(result -> {
+            System.out.printf("%-" + NAME_WIDTH + "s", result.getResult());
+        });
+        System.out.println();
     }
 }
