@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 
-import nextstep.ladder.view.ResultView;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
