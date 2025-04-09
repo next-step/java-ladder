@@ -17,7 +17,7 @@ public class Ladder {
 
     public Map<Integer, Integer> makeGameResult() {
         Map<Integer, Integer> result = new LinkedHashMap<>();
-        for (int currentColumn = 0; i < columnNumber; ++currentColumn) {
+        for (int currentColumn = 0; currentColumn < columnNumber; ++currentColumn) {
             result.put(currentColumn, lines.goDownToEnd(currentColumn));
         }
         return result;
