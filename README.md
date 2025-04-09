@@ -36,4 +36,5 @@
 * Domain
   * 사다리를 실행하기 : LadderExecutor
   * 사다리 결과 저장 : Results
+  * 참가자-결과 매핑 : MappingTable
 
