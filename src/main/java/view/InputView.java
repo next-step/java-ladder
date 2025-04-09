@@ -14,11 +14,11 @@ public class InputView {
         System.out.println(INPUT_MESSAGE);
         return Arrays.stream(scanner.nextLine().split(",")) // 쉼표 기준으로 분리
                 .map(String::trim) // 앞뒤 공백 제거
-                .peek(InputView::validateInput) // 자동차 이름 검증
+                .peek(InputView::validateInput) //이름 검증
                 .collect(Collectors.toList());
     }
 
-    public int getLadderCount() {
+    public static int getLadderCount() {
         System.out.println(INPUT_MESSAGE2);
         Scanner sc = new Scanner(System.in);
         return sc.nextInt();
@@ -29,9 +29,6 @@ public class InputView {
             throw new IllegalArgumentException("입력 값이 null 이거나 빈 문자열 입니다.");
         }
 
-        if (input.length() > 5) {
-            throw new IllegalArgumentException("자동차 이름은 5자를 초과할 수 없습니다: " + input);
-        }
     }
 
 

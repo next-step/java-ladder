@@ -13,7 +13,7 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
-    public void printline() {
-        lines.forEach(Line::print);
+    public List<Line> getLines() {
+        return lines;
     }
 }

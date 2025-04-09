@@ -17,13 +17,7 @@ public class Line {
         }
     }
 
-    public void print() {
-        StringBuilder builder = new StringBuilder();
-        for (boolean point : points) {
-            builder.append("|");
-            builder.append(point ? "-----" : "     ");
-        }
-        builder.append("|");
-        System.out.println(builder);
+    public List<Boolean> getPoints() {
+        return points;
     }
 }
