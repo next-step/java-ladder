@@ -5,7 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LadderUsers {
-    private List<LadderUser> ladderUsers;
+
+    private final List<LadderUser> ladderUsers;
 
     public LadderUsers(String names) {
         this.ladderUsers = Stream.of(names.split(",")).map(LadderUser::new).collect(Collectors.toList());
@@ -17,5 +18,12 @@ public class LadderUsers {
 
     public int getSize() {
         return ladderUsers.size();
+    }
+
+    @Override
+    public String toString() {
+        return ladderUsers.stream()
+            .map(LadderUser::toString)
+            .collect(Collectors.joining(" ", "", ""));
     }
 }

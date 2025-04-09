@@ -32,10 +32,12 @@ class LinesTest {
     @Test
     public void testToString() {
         Lines lines = new Lines(LadderUsersTest.LadderUSERS1, HeightTest.HEIGHT1, lineCreateStrategyStub);
-        assertThat(lines.toString()).isEqualTo(
-            "|-----|     |-----|     |\n" +
-                "|-----|     |-----|     |\n" +
-                "|-----|     |-----|     |"
-        );
+        System.out.println(lines);
+        assertThat(lines.toString())
+            .isEqualTo(
+                "  |-----|     |-----|\n" +
+                    "  |-----|     |-----|\n" +
+                    "  |-----|     |-----|"
+            );
     }
 }

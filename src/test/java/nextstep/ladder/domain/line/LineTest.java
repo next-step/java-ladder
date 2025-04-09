@@ -32,6 +32,6 @@ class LineTest {
     @Test
     public void testToString() {
         Line line = new Line(LadderUsersTest.LadderUSERS1, lineCreateStrategyStub);
-        assertThat(line.toString()).isEqualTo("|-----|     |-----|     |");
+        assertThat(line.toString()).isEqualTo("  |-----|     |-----|");
     }
 }

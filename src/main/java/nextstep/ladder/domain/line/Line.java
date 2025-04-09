@@ -9,12 +9,13 @@ import java.util.stream.Collectors;
 
 public class Line {
 
+    private static final int WIDTH = 5;
     private final List<Boolean> points = new ArrayList<>();
 
     public Line(LadderUsers ladderUsers, LineCreateStrategy lineCreateStrategy) {
         points.add(lineCreateStrategy.createFirstPoint());
 
-        for (int i = 1; i < ladderUsers.getSize(); i++) {
+        for (int i = 1; i < ladderUsers.getSize() - 1; i++) {
             boolean nextPoint = lineCreateStrategy.createNextPoint(points.get(i - 1));
             points.add(nextPoint);
         }
@@ -23,7 +24,7 @@ public class Line {
     @Override
     public String toString() {
         return points.stream()
-            .map(point -> point ? "|-----" : "|     ")
-            .collect(Collectors.joining("", "", "|"));
+            .map(point -> point ? "|" + "-".repeat(WIDTH) : "|" + " ".repeat(WIDTH))
+            .collect(Collectors.joining("", "  ", "|"));
     }
 }

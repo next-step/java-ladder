@@ -11,7 +11,7 @@ public class Height {
         this.value = height;
     }
 
-    public int getHeight() {
+    public int getValue() {
         return value;
     }
 }

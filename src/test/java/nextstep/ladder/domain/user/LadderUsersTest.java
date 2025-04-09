@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LadderUsersTest {
@@ -21,5 +22,11 @@ public class LadderUsersTest {
         assertThatThrownBy(() -> new LadderUsers("pobi"))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("유저는 2명 이상이여야 합니다.");
+    }
+
+    @DisplayName("LadderUsers 출력 포멧")
+    @Test
+    public void testToString() {
+        assertThat(new LadderUsers("honux,pobi").toString()).isEqualTo("honux pobi ");
     }
 }
