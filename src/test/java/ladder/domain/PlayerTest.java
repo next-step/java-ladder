@@ -10,18 +10,18 @@ class PlayerTest {
     @DisplayName("null 으로 생성 시 에러")
     @Test
     void createWithNull() {
-        assertThrows(IllegalArgumentException.class, () -> new Player(null));
+        assertThrows(IllegalArgumentException.class, () -> new Player(null, 0));
     }
 
     @DisplayName("공백으로 생성 시 에러")
     @Test
     void createWithBlank() {
-        assertThrows(IllegalArgumentException.class, () -> new Player(""));
+        assertThrows(IllegalArgumentException.class, () -> new Player("", 0));
     }
 
     @DisplayName("5글자 이상으로 생성 시 에러")
     @Test
     void createWithLong() {
-        assertThrows(IllegalArgumentException.class, () -> new Player("123456"));
+        assertThrows(IllegalArgumentException.class, () -> new Player("123456", 0));
     }
 }

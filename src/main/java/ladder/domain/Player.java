@@ -2,10 +2,12 @@ package ladder.domain;
 
 public class Player {
     private final String name;
+    private final int position;
 
-    public Player(String name) {
+    public Player(String name, int position) {
         validateName(name);
         this.name = name;
+        this.position = position;
     }
 
     private void validateName(String name) {
@@ -27,5 +29,9 @@ public class Player {
 
     public String name() {
         return name;
+    }
+
+    public Integer getPosition() {
+        return position;
     }
 }

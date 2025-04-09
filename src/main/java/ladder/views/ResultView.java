@@ -9,12 +9,11 @@ public class ResultView {
     public static final String LADDER_SEPARATOR = "|";
     public static final int SEGMENT_COUNT = 5;
 
-    public static void printResult(LadderGame ladderGame) {
+    public static void printResult(Ladder ladder, LadderGame ladderGame) {
         System.out.println(System.lineSeparator());
         System.out.println("실행결과");
 
         ResultView.printPlayer(ladderGame.players());
-        Ladder ladder = ladderGame.createLadder();
         ResultView.printLadder(ladder);
     }
 
