@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,6 +27,10 @@ public class Line {
         }
 
         return points;
+    }
+
+    public List<Boolean> getPoints() {
+        return Collections.unmodifiableList(points);
     }
 
     @Override
