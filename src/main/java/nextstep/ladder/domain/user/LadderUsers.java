@@ -9,6 +9,7 @@ public class LadderUsers {
     private final List<LadderUser> ladderUsers;
 
     public LadderUsers(String names) {
+        // TODO 중복 이름 검사
         this.ladderUsers = Stream.of(names.split(",")).map(LadderUser::new).collect(Collectors.toList());
 
         if (this.ladderUsers.size() <= 1) {
