@@ -19,8 +19,8 @@ public class Ladder {
                 .collect(Collectors.toList()));
     }
 
-    public int move(int position) {
-        int resultPosition = position;
+    public int move(int startPosition) {
+        int resultPosition = startPosition;
 
         for (Row row : rows) {
             resultPosition = row.move(resultPosition);
