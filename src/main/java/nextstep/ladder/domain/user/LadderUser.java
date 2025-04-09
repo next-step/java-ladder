@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.user;
 
+import java.util.Objects;
+
 public class LadderUser {
 
     private static final int MIN_WIDTH = 5;
@@ -20,5 +22,18 @@ public class LadderUser {
         int leftPadding = (MIN_WIDTH - value.length()) / 2;
         int rightPadding = MIN_WIDTH - value.length() - leftPadding;
         return " ".repeat(leftPadding) + value + " ".repeat(rightPadding);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LadderUser that = (LadderUser) o;
+        return Objects.equals(value, that.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(value);
     }
 }
