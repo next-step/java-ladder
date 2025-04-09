@@ -10,7 +10,7 @@ public class ResultView {
     public static final String LADDER_SEPARATOR = "|";
     public static final int SEGMENT_COUNT = 5;
 
-    public static void printResult(Ladder ladder, LadderGame ladderGame) {
+    public static void printLadderGame(Ladder ladder, LadderGame ladderGame) {
         System.out.println();
         System.out.println("실행결과");
 
@@ -59,5 +59,23 @@ public class ResultView {
     private static String getLine(LadderLine ladderLine, int index) {
         String lineSegment = ladderLine.getPoint(index) ? "-" : " ";
         return lineSegment.repeat(SEGMENT_COUNT) + LADDER_SEPARATOR;
+    }
+
+    public static void printResultForTarget(LadderGameResult gameResult, String target) {
+        if (target.equals("!")) {
+            return;
+        }
+
+        System.out.println();
+        System.out.println("실행 결과");
+
+        if (target.equals("all")) {
+            gameResult.getResultForAll()
+                    .forEach((name, result) -> System.out.println(name + " : " + result));
+            return;
+        }
+
+        String result = gameResult.getResultFor(target);
+        System.out.println(result);
     }
 }

@@ -55,3 +55,5 @@
       - [x] LadderGameResult.getResultFor 리팩토링
   - [ ] Views 구현
     - [x] 실행결과 입력 받기 및 실행결과 표시
+    - [ ] 개인별 결과 출력 구현
+    - [ ] 전체 결과 출력 구현

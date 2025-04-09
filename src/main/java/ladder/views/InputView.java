@@ -33,4 +33,11 @@ public class InputView {
         String[] split = scanner.nextLine().split(",");
         return List.of(split);
     }
+
+    public static String createStringWithQuery(String query) {
+        System.out.println();
+        System.out.println(query);
+
+        return scanner.nextLine();
+    }
 }

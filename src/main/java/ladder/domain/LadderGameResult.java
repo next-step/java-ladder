@@ -21,12 +21,15 @@ public class LadderGameResult {
         return playerResults;
     }
 
-    public String getResultFor(Player targetPlayer) {
-        String name = targetPlayer.name();
+    public String getResultFor(String name) {
         if (playerResults.containsKey(name)) {
             return playerResults.get(name);
         }
         throw new IllegalArgumentException("Player not found in the game results");
+    }
+
+    public Map<String, String> getResultForAll() {
+        return new HashMap<>(playerResults);
     }
 
 }
