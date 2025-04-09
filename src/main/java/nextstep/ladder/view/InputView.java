@@ -15,7 +15,7 @@ public class InputView {
     return Participants.of(Arrays.asList(raw));
   }
 
-  public static Results inputResults() {
+  public static Results readResults() {
     System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
     String input = scanner.nextLine();
     List<String> results = Arrays.asList(input.split(","));
@@ -24,11 +24,13 @@ public class InputView {
 
   public static int readLadderHeight() {
     System.out.println("\n최대 사다리 높이는 몇 개인가요?");
-    return scanner.nextInt();
+    int height = scanner.nextInt();
+    scanner.nextLine();
+    return height;
   }
 
-  public static String inputQuery() {
-    System.out.println("결과를 보고 싶은 사람은?");
+  public static String readQuery() {
+    System.out.println("\n결과를 보고 싶은 사람은?");
     return scanner.nextLine();
   }
 
