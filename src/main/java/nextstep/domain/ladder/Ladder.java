@@ -1,7 +1,6 @@
 package nextstep.domain.ladder;
 
 import nextstep.domain.line.Line;
-import nextstep.domain.player.Players;
 import nextstep.generator.PointGenerator;
 
 import java.util.List;
@@ -12,14 +11,14 @@ public class Ladder {
     private final List<Line> lines;
     private final PointGenerator pointGenerator;
 
-    public Ladder(Players players, Height height, PointGenerator pointGenerator) {
+    public Ladder(int playerCounts, Height height, PointGenerator pointGenerator) {
         this.pointGenerator = pointGenerator;
-        this.lines = makeLadder(players, height);
+        this.lines = makeLadder(playerCounts, height);
     }
 
-    private List<Line> makeLadder(Players players, Height height) {
+    private List<Line> makeLadder(int playerCounts, Height height) {
         return IntStream.range(0, height.getHeight())
-                .mapToObj(line -> new Line(players.getPlayersCount(), pointGenerator))
+                .mapToObj(line -> new Line(playerCounts, pointGenerator))
                 .collect(Collectors.toList());
     }
 
@@ -27,4 +26,11 @@ public class Ladder {
         return lines;
     }
 
+    public int countHeight() {
+        return lines.size();
+    }
+
+    public int countPointsPerLine() {
+        return lines.get(0).getPoints().size();
+    }
 }

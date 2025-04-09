@@ -13,7 +13,7 @@ public class LadderGame {
         Height height = InputView.getMaxLadderHeight();
 
         RandomPointGenerator randomPointGenerator = new RandomPointGenerator();
-        Ladder ladder = new Ladder(players, height, randomPointGenerator);
+        Ladder ladder = new Ladder(players.getPlayersCount(), height, randomPointGenerator);
         ResultView.printLadderView(players, ladder);
     }
 }
