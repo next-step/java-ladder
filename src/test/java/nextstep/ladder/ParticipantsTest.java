@@ -29,4 +29,13 @@ class ParticipantsTest {
         .withMessageContaining("참여자는 2명 이상이어야 합니다.");
   }
 
+  @Test
+  @DisplayName("참여자 이름은 중복될 수 없다.")
+  void duplicateName_throwsException() {
+    List<String> names = List.of("pobi", "pobi");
+
+    assertThatIllegalArgumentException()
+        .isThrownBy(() -> Participants.of(names))
+        .withMessageContaining("중복");
+  }
 }

@@ -10,11 +10,23 @@ public class Participants {
   private final List<String> names;
 
   private Participants(List<String> names) {
-    if (names.size() < 2) {
-      throw new IllegalArgumentException("참여자는 2명 이상이어야 합니다.");
-    }
+    validateNoDuplicates(names);
+    validateParticipantCount(names.size());
 
     this.names = names;
+  }
+
+  private static void validateParticipantCount(int count) {
+    if (count < 2) {
+      throw new IllegalArgumentException("참여자는 2명 이상이어야 합니다.");
+    }
+  }
+
+  private static void validateNoDuplicates(List<String> names) {
+    long uniqueCount = names.stream().distinct().count();
+    if (uniqueCount != names.size()) {
+      throw new IllegalArgumentException("참여자 이름은 중복될 수 없습니다.");
+    }
   }
 
   public static Participants of(List<String> rawNames) {
