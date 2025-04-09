@@ -20,14 +20,14 @@ public class Line {
 
     public Line(int playerCounts, LineGenerator lineGenerator) {
         points = new ArrayList<>();
-        for (int index = 0; index < playerCounts; index++) {
+        for (int index = 0; index < playerCounts -1 ; index++) {
             points.add(createLine(index, lineGenerator));
         }
         checkValidPoints();
     }
 
     private void checkValidPoints() {
-        IntStream.range(0, this.points.size())
+        IntStream.range(0, this.points.size() - 1)
                 .filter(index -> this.points.get(index).isConnected() && this.points.get(index + 1).isConnected())
                 .findFirst()
                 .ifPresent(index -> {
