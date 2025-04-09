@@ -7,5 +7,6 @@ public class LadderGame {
         String names = InputView.inputNames();
         String[] nameArray = StringParser.parse(names);
         Persons persons = new Persons(nameArray);
+        int height = InputView.inputLadderHeight();
     }
 }
