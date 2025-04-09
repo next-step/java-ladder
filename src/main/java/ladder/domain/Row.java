@@ -4,7 +4,6 @@ import ladder.generator.BridgeGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Row {
     private final List<Bridge> bridges;
