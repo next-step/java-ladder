@@ -15,15 +15,15 @@ public class LadderGame {
     }
 
     public LadderGameResult playGame() {
-        Map<Player, Prize> ladderGameResult = new HashMap<>();
+        Map<Player, Prize> gameResultMap = new HashMap<>();
 
-        for (int position = 0; position < players.getPlayerCount(); position++) {
+        for (int position = 0; position < players.count(); position++) {
             Player player = players.getPlayerByPosition(position);
             Prize prize = prizes.getPrizeByPosition(ladder.move(position));
 
-            ladderGameResult.put(player, prize);
+            gameResultMap.put(player, prize);
         }
 
-        return new LadderGameResult(ladderGameResult);
+        return new LadderGameResult(gameResultMap);
     }
 }

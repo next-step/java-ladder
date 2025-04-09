@@ -26,7 +26,7 @@ class LadderGameTest {
         bridges.offer(Bridge.CONNECTED);
         bridges.offer(Bridge.DISCONNECTED);
 
-        Ladder ladder = Ladder.generateLadder(players.getPlayerCount(), height, new FixedBridgeGenerator(bridges));
+        Ladder ladder = Ladder.generateLadder(players.count(), height, new FixedBridgeGenerator(bridges));
 
         LadderGame ladderGame = new LadderGame(players, prizes, ladder);
         LadderGameResult gameResult = ladderGame.playGame();

@@ -24,7 +24,7 @@ public class Players {
         return players.get(position);
     }
 
-    public int getPlayerCount() {
+    public int count() {
         return players.size();
     }
 

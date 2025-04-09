@@ -28,7 +28,7 @@ public class OutputView {
 
     private static void printLadder(Players players, Ladder ladder) {
         ladder.getRows()
-                .forEach(row -> printRowOfLadder(row, players.getPlayerCount()));
+                .forEach(row -> printRowOfLadder(row, players.count()));
     }
 
     private static void printPrizeNames(Prizes prizes) {

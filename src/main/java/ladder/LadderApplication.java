@@ -11,7 +11,7 @@ public class LadderApplication {
         Prizes prizes = Prizes.of(InputView.getPrizeNames());
         Height height = new Height(InputView.getLadderHeight());
 
-        Ladder ladder = Ladder.generateLadder(players.getPlayerCount(), height.getHeight(), new RandomBridgeGenerator());
+        Ladder ladder = Ladder.generateLadder(players.count(), height.getHeight(), new RandomBridgeGenerator());
         OutputView.printGeneratedLadderResult(players, prizes, ladder);
 
         LadderGame ladderGame = new LadderGame(players, prizes, ladder);
@@ -22,10 +22,10 @@ public class LadderApplication {
 
     private static void askPlayerResultUntilAll(LadderGameResult gameResult) {
         while (true) {
-            String targetName = InputView.getResultTargetName();
-            OutputView.printPlayerResult(gameResult, targetName);
+            String playerName = InputView.getPlayerNameForResult();
+            OutputView.printPlayerResult(gameResult, playerName);
 
-            if ("all".equalsIgnoreCase(targetName)) {
+            if ("all".equalsIgnoreCase(playerName)) {
                 break;
             }
         }

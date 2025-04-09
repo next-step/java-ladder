@@ -24,7 +24,7 @@ public class InputView {
         return List.of(SCANNER.nextLine().split(DELIMITER));
     }
 
-    public static String getResultTargetName() {
+    public static String getPlayerNameForResult() {
         System.out.println("\n결과를 보고 싶은 사람은?");
         return SCANNER.nextLine();
     }
