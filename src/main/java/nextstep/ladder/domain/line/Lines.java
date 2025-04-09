@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Lines {
-
     private final List<Line> lines;
 
     public Lines(LadderUsers ladderUsers, Height height, LineCreateStrategy lineCreateStrategy) {

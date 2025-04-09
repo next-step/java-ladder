@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LadderUsers {
-
     private final List<LadderUser> ladderUsers;
 
     public LadderUsers(String names) {

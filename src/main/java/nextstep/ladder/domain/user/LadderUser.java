@@ -3,7 +3,6 @@ package nextstep.ladder.domain.user;
 import java.util.Objects;
 
 public class LadderUser {
-
     private static final int MIN_WIDTH = 5;
     private final String value;
 

@@ -1,7 +1,6 @@
 package nextstep.ladder.domain.line;
 
 public class Height {
-
     private final int value;
 
     public Height(int height) {

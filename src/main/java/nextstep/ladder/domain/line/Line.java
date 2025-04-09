@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Line {
-
     private static final int WIDTH = 5;
     private final List<Boolean> points = new ArrayList<>();
 
