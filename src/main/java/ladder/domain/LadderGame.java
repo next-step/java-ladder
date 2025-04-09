@@ -17,7 +17,7 @@ public class LadderGame {
     }
 
     public Ladder createLadder() {
-        return new Ladder(height.value(), players.count() - 1, new RandomLadderLineGenerator());
+        return new Ladder(height.value(), players.count(), new RandomLadderLineGenerator());
     }
 
     public Players players() {

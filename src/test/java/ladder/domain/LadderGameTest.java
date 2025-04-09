@@ -24,7 +24,7 @@ public class LadderGameTest {
         // then
         Assertions.assertThat(ladder)
                 .satisfies(l -> {
-                    Assertions.assertThat(l.width()).isEqualTo(players.count() - 1);
+                    Assertions.assertThat(l.width()).isEqualTo(players.count());
                     Assertions.assertThat(l.height()).isEqualTo(height);
                 });
     }

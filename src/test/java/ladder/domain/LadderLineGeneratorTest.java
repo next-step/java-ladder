@@ -1,7 +1,7 @@
 package ladder.domain;
 
 import ladder.domain.ladderlinegenerator.RandomLadderLineGenerator;
-import ladder.domain.ladderlinegenerator.TrueLadderLineGenerator;
+import ladder.domain.ladderlinegenerator.FalseLadderLineGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,7 +28,7 @@ public class LadderLineGeneratorTest {
     @ParameterizedTest
     void generateLadderLineWithTrue(int size) {
         // given
-        LadderLineGenerator ladderLineGenerator = new TrueLadderLineGenerator();
+        LadderLineGenerator ladderLineGenerator = new FalseLadderLineGenerator();
 
         // when
         List<Boolean> generatedLine = ladderLineGenerator.generateLadderLine(size);
@@ -36,7 +36,7 @@ public class LadderLineGeneratorTest {
         // then
         Assertions.assertThat(generatedLine)
                 .hasSize(size)
-                .containsOnly(true);
+                .containsOnly(false);
     }
 
 
