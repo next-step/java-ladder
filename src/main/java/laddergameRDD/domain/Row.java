@@ -4,6 +4,7 @@ import laddergameRDD.engine.SelectStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Row {
     private final List<Point> row = new ArrayList<>();
@@ -20,5 +21,11 @@ public class Row {
 
     public int moveDown(int position) {
         return position + row.get(position).move();
+    }
+
+    public List<Boolean> getRow() {
+        return row.stream()
+                .map(Point::getPoint)
+                .collect(Collectors.toList());
     }
 }

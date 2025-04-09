@@ -21,4 +21,8 @@ public class Ladder {
         }
         return destinationIndex;
     }
+
+    public List<Row> getLadder() {
+        return ladder;
+    }
 }

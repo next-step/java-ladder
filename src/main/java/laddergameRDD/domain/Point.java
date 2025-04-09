@@ -42,4 +42,8 @@ public class Point {
         }
         return DOWN;
     }
+
+    public boolean getPoint() {
+        return previous;
+    }
 }

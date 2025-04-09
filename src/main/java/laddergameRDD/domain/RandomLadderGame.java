@@ -8,8 +8,7 @@ import java.util.Map;
 
 public class RandomLadderGame implements LadderGame {
     @Override
-    public List<GameResult> play(int rowCount, List<String> users, List<String> results) {
-        Ladder ladder = new Ladder(rowCount, users.size(), new RandomSelectStrategy());
+    public List<GameResult> play(Ladder ladder, List<String> users, List<String> results) {
         Map<Integer, Integer> integerResults = new LinkedHashMap<>();
         for (int currentColumn = 0; currentColumn < users.size(); ++currentColumn) {
             integerResults.put(currentColumn, ladder.play(currentColumn));

@@ -1,6 +1,5 @@
-package laddergameRDD;
+package laddergameRDD.domain;
 
-import laddergameRDD.domain.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
