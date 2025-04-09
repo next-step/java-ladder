@@ -3,14 +3,12 @@ package nextstep.ladder.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 
 public class Line {
     private final List<Boolean> points;
 
-    public Line(int countOfPerson) {
-        // 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
-        this(createPoints(countOfPerson, () -> new Random().nextBoolean()));
+    public Line(int countOfPerson, GeneratorStrategy strategy) {
+        this(createPoints(countOfPerson, strategy));
     }
 
     public Line(List<Boolean> points) {
@@ -21,7 +19,7 @@ public class Line {
         List<Boolean> points = new ArrayList<>();
         boolean previousHasLine = false;
 
-        for (int i = 0; i < countOfPerson; i++) {
+        for (int i = 0; i < countOfPerson - 1; i++) {
             boolean hasLine = !previousHasLine && strategy.isGenerate();
             points.add(hasLine);
             previousHasLine = hasLine;

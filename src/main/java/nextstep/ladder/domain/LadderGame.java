@@ -2,18 +2,18 @@ package nextstep.ladder.domain;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderGame {
     private static final String REGEX = ",";
 
-    public final List<Player> players;
-    public final int ladderHeight;
+    private final List<Player> players;
+    private final Lines lines;
 
     public LadderGame(String players, int ladderHeight) {
         this.players = createPlayers(players);
-        this.ladderHeight = ladderHeight;
+        this.lines = new Lines(createLines(ladderHeight));
     }
 
     private List<Player> createPlayers(String players) {
@@ -22,17 +22,9 @@ public class LadderGame {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        LadderGame that = (LadderGame) o;
-        return ladderHeight == that.ladderHeight && Objects.equals(players, that.players);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(players, ladderHeight);
+    private List<Line> createLines(int ladderHeight) {
+        return IntStream.range(0, ladderHeight)
+                .mapToObj(i -> new Line(players.size(), () -> new Random().nextBoolean()))
+                .collect(Collectors.toList());
     }
 }

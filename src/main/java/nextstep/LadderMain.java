@@ -9,6 +9,5 @@ public class LadderMain {
         int height = InputView.inputLadderHeight();
 
         LadderGame ladderGame = new LadderGame(inputNames, height);
-
     }
 }
