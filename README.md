@@ -45,7 +45,7 @@
     - [x] is -> has
     - [x] 조건문 통합
 ## 3단계
-- [ ] 사다리 게임 결과 표시
+- [x] 사다리 게임 결과 표시
   - [x] LadderGame에 결과 추가
   - [x] Ladder에서 사다리 진행 결과 확인
   - [x] LadderGame에서 사다리 게임 실행
@@ -53,7 +53,7 @@
       - [x] Position 구현
       - [x] setPosition 제거
       - [x] LadderGameResult.getResultFor 리팩토링
-  - [ ] Views 구현
+  - [x] Views 구현
     - [x] 실행결과 입력 받기 및 실행결과 표시
-    - [ ] 개인별 결과 출력 구현
-    - [ ] 전체 결과 출력 구현
+    - [x] 개인별 결과 출력 구현
+    - [x] 전체 결과 출력 구현

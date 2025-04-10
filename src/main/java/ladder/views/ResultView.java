@@ -66,16 +66,43 @@ public class ResultView {
             return;
         }
 
-        System.out.println();
-        System.out.println("실행 결과");
+        try {
+            System.out.println(renderResult(gameResult, target));
+        } catch (IllegalArgumentException e) {
+            System.out.println("올바르지 않은 입력입니다.");
+        }
+    }
+
+    private static String renderResult(LadderGameResult gameResult, String target) {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(System.lineSeparator());
+        sb.append("실행 결과");
+        sb.append(System.lineSeparator());
 
         if (target.equals("all")) {
-            gameResult.getResultForAll()
-                    .forEach((name, result) -> System.out.println(name + " : " + result));
-            return;
+            sb.append(renderResultForAll(gameResult));
+            return sb.toString();
         }
 
         String result = gameResult.getResultFor(target);
-        System.out.println(result);
+        sb.append(result);
+
+        return sb.toString();
+    }
+
+    private static StringBuilder renderResultForAll(LadderGameResult gameResult) {
+        StringBuilder sb = new StringBuilder();
+        gameResult.getResultForAll()
+                .forEach((name, result) -> sb.append(renderResultForEach(name, result)));
+        return sb;
+    }
+
+    private static StringBuilder renderResultForEach(String name, String result) {
+        StringBuilder sb = new StringBuilder();
+        return sb.append(name)
+                .append(" : ")
+                .append(result)
+                .append(System.lineSeparator());
     }
 }
