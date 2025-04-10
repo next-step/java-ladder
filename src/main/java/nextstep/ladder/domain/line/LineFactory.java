@@ -19,10 +19,10 @@ public class LineFactory {
 
     public Line create(LadderUsers ladderUsers) {
         List<Point> points = new ArrayList<>();
-        Point previousPoint = new Point(true);
+        Point previousPoint = pointFactory.create(new Point(false));
         points.add(previousPoint);
 
-        for (int i = 1; i < ladderUsers.getSize(); i++) {
+        for (int i = 1; i < ladderUsers.getSize() - 1; i++) {
             Point newPoint = pointFactory.create(previousPoint);
             points.add(newPoint);
             previousPoint = newPoint;

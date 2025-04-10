@@ -31,7 +31,7 @@ class LineFactoryTest {
         LineFactory lineFactory = new LineFactory(new PointFactory(random));
         LadderUsers ladderUsers =  new LadderUsers(List.of("pobi", "honux", "crong", "jk"));
         assertThat(lineFactory.create(ladderUsers))
-            .isEqualTo(new Line(List.of(new Point(true), new Point(false), new Point(true), new Point(false))));
+            .isEqualTo(new Line(List.of(new Point(true), new Point(false), new Point(true))));
     }
 
 }
