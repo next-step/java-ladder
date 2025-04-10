@@ -6,7 +6,7 @@ import ladder.domain.Players;
 import java.util.stream.Collectors;
 
 public class ResultView {
-    private static final String RESULT_MESSAGE = "실행결과\n";
+    private static final String RESULT_MESSAGE = "\n실행결과\n";
 
     public void printResult(Players players, Ladder ladder) {
         System.out.println(RESULT_MESSAGE);

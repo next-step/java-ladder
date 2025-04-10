@@ -8,9 +8,9 @@ public class Line {
     private static final Random RANDOM = new Random();
     private final List<Point> points;
 
-    public Line(int countOfUser) {
+    public Line(int countOfPlayer) {
         this.points = new ArrayList<>();
-        for (int i = 0; i < countOfUser - 1; i++) {
+        for (int i = 0; i < countOfPlayer - 1; i++) {
             points.add(draw(i));
         }
     }

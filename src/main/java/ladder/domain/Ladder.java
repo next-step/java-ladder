@@ -7,9 +7,9 @@ import java.util.stream.IntStream;
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(int height, int countOfUser) {
+    public Ladder(int height, int countOfPlayer) {
         this.lines = IntStream.range(0, height)
-                .mapToObj(i -> new Line(countOfUser))
+                .mapToObj(i -> new Line(countOfPlayer))
                 .collect(Collectors.toList());
     }
 
