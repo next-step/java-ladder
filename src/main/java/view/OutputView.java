@@ -1,6 +1,7 @@
 package view;
 
 import domain.Ladder;
+import domain.LadderGameEngine;
 import domain.Line;
 import domain.PlayerName;
 
@@ -35,6 +36,37 @@ public class OutputView {
     public static void printLine(Ladder ladder) {
         for (Line line : ladder.getLines()) {
             printLine(line);
+        }
+    }
+
+    public static void printResults(List<String> results) {
+        results.forEach(r -> System.out.printf("%-6s", r));
+        System.out.println();
+    }
+
+    public static void printSingleResult(PlayerName player, List<PlayerName> players, Ladder ladder, ResultMapping mapping) {
+        System.out.println("실행 결과");
+
+        int startIndex = players.indexOf(player);
+        int resultIndex = LadderGameEngine.move(ladder, startIndex);
+
+        PlayerName resultPlayer = players.get(resultIndex);
+        String result = mapping.getResult(resultPlayer);
+
+        System.out.println(result);
+    }
+
+    public static void printAllResults(List<PlayerName> players, Ladder ladder, ResultMapping mapping) {
+        System.out.println("실행 결과");
+
+        for (PlayerName player : players) {
+            int startIndex = players.indexOf(player);
+            int resultIndex = LadderGameEngine.move(ladder, startIndex);
+
+            PlayerName resultPlayer = players.get(resultIndex);
+            String result = mapping.getResult(resultPlayer);
+
+            System.out.println(player.getName() + " : " + result);
         }
     }
 
