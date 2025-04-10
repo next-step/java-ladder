@@ -1,12 +1,9 @@
 package nextstep.ladder.domain;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class Junction {
     private final Leg leg;
     private final Neighbors neighbors = new Neighbors();
-    private final Set<ParticipantName> visitors = new HashSet<>();
+    private final JunctionVisitors visitors = new JunctionVisitors();
 
     public Junction(Leg leg) {
         this.leg = leg;
@@ -73,11 +70,11 @@ public class Junction {
     }
 
     public void visit(ParticipantName name) {
-        visitors.add(name);
+        visitors.visit(name);
     }
 
     public boolean isVisited(ParticipantName visitor) {
-        return visitors.contains(visitor);
+        return visitors.isVisited(visitor);
     }
 
     public boolean canMove(ParticipantName name) {
