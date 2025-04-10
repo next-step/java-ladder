@@ -33,57 +33,14 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        // before        
-        // int total = 0;
-        // for (int number : numbers) {
-        //     total += number;
-        // }
-        // return total;
-
-        // after
-        return sum(numbers, new Conditional() {
-            @Override
-            public boolean test(Integer number) {
-                return true;
-            }
-        });
+        return sum(numbers, number -> true);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        // before 
-        // int total = 0;
-        // for (int number : numbers) {
-        //     if (number % 2 == 0) {
-        //         total += number;
-        //     }
-        // }
-        // return total;
-
-        // after
-        return sum(numbers, new Conditional() {
-            @Override
-            public boolean test(Integer number) {
-                return number % 2 == 0;
-            }
-        });
+        return sum(numbers, number -> number % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        // before 
-        // int total = 0;
-        // for (int number : numbers) {
-        //     if (number > 3) {
-        //         total += number;
-        //     }
-        // }
-        // return total;
-
-        // after
-        return sum(numbers, new Conditional() {
-            @Override
-            public boolean test(Integer number) {
-                return number > 3;
-            }
-        });
+        return sum(numbers, number -> number > 3);
     }
 }
