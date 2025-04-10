@@ -30,4 +30,14 @@ public class Line {
     public List<Point> getPoints() {
         return points;
     }
+
+    public int getIndexAfterMove(int index) {
+        if (points.get(index) == Point.RIGHT) {
+            return index + 1;
+        }
+        if (points.get(index) == Point.LEFT) {
+            return index - 1;
+        }
+        return index;
+    }
 }

@@ -16,4 +16,8 @@ public class Result {
         }
         return new Result(result);
     }
+
+    public String get() {
+        return result;
+    }
 }

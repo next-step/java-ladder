@@ -2,6 +2,7 @@ package nextstep.ladder;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -60,5 +61,28 @@ public class View {
                     }
                     System.out.print("     |");
                 });
+    }
+
+    public static void printResult(LadderResultMap ladderResultMap) {
+        Map<Name, Result> resultMap = ladderResultMap.getResultMap();
+        while (true) {
+            System.out.println("결과를 보고 싶은 사람의 이름은?");
+            String inputName = SCANNER.nextLine();
+            if (inputName.equals("exit")) {
+                break;
+            }
+            if (inputName.equals("all")) {
+                System.out.println("실행 결과");
+                resultMap.forEach((name, result) -> System.out.printf("%s : %s%n", name.get(), result.get()));
+                continue;
+            }
+            if (!resultMap.containsKey(Name.of(inputName))) {
+                System.out.println("이름을 잘못 입력하셨습니다.");
+                continue;
+            }
+            Result result = resultMap.get(Name.of(inputName));
+            System.out.println("실행 결과");
+            System.out.printf("%s : %s%n", inputName, result.get());
+        }
     }
 }

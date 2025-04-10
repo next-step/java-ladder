@@ -18,4 +18,15 @@ public class Results {
         }
         return new Results(results);
     }
+
+    public Result getResult(int index) {
+        if (index < 0 || index >= results.size()) {
+            throw new IndexOutOfBoundsException("인덱스가 범위를 벗어났습니다.");
+        }
+        return results.get(index);
+    }
+
+    public List<Result> getListResults() {
+        return List.copyOf(results);
+    }
 }

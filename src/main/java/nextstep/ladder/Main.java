@@ -8,5 +8,7 @@ public class Main {
         LadderHeight ladderHeight = View.getLadderHeight();
         Ladder ladder = Ladder.getRandomly(ladderHeight, names);
         View.printLadder(ladder, results);
+        LadderResultMap resultMap = LadderResultMap.execute(ladder, results);
+        View.printResult(resultMap);
     }
 }
