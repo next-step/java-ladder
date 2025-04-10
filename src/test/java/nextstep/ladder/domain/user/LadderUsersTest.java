@@ -3,23 +3,23 @@ package nextstep.ladder.domain.user;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class LadderUsersTest {
-    public static LadderUsers LadderUSERS1 = new LadderUsers("pobi,honux,crong,jk");
 
     @DisplayName("LadderUsers 인스턴스 만들기")
     @Test
     public void testConstructor() {
-        assertDoesNotThrow(() -> new LadderUsers("pobi,honux,crong,jk"));
+        assertDoesNotThrow(() -> new LadderUsers(List.of("pobi", "honux", "crong", "jk")));
     }
 
     @DisplayName("중복된 이름이 존재하면 예외를 반환한다.")
     @Test
     public void testConstructor_throwExceptionByDuplicatedName() {
-        assertThatThrownBy(() -> new LadderUsers("pobi,pobi"))
+        assertThatThrownBy(() -> new LadderUsers(List.of("pobi", "pobi")))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("중복된 이름이 존재합니다.");
     }
@@ -27,14 +27,8 @@ public class LadderUsersTest {
     @DisplayName("유저 수가 1명 이하이면 예외를 반환한다.")
     @Test
     public void testConstructor_throwExceptionByUserCount() {
-        assertThatThrownBy(() -> new LadderUsers("pobi"))
+        assertThatThrownBy(() -> new LadderUsers(List.of("pobi")))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("유저는 2명 이상이여야 합니다.");
-    }
-
-    @DisplayName("LadderUsers 출력 포멧")
-    @Test
-    public void testToString() {
-        assertThat(new LadderUsers("honux,pobi").toString()).isEqualTo("honux pobi ");
     }
 }

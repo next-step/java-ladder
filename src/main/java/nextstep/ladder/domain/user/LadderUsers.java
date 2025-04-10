@@ -3,13 +3,12 @@ package nextstep.ladder.domain.user;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LadderUsers {
     private final List<LadderUser> ladderUsers;
 
-    public LadderUsers(String names) {
-        this.ladderUsers = Stream.of(names.split(",")).map(LadderUser::new).collect(Collectors.toList());
+    public LadderUsers(List<String> names) {
+        this.ladderUsers = names.stream().map(LadderUser::new).collect(Collectors.toList());
 
         if (new HashSet<>(this.ladderUsers).size() != ladderUsers.size()) {
             throw new IllegalArgumentException("중복된 이름이 존재합니다.");
@@ -24,10 +23,7 @@ public class LadderUsers {
         return ladderUsers.size();
     }
 
-    @Override
-    public String toString() {
-        return ladderUsers.stream()
-            .map(LadderUser::toString)
-            .collect(Collectors.joining(" ", "", ""));
+    public List<String> getLadderUserNames() {
+        return ladderUsers.stream().map(LadderUser::getValue).collect(Collectors.toList());
     }
 }

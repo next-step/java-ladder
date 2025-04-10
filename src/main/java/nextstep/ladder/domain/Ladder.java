@@ -2,20 +2,21 @@ package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.line.Height;
 import nextstep.ladder.domain.line.Lines;
-import nextstep.ladder.domain.line.strategy.LineCreateStrategy;
 import nextstep.ladder.domain.user.LadderUsers;
+import nextstep.ladder.dto.LadderResult;
+
+import java.util.List;
 
 public class Ladder {
     private final LadderUsers ladderUsers;
     private final Lines lines;
 
-    public Ladder(String names, int height, LineCreateStrategy lineCreateStrategy) {
+    public Ladder(List<String> names, int height) {
         this.ladderUsers = new LadderUsers(names);
-        this.lines = new Lines(this.ladderUsers, new Height(height), lineCreateStrategy);
+        this.lines = new Lines(this.ladderUsers, new Height(height));
     }
 
-    @Override
-    public String toString() {
-        return ladderUsers + "\n" + lines;
+    public LadderResult toLadderResult() {
+        return new LadderResult(ladderUsers.getLadderUserNames(), lines.getLines());
     }
 }

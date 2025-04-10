@@ -4,8 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class LadderUserTest {
 
@@ -21,13 +20,5 @@ class LadderUserTest {
         assertThatThrownBy(() -> new LadderUser("testUser1"))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("이름은 최대 5자를 넘을 수 없습니다.");
-    }
-
-    @DisplayName("LadderUser 출력 포멧")
-    @Test
-    public void testToString() {
-        assertThat(new LadderUser("honux").toString()).isEqualTo("honux");
-        assertThat(new LadderUser("pobi").toString()).isEqualTo("pobi ");
-        assertThat(new LadderUser("tom").toString()).isEqualTo(" tom ");
     }
 }

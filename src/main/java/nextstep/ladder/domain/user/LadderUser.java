@@ -3,7 +3,6 @@ package nextstep.ladder.domain.user;
 import java.util.Objects;
 
 public class LadderUser {
-    private static final int MIN_WIDTH = 5;
     private final String value;
 
     public LadderUser(String name) {
@@ -13,14 +12,8 @@ public class LadderUser {
         this.value = name;
     }
 
-    @Override
-    public String toString() {
-        if (value.length() >= MIN_WIDTH) {
-            return value;
-        }
-        int leftPadding = (MIN_WIDTH - value.length()) / 2;
-        int rightPadding = MIN_WIDTH - value.length() - leftPadding;
-        return " ".repeat(leftPadding) + value + " ".repeat(rightPadding);
+    public String getValue() {
+        return value;
     }
 
     @Override

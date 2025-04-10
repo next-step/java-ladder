@@ -1,6 +1,5 @@
 package nextstep.ladder.domain.line;
 
-import nextstep.ladder.domain.line.strategy.LineCreateStrategy;
 import nextstep.ladder.domain.user.LadderUsers;
 
 import java.util.ArrayList;
@@ -9,21 +8,22 @@ import java.util.stream.Collectors;
 
 public class Line {
     private static final int WIDTH = 5;
-    private final List<Boolean> points = new ArrayList<>();
+    private final List<Point> value;
 
-    public Line(LadderUsers ladderUsers, LineCreateStrategy lineCreateStrategy) {
-        points.add(lineCreateStrategy.create(false));
-
+    public static Line createFromLadderUsers(LadderUsers ladderUsers) {
+        List<Point> generatedPoints = new ArrayList<>();
+        generatedPoints.add(Point.lineRandomPoint(new Point(false)));
         for (int i = 1; i < ladderUsers.getSize() - 1; i++) {
-            boolean nextPoint = lineCreateStrategy.create(points.get(i - 1));
-            points.add(nextPoint);
+            generatedPoints.add(Point.lineRandomPoint(generatedPoints.get(i - 1)));
         }
+        return new Line(generatedPoints);
     }
 
-    @Override
-    public String toString() {
-        return points.stream()
-            .map(point -> point ? "|" + "-".repeat(WIDTH) : "|" + " ".repeat(WIDTH))
-            .collect(Collectors.joining("", "  ", "|"));
+    public Line(List<Point> points) {
+        this.value = points;
+    }
+
+    public List<Boolean> getLine() {
+        return value.stream().map(Point::isConnected).collect(Collectors.toList());
     }
 }
