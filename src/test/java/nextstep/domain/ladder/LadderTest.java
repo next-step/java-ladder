@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LadderTest {
-    private  RandomPointGenerator randomPointGenerator;
+    private RandomPointGenerator randomPointGenerator;
     private Ladder ladder;
     @BeforeEach
     void init(){
@@ -23,8 +23,8 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("사용자의 수보다 모든 line의 point가 하나 적어야한다.")
+    @DisplayName("ladder의 포인트는 참여자-1 * 높이만큼 생성된다.")
     public void checkLadderPoint(){
-        assertEquals(ladder.countPointsPerLine(), 4);
+        assertEquals(ladder.countAllLines(), 16);
     }
 }

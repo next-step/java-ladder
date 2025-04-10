@@ -1,6 +1,7 @@
 package nextstep.domain.ladder;
 
 import nextstep.domain.line.Line;
+import nextstep.domain.line.Point;
 import nextstep.generator.PointGenerator;
 
 import java.util.List;
@@ -30,7 +31,9 @@ public class Ladder {
         return lines.size();
     }
 
-    public int countPointsPerLine() {
-        return lines.get(0).getPoints().size();
+    public int countAllLines(){
+        return (int) lines.stream()
+                .mapToLong(line -> line.getPoints().size())
+                .sum();
     }
 }
