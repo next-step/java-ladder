@@ -7,7 +7,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class HeightTest {
-    public static Height HEIGHT1 = new Height(3);
 
     @DisplayName("Height 인스턴스 만들기")
     @Test

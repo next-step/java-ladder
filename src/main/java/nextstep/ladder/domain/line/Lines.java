@@ -7,15 +7,15 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Lines {
-    private final List<Line> lines;
+    private final List<Line> value;
 
-    public Lines(LadderUsers ladderUsers, Height height) {
-        this.lines = Stream.generate(() -> Line.createFromLadderUsers(ladderUsers))
+    public Lines(LadderUsers ladderUsers, Height height, LineFactory lineFactory) {
+        this.value = Stream.generate(() -> lineFactory.create(ladderUsers))
             .limit(height.getValue())
             .collect(Collectors.toList());
     }
 
-    public List<List<Boolean>> getLines() {
-        return lines.stream().map(Line::getLine).collect(Collectors.toList());
+    public List<List<Boolean>> getvalue() {
+        return value.stream().map(Line::getValue).collect(Collectors.toList());
     }
 }

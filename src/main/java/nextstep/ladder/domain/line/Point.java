@@ -1,24 +1,15 @@
 package nextstep.ladder.domain.line;
 
 import java.util.Objects;
-import java.util.Random;
 
 public class Point {
-    private static final Random random = new Random();
     private final boolean value;
-
-    public static Point lineRandomPoint(Point prevPoint) {
-        if (prevPoint.value) {
-            return new Point(false);
-        }
-        return new Point(random.nextBoolean());
-    }
 
     public Point(boolean point) {
         this.value = point;
     }
 
-    public boolean isConnected() {
+    public boolean getValue() {
         return value;
     }
 
@@ -33,5 +24,12 @@ public class Point {
     @Override
     public int hashCode() {
         return Objects.hashCode(value);
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+            "value=" + value +
+            '}';
     }
 }
