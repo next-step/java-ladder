@@ -5,13 +5,13 @@ import nextstep.ladder.random.RandomGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Line {
-    private static final double THRESHOLD = 0.5;
-    private static final String HORIZONTAL = "-----";
-    private static final String VERTICAL = "|";
-    private static final String EMPTY = "     ";
+import static nextstep.ladder.Point.HAS_LINE;
+import static nextstep.ladder.Point.NO_LINE;
 
-    private List<Boolean> points = new ArrayList<>();
+public class Line {
+    private static final String VERTICAL = "|";
+
+    private List<Point> points = new ArrayList<>();
 
     public Line(int size) {
         validate(size);
@@ -19,19 +19,19 @@ public class Line {
     }
 
     private void generatePoints(int size) {
-        boolean before = false;
+        Point before = NO_LINE;
         for (int i = 0; i < size; i++) {
             before = generatePoint(before);
             points.add(before);
         }
     }
 
-    public boolean generatePoint(boolean before) {
-        if (before) {
-            return false;
+    public Point generatePoint(Point before) {
+        if (HAS_LINE.equals(before)) {
+            return NO_LINE;
         }
 
-        return RandomGenerator.generate();
+        return Point.of(RandomGenerator.generate());
     }
 
     private void validate(int size) {
@@ -44,18 +44,10 @@ public class Line {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(VERTICAL);
-        for (Boolean point : points) {
-            sb.append(toString(point));
+        for (Point point : points) {
+            sb.append(point.toString());
             sb.append(VERTICAL);
         }
         return sb.toString();
-    }
-
-    private String toString(Boolean point) {
-        if (point) {
-            return HORIZONTAL;
-        }
-
-        return EMPTY;
     }
 }

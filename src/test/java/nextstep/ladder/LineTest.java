@@ -16,8 +16,8 @@ public class LineTest {
     @Test
     public void 직전_가로선_있을때_테스트() {
         Line line = new Line(1);
-        boolean before = true;
-        boolean point = line.generatePoint(before);
-        assertThat(point).isFalse();
+        Point before = Point.HAS_LINE;
+        Point point = line.generatePoint(before);
+        assertThat(point).isEqualTo(Point.NO_LINE);
     }
 }
