@@ -1,4 +1,4 @@
-package ladder.model.player;
+package ladder.domain.player;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,4 +1,4 @@
-package ladder.model.player;
+package ladder.domain.player;
 
 public class Player {
     private static final int MAX_NAME_LENGTH = 5;

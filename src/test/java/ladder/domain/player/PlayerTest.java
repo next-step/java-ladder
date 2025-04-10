@@ -1,4 +1,4 @@
-package ladder.model.player;
+package ladder.domain.player;
 
 import ladder.view.fake.FakeInputView;
 import org.junit.jupiter.api.DisplayName;

@@ -1,4 +1,4 @@
-package ladder.model.ladder;
+package ladder.domain.ladder;
 
 public class Point {
     private final boolean hasLine;

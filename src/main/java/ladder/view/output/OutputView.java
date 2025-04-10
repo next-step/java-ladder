@@ -1,9 +1,9 @@
 package ladder.view.output;
 
-import ladder.model.ladder.Ladder;
-import ladder.model.ladder.Line;
-import ladder.model.ladder.Point;
-import ladder.model.player.Players;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.ladder.Line;
+import ladder.domain.ladder.Point;
+import ladder.domain.player.Players;
 
 public class OutputView {
 

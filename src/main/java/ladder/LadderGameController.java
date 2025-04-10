@@ -1,7 +1,7 @@
 package ladder;
 
-import ladder.model.ladder.Ladder;
-import ladder.model.player.Players;
+import ladder.domain.ladder.Ladder;
+import ladder.domain.player.Players;
 import ladder.view.input.ConsoleInputView;
 import ladder.view.input.InputView;
 import ladder.view.output.OutputView;
