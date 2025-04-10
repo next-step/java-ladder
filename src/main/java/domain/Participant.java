@@ -3,14 +3,14 @@ package domain;
 import java.util.Objects;
 
 public class Participant {
-    private final String name;
+    private final Name name;
 
     public Participant(String name) {
-        this.name = name;
+        this.name = new Name(name);
     }
 
     public String getName() {
-        return this.name;
+        return name.getValue();
     }
 
     @Override

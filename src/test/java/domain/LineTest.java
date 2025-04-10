@@ -9,7 +9,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LineTest {
     @Test
-    @DisplayName("짝수 위치에만 가로줄이 생성된다.")
+    @DisplayName("라인의 포인트 개수는 열의 개수 - 1 만큼 생성된다.")
     void 라인_생성_테스트() {
         Line line = new Line(5, new RandomConnectionStrategy());
         assertThat(line.getPoints().size()).isEqualTo(4);

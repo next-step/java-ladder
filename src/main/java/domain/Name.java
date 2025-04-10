@@ -10,6 +10,10 @@ public class Name {
         this.value = value;
     }
 
+    public String getValue() {
+        return value;
+    }
+
     private void validate(String name) {
         if (name.length() > 5) {
             throw new IllegalArgumentException("참여자 이름은 최대 5글자까지 가능합니다.");

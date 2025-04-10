@@ -11,7 +11,7 @@ public class OutputView {
     private static final String VERTICAL_LINE = "|";
 
     public static void printResultTitle() {
-        System.out.println("\n실행결과\n");
+        System.out.println(System.lineSeparator() + "실행결과");
     }
 
     public static void printParticipants(List<String> names) {

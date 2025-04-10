@@ -12,8 +12,7 @@ public class Participants {
                 .collect(Collectors.toList());
     }
 
-    public List<String> getParticipantsName() {
-        return this.values.stream().map(Participant::getName)
-                .collect(Collectors.toList());
+    public List<Participant> getValues() {
+        return this.values;
     }
 }
