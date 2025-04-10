@@ -1,19 +1,20 @@
 package ladder;
 
 import ladder.domain.LadderGameResult;
+import ladder.domain.LadderGameResults;
 import ladder.domain.Player;
 import ladder.domain.Prize;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Map;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class LadderGameResultTest {
+class LadderGameResultsTest {
 
-    private LadderGameResult ladderGameResult;
+    private LadderGameResults ladderGameResults;
 
     private static final Player PLAYER1 = new Player("참가자1");
     private static final Player PLAYER2 = new Player("참가자2");
@@ -25,26 +26,26 @@ class LadderGameResultTest {
 
     @BeforeEach
     public void setUp() {
-        Map<Player, Prize> gameResultMap = Map.of(
-                PLAYER1, PRIZE1,
-                PLAYER2, PRIZE2,
-                PLAYER3, PRIZE3
+        List<LadderGameResult> results = List.of(
+                new LadderGameResult(PLAYER1, PRIZE1),
+                new LadderGameResult(PLAYER2, PRIZE2),
+                new LadderGameResult(PLAYER3, PRIZE3)
         );
 
-        ladderGameResult = new LadderGameResult(gameResultMap);
+        ladderGameResults = new LadderGameResults(results);
     }
 
     @Test
     public void 참가자의_이름을_입력하면_결과를_반환한다() {
-        assertThat(ladderGameResult.findPrizeByPlayerName("참가자1")).isEqualTo(new Prize("꽝"));
-        assertThat(ladderGameResult.findPrizeByPlayerName("참가자2")).isEqualTo(new Prize("5000"));
-        assertThat(ladderGameResult.findPrizeByPlayerName("참가자3")).isEqualTo(new Prize("3000"));
+        assertThat(ladderGameResults.findPrizeByPlayerName("참가자1").getValue()).isEqualTo("꽝");
+        assertThat(ladderGameResults.findPrizeByPlayerName("참가자2").getValue()).isEqualTo("5000");
+        assertThat(ladderGameResults.findPrizeByPlayerName("참가자3").getValue()).isEqualTo("3000");
     }
 
     @Test
     public void 없는_참가자의_이름을_입력하면_예외가_발생한다() {
         String invalidUserName = "홍길동";
-        assertThatIllegalArgumentException().isThrownBy(() -> ladderGameResult.findPrizeByPlayerName(invalidUserName));
+        assertThatIllegalArgumentException().isThrownBy(() -> ladderGameResults.findPrizeByPlayerName(invalidUserName));
     }
 
 }
