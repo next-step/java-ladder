@@ -31,4 +31,20 @@ public class JunctionNeighbors {
         return neighbors.get(Direction.DOWN);
     }
 
+    public boolean hasLeft() {
+        return getLeft() != null;
+    }
+
+    public boolean hasRight() {
+        return getRight() != null;
+    }
+
+    public boolean hasDown() {
+        return getDown() != null;
+    }
+
+    public boolean hasLeftOrRight() {
+        return this.hasLeft() || this.hasRight();
+    }
+
 }

@@ -10,15 +10,15 @@ public class Junction {
     }
 
     public boolean hasLeft() {
-        return neighbors.getLeft() != null;
+        return neighbors.hasLeft();
     }
 
     public boolean hasRight() {
-        return neighbors.getRight() != null;
+        return neighbors.hasRight();
     }
 
     public boolean hasDown() {
-        return neighbors.getDown() != null;
+        return neighbors.hasDown();
     }
 
     public Junction getLeft() {
@@ -58,7 +58,7 @@ public class Junction {
     }
 
     public boolean hasLeftOrRight() {
-        return this.hasLeft() || this.hasRight();
+        return neighbors.hasLeftOrRight();
     }
 
     public ParticipantName getName() {
