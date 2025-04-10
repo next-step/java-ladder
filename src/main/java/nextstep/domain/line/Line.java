@@ -1,0 +1,86 @@
+package nextstep.domain.line;
+
+import nextstep.generator.PointGenerator;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+public class Line {
+    private static final String WALL = "|";
+    private static final String LINE = "-----";
+    private static final String EMPTY_LINE = "     ";
+
+    private final List<Point> points;
+
+    public Line(List<Boolean> points) {
+        this.points = points.stream()
+                .map(Point::new)
+                .collect(Collectors.toList());
+        checkValidPoints();
+    }
+
+    public Line(int playerCounts, PointGenerator pointGenerator) {
+        points = new ArrayList<>();
+        for (int index = 0; index < playerCounts -1 ; index++) {
+            points.add(createLine(index, pointGenerator));
+        }
+        checkValidPoints();
+    }
+
+    private void checkValidPoints() {
+        IntStream.range(0, this.points.size() - 1)
+                .filter(index -> this.points.get(index).isConnected() && this.points.get(index + 1).isConnected())
+                .findFirst()
+                .ifPresent(index -> {
+                    throw new RuntimeException("연속으로 선이 이어지만 안됩니다.");
+                });
+    }
+
+    private Point createLine(int index, PointGenerator pointGenerator) {
+        if (index == 0) {
+            return new Point(pointGenerator);
+        }
+        if (points.get(index - 1).isConnected()) {
+            return new Point(false);
+        }
+        return new Point(pointGenerator);
+    }
+
+    public List<Point> getPoints() {
+        return points;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == this) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        Line line = (Line) object;
+        return Objects.equals(points, line.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(points);
+    }
+
+    @Override
+    public String toString() {
+        return points.stream()
+                .map(point -> WALL + isLineOrBlank(point))
+                .collect(Collectors.joining("", EMPTY_LINE, WALL));
+    }
+
+    private static String isLineOrBlank(Point point){
+        if(point.isConnected()) {
+            return LINE;
+        }
+        return EMPTY_LINE;
+    }
+}
