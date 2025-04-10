@@ -1,6 +1,6 @@
 package nextstep.ladder;
 
-import nextstep.ladder.player.Players;
+import nextstep.ladder.player.Entries;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,9 +9,9 @@ import java.util.stream.Stream;
 public class Ladder {
 
     private List<Line> lines;
-    private Players players;
+    private Entries players;
 
-    public Ladder(Height height, Players players) {
+    public Ladder(Height height, Entries players) {
         this.lines = createLines(height.getValue(), players.size());
         this.players = players;
     }
@@ -32,7 +32,7 @@ public class Ladder {
         return sb.toString();
     }
 
-    public Players getPlayers() {
+    public Entries getPlayers() {
         return players;
     }
 }

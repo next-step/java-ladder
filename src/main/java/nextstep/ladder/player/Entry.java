@@ -1,12 +1,12 @@
 package nextstep.ladder.player;
 
-public class Player {
+public class Entry {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String BLANK = " ";
 
     public String name;
 
-    public Player(String name) {
+    public Entry(String name) {
         validate(name);
         this.name = name;
     }

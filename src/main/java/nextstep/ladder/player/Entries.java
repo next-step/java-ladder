@@ -4,34 +4,34 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Players {
-    private List<Player> players;
+public class Entries {
+    private List<Entry> entries;
 
-    public Players(String[] names) {
+    public Entries(String[] names) {
         this(Stream.of(names)
-                .map(Player::new)
+                .map(Entry::new)
                 .collect(Collectors.toList()));
     }
 
-    public Players(List<Player> players) {
-        validateEmpty(players);
-        this.players = players;
+    public Entries(List<Entry> entries) {
+        validateEmpty(entries);
+        this.entries = entries;
     }
 
-    private void validateEmpty(List<Player> players) {
-        if (players == null || players.isEmpty()) {
+    private void validateEmpty(List<Entry> entries) {
+        if (entries == null || entries.isEmpty()) {
             throw new IllegalArgumentException("사람 목록은 null 또는 빈 목록일 수 없습니다.");
         }
     }
 
     public int size() {
-        return players.size();
+        return entries.size();
     }
 
     @Override
     public String toString() {
-        return players.stream()
-                .map(Player::toStringWithBlank)
+        return entries.stream()
+                .map(Entry::toStringWithBlank)
                 .collect(Collectors.joining());
     }
 }

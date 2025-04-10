@@ -6,16 +6,16 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class PlayerTest {
+public class EntryTest {
 
     @ParameterizedTest
     @NullAndEmptySource
-    void testPlayerCreationWithEmptyName(String name) {
-        assertThrows(IllegalArgumentException.class, () -> new Player(name));
+    void testEntryCreationWithEmptyName(String name) {
+        assertThrows(IllegalArgumentException.class, () -> new Entry(name));
     }
 
     @Test
-    void testPlayerCreationWithLongName() {
-        assertThrows(IllegalArgumentException.class, () -> new Player("abcdef"));
+    void testEntryCreationWithLongName() {
+        assertThrows(IllegalArgumentException.class, () -> new Entry("abcdef"));
     }
 }
