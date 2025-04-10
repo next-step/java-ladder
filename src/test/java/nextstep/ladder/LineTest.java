@@ -20,18 +20,4 @@ public class LineTest {
         boolean point = line.generatePoint(before);
         assertThat(point).isFalse();
     }
-
-    @Test
-    public void 직전_가로선_없을때_기준값_이상_테스트() {
-        Line line = new Line(1);
-        boolean point = line.generatePoint(0.5);
-        assertThat(point).isFalse();
-    }
-
-    @Test
-    public void 직전_가로선_없을때_기준값_미만_테스트() {
-        Line line = new Line(1);
-        boolean point = line.generatePoint(0.49);
-        assertThat(point).isTrue();
-    }
 }

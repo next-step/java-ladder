@@ -1,5 +1,7 @@
 package nextstep.ladder;
 
+import nextstep.ladder.random.RandomGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,11 +31,7 @@ public class Line {
             return false;
         }
 
-        return generatePoint(Math.random());
-    }
-
-    public boolean generatePoint(double number) {
-        return number < THRESHOLD;
+        return RandomGenerator.generate();
     }
 
     private void validate(int size) {
