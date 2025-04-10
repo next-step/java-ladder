@@ -1,19 +1,21 @@
 package nextstep.ladder.player;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PlayerTest {
 
-    @Test
-    void testPersonCreationWithEmptyName() {
-        assertThrows(IllegalArgumentException.class, () -> new Player(null));
-        assertThrows(IllegalArgumentException.class, () -> new Player(""));
+    @ParameterizedTest
+    @NullAndEmptySource
+    void testPlayerCreationWithEmptyName(String name) {
+        assertThrows(IllegalArgumentException.class, () -> new Player(name));
     }
 
     @Test
-    void testPersonCreationWithLongName() {
+    void testPlayerCreationWithLongName() {
         assertThrows(IllegalArgumentException.class, () -> new Player("abcdef"));
     }
 }
