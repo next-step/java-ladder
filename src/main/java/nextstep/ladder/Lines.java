@@ -16,4 +16,8 @@ public class Lines {
                 .mapToObj(it -> new Line(playerCount))
                 .collect(Collectors.toUnmodifiableList());
     }
+
+    public List<Line> getLines() {
+        return lines;
+    }
 }

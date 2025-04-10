@@ -9,4 +9,10 @@ public class Players {
     public Players(List<String> players) {
         this.players = players.stream().map(Player::new).collect(Collectors.toList());
     }
+
+    public List<String> getPlayersNames() {
+        return players.stream()
+                .map(Player::getName)
+                .collect(Collectors.toList());
+    }
 }

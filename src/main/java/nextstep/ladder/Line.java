@@ -13,4 +13,8 @@ public class Line {
                 .mapToObj(it -> new Random().nextBoolean())
                 .collect(Collectors.toUnmodifiableList());
     }
+
+    public List<Boolean> getPoints() {
+        return points;
+    }
 }
