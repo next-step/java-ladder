@@ -5,7 +5,7 @@ public class Bridge {
     private final boolean isBuilt;
 
     public Bridge() {
-        this.isBuilt = false;
+        this(false);
     }
 
     public Bridge(boolean isBuilt) {
