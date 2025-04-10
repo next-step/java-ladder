@@ -1,24 +1,37 @@
 package nextstep.ladder.player;
 
+import nextstep.ladder.Position;
+import nextstep.ladder.line.Line;
+import nextstep.ladder.line.Lines;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Entries {
     private List<Entry> entries;
 
-    public Entries(String[] names) {
-        this(Stream.of(names)
-                .map(Entry::new)
-                .collect(Collectors.toList()));
+    public static Entries of(String[] names) {
+        List<Entry> entries = toEntries(names);
+        validateEmpty(entries);
+
+        return new Entries(entries);
     }
 
-    public Entries(List<Entry> entries) {
-        validateEmpty(entries);
+    private static List<Entry> toEntries(String[] names) {
+        List<Entry> entries = new ArrayList<>();
+
+        for (int i = 0; i < names.length; i++) {
+            entries.add(new Entry(names[i], new Position(i)));
+        }
+        return entries;
+    }
+
+    private Entries(List<Entry> entries) {
         this.entries = entries;
     }
 
-    private void validateEmpty(List<Entry> entries) {
+    private static void validateEmpty(List<Entry> entries) {
         if (entries == null || entries.isEmpty()) {
             throw new IllegalArgumentException("사람 목록은 null 또는 빈 목록일 수 없습니다.");
         }
@@ -33,5 +46,18 @@ public class Entries {
         return entries.stream()
                 .map(Entry::toStringWithBlank)
                 .collect(Collectors.joining());
+    }
+
+    public void move(Lines lines) {
+        for (int i = 0; i < lines.size(); i++) {
+            move(lines.get(i));
+        }
+    }
+
+    private void move(Line line) {
+        for (int i = 0; i < entries.size(); i++) {
+            Entry entry = entries.get(i);
+            entry.move(line.getDirection(i));
+        }
     }
 }

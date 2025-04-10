@@ -1,38 +1,24 @@
 package nextstep.ladder;
 
+import nextstep.ladder.line.Lines;
 import nextstep.ladder.player.Entries;
-
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Ladder {
 
-    private List<Line> lines;
+    private Lines lines;
     private Entries players;
 
-    public Ladder(Height height, Entries players) {
-        this.lines = createLines(height.getValue(), players.size());
+    public Ladder(Lines lines, Entries players) {
+        this.lines = lines;
         this.players = players;
     }
 
-    private List<Line> createLines(int height, int personCount) {
-        return Stream.generate(() -> new Line(personCount - 1))
-                .limit(height)
-                .collect(Collectors.toList());
+    public void play() {
+        players.move(lines);
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (Line line : lines) {
-            sb.append(line);
-            sb.append("\n");
-        }
-        return sb.toString();
-    }
-
-    public Entries getPlayers() {
-        return players;
+        return players.toString() + "\n" + lines.toString();
     }
 }

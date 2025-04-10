@@ -1,5 +1,6 @@
 package nextstep.ladder.player;
 
+import nextstep.ladder.Position;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -11,11 +12,11 @@ public class EntryTest {
     @ParameterizedTest
     @NullAndEmptySource
     void testEntryCreationWithEmptyName(String name) {
-        assertThrows(IllegalArgumentException.class, () -> new Entry(name));
+        assertThrows(IllegalArgumentException.class, () -> new Entry(name, new Position(0)));
     }
 
     @Test
     void testEntryCreationWithLongName() {
-        assertThrows(IllegalArgumentException.class, () -> new Entry("abcdef"));
+        assertThrows(IllegalArgumentException.class, () -> new Entry("abcdef", new Position(0)));
     }
 }

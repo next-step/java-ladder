@@ -1,14 +1,21 @@
 package nextstep.ladder.player;
 
+import nextstep.ladder.Direction;
+import nextstep.ladder.Position;
+
+import java.util.Objects;
+
 public class Entry {
     private static final int MAX_NAME_LENGTH = 5;
     private static final String BLANK = " ";
 
-    public String name;
+    private String name;
+    private Position position;
 
-    public Entry(String name) {
+    public Entry(String name, Position position) {
         validate(name);
         this.name = name;
+        this.position = position;
     }
 
     private void validate(String name) {
@@ -28,6 +35,10 @@ public class Entry {
         }
     }
 
+    public void move(Direction direction) {
+        this.position.move(direction);
+    }
+
     @Override
     public String toString() {
         return name;
@@ -35,5 +46,16 @@ public class Entry {
 
     public String toStringWithBlank() {
         return name + BLANK.repeat(MAX_NAME_LENGTH + 1 - name.length());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Entry)) return false;
+
+        Entry entry = (Entry) o;
+
+        if (!position.equals(entry.position)) return false;
+        return Objects.equals(name, entry.name);
     }
 }
