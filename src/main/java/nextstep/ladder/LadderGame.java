@@ -4,6 +4,8 @@ import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 public class LadderGame {
+
+
   public static void main(String[] args) {
     Participants participants = InputView.readParticipants();
     Results results = InputView.readResults();
@@ -20,7 +22,7 @@ public class LadderGame {
 
     while (true) {
       String name = InputView.readQuery();
-      if ("all".equalsIgnoreCase(name)) {
+      if (InputView.isAllQuery(name)) {
         ResultView.printAllResults(executor.allResults());
         break;
       }

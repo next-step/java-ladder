@@ -7,6 +7,7 @@ import nextstep.ladder.Participants;
 import nextstep.ladder.Results;
 
 public class InputView {
+  private static final String QUERY_ALL = "all";
   private static final Scanner scanner = new Scanner(System.in);
 
   public static Participants readParticipants() {
@@ -37,4 +38,9 @@ public class InputView {
   public static void closeScanner() {
     scanner.close();
   }
+
+  public static boolean isAllQuery(String input) {
+    return QUERY_ALL.equalsIgnoreCase(input);
+  }
+
 }
