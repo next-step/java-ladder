@@ -24,3 +24,18 @@
   * 사다리 구조 : Ladder
   * 사다리 가로선 : Line
   * 사다리 생성 : LadderGenerator
+
+## Step3
+### 기능 요구사항
+* 사다리 실행 결과를 출력해야 한다.
+* 개인별 이름을 입력하면 개인별 결과를 출력하고, "all"을 입력하면 전체 참여자의 실행 결과를 출력한다. 
+### 기능 구현
+* UI
+  * 사다리 실행 결과 입력받기 : InputView 
+  * 사다리 실행 결과 출력하기 : ResultView
+* Domain
+  * 사다리를 실행하기 : LadderExecutor
+  * 사다리 결과 저장 : Results
+  * 참가자-결과 매핑 : MappingTable
+  * 사다리 이동 로직 : Ladder, Line
+

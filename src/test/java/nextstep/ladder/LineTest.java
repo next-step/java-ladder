@@ -2,6 +2,7 @@ package nextstep.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.DisplayName;
@@ -30,4 +31,32 @@ class LineTest {
 
     assertThat(hasConsecutiveTrue).isFalse();
   }
+
+  @Test
+  @DisplayName("현재 위치에서 오른쪽 연결이 있으면 오른쪽으로 이동한다.")
+  void moveRight() {
+    Line line = new Line(Arrays.asList(true, false));
+
+    int moved = line.move(0);  // index 0에서 오른쪽 true
+    assertThat(moved).isEqualTo(1);
+  }
+
+  @Test
+  @DisplayName("현재 위치에서 왼쪽 연결이 있으면 왼쪽으로 이동한다.")
+  void moveLeft() {
+    Line line = new Line(Arrays.asList(true, false));
+
+    int moved = line.move(1);  // index 1에서 왼쪽 true
+    assertThat(moved).isEqualTo(0);
+  }
+
+  @Test
+  @DisplayName("양쪽 연결이 없으면 이동하지 않는다.")
+  void stayStill() {
+    Line line = new Line(Arrays.asList(false, false));
+
+    assertThat(line.move(0)).isEqualTo(0);
+    assertThat(line.move(1)).isEqualTo(1);
+  }
+
 }
