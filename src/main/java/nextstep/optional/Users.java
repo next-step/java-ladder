@@ -13,11 +13,9 @@ public class Users {
             new User("honux", 45));
 
     User getUser(String name) {
-        for (User user : users) {
-            if (user.matchName(name)) {
-                return user;
-            }
-        }
-        return DEFAULT_USER;
+        return users.stream()
+                .filter(user -> user.matchName(name))
+                .findFirst()                // 첫 번째 일치하는 요소를 찾음
+                .orElse(DEFAULT_USER);
     }
 }
