@@ -42,6 +42,7 @@ public class Line {
         }
     }
 
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(VERTICAL);

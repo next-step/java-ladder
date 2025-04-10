@@ -28,6 +28,7 @@ public class Players {
         return players.size();
     }
 
+    @Override
     public String toString() {
         return players.stream()
                 .map(Player::toStringWithBlank)

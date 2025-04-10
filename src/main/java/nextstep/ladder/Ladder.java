@@ -22,6 +22,7 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Line line : lines) {
