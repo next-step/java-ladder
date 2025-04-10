@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import java.util.Objects;
+
 public class ParticipantName {
 
     public static final int NAME_WIDTH = 5;
@@ -23,5 +25,17 @@ public class ParticipantName {
 
     public String getValue() {
         return value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        ParticipantName that = (ParticipantName) o;
+        return Objects.equals(value, that.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(value);
     }
 }

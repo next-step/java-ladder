@@ -12,7 +12,7 @@ public class RandomRungStrategy implements RungStrategy {
 
     @Override
     public void apply(Junction curr, Junction right) {
-        if (curr.hasConnect()) {
+        if (curr.hasLeftOrRight()) {
             return;
         }
 

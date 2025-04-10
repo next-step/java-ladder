@@ -1,7 +1,9 @@
 package nextstep.ladder.domain;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Ladder {
@@ -9,8 +11,8 @@ public class Ladder {
     private boolean applyRungsCalled = false;
 
     public Ladder(List<Leg> legs) {
+        validate(legs);
         this.legs = legs;
-        validate();
     }
 
     public int getHeight() {
@@ -41,20 +43,35 @@ public class Ladder {
         return new Row(junctions);
     }
 
-    private void validate() {
-        validateLegs();
-        validateLegsHeight();
-        validateLegsNames();
+    public LadderResult run() {
+        Map<ParticipantName, String> results = new HashMap<>();
+
+        for (Leg leg : legs) {
+            ParticipantName name = leg.getName();
+
+            Junction start = leg.getJunction(0);
+            Junction result = start.moveToResult(name);
+
+            results.put(name, result.getResult());
+        }
+
+        return new LadderResult(results);
     }
 
-    private void validateLegs() {
+    private static void validate(List<Leg> legs) {
+        validateLegs(legs);
+        validateLegsHeight(legs);
+        validateLegsNames(legs);
+    }
+
+    private static void validateLegs(List<Leg> legs) {
         if (legs == null || legs.isEmpty()) {
             throw new IllegalArgumentException("사다리의 다리는 null이거나 비어있을 수 없습니다.");
         }
     }
 
-    private void validateLegsHeight() {
-        int height = getHeight();
+    private static void validateLegsHeight(List<Leg> legs) {
+        int height = legs.get(0).getHeight();
 
         boolean isInvalidHeight = legs.stream()
             .anyMatch(leg -> leg.getHeight() != height);
@@ -64,7 +81,7 @@ public class Ladder {
         }
     }
 
-    private void validateLegsNames() {
+    private static void validateLegsNames(List<Leg> legs) {
         long distinctNameCount = legs.stream()
             .map(Leg::getName)
             .distinct()
@@ -74,4 +91,6 @@ public class Ladder {
             throw new IllegalArgumentException("사다리의 모든 다리는 이름이 달라야 합니다.");
         }
     }
+
+
 }
