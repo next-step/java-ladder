@@ -29,11 +29,11 @@ class LadderGameTest {
         Ladder ladder = Ladder.generateLadder(players.count(), height, new FixedBridgeGenerator(bridges));
 
         LadderGame ladderGame = new LadderGame(players, prizes, ladder);
-        LadderGameResult gameResult = ladderGame.playGame();
+        LadderGameResults gameResults = ladderGame.playGame();
 
-        assertThat(gameResult.findPrizeByPlayerName("참가자1")).isEqualTo(new Prize("3000"));
-        assertThat(gameResult.findPrizeByPlayerName("참가자2")).isEqualTo(new Prize("5000"));
-        assertThat(gameResult.findPrizeByPlayerName("참가자3")).isEqualTo(new Prize("꽝"));
+        assertThat(gameResults.findPrizeByPlayerName("참가자1").getValue()).isEqualTo("3000");
+        assertThat(gameResults.findPrizeByPlayerName("참가자2").getValue()).isEqualTo("5000");
+        assertThat(gameResults.findPrizeByPlayerName("참가자3").getValue()).isEqualTo("꽝");
     }
 
 }

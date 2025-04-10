@@ -14,12 +14,14 @@ public class LadderGame {
         this.ladder = ladder;
     }
 
-    public LadderGameResult playGame() {
-        return new LadderGameResult(IntStream.range(0, players.count())
-                .boxed()
-                .collect(Collectors.toMap(
-                        position -> players.getPlayerByPosition(position),
-                        position -> prizes.getPrizeByPosition(ladder.move(position))
-                )));
+    public LadderGameResults playGame() {
+        // 플레이어 수 만큼 순회하면서, 각 플레이어 별 결과를 만들고 그거를 리스트로 묶어내고, LadderGameResult로 만든다.
+        return new LadderGameResults(
+                IntStream.range(0, players.count())
+                        .mapToObj(position -> new LadderGameResult(
+                                players.getPlayerByPosition(position),
+                                prizes.getPrizeByPosition(ladder.move(position))))
+                        .collect(Collectors.toList()));
+
     }
 }

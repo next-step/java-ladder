@@ -15,15 +15,15 @@ public class LadderApplication {
         OutputView.printGeneratedLadderResult(players, prizes, ladder);
 
         LadderGame ladderGame = new LadderGame(players, prizes, ladder);
-        LadderGameResult gameResult = ladderGame.playGame();
+        LadderGameResults gameResults = ladderGame.playGame();
 
-        askPlayerResultUntilAll(gameResult);
+        askPlayerResultUntilAll(gameResults);
     }
 
-    private static void askPlayerResultUntilAll(LadderGameResult gameResult) {
+    private static void askPlayerResultUntilAll(LadderGameResults gameResults) {
         while (true) {
             String playerName = InputView.getPlayerNameForResult();
-            OutputView.printPlayerResult(gameResult, playerName);
+            OutputView.printPlayerResult(gameResults, playerName);
 
             if ("all".equalsIgnoreCase(playerName)) {
                 break;

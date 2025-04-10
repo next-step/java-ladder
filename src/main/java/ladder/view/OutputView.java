@@ -2,7 +2,7 @@ package ladder.view;
 
 import ladder.domain.*;
 
-import java.util.Map;
+import java.util.List;
 
 public class OutputView {
     private static final int NAME_BOX_SIZE = 6;
@@ -35,7 +35,7 @@ public class OutputView {
         System.out.print(BUFFER);
 
         prizes.getPrizes()
-                .forEach((player) -> System.out.print(centerAlign(player.getPrize())));
+                .forEach((player) -> System.out.print(centerAlign(player.getValue())));
 
         System.out.println();
     }
@@ -55,21 +55,21 @@ public class OutputView {
         return rowString.toString();
     }
 
-    public static void printPlayerResult(LadderGameResult gameResult, String targetName) {
+    public static void printPlayerResult(LadderGameResults gameResults, String targetName) {
         System.out.println("\n실행 결과");
 
         if ("all".equals(targetName)) {
-            printAllPlayersResult(gameResult);
+            printAllPlayersResult(gameResults);
             return;
         }
 
-        Prize prize = gameResult.findPrizeByPlayerName(targetName);
-        System.out.println(prize.getPrize());
+        Prize prize = gameResults.findPrizeByPlayerName(targetName);
+        System.out.println(prize.getValue());
     }
 
-    private static void printAllPlayersResult(LadderGameResult gameResult) {
-        Map<Player, Prize> gameResultMap = gameResult.getGameResult();
-        gameResultMap.forEach(((player, prize) -> System.out.println(player.getName() + " : " + prize.getPrize())));
+    private static void printAllPlayersResult(LadderGameResults gameResults) {
+        List<LadderGameResult> ladderGameResults = gameResults.getLadderGameResults();
+        ladderGameResults.forEach(result -> System.out.println(result.getPlayerName() + " : " + result.getPrizeValue()));
     }
 
     private static String centerAlign(String name) {
