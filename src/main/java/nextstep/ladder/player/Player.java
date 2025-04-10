@@ -16,13 +16,13 @@ public class Player {
         validateLength(name);
     }
 
-    private static void validateLength(String name) {
+    private void validateLength(String name) {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 5자 이하이어야 합니다.");
         }
     }
 
-    private static void validateEmpty(String name) {
+    private void validateEmpty(String name) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("이름은 null 또는 빈 문자열일 수 없습니다.");
         }
