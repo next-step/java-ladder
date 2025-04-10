@@ -1,34 +1,36 @@
 package nextstep.ladder.module;
 
+import java.util.Objects;
+
 public class Point implements Comparable<Point> {
    private final int x;
-   private Bridge ladder;
+   private Bridge bridge;
 
    public Point(int x) {
       this.x = x;
-      this.ladder = new Bridge(false);
+      this.bridge = new Bridge(false);
    }
 
    public Point(int x, Bridge ladder) {
       validate(x);
       this.x = x;
-      this.ladder = ladder;
+      this.bridge = ladder;
    }
 
    public int value() {
       return x;
    }
 
-   public Bridge ladder() {
-      return ladder;
+   public Bridge bridge() {
+      return bridge;
    }
 
-   public void createLadder() {
-      ladder = new Bridge(true);
+   public void createBridge() {
+      bridge = new Bridge(true);
    }
 
-   public void destroyLadder() {
-      ladder = new Bridge(false);
+   public void destroyBridge() {
+      bridge = new Bridge(false);
    }
 
    private void validate(int x) {
@@ -38,13 +40,22 @@ public class Point implements Comparable<Point> {
    }
 
    @Override
-   public int compareTo(Point other) {
-      return Integer.compare(this.x, other.x);
+   public boolean equals(Object obj) {
+      if (this == obj)
+         return true;
+      if (obj == null || getClass() != obj.getClass())
+         return false;
+      Point point = (Point) obj;
+      return x == point.x;
    }
 
    @Override
-   public String toString() {
-      return ladder.isBuilt() ? "-----|" : "     |";
+   public int hashCode() {
+      return Objects.hash(x);
    }
 
+   @Override
+   public int compareTo(Point other) {
+      return Integer.compare(this.x, other.x);
+   }
 }

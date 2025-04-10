@@ -1,16 +1,18 @@
 package nextstep.ladder.module;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class NameList implements Iterable<String> {
-    private final List<String> names;
+public class NameList implements Iterable<Name> {
+    private final List<Name> names;
 
     public NameList(List<String> names) {
         validate(names);
-        this.names = names;
+        this.names = names.stream().map(Name::new).collect(Collectors.toList());
     }
 
-    public List<String> value() {
+    public List<Name> value() {
         return names;
     }
 
@@ -19,7 +21,7 @@ public class NameList implements Iterable<String> {
     }
 
     @Override
-    public java.util.Iterator<String> iterator() {
+    public Iterator<Name> iterator() {
         return names.iterator();
     }
 

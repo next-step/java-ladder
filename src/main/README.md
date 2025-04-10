@@ -30,9 +30,9 @@
 ---
 
 - [x] `Bridge` 부 생성자는 주 생성사를 호출하도록 변경
-- [ ] `Line` 프로덕션/테스트용 생성자 하나로 합치기
-- [ ] `Line` "func::validate" 라인 수 줄이기
-- [ ] TEST 코드에서 "ladder" 삭제
-- [ ] 컨벤션 확인
-- [ ] `Point` 출력 기호 삭제
-- [ ] `NameList` 가 `Name` 을 사용하도록 변경
+- [x] `Line` 프로덕션/테스트용 생성자 하나로 합치기
+- [x] `Line` "func::validate" 라인 수 줄이기
+- [x] TEST 코드에서 "ladder" 삭제
+- [x] 컨벤션 확인
+- [x] `Point` 출력 기호 삭제
+- [x] `NameList` 가 `Name` 을 사용하도록 변경
