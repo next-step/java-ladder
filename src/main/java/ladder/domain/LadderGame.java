@@ -1,7 +1,7 @@
 package ladder.domain;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderGame {
     private final Players players;
@@ -15,15 +15,11 @@ public class LadderGame {
     }
 
     public LadderGameResult playGame() {
-        Map<Player, Prize> gameResultMap = new HashMap<>();
-
-        for (int position = 0; position < players.count(); position++) {
-            Player player = players.getPlayerByPosition(position);
-            Prize prize = prizes.getPrizeByPosition(ladder.move(position));
-
-            gameResultMap.put(player, prize);
-        }
-
-        return new LadderGameResult(gameResultMap);
+        return new LadderGameResult(IntStream.range(0, players.count())
+                .boxed()
+                .collect(Collectors.toMap(
+                        position -> players.getPlayerByPosition(position),
+                        position -> prizes.getPrizeByPosition(ladder.move(position))
+                )));
     }
 }
