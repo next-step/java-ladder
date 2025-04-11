@@ -1,13 +1,10 @@
 package laddergameRDD.domain;
 
-import laddergameRDD.engine.LadderGame;
-
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RandomLadderGame implements LadderGame {
-    @Override
+public class RandomLadderGame{
     public List<GameResult> play(Ladder ladder, List<String> users, List<String> results) {
         Map<Integer, Integer> integerResults = new LinkedHashMap<>();
         for (int currentColumn = 0; currentColumn < users.size(); ++currentColumn) {
