@@ -1,30 +1,25 @@
 package nextstep.ladder.domain;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderGame {
-    private static final String REGEX = ",";
-
     private final List<Player> players;
     private final Lines lines;
 
-    public LadderGame(String players, int ladderHeight) {
+    public LadderGame(List<String> players, int ladderHeight, GeneratorStrategy generatorStrategy) {
         this.players = createPlayers(players);
-        this.lines = new Lines(createLines(ladderHeight));
+        this.lines = new Lines(createLines(ladderHeight, generatorStrategy));
     }
 
-    private List<Player> createPlayers(String players) {
-        return Arrays.stream(players.split(REGEX))
-                .map(Player::new)
-                .collect(Collectors.toList());
+    private List<Player> createPlayers(List<String> players) {
+        return players.stream().map(Player::new).collect(Collectors.toList());
     }
 
-    private List<Line> createLines(int ladderHeight) {
+    private List<Line> createLines(int ladderHeight, GeneratorStrategy generatorStrategy) {
         return IntStream.range(0, ladderHeight)
-                .mapToObj(i -> new Line(players.size(), new RandomGeneratorStrategy()))
+                .mapToObj(i -> new Line(players.size(), generatorStrategy))
                 .collect(Collectors.toList());
     }
 

@@ -1,13 +1,15 @@
 package nextstep.ladder.view;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
     private static final Scanner sc = new Scanner(System.in);
+    private static final String REGEX = ",";
 
-    public static String inputNames() {
+    public static List<String> inputNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return sc.nextLine();
+        return List.of(sc.nextLine().split(REGEX));
     }
 
     public static int inputLadderHeight() {
