@@ -2,7 +2,6 @@ package nextstep.ladder.domain;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -25,7 +24,7 @@ public class LadderGame {
 
     private List<Line> createLines(int ladderHeight) {
         return IntStream.range(0, ladderHeight)
-                .mapToObj(i -> new Line(players.size(), () -> new Random().nextBoolean()))
+                .mapToObj(i -> new Line(players.size(), new RandomGeneratorStrategy()))
                 .collect(Collectors.toList());
     }
 

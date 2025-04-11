@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class LineTest {
     @Test
     void createTest() {
-        Line line = new Line(3, () -> true);
+        Line line = new Line(3, new FakeGeneratorStrategy(true));
 
         assertThat(line).isEqualTo(new Line(List.of(true, false)));
     }
