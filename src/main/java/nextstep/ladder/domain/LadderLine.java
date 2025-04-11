@@ -5,18 +5,14 @@ import java.util.*;
 public class LadderLine {
     public static final String INVALID_LINE_VALUE_MESSAGE = "사다리 라인은 연속된 두 개의 라인을 가질 수 없습니다.";
     public static final String INVALID_LINE_SIZE_MESSAGE = "사다리 라인의 크기는 1 이상이어야 합니다.";
-    private final List<Boolean> values;
+    private final List<Bridge> values;
 
-    public LadderLine(Boolean[] lines) {
-        this(List.of(lines));
-    }
-
-    public LadderLine(List<Boolean> lines) {
+    public LadderLine(List<Bridge> lines) {
         valid(lines);
         this.values = Collections.unmodifiableList(lines);
     }
 
-    private void valid(List<Boolean> lines) {
+    private void valid(List<Bridge> lines) {
         if (lines.isEmpty()) {
             throw new IllegalArgumentException(INVALID_LINE_SIZE_MESSAGE);
         }
@@ -26,13 +22,13 @@ public class LadderLine {
         }
     }
 
-    private static void validPairValue(boolean current, boolean next) {
-        if (current && next) {
+    private static void validPairValue(Bridge current, Bridge next) {
+        if (current.isConnected() && next.isConnected()) {
             throw new IllegalArgumentException(INVALID_LINE_VALUE_MESSAGE);
         }
     }
 
-    public List<Boolean> getBridgeStatus() {
+    public List<Bridge> getBridgeStatus() {
         return values;
     }
 
@@ -41,32 +37,25 @@ public class LadderLine {
     }
 
     public static LadderLine generate(int size) {
+        validSize(size);
+
+        List<Bridge> result = new ArrayList<>();
+        Bridge prev = new Bridge();
+        result.add(prev);
+
+        for (int i = 1; i < size; i++) {
+            Bridge next = prev.nextBridge();
+            result.add(next);
+            prev = next;
+        }
+
+        return new LadderLine(result);
+    }
+
+    private static void validSize(int size) {
         if (size <= 0) {
             throw new IllegalArgumentException(INVALID_LINE_SIZE_MESSAGE);
         }
-
-        return new LadderLine(getRandomBooleans(size));
-    }
-
-    private static List<Boolean> getRandomBooleans(int size) {
-        List<Boolean> result = new ArrayList<>();
-
-        boolean previous = false;
-        for (int i = 0; i < size; i++) {
-            boolean current = getNextBridge(previous);
-            result.add(current);
-            previous = current;
-        }
-        return result;
-    }
-
-    private static boolean getNextBridge(boolean previous) {
-        if (previous) {
-            return false;
-        }
-
-        Random random = new Random();
-        return random.nextBoolean();
     }
 
     @Override

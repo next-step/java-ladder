@@ -24,10 +24,14 @@ public class Ladder {
         }
 
         ladderLines.forEach(ladderLine -> {
-            if (ladderLine.size() != participants.size() - 1) {
+            if (ladderLine.size() != calculateLadderLineSize(participants.size())) {
                 throw new IllegalArgumentException(NO_MATCH_LADDER_SIZE_WITH_PARTICIPANTS + " - SIZE : " + ladderLine.size());
             }
         });
+    }
+
+    private static int calculateLadderLineSize(int ParticipantSize) {
+        return ParticipantSize - 1;
     }
 
     public List<Participant> getNames() {
@@ -52,10 +56,10 @@ public class Ladder {
     }
 
     private static List<LadderLine> generateLines(int height, String[] names) {
-        int size = names.length - 1;
+        int ladderLineSize = calculateLadderLineSize(names.length);
         List<LadderLine> ladderLines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            ladderLines.add(LadderLine.generate(size));
+            ladderLines.add(LadderLine.generate(ladderLineSize));
         }
         return Collections.unmodifiableList(ladderLines);
     }

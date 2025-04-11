@@ -21,12 +21,13 @@ public class ConsoleOutputView implements OutputViewInterface {
     public void printLadder(List<LadderLine> ladder) {
         ladder.forEach(ladderLine -> {
             System.out.print("     |");
-            ladderLine.getBridgeStatus().forEach(ladderPoint -> {
-                if (ladderPoint) {
-                    System.out.print("-----|");
-                    return;
-                }
-                System.out.print("     |");
+            ladderLine.getBridgeStatus().forEach(bridge -> {
+                System.out.print(bridge.toString() + "|");
+//                if (bridge.isConnected()) {
+//                    System.out.print("-----|");
+//                    return;
+//                }
+//                System.out.print("     |");
             });
             System.out.println();
         });

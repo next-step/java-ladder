@@ -10,9 +10,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LadderLineTest {
     @Test
-    @DisplayName("2개의 생성자 동작 확인")
+    @DisplayName("생성자 동작 확인")
     void create() {
-        assertThat(new LadderLine(new Boolean[]{true, false})).isEqualTo(new LadderLine(List.of(new Boolean[]{true, false})));
+        List<Bridge> bridges = List.of(new Bridge(true), new Bridge(false));
+        assertThat(new LadderLine(bridges)).isInstanceOf(LadderLine.class);
     }
 
     @Test
@@ -24,7 +25,7 @@ public class LadderLineTest {
     @Test
     @DisplayName("사다리 라인 생성 시 가로선(true)이 2번 연속 나올 수 없음 - 실패")
     void true_true_case() {
-        assertThatThrownBy(() -> new LadderLine(new Boolean[]{true, true}))
+        assertThatThrownBy(() -> new LadderLine(List.of(new Bridge(true), new Bridge(true))))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LadderLine.INVALID_LINE_VALUE_MESSAGE);
     }
@@ -32,7 +33,7 @@ public class LadderLineTest {
     @Test
     @DisplayName("사다리 라인 생성 시 비어 있는 값이 올 수 없음(empty) - 실패")
     void empty_case() {
-        assertThatThrownBy(() -> new LadderLine(new Boolean[]{}))
+        assertThatThrownBy(() -> new LadderLine(List.of()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LadderLine.INVALID_LINE_SIZE_MESSAGE);
     }

@@ -17,11 +17,16 @@ public class LadderTest {
     void create() {
         Participants participants = new Participants(new String[]{"p1", "p2", "p3"});
 
+        List<Bridge> bridge1 = List.of(new Bridge(true), new Bridge(false));
+        List<Bridge> bridge2 = List.of(new Bridge(false), new Bridge(true));
         List<LadderLine> ladderLines = new ArrayList<>();
-        ladderLines.add(LadderLine.generate(2));
-        ladderLines.add(LadderLine.generate(2));
+        ladderLines.add(new LadderLine(bridge1));
+        ladderLines.add(new LadderLine(bridge2));
 
-        assertThat(new Ladder(participants, ladderLines)).isInstanceOf(Ladder.class);
+        Ladder ladder = new Ladder(participants, ladderLines);
+
+        assertThat(ladder.getNames()).isEqualTo(participants.getNames());
+        assertThat(ladder.getLines()).isEqualTo(ladderLines);
     }
 
     @Test
