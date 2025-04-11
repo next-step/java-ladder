@@ -48,3 +48,19 @@
   * ladderLine.generator - 사다리 한 줄을 만드는 static 메소드
     * 랜덤으로 0과 1을 생성
     * 1 이 연속으로 2개 이상 생성되지 않도록 한다.
+
+### Step2 코드리뷰 반영
+* Bridge 객체 추가
+  * boolean 객체로 가로줄 사다리 여부를 의미
+  * 다음 사다리의 가로줄 여부를 반환 하는 nextBridge 메소드 추가
+
+### Step3 - 사다리(게임 실행)
+* Participant 객체 수정
+  * 위치 정보 추가 : 현재 이름만 있지만 사다리를 한칸 이동할 때마다 해당 참여자의 위치 정보 표시
+* Results 객체 추가
+  * List<Result> 형태로 사다리 결과를 저장
+* Ladder 객체 수정
+  * move 메소드 추가 : LadderLine.move() 메소드를 호출하여 사다리 이동
+* LadderLine 객체 수정
+    * move 메소드 추가 : bridge 상태에 따라 다음 위치를 반환 (좌우)
+  
