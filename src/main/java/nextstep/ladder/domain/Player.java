@@ -14,6 +14,10 @@ public class Player {
         this.value = value;
     }
 
+    public String getValue() {
+        return value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) {
@@ -26,10 +30,5 @@ public class Player {
     @Override
     public int hashCode() {
         return Objects.hashCode(value);
-    }
-
-    @Override
-    public String toString() {
-        return value;
     }
 }

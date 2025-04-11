@@ -13,7 +13,7 @@ public class OutputView {
 
     public static void printPlayers(List<Player> players) {
         System.out.println("실행결과");
-        players.forEach(player -> System.out.printf("%6s", player));
+        players.forEach(player -> System.out.printf("%6s", player.getValue()));
         System.out.println();
     }
 
