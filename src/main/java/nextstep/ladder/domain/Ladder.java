@@ -43,7 +43,7 @@ public class Ladder {
         return new Row(junctions);
     }
 
-    public LadderResult run() {
+    public LadderResults run() {
         Map<ParticipantName, String> results = new HashMap<>();
 
         for (Leg leg : legs) {
@@ -55,7 +55,7 @@ public class Ladder {
             results.put(name, result.getResult());
         }
 
-        return new LadderResult(results);
+        return new LadderResults(results);
     }
 
     private static void validate(List<Leg> legs) {

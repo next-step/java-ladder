@@ -1,27 +1,19 @@
 package nextstep.ladder.domain;
 
-import nextstep.Pair;
-
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 public class LadderResult {
-    private final Map<ParticipantName, String> results;
+    private ParticipantName name;
+    private String result;
 
-    public LadderResult(Map<ParticipantName, String> results) {
-        this.results = results;
+    public LadderResult(ParticipantName name, String result) {
+        this.name = name;
+        this.result = result;
     }
 
-    public String getByName(String name) {
-        return results.get(new ParticipantName(name));
+    public ParticipantName getName() {
+        return name;
     }
 
-    public List<Pair<ParticipantName, String>> getAll() {
-        return results.entrySet().stream()
-                .map(e -> new Pair<>(e.getKey(), e.getValue()))
-                .collect(Collectors.toList());
+    public String getResult() {
+        return result;
     }
-
 }
