@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -31,5 +32,19 @@ public class ParticipantTest {
         assertThatThrownBy(() -> new Participant(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(Participant.TOO_LENGTH_ERROR_MESSAGE);
+    }
+
+    @Test
+    @DisplayName("위치 정보를 가진 생성 케이스 테스트")
+    void create_with_position() {
+        assertThat(new Participant("test", 1).getPosition()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("위치 정보를 업데이트 테스트")
+    void move_test() {
+        Participant participant = new Participant("test", 1);
+        participant.moveTo(2);
+        assertThat(participant).isEqualTo(new Participant("test", 2));
     }
 }
