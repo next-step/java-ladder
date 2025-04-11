@@ -24,9 +24,9 @@ public class Point {
 
     public Point next(boolean nextValue) {
         if (this.current) {
-            return new Point(this.current, false);
+            return new Point(true, false);
         }
-        return new Point(this.current, nextValue);
+        return new Point(false, nextValue);
     }
 
     public Point end() {
