@@ -37,4 +37,13 @@ public class LadderLineTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LadderLine.INVALID_LINE_SIZE_MESSAGE);
     }
+
+    @Test
+    @DisplayName("Bridge 정보를 바탕으로 다음 위치를 계산하는 메소드 동작 확인")
+    void getNextPosition_Test() {
+        LadderLine ladderLine = new LadderLine(List.of(new Bridge(true), new Bridge(false)));
+        assertThat(ladderLine.getNextPosition(0)).isEqualTo(1);
+        assertThat(ladderLine.getNextPosition(1)).isEqualTo(0);
+        assertThat(ladderLine.getNextPosition(2)).isEqualTo(2);
+    }
 }

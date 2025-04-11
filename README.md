@@ -57,10 +57,14 @@
 ### Step3 - 사다리(게임 실행)
 * Participant 객체 수정
   * 위치 정보 추가 : 현재 이름만 있지만 사다리를 한칸 이동할 때마다 해당 참여자의 위치 정보 표시
+  * position 메소드 추가 : 현재 위치를 반환
+  * move 메소드 추가 : LadderLine 이용하여 참여자 위치 변경
+* Participants 객체 수정
+  * updatePositions 메소드 추가 : LadderLine 정보를 이용하여 모든 참여자의 위치를 업데이트
 * Results 객체 추가
   * List<Result> 형태로 사다리 결과를 저장
 * Ladder 객체 수정
   * move 메소드 추가 : LadderLine.move() 메소드를 호출하여 사다리 이동
 * LadderLine 객체 수정
-    * move 메소드 추가 : bridge 상태에 따라 다음 위치를 반환 (좌우)
+  * getNextPosition 메소드 추가 : bridge 상태에 따라 다음 위치를 반환 (좌우)
   

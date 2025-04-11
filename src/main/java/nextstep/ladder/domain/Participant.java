@@ -29,12 +29,12 @@ public class Participant {
         }
     }
 
-    public int getPosition() {
+    public int position() {
         return position;
     }
 
-    public void moveTo(int position) {
-        this.position = position;
+    public void move(LadderLine line) {
+        this.position = line.getNextPosition(position);
     }
 
     @Override

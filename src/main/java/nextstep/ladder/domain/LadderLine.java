@@ -5,11 +5,11 @@ import java.util.*;
 public class LadderLine {
     public static final String INVALID_LINE_VALUE_MESSAGE = "사다리 라인은 연속된 두 개의 라인을 가질 수 없습니다.";
     public static final String INVALID_LINE_SIZE_MESSAGE = "사다리 라인의 크기는 1 이상이어야 합니다.";
-    private final List<Bridge> values;
+    private final List<Bridge> bridges;
 
     public LadderLine(List<Bridge> lines) {
         valid(lines);
-        this.values = Collections.unmodifiableList(lines);
+        this.bridges = Collections.unmodifiableList(lines);
     }
 
     private void valid(List<Bridge> lines) {
@@ -29,11 +29,21 @@ public class LadderLine {
     }
 
     public List<Bridge> getBridgeStatus() {
-        return values;
+        return bridges;
     }
 
     public int size() {
-        return values.size();
+        return bridges.size();
+    }
+
+    public int getNextPosition(int position) {
+        if (position < bridges.size() && bridges.get(position).isConnected()) {
+            return position + 1;
+        }
+        if (position > 0 && bridges.get(position - 1).isConnected()) {
+            return position - 1;
+        }
+        return position;
     }
 
     public static LadderLine generate(int size) {
@@ -62,11 +72,11 @@ public class LadderLine {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         LadderLine that = (LadderLine) o;
-        return Objects.equals(values, that.values);
+        return Objects.equals(bridges, that.bridges);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(values);
+        return Objects.hashCode(bridges);
     }
 }
