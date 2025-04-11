@@ -1,6 +1,7 @@
 package view;
 
 import domain.Ladder;
+import domain.LadderGameEngine;
 import domain.Line;
 import domain.PlayerName;
 
@@ -8,10 +9,6 @@ import java.util.List;
 
 public class OutputView {
     private static final String OUTPUT_MESSAGE = "output: %d";
-
-//    public static void printLine(Ladder ladder) {
-//        ladder.printline();
-//    }
 
     public void printOutput(int output) {
         System.out.printf(OUTPUT_MESSAGE + System.lineSeparator(), output);
@@ -23,13 +20,7 @@ public class OutputView {
     }
 
     public static void printLine(Line line) {
-        StringBuilder builder = new StringBuilder();
-        for (boolean point : line.getPoints()) {
-            builder.append("|");
-            builder.append(point ? "-----" : "     ");
-        }
-        builder.append("|");
-        System.out.println(builder);
+        System.out.println(line.toPrintableString());
     }
 
     public static void printLine(Ladder ladder) {
@@ -37,5 +28,11 @@ public class OutputView {
             printLine(line);
         }
     }
+
+    public static void printResults(List<String> results) {
+        results.forEach(r -> System.out.printf("%-6s", r));
+        System.out.println();
+    }
+
 
 }

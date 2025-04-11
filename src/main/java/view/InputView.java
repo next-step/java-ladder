@@ -31,6 +31,18 @@ public class InputView {
 
     }
 
+    public static List<String> getResults() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        return Arrays.stream(scanner.nextLine().split(","))
+                .map(String::trim)
+                .collect(Collectors.toList());
+    }
+
+    public static String askPlayer() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return scanner.nextLine().trim();
+    }
+
 
 
 }

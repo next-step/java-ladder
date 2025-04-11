@@ -17,7 +17,23 @@ public class Line {
         }
     }
 
-    public List<Boolean> getPoints() {
-        return points;
+    public int getNextPosition(int position) {
+        if (position < points.size() && points.get(position)) {
+            return position + 1;
+        }
+        if (position > 0 && points.get(position - 1)) {
+            return position - 1;
+        }
+        return position;
+    }
+
+    public String toPrintableString() {
+        StringBuilder builder = new StringBuilder();
+        for (boolean point : points) {
+            builder.append("|");
+            builder.append(point ? "-----" : "     ");
+        }
+        builder.append("|");
+        return builder.toString();
     }
 }
