@@ -22,4 +22,12 @@ public class Lines {
     public List<Line> getListLines() {
         return lines;
     }
+
+    public int getIndexAfterMove(int startIndex) {
+        int movedIndex = startIndex;
+        for (Line line : lines) {
+            movedIndex = line.getIndexAfterMove(movedIndex);
+        }
+        return movedIndex;
+    }
 }
