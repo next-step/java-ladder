@@ -3,7 +3,7 @@ package laddergameRDD;
 import laddergameRDD.domain.GameResult;
 import laddergameRDD.domain.Ladder;
 import laddergameRDD.domain.RandomSelectStrategy;
-import laddergameRDD.domain.RandomLadderGame;
+import laddergameRDD.domain.LadderGame;
 import laddergameRDD.view.InputView;
 import laddergameRDD.view.OutputView;
 
@@ -18,7 +18,7 @@ public class LadderGameMain {
         Ladder ladder = new Ladder(maxLadderHeight, users.size(), new RandomSelectStrategy());
         OutputView.printGameMap(users, results, ladder);
 
-        RandomLadderGame ladderGame = new RandomLadderGame();
+        LadderGame ladderGame = new LadderGame();
         List<GameResult> gameResults = ladderGame.play(ladder, users, results);
 
         String target = InputView.inputTarget();
