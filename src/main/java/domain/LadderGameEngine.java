@@ -1,21 +1,19 @@
 package domain;
 
+import view.ResultMapping;
+
 import java.util.List;
 
+
 public class LadderGameEngine {
-    public static int move(Ladder ladder, int startIndex) {
+    public static String move(Ladder ladder, int startIndex, List<PlayerName> players, ResultMapping mapping) {
         int position = startIndex;
 
         for (Line line : ladder.getLines()) {
-            List<Boolean> points = line.getPoints();
-
-            if (position < points.size() && points.get(position)) {
-                position++;
-            } else if (position > 0 && points.get(position - 1)) {
-                position--;
-            }
+            position = line.getNextPosition(position);
         }
 
-        return position;
+        PlayerName resultPlayer = players.get(position);
+        return mapping.getResult(resultPlayer);
     }
 }
