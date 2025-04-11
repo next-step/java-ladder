@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -7,7 +8,7 @@ import java.util.stream.Collectors;
 public class LadderResults {
     private final Map<ParticipantName, String> results;
 
-    public LadderResults(Map<ParticipantName, String> results) {
+    public LadderResults(LinkedHashMap<ParticipantName, String> results) {
         this.results = results;
     }
 

@@ -60,6 +60,19 @@ class JunctionTest {
         assertThat(result).isEqualTo(junction);
     }
 
+    @Test
+    void 이동할_곳이_있다면_이동한다() {
+        ParticipantName name = new ParticipantName("1");
+        Junction junction = createJunction();
+        Junction rightJunction = createJunction();
+
+        junction.connectRight(rightJunction);
+
+        Junction result = junction.moveToResult(name);
+
+        assertThat(result).isEqualTo(rightJunction);
+    }
+
     public static Junction createJunction() {
         Leg leg = new LegBuilder().build();
         return new Junction(leg);
