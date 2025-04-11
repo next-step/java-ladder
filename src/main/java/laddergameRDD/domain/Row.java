@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Row {
-    private final List<Point> row = new ArrayList<>();
+    private List<Point> row = new ArrayList<>();
 
     public Row(int columnCount, SelectStrategy selectStrategy) {
         Point curPoint = Point.first(selectStrategy.canSelect());
@@ -17,6 +17,10 @@ public class Row {
             row.add(curPoint);
         }
         row.add(curPoint.end());
+    }
+
+    public Row(List<Point> row) {
+        this.row = row;
     }
 
     public int moveDown(int position) {
