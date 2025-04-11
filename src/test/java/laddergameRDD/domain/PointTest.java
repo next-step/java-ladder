@@ -16,6 +16,22 @@ public class PointTest {
         );
     }
 
+    @DisplayName("첫번째 point의 이전 값은 늘 false")
+    @Test
+    void create_first_point() {
+        assertThat(Point.first(true).getPoint()).isEqualTo(false);
+    }
+
+
+    @DisplayName("마지막 point의 현재 값은 늘 false")
+    @Test
+    void create_end_point() {
+        Point point = Point.first(true);
+        assertThat(point.end())
+                .extracting("current")
+                .isEqualTo(false);
+    }
+
     @DisplayName("사다리 한 점에서 오른쪽 이동")
     @Test
     void move_right() {
