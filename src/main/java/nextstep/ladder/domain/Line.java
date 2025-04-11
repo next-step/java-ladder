@@ -21,12 +21,16 @@ public class Line {
         boolean previousHasLine = false;
 
         for (int i = 0; i < countOfPerson - 1; i++) {
-            boolean hasLine = !previousHasLine && strategy.isGenerate();
+            boolean hasLine = isGenerateLine(previousHasLine, strategy);
             points.add(hasLine);
             previousHasLine = hasLine;
         }
 
         return points;
+    }
+
+    private static boolean isGenerateLine(boolean previousHasLine, GeneratorStrategy strategy) {
+        return !previousHasLine && strategy.isGenerate();
     }
 
     public List<Boolean> getPoints() {
