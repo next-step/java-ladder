@@ -10,35 +10,35 @@ public class Junction {
     }
 
     public boolean hasLeft() {
-        return neighbors.hasLeft();
+        return hasNeighbor(Direction.LEFT);
     }
 
     public boolean hasRight() {
-        return neighbors.hasRight();
-    }
-
-    public boolean hasNeighbor(Direction direction) {
-        return neighbors.hasNeighbor(direction);
+        return hasNeighbor(Direction.RIGHT);
     }
 
     public boolean hasDown() {
-        return neighbors.hasDown();
+        return hasNeighbor(Direction.DOWN);
+    }
+
+    boolean hasNeighbor(Direction direction) {
+        return neighbors.hasNeighbor(direction);
     }
 
     public boolean hasLeftOrRight() {
-        return neighbors.hasLeftOrRight();
+        return hasLeft() || hasRight();
     }
 
     public void setLeft(Junction left) {
-        neighbors.setLeft(left);
+        neighbors.setNeighbor(Direction.LEFT, left);
     }
 
     public void setRight(Junction right) {
-        neighbors.setRight(right);
+        neighbors.setNeighbor(Direction.RIGHT, right);
     }
 
     public void setDown(Junction down) {
-        neighbors.setDown(down);
+        neighbors.setNeighbor(Direction.DOWN, down);
     }
 
     public void connectRight(Junction right) {
@@ -49,7 +49,7 @@ public class Junction {
         neighbors.connectDown(this, down);
     }
 
-    public Junction getNeighbor(Direction direction) {
+    Junction getNeighbor(Direction direction) {
         return neighbors.getNeighbor(direction);
     }
 

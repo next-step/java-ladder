@@ -11,36 +11,12 @@ public class JunctionNeighbors {
         neighbors.put(direction, junction);
     }
 
-    public void setLeft(Junction junction) {
-        setNeighbor(Direction.LEFT, junction);
-    }
-
-    public void setRight(Junction junction) {
-        setNeighbor(Direction.RIGHT, junction);
-    }
-
-    public void setDown(Junction junction) {
-        setNeighbor(Direction.DOWN, junction);
-    }
-
     public Junction getNeighbor(Direction direction) {
         return neighbors.get(direction);
     }
 
     public boolean hasNeighbor(Direction direction) {
         return getNeighbor(direction) != null;
-    }
-
-    public boolean hasRight() {
-        return hasNeighbor(Direction.RIGHT);
-    }
-
-    public boolean hasLeft() {
-        return hasNeighbor(Direction.LEFT);
-    }
-
-    public boolean hasLeftOrRight() {
-        return hasLeft() || hasRight();
     }
 
     public boolean hasDown() {
