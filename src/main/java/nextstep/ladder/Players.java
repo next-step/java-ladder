@@ -1,0 +1,39 @@
+package nextstep.ladder;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class Players {
+  private static final int MIN_SIZE = 2;
+  private final List<Player> players;
+
+  public Players(String input) {
+    this(Stream.of(input.split(","))
+            .map(String::trim)
+            .map(Player::new)
+            .collect(Collectors.toList())
+    );
+  }
+
+  public Players(List<Player> players) {
+    validate(players);
+    this.players = players;
+  }
+
+  private void validate(List<Player> players) {
+    if (players.size() < MIN_SIZE) {
+      throw new IllegalArgumentException(String.format("참여자는 %d명 이상이어야 합니다.", MIN_SIZE));
+    }
+  }
+
+  public String toConsoleOutput() {
+    return players.stream()
+            .map(Player::toString)
+            .collect(Collectors.joining(" "));
+  }
+
+  public int size() {
+    return players.size();
+  }
+}

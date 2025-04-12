@@ -7,24 +7,21 @@ import java.util.stream.Collectors;
 public class Ladder {
   private final List<Line> lines;
 
-  public Ladder(int height, int countOfPlayers, DirectionStrategy strategy) {
-    validate(height, countOfPlayers);
-    this.lines = createLines(height, countOfPlayers, strategy);
+  public Ladder(int height, Players players, DirectionStrategy strategy) {
+    validate(height);
+    this.lines = createLines(height, players, strategy);
   }
 
-  private void validate(int height, int countOfPlayers) {
+  private void validate(int height) {
     if (height < 1) {
       throw new IllegalArgumentException("사다리 높이는 1 이상이어야 합니다.");
     }
-    if (countOfPlayers < 2) {
-      throw new IllegalArgumentException("참여자는 2명 이상이어야 합니다.");
-    }
   }
 
-  private List<Line> createLines(int height, int countOfPlayers, DirectionStrategy strategy) {
+  private List<Line> createLines(int height, Players players, DirectionStrategy strategy) {
     List<Line> lines = new ArrayList<>();
     for (int i = 0; i < height; i++) {
-      lines.add(new Line(countOfPlayers, strategy));
+      lines.add(new Line(players, strategy));
     }
     return lines;
   }

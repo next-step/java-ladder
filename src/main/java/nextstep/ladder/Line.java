@@ -11,14 +11,14 @@ public class Line {
 
   private final List<Point> points;
 
-  public Line(int countOfPerson, DirectionStrategy strategy) {
-    this.points = createPoints(countOfPerson, strategy);
+  public Line(Players players, DirectionStrategy strategy) {
+    this.points = createPoints(players, strategy);
   }
 
-  private List<Point> createPoints(int countOfPerson, DirectionStrategy strategy) {
+  private List<Point> createPoints(Players players, DirectionStrategy strategy) {
     List<Point> points = new ArrayList<>();
 
-    for (int i = 0; i < countOfPerson - 1; i++) {
+    for (int i = 0; i < players.size() - 1; i++) {
       if (i > 0 && points.get(i - 1).hasLine()) {
         points.add(new Point(false));
       } else {

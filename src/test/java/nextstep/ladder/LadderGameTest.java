@@ -31,8 +31,27 @@ public class LadderGameTest {
   }
 
   @Test
+  void testCreatePlayers() {
+    String players = "pobi, crong, jk";
+
+    Players playersList = new Players(players);
+
+    assertThat(playersList.size()).isEqualTo(3);
+    assertThat(playersList.toConsoleOutput()).isEqualTo(" pobi crong    jk");
+  }
+
+  @Test
+  void testCreatePlayersWithLessThan2Players() {
+    String players = "pobi";
+
+    assertThatThrownBy(() -> new Players(players))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("참여자는 2명 이상이어야 합니다.");
+  }
+
+  @Test
   void testCreateLine() {
-    Line line = new Line(10, () -> true);
+    Line line = new Line(new Players("pobi,crong,jk"), () -> true);
     String lineRendered = line.toConsoleOutput();
 
     String[] segments = lineRendered.trim().split("\\|");
@@ -46,7 +65,7 @@ public class LadderGameTest {
   @Test
   void testLadderCreatesRightAmountOfHeight() {
     int height = 3;
-    int players = 4;
+    Players players = new Players("pobi,crong,jk");
 
     Ladder ladder = new Ladder(height, players, () -> false);
 
@@ -57,27 +76,31 @@ public class LadderGameTest {
   @Test
   void testLadderCreatesPlayersCounts() {
     int height = 1;
-    int players = 5;
+    Players players = new Players("pobi,crong,jk");
 
     Ladder ladder = new Ladder(height, players, () -> true);
 
     String rendered = ladder.toConsoleOutput();
     long count = rendered.chars().filter(c -> c == '|').count();
-    assertEquals(players*height, count);
+    assertEquals(players.size()*height, count);
   }
 
   @Test
-  void testPrintLadder() {
+  void testPrintResult() {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     PrintStream originalOut = System.out;
     System.setOut(new PrintStream(outputStream));
 
-    Ladder ladder = new Ladder(3, 5, () -> true);
-    String expected = "     |----|    |----|    |\n" +
-                      "     |----|    |----|    |\n" +
-                      "     |----|    |----|    |\n";
+    Players players = new Players("pobi,crong,jk");
+    Ladder ladder = new Ladder(3, players, () -> true);
+    String expected = "실행 결과\n" +
+        "\n" +
+        " pobi crong    jk\n" +
+        "     |----|    |\n" +
+        "     |----|    |\n" +
+        "     |----|    |\n";
 
-    OutputView.printLadder(ladder);
+    OutputView.printResult(players, ladder);
 
     System.setOut(originalOut);
     assertEquals(expected, outputStream.toString());
