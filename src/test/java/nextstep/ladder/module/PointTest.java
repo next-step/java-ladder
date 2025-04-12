@@ -11,21 +11,21 @@ import org.junit.jupiter.api.Test;
 
 import nextstep.ladder.view.ResultView;
 
-public class PointXTest {
+public class PointTest {
 
     private final ResultView resultView = new ResultView();
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
     @Test
     @DisplayName("x가 0 미만이면 에러")
-    void givenXLessThanZero_whenCreatePointX_thenThrowException() {
+    void givenXLessThanZero_whenCreatePoint_thenThrowException() {
         assertThatThrownBy(() -> new Point(-1, new Bridge())).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("x는 0 이상이어야 합니다.");
     }
 
     @Test
     @DisplayName("x가 0 이상이면 통과")
-    void givenXGreaterThanOrEqualToZero_whenCreatePointX_thenPass() {
+    void givenXGreaterThanOrEqualToZero_whenCreatePoint_thenPass() {
         assertThat(new Point(0, new Bridge()).value()).isEqualTo(0);
     }
 
