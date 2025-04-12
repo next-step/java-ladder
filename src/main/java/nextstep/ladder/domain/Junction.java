@@ -2,7 +2,7 @@ package nextstep.ladder.domain;
 
 public class Junction {
     private final Leg leg;
-    private final Neighbors neighbors = new Neighbors();
+    private final JunctionNeighbors neighbors = new JunctionNeighbors();
     private final JunctionVisitors visitors = new JunctionVisitors();
 
     public Junction(Leg leg) {

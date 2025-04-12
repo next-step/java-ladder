@@ -3,7 +3,7 @@ package nextstep.ladder.domain;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Neighbors {
+public class JunctionNeighbors {
 
     private final Map<Direction, Junction> neighbors = new HashMap<>();
 
