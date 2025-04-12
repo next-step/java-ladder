@@ -4,14 +4,14 @@ import java.util.List;
 
 public class JunctionMover {
 
-    private static final List<Direction> DIRECTIONS = List.of(
+    private static final List<Direction> NEXT_ORDER = List.of(
         Direction.LEFT,
         Direction.RIGHT,
         Direction.DOWN
     );
 
     private static Junction getNext(Junction junction, ParticipantName visitor) {
-        return DIRECTIONS.stream()
+        return NEXT_ORDER.stream()
             .filter(direction -> {
                 return junction.hasNeighbor(direction)
                     && !junction.getNeighbor(direction).isVisited(visitor);
