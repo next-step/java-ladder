@@ -10,7 +10,7 @@ public class JunctionMover {
         Direction.DOWN
     );
 
-    private static Junction getNext(Junction junction, ParticipantName visitor) {
+    private static Junction findNext(Junction junction, ParticipantName visitor) {
         return NEXT_ORDER.stream()
             .filter(direction -> {
                 return junction.hasNeighbor(direction)
@@ -21,12 +21,12 @@ public class JunctionMover {
             .orElse(null);
     }
 
-    public static boolean canMove(Junction junction, ParticipantName visitor) {
-        return getNext(junction, visitor) != null;
+    private static boolean canMove(Junction junction, ParticipantName visitor) {
+        return findNext(junction, visitor) != null;
     }
 
-    public static Junction move(Junction junction, ParticipantName visitor) {
-        Junction next = getNext(junction, visitor);
+    private static Junction move(Junction junction, ParticipantName visitor) {
+        Junction next = findNext(junction, visitor);
 
         if (next == null) {
             throw new IllegalStateException("이동할 수 없습니다.");
@@ -34,6 +34,15 @@ public class JunctionMover {
 
         next.visit(visitor);
         return next;
+    }
+
+    public static Junction moveToResult(Junction start, ParticipantName participant) {
+        Junction curr = start;
+        curr.visit(participant);
+        while (canMove(curr, participant)) {
+            curr = move(curr, participant);
+        }
+        return curr;
     }
 
 }

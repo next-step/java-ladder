@@ -69,15 +69,4 @@ public class Junction {
         return visitors.isVisited(visitor);
     }
 
-    public Junction moveToResult(ParticipantName visitor) {
-        Junction curr = this;
-        curr.visit(visitor);
-
-        while (JunctionMover.canMove(curr, visitor)) {
-            curr = JunctionMover.move(curr, visitor);
-        }
-
-        return curr;
-    }
-
 }

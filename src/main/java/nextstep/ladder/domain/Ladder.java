@@ -50,7 +50,7 @@ public class Ladder {
             ParticipantName name = leg.getName();
 
             Junction start = leg.getJunction(0);
-            Junction result = start.moveToResult(name);
+            Junction result = JunctionMover.moveToResult(start, name);
 
             results.put(name, result.getResult());
         }

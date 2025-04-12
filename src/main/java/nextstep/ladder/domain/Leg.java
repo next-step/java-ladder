@@ -15,6 +15,10 @@ public class Leg {
         this.junctions = createJunctions(height);
     }
 
+    public Junction getStart() {
+        return junctions.get(0);
+    }
+
     public Junction getJunction(int level) {
         return junctions.get(level);
     }
