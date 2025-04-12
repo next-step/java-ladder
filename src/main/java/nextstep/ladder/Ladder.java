@@ -7,8 +7,8 @@ public class Ladder {
     private final Lines lines;
 
     public Ladder(List<String> players, int height) {
-        this.players = new Players(players);
-        this.lines = new Lines(height, players.size());
+        this.players = Players.from(players);
+        this.lines = Lines.of(height, players.size());
     }
 
     public Lines getLines() {

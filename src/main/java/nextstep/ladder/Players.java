@@ -6,8 +6,15 @@ import java.util.stream.Collectors;
 public class Players {
     private final List<Player> players;
 
-    public Players(List<String> players) {
-        this.players = players.stream().map(Player::new).collect(Collectors.toList());
+    private Players(List<Player> players) {
+        this.players = players;
+    }
+
+    public static Players from(List<String> names) {
+        List<Player> players = names.stream()
+                .map(Player::new)
+                .collect(Collectors.toList());
+        return new Players(players);
     }
 
     public List<String> getPlayersNames() {

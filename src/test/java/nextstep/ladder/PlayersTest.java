@@ -10,6 +10,6 @@ public class PlayersTest {
     @Test
     @DisplayName("플레이어목록 생성 테스트")
     void createTest() {
-        var players = new Players(List.of("baki", "pobi"));
+        var players = Players.from(List.of("baki", "pobi"));
     }
 }
