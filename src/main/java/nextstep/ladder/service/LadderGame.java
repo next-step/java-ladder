@@ -1,9 +1,35 @@
 package nextstep.ladder.service;
 
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Players;
+import nextstep.ladder.domain.RandomLineGenerateStrategy;
+import nextstep.ladder.view.InputView;
+import nextstep.ladder.view.OutputView;
+
+import java.util.Scanner;
+
 public class LadderGame {
-  public void start() {
-    System.out.println("사다리 게임을 시작합니다.");
-    // 사다리 게임 로직을 구현합니다.
-    // 예를 들어, 사용자 입력을 받고 결과를 출력하는 등의 작업을 수행할 수 있습니다.
+  private final InputView inputView;
+  private Players players;
+  private Ladder ladder;
+
+
+  public LadderGame(Scanner scanner) {
+    this.inputView = new InputView(scanner);
+  }
+
+  public void run() {
+    setUpForGame();
+    printResult();
+
+  }
+
+  private void setUpForGame() {
+    this.players = new Players(inputView.readPlayers());
+    this.ladder = new Ladder(inputView.readLadderHeight(), players, new RandomLineGenerateStrategy());
+  }
+
+  private void printResult() {
+    OutputView.printResult(players, ladder);
   }
 }

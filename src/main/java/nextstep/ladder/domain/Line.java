@@ -33,9 +33,9 @@ public class Line {
     StringBuilder sb = new StringBuilder(" ".repeat(SPACE_WIDTH));
     for (Point point : points) {
       if (point.hasLine()) {
-        sb.append(VERTICAL_SYMBOL).append(HORIZONTAL_SYMBOL.repeat(SPACE_WIDTH - 1));
+        sb.append(VERTICAL_SYMBOL).append(HORIZONTAL_SYMBOL.repeat(SPACE_WIDTH));
       } else {
-        sb.append(VERTICAL_SYMBOL).append(EMPTY_SYMBOL.repeat(SPACE_WIDTH - 1));
+        sb.append(VERTICAL_SYMBOL).append(EMPTY_SYMBOL.repeat(SPACE_WIDTH));
       }
     }
     sb.append(VERTICAL_SYMBOL);
