@@ -21,7 +21,7 @@ public class Junction {
         return hasNeighbor(Direction.DOWN);
     }
 
-    boolean hasNeighbor(Direction direction) {
+    public boolean hasNeighbor(Direction direction) {
         return neighbors.hasNeighbor(direction);
     }
 
@@ -29,27 +29,16 @@ public class Junction {
         return hasLeft() || hasRight();
     }
 
-    public void setLeft(Junction left) {
-        neighbors.setNeighbor(Direction.LEFT, left);
-    }
-
-    public void setRight(Junction right) {
-        neighbors.setNeighbor(Direction.RIGHT, right);
-    }
-
-    public void setDown(Junction down) {
-        neighbors.setNeighbor(Direction.DOWN, down);
-    }
-
     public void connectRight(Junction right) {
-        neighbors.connectRight(this, right);
+        this.neighbors.setNeighbor(Direction.RIGHT, right);
+        right.neighbors.setNeighbor(Direction.LEFT, this);
     }
 
     public void connectDown(Junction down) {
-        neighbors.connectDown(this, down);
+        this.neighbors.setNeighbor(Direction.DOWN, down);
     }
 
-    Junction getNeighbor(Direction direction) {
+    public Junction getNeighbor(Direction direction) {
         return neighbors.getNeighbor(direction);
     }
 

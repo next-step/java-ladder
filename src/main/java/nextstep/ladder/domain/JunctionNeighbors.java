@@ -18,17 +18,4 @@ public class JunctionNeighbors {
     public boolean hasNeighbor(Direction direction) {
         return getNeighbor(direction) != null;
     }
-
-    public boolean hasDown() {
-        return hasNeighbor(Direction.DOWN);
-    }
-
-    public void connectRight(Junction left, Junction right) {
-        left.setRight(right);
-        right.setLeft(left);
-    }
-
-    public void connectDown(Junction up, Junction down) {
-        up.setDown(down);
-    }
 }
