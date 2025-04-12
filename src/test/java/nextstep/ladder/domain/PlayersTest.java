@@ -1,6 +1,5 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.Players;
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.Test;
 

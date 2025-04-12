@@ -1,7 +1,5 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.Line;
-import nextstep.ladder.domain.Players;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,7 @@
-package nextstep.ladder;
+package nextstep.ladder.view;
+
+import nextstep.ladder.domain.Ladder;
+import nextstep.ladder.domain.Players;
 
 public class OutputView {
   public static void printResult(Players players, Ladder ladder) {

@@ -1,6 +1,5 @@
-package nextstep.ladder;
+package nextstep.ladder.view;
 
-import nextstep.ladder.view.InputView;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package nextstep.ladder;
+package nextstep.ladder.domain;
 
 public class RandomLineGenerateStrategy implements LineGenerateStrategy {
 
