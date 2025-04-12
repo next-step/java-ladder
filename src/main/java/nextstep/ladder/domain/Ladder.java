@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class Ladder {
     private final List<Leg> legs;
-    private AtomicBoolean rungsApplied = new AtomicBoolean(false);
+    private final AtomicBoolean rungsApplied = new AtomicBoolean(false);
 
     public Ladder(List<Leg> legs) {
         validate(legs);
