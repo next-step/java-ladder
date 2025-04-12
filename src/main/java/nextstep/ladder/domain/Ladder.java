@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Ladder {
@@ -43,7 +44,7 @@ public class Ladder {
     }
 
     public LadderResults run() {
-        LinkedHashMap<ParticipantName, String> results = new LinkedHashMap<>();
+        Map<ParticipantName, String> results = new LinkedHashMap<>();
 
         for (Leg leg : legs) {
             ParticipantName name = leg.getName();
