@@ -27,6 +27,11 @@ public class JunctionMover {
 
     public static Junction move(Junction junction, ParticipantName visitor) {
         Junction next = getNext(junction, visitor);
+
+        if (next == null) {
+            throw new IllegalStateException("이동할 수 없습니다.");
+        }
+
         next.visit(visitor);
         return next;
     }
