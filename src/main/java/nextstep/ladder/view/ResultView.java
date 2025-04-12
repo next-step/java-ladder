@@ -36,6 +36,6 @@ public class ResultView {
     }
 
     public void printPoint(Point point) {
-        System.out.printf("%5s", point.bridge().isBuilt() ? "-----|" : "     |");
+        System.out.printf("%5s", point.leftBridge().isBuilt() ? "-----|" : "     |");
     }
 }
