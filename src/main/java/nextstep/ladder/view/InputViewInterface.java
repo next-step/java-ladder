@@ -1,7 +1,9 @@
 package nextstep.ladder.view;
 
 public interface InputViewInterface {
-    int getNumberInput();
+    int getNumberInput(String prompt);
 
-    String[] getStringListInput(String delimiter);
+    String getStringInput(String prompt);
+
+    String[] getStringListInput(String prompt, String delimiter);
 }

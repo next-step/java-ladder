@@ -67,4 +67,6 @@
   * move 메소드 추가 : LadderLine.move() 메소드를 호출하여 사다리 이동
 * LadderLine 객체 수정
   * getNextPosition 메소드 추가 : bridge 상태에 따라 다음 위치를 반환 (좌우)
+* LadderLines 객체 추가
+  * List<LadderLine> 형태로 사다리 라인 정보를 저장
   

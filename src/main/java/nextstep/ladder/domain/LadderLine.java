@@ -79,4 +79,11 @@ public class LadderLine {
     public int hashCode() {
         return Objects.hashCode(bridges);
     }
+
+    @Override
+    public String toString() {
+        return "LadderLine{" +
+                "bridges=" + bridges +
+                '}';
+    }
 }
