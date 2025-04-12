@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class Ladder {
   private final List<Line> lines;
 
-  public Ladder(int height, Players players, DirectionStrategy strategy) {
+  public Ladder(int height, Players players, LineGenerateStrategy strategy) {
     validate(height);
     this.lines = createLines(height, players, strategy);
   }
@@ -18,7 +18,7 @@ public class Ladder {
     }
   }
 
-  private List<Line> createLines(int height, Players players, DirectionStrategy strategy) {
+  private List<Line> createLines(int height, Players players, LineGenerateStrategy strategy) {
     List<Line> lines = new ArrayList<>();
     for (int i = 0; i < height; i++) {
       lines.add(new Line(players, strategy));

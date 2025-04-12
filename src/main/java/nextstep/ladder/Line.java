@@ -11,11 +11,11 @@ public class Line {
 
   private final List<Point> points;
 
-  public Line(Players players, DirectionStrategy strategy) {
+  public Line(Players players, LineGenerateStrategy strategy) {
     this.points = createPoints(players, strategy);
   }
 
-  private List<Point> createPoints(Players players, DirectionStrategy strategy) {
+  private List<Point> createPoints(Players players, LineGenerateStrategy strategy) {
     List<Point> points = new ArrayList<>();
 
     for (int i = 0; i < players.size() - 1; i++) {

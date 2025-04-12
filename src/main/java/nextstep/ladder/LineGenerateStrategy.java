@@ -1,6 +1,6 @@
 package nextstep.ladder;
 
-public interface DirectionStrategy {
+public interface LineGenerateStrategy {
 
   boolean generate();
 }
