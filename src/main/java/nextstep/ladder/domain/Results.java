@@ -10,8 +10,12 @@ public class Results {
         this.value = new LinkedHashMap<>(results);
     }
 
-    public Map<Name, Name> getResult(String name) {
-        return Map.of(new Name(name), value.get(new Name(name)));
+    public String getResult(String name) {
+        return value.get(new Name(name)).toString();
+    }
+
+    public String getResult(Name name) {
+        return value.get(name).toString();
     }
 
     public Map<Name, Name> getAllResult() {

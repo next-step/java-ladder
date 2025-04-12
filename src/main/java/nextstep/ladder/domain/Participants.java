@@ -27,12 +27,12 @@ public class Participants {
         });
     }
 
-    public Map<Name, Name> matchResults(List<Name> results) {
+    public Results getMatchResults(List<Name> results) {
         Map<Name, Name> matchResults = new HashMap<>();
         participants.forEach(participant -> {
             matchResults.put(participant.name(), results.get(participant.position()));
         });
-        return matchResults;
+        return new Results(matchResults);
     }
 
     public static Participants fromNames(List<Name> names) {

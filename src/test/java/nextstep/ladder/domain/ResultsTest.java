@@ -4,13 +4,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ResultsTest {
     @Test
-    @DisplayName("Results 생성 후 getResult 통해 결과가 제대로 맵핑되었는지 확인")
+    @DisplayName("Results 생성 후 getResult 통해 결과를 제대로 가져오는지 확인")
     void getResult_test() {
         Name name1 = new Name("p1");
         Name name2 = new Name("p2");
@@ -20,9 +19,9 @@ public class ResultsTest {
         Name result3 = new Name("3000");
         Participants participants = new Participants(List.of(new Participant(name1, 2), new Participant(name2, 1), new Participant(name3, 0)));
         List<Name> results = List.of(result1, result2, result3);
-        Results result = new Results(participants.matchResults(results));
-        assertThat(result.getResult(name1.toString())).isEqualTo(Map.of(name1, result3));
-        assertThat(result.getResult(name2.toString())).isEqualTo(Map.of(name2, result2));
-        assertThat(result.getResult(name3.toString())).isEqualTo(Map.of(name3, result1));
+        Results result = participants.getMatchResults(results);
+        assertThat(result.getResult(name1)).isEqualTo("3000");
+        assertThat(result.getResult(name2)).isEqualTo("2000");
+        assertThat(result.getResult(name3)).isEqualTo("1000");
     }
 }

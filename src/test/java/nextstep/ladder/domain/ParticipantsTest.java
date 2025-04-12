@@ -28,10 +28,18 @@ public class ParticipantsTest {
     @Test
     @DisplayName("사다리 결과값과 참가자의 위치 매칭 결과 생성 로직 테스트")
     void match_results() {
-        Participants participants = new Participants(List.of(new Participant("p1", 1), new Participant("p2", 0)));
-        List<Name> results = List.of(new Name("1000"), new Name("2000"));
-        Map<Name, Name> matchResults = participants.matchResults(results);
-        assertThat(matchResults.get(new Name("p1"))).isEqualTo(new Name("2000"));
-        assertThat(matchResults.get(new Name("p2"))).isEqualTo(new Name("1000"));
+        Participants participants = new Participants(
+                List.of(
+                        new Participant("p1", 1),
+                        new Participant("p2", 2),
+                        new Participant("p3", 0)
+                )
+        );
+        List<Name> results = List.of(new Name("1000"), new Name("2000"), new Name("3000"));
+        Results matchResults = participants.getMatchResults(results);
+        System.out.println(matchResults);
+        assertThat(matchResults.getResult("p1")).isEqualTo("2000");
+        assertThat(matchResults.getResult("p2")).isEqualTo("3000");
+        assertThat(matchResults.getResult("p3")).isEqualTo("1000");
     }
 }
