@@ -2,6 +2,9 @@ package nextstep.ladder;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -61,5 +64,23 @@ public class LadderGameTest {
     String rendered = ladder.toConsoleOutput();
     long count = rendered.chars().filter(c -> c == '|').count();
     assertEquals(players*height, count);
+  }
+
+  @Test
+  void testPrintLadder() {
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    PrintStream originalOut = System.out;
+    System.setOut(new PrintStream(outputStream));
+
+    Ladder ladder = new Ladder(3, 5, () -> true);
+    String expected = "     |----|    |----|    |\n" +
+                      "     |----|    |----|    |\n" +
+                      "     |----|    |----|    |\n";
+
+    OutputView.printLadder(ladder);
+
+    System.setOut(originalOut);
+    assertEquals(expected, outputStream.toString());
+
   }
 }
