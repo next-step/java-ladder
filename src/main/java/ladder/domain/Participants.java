@@ -21,4 +21,18 @@ public class Participants {
                 .collect(Collectors.toList());
         return new Participants(participants);
     }
+
+    public List<Participant> getNames() {
+        return names;
+    }
+
+    public int getParticipantsCount() {
+        return names.size();
+    }
+
+    public List<Integer> getNameLengths() {
+        return names.stream()
+                .map(Participant::getLength)
+                .collect(Collectors.toList());
+    }
 }

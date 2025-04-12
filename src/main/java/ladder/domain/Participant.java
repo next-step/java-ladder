@@ -31,4 +31,12 @@ public class Participant {
     public int hashCode() {
         return Objects.hashCode(name);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getLength() {
+        return name.length();
+    }
 }
