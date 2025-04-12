@@ -33,7 +33,6 @@ class JunctionTest {
         junction.connectDown(downJunction);
 
         assertThat(junction.hasDown()).isTrue();
-        assertThat(junction.getNext()).isEqualTo(downJunction);
     }
 
     @Test

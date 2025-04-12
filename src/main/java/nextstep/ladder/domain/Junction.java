@@ -2,7 +2,7 @@ package nextstep.ladder.domain;
 
 public class Junction {
     private final Leg leg;
-    private final NextJunction next = new NextJunction();
+    private final Neighbors neighbors = new Neighbors();
     private final JunctionVisitors visitors = new JunctionVisitors();
 
     public Junction(Leg leg) {
@@ -10,47 +10,47 @@ public class Junction {
     }
 
     public boolean hasLeft() {
-        return next.hasLeft();
+        return neighbors.hasLeft();
     }
 
     public boolean hasRight() {
-        return next.hasRight();
+        return neighbors.hasRight();
+    }
+
+    public boolean hasByDirection(Direction direction) {
+        return neighbors.hasByDirection(direction);
     }
 
     public boolean hasDown() {
-        return next.hasDown();
+        return neighbors.hasDown();
     }
 
     public boolean hasLeftOrRight() {
-        return next.hasLeftOrRight();
-    }
-
-    private boolean hasNext() {
-        return next.hasNext();
-    }
-
-    public Junction getNext() {
-        return next.getNext();
+        return neighbors.hasLeftOrRight();
     }
 
     public void setLeft(Junction left) {
-        next.setLeft(left);
+        neighbors.setLeft(left);
     }
 
     public void setRight(Junction right) {
-        next.setRight(right);
+        neighbors.setRight(right);
     }
 
     public void setDown(Junction down) {
-        next.setDown(down);
+        neighbors.setDown(down);
     }
 
     public void connectRight(Junction right) {
-        next.connectRight(this, right);
+        neighbors.connectRight(this, right);
     }
 
     public void connectDown(Junction down) {
-        next.connectDown(this, down);
+        neighbors.connectDown(this, down);
+    }
+
+    public Junction getByDirection(Direction direction) {
+        return neighbors.getByDirection(direction);
     }
 
     public ParticipantName getName() {
@@ -69,26 +69,12 @@ public class Junction {
         return visitors.isVisited(visitor);
     }
 
-    public boolean canMove(ParticipantName name) {
-        if (!hasNext()) {
-            return false;
-        }
-
-        return !getNext().isVisited(name);
-    }
-
-    private Junction move(ParticipantName visitor) {
-        Junction next = getNext();
-        next.visit(visitor);
-        return next;
-    }
-
     public Junction moveToResult(ParticipantName visitor) {
         Junction curr = this;
         curr.visit(visitor);
 
-        while (curr.canMove(visitor)) {
-            curr = curr.move(visitor);
+        while (JunctionMover.canMove(curr, visitor)) {
+            curr = JunctionMover.move(curr, visitor);
         }
 
         return curr;
