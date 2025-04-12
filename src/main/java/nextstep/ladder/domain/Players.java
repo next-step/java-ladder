@@ -25,6 +25,9 @@ public class Players {
     if (players.size() < MIN_SIZE) {
       throw new IllegalArgumentException(String.format("참여자는 %d명 이상이어야 합니다.", MIN_SIZE));
     }
+    if (players.stream().distinct().count() != players.size()) {
+      throw new IllegalArgumentException("참여자 이름은 중복될 수 없습니다.");
+    }
   }
 
   public String toConsoleOutput() {

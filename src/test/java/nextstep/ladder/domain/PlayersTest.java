@@ -23,4 +23,13 @@ public class PlayersTest {
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("참여자는 2명 이상이어야 합니다.");
   }
+
+  @Test
+  void testCreatePlayersWithDuplicateNames() {
+    String players = "pobi, crong, pobi";
+
+    AssertionsForClassTypes.assertThatThrownBy(() -> new Players(players))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("참여자 이름은 중복될 수 없습니다.");
+  }
 }
