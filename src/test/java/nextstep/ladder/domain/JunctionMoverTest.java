@@ -4,17 +4,21 @@ import org.junit.jupiter.api.Test;
 
 import static nextstep.ladder.domain.JunctionTest.createJunction;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchIllegalStateException;
 
 public class JunctionMoverTest {
 
+    private final JunctionMover mover = new JunctionMover();
+
     @Test
-    void 이동할_곳이_없으면_제자리다() {
+    void 이동할_곳이_없으면_예외발생() {
         ParticipantName name = new ParticipantName("1");
         Junction junction = createJunction();
 
-        Junction result = JunctionMover.moveToResult(junction, name);
+        assertThat(mover.canMove(junction, name)).isFalse();
 
-        assertThat(result).isEqualTo(junction);
+        IllegalStateException e = catchIllegalStateException(() -> mover.move(junction, name));
+        assertThat(e).hasMessage("이동할 수 없습니다.");
     }
 
     @Test
@@ -24,26 +28,42 @@ public class JunctionMoverTest {
         Junction rightJunction = createJunction();
 
         junction.connectRight(rightJunction);
-        rightJunction.visit(name);
+        mover.visit(rightJunction, name);
 
-        Junction result = JunctionMover.moveToResult(junction, name);
+        assertThat(mover.canMove(junction, name)).isFalse();
+        IllegalStateException e = catchIllegalStateException(() -> mover.move(junction, name));
 
-        assertThat(result).isEqualTo(junction);
+        assertThat(e).hasMessage("이동할 수 없습니다.");
     }
 
     @Test
-    void 이동할_곳이_있다면_이동한다() {
+    void 좌우를_우선_이동한다() {
         ParticipantName name = new ParticipantName("1");
         Junction junction = createJunction();
         Junction rightJunction = createJunction();
-        Junction rightDownJunction = createJunction();
+        Junction downJunction = createJunction();
 
-        rightJunction.connectDown(rightDownJunction);
+        junction.connectDown(downJunction);
         junction.connectRight(rightJunction);
 
-        Junction result = JunctionMover.moveToResult(junction, name);
+        Junction result = mover.move(junction, name);
 
-        assertThat(result).isEqualTo(rightDownJunction);
+        assertThat(result).isEqualTo(rightJunction);
+    }
+
+    @Test
+    void 더이상_이동할_수_없을때까지_이동한다() {
+        ParticipantName name = new ParticipantName("1");
+        Junction curr = createJunction();
+        Junction right = createJunction();
+        Junction rightDown = createJunction();
+
+        curr.connectRight(right);
+        right.connectDown(rightDown);
+
+        Junction result = mover.moveToEnd(curr, name);
+
+        assertThat(result).isEqualTo(rightDown);
     }
 
 }

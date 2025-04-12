@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class Ladder {
     private final List<Leg> legs;
-    private boolean applyRungsCalled = false;
+    private final JunctionMover mover = new JunctionMover();
 
     public Ladder(List<Leg> legs) {
         validate(legs);
@@ -23,17 +23,11 @@ public class Ladder {
         return Collections.unmodifiableList(legs);
     }
 
-    public synchronized void applyRungs(RungStrategy rungStrategy) {
-        if (applyRungsCalled) {
-            return;
-        }
-
+    public void applyRungs(RungStrategy rungStrategy) {
         for (int level = 0; level < getHeight(); level++) {
             Row row = getRow(level);
             row.applyRungs(rungStrategy);
         }
-
-        applyRungsCalled = true;
     }
 
     private Row getRow(int level) {
@@ -48,9 +42,8 @@ public class Ladder {
 
         for (Leg leg : legs) {
             ParticipantName name = leg.getName();
-
-            Junction start = leg.getJunction(0);
-            Junction result = JunctionMover.moveToResult(start, name);
+            Junction start = leg.getStart();
+            Junction result = mover.moveToEnd(start, name);
 
             results.put(name, result.getResult());
         }

@@ -10,39 +10,45 @@ public class JunctionMover {
         Direction.DOWN
     );
 
-    private static Junction findNext(Junction junction, ParticipantName visitor) {
+    private final JunctionVisitRegistry visitRegistry = new JunctionVisitRegistry();
+
+    private Junction findNext(Junction junction, ParticipantName participant) {
         return NEXT_ORDER.stream()
-            .filter(direction -> {
-                return junction.hasNeighbor(direction)
-                    && !junction.getNeighbor(direction).isVisited(visitor);
-            })
+            .filter(junction::hasNeighbor)
             .map(junction::getNeighbor)
+            .filter(next -> !visitRegistry.isVisited(next, participant))
             .findFirst()
             .orElse(null);
     }
 
-    private static boolean canMove(Junction junction, ParticipantName visitor) {
+    public boolean canMove(Junction junction, ParticipantName visitor) {
         return findNext(junction, visitor) != null;
     }
 
-    private static Junction move(Junction junction, ParticipantName visitor) {
+    public Junction move(Junction junction, ParticipantName visitor) {
         Junction next = findNext(junction, visitor);
 
         if (next == null) {
             throw new IllegalStateException("이동할 수 없습니다.");
         }
 
-        next.visit(visitor);
+        visit(next, visitor);
         return next;
     }
 
-    public static Junction moveToResult(Junction start, ParticipantName participant) {
+    public Junction moveToEnd(Junction start, ParticipantName participant) {
         Junction curr = start;
-        curr.visit(participant);
+        visit(curr, participant);
+
         while (canMove(curr, participant)) {
             curr = move(curr, participant);
         }
+
         return curr;
+    }
+
+    public void visit(Junction junction, ParticipantName participant) {
+        visitRegistry.visit(junction, participant);
     }
 
 }

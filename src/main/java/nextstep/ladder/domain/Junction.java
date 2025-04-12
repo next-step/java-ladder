@@ -3,7 +3,6 @@ package nextstep.ladder.domain;
 public class Junction {
     private final Leg leg;
     private final JunctionNeighbors neighbors = new JunctionNeighbors();
-    private final JunctionVisitors visitors = new JunctionVisitors();
 
     public Junction(Leg leg) {
         this.leg = leg;
@@ -48,14 +47,6 @@ public class Junction {
 
     public String getResult() {
         return leg.getResult();
-    }
-
-    public void visit(ParticipantName name) {
-        visitors.visit(name);
-    }
-
-    public boolean isVisited(ParticipantName visitor) {
-        return visitors.isVisited(visitor);
     }
 
 }
