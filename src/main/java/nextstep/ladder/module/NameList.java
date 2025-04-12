@@ -8,7 +8,7 @@ public class NameList implements Iterable<Name> {
     private final List<Name> names;
 
     public NameList(List<String> names) {
-        validate(names);
+        validateNameList(names);
         this.names = names.stream().map(Name::new).collect(Collectors.toList());
     }
 
@@ -20,12 +20,16 @@ public class NameList implements Iterable<Name> {
         return names.size();
     }
 
+    public Name get(int index) {
+        return names.get(index);
+    }
+
     @Override
     public Iterator<Name> iterator() {
         return names.iterator();
     }
 
-    private void validate(List<String> names) {
+    private void validateNameList(List<String> names) {
         if (names == null || names.isEmpty()) {
             throw new IllegalArgumentException("이름 리스트는 비어있을 수 없습니다.");
         }
