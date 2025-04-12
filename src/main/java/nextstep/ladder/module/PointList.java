@@ -16,7 +16,7 @@ public class PointList implements Iterable<Point> {
     public List<Point> points() {
         return points;
     }
-    
+
     public Point get(int i) {
         return points.get(i);
     }

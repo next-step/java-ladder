@@ -31,9 +31,12 @@ public class Line {
     }
 
     public void createLadders() {
-        IntStream.range(1, points.size())
-            .filter(i -> !points.get(i-1).bridge().isBuilt())
-            .filter(i -> RANDOM.nextBoolean())
-            .forEach(i -> points.get(i).createBridge());
+        IntStream.range(1, points.size()).filter(i -> !points.get(i - 1).bridge().isBuilt())
+                .filter(i -> RANDOM.nextBoolean()).forEach(i -> points.get(i).createBridge());
+    }
+
+    public void createBridge(int i) {
+        points.get(i).createBridge();
+        validate(points);
     }
 }

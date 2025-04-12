@@ -39,6 +39,6 @@
 
 ---
 
-- [ ] `PointList` 객체가 스스로 판단하는 구조로 개편
+- [x] `PointList` 객체가 스스로 판단하는 구조로 개편
 - [ ] `Point` 테스트 코드에서 이전 이름인 "PointX" 삭제
 - [ ] `Point` ReultView 코드 삭제 -> 역할을 넘어간다고 생각
