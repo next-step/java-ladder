@@ -17,8 +17,8 @@ public class Junction {
         return neighbors.hasRight();
     }
 
-    public boolean hasByDirection(Direction direction) {
-        return neighbors.hasByDirection(direction);
+    public boolean hasNeighbor(Direction direction) {
+        return neighbors.hasNeighbor(direction);
     }
 
     public boolean hasDown() {
@@ -49,8 +49,8 @@ public class Junction {
         neighbors.connectDown(this, down);
     }
 
-    public Junction getByDirection(Direction direction) {
-        return neighbors.getByDirection(direction);
+    public Junction getNeighbor(Direction direction) {
+        return neighbors.getNeighbor(direction);
     }
 
     public ParticipantName getName() {

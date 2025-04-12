@@ -13,10 +13,10 @@ public class JunctionMover {
     private static Junction getNext(Junction junction, ParticipantName visitor) {
         return DIRECTIONS.stream()
             .filter(direction -> {
-                return junction.hasByDirection(direction)
-                    && !junction.getByDirection(direction).isVisited(visitor);
+                return junction.hasNeighbor(direction)
+                    && !junction.getNeighbor(direction).isVisited(visitor);
             })
-            .map(junction::getByDirection)
+            .map(junction::getNeighbor)
             .findFirst()
             .orElse(null);
     }
