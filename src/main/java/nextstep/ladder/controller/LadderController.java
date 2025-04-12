@@ -4,6 +4,7 @@ import java.util.List;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderFactory;
+import nextstep.ladder.domain.LadderNavigator;
 import nextstep.ladder.domain.LadderResults;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
@@ -19,10 +20,11 @@ public class LadderController {
         int height = inputView.getLadderHeight();
 
         Ladder ladder = LadderFactory.createLadder(participantNames, results, height);
-
         resultView.printLadder(ladder);
 
-        LadderResults ladderResults = ladder.run();
+        LadderNavigator navigator = new LadderNavigator(ladder);
+
+        LadderResults ladderResults = navigator.navigate();
         printResult(ladderResults);
     }
 

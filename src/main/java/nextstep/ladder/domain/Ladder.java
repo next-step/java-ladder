@@ -1,14 +1,13 @@
 package nextstep.ladder.domain;
 
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 public class Ladder {
     private final List<Leg> legs;
-    private final JunctionMover mover = new JunctionMover();
+    private AtomicBoolean rungsApplied = new AtomicBoolean(false);
 
     public Ladder(List<Leg> legs) {
         validate(legs);
@@ -24,6 +23,10 @@ public class Ladder {
     }
 
     public void applyRungs(RungStrategy rungStrategy) {
+        if (!rungsApplied.compareAndSet(false, true)) {
+            return;
+        }
+
         for (int level = 0; level < getHeight(); level++) {
             Row row = getRow(level);
             row.applyRungs(rungStrategy);
@@ -35,20 +38,6 @@ public class Ladder {
             .map(leg -> leg.getJunction(level))
             .collect(Collectors.toList());
         return new Row(junctions);
-    }
-
-    public LadderResults run() {
-        Map<ParticipantName, String> results = new LinkedHashMap<>();
-
-        for (Leg leg : legs) {
-            ParticipantName name = leg.getName();
-            Junction start = leg.getStart();
-            Junction result = mover.moveToEnd(start, name);
-
-            results.put(name, result.getResult());
-        }
-
-        return new LadderResults(results);
     }
 
     private static void validate(List<Leg> legs) {
