@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -104,6 +105,29 @@ public class LadderGameTest {
 
     System.setOut(originalOut);
     assertEquals(expected, outputStream.toString());
+  }
 
+  private static Scanner getTestScanner(String input) {
+    return new Scanner(input);
+  }
+
+  @Test
+  void testReadPlayerName() {
+    String testInput = "pobi,crong,jk";
+    InputView inputView = new InputView(getTestScanner(testInput));
+
+    String actual = inputView.readPlayers();
+
+    assertEquals(testInput, actual);
+  }
+
+  @Test
+  void testReadLadderHeight() {
+    String testInput = "3";
+    InputView inputView = new InputView(getTestScanner(testInput));
+
+    int actual = inputView.readLadderHeight();
+
+    assertEquals(3, actual);
   }
 }
