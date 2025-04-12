@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 public class Ladder {
   private final List<Line> lines;
+  private static final int MIN_LADDER_HEIGHT = 1;
 
   public Ladder(int height, Players players, LineGenerateStrategy strategy) {
     validate(height);
@@ -13,7 +14,7 @@ public class Ladder {
   }
 
   private void validate(int height) {
-    if (height < 1) {
+    if (height < MIN_LADDER_HEIGHT) {
       throw new IllegalArgumentException("사다리 높이는 1 이상이어야 합니다.");
     }
   }

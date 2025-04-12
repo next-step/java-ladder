@@ -12,7 +12,7 @@ public class PlayersTest {
     Players playersList = new Players(players);
 
     AssertionsForClassTypes.assertThat(playersList.size()).isEqualTo(3);
-    AssertionsForClassTypes.assertThat(playersList.toConsoleOutput()).isEqualTo("pobi  crong jk   ");
+    AssertionsForClassTypes.assertThat(playersList.toConsoleOutput()).isEqualTo(" pobi crong    jk");
   }
 
   @Test

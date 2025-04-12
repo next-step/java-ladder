@@ -16,6 +16,10 @@ public class InputView {
 
   public int readLadderHeight() {
     System.out.println("최대 사다리 높이는 몇 개인가요?");
-    return Integer.parseInt(scanner.nextLine());
+    try {
+      return Integer.parseInt(scanner.nextLine());
+    } catch (NumberFormatException e) {
+      throw new IllegalArgumentException("사다리 높이는 숫자여야 합니다.");
+    }
   }
 }

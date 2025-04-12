@@ -20,7 +20,7 @@ public class OutputViewTest {
     Ladder ladder = new Ladder(3, players, () -> true);
     String expected = "실행 결과\n" +
             "\n" +
-            "pobi  crong jk   \n" +
+            " pobi crong    jk\n" +
             "     |-----|     |\n" +
             "     |-----|     |\n" +
             "     |-----|     |\n";

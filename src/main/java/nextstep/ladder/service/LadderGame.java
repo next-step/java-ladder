@@ -21,7 +21,6 @@ public class LadderGame {
   public void run() {
     setUpForGame();
     printResult();
-
   }
 
   private void setUpForGame() {

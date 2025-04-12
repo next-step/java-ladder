@@ -33,6 +33,6 @@ public class Player {
 
   @Override
   public String toString() {
-    return String.format("%-" + SPACE_WIDTH + "s", name);
+    return String.format("%" + SPACE_WIDTH + "s", name);
   }
 }
