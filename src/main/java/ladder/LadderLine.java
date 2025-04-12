@@ -29,6 +29,10 @@ public class LadderLine {
         return crosses;
     }
 
+    public int size() {
+        return crosses.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) {

@@ -1,0 +1,28 @@
+package ladder;
+
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+public class Ladder {
+    private final List<LadderLine> lines;
+
+    public Ladder(int width, int height) {
+        this(new Random(), width, height);  // 기본 생성자 호출
+    }
+
+    public Ladder(Random random, int width, int height) {
+        this.lines = IntStream.range(0, height)
+                .mapToObj(i -> LadderLine.genRandomLadderLine(width, random))
+                .collect(Collectors.toList());
+    }
+
+    public List<LadderLine> getLines() {
+        return lines;
+    }
+
+    public int getHeight() {
+        return this.lines.size();
+    }
+}
