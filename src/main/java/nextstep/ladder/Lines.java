@@ -1,6 +1,7 @@
 package nextstep.ladder;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -13,7 +14,7 @@ public class Lines {
         }
 
         this.lines = IntStream.range(0, height)
-                .mapToObj(it -> new Line(playerCount))
+                .mapToObj(it -> new Line(playerCount, new Random()))
                 .collect(Collectors.toUnmodifiableList());
     }
 

@@ -8,9 +8,9 @@ import java.util.stream.IntStream;
 public class Line {
     private final List<Boolean> points;
 
-    public Line(int playerCount) {
+    public Line(int playerCount, Random random) {
         this.points = IntStream.range(1, playerCount)
-                .mapToObj(it -> new Random().nextBoolean())
+                .mapToObj(it -> random.nextBoolean())
                 .collect(Collectors.toUnmodifiableList());
     }
 

@@ -1,7 +1,10 @@
 package nextstep.ladder;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.Random;
 
 public class LineTest {
 
@@ -9,6 +12,24 @@ public class LineTest {
     @DisplayName("사다리 라인 생성 테스트")
     void createTest() {
         var playerCount = 5;
-        var line = new Line(playerCount);
+        var trueLine = new Line(playerCount, new TrueRandom());
+        var falseLine = new Line(playerCount, new FalseRandom());
+
+        Assertions.assertThat(trueLine.getPoints()).containsExactly(true, true, true, true);
+        Assertions.assertThat(falseLine.getPoints()).containsExactly(false, false, false, false);
+    }
+
+    static class TrueRandom extends Random {
+        @Override
+        public boolean nextBoolean() {
+            return true;
+        }
+    }
+
+    static class FalseRandom extends Random {
+        @Override
+        public boolean nextBoolean() {
+            return false;
+        }
     }
 }
