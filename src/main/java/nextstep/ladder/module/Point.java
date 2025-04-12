@@ -11,6 +11,10 @@ public class Point implements Comparable<Point> {
       this(x, new LeftBridge(false), new RightBridge(false));
    }
 
+   public Point(int x, boolean leftBridge, boolean rightBridge) {
+      this(x, new LeftBridge(leftBridge), new RightBridge(rightBridge));
+   }
+
    public Point(int x, LeftBridge leftBridge) {
       this(x, leftBridge, new RightBridge(false));
    }

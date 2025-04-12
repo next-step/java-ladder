@@ -27,21 +27,22 @@ public class Line {
             throw new IllegalArgumentException("Line의 끝은 사다리가 없어야 합니다.");
         }
 
-        IntStream.range(1, points.size())
+        IntStream.range(1, points.size() - 1)
                 .filter(i -> points.get(i).leftBridge().isBuilt() && points.get(i + 1).leftBridge().isBuilt())
                 .findAny()
                 .ifPresent(i -> {
                     throw new IllegalArgumentException("Line에서 연속된 사다리가 있으면 안됩니다.");
                 });
 
-        IntStream.range(0, points.size() - 1)
+        IntStream.range(0, points.size() - 2)
                 .filter(i -> points.get(i).rightBridge().isBuilt() && points.get(i + 1).rightBridge().isBuilt())
-                .findAny().ifPresent(i -> {
+                .findAny()
+                .ifPresent(i -> {
                     throw new IllegalArgumentException("Line에서 연속된 사다리가 있으면 안됩니다.");
                 });
     }
 
-    public void createLadders() {
+    public void createRandomBridges() {
         IntStream.range(1, points.size()).filter(i -> !points.get(i - 1).leftBridge().isBuilt())
                 .filter(i -> RANDOM.nextBoolean()).forEach(i -> {
                     points.get(i).createLeftBridge();

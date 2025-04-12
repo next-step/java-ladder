@@ -33,7 +33,7 @@ public class Game {
         for (int i = 0; i < height.value(); i++) {
             lines.add(new Line(new PointList(peopleNames.size())));
         }
-        lines.forEach(Line::createLadders);
+        lines.forEach(Line::createRandomBridges);
         return new Board(lines, peopleNames);
     }
 
