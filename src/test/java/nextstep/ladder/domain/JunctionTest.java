@@ -65,12 +65,14 @@ class JunctionTest {
         ParticipantName name = new ParticipantName("1");
         Junction junction = createJunction();
         Junction rightJunction = createJunction();
+        Junction rightDownJunction = createJunction();
 
+        rightJunction.connectDown(rightDownJunction);
         junction.connectRight(rightJunction);
 
         Junction result = junction.moveToResult(name);
 
-        assertThat(result).isEqualTo(rightJunction);
+        assertThat(result).isEqualTo(rightDownJunction);
     }
 
     public static Junction createJunction() {

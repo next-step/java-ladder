@@ -78,7 +78,7 @@ public class Junction {
     }
 
     private Junction move(ParticipantName visitor) {
-        Junction next = this.next.getNext();
+        Junction next = getNext();
         next.visit(visitor);
         return next;
     }
