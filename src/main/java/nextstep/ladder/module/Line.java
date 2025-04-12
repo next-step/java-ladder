@@ -49,9 +49,9 @@ public class Line {
                 });
     }
 
-    public void createLeftBridge(int i) {
-        points.get(i).createLeftBridge();
-        points.get(i - 1).createRightBridge();
+    public void createLeftBridge(int index) {
+        points.get(index).createLeftBridge();
+        points.get(index - 1).createRightBridge();
         validate(points);
     }
 }

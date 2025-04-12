@@ -7,7 +7,7 @@ public class Name {
     private final String name;
 
     public Name(String name) {
-        validate(name);
+        validateName(name);
         this.name = name;
     }
 
@@ -15,7 +15,7 @@ public class Name {
         return name;
     }
 
-    private void validate(String name) {
+    private void validateName(String name) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("이름은 빈 문자열이 될 수 없습니다.");
         }
