@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class Players {
     private final List<Player> players;
 
-    public Players(List<Player> players) {
+    private Players(List<Player> players) {
         this.players = players;
     }
 
@@ -20,7 +20,12 @@ public class Players {
         return players;
     }
 
-    public int getPlayerCount() {
+    public Player getPlayerByPosition(int position) {
+        return players.get(position);
+    }
+
+    public int count() {
         return players.size();
     }
+
 }

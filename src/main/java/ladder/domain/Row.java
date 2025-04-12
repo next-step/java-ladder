@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Row {
-    private static final int MAX_BRIDGES_PER_ROW_DIVISOR = 2;
     private final List<Bridge> bridges;
 
     private Row(List<Bridge> bridges) {
@@ -16,35 +15,49 @@ public class Row {
     public static Row generateRow(int playerCount, BridgeGenerator bridgeGenerator) {
         List<Bridge> bridges = new ArrayList<>();
 
-        for (int i = 0; i < playerCount - 1; i++) {
-            Bridge bridge = bridgeGenerator.generate();
-
-            boolean connectedWithPrevious = isConnectedWithPrevious(bridge, i, bridges);
-            bridges.add(connectedWithPrevious ? Bridge.DISCONNECTED : bridge);
+        int numberOfBridges = playerCount - 1;
+        for (int position = 0; position < numberOfBridges; position++) {
+            bridges.add(generateValidBridge(position, bridges, bridgeGenerator));
         }
 
         return new Row(bridges);
     }
 
-    private static boolean isConnectedWithPrevious(Bridge bridge, int position, List<Bridge> bridges) {
-        return bridge == Bridge.CONNECTED && isPreviousConnected(position, bridges);
+    public int move(int position) {
+        if (isConnectedToLeft(position, bridges)) {
+            return position - 1;
+        }
+
+        if (isConnectedToRight(position)) {
+            return position + 1;
+        }
+
+        return position;
     }
 
-    private static boolean isPreviousConnected(int position, List<Bridge> bridges) {
-        int left = position - 1;
+    private static Bridge generateValidBridge(int position, List<Bridge> bridges, BridgeGenerator bridgeGenerator) {
+        Bridge bridge = bridgeGenerator.generate();
+        if (bridge == Bridge.CONNECTED && isConnectedToLeft(position, bridges)) {
+            return Bridge.DISCONNECTED;
+        }
 
-        if (left < 0) {
+        return bridge;
+    }
+
+    private static boolean isConnectedToLeft(int position, List<Bridge> bridges) {
+        if (position <= 0) {
             return false;
         }
 
-        return bridges.get(left) == Bridge.CONNECTED;
+        return bridges.get(position - 1) == Bridge.CONNECTED;
     }
 
-    public static int calculateMaxBuildableBridges(int players) {
-        return players / MAX_BRIDGES_PER_ROW_DIVISOR;
-    }
+    public boolean isConnectedToRight(int position) {
+        if (position >= bridges.size()) {
+            return false;
+        }
 
-    public boolean isConnected(int position) {
         return bridges.get(position) == Bridge.CONNECTED;
     }
+
 }

@@ -1,6 +1,6 @@
 package ladder.domain;
 
-import ladder.generator.RandomBridgeGenerator;
+import ladder.generator.BridgeGenerator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,14 +13,20 @@ public class Ladder {
         this.rows = rows;
     }
 
-    public static Ladder generateRandomLadder(Players players, Height height) {
-        return generateRandomLadder(players.getPlayerCount(), height.getHeight());
+    public static Ladder generateLadder(int playerCount, int height, BridgeGenerator bridgeGenerator) {
+        return new Ladder(IntStream.range(0, height)
+                .mapToObj(i -> Row.generateRow(playerCount, bridgeGenerator))
+                .collect(Collectors.toList()));
     }
 
-    public static Ladder generateRandomLadder(int playerCount, int height) {
-        return new Ladder(IntStream.range(0, height)
-                .mapToObj(i -> Row.generateRow(playerCount, new RandomBridgeGenerator()))
-                .collect(Collectors.toList()));
+    public int move(int startPosition) {
+        int resultPosition = startPosition;
+
+        for (Row row : rows) {
+            resultPosition = row.move(resultPosition);
+        }
+
+        return resultPosition;
     }
 
     public int getLadderHeight() {
