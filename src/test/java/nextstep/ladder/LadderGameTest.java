@@ -6,6 +6,7 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class LadderGameTest {
@@ -37,5 +38,11 @@ public class LadderGameTest {
     for (int i = 1; i < points.size(); i++) {
       assertFalse(points.get(i - 1).hasLine() && points.get(i).hasLine(), "연속된 true 발견됨");
     }
+  }
+
+  @Test
+  void testCreateLadder() {
+    Ladder ladder = new Ladder(5, 4, () -> false);
+    assertEquals(5, ladder.getLines().size());
   }
 }
