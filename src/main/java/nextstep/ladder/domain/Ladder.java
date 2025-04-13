@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.edge.LadderPrizes;
+import nextstep.ladder.domain.edge.LadderResult;
 import nextstep.ladder.domain.edge.LadderUsers;
 import nextstep.ladder.domain.line.Height;
 import nextstep.ladder.domain.line.LineFactory;
@@ -27,19 +28,11 @@ public class Ladder {
     }
 
     public LadderDto toLadderDto() {
-        List<String> names = users.getNames();
-        List<List<Boolean>> ladder = lines.getvalue();
-        List<String> prizes = this.prizes.getLadderPrizes();
-
-        LadderUsers moved = lines.moveUsers(users);
-        List<String> movedNames = moved.getNames();
-        List<String> prizeResults = moved.result(this.prizes).getLadderPrizes();
-
-        Map<String, String> result = new HashMap<>();
-        for (int i = 0; i < moved.size(); i++) {
-            result.put(movedNames.get(i), prizeResults.get(i));
-        }
-
-        return new LadderDto(names, ladder, prizes, result);
+        return new LadderDto(
+            users.getLadderUserNames(),
+            lines.getvalue(),
+            prizes.getLadderPrizes(),
+            new LadderResult(users, prizes).getStringValues()
+        );
     }
 }

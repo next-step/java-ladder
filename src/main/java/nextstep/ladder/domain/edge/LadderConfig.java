@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.edge;
 
+import nextstep.ladder.domain.line.Lines;
+
 public class LadderConfig {
 
     private final LadderUsers ladderUsers;
@@ -11,5 +13,10 @@ public class LadderConfig {
         }
         this.ladderUsers = ladderUsers;
         this.ladderPrizes = ladderPrizes;
+    }
+
+    public LadderResult toResult(Lines lines) {
+        LadderUsers moved = lines.moveUsers(ladderUsers);
+        return new LadderResult(moved, moved.selectAll(ladderPrizes));
     }
 }

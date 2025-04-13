@@ -39,7 +39,7 @@ public class LadderUser {
         return name;
     }
 
-    public LadderPrize result(LadderPrizes ladderPrizes) {
+    public LadderPrize select(LadderPrizes ladderPrizes) {
         return ladderPrizes.get(position.getValue());
     }
 

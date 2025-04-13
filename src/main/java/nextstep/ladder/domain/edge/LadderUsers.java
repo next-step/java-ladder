@@ -40,14 +40,19 @@ public class LadderUsers {
         return new LadderUsers(ladderUsers.stream().map(ladderUser -> ladderUser.move(line)).collect(Collectors.toList()));
     }
 
-    public List<String> getNames() {
+    public LadderUser get(int index) {
+        return ladderUsers.get(index);
+    }
+
+    public List<String> getLadderUserNames() {
         return ladderUsers.stream().map(LadderUser::getName).collect(Collectors.toList());
     }
 
-    public LadderPrizes result(LadderPrizes ladderPrizes) {
-        return new LadderPrizes(ladderUsers.stream()
-            .map(ladderUser -> ladderUser.result(ladderPrizes))
-            .collect(Collectors.toList())
+    public LadderPrizes selectAll(LadderPrizes ladderPrizes) {
+        return new LadderPrizes(
+            ladderUsers.stream()
+                .map(ladderUser -> ladderUser.select(ladderPrizes))
+                .collect(Collectors.toList())
         );
     }
 }
