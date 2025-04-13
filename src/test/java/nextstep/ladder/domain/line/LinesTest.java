@@ -28,7 +28,6 @@ class LinesTest {
         new LadderUser("crong", 2),
         new LadderUser("jk", 3)
     ));
-    ;
 
     @DisplayName("Lines 인스턴스 만들기")
     @Test

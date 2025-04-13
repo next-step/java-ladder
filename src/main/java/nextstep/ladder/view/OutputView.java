@@ -1,6 +1,5 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.dto.LadderDto;
 
 import java.util.List;
@@ -21,7 +20,7 @@ public class OutputView {
     public static void showLadderUserResult(LadderDto ladderDto) {
         String name = "";
         while (!name.equals("all")) {
-            name = InputView. showLadderResultUser();
+            name = InputView.showLadderResultUser();
             System.out.println("실행 결과");
             System.out.printf("%s%n%n", ladderDto.getPrizeResult().get(name));
         }
