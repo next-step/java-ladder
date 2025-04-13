@@ -7,7 +7,7 @@ public class InputView {
 
     private InputView() {}
 
-    public static String inputNames() {
+    public static String inputLine() {
         return SCANNER.nextLine();
     }
 

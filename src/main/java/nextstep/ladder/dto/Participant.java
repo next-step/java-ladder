@@ -1,25 +1,22 @@
 package nextstep.ladder.dto;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Participant {
-    public static final String DELIMITER = ",";
+    public static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
 
     public Participant(String name) {
+        validateNameLength(name);
+
         this.name = name;
     }
 
-    public static List<Participant> parse(String inputNames) {
-        String[] names = inputNames.split(DELIMITER);
-
-        return Stream.of(names)
-                .map(Participant::new)
-                .collect(Collectors.toList());
+    private void validateNameLength(String name) {
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException("이름은 최대 5자만 가능합니다.");
+        }
     }
 
     @Override

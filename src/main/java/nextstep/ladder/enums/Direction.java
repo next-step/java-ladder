@@ -6,7 +6,7 @@ public enum Direction {
     RIGHT(1),
     ;
 
-    private int append;
+    public final int append;
 
     Direction(int append) {
         this.append = append;
