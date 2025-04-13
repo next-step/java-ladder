@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 import ladder.exception.LadderInvalidException;
+import ladder.strategy.LineRandomStrategy;
 
 import static java.util.stream.Collectors.toList;
 
@@ -37,7 +38,7 @@ public class Ladder {
 
     private List<Line> createNewLines() {
         return IntStream.range(0, height)
-            .mapToObj(i -> new Line(width))
+            .mapToObj(i -> new LineFactory(new LineRandomStrategy()).create(width) )
             .collect(toList());
     }
 }

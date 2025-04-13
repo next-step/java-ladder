@@ -49,7 +49,7 @@ public class OutputView {
     private static void printLadder(Ladder ladder) {
         ladder.getLines()
             .stream()
-            .map(line -> formatLadderLine(line.getPoints()))
+            .map(line -> formatLadderLine(line.getLinks()))
             .forEach(System.out::println);
     }
 
