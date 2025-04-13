@@ -1,6 +1,5 @@
-package nextstep.ladder.domain.user;
+package nextstep.ladder.domain.edge;
 
-import nextstep.ladder.domain.edge.LadderUsers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -32,4 +31,5 @@ public class LadderUsersTest {
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("유저는 2명 이상이여야 합니다.");
     }
+
 }

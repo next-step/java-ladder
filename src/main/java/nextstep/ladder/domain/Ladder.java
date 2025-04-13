@@ -1,27 +1,27 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.edge.LadderEdges;
+import nextstep.ladder.domain.edge.LadderPrizes;
+import nextstep.ladder.domain.edge.LadderUsers;
 import nextstep.ladder.domain.line.Height;
 import nextstep.ladder.domain.line.LineFactory;
 import nextstep.ladder.domain.line.Lines;
-import nextstep.ladder.dto.LadderDto;
 
 public class Ladder {
     private final Lines lines;
-    private final LadderEdges ladderEdges;
+    private final LadderUsers users;
+    private final LadderPrizes prizes;
 
-    public Ladder(LadderEdges ladderEdges, int height) {
-        this(ladderEdges, new Height(height), new LineFactory());
+    public Ladder(LadderUsers users, LadderPrizes prizes, int height) {
+        this(users, prizes, new Height(height), new LineFactory());
     }
 
-    public Ladder(LadderEdges ladderEdges, Height height, LineFactory lineFactory) {
-        this.ladderEdges = ladderEdges;
-        this.lines = new Lines(ladderEdges.userSize(), height, lineFactory);
+    public Ladder(LadderUsers users, LadderPrizes prizes, Height height, LineFactory lineFactory) {
+        this.users = users;
+        this.prizes = prizes;
+        this.lines = new Lines(users.size(), height, lineFactory);
     }
 
-
-
-    public LadderDto toLadderResult() {
-        return new LadderDto(ladderEdges.getLadderUserNames(), lines.getvalue());
-    }
+//    public LadderDto toLadderResult() {
+//        return new LadderDto(ladderEdges.getLadderUserNames(), lines.getvalue());
+//    }
 }

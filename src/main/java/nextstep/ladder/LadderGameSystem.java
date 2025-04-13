@@ -1,7 +1,8 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.edge.LadderEdges;
+import nextstep.ladder.domain.edge.LadderPrizes;
+import nextstep.ladder.domain.edge.LadderUsers;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
@@ -11,8 +12,7 @@ public class LadderGameSystem {
 
     public static void main(String[] args) {
         List<String> names = List.of(InputView.showNamesInput().split(","));
-        List<String> results = List.of(InputView.showResultsInput().split(","));
-        LadderEdges ladderEdges = new LadderEdges(names, results);
-        OutputView.showLadderResult(new Ladder(ladderEdges, InputView.showLadderHeightInput()).toLadderResult());
+        List<String> prizes = List.of(InputView.showResultsInput().split(","));
+//        OutputView.showLadderResult(new Ladder(new LadderUsers(names), new LadderPrizes(results), InputView.showLadderHeightInput()).toLadderResult());
     }
 }

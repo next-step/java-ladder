@@ -1,12 +1,11 @@
-package nextstep.ladder.domain.result;
+package nextstep.ladder.domain.edge;
 
-import nextstep.ladder.domain.edge.LadderPrize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LadderResultTest {
+class LadderPrizeTest {
 
     @DisplayName("LadderResult 인스턴스 생성")
     @Test

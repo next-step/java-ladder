@@ -1,6 +1,6 @@
 package nextstep.ladder.domain.line;
 
-import nextstep.ladder.domain.position.Position;
+import nextstep.ladder.domain.edge.Position;
 
 import java.util.List;
 import java.util.Objects;

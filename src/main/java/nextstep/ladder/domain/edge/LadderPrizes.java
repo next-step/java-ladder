@@ -13,4 +13,8 @@ public class LadderPrizes {
     public int size() {
         return value.size();
     }
+
+    public List<String> getLadderPrizes() {
+        return value.stream().map(LadderPrize::getValue).collect(Collectors.toList());
+    }
 }

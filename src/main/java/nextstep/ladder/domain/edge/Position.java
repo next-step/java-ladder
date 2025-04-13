@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.position;
+package nextstep.ladder.domain.edge;
 
 import nextstep.ladder.domain.line.Line;
 
