@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import java.util.List;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +16,20 @@ class LadderTest {
     void testConstructorValid() {
         Ladder ladder = new Ladder(5, 3);
 
-        assertThat(ladder.getLines()).isNotNull();
-        assertThat(ladder.getLines().size()).isEqualTo(5);
+        List<Line> lines = ladder.getLines();
+
+        assertThat(lines).isNotNull();
+        assertThat(lines.size()).isEqualTo(5);
+    }
+
+    @Test
+    @DisplayName("getLines()는 동일한 인스턴스를 반환하는지 확인")
+    void getLines_shouldReturnSameInstanceOnMultipleCalls() {
+        Ladder ladder = new Ladder(5, 3);
+        List<Line> firstCall = ladder.getLines();
+        List<Line> secondCall = ladder.getLines();
+
+        assertThat(firstCall).isSameAs(secondCall);
     }
 
     @Test

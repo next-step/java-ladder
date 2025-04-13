@@ -1,18 +1,27 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.IntStream;
 
 import ladder.exception.LadderInvalidException;
+
+import static java.util.stream.Collectors.toList;
 
 public class Ladder {
     private static final int MIN_HEIGHT = 1;
     private static final int MIN_PERSON_COUNT = 2;
-    private final List<Line> lines;
 
-    public Ladder(int ladderHeight, int countOfPersons) {
-        validateInput(ladderHeight, countOfPersons);
-        this.lines = createLines(ladderHeight, countOfPersons);
+    private final int height;
+    private final int width;
+
+    private List<Line> lines;
+
+    public Ladder(int height, int width) {
+        validateInput(height, width);
+
+        this.height = height;
+        this.width = width;
     }
 
     private void validateInput(int ladderHeight, int countOfPersons) {
@@ -21,17 +30,14 @@ public class Ladder {
         }
     }
 
-    private List<Line> createLines(int ladderHeight, int countOfPersons) {
-        List<Line> lines = new ArrayList<>();
-
-        for (int i = 0; i < ladderHeight; i++) {
-            lines.add(new Line(countOfPersons));
-        }
-
-        return lines;
+    public List<Line> getLines() {
+        return Optional.ofNullable(lines)
+            .orElseGet(() -> lines = createNewLines());
     }
 
-    public List<Line> getLines() {
-        return lines;
+    private List<Line> createNewLines() {
+        return IntStream.range(0, height)
+            .mapToObj(i -> new Line(width))
+            .collect(toList());
     }
 }
