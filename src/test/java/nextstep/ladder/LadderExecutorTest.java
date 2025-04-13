@@ -22,9 +22,9 @@ class LadderExecutorTest {
 
     LadderExecutor executor = new LadderExecutor(ladder, table);
 
-    assertThat(executor.resultOf("pobi")).isEqualTo("5000");
-    assertThat(executor.resultOf("honux")).isEqualTo("꽝");
-    assertThat(executor.resultOf("jk")).isEqualTo("3000");
+    assertThat(executor.execute("pobi")).isEqualTo("5000");
+    assertThat(executor.execute("honux")).isEqualTo("꽝");
+    assertThat(executor.execute("jk")).isEqualTo("3000");
   }
 
   @Test
@@ -36,7 +36,7 @@ class LadderExecutorTest {
     Ladder ladder = new Ladder(List.of(new Line(List.of(true, false))));
 
     LadderExecutor executor = new LadderExecutor(ladder, table);
-    Map<String, String> resultMap = executor.allResults();
+    Map<String, String> resultMap = executor.executeAll();
 
     assertThat(resultMap).containsEntry("pobi", "5000");
     assertThat(resultMap).containsEntry("honux", "꽝");
@@ -54,7 +54,7 @@ class LadderExecutorTest {
     LadderExecutor executor = new LadderExecutor(ladder, table);
 
     assertThatIllegalArgumentException()
-        .isThrownBy(() -> executor.resultOf("java"))
+        .isThrownBy(() -> executor.execute("java"))
         .withMessageContaining("이름이 존재하지 않습니다");
   }
 
