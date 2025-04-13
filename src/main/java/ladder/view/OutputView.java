@@ -32,5 +32,4 @@ public class OutputView {
         line.crosses().forEach(cross -> sb.append(cross ? "-----|" : "     |"));
         System.out.println(sb);
     }
-
 }
