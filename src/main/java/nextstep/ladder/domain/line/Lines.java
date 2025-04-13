@@ -26,7 +26,7 @@ public class Lines {
     public LadderUsers moveUsers(LadderUsers users) {
         LadderUsers res = users;
         for (Line line : value) {
-            res = users.move(line);
+            res = res.move(line);
         }
         return res;
     }

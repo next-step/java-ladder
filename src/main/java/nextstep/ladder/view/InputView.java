@@ -26,4 +26,11 @@ public class InputView {
         System.out.printf("%n");
         return height;
     }
+
+    public static String showLadderResultUser() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        String names = SCANNER.nextLine();
+        System.out.printf("%n");
+        return names;
+    }
 }

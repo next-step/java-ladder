@@ -1,17 +1,11 @@
 package nextstep.ladder.domain.edge;
 
-import nextstep.ladder.domain.line.Height;
-import nextstep.ladder.domain.line.LineFactory;
-import nextstep.ladder.domain.line.Lines;
-import nextstep.ladder.domain.line.PointFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class LadderUsersTest {

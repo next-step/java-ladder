@@ -3,6 +3,7 @@ package nextstep.ladder.domain.edge;
 import nextstep.ladder.domain.line.Line;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class LadderUsers {
@@ -54,5 +55,18 @@ public class LadderUsers {
                 .map(ladderUser -> ladderUser.select(ladderPrizes))
                 .collect(Collectors.toList())
         );
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LadderUsers that = (LadderUsers) o;
+        return Objects.equals(ladderUsers, that.ladderUsers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(ladderUsers);
     }
 }

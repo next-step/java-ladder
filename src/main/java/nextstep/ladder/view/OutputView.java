@@ -1,5 +1,6 @@
 package nextstep.ladder.view;
 
+import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.dto.LadderDto;
 
 import java.util.List;
@@ -12,12 +13,25 @@ public class OutputView {
 
     public static void showLadderResult(LadderDto ladderDto) {
         System.out.printf("실행 결과%n%n");
-        System.out.println(toNamesConsoleFormat(ladderDto.getLadderUsers()));
+        System.out.println(toConfigConsoleFormat(ladderDto.getLadderUsers()));
         System.out.println(toLadderConsoleFormat(ladderDto.getLadder()));
+        System.out.println(toConfigConsoleFormat(ladderDto.getLadderPrizes()));
     }
 
-    private static String toNamesConsoleFormat(List<String> names) {
-        return names.stream()
+    public static void showLadderUserResult(LadderDto ladderDto) {
+        String name = "";
+        while (!name.equals("all")) {
+            name = InputView. showLadderResultUser();
+            System.out.println("실행 결과");
+            System.out.printf("%s%n%n", ladderDto.getPrizeResult().get(name));
+        }
+
+        System.out.println("실행 결과");
+        ladderDto.getPrizeResult().forEach((key, value) -> System.out.println(key + " : " + value));
+    }
+
+    private static String toConfigConsoleFormat(List<String> values) {
+        return values.stream()
             .map(OutputView::toNameConsoleFormat)
             .collect(Collectors.joining(" ", "", ""));
     }
