@@ -1,8 +1,7 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.edge.LadderConfig;
 import nextstep.ladder.domain.line.Dimension;
-import nextstep.ladder.domain.line.LineFactory;
+import nextstep.ladder.factory.LineFactory;
 import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.dto.LadderDto;
 

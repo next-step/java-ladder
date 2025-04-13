@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.line;
 
+import nextstep.ladder.factory.LineFactory;
+import nextstep.ladder.factory.PointFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.edge;
 
+import nextstep.ladder.domain.user.LadderUser;
+import nextstep.ladder.domain.user.LadderUsers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

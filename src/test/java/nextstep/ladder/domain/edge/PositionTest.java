@@ -2,6 +2,7 @@ package nextstep.ladder.domain.edge;
 
 import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.line.Point;
+import nextstep.ladder.domain.user.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

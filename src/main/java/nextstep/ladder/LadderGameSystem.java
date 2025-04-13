@@ -1,8 +1,13 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.edge.*;
+import nextstep.ladder.domain.LadderConfig;
 import nextstep.ladder.domain.line.Dimension;
+import nextstep.ladder.domain.prize.LadderPrize;
+import nextstep.ladder.domain.prize.LadderPrizes;
+import nextstep.ladder.domain.user.LadderUser;
+import nextstep.ladder.domain.user.LadderUsers;
+import nextstep.ladder.domain.user.Position;
 import nextstep.ladder.dto.LadderDto;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;

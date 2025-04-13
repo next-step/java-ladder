@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.edge;
+package nextstep.ladder.domain.prize;
 
 public class LadderPrize {
     private final String value;

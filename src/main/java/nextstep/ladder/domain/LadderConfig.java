@@ -1,6 +1,8 @@
-package nextstep.ladder.domain.edge;
+package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.line.Lines;
+import nextstep.ladder.domain.prize.LadderPrizes;
+import nextstep.ladder.domain.user.LadderUsers;
 
 import java.util.List;
 import java.util.Map;

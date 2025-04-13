@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.edge;
+package nextstep.ladder.domain.prize;
 
 import java.util.List;
 import java.util.stream.Collectors;

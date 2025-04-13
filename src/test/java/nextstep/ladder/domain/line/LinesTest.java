@@ -1,9 +1,9 @@
 package nextstep.ladder.domain.line;
 
-import nextstep.ladder.domain.edge.LadderUser;
-import nextstep.ladder.domain.edge.LadderUsers;
-import nextstep.ladder.domain.edge.Position;
-import org.junit.jupiter.api.BeforeEach;
+import nextstep.ladder.domain.user.LadderUser;
+import nextstep.ladder.domain.user.LadderUsers;
+import nextstep.ladder.factory.LineFactory;
+import nextstep.ladder.factory.PointFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +21,7 @@ class LinesTest {
             return true;
         }
     }));
-    
+
     private final LadderUsers ladderUsers = new LadderUsers(List.of(
         new LadderUser("pobi", 0),
         new LadderUser("honux", 1),

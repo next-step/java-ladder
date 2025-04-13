@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.line;
 
-import nextstep.ladder.domain.edge.LadderUsers;
+import nextstep.ladder.domain.user.LadderUsers;
+import nextstep.ladder.factory.LineFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
