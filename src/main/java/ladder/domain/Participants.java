@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,5 +26,9 @@ public class Participants {
 
     public int size() {
         return participants.size();
+    }
+
+    public List<Participant> list() {
+        return Collections.unmodifiableList(participants);
     }
 }

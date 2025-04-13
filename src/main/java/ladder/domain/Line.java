@@ -28,4 +28,8 @@ public class Line {
     public int width() {
         return points.size();
     }
+
+    public boolean isConnected(int i) {
+        return points.get(i);
+    }
 }
