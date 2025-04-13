@@ -22,4 +22,8 @@ public class Participants {
             throw new IllegalArgumentException("중복된 이름이 있습니다.");
         }
     }
+
+    public int size() {
+        return participants.size();
+    }
 }
