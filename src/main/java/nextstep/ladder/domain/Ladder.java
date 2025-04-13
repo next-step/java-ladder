@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.edge.LadderEdge;
 import nextstep.ladder.domain.line.Height;
 import nextstep.ladder.domain.line.LineFactory;
 import nextstep.ladder.domain.line.Lines;
@@ -9,20 +10,23 @@ import nextstep.ladder.dto.LadderDto;
 import java.util.List;
 
 public class Ladder {
-    private final LadderUsers ladderUsers;
     private final Lines lines;
+    private final LadderEdge ladderEdge;
 
-
-    public Ladder(List<String> names, int height) {
-        this(names, height, new LineFactory());
+    public Ladder(LadderEdge ladderEdge, int height) {
+        this(ladderEdge, new Height(height), new LineFactory());
     }
 
-    public Ladder(List<String> names, int height, LineFactory lineFactory) {
-        this.ladderUsers = new LadderUsers(names);
-        this.lines = new Lines(this.ladderUsers, new Height(height), lineFactory);
+    public Ladder(LadderEdge ladderEdge, int height, LineFactory lineFactory) {
+        this(ladderEdge, new Height(height), lineFactory);
+    }
+
+    public Ladder(LadderEdge ladderEdge, Height height, LineFactory lineFactory) {
+        this.ladderEdge = ladderEdge;
+        this.lines = new Lines(ladderEdge.userSize(), height, lineFactory);
     }
 
     public LadderDto toLadderResult() {
-        return new LadderDto(ladderUsers.getLadderUserNames(), lines.getvalue());
+        return new LadderDto(ladderEdge.getLadderUserNames(), lines.getvalue());
     }
 }

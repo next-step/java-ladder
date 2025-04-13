@@ -12,6 +12,13 @@ public class InputView {
         return names;
     }
 
+    public static String showResultsInput() {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String names = SCANNER.nextLine();
+        System.out.printf("%n");
+        return names;
+    }
+
     public static int showLadderHeightInput() {
         System.out.println("최대 사다리 높이는 몇 개인가요?");
         int height = SCANNER.nextInt();

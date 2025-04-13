@@ -19,7 +19,7 @@ public class LadderUsers {
         }
     }
 
-    public int getSize() {
+    public int size() {
         return ladderUsers.size();
     }
 

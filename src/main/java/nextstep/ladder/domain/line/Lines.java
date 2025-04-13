@@ -1,7 +1,5 @@
 package nextstep.ladder.domain.line;
 
-import nextstep.ladder.domain.user.LadderUsers;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -9,8 +7,8 @@ import java.util.stream.Stream;
 public class Lines {
     private final List<Line> value;
 
-    public Lines(LadderUsers ladderUsers, Height height, LineFactory lineFactory) {
-        this.value = Stream.generate(() -> lineFactory.create(ladderUsers))
+    public Lines(int width, Height height, LineFactory lineFactory) {
+        this.value = Stream.generate(() -> lineFactory.create(width))
             .limit(height.getValue())
             .collect(Collectors.toList());
     }

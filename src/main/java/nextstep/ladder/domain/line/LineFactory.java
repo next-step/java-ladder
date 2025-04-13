@@ -17,12 +17,12 @@ public class LineFactory {
         this.pointFactory = pointFactory;
     }
 
-    public Line create(LadderUsers ladderUsers) {
+    public Line create(int size) {
         List<Point> points = new ArrayList<>();
         Point previousPoint = pointFactory.create(new Point(false));
         points.add(previousPoint);
 
-        for (int i = 1; i < ladderUsers.getSize() - 1; i++) {
+        for (int i = 1; i < size - 1; i++) {
             Point newPoint = pointFactory.create(previousPoint);
             points.add(newPoint);
             previousPoint = newPoint;

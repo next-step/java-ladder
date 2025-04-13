@@ -9,4 +9,8 @@ public class LadderResults {
     public LadderResults(List<String> results) {
         this.value = results.stream().map(LadderResult::new).collect(Collectors.toList());
     }
+
+    public int size() {
+        return value.size();
+    }
 }
