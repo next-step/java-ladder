@@ -5,7 +5,6 @@ import nextstep.ladder.domain.prize.LadderPrize;
 import nextstep.ladder.domain.prize.LadderPrizes;
 import nextstep.ladder.domain.user.LadderUser;
 import nextstep.ladder.domain.user.LadderUsers;
-import nextstep.ladder.domain.user.Position;
 import nextstep.ladder.factory.LineFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,8 +19,8 @@ class LadderTest {
     @Test
     public void testConstructor() {
         List<LadderUser> ladderUsers = List.of(
-            new LadderUser("pobi", new Position(0)),
-            new LadderUser("honux", new Position(1))
+            new LadderUser("pobi", 0),
+            new LadderUser("honux", 1)
         );
         List<LadderPrize> ladderPrizes = List.of(
             new LadderPrize("꽝"),

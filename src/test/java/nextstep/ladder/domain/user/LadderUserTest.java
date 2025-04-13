@@ -2,6 +2,8 @@ package nextstep.ladder.domain.user;
 
 import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.line.Point;
+import nextstep.ladder.domain.prize.LadderPrize;
+import nextstep.ladder.domain.prize.LadderPrizes;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +30,7 @@ class LadderUserTest {
             .hasMessageContaining("이름은 최대 5자를 넘을 수 없습니다.");
     }
 
-    @DisplayName("line에 따라 이동")
+    @DisplayName("이동 성공")
     @Test
     public void testMove() {
         LadderUser ladderUser = new LadderUser("jk", 0);
@@ -37,7 +39,7 @@ class LadderUserTest {
         assertThat(ladderUser.move(line)).isEqualTo(new LadderUser("jk", 1));
     }
 
-    @DisplayName("line이 없어 이동하지 않음")
+    @DisplayName("이동 실패")
     @Test
     public void testNotMove() {
         LadderUser ladderUser1 = new LadderUser("jk", 0);
@@ -50,5 +52,14 @@ class LadderUserTest {
             () -> assertThat(ladderUser2.move(line)).isEqualTo(new LadderUser("jk", 1)),
             () -> assertThat(ladderUser3.move(line)).isEqualTo(new LadderUser("jk", 2))
         );
+    }
+    
+    @DisplayName("위치에 따른 Prize 선택")
+    @Test
+    public void testSelect() {
+        LadderUser ladderUser = new LadderUser("jk", 1);
+
+        LadderPrizes ladderPrizes  = new LadderPrizes(List.of(new LadderPrize("1000"), new LadderPrize("꽝")));
+        assertThat(ladderUser.select(ladderPrizes)).isEqualTo(new LadderPrize("꽝"));
     }
 }
