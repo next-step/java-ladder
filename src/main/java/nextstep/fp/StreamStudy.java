@@ -5,21 +5,19 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
+import static java.util.stream.Collectors.*;
 
 public class StreamStudy {
 
     public static long countWords() throws IOException {
         String contents = new String(Files.readAllBytes(Paths
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
-        List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        long count = 0;
-        for (String w : words) {
-            if (w.length() > 12) count++;
-        }
-        return count;
+        return Arrays.stream(contents.split("[\\P{L}]+"))
+                .filter(w-> w.length() > 12)
+                .count();
     }
 
     public static void printLongestWordTop100() throws IOException {
@@ -27,11 +25,17 @@ public class StreamStudy {
                 .get("src/main/resources/fp/war-and-peace.txt")), StandardCharsets.UTF_8);
         List<String> words = Arrays.asList(contents.split("[\\P{L}]+"));
 
-        // TODO 이 부분에 구현한다.
+        words.stream()
+                .filter(word -> word.length() > 12)
+                .sorted(Comparator.reverseOrder())
+                .distinct()
+                .map(String::toLowerCase)
+                .limit(100)
+                .forEach(System.out::println);
     }
 
     public static List<Integer> doubleNumbers(List<Integer> numbers) {
-        return numbers.stream().map(x -> 2 * x).collect(Collectors.toList());
+        return numbers.stream().map(x -> 2 * x).collect(toList());
     }
 
     public static long sumAll(List<Integer> numbers) {
@@ -39,6 +43,9 @@ public class StreamStudy {
     }
 
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
-        return 0;
+        return numbers.stream()
+                .filter(number -> number > 3)
+                .mapToInt(number -> number * 2)
+                .sum();
     }
 }
