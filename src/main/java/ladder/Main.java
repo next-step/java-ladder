@@ -14,11 +14,15 @@ import static ladder.view.OutputView.printLadderResult;
 public class Main {
     public static void main(String[] args) {
         InputView inputView = new InputView(new Scanner(System.in));
-        List<User> users = parseUserList(inputView.inputUserName()).stream()
+        String userInput = inputView.inputUserName();
+
+        List<User> users = parseUserList(userInput).stream()
             .map(User::new)
             .collect(toList());
 
-        Ladder ladder = new Ladder(inputView.inputLadderHeight(), users.size());
+        int ladderHeight = inputView.inputLadderHeight();
+
+        Ladder ladder = new Ladder(ladderHeight, users.size());
         printLadderResult(ladder, users);
     }
 }
