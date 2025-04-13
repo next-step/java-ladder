@@ -10,7 +10,7 @@ import static java.util.stream.Collectors.toList;
 
 public class Ladder {
     private static final int MIN_HEIGHT = 1;
-    private static final int MIN_PERSON_COUNT = 2;
+    private static final int MIN_WIDTH = 2;
 
     private final int height;
     private final int width;
@@ -24,8 +24,8 @@ public class Ladder {
         this.width = width;
     }
 
-    private void validateInput(int ladderHeight, int countOfPersons) {
-        if (ladderHeight < MIN_HEIGHT || countOfPersons < MIN_PERSON_COUNT) {
+    private void validateInput(int height, int width) {
+        if (height < MIN_HEIGHT || width < MIN_WIDTH) {
             throw new LadderInvalidException();
         }
     }
