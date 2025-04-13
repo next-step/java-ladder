@@ -1,5 +1,6 @@
 package domain;
 
+import view.InputView;
 import view.OutputView;
 
 import java.util.List;
@@ -9,9 +10,11 @@ public class LadderGame {
     private final Participants participants;
     private final Ladder ladder;
 
-    public LadderGame(List<String> participantNames, int height) {
+    public LadderGame() {
+        List<String> participantNames = InputView.inputParticipantNames();
+        int maxLadderHeight = InputView.inputMaxLadderHeight();
         this.participants = new Participants(participantNames);
-        this.ladder = new Ladder(height, participantNames.size());
+        this.ladder = new Ladder(maxLadderHeight, participantNames.size());
     }
 
     public void play() {

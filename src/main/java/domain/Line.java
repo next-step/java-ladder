@@ -12,6 +12,26 @@ public class Line {
         this.points = points;
     }
 
+    private void validate(List<Boolean> points) {
+        validateEmpty(points);
+        validateConsecutiveTrues(points);
+    }
+
+    private void validateEmpty(List<Boolean> points) {
+        if (points == null || points.isEmpty()) {
+            throw new IllegalArgumentException("라인은 비어있을 수 없습니다.");
+        }
+    }
+
+    private void validateConsecutiveTrues(List<Boolean> points) {
+        IntStream.range(1, points.size())
+                .filter(i -> points.get(i) && points.get(i - 1))
+                .findAny()
+                .ifPresent(i -> {
+                    throw new IllegalArgumentException("라인은 이어질 수 없습니다.");
+                });
+    }
+
     public Line(int columnCount, ConnectionStrategy strategy) {
         this(generateLine(columnCount, strategy));
     }
@@ -40,25 +60,5 @@ public class Line {
 
     private static boolean isPreviousConnected(int i, List<Boolean> line) {
         return i > 0 && line.get(i - 1);
-    }
-
-    private void validate(List<Boolean> points) {
-        validateEmpty(points);
-        validateConsecutiveTrues(points);
-    }
-
-    private void validateEmpty(List<Boolean> points) {
-        if (points == null || points.isEmpty()) {
-            throw new IllegalArgumentException("라인은 비어있을 수 없습니다.");
-        }
-    }
-
-    private void validateConsecutiveTrues(List<Boolean> points) {
-        IntStream.range(1, points.size())
-            .filter(i -> points.get(i) && points.get(i - 1))
-            .findAny()
-            .ifPresent(i -> {
-                throw new IllegalArgumentException("라인은 이어질 수 없습니다.");
-            });
     }
 }
