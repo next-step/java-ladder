@@ -14,13 +14,19 @@ public class LadderGame {
     }
 
     private List<Player> createPlayers(List<String> players) {
-        return players.stream().map(Player::new).collect(Collectors.toList());
+        return IntStream.range(0, players.size())
+                .mapToObj(index -> new Player(players.get(index), index))
+                .collect(Collectors.toList());
     }
 
     private List<Line> createLines(int ladderHeight, GeneratorStrategy generatorStrategy) {
         return IntStream.range(0, ladderHeight)
                 .mapToObj(i -> new Line(players.size(), generatorStrategy))
                 .collect(Collectors.toList());
+    }
+
+    public List<Player> progressGame() {
+        return players.stream().map(lines::moveLines).collect(Collectors.toList());
     }
 
     public List<Player> getPlayers() {

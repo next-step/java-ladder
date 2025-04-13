@@ -11,11 +11,6 @@ public class Player {
         this(name, 0);
     }
 
-    public Player(String value) {
-        if (value.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("invalid player name length");
-        }
-        this.value = value;
     public Player(String name, int position) {
         this.name = new Name(name);
         this.position = new Position(position);
@@ -26,9 +21,12 @@ public class Player {
         this.position = position;
     }
 
+    public Player movePosition(List<Boolean> points) {
+        return new Player(this.name, this.position.moveBy(points));
+    }
 
-    public Name getName() {
-        return name;
+    public String getName() {
+        return name.getValue();
     }
 
     public Position getPosition() {

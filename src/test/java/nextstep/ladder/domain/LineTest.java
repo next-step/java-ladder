@@ -26,4 +26,12 @@ class LineTest {
 
         assertThat(line.getPoints()).isEqualTo(List.of(true, false, false));
     }
+
+    @Test
+    void movePositionTest() {
+        Line line = new Line(List.of(true, false, true));
+        Player player = new Player("pobi", 1);
+
+        assertThat(line.movePosition(player)).isEqualTo(new Player("pobi", 0));
+    }
 }
