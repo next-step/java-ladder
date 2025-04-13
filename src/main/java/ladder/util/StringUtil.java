@@ -3,8 +3,11 @@ package ladder.util;
 import java.util.List;
 
 public class StringUtil {
+
+    private static final String COMMA_REGEX = ",";
+
     public static List<String> parseUserList(String userList) {
-        String[] users = userList.split(",");
+        String[] users = userList.split(COMMA_REGEX);
         return List.of(users);
     }
 }
