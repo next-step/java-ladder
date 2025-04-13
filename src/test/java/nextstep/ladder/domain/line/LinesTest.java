@@ -17,7 +17,7 @@ class LinesTest {
     @DisplayName("Lines 인스턴스 만들기")
     @Test
     public void testConstructor() {
-        assertDoesNotThrow(() -> new Lines(4, new Height(3), new LineFactory(new PointFactory())));
+        assertDoesNotThrow(() -> new Lines(new Dimension(4), new Dimension(3), new LineFactory(new PointFactory())));
     }
 
     @DisplayName("유저들을 움직이기 - 2 height")
@@ -31,7 +31,7 @@ class LinesTest {
         };
 
         LineFactory lineFactory = new LineFactory(new PointFactory(random));
-        Lines lines = new Lines(4, new Height(2), lineFactory);
+        Lines lines = new Lines(new Dimension(4), new Dimension(2), lineFactory);
         LadderUsers ladderUsers = new LadderUsers(List.of(
             new LadderUser("pobi", new Position(0)),
             new LadderUser("honux", new Position(1)),
@@ -58,7 +58,7 @@ class LinesTest {
         };
 
         LineFactory lineFactory = new LineFactory(new PointFactory(random));
-        Lines lines = new Lines(4, new Height(3), lineFactory);
+        Lines lines = new Lines(new Dimension(4), new Dimension(3), lineFactory);
         LadderUsers ladderUsers = new LadderUsers(List.of(
             new LadderUser("pobi", new Position(0)),
             new LadderUser("honux", new Position(1)),

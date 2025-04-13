@@ -9,9 +9,9 @@ import java.util.stream.Stream;
 public class Lines {
     private final List<Line> value;
 
-    public Lines(int width, Height height, LineFactory lineFactory) {
-        this.value = Stream.generate(() -> lineFactory.create(width))
-            .limit(height.getValue())
+    public Lines(Dimension width, Dimension height, LineFactory lineFactory) {
+        this.value = Stream.generate(() -> lineFactory.create(width.value()))
+            .limit(height.value())
             .collect(Collectors.toList());
     }
 

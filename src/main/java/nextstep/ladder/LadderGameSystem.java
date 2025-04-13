@@ -2,7 +2,7 @@ package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.edge.*;
-import nextstep.ladder.domain.line.Height;
+import nextstep.ladder.domain.line.Dimension;
 import nextstep.ladder.dto.LadderDto;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
@@ -25,8 +25,8 @@ public class LadderGameSystem {
         );
 
         LadderConfig ladderConfig = new LadderConfig(ladderUsers, ladderPrizes);
-        Height height = new Height(InputView.showLadderHeightInput());
-        LadderDto ladderDto = new Ladder(ladderConfig, height).toLadderDto();
+        Dimension dimension = new Dimension(InputView.showLadderHeightInput());
+        LadderDto ladderDto = new Ladder(ladderConfig, dimension).toLadderDto();
 
         OutputView.showLadderResult(ladderDto);
         OutputView.showLadderUserResult(ladderDto);
