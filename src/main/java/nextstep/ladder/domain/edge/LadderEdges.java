@@ -5,16 +5,15 @@ import nextstep.ladder.domain.user.LadderUsers;
 
 import java.util.List;
 
-public class LadderEdge {
+public class LadderEdges {
     private final LadderUsers users;
     private final LadderResults results;
 
-
-    public LadderEdge(List<String> names, List<String> results) {
+    public LadderEdges(List<String> names, List<String> results) {
         this(new LadderUsers(names), new LadderResults(results));
     }
 
-    public LadderEdge(LadderUsers users, LadderResults results) {
+    public LadderEdges(LadderUsers users, LadderResults results) {
         if (users.size() != results.size()) {
             throw new IllegalArgumentException("유저 수와 결과 수는 같아야 합니다.");
         }
