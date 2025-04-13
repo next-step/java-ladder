@@ -28,7 +28,7 @@ class LadderTest {
             new LadderPrize("5000")
         );
 
-        LadderUsers users =  new LadderUsers(ladderUsers);
+        LadderUsers users = new LadderUsers(ladderUsers);
         LadderPrizes prizes = new LadderPrizes(ladderPrizes);
         assertDoesNotThrow(() -> new Ladder(new LadderConfig(users, prizes), new Dimension(3), new LineFactory()));
     }

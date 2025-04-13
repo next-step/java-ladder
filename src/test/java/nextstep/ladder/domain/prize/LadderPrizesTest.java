@@ -1,13 +1,11 @@
-package nextstep.ladder.domain.edge;
+package nextstep.ladder.domain.prize;
 
-import nextstep.ladder.domain.prize.LadderPrize;
-import nextstep.ladder.domain.prize.LadderPrizes;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class LadderPrizesTest {
 

@@ -1,7 +1,7 @@
-package nextstep.ladder.domain.edge;
+package nextstep.ladder.domain.user;
 
-import nextstep.ladder.domain.line.*;
-import nextstep.ladder.domain.user.LadderUser;
+import nextstep.ladder.domain.line.Line;
+import nextstep.ladder.domain.line.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -42,7 +42,7 @@ class LadderUserTest {
     public void testNotMove() {
         LadderUser ladderUser1 = new LadderUser("jk", 0);
         LadderUser ladderUser2 = new LadderUser("jk", 1);
-        LadderUser ladderUser3 = new LadderUser("jk",2);
+        LadderUser ladderUser3 = new LadderUser("jk", 2);
         Line line = new Line(List.of(new Point(false), new Point(false)));
 
         assertAll(

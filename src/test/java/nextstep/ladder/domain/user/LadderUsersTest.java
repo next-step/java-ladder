@@ -1,7 +1,5 @@
-package nextstep.ladder.domain.edge;
+package nextstep.ladder.domain.user;
 
-import nextstep.ladder.domain.user.LadderUser;
-import nextstep.ladder.domain.user.LadderUsers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +14,7 @@ public class LadderUsersTest {
     @Test
     public void testConstructor() {
         List<LadderUser> ladderUsers = List.of(
-            new LadderUser("pobi",0),
+            new LadderUser("pobi", 0),
             new LadderUser("honux", 1)
         );
 
@@ -28,7 +26,7 @@ public class LadderUsersTest {
     public void testConstructor_throwExceptionByDuplicatedName() {
         List<LadderUser> ladderUsers = List.of(
             new LadderUser("pobi", 0),
-            new LadderUser("pobi",1)
+            new LadderUser("pobi", 1)
         );
 
         assertThatThrownBy(() -> new LadderUsers(ladderUsers))

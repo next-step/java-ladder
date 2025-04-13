@@ -1,6 +1,5 @@
-package nextstep.ladder.domain.edge;
+package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.prize.LadderPrize;
 import nextstep.ladder.domain.prize.LadderPrizes;
 import nextstep.ladder.domain.user.LadderUser;
@@ -11,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class LadderResultTest {
 
