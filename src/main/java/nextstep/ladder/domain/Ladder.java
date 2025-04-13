@@ -4,7 +4,7 @@ import nextstep.ladder.domain.line.Height;
 import nextstep.ladder.domain.line.LineFactory;
 import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.domain.user.LadderUsers;
-import nextstep.ladder.dto.LadderResult;
+import nextstep.ladder.dto.LadderDto;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class Ladder {
         this.lines = new Lines(this.ladderUsers, new Height(height), lineFactory);
     }
 
-    public LadderResult toLadderResult() {
-        return new LadderResult(ladderUsers.getLadderUserNames(), lines.getvalue());
+    public LadderDto toLadderResult() {
+        return new LadderDto(ladderUsers.getLadderUserNames(), lines.getvalue());
     }
 }
