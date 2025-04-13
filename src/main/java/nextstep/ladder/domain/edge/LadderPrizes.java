@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LadderPrizes {
-    private List<LadderPrize> value;
+    private final List<LadderPrize> value;
 
     public LadderPrizes(List<LadderPrize> prizes) {
         this.value = prizes;

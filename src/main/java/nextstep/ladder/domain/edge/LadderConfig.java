@@ -2,6 +2,9 @@ package nextstep.ladder.domain.edge;
 
 import nextstep.ladder.domain.line.Lines;
 
+import java.util.List;
+import java.util.Map;
+
 public class LadderConfig {
 
     private final LadderUsers ladderUsers;
@@ -15,7 +18,23 @@ public class LadderConfig {
         this.ladderPrizes = ladderPrizes;
     }
 
-    public LadderResult toResult(Lines lines) {
+    public int size() {
+        return ladderUsers.size();
+    }
+
+    public List<String> getUsersName() {
+        return ladderUsers.getLadderUserNames();
+    }
+
+    public List<String> getPrizesValue() {
+        return ladderPrizes.getLadderPrizes();
+    }
+
+    public Map<String, String> getResultString(Lines lines) {
+        return toResult(lines).getStringValues();
+    }
+
+    private LadderResult toResult(Lines lines) {
         LadderUsers moved = lines.moveUsers(ladderUsers);
         return new LadderResult(moved, moved.selectAll(ladderPrizes));
     }

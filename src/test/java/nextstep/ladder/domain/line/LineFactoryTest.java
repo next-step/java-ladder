@@ -31,5 +31,4 @@ class LineFactoryTest {
         assertThat(lineFactory.create(4))
             .isEqualTo(new Line(List.of(new Point(true), new Point(false), new Point(true))));
     }
-
 }

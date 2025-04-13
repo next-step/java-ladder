@@ -1,6 +1,8 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.edge.*;
+import nextstep.ladder.domain.line.Height;
+import nextstep.ladder.domain.line.LineFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +26,6 @@ class LadderTest {
 
         LadderUsers users =  new LadderUsers(ladderUsers);
         LadderPrizes prizes = new LadderPrizes(ladderPrizes);
-        assertDoesNotThrow(() -> new Ladder(users, prizes, 3));
+        assertDoesNotThrow(() -> new Ladder(new LadderConfig(users, prizes), new Height(3), new LineFactory()));
     }
 }

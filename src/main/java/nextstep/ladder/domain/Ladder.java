@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.edge.LadderConfig;
 import nextstep.ladder.domain.edge.LadderPrizes;
 import nextstep.ladder.domain.edge.LadderResult;
 import nextstep.ladder.domain.edge.LadderUsers;
@@ -14,25 +15,23 @@ import java.util.Map;
 
 public class Ladder {
     private final Lines lines;
-    private final LadderUsers users;
-    private final LadderPrizes prizes;
+    private final LadderConfig ladderConfig;
 
     public Ladder(LadderUsers users, LadderPrizes prizes, int height) {
-        this(users, prizes, new Height(height), new LineFactory());
+        this(new LadderConfig(users, prizes), new Height(height), new LineFactory());
     }
 
-    public Ladder(LadderUsers users, LadderPrizes prizes, Height height, LineFactory lineFactory) {
-        this.users = users;
-        this.prizes = prizes;
-        this.lines = new Lines(users.size(), height, lineFactory);
+    public Ladder(LadderConfig ladderConfig, Height height, LineFactory lineFactory) {
+        this.ladderConfig = ladderConfig;
+        this.lines = new Lines(ladderConfig.size(), height, lineFactory);
     }
 
     public LadderDto toLadderDto() {
         return new LadderDto(
-            users.getLadderUserNames(),
+            ladderConfig.getUsersName(),
             lines.getvalue(),
-            prizes.getLadderPrizes(),
-            new LadderResult(users, prizes).getStringValues()
+            ladderConfig.getPrizesValue(),
+            ladderConfig.getResultString(lines)
         );
     }
 }

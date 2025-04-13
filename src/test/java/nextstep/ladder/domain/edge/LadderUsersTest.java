@@ -43,7 +43,7 @@ public class LadderUsersTest {
     public void testConstructor_throwExceptionByDuplicatedPosition() {
         List<LadderUser> ladderUsers = List.of(
             new LadderUser("pobi", new Position(0)),
-            new LadderUser("pobi", new Position(0))
+            new LadderUser("jk", new Position(0))
         );
         assertThatThrownBy(() -> new LadderUsers(ladderUsers))
             .isInstanceOf(IllegalArgumentException.class)
