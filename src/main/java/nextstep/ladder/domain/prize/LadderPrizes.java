@@ -1,6 +1,7 @@
 package nextstep.ladder.domain.prize;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class LadderPrizes {
@@ -20,5 +21,18 @@ public class LadderPrizes {
 
     public LadderPrize get(int index) {
         return value.get(index);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LadderPrizes that = (LadderPrizes) o;
+        return Objects.equals(value, that.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(value);
     }
 }
