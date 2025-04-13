@@ -1,4 +1,4 @@
-package nextstep.ladder.domain.user;
+package nextstep.ladder.domain.edge;
 
 import java.util.HashSet;
 import java.util.List;

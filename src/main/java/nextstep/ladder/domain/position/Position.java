@@ -23,7 +23,7 @@ public class Position {
     }
 
     public boolean canMoveRight(Line line) {
-        return value < line.size() - 1 && line.get(value).getValue();
+        return value < line.size() && line.get(value).getValue();
     }
 
     public Position moveLeft() {
@@ -45,5 +45,12 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hashCode(value);
+    }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+            "value=" + value +
+            '}';
     }
 }

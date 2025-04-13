@@ -65,7 +65,6 @@ class PositionTest {
         );
     }
 
-
     @DisplayName("왼쪽으로 이동")
     @Test
     public void testMoveLeft() {

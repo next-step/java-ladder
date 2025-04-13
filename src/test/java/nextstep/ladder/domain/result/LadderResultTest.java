@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.result;
 
+import nextstep.ladder.domain.edge.LadderPrize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,6 @@ class LadderResultTest {
     @DisplayName("LadderResult 인스턴스 생성")
     @Test
     public void testConstructor() {
-        assertDoesNotThrow(() -> new LadderResult("꽝"));
+        assertDoesNotThrow(() -> new LadderPrize("꽝"));
     }
 }

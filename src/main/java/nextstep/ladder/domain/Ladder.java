@@ -14,14 +14,12 @@ public class Ladder {
         this(ladderEdges, new Height(height), new LineFactory());
     }
 
-    public Ladder(LadderEdges ladderEdges, int height, LineFactory lineFactory) {
-        this(ladderEdges, new Height(height), lineFactory);
-    }
-
     public Ladder(LadderEdges ladderEdges, Height height, LineFactory lineFactory) {
         this.ladderEdges = ladderEdges;
         this.lines = new Lines(ladderEdges.userSize(), height, lineFactory);
     }
+
+
 
     public LadderDto toLadderResult() {
         return new LadderDto(ladderEdges.getLadderUserNames(), lines.getvalue());

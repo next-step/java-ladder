@@ -1,7 +1,5 @@
 package nextstep.ladder.domain.line;
 
-import nextstep.ladder.domain.user.LadderUsers;
-
 import java.util.ArrayList;
 import java.util.List;
 
