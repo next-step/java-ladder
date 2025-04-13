@@ -62,4 +62,5 @@ class LadderTest {
             assertThat(mockRungStrategy.getApplyCallCount()).isEqualTo(linkCount);
         }
     }
+
 }

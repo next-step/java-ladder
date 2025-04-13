@@ -7,44 +7,15 @@ public class JunctionNeighbors {
 
     private final Map<Direction, Junction> neighbors = new HashMap<>();
 
-    public void setLeft(Junction junction) {
-        neighbors.put(Direction.LEFT, junction);
+    public void setNeighbor(Direction direction, Junction junction) {
+        neighbors.put(direction, junction);
     }
 
-    public void setRight(Junction junction) {
-        neighbors.put(Direction.RIGHT, junction);
+    public Junction getNeighbor(Direction direction) {
+        return neighbors.get(direction);
     }
 
-    public void setDown(Junction junction) {
-        neighbors.put(Direction.DOWN, junction);
+    public boolean hasNeighbor(Direction direction) {
+        return getNeighbor(direction) != null;
     }
-
-    public Junction getLeft() {
-        return neighbors.get(Direction.LEFT);
-    }
-
-    public Junction getRight() {
-        return neighbors.get(Direction.RIGHT);
-    }
-
-    public Junction getDown() {
-        return neighbors.get(Direction.DOWN);
-    }
-
-    public boolean hasLeft() {
-        return getLeft() != null;
-    }
-
-    public boolean hasRight() {
-        return getRight() != null;
-    }
-
-    public boolean hasDown() {
-        return getDown() != null;
-    }
-
-    public boolean hasLeftOrRight() {
-        return this.hasLeft() || this.hasRight();
-    }
-
 }

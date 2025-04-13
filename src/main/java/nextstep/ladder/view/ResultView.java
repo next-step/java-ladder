@@ -2,9 +2,8 @@ package nextstep.ladder.view;
 
 import java.util.List;
 
-import nextstep.Pair;
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.ParticipantName;
+import nextstep.ladder.domain.LadderResult;
 
 public class ResultView {
 
@@ -21,9 +20,9 @@ public class ResultView {
         System.out.println();
     }
 
-    public void printResultAll(List<Pair<ParticipantName, String>> results) {
-        for (Pair<ParticipantName, String> result : results) {
-            System.out.println(result.getLeft().getValue() + " : " + result.getRight());
+    public void printResultAll(List<LadderResult> results) {
+        for (LadderResult result : results) {
+            System.out.println(result.getName().getValue() + " : " + result.getResult());
         }
         System.out.println();
     }

@@ -4,7 +4,8 @@ import java.util.List;
 
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.LadderFactory;
-import nextstep.ladder.domain.LadderResult;
+import nextstep.ladder.domain.LadderNavigator;
+import nextstep.ladder.domain.LadderResults;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
@@ -19,23 +20,26 @@ public class LadderController {
         int height = inputView.getLadderHeight();
 
         Ladder ladder = LadderFactory.createLadder(participantNames, results, height);
-
         resultView.printLadder(ladder);
 
-        LadderResult ladderResult = ladder.run();
-        printResult(ladderResult);
+        LadderNavigator navigator = new LadderNavigator(ladder);
+
+        LadderResults ladderResults = navigator.navigate();
+        printResult(ladderResults);
     }
 
-    private void printResult(LadderResult ladderResult) {
+    private void printResult(LadderResults ladderResults) {
+        final String printAllCmd = "all";
+
         while (true) {
             String targetParticipantName = inputView.getTargetParticipantName();
 
-            if ("all".equals(targetParticipantName)) {
-                resultView.printResultAll(ladderResult.getAll());
+            if (printAllCmd.equals(targetParticipantName)) {
+                resultView.printResultAll(ladderResults.getAll());
                 break;
             }
 
-            String result = ladderResult.getByName(targetParticipantName);
+            String result = ladderResults.getByName(targetParticipantName);
             resultView.printResult(result);
         }
     }

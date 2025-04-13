@@ -33,17 +33,6 @@ class JunctionTest {
         junction.connectDown(downJunction);
 
         assertThat(junction.hasDown()).isTrue();
-        assertThat(junction.getDown()).isEqualTo(downJunction);
-    }
-
-    @Test
-    void 이동할_곳이_없으면_제자리다() {
-        ParticipantName name = new ParticipantName("1");
-        Junction junction = createJunction();
-
-        Junction result = junction.moveToResult(name);
-
-        assertThat(result).isEqualTo(junction);
     }
 
     public static Junction createJunction() {

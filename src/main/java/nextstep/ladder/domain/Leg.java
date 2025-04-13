@@ -15,6 +15,10 @@ public class Leg {
         this.junctions = createJunctions(height);
     }
 
+    public Junction getStart() {
+        return junctions.get(0);
+    }
+
     public Junction getJunction(int level) {
         return junctions.get(level);
     }
@@ -32,17 +36,17 @@ public class Leg {
     }
 
     private List<Junction> createJunctions(int height) {
-        List<Junction> junctions = IntStream.range(0, height)
+        List<Junction> newJunctions = IntStream.range(0, height)
             .mapToObj(i -> new Junction(this))
             .collect(Collectors.toList());
 
-        for (int i = 0; i < junctions.size() - 1; i++) {
-            Junction curr = junctions.get(i);
-            Junction down = junctions.get(i + 1);
+        for (int i = 0; i < newJunctions.size() - 1; i++) {
+            Junction curr = newJunctions.get(i);
+            Junction down = newJunctions.get(i + 1);
             curr.connectDown(down);
         }
 
-        return junctions;
+        return newJunctions;
     }
 
     public static List<Leg> createLegs(List<String> names, List<String> results, int height) {
