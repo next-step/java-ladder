@@ -57,3 +57,8 @@
     - [x] 실행결과 입력 받기 및 실행결과 표시
     - [x] 개인별 결과 출력 구현
     - [x] 전체 결과 출력 구현
+- [ ] 피드백
+  - [x] LadderGameApplication RandomLineGenerator 상수로 분리
+  - [ ] Player 가 Result 를 필드로 가짐 
+  - [ ] LadderGameResult Result wrapping
+  - [ ] Position Comparable 구현 추가
