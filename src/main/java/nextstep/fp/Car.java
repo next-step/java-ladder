@@ -2,7 +2,7 @@ package nextstep.fp;
 
 import java.util.Objects;
 
-public class Car {
+public class Car implements Conditional{
     private final String name;
     private final int position;
 
@@ -31,5 +31,10 @@ public class Car {
     public int hashCode() {
 
         return Objects.hash(name, position);
+    }
+
+    @Override
+    public boolean test(Integer number) {
+        return false;
     }
 }
