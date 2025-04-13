@@ -17,7 +17,7 @@ public class MappingTable implements Mapping {
   @Override
   public int indexOf(String name) {
     return participants.indexOf(name)
-        .orElseThrow(() -> new IllegalArgumentException("이름이 존재하지 않습니다"));
+        .orElseThrow(() -> new IllegalArgumentException("이름이 존재하지 않습니다: " + name));
   }
 
   @Override

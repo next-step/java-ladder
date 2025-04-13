@@ -2,6 +2,7 @@ package nextstep.ladder;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LadderExecutor implements Executor {
   private final Ladder ladder;
@@ -21,10 +22,12 @@ public class LadderExecutor implements Executor {
 
   @Override
   public Map<String, String> executeAll() {
-    Map<String, String> result = new LinkedHashMap<>();
-    for (String name : mapping.names()) {
-      result.put(name, execute(name));
-    }
-    return result;
+    return mapping.names().stream()
+        .collect(Collectors.toMap(
+            name -> name,
+            this::execute,
+            (a, b) -> b,
+            LinkedHashMap::new
+        ));
   }
 }
