@@ -21,5 +21,6 @@ public class LadderGame {
 
         Ladder ladder = Ladder.generate(width, height);
 
+
     }
 }

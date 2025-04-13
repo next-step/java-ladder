@@ -2,15 +2,30 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Line {
-    private List<Boolean> points = new ArrayList<>();
+    private final List<Boolean> points;
 
-    public Line (int countOfPerson) {
-        // 라인의 좌표 값에 선이 있는지 유무를 판단하는 로직 추가
+    private Line(List<Boolean> points) {
+        this.points = points;
     }
 
     public static Line generate(int width) {
-        return null;
+        List<Boolean> points = new ArrayList<>();
+        Random random = new Random();
+        boolean prev = false;
+
+        for (int i = 0; i < width; i++) {
+            boolean connect = !prev && random.nextBoolean();
+            points.add(connect);
+            prev = connect;
+        }
+
+        return new Line(points);
+    }
+
+    public int width() {
+        return points.size();
     }
 }
