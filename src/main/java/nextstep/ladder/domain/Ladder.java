@@ -3,6 +3,7 @@ package nextstep.ladder.domain;
 import nextstep.ladder.domain.edge.LadderPrizes;
 import nextstep.ladder.domain.edge.LadderUsers;
 import nextstep.ladder.domain.line.Height;
+import nextstep.ladder.domain.line.Line;
 import nextstep.ladder.domain.line.LineFactory;
 import nextstep.ladder.domain.line.Lines;
 
@@ -20,8 +21,4 @@ public class Ladder {
         this.prizes = prizes;
         this.lines = new Lines(users.size(), height, lineFactory);
     }
-
-//    public LadderDto toLadderResult() {
-//        return new LadderDto(ladderEdges.getLadderUserNames(), lines.getvalue());
-//    }
 }

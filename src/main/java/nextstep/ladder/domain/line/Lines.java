@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.line;
 
+import nextstep.ladder.domain.edge.LadderUsers;
 import nextstep.ladder.domain.edge.Position;
 
 import java.util.List;
@@ -19,32 +20,16 @@ public class Lines {
         return value.size();
     }
 
-    public int lineSize() {
-        if (size() == 0) {
-            return 0;
-        }
-        return value.get(0).size();
-    }
-
-//    public Positions simulate() {
-//        Positions res = new Positions();
-//        int lineSize = lineSize();
-//        for (int start = 0; start <= lineSize; start++) {
-//            res.add(simulate(start));
-//        }
-//        return res;
-//    }
-//
-//    private Position simulate(int start) {
-//        Position position = new Position(start);
-//        for (Line line: value) {
-//            position = line.move(position);
-//        }
-//       return position;
-//    }
-
     public List<List<Boolean>> getvalue() {
         return value.stream().map(Line::getValue).collect(Collectors.toList());
+    }
+
+    public LadderUsers moveUsers(LadderUsers users) {
+        LadderUsers res = users;
+        for (Line line : value) {
+            res = users.move(line);
+        }
+        return res;
     }
 
     @Override

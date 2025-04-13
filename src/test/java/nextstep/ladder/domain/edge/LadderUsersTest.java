@@ -1,11 +1,17 @@
 package nextstep.ladder.domain.edge;
 
+import nextstep.ladder.domain.line.Height;
+import nextstep.ladder.domain.line.LineFactory;
+import nextstep.ladder.domain.line.Lines;
+import nextstep.ladder.domain.line.PointFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class LadderUsersTest {
@@ -13,23 +19,45 @@ public class LadderUsersTest {
     @DisplayName("LadderUsers 인스턴스 만들기")
     @Test
     public void testConstructor() {
-        assertDoesNotThrow(() -> new LadderUsers(List.of("pobi", "honux", "crong", "jk")));
+        List<LadderUser> ladderUsers = List.of(
+            new LadderUser("pobi", new Position(0)),
+            new LadderUser("honux", new Position(1))
+        );
+        assertDoesNotThrow(() -> new LadderUsers(ladderUsers));
     }
 
     @DisplayName("중복된 이름이 존재하면 예외를 반환한다.")
     @Test
     public void testConstructor_throwExceptionByDuplicatedName() {
-        assertThatThrownBy(() -> new LadderUsers(List.of("pobi", "pobi")))
+        List<LadderUser> ladderUsers = List.of(
+            new LadderUser("pobi", new Position(0)),
+            new LadderUser("pobi", new Position(1))
+        );
+        assertThatThrownBy(() -> new LadderUsers(ladderUsers))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("중복된 이름이 존재합니다.");
+    }
+
+    @DisplayName("중복된 위치가 존재하면 예외를 반환한다.")
+    @Test
+    public void testConstructor_throwExceptionByDuplicatedPosition() {
+        List<LadderUser> ladderUsers = List.of(
+            new LadderUser("pobi", new Position(0)),
+            new LadderUser("pobi", new Position(0))
+        );
+        assertThatThrownBy(() -> new LadderUsers(ladderUsers))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("중복된 위치가 존재합니다.");
     }
 
     @DisplayName("유저 수가 1명 이하이면 예외를 반환한다.")
     @Test
     public void testConstructor_throwExceptionByUserCount() {
-        assertThatThrownBy(() -> new LadderUsers(List.of("pobi")))
+        List<LadderUser> ladderUsers = List.of(
+            new LadderUser("pobi", new Position(0))
+        );
+        assertThatThrownBy(() -> new LadderUsers(ladderUsers))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("유저는 2명 이상이여야 합니다.");
     }
-
 }

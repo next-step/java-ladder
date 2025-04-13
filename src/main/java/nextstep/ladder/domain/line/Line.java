@@ -1,7 +1,5 @@
 package nextstep.ladder.domain.line;
 
-import nextstep.ladder.domain.edge.Position;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -23,16 +21,6 @@ public class Line {
 
     public Point get(int index) {
         return value.get(index);
-    }
-
-    public Position move(Position position) {
-        if (position.canMoveLeft(this)) {
-            return position.moveLeft();
-        }
-        if (position.canMoveRight(this)) {
-            return position.moveRight();
-        }
-        return position;
     }
 
     @Override
