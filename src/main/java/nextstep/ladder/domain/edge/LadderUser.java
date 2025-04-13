@@ -35,6 +35,14 @@ public class LadderUser {
         return position.equals(ladderUser.position);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public LadderPrize result(LadderPrizes ladderPrizes) {
+        return ladderPrizes.get(position.getValue());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

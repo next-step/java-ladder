@@ -39,4 +39,15 @@ public class LadderUsers {
     public LadderUsers move(Line line) {
         return new LadderUsers(ladderUsers.stream().map(ladderUser -> ladderUser.move(line)).collect(Collectors.toList()));
     }
+
+    public List<String> getNames() {
+        return ladderUsers.stream().map(LadderUser::getName).collect(Collectors.toList());
+    }
+
+    public LadderPrizes result(LadderPrizes ladderPrizes) {
+        return new LadderPrizes(ladderUsers.stream()
+            .map(ladderUser -> ladderUser.result(ladderPrizes))
+            .collect(Collectors.toList())
+        );
+    }
 }

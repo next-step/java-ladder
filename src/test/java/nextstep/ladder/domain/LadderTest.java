@@ -1,9 +1,6 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.edge.LadderPrizes;
-import nextstep.ladder.domain.edge.LadderUser;
-import nextstep.ladder.domain.edge.LadderUsers;
-import nextstep.ladder.domain.edge.Position;
+import nextstep.ladder.domain.edge.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,8 +17,13 @@ class LadderTest {
             new LadderUser("pobi", new Position(0)),
             new LadderUser("honux", new Position(1))
         );
+        List<LadderPrize> ladderPrizes = List.of(
+            new LadderPrize("꽝"),
+            new LadderPrize("5000")
+        );
+
         LadderUsers users =  new LadderUsers(ladderUsers);
-        LadderPrizes prizes = new LadderPrizes(List.of("꽝", "1000"));
+        LadderPrizes prizes = new LadderPrizes(ladderPrizes);
         assertDoesNotThrow(() -> new Ladder(users, prizes, 3));
     }
 }
