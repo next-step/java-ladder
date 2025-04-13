@@ -1,16 +1,11 @@
 package nextstep.ladder.domain.edge;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderResult {
-    private Map<LadderUser, LadderPrize> value;
-
-    public LadderResult() {
-        this.value = new HashMap<>();
-    }
+    private final Map<LadderUser, LadderPrize> value;
 
     public LadderResult(LadderUsers ladderUsers, LadderPrizes ladderPrizes) {
         if (ladderUsers.size() != ladderPrizes.size()) {
