@@ -1,10 +1,9 @@
-package domain;
-
+import domain.Ladder;
+import domain.Participants;
 import view.InputView;
 import view.OutputView;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LadderGame {
     private final Participants participants;
