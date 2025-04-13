@@ -1,4 +1,4 @@
-package ladder;
+package ladder.model;
 
 public class User {
     public static final int MAX_LEN = 5;

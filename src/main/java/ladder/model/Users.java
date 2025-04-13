@@ -1,11 +1,11 @@
-package ladder;
+package ladder.model;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Users {
-    private List<User> names;
+    private final List<User> names;
 
     public Users(String names) {
         this(Arrays.stream(names.split(","))
@@ -17,6 +17,14 @@ public class Users {
 
     public Users(List<User> names) {
         this.names = names;
+    }
+
+    public int size() {
+        return names.size();
+    }
+
+    public List<String> getNames() {
+        return names.stream().map(User::getName).collect(Collectors.toList());
     }
 
 }
