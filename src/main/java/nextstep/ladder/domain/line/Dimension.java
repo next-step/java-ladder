@@ -5,11 +5,11 @@ import java.util.Objects;
 public class Dimension {
     private final int value;
 
-    public Dimension(int height) {
-        if (height < 1) {
+    public Dimension(int value) {
+        if (value < 1) {
             throw new IllegalArgumentException("치수는 1 이상이여야 합니다.");
         }
-        this.value = height;
+        this.value = value;
     }
 
     public int value() {

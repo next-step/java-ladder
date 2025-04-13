@@ -8,6 +8,10 @@ public class LadderUser {
     private final String name;
     private final Position position;
 
+    public LadderUser(String name, int position) {
+        this(name, new Position(position));
+    }
+
     public LadderUser(String name, Position position) {
         if (name.length() > 5) {
             throw new IllegalArgumentException("이름은 최대 5자를 넘을 수 없습니다.");

@@ -14,8 +14,8 @@ class LadderResultTest {
     @Test
     public void testConstructor() {
         LadderUsers ladderUsers = new LadderUsers(List.of(
-            new LadderUser("pobi", new Position(0)),
-            new LadderUser("honux", new Position(1))
+            new LadderUser("pobi", 0),
+            new LadderUser("honux", 1)
         ));
         LadderPrizes ladderPrizes = new LadderPrizes(List.of(
             new LadderPrize("꽝"),
@@ -29,8 +29,8 @@ class LadderResultTest {
     @Test
     public void testConstructor_throwException() {
         LadderUsers ladderUsers = new LadderUsers(List.of(
-            new LadderUser("pobi", new Position(0)),
-            new LadderUser("honux", new Position(1))
+            new LadderUser("pobi", 0),
+            new LadderUser("honux", 1)
         ));
         LadderPrizes ladderPrizes = new LadderPrizes(List.of(new LadderPrize("꽝")));
 

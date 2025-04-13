@@ -19,6 +19,6 @@ public class DimensionTest {
     public void testConstructor_throwException() {
         assertThatThrownBy(() -> new Dimension(0))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("높이는 1 이상이여야 합니다.");
+            .hasMessageContaining("치수는 1 이상이여야 합니다.");
     }
 }

@@ -14,9 +14,10 @@ public class LadderUsersTest {
     @Test
     public void testConstructor() {
         List<LadderUser> ladderUsers = List.of(
-            new LadderUser("pobi", new Position(0)),
-            new LadderUser("honux", new Position(1))
+            new LadderUser("pobi",0),
+            new LadderUser("honux", 1)
         );
+
         assertDoesNotThrow(() -> new LadderUsers(ladderUsers));
     }
 
@@ -24,9 +25,10 @@ public class LadderUsersTest {
     @Test
     public void testConstructor_throwExceptionByDuplicatedName() {
         List<LadderUser> ladderUsers = List.of(
-            new LadderUser("pobi", new Position(0)),
-            new LadderUser("pobi", new Position(1))
+            new LadderUser("pobi", 0),
+            new LadderUser("pobi",1)
         );
+
         assertThatThrownBy(() -> new LadderUsers(ladderUsers))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("중복된 이름이 존재합니다.");
@@ -36,9 +38,10 @@ public class LadderUsersTest {
     @Test
     public void testConstructor_throwExceptionByDuplicatedPosition() {
         List<LadderUser> ladderUsers = List.of(
-            new LadderUser("pobi", new Position(0)),
-            new LadderUser("jk", new Position(0))
+            new LadderUser("pobi", 0),
+            new LadderUser("jk", 0)
         );
+
         assertThatThrownBy(() -> new LadderUsers(ladderUsers))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("중복된 위치가 존재합니다.");
@@ -47,9 +50,8 @@ public class LadderUsersTest {
     @DisplayName("유저 수가 1명 이하이면 예외를 반환한다.")
     @Test
     public void testConstructor_throwExceptionByUserCount() {
-        List<LadderUser> ladderUsers = List.of(
-            new LadderUser("pobi", new Position(0))
-        );
+        List<LadderUser> ladderUsers = List.of(new LadderUser("pobi", 0));
+
         assertThatThrownBy(() -> new LadderUsers(ladderUsers))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("유저는 2명 이상이여야 합니다.");
