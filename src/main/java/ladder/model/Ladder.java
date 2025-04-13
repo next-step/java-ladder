@@ -9,7 +9,7 @@ public class Ladder {
     private final List<LadderLine> lines;
 
     public Ladder(int width, int height) {
-        this(new Random(), width, height);  // 기본 생성자 호출
+        this(new Random(), width, height);
     }
 
     public Ladder(Random random, int width, int height) {
