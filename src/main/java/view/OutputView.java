@@ -1,8 +1,11 @@
 package view;
 
 import domain.Line;
+import domain.Participant;
+import domain.Participants;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -14,7 +17,9 @@ public class OutputView {
         System.out.println(System.lineSeparator() + "실행결과");
     }
 
-    public static void printParticipants(List<String> names) {
+    public static void printParticipants(Participants participants) {
+        List<String> names = participants.getValues().stream()
+                .map(Participant::getName).collect(Collectors.toList());
         for (String name : names) {
             System.out.printf("%-6s", name);
         }

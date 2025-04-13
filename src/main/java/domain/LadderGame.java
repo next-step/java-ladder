@@ -19,7 +19,7 @@ public class LadderGame {
 
     public void play() {
         OutputView.printResultTitle();
-        OutputView.printParticipants(participants.getValues().stream().map(Participant::getName).collect(Collectors.toList()));
+        OutputView.printParticipants(participants);
         OutputView.printLadder(ladder.getLines());
     }
 }
