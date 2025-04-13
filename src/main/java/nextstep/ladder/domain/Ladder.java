@@ -12,6 +12,7 @@ public class Ladder {
     private final LadderUsers ladderUsers;
     private final Lines lines;
 
+
     public Ladder(List<String> names, int height) {
         this(names, height, new LineFactory());
     }

@@ -12,5 +12,4 @@ class LadderResultTest {
     public void testConstructor() {
         assertDoesNotThrow(() -> new LadderResult("꽝"));
     }
-
 }

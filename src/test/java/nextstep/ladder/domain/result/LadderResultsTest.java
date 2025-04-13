@@ -12,6 +12,6 @@ class LadderResultsTest {
     @DisplayName("LadderResults 인스턴스 생성")
     @Test
     public void testConstructor() {
-        assertDoesNotThrow(() -> new LadderResults(List.of(new LadderResult("1000"))));
+        assertDoesNotThrow(() -> new LadderResults(List.of("1000")));
     }
 }
