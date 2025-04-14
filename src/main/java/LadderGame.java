@@ -14,12 +14,12 @@ import java.util.stream.Collectors;
 
 public class LadderGame {
     public static void main(String[] args) {
-        PlayerNames playerNames = new PlayerNames(
-                InputView.getInputNames().stream()
-                        .map(PlayerName::new)
-                        .collect(Collectors.toList())
-        );
+        LadderGame game = new LadderGame();
+        game.run();
+    }
 
+    public void run() {
+        PlayerNames playerNames = readPlayerNames();
         List<String> results = InputView.getResults();
         int height = InputView.getLadderCount();
 
@@ -30,10 +30,18 @@ public class LadderGame {
         OutputView.printLine(ladder);
         OutputView.printResults(results);
 
-        runQueryLoop(playerNames, ladder, resultMapping);
+        processQueries(playerNames, ladder, resultMapping);
     }
 
-    private static void runQueryLoop(PlayerNames playerNames, Ladder ladder, ResultMapping resultMapping) {
+    private PlayerNames readPlayerNames() {
+        return new PlayerNames(
+                InputView.getInputNames().stream()
+                        .map(PlayerName::new)
+                        .collect(Collectors.toList())
+        );
+    }
+
+    private void processQueries(PlayerNames playerNames, Ladder ladder, ResultMapping resultMapping) {
         while (true) {
             String input = InputView.askPlayer();
             if (input.equalsIgnoreCase("all")) {
@@ -41,33 +49,27 @@ public class LadderGame {
                 break;
             }
 
-            try {
-                PlayerName player = playerNames.findByName(input);
-                printSingleResult(player, playerNames, ladder, resultMapping);
-            } catch (IllegalArgumentException e) {
-                System.out.println("존재하지 않는 참가자입니다: " + input);
-            }
+            printResultForPlayer(input, playerNames, ladder, resultMapping);
         }
     }
 
-    private static void printSingleResult(PlayerName player, PlayerNames playerNames, Ladder ladder, ResultMapping resultMapping) {
-        System.out.println("실행 결과");
+    private void printResultForPlayer(String name, PlayerNames playerNames, Ladder ladder, ResultMapping resultMapping) {
         try {
-            int startIndex = playerNames.indexOf(player);  // 인덱스를 얻고
+            PlayerName player = playerNames.findByName(name);
+            int startIndex = playerNames.indexOf(player);
             String result = LadderGameEngine.move(ladder, startIndex, playerNames.getNames(), resultMapping);
-            System.out.println(result);
-        } catch (IllegalArgumentException | IndexOutOfBoundsException e) {
-            System.out.println("존재하지 않는 참가자입니다: " + player.getName());
+            OutputView.printSingleResult(result);
+        } catch (IllegalArgumentException e) {
+            OutputView.printError("존재하지 않는 참가자입니다: " + name);
         }
     }
 
-    private static void printAllResults(PlayerNames playerNames, Ladder ladder, ResultMapping resultMapping) {
-        System.out.println("실행 결과");
-
+    private void printAllResults(PlayerNames playerNames, Ladder ladder, ResultMapping resultMapping) {
+        OutputView.printAllResultsIntro();
         for (PlayerName player : playerNames.getNames()) {
             int startIndex = playerNames.indexOf(player);
             String result = LadderGameEngine.move(ladder, startIndex, playerNames.getNames(), resultMapping);
-            System.out.println(player.getName() + " : " + result);
+            OutputView.printResult(player.getName(), result);
         }
     }
 }

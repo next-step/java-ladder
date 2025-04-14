@@ -10,6 +10,22 @@ import java.util.List;
 public class OutputView {
     private static final String OUTPUT_MESSAGE = "output: %d";
 
+    public static void printAllResultsIntro() {
+        System.out.println("실행 결과");
+    }
+
+    public static void printError(String message) {
+        System.out.println("[ERROR] " + message);
+    }
+
+    public static void printSingleResult(String result) {
+        System.out.println(result);
+    }
+
+    public static void printResult(String name, String result) {
+        System.out.println(name + " : " + result);
+    }
+
     public void printOutput(int output) {
         System.out.printf(OUTPUT_MESSAGE + System.lineSeparator(), output);
     }
