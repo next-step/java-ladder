@@ -1,11 +1,13 @@
 package ladder.domain;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Players {
     private final List<Player> players;
+    private final Map<String, Player> playerMap;
 
     public Players(List<Player> players) {
         if (players == null || players.isEmpty()) {
@@ -13,6 +15,8 @@ public class Players {
         }
 
         this.players = players;
+        this.playerMap = players.stream()
+                .collect(Collectors.toMap(Player::name, player -> player));
     }
 
     public int count() {
@@ -39,6 +43,18 @@ public class Players {
                 .collect(Collectors.toList());
 
         return new Players(players);
+    }
+
+    public Player findPlayer(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Player name cannot be null or empty");
+        }
+
+        if (!playerMap.containsKey(name)) {
+            throw new IllegalArgumentException("Player not found");
+        }
+
+        return playerMap.get(name);
     }
 
     private void validateLadder(Ladder ladder) {

@@ -2,35 +2,32 @@ package ladder.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderGameResult {
-    private final List<Player> players;
+    private final Players players;
 
     public LadderGameResult(Players players, List<String> results) {
         this.players = createPlayerResults(players, results);
     }
 
-    private List<Player> createPlayerResults(Players players, List<String> results) {
+    private Players createPlayerResults(Players players, List<String> results) {
         List<Player> playerResults = new ArrayList<>();
         for (int i = 0; i < players.count(); i++) {
             Player player = players.getPlayerAtIndex(i);
             playerResults.add(player.checkResult(results));
         }
-        return playerResults;
+        return new Players(playerResults);
     }
 
     public String getResultFor(String name) {
-        return players.stream()
-                .filter(player -> player.name().equals(name))
-                .findFirst()
-                .map(Player::result)
-                .orElseThrow(() -> new IllegalArgumentException("Player not found in the game results"));
+        return players.findPlayer(name).result();
     }
 
-    public Map<String, String> getResultForAll() {
-        return players.stream()
-                .collect(Collectors.toMap(Player::name, Player::result));
+    public List<Player> getAllPlayers() {
+        return IntStream.range(0, players.count())
+                .mapToObj(players::getPlayerAtIndex)
+                .collect(Collectors.toList());
     }
 }

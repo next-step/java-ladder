@@ -93,8 +93,8 @@ public class ResultView {
 
     private static StringBuilder renderResultForAll(LadderGameResult gameResult) {
         StringBuilder sb = new StringBuilder();
-        gameResult.getResultForAll()
-                .forEach((name, result) -> sb.append(renderResultForEach(name, result)));
+        gameResult.getAllPlayers()
+                .forEach((player) -> sb.append(renderResultForEach(player.name(), player.result())));
         return sb;
     }
 
