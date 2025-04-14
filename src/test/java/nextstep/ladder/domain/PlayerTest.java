@@ -1,8 +1,8 @@
 package nextstep.ladder.domain;
 
-import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class PlayerTest {
@@ -12,7 +12,7 @@ public class PlayerTest {
 
     Player player = new Player(playerName);
 
-    AssertionsForClassTypes.assertThat(player).isEqualTo(new Player(playerName));
+    assertThat(player).isEqualTo(new Player(playerName));
   }
 
   @Test
