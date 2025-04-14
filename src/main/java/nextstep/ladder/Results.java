@@ -1,33 +1,30 @@
-package nextstep.ladder.player;
-
-import nextstep.ladder.Position;
-import nextstep.ladder.line.Line;
-import nextstep.ladder.line.Lines;
+package nextstep.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Entries {
+public class Results {
     private List<Entry> entries;
 
-    public static Entries of(String[] names) {
-        List<Entry> entries = toEntries(names);
+    public static Results of(String[] names, Location height) {
+        List<Entry> entries = toEntries(names, height);
         validateEmpty(entries);
 
-        return new Entries(entries);
+        return new Results(entries);
     }
 
-    private static List<Entry> toEntries(String[] names) {
+    private static List<Entry> toEntries(String[] names, Location height) {
         List<Entry> entries = new ArrayList<>();
 
         for (int i = 0; i < names.length; i++) {
-            entries.add(new Entry(names[i], new Position(i)));
+            entries.add(new Entry(names[i], new Position(i, height)));
         }
         return entries;
     }
 
-    private Entries(List<Entry> entries) {
+    private Results(List<Entry> entries) {
         this.entries = entries;
     }
 
@@ -41,23 +38,16 @@ public class Entries {
         return entries.size();
     }
 
+
+    public Map<Entry, Entry> getResults(Players players) {
+        return entries.stream()
+                .collect(Collectors.toMap(players::getSamePosition, entry -> entry));
+    }
+
     @Override
     public String toString() {
         return entries.stream()
                 .map(Entry::toStringWithBlank)
                 .collect(Collectors.joining());
-    }
-
-    public void move(Lines lines) {
-        for (int i = 0; i < lines.size(); i++) {
-            move(lines.get(i));
-        }
-    }
-
-    private void move(Line line) {
-        for (int i = 0; i < entries.size(); i++) {
-            Entry entry = entries.get(i);
-            entry.move(line.getDirection(i));
-        }
     }
 }

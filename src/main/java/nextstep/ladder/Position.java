@@ -1,37 +1,42 @@
 package nextstep.ladder;
 
 public class Position {
-    private int value;
+    private Location index;
+    private Location height;
 
-    public Position(int value) {
-        validate(value);
-        this.value = value;
+    public Position(Location index, Location height) {
+        this.index = index;
+        this.height = height;
     }
 
-    private static void validate(int value) {
-        if (value < 0) {
-            throw new IllegalArgumentException("Position cannot be negative");
-        }
+    public Position(int index, Location height) {
+        this.index = new Location(index);
+        this.height = height;
+    }
+
+    public Position(int index, int height) {
+        this.index = new Location(index);
+        this.height = new Location(height);
     }
 
     public void move(Direction direction) {
-        int movedValue = value + direction.getValue();
-        validate(movedValue);
-        this.value = movedValue;
-    }
-
-    @Override
-    public String toString() {
-        return String.valueOf(value);
+        this.index.move(direction.getValue());
+        this.height.move(1);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Position)) return false;
-
         Position position = (Position) o;
+        return index.equals(position.index) && height.equals(position.height);
+    }
 
-        return value == position.value;
+    @Override
+    public String toString() {
+        return "Position{" +
+                "index=" + index +
+                ", height=" + height +
+                '}';
     }
 }

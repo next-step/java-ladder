@@ -1,6 +1,6 @@
 package nextstep.ladder.line;
 
-import nextstep.ladder.Height;
+import nextstep.ladder.Location;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 public class Lines {
     private List<Line> lines;
 
-    public Lines(Height height, int playerCount) {
+    public Lines(Location height, int playerCount) {
         this.lines = createLines(height.getValue(), playerCount);
     }
 

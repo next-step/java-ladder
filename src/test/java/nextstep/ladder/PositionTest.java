@@ -11,12 +11,14 @@ public class PositionTest {
 
     @Test
     void testPositionCreationWithNegativeValue() {
-        assertThrows(IllegalArgumentException.class, () -> new Position(-1));
+        Location height = new Location(1);
+        assertThrows(IllegalArgumentException.class, () -> new Position(-1, height));
     }
 
     @Test
     void 제로에서_왼쪽으로_움직였을때_예외() {
-        assertThrows(IllegalArgumentException.class, () -> new Position(0).move(Direction.LEFT));
+        Location height = new Location(1);
+        assertThrows(IllegalArgumentException.class, () -> new Position(0, height).move(Direction.LEFT));
     }
 
     @ParameterizedTest
@@ -26,9 +28,9 @@ public class PositionTest {
             "STRAIGHT, 1"
     })
     void moveTest(Direction direction, int expected) {
-        String name = "test";
-        Position position = new Position(1);
+        Location height = new Location(1);
+        Position position = new Position(1, height);
         position.move(direction);
-        assertThat(position).isEqualTo(new Position(expected));
+        assertThat(position).isEqualTo(new Position(expected, height));
     }
 }
