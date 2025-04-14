@@ -1,35 +1,36 @@
 package ladder.domain;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LadderGameResult {
-    private final Map<String, String> playerResults;
+    private final List<Player> players;
 
     public LadderGameResult(Players players, List<String> results) {
-        this.playerResults = createPlayerResults(players, results);
+        this.players = createPlayerResults(players, results);
     }
 
-    private Map<String, String> createPlayerResults(Players players, List<String> results) {
-        Map<String, String> playerResults = new HashMap<>();
+    private List<Player> createPlayerResults(Players players, List<String> results) {
+        List<Player> playerResults = new ArrayList<>();
         for (int i = 0; i < players.count(); i++) {
             Player player = players.getPlayerAtIndex(i);
-            String result = results.get(player.getPosition().value());
-            playerResults.put(player.name(), result);
+            playerResults.add(player.checkResult(results));
         }
         return playerResults;
     }
 
     public String getResultFor(String name) {
-        if (playerResults.containsKey(name)) {
-            return playerResults.get(name);
-        }
-        throw new IllegalArgumentException("Player not found in the game results");
+        return players.stream()
+                .filter(player -> player.name().equals(name))
+                .findFirst()
+                .map(Player::result)
+                .orElseThrow(() -> new IllegalArgumentException("Player not found in the game results"));
     }
 
     public Map<String, String> getResultForAll() {
-        return new HashMap<>(playerResults);
+        return players.stream()
+                .collect(Collectors.toMap(Player::name, Player::result));
     }
-
 }

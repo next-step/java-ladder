@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 public class LadderGameResultTest {
     @DisplayName("사다리 게임 실행 결과 확인")
@@ -26,8 +27,14 @@ public class LadderGameResultTest {
             Player player = players.getPlayerAtIndex(i);
             Assertions.assertThat(gameResult.getResultFor(player.name())).isEqualTo(results.get(i));
         }
+        
+        // 전체 결과 확인
+        Map<String, String> allResults = gameResult.getResultForAll();
+        for (int i = 0; i < players.count(); i++) {
+            Player player = players.getPlayerAtIndex(i);
+            Assertions.assertThat(allResults.get(player.name())).isEqualTo(results.get(i));
+        }
     }
-
 
     @DisplayName("복잡한 사다리 게임 실행 결과 확인")
     @Test
@@ -49,10 +56,17 @@ public class LadderGameResultTest {
 
         // then
         List<Integer> expected = List.of(2, 0, 1);
-        // then
         for (int i = 0; i < players.count(); i++) {
             Player player = players.getPlayerAtIndex(i);
             Assertions.assertThat(gameResult.getResultFor(player.name()))
+                    .isEqualTo(results.get(expected.get(i)));
+        }
+        
+        // 전체 결과 확인
+        Map<String, String> allResults = gameResult.getResultForAll();
+        for (int i = 0; i < players.count(); i++) {
+            Player player = players.getPlayerAtIndex(i);
+            Assertions.assertThat(allResults.get(player.name()))
                     .isEqualTo(results.get(expected.get(i)));
         }
     }

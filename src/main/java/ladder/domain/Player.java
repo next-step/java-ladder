@@ -29,6 +29,10 @@ public class Player {
         return position;
     }
 
+    public String result() {
+        return result;
+    }
+
     public Player checkResult(List<String> results) {
         String result = results.get(position.value());
         return new Player(name, position, result);
