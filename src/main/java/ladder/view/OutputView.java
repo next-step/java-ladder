@@ -35,7 +35,8 @@ public class OutputView {
     }
 
     public static void printGameResult(String resultString) {
-        System.out.println("실행 결과\n");
+        System.out.println("\n실행 결과");
         System.out.println(resultString);
+        System.out.println();
     }
 }

@@ -11,6 +11,10 @@ public class LadderLine {
        this.crosses = crosses;
     }
 
+    public static LadderLine of(List<Boolean> crosses) {
+        return new LadderLine(crosses);
+    }
+    
     public static LadderLine genRandomLadderLine(int width, Random random) {
         List<Boolean> crossExist = new ArrayList<>();
 
@@ -35,6 +39,18 @@ public class LadderLine {
 
     public int size() {
         return crosses.size();
+    }
+
+    public boolean isCrossExist(int width) {
+        return crosses.get(width);
+    }
+
+    public boolean canMoveLeft(int width) {
+        return width > 0 && isCrossExist(width - 1);
+    }
+
+    public boolean canMoveRight(int width) {
+        return width < size() && isCrossExist(width);
     }
 
     @Override

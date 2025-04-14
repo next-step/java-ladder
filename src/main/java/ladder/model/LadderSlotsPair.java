@@ -35,4 +35,11 @@ public class LadderSlotsPair {
         return upperSlots.hasName(name);
     }
 
+    public int userNameIndex(String targetName) {
+        return upperSlots.nameIndex(targetName);
+    }
+
+    public String indexedResult(int index) {
+        return lowerSlots.indexedSlot(index);
+    }
 }

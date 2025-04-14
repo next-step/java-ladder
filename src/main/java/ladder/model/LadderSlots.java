@@ -34,4 +34,16 @@ public class LadderSlots {
     public boolean hasName(String name) {
         return names.stream().anyMatch(n -> n.isName(name));
     }
+
+    public int nameIndex(String targetName) {
+        return names.stream()
+            .filter(slot -> slot.isName(targetName))
+            .findFirst()
+            .map(names::indexOf)
+            .orElseThrow(() -> new IllegalArgumentException("없는 이름입니다."));
+    }
+
+    public String indexedSlot(int index) {
+        return names.get(index).getName();
+    }
 }

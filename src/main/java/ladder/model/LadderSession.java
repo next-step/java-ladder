@@ -1,6 +1,7 @@
 package ladder.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderSession {
     private final static String ALL_USERNAME = "all";
@@ -34,10 +35,24 @@ public class LadderSession {
     }
 
     public String getGameResult(String targetName) {
-        if (ALL_USERNAME.equals(targetName)) {  // 전체
-            return "all\nall";  // todo: 작성
+        if (ALL_USERNAME.equals(targetName)) {
+            return getAllUserResults();
         }
 
-        return "a";
+        return getResultName(targetName);
     }
+
+    private String getAllUserResults() {
+        List<String> userNames = ladderSlotsPair.getUserNames();
+        return userNames.stream()
+            .map(user -> user + " : " + getResultName(user))
+            .collect(Collectors.joining("\n"));
+    }
+
+    private String getResultName(String targetName) {
+        int upperSlotIndex = ladderSlotsPair.userNameIndex(targetName);
+        int lowerSlotIndex = ladder.run(upperSlotIndex);
+        return ladderSlotsPair.indexedResult(lowerSlotIndex);
+    }
+
 }

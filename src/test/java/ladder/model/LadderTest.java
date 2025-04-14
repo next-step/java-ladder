@@ -22,4 +22,21 @@ public class LadderTest {
         });
     }
 
+    @Test
+    void 사다리_타기() {
+        Random random = new AlwaysTrueRandom();
+        Ladder ladder = new Ladder(random, 3, 5);
+
+        assertThat(ladder.run(0)).isEqualTo(1);
+        assertThat(ladder.run(1)).isEqualTo(0);
+        assertThat(ladder.run(2)).isEqualTo(2);
+    }
+
+    static class AlwaysTrueRandom extends Random {
+        @Override
+        public boolean nextBoolean() {
+            return true;
+        }
+    }
+
 }
