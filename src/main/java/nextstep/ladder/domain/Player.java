@@ -25,12 +25,16 @@ public class Player {
         return new Player(this.name, this.position.moveBy(points));
     }
 
-    public String getName() {
+    public Name getName() {
+        return name;
+    }
+
+    public String getNameValue() {
         return name.getValue();
     }
 
-    public Position getPosition() {
-        return position;
+    public Result matchResult(List<Result> result) {
+        return position.getResult(result);
     }
 
     @Override

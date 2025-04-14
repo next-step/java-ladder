@@ -8,15 +8,37 @@ import org.junit.jupiter.api.Test;
 
 class PlayerTest {
     @Test
-    void createTest() {
+    void createMatchResult() {
         Player player = new Player("pobi");
         assertThat(player).isEqualTo(new Player("pobi", 0));
     }
 
     @Test
-    void movePositionTest() {
+    void movePositionMatchResult() {
         Player player = new Player("pobi", 0);
 
         assertThat(player.movePosition(List.of(true, false, true))).isEqualTo(new Player("pobi", 1));
+    }
+
+    @Test
+    void getNameTest() {
+        Player player = new Player("pobi");
+
+        assertThat(player.getName()).isEqualTo(new Name("pobi"));
+    }
+
+    @Test
+    void getNameValueTest() {
+        Player player = new Player("pobi");
+
+        assertThat(player.getNameValue()).isEqualTo("pobi");
+    }
+
+    @Test
+    void getMatchResultTest() {
+        List<Result> results = List.of(new Result("3000"), new Result("꽝"));
+        Player player = new Player("pobi", 1);
+
+        assertThat(player.matchResult(results)).isEqualTo(new Result("꽝"));
     }
 }

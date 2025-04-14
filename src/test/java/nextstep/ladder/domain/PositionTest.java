@@ -27,4 +27,13 @@ class PositionTest {
 
         assertThat(position).isEqualTo(new Position(2));
     }
+
+    @Test
+    void getResultTest() {
+        List<Result> results = List.of(new Result("10000"), new Result("20000"));
+
+        Position position = new Position(1);
+
+        assertThat(position.getResult(results)).isEqualTo(new Result("20000"));
+    }
 }

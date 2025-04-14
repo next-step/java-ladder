@@ -42,6 +42,10 @@ public class Position {
         return new Position(this.value - MOVE_POSITION);
     }
 
+    public Result getResult(List<Result> results) {
+        return results.get(value);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) {
