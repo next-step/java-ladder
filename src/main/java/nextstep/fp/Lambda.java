@@ -2,6 +2,7 @@ package nextstep.fp;
 
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class Lambda {
     public static void printAllOld(List<Integer> numbers) {
@@ -39,7 +40,7 @@ public class Lambda {
         return sumAll(numbers, number -> number > 3);
     }
 
-    private static int sumAll(List<Integer> numbers, Conditional condition) {
+    private static int sumAll(List<Integer> numbers, Predicate<Integer> condition) {
         int total = 0;
         for (int number : numbers) {
             if (condition.test(number)) {
