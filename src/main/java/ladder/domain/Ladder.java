@@ -1,44 +1,41 @@
 package ladder.domain;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.IntStream;
 
 import ladder.exception.LadderInvalidException;
-import ladder.strategy.LineRandomStrategy;
-
-import static java.util.stream.Collectors.toList;
 
 public class Ladder {
-    private static final int MIN_HEIGHT = 1;
-    private static final int MIN_WIDTH = 2;
+    private static final int FIRST_INDEX = 0;
+    private final List<Line> lines;
 
-    private final int height;
-    private final int width;
+    public Ladder(List<Line> lines) {
+        validate(lines);
 
-    private List<Line> lines;
-
-    public Ladder(int height, int width) {
-        validateInput(height, width);
-
-        this.height = height;
-        this.width = width;
+        this.lines = lines;
     }
 
-    private void validateInput(int height, int width) {
-        if (height < MIN_HEIGHT || width < MIN_WIDTH) {
+    private void validate(List<Line> lines) {
+        if (lines.isEmpty()) {
             throw new LadderInvalidException();
         }
+
+        lines.stream()
+            .filter(line -> line.getLinks().isEmpty())
+            .findAny()
+            .ifPresent(line -> {
+                throw new LadderInvalidException();
+            });
     }
 
     public List<Line> getLines() {
-        return Optional.ofNullable(lines)
-            .orElseGet(() -> lines = createNewLines());
+        return lines;
     }
 
-    private List<Line> createNewLines() {
-        return IntStream.range(0, height)
-            .mapToObj(i -> new LineFactory(new LineRandomStrategy()).create(width) )
-            .collect(toList());
+    public int getHeight() {
+        return lines.size();
+    }
+
+    public int getWidth() {
+        return lines.get(FIRST_INDEX).getPoints().size();
     }
 }
