@@ -6,8 +6,8 @@ public class StringUtil {
 
     private static final String COMMA_REGEX = ",";
 
-    public static List<String> parseUserList(String userList) {
-        String[] users = userList.split(COMMA_REGEX);
-        return List.of(users);
+    public static List<String> parse(String text) {
+        String[] list = text.split(COMMA_REGEX);
+        return List.of(list);
     }
 }

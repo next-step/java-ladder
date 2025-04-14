@@ -11,19 +11,19 @@ class StringUtilTest {
 
     @Test
     @DisplayName("parseUserList 메서드가 정상적으로 동작하는지 확인")
-    void testParseUserListValid() {
+    void testParseValid() {
         String userList = "John,Alice,Bob";
 
-        List<String> users = StringUtil.parseUserList(userList);
+        List<String> users = StringUtil.parse(userList);
         assertThat(users).containsExactly("John", "Alice", "Bob");
     }
 
     @Test
     @DisplayName("parseUserList 메서드가 빈 문자열을 입력받았을 때, 빈 리스트를 반환하는지 확인")
-    void testParseUserListEmpty() {
+    void testParseEmpty() {
         String userList = "";
 
-        List<String> users = StringUtil.parseUserList(userList);
+        List<String> users = StringUtil.parse(userList);
         assertThat(users).containsExactly("");
     }
 
@@ -32,7 +32,7 @@ class StringUtilTest {
     void testParseUserListSingleUser() {
         String userList = "Charlie";
 
-        List<String> users = StringUtil.parseUserList(userList);
+        List<String> users = StringUtil.parse(userList);
         assertThat(users).containsExactly("Charlie");
     }
 }
