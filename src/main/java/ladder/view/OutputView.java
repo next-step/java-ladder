@@ -7,9 +7,8 @@ import ladder.model.LadderSession;
 public class OutputView {
 
     public static void printLadderSession(LadderSession ladderSession){
-        System.out.println("ladderSession = " + ladderSession);
-
-        System.out.println("실행결과\n");
+        System.out.println("사다리 "
+            + "결과\n");
 
         printSlots(ladderSession.getUserNames());
         printLadder(ladderSession);
@@ -33,5 +32,10 @@ public class OutputView {
         StringBuilder sb = new StringBuilder("     |");
         line.crosses().forEach(cross -> sb.append(cross ? "-----|" : "     |"));
         System.out.println(sb);
+    }
+
+    public static void printGameResult(String resultString) {
+        System.out.println("실행 결과\n");
+        System.out.println(resultString);
     }
 }

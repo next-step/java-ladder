@@ -31,4 +31,7 @@ public class LadderSlots {
         return names.stream().map(LadderSlot::getName).collect(Collectors.toList());
     }
 
+    public boolean hasName(String name) {
+        return names.stream().anyMatch(n -> n.isName(name));
+    }
 }

@@ -19,6 +19,11 @@ public class InputView {
         return getNumber();
     }
 
+    public static String getTarget() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        return getString();
+    }
+
     private static int getNumber() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();

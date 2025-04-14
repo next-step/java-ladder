@@ -3,6 +3,8 @@ package ladder.model;
 import java.util.List;
 
 public class LadderSession {
+    private final static String ALL_USERNAME = "all";
+
     private final LadderSlotsPair ladderSlotsPair;
     private final Ladder ladder;
 
@@ -25,5 +27,17 @@ public class LadderSession {
 
     public List<LadderLine> getLadderLines() {
         return ladder.getLines();
+    }
+
+    public boolean hasUserName(String name) {
+        return ALL_USERNAME.equals(name) || ladderSlotsPair.hasUserName(name);
+    }
+
+    public String getGameResult(String targetName) {
+        if (ALL_USERNAME.equals(targetName)) {  // 전체
+            return "all\nall";  // todo: 작성
+        }
+
+        return "a";
     }
 }

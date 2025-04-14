@@ -19,5 +19,23 @@ public class Main {
 
         LadderSession session = new LadderSession(ladderSlotsPair, ladder);
         OutputView.printLadderSession(session);
+
+        gameLoop(session);
+    }
+
+    private static void gameLoop(LadderSession session) {
+        while(true) {
+            String target = InputView.getTarget();
+
+            if (session.hasUserName(target)) {
+                String result = session.getGameResult(target);
+                OutputView.printGameResult(result);
+                continue;
+            }
+
+            break;
+        }
+
+
     }
 }

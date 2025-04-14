@@ -31,4 +31,8 @@ public class LadderSlotsPair {
         return upperSlots.size();
     }
 
+    public boolean hasUserName(String name) {
+        return upperSlots.hasName(name);
+    }
+
 }
