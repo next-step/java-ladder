@@ -6,12 +6,15 @@ import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class LadderApplication {
+
+    private static final RandomBridgeGenerator BRIDGE_GENERATOR = new RandomBridgeGenerator();
+
     public static void main(String[] args) {
         Players players = Players.of(InputView.getPlayerNames());
         Prizes prizes = Prizes.of(InputView.getPrizeNames());
         Height height = new Height(InputView.getLadderHeight());
 
-        Ladder ladder = Ladder.generateLadder(players.count(), height.getHeight(), new RandomBridgeGenerator());
+        Ladder ladder = Ladder.generateLadder(players.count(), height.getHeight(), BRIDGE_GENERATOR);
         OutputView.printGeneratedLadderResult(players, prizes, ladder);
 
         LadderGame ladderGame = new LadderGame(players, prizes, ladder);
