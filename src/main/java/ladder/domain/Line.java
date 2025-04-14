@@ -31,4 +31,8 @@ public class Line {
     public List<Boolean> getLinks() {
         return links;
     }
+
+    public List<Point> getPoints() {
+        return PointFactory.createPointsFromLinks(links);
+    }
 }
