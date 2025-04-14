@@ -23,10 +23,10 @@ public class LadderGame {
     while (true) {
       String name = InputView.readQuery();
       if (InputView.isAllQuery(name)) {
-        ResultView.printAllResults(executor.allResults());
+        ResultView.printAllResults(executor.executeAll());
         break;
       }
-      ResultView.printSingleResult(executor.resultOf(name));
+      ResultView.printSingleResult(executor.execute(name));
     }
 
     InputView.closeScanner();

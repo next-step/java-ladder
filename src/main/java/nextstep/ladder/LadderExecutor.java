@@ -4,27 +4,30 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class LadderExecutor {
+public class LadderExecutor implements Executor {
   private final Ladder ladder;
-  private final MappingTable table;
+  private final Mapping mapping;
 
-  public LadderExecutor(Ladder ladder, MappingTable table) {
+  public LadderExecutor(Ladder ladder, Mapping mapping) {
     this.ladder = ladder;
-    this.table = table;
+    this.mapping = mapping;
   }
 
-  public String resultOf(String name) {
-    int start = table.indexOf(name);
+  @Override
+  public String execute(String name) {
+    int start = mapping.indexOf(name);
     int end = ladder.move(start);
-    return table.resultAt(end);
+    return mapping.resultOfIndex(end);
   }
 
-  public Map<String, String> allResults() {
-    return table.names().stream()
-        .collect(
-            LinkedHashMap::new,
-            (map, name) -> map.put(name, resultOf(name)),
-            Map::putAll
-        );
+  @Override
+  public Map<String, String> executeAll() {
+    return mapping.names().stream()
+        .collect(Collectors.toMap(
+            name -> name,
+            this::execute,
+            (a, b) -> b,
+            LinkedHashMap::new
+        ));
   }
 }

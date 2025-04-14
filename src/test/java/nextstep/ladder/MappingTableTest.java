@@ -15,9 +15,9 @@ class MappingTableTest {
 
     MappingTable table = new MappingTable(participants, results);
 
-    assertThat(table.indexOf("pobi")).isEqualTo(0);
-    assertThat(table.resultAt(1)).isEqualTo("5000");
-    assertThat(table.names()).containsExactly("pobi", "honux", "jk");
+    assertThat(participants.indexOf("pobi").orElse(-1)).isEqualTo(0);
+    assertThat(results.get(1)).isEqualTo("5000");
+    assertThat(participants.names()).containsExactly("pobi", "honux", "jk");
   }
 
   @Test

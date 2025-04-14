@@ -1,9 +1,8 @@
 package nextstep.ladder;
 
 import java.util.List;
-import java.util.OptionalInt;
 
-public class MappingTable {
+public class MappingTable implements Mapping {
   private final Participants participants;
   private final Results results;
 
@@ -15,20 +14,19 @@ public class MappingTable {
     this.results = results;
   }
 
+  @Override
   public int indexOf(String name) {
-    OptionalInt index = participants.indexOf(name);
-    if (index.isEmpty()) {
-      throw new IllegalArgumentException("이름이 존재하지 않습니다: " + name);
-    }
-    return index.getAsInt();
+    return participants.indexOf(name)
+        .orElseThrow(() -> new IllegalArgumentException("이름이 존재하지 않습니다: " + name));
   }
 
-  public String resultAt(int index) {
+  @Override
+  public String resultOfIndex(int index) {
     return results.get(index);
   }
 
+  @Override
   public List<String> names() {
     return participants.names();
   }
-
 }
