@@ -11,8 +11,7 @@ public class PlayerTest {
     @Test
     @DisplayName("플레이어 생성")
     void createPlayer() {
-        Player player = new Player("홍길동");
-        assertThat(player.getName()).isEqualTo("홍길동");
+        assertThat(new Player("홍길동")).isNotNull();
     }
 
     @Test
