@@ -21,8 +21,8 @@ public class LadderGameResult {
         return new Players(playerResults);
     }
 
-    public String getResultFor(String name) {
-        return players.findPlayer(name).result();
+    public Player findPlayer(String name) {
+        return players.findPlayer(name);
     }
 
     public List<Player> getAllPlayers() {

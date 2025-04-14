@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class LadderGameResultTest {
     @DisplayName("사다리 게임 실행 결과 확인")
@@ -22,10 +23,12 @@ public class LadderGameResultTest {
         LadderGameResult gameResult = ladderGame.play(ladder);
 
         // then
-        for (int i = 0; i < players.count(); i++) {
+        IntStream.range(0, players.count()).forEach(i -> {
             Player player = players.getPlayerAtIndex(i);
-            Assertions.assertThat(gameResult.getResultFor(player.name())).isEqualTo(results.get(i));
-        }
+            Player foundPlayer = gameResult.findPlayer(player.name());
+            Assertions.assertThat(foundPlayer.result())
+                    .isEqualTo(results.get(i));
+        });
     }
 
     @DisplayName("복잡한 사다리 게임 실행 결과 확인")
@@ -48,10 +51,11 @@ public class LadderGameResultTest {
 
         // then
         List<Integer> expected = List.of(2, 0, 1);
-        for (int i = 0; i < players.count(); i++) {
+        IntStream.range(0, players.count()).forEach(i -> {
             Player player = players.getPlayerAtIndex(i);
-            Assertions.assertThat(gameResult.getResultFor(player.name()))
+            Player foundPlayer = gameResult.findPlayer(player.name());
+            Assertions.assertThat(foundPlayer.result())
                     .isEqualTo(results.get(expected.get(i)));
-        }
+        });
     }
 }

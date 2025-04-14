@@ -85,8 +85,8 @@ public class ResultView {
             return sb.toString();
         }
 
-        String result = gameResult.getResultFor(target);
-        sb.append(result);
+        Player foundPlayer = gameResult.findPlayer(target);
+        sb.append(foundPlayer.result());
 
         return sb.toString();
     }
