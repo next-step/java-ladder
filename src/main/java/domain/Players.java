@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class Players {
@@ -18,6 +19,10 @@ public class Players {
 
     public int size() {
         return players.size();
+    }
+
+    public void forEach(Consumer<Player> consumer) {
+        players.forEach(consumer);
     }
 
     public List<Player> getPlayers() {
