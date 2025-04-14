@@ -13,25 +13,26 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LineFactoryTest {
     @Test
-    @DisplayName("create()는 주어진 전략과 width로 Line을 생성한다")
+    @DisplayName("create()는 주어진 전략과 height, width로 Ladder를 생성한다")
     void create_widthToStrategy() {
-        List<Boolean> expected = List.of(false, true, false, false);
-        LineCreationStrategy strategy = countOfPersons -> List.of(false, true, false, false);
-        int expectedWidth = 4;
+        List<Boolean> line = List.of(false, true, false, false);
+        LineCreationStrategy strategy = countOfPersons -> line;
 
-        LineFactory factory = new LineFactory(strategy);
-        Line line = factory.create(expectedWidth);
-        assertThat(line.getLinks()).isEqualTo(expected);
+        int height = 3;
+        int width = 5;
+
+        Ladder ladder = new LineFactory(height, width, strategy).createLadder();
+        assertThat(ladder.getHeight()).isEqualTo(height);
+        assertThat(ladder.getWidth()).isEqualTo(width);
     }
 
     @Test
     @DisplayName("전략이 빈 리스트를 반환하면 Line 생성 시 예외 발생")
     void create_ThrowsExceptionWhenStrategyReturnsEmptyList() {
         LineCreationStrategy strategy = countOfPersons -> List.of();
-        LineFactory factory = new LineFactory(strategy);
-        int width = 3;
+        LineFactory factory = new LineFactory(5, 5, strategy);
 
-        assertThatThrownBy(() -> factory.create(width))
+        assertThatThrownBy(factory::createLadder)
             .isInstanceOf(LineInvalidException.class);
     }
 }
