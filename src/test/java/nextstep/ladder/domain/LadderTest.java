@@ -1,7 +1,9 @@
 package nextstep.ladder.domain;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LadderTest {
 
@@ -11,9 +13,9 @@ public class LadderTest {
     Players players = new Players("pobi,crong,jk");
 
     Ladder ladder = new Ladder(height, players, () -> false);
-
     String[] lines = ladder.toConsoleOutput().split("\n");
-    Assertions.assertEquals(height, lines.length);
+
+    assertEquals(height, lines.length);
   }
 
   @Test
@@ -22,9 +24,8 @@ public class LadderTest {
     Players players = new Players("pobi,crong,jk");
 
     Ladder ladder = new Ladder(height, players, () -> true);
-
     String rendered = ladder.toConsoleOutput();
-    long count = rendered.chars().filter(c -> c == '|').count();
-    Assertions.assertEquals(players.size() * height, count);
+
+    assertThat(rendered).isEqualTo("     |-----|     |");
   }
 }
