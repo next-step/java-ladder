@@ -21,6 +21,6 @@ public class PlayerTest {
 
     assertThatThrownBy(() -> new Player(playerName))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("이름은 5자 이하여야 합니다.");
+            .hasMessageContaining(String.format("이름은 %d자 이하여야 합니다.", Player.MAX_NAME_LENGTH));
   }
 }

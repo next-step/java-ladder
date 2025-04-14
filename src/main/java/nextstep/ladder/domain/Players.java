@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Players {
-  private static final int MIN_SIZE = 2;
+  static final int MIN_SIZE = 2;
   private final List<Player> players;
 
   public Players(String input) {

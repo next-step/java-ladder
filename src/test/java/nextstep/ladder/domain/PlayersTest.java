@@ -21,7 +21,7 @@ public class PlayersTest {
 
     AssertionsForClassTypes.assertThatThrownBy(() -> new Players(players))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("참여자는 2명 이상이어야 합니다.");
+            .hasMessageContaining(String.format("참여자는 %d명 이상이어야 합니다.", Players.MIN_SIZE));
   }
 
   @Test
