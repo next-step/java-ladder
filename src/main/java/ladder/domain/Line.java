@@ -1,23 +1,30 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.stream.IntStream;
 
 public class Line {
-    private static final Random RANDOM = new Random();
-    private final List<Point> points;
+    private final Points points;
+    private final PointStrategy strategy;
 
     public Line(int countOfPlayer) {
-        this.points = new ArrayList<>();
-        for (int i = 0; i < countOfPlayer - 1; i++) {
-            points.add(draw(i));
-        }
+        this(countOfPlayer, new RandomPointStrategy());
+    }
+
+    public Line(int countOfPlayer, PointStrategy strategy) {
+        this.points = new Points();
+        this.strategy = strategy;
+        IntStream.range(0, countOfPlayer - 1)
+                .forEach(this::appendPoint);
+    }
+
+    private void appendPoint(int idx) {
+        this.points.add(draw(idx));
     }
 
     private Point draw(int idx) {
         if (canDraw(idx)) {
-            return new Point(RANDOM.nextBoolean());
+            return new Point(strategy.shouldDraw());
         }
         return new Point(false);
     }
@@ -26,11 +33,11 @@ public class Line {
         if (idx == 0) {
             return true;
         }
-        return !points.get(idx - 1).hasPoint();
+        return points.get(idx - 1).canDrawNext();
     }
 
     public List<Point> getPoints() {
-        return List.copyOf(points);
+        return points.getPoints();
     }
 
 }
