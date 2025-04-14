@@ -32,7 +32,7 @@ public class Players {
 
   public String toConsoleOutput() {
     return players.stream()
-            .map(Player::toString)
+            .map(Player::toConsoleOutput)
             .collect(Collectors.joining(" "));
   }
 

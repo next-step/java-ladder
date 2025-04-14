@@ -31,8 +31,7 @@ public class Player {
     return Objects.hashCode(name);
   }
 
-  @Override
-  public String toString() {
+  public String toConsoleOutput() {
     return String.format("%" + SPACE_WIDTH + "s", name);
   }
 }
