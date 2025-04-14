@@ -1,6 +1,7 @@
-package nextstep.ladder.domain.line;
+package nextstep.ladder.factory;
 
-import nextstep.ladder.domain.user.LadderUsers;
+import nextstep.ladder.domain.line.Line;
+import nextstep.ladder.domain.line.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class LineFactoryTest {
 
@@ -29,9 +30,7 @@ class LineFactoryTest {
         };
 
         LineFactory lineFactory = new LineFactory(new PointFactory(random));
-        LadderUsers ladderUsers =  new LadderUsers(List.of("pobi", "honux", "crong", "jk"));
-        assertThat(lineFactory.create(ladderUsers))
+        assertThat(lineFactory.create(4))
             .isEqualTo(new Line(List.of(new Point(true), new Point(false), new Point(true))));
     }
-
 }

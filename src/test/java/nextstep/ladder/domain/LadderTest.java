@@ -1,5 +1,11 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.domain.line.Dimension;
+import nextstep.ladder.domain.prize.LadderPrize;
+import nextstep.ladder.domain.prize.LadderPrizes;
+import nextstep.ladder.domain.user.LadderUser;
+import nextstep.ladder.domain.user.LadderUsers;
+import nextstep.ladder.factory.LineFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +18,17 @@ class LadderTest {
     @DisplayName("Ladder 인스턴스 만들기")
     @Test
     public void testConstructor() {
-        assertDoesNotThrow(() -> new Ladder(List.of("pobi", "honux", "crong", "jk"), 3));
+        List<LadderUser> ladderUsers = List.of(
+            new LadderUser("pobi", 0),
+            new LadderUser("honux", 1)
+        );
+        List<LadderPrize> ladderPrizes = List.of(
+            new LadderPrize("꽝"),
+            new LadderPrize("5000")
+        );
+
+        LadderUsers users = new LadderUsers(ladderUsers);
+        LadderPrizes prizes = new LadderPrizes(ladderPrizes);
+        assertDoesNotThrow(() -> new Ladder(new LadderConfig(users, prizes), new Dimension(3), new LineFactory()));
     }
 }

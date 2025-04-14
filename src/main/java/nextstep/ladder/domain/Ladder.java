@@ -1,27 +1,29 @@
 package nextstep.ladder.domain;
 
-import nextstep.ladder.domain.line.Height;
-import nextstep.ladder.domain.line.LineFactory;
+import nextstep.ladder.domain.line.Dimension;
+import nextstep.ladder.factory.LineFactory;
 import nextstep.ladder.domain.line.Lines;
-import nextstep.ladder.domain.user.LadderUsers;
-import nextstep.ladder.dto.LadderResult;
-
-import java.util.List;
+import nextstep.ladder.dto.LadderDto;
 
 public class Ladder {
-    private final LadderUsers ladderUsers;
     private final Lines lines;
+    private final LadderConfig ladderConfig;
 
-    public Ladder(List<String> names, int height) {
-        this(names, height, new LineFactory());
+    public Ladder(LadderConfig ladderConfig, Dimension dimension) {
+        this(ladderConfig, dimension, new LineFactory());
     }
 
-    public Ladder(List<String> names, int height, LineFactory lineFactory) {
-        this.ladderUsers = new LadderUsers(names);
-        this.lines = new Lines(this.ladderUsers, new Height(height), lineFactory);
+    public Ladder(LadderConfig ladderConfig, Dimension height, LineFactory lineFactory) {
+        this.ladderConfig = ladderConfig;
+        this.lines = new Lines(new Dimension(ladderConfig.size()), height, lineFactory);
     }
 
-    public LadderResult toLadderResult() {
-        return new LadderResult(ladderUsers.getLadderUserNames(), lines.getvalue());
+    public LadderDto toLadderDto() {
+        return new LadderDto(
+            ladderConfig.getUsersName(),
+            lines.getvalue(),
+            ladderConfig.getPrizesValue(),
+            ladderConfig.getResultString(lines)
+        );
     }
 }

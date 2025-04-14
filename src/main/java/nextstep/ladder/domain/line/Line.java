@@ -15,6 +15,14 @@ public class Line {
         return value.stream().map(Point::getValue).collect(Collectors.toList());
     }
 
+    public int size() {
+        return value.size();
+    }
+
+    public Point get(int index) {
+        return value.get(index);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
