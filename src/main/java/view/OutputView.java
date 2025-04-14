@@ -7,32 +7,24 @@ import domain.PlayerName;
 
 import java.util.List;
 
-public class OutputView {
-    private static final String OUTPUT_MESSAGE = "output: %d";
+public class OutputView implements Output {
 
-    public void printOutput(int output) {
-        System.out.printf(OUTPUT_MESSAGE + System.lineSeparator(), output);
-    }
-
-    public static void printNames(List<PlayerName> names) {
-        names.forEach(name -> System.out.printf("%-6s", name));
+    @Override
+    public void printLadder(List<String> playerNames, Ladder ladder, List<String> results) {
         System.out.println();
+        System.out.println(String.join("      ", playerNames));
+        ladder.getLines().forEach(System.out::println);
+        System.out.println(String.join("      ", results));
     }
 
-    public static void printLine(Line line) {
-        System.out.println(line.toPrintableString());
+    @Override
+    public void printResult(String playerName, String result) {
+        System.out.println(playerName + " : " + result);
     }
 
-    public static void printLine(Ladder ladder) {
-        for (Line line : ladder.getLines()) {
-            printLine(line);
-        }
+    @Override
+    public void printAllResult(List<String> allResults) {
+        System.out.println("\n실행 결과");
+        allResults.forEach(System.out::println);
     }
-
-    public static void printResults(List<String> results) {
-        results.forEach(r -> System.out.printf("%-6s", r));
-        System.out.println();
-    }
-
-
 }

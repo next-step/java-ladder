@@ -1,7 +1,4 @@
-import domain.Ladder;
-import domain.LadderGameEngine;
-import domain.PlayerName;
-import domain.PlayerNames;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 import view.ResultMapping;
@@ -11,63 +8,40 @@ import java.util.stream.Collectors;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LadderGame {
+
     public static void main(String[] args) {
-        PlayerNames playerNames = new PlayerNames(
-                InputView.getInputNames().stream()
-                        .map(PlayerName::new)
-                        .collect(Collectors.toList())
-        );
-
-        List<String> results = InputView.getResults();
-        int height = InputView.getLadderCount();
-
-        Ladder ladder = new Ladder(playerNames.size(), height);
-        ResultMapping resultMapping = new ResultMapping(playerNames.getNames(), results);
-
-        OutputView.printNames(playerNames.getNames());
-        OutputView.printLine(ladder);
-        OutputView.printResults(results);
-
-        runQueryLoop(playerNames, ladder, resultMapping);
+        // InputView, OutputView는 Input, Output 인터페이스의 구현체
+        LadderGameController controller = new LadderGameController(new InputView(), new OutputView());
+        controller.run();  // 실행 흐름 위임
     }
 
-    private static void runQueryLoop(PlayerNames playerNames, Ladder ladder, ResultMapping resultMapping) {
-        while (true) {
-            String input = InputView.askPlayer();
-            if (input.equalsIgnoreCase("all")) {
-                printAllResults(playerNames, ladder, resultMapping);
-                break;
-            }
+    private final PlayerNames playerNames;
+    private final Results results;
+    private final Ladder ladder;
 
-            try {
-                PlayerName player = playerNames.findByName(input);
-                printSingleResult(player, playerNames, ladder, resultMapping);
-            } catch (IllegalArgumentException e) {
-                System.out.println("존재하지 않는 참가자입니다: " + input);
-            }
-        }
+    public LadderGame(PlayerNames playerNames, Results results, Ladder ladder) {
+        this.playerNames = playerNames;
+        this.results = results;
+        this.ladder = ladder;
     }
 
-    private static void printSingleResult(PlayerName player, PlayerNames playerNames, Ladder ladder, ResultMapping resultMapping) {
-        System.out.println("실행 결과");
-        try {
-            int startIndex = playerNames.indexOf(player);  // 인덱스를 얻고
-            String result = LadderGameEngine.move(ladder, startIndex, playerNames.getNames(), resultMapping);
-            System.out.println(result);
-        } catch (IllegalArgumentException | IndexOutOfBoundsException e) {
-            System.out.println("존재하지 않는 참가자입니다: " + player.getName());
-        }
+    public String play(String playerName) {
+        int index = playerNames.indexOf(playerName);
+        int finalIndex = ladder.move(index);
+        return results.getResultAt(finalIndex);
     }
 
-    private static void printAllResults(PlayerNames playerNames, Ladder ladder, ResultMapping resultMapping) {
-        System.out.println("실행 결과");
-
-        for (PlayerName player : playerNames.getNames()) {
-            int startIndex = playerNames.indexOf(player);
-            String result = LadderGameEngine.move(ladder, startIndex, playerNames.getNames(), resultMapping);
-            System.out.println(player.getName() + " : " + result);
-        }
+    public List<String> playAll() {
+        List<String> allResults = new ArrayList<>();
+        IntStream.range(0, playerNames.size())
+                .forEach(i -> {
+                    String name = playerNames.getNameAt(i);
+                    String result = results.getResultAt(ladder.move(i));
+                    allResults.add(name + " : " + result);
+                });
+        return allResults;
     }
 }

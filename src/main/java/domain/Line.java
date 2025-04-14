@@ -7,14 +7,19 @@ import java.util.Random;
 public class Line {
     private final List<Boolean> points;
 
-    public Line(int countOfPoints) {
-        points = new ArrayList<>();
-        Random random = new Random();
+    public Line(List<Boolean> points) {
+        this.points = points;
+    }
 
-        for (int i = 0; i < countOfPoints; i++) {
-            boolean previous = (i > 0) && points.get(i - 1);
-            points.add(!previous && random.nextBoolean());
+    public static Line generate(int width, Random random) {
+        List<Boolean> points = new ArrayList<>();
+        boolean prev = false;
+        for (int i = 0; i < width - 1; i++) {
+            boolean point = !prev && random.nextBoolean();
+            points.add(point);
+            prev = point;
         }
+        return new Line(points);
     }
 
     public int getNextPosition(int position) {
@@ -27,13 +32,23 @@ public class Line {
         return position;
     }
 
-    public String toPrintableString() {
-        StringBuilder builder = new StringBuilder();
-        for (boolean point : points) {
-            builder.append("|");
-            builder.append(point ? "-----" : "     ");
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("    ");
+        for (Boolean point : points) {
+            sb.append(point ? "|-----" : "|     ");
         }
-        builder.append("|");
-        return builder.toString();
+        sb.append("|");
+        return sb.toString();
+    }
+
+    public int move(int position) {
+        if (position > 0 && points.get(position - 1)) {
+            return position - 1;
+        }
+        if (position < points.size() && points.get(position)) {
+            return position + 1;
+        }
+        return position;
     }
 }
