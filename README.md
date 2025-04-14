@@ -7,3 +7,12 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/nextstep-step/nextstep-docs/tree/master/codereview)
+
+# step 2 요구 사항
+* [x] 사용자 이름 입력받기
+  * [x] 이름 파싱
+* [x] 이름 길이 제한
+* [x] 사다리 높이 입력받기
+* [x] 사다리 생성하기
+  * [x] 가로 생성
+* [x] 사다리 출력하기
