@@ -4,19 +4,23 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Users {
-    private final List<User> names;
+public class LadderSlots {
+    private final List<LadderSlot> names;
 
-    public Users(String names) {
+    public LadderSlots(String names) {
         this(Arrays.stream(names.split(","))
                 .map(String::trim)
                 .filter(s -> !s.isEmpty())
-                .map(User::new)
+                .map(LadderSlot::new)
                 .collect(Collectors.toList()));
     }
 
-    public Users(List<User> names) {
+    public LadderSlots(List<LadderSlot> names) {
         this.names = names;
+    }
+
+    public boolean isSize(int expectSize) {
+        return names.size() == expectSize;
     }
 
     public int size() {
@@ -24,7 +28,7 @@ public class Users {
     }
 
     public List<String> getNames() {
-        return names.stream().map(User::getName).collect(Collectors.toList());
+        return names.stream().map(LadderSlot::getName).collect(Collectors.toList());
     }
 
 }

@@ -1,5 +1,6 @@
 package ladder.view;
 
+import java.util.List;
 import ladder.model.LadderLine;
 import ladder.model.LadderSession;
 
@@ -10,12 +11,13 @@ public class OutputView {
 
         System.out.println("실행결과\n");
 
-        printUsers(ladderSession);
+        printSlots(ladderSession.getUserNames());
         printLadder(ladderSession);
+        printSlots(ladderSession.getResultNames());
     }
 
-    private static void printUsers(LadderSession ladderSession) {
-        ladderSession.getNames()
+    private static void printSlots(List<String> slotStrs) {
+        slotStrs
             .stream()
             .map(word -> String.format("%5s", word))
             .forEach(name -> System.out.print(name + " "));

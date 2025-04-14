@@ -1,11 +1,11 @@
 package ladder.model;
 
-public class User {
+public class LadderSlot {
     public static final int MAX_LEN = 5;
 
     private final String name;
 
-    public User(String name) {
+    public LadderSlot(String name) {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("이름은 비어 있을 수 없습니다.");
         }
