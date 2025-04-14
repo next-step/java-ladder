@@ -1,8 +1,5 @@
 
-import domain.Ladder;
-import domain.LadderGameEngine;
-import domain.PlayerName;
-import domain.PlayerNames;
+import domain.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import view.ResultMapping;
@@ -27,11 +24,10 @@ class LadderGameTest {
 
         List<String> results = List.of("꽝", "5000", "꽝", "10000");
         ResultMapping mapping = new ResultMapping(playerNames.getNames(), results);
-
-        Ladder ladder = new Ladder(playerNames.size(), 5);  // 높이 5의 사다리 생성
+        Ladder ladder = LadderGenerator.generate(playerNames.size(), 5);
 
         // when
-        String result = LadderGameEngine.move(ladder, playerNames.indexOf(new PlayerName("kwon")), playerNames.getNames(), mapping);
+        String result = LadderGameEngine.move(ladder, playerNames.indexOf("kwon"), playerNames.getNames(), mapping);
 
         // then
         assertThat(results).contains(result);
@@ -49,11 +45,10 @@ class LadderGameTest {
 
         List<String> results = List.of("꽝", "5000", "꽝", "10000");
         ResultMapping mapping = new ResultMapping(playerNames.getNames(), results);
-
-        Ladder ladder = new Ladder(playerNames.size(), 5);
+        Ladder ladder = LadderGenerator.generate(playerNames.size(), 5);
 
         for (PlayerName player : playerNames.getNames()) {
-            String result = LadderGameEngine.move(ladder, playerNames.indexOf(player), playerNames.getNames(), mapping);
+            String result = LadderGameEngine.move(ladder, playerNames.indexOf(player.getName()), playerNames.getNames(), mapping);
             assertThat(results).contains(result);
         }
     }

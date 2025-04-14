@@ -3,7 +3,6 @@ package domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-
 public class PlayerNames {
     private final List<PlayerName> names;
 
@@ -34,12 +33,11 @@ public class PlayerNames {
         return Collections.unmodifiableList(names);
     }
 
-    public int indexOf(PlayerName player) {
-        int index = names.indexOf(player);
-        if (index == -1) {
-            throw new IllegalArgumentException("해당 플레이어는 목록에 존재하지 않습니다: " + player.getName());
+    public int indexOf(String name) {
+        if (!names.contains(name)) {
+            throw new IllegalArgumentException("참가자를 찾을 수 없습니다: " + name);
         }
-        return index;
+        return names.indexOf(name);
     }
 
     @Override
@@ -53,5 +51,9 @@ public class PlayerNames {
     @Override
     public int hashCode() {
         return Objects.hash(names);
+    }
+
+    public String getNameAt(int index) {
+        return names.get(index).getName();
     }
 }

@@ -1,4 +1,5 @@
 import domain.Ladder;
+import domain.LadderGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -12,7 +13,8 @@ public class LadderTest {
         int countOfPerson = 4;
         int height = 5;
 
-        Ladder ladder = new Ladder(countOfPerson, height);
+
+        Ladder ladder = LadderGenerator.generate(countOfPerson, height);
         assertNotNull(ladder);
     }
 }
