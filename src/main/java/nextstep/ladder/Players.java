@@ -40,13 +40,13 @@ public class Players {
         return entries.size();
     }
 
-    public boolean contains(String value) {
+    public boolean contains(Name name) {
         return entries.stream()
-                .anyMatch(entry -> entry.toString().equals(value));
+                .anyMatch(entry -> entry.getName().equals(name));
     }
 
-    public boolean notContains(String value) {
-        return !contains(value);
+    public boolean notContains(Name name) {
+        return !contains(name);
     }
 
     public void move(Lines lines) {
@@ -62,16 +62,16 @@ public class Players {
         }
     }
 
-    private Entry get(Position position) {
+    public Entry get(Position position) {
         return entries.stream()
                 .filter(entry -> entry.isSamePosition(position))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Entry not found"));
     }
 
-    public Entry get(String value) {
+    public Entry get(Name name) {
         return entries.stream()
-                .filter(entry -> entry.toString().equals(value))
+                .filter(entry -> entry.getName().equals(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Entry not found"));
     }

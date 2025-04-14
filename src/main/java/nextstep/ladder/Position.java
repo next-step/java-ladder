@@ -4,11 +4,6 @@ public class Position {
     private Location index;
     private Location height;
 
-    public Position(Location index, Location height) {
-        this.index = index;
-        this.height = height;
-    }
-
     public Position(int index, Location height) {
         this.index = new Location(index);
         this.height = height;

@@ -27,10 +27,6 @@ public class Name {
         }
     }
 
-    public int length() {
-        return name.length();
-    }
-
     @Override
     public String toString() {
         return name;
@@ -38,5 +34,13 @@ public class Name {
 
     public String toStringWithBlank() {
         return name + BLANK.repeat(MAX_LENGTH + 1 - name.length());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Name)) return false;
+        Name name = (Name) o;
+        return this.name.equals(name.name);
     }
 }

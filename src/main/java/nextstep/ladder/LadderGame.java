@@ -34,16 +34,18 @@ public class LadderGame {
 
     private static void printResults(Map<Entry, Entry> resultsMap, Players players) {
         while (true) {
-            String resultName = InputView.inputResultName();
+            String resultNameString = InputView.inputResultName();
 
-            if (EXIT.equals(resultName)) {
+            if (EXIT.equals(resultNameString)) {
                 break;
             }
 
-            if (ALL.equals(resultName)) {
+            if (ALL.equals(resultNameString)) {
                 ResultView.printResults(resultsMap);
                 continue;
             }
+
+            Name resultName = new Name(resultNameString);
 
             if (players.notContains(resultName)) {
                 ResultView.invalidName();
