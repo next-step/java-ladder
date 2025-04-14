@@ -2,14 +2,14 @@ package view;
 
 import java.util.Scanner;
 import java.util.List;
-
+import domain.Players;
 public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static List<String> inputPlayers() {
+    public static Players inputPlayers() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return parseCommaSeparatedString(scanner.nextLine());
+        return new Players(parseCommaSeparatedString(scanner.nextLine()));
     }
 
     public static int inputLadderHeight() {

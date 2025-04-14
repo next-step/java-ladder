@@ -3,7 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
+import java.util.function.Consumer;
 public class Ladder {
 
     private static final Random RANDOM = new Random();
@@ -16,8 +16,7 @@ public class Ladder {
         }
     }
 
-    public List<LadderRow> getLadderRows() {
-        return ladderRows;
+    public void forEach(Consumer<LadderRow> consumer) {
+        ladderRows.forEach(consumer);
     }
-
 }

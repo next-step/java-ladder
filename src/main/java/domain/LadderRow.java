@@ -3,6 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.function.Consumer;
 
 public class LadderRow {
 
@@ -28,7 +29,7 @@ public class LadderRow {
         return connectionFunction.get();
     }
 
-    public List<Boolean> getColumns() {
-        return columns;
+    public void forEach(Consumer<Boolean> consumer) {
+        columns.forEach(consumer);
     }
 }
