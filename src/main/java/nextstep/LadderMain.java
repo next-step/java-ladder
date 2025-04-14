@@ -15,6 +15,7 @@ public class LadderMain {
 
         LadderGame ladderGame = new LadderGame(inputNames, height, new RandomGeneratorStrategy());
         ladderGame.progressGame();
+        String viewer = InputView.inputViewer();
         OutputView.printPlayers(ladderGame.getPlayers());
         OutputView.printLadder(ladderGame.getLines());
     }
