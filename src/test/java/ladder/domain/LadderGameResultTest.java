@@ -24,7 +24,7 @@ public class LadderGameResultTest {
         // then
         for (int i = 0; i < players.count(); i++) {
             Player player = players.getPlayerAtIndex(i);
-            Assertions.assertThat(gameResult.getResultFor(player)).isEqualTo(results.get(i));
+            Assertions.assertThat(gameResult.getResultFor(player.name())).isEqualTo(results.get(i));
         }
     }
 
@@ -52,7 +52,7 @@ public class LadderGameResultTest {
         // then
         for (int i = 0; i < players.count(); i++) {
             Player player = players.getPlayerAtIndex(i);
-            Assertions.assertThat(gameResult.getResultFor(player))
+            Assertions.assertThat(gameResult.getResultFor(player.name()))
                     .isEqualTo(results.get(expected.get(i)));
         }
     }
