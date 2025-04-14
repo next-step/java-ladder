@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Ladder {
-  private final List<Line> lines;
   private static final int MIN_LADDER_HEIGHT = 1;
+  private final List<Line> lines;
 
   public Ladder(int height, Players players, LineGenerateStrategy strategy) {
     validate(height);
