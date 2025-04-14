@@ -1,6 +1,7 @@
 package ladder.view;
 
 import ladder.domain.Player;
+import ladder.domain.Result;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +17,14 @@ public class Parser {
                 .filter(token -> !token.isEmpty())
                 .map(Player::new)
                 .distinct()
+                .collect(Collectors.toList());
+    }
+
+    public static List<Result> parseStringToResult(String input) {
+        return Arrays.stream(input.trim().split(","))
+                .map(String::trim)
+                .filter(token -> !token.isEmpty())
+                .map(Result::new)
                 .collect(Collectors.toList());
     }
 }

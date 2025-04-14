@@ -17,4 +17,9 @@ public class Points {
     public List<Point> getPoints() {
         return List.copyOf(points);
     }
+
+    public int size() {
+        return points.size();
+    }
+
 }

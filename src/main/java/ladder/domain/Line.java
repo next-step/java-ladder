@@ -40,4 +40,32 @@ public class Line {
         return points.getPoints();
     }
 
+    public int move(int idx) {
+        if (canGoLeft(idx)) {
+            return --idx;
+        }
+        if (canGoRight(idx)) {
+            return ++idx;
+        }
+        return idx;
+    }
+
+    private boolean canGoLeft(int idx) {
+        if (idx == 0) {
+            return false;
+        }
+        return points.get(idx - 1).hasPoint();
+    }
+
+    private boolean canGoRight(int idx) {
+        if (isLastIdx(idx)) {
+            return false;
+        }
+        return points.get(idx).hasPoint();
+    }
+
+    private boolean isLastIdx(int idx) {
+        return points.size() == idx;
+    }
+
 }
