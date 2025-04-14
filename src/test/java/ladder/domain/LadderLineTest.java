@@ -15,11 +15,12 @@ public class LadderLineTest {
     void moveLadderLeft() {
         // given
         LadderLine ladderLine = new LadderLine(List.of(false, true, false));
-        int startPosition = 2;
+        int startIndex = 2;
+        Position startPosition = new Position(startIndex);
 
         // when
-        int movedPosition = ladderLine.move(startPosition);
-        int expected = startPosition - 1;
+        Position movedPosition = ladderLine.move(startPosition);
+        Position expected = new Position(startIndex - 1);
 
         // then
         Assertions.assertThat(movedPosition).isEqualTo(expected);
@@ -30,23 +31,24 @@ public class LadderLineTest {
     void moveLadderRight() {
         // given
         LadderLine ladderLine = new LadderLine(List.of(false, true, false));
-        int startPosition = 1;
+        int startIndex = 1;
+        Position startPosition = new Position(startIndex);
 
         // when
-        int movedPosition = ladderLine.move(startPosition);
-        int expected = startPosition + 1;
+        Position movedPosition = ladderLine.move(startPosition);
 
         // then
-        Assertions.assertThat(movedPosition).isEqualTo(expected);
+        Assertions.assertThat(movedPosition).isEqualTo(new Position(startIndex + 1));
     }
 
     @DisplayName("사다리 이동 불가능")
     @ValueSource(ints = {-1, 4})
     @ParameterizedTest
-    void moveLadderImpossible(int position) {
+    void moveLadderImpossible(int index) {
         Assertions.assertThatThrownBy(() -> {
             // given
             LadderLine ladderLine = new LadderLine(List.of(false, true, false));
+            Position position = new Position(index);
 
             // when
             ladderLine.move(position);

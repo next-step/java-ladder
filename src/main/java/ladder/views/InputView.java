@@ -15,13 +15,29 @@ public class InputView {
         String input = scanner.nextLine();
         String[] names = input.split(",");
         List<String> playerStrings = Arrays.asList(names);
-        return new Players(playerStrings);
+
+        return Players.createWithNames(playerStrings);
     }
 
     public static Height createIntegerWithQuery(String query) {
-        System.out.println(System.lineSeparator());
+        System.out.println();
         System.out.println(query);
         int parsedInt = Integer.parseInt(scanner.nextLine());
         return new Height(parsedInt);
+    }
+
+    public static List<String> createResultsWithQuery(String query) {
+        System.out.println();
+        System.out.println(query);
+
+        String[] split = scanner.nextLine().split(",");
+        return List.of(split);
+    }
+
+    public static String createStringWithQuery(String query) {
+        System.out.println();
+        System.out.println(query);
+
+        return scanner.nextLine();
     }
 }

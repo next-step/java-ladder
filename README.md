@@ -44,3 +44,19 @@
   - [x] LadderLine
     - [x] is -> has
     - [x] 조건문 통합
+## 3단계
+- [x] 사다리 게임 결과 표시
+  - [x] LadderGame에 결과 추가
+  - [x] Ladder에서 사다리 진행 결과 확인
+  - [x] LadderGame에서 사다리 게임 실행
+    - [x] 리팩토링
+      - [x] Position 구현
+      - [x] setPosition 제거
+      - [x] LadderGameResult.getResultFor 리팩토링
+  - [x] Views 구현
+    - [x] 실행결과 입력 받기 및 실행결과 표시
+    - [x] 개인별 결과 출력 구현
+    - [x] 전체 결과 출력 구현
+- [x] 피드백
+  - [x] LadderGameApplication RandomLineGenerator 상수로 분리
+  - [x] Player 가 Result 를 필드로 가짐

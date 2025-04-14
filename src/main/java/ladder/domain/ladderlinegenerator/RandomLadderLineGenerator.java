@@ -14,8 +14,8 @@ public class RandomLadderLineGenerator implements LadderLineGenerator {
     public RandomLadderLineGenerator() {}
 
     public List<Boolean> generateLadderLine(int size) {
-        if (size < 1) {
-            throw new IllegalArgumentException("사다리의 길이는 1 이상이어야 합니다.");
+        if (size < 0) {
+            throw new IllegalArgumentException("사다리의 길이는 0 이상이어야 합니다.");
         }
 
         AtomicBoolean previousValue = new AtomicBoolean(false);
