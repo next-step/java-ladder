@@ -12,17 +12,21 @@ public class LadderLine {
     }
 
     public static LadderLine genRandomLadderLine(int width, Random random) {
-        List<Boolean> exist = new ArrayList<>();
+        List<Boolean> crossExist = new ArrayList<>();
 
         for (int i = 0; i < width - 1; i++) {
-            if (i > 0 && exist.get(i - 1)) {
-                exist.add(false);
+            if (isLatestCrossExist(i, crossExist)) {
+                crossExist.add(false);
             } else {
-                exist.add(random.nextBoolean());
+                crossExist.add(random.nextBoolean());
             }
         }
 
-        return new LadderLine(exist);
+        return new LadderLine(crossExist);
+    }
+
+    private static boolean isLatestCrossExist(int nowIndex, List<Boolean> crossExist) {
+        return nowIndex > 0 && crossExist.get(nowIndex - 1);
     }
 
     public List<Boolean> crosses(){
