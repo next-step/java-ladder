@@ -11,4 +11,8 @@ public class Point {
         return this.hasPoint;
     }
 
+    public boolean canDrawNext() {
+        return !hasPoint;
+    }
+
 }
