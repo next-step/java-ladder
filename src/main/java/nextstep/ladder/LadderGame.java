@@ -1,17 +1,60 @@
 package nextstep.ladder;
 
+import nextstep.ladder.line.Lines;
 import nextstep.ladder.parser.StringParser;
-import nextstep.ladder.player.Players;
 import nextstep.ladder.ui.InputView;
 import nextstep.ladder.ui.ResultView;
 
+import java.util.Map;
+
 public class LadderGame {
+    private static final String EXIT = "exit";
+    private static final String ALL = "all";
+
     public static void main(String[] args) {
         String names = InputView.inputNames();
         String[] nameArray = StringParser.parse(names);
-        Players players = new Players(nameArray);
-        Height height = new Height(InputView.inputLadderHeight());
-        Ladder ladder = new Ladder(height, players);
-        ResultView.printResults(ladder);
+        Players players = Players.of(nameArray);
+
+        String resultString = InputView.inputResult();
+        String[] resultArray = StringParser.parse(resultString);
+
+        Location height = new Location(InputView.inputLadderHeight());
+        Lines lines = new Lines(height, players.size());
+
+        Results results = Results.of(resultArray, height);
+
+        ResultView.printLadder(players, lines, results);
+
+        players.move(lines);
+
+        Map<Entry, Entry> resultsMap = results.getResults(players);
+        printResults(resultsMap, players);
+    }
+
+    private static void printResults(Map<Entry, Entry> resultsMap, Players players) {
+        while (true) {
+            String resultNameString = InputView.inputResultName();
+
+            if (EXIT.equals(resultNameString)) {
+                break;
+            }
+
+            if (ALL.equals(resultNameString)) {
+                ResultView.printResults(resultsMap);
+                continue;
+            }
+
+            Name resultName = new Name(resultNameString);
+
+            if (players.notContains(resultName)) {
+                ResultView.invalidName();
+                continue;
+            }
+
+            Entry player = players.get(resultName);
+            Entry result = resultsMap.get(player);
+            ResultView.printResult(result);
+        }
     }
 }

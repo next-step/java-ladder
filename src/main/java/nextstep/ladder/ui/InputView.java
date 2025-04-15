@@ -6,14 +6,28 @@ public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static String inputNames() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        return scanner.nextLine();
+        System.out.println("\n참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
+        return inputString();
+    }
+
+    public static String inputResult() {
+        System.out.println("\n실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        return inputString();
     }
 
     public static int inputLadderHeight() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
+        System.out.println("\n최대 사다리 높이는 몇 개인가요?");
         int height = scanner.nextInt();
         scanner.nextLine();
         return height;
+    }
+
+    public static String inputResultName() {
+        System.out.println("결과를 보고 싶은 사람은? (종료하려면 exit를 입력하세요.)");
+        return inputString();
+    }
+
+    private static String inputString() {
+        return scanner.nextLine();
     }
 }

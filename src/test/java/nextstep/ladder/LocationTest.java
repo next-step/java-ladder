@@ -1,0 +1,21 @@
+package nextstep.ladder;
+
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public class LocationTest {
+
+    @Test
+    public void 음수_값_테스트() {
+        assertThrows(IllegalArgumentException.class, () -> new Location(-1));
+    }
+
+    @Test
+    public void move() {
+        Location location = new Location(0);
+        location.move(1);
+        assertThat(location).isEqualTo(new Location(1));
+    }
+}
