@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -45,7 +44,7 @@ public class StreamStudyTest {
         StreamStudy.printLongestWordTop100();
         assertThat(out.toString().split(","))
                 .hasSize(100)
-                .isSortedAccordingTo((word1, word2) -> word2.length() - word1.length() );
+                .isSortedAccordingTo((word1, word2) -> word2.length() - word1.length());
     }
 
     @Test

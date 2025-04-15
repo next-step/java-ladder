@@ -11,18 +11,6 @@ public class User {
         this.age = age;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public boolean matchName(String name) {
-        return this.name.equals(name);
-    }
-
     public static boolean ageIsInRange1(User user) {
         boolean isInRange = false;
 
@@ -39,6 +27,18 @@ public class User {
                 .filter(u -> u.age != null)
                 .filter(u -> u.age >= 30 && u.age <= 45)
                 .isPresent();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public boolean matchName(String name) {
+        return this.name.equals(name);
     }
 
     @Override
