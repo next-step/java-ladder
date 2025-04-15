@@ -20,7 +20,7 @@ public class LadderSimulator {
     }
 
     private void validate(List<User> users, List<String> results) {
-        if(users == null || results == null) {
+        if (users == null || results == null) {
             throw new LadderSimulatorInvalidException();
         }
 
