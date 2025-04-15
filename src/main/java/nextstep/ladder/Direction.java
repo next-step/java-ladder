@@ -35,15 +35,15 @@ public enum Direction {
         return generate(RandomGenerator.generate());
     }
 
+    @Override
+    public String toString() {
+        return display;
+    }
+
     private static Direction generate(boolean right) {
         if (right) {
             return RIGHT;
         }
         return STRAIGHT;
-    }
-
-    @Override
-    public String toString() {
-        return display;
     }
 }

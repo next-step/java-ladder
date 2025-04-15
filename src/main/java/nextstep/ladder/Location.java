@@ -9,12 +9,6 @@ public class Location {
         this.value = value;
     }
 
-    private void validate(int value) {
-        if (value < 0) {
-            throw new IllegalArgumentException("Location 값은 0보다 작을 수 없습니다.");
-        }
-    }
-
     public void move(int amount) {
         int newValue = this.value + amount;
         validate(newValue);
@@ -36,5 +30,11 @@ public class Location {
     @Override
     public String toString() {
         return String.valueOf(value);
+    }
+
+    private void validate(int value) {
+        if (value < 0) {
+            throw new IllegalArgumentException("Location 값은 0보다 작을 수 없습니다.");
+        }
     }
 }

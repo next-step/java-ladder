@@ -10,23 +10,6 @@ public class Name {
         this.name = name;
     }
 
-    private void validate(String name) {
-        validateEmpty(name);
-        validateLength(name);
-    }
-
-    private void validateLength(String name) {
-        if (name.length() > MAX_LENGTH) {
-            throw new IllegalArgumentException("이름은 5자 이하이어야 합니다.");
-        }
-    }
-
-    private void validateEmpty(String name) {
-        if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("이름은 null 또는 빈 문자열일 수 없습니다.");
-        }
-    }
-
     @Override
     public String toString() {
         return name;
@@ -42,5 +25,22 @@ public class Name {
         if (!(o instanceof Name)) return false;
         Name name = (Name) o;
         return this.name.equals(name.name);
+    }
+
+    private void validate(String name) {
+        validateEmpty(name);
+        validateLength(name);
+    }
+
+    private void validateLength(String name) {
+        if (name.length() > MAX_LENGTH) {
+            throw new IllegalArgumentException("이름은 5자 이하이어야 합니다.");
+        }
+    }
+
+    private void validateEmpty(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("이름은 null 또는 빈 문자열일 수 없습니다.");
+        }
     }
 }

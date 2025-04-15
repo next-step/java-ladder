@@ -13,12 +13,6 @@ public class Lines {
         this.lines = createLines(height.getValue(), playerCount);
     }
 
-    private List<Line> createLines(int height, int playerCount) {
-        return Stream.generate(() -> new Line(playerCount))
-                .limit(height)
-                .collect(Collectors.toList());
-    }
-
     public int size() {
         return lines.size();
     }
@@ -36,5 +30,11 @@ public class Lines {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    private List<Line> createLines(int height, int playerCount) {
+        return Stream.generate(() -> new Line(playerCount))
+                .limit(height)
+                .collect(Collectors.toList());
     }
 }
