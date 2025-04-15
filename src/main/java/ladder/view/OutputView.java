@@ -20,6 +20,7 @@ public class OutputView {
     private static final int MAX_LENGTH = 5;
     private static final String SPACE = " ";
     private static final String RESULT = "실행결과";
+    private static final String ALL = "all";
 
     public static void printLadderResult(Ladder ladder, List<User> users, List<String> results) {
         System.out.println(RESULT);
@@ -79,7 +80,7 @@ public class OutputView {
         while(true) {
             String userName = inputView.inputPlayerResult();
 
-            if (userName.equals("all")) {
+            if (userName.equals(ALL)) {
                 OutputView.printResultAll(ladderResult.getSortedResults());
                 break;
             }
