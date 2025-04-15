@@ -12,7 +12,7 @@ import static java.lang.System.lineSeparator;
 import static java.util.stream.Collectors.joining;
 
 public class OutputView {
-    private static final String DELIMITER = ":";
+    private static final String DELIMITER = " : ";
     private static final String LADDER_HORIZONTAL = "-----";
     private static final String LADDER_VERTICAL = "|";
     private static final String LADDER_PADDING = "    ";
