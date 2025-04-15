@@ -8,10 +8,10 @@ import ladder.exception.LadderSimulatorInvalidException;
 
 public class LadderSimulator {
     private final Ladder ladder;
-    private final List<String> users;
+    private final List<User> users;
     private final List<String> results;
 
-    public LadderSimulator(Ladder ladder, List<String> users, List<String> results) {
+    public LadderSimulator(Ladder ladder, List<User> users, List<String> results) {
         validate(users, results);
 
         this.ladder = ladder;
@@ -19,7 +19,7 @@ public class LadderSimulator {
         this.results = results;
     }
 
-    private void validate(List<String> users, List<String> results) {
+    private void validate(List<User> users, List<String> results) {
         if(users == null || results == null) {
             throw new LadderSimulatorInvalidException();
         }
@@ -29,15 +29,15 @@ public class LadderSimulator {
         }
     }
 
-    public LadderResultCache simulateAll() {
-        List<LadderResult> ladderResults = IntStream.range(0, users.size())
+    public LadderResult getResults() {
+        List<UserResult> userResults = IntStream.range(0, users.size())
             .mapToObj(this::simulate)
             .collect(Collectors.toList());
 
-        return new LadderResultCache(ladderResults);
+        return new LadderResult(userResults);
     }
 
-    private LadderResult simulate(int initialIndex) {
+    private UserResult simulate(int initialIndex) {
         int currentIndex = initialIndex;
 
         for (Line line : ladder.getLines()) {
@@ -46,6 +46,6 @@ public class LadderSimulator {
                 .getMove();
         }
 
-        return new LadderResult(initialIndex, users.get(initialIndex), results.get(currentIndex));
+        return new UserResult(initialIndex, users.get(initialIndex).getName(), results.get(currentIndex));
     }
 }

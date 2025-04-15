@@ -1,28 +1,41 @@
 package ladder.domain;
 
-import static java.lang.Integer.compare;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
-public class LadderResult implements Comparable<LadderResult> {
-    private final int startIndex;
-    private final String name;
-    private final String result;
+import static java.util.Optional.ofNullable;
+import static java.util.stream.Collectors.toUnmodifiableMap;
 
-    public LadderResult(int startIndex, String name, String result) {
-        this.startIndex = startIndex;
-        this.name = name;
-        this.result = result;
+public class LadderResult {
+    private final List<UserResult> userResults;
+    private final Map<String, UserResult> ladderResultMap;
+
+    public LadderResult(List<UserResult> userResults) {
+        this.userResults = userResults;
+        this.ladderResultMap = createLadderResultMap(userResults);
     }
 
-    public String getName() {
-        return name;
+    private Map<String, UserResult> createLadderResultMap(List<UserResult> results) {
+        return results.stream()
+            .collect(
+                toUnmodifiableMap(
+                    UserResult::getName,
+                    Function.identity()
+                )
+            );
     }
 
-    public String getResult() {
-        return result;
+    public List<UserResult> getSortedResults() {
+        return userResults.stream()
+            .sorted()
+            .collect(Collectors.toList());
     }
 
-    @Override
-    public int compareTo(LadderResult other) {
-        return compare(this.startIndex, other.startIndex);
+    public String getResult(String userName) {
+        return ofNullable(ladderResultMap.get(userName))
+            .map(UserResult::getResult)
+            .orElseThrow(IllegalArgumentException::new);
     }
 }

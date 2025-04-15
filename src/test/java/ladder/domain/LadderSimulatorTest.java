@@ -18,13 +18,13 @@ class LadderSimulatorTest {
         Line line2 = new Line(List.of(false, true));
         Ladder ladder = new Ladder(List.of(line1, line2));
 
-        List<String> users = List.of("A", "B", "C");
+        List<User> users = List.of(new User("A"), new User("B"), new User("C"));
         List<String> results = List.of("꽝", "5000", "3000");
 
         LadderSimulator simulator = new LadderSimulator(ladder, users, results);
 
         String expectedResult = "꽝";
-        LadderResultCache cache = simulator.simulateAll();
+        LadderResult cache = simulator.getResults();
         assertThat(cache.getResult("B")).isEqualTo(expectedResult);
     }
 
@@ -39,13 +39,13 @@ class LadderSimulatorTest {
         Line line3 = new Line(List.of(true, false, true));
         Ladder ladder = new Ladder(List.of(line1, line2, line3));
 
-        List<String> users = List.of("A", "B", "C", "D");
+        List<User> users = List.of(new User("A"), new User("B"), new User("C"), new User("D"));
         List<String> results = List.of("꽝", "5000", "3000", "2000");
 
         LadderSimulator simulator = new LadderSimulator(ladder, users, results);
 
         String expectedResult = "2000";
-        LadderResultCache cache = simulator.simulateAll();
+        LadderResult cache = simulator.getResults();
         assertThat(cache.getResult("A")).isEqualTo(expectedResult);
     }
 }
