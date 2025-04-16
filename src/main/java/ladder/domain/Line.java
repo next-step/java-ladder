@@ -33,7 +33,7 @@ public class Line {
         if (idx == 0) {
             return true;
         }
-        return points.get(idx - 1).canDrawNext();
+        return points.canDrawNext(idx);
     }
 
     public List<Point> getPoints() {
@@ -41,31 +41,13 @@ public class Line {
     }
 
     public int move(int idx) {
-        if (canGoLeft(idx)) {
+        if (points.canGoLeft(idx)) {
             return --idx;
         }
-        if (canGoRight(idx)) {
+        if (points.canGoRight(idx)) {
             return ++idx;
         }
         return idx;
-    }
-
-    private boolean canGoLeft(int idx) {
-        if (idx == 0) {
-            return false;
-        }
-        return points.get(idx - 1).hasPoint();
-    }
-
-    private boolean canGoRight(int idx) {
-        if (isLastIdx(idx)) {
-            return false;
-        }
-        return points.get(idx).hasPoint();
-    }
-
-    private boolean isLastIdx(int idx) {
-        return points.size() == idx;
     }
 
 }

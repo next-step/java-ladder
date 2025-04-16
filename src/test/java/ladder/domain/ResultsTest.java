@@ -30,7 +30,7 @@ class ResultsTest {
                 new Result("5000")
         ));
 
-        assertThat(results.getName(1)).isEqualTo("3000");
+        assertThat(results.getNameAt(1)).isEqualTo("3000");
     }
 
     @Test

@@ -20,7 +20,7 @@ public class Players {
 
     public Optional<Integer> findIndexByName(String name) {
         return IntStream.range(0, players.size())
-                .filter(i -> players.get(i).getName().equals(name))
+                .filter(i -> players.get(i).hasName(name))
                 .boxed()
                 .findFirst();
     }

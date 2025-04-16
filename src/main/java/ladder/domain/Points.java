@@ -22,4 +22,26 @@ public class Points {
         return points.size();
     }
 
+    public boolean canGoLeft(int idx) {
+        if (idx == 0) {
+            return false;
+        }
+        return points.get(idx - 1).hasPoint();
+    }
+
+    public boolean canGoRight(int idx) {
+        if (isLastIdx(idx)) {
+            return false;
+        }
+        return points.get(idx).hasPoint();
+    }
+
+    private boolean isLastIdx(int idx) {
+        return points.size() == idx;
+    }
+
+    public boolean canDrawNext(int idx) {
+        return points.get(idx - 1).canDrawNext();
+    }
+
 }
