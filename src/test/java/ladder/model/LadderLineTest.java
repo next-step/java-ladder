@@ -37,6 +37,26 @@ public class LadderLineTest {
         assertThat(line.crosses()).isEqualTo(List.of(true, false, true, false, true, false));
     }
 
+
+    @Test
+    void 왼쪽_이동() {
+        LadderLine line = LadderLine.of(List.of(false, true, false));
+
+        assertThat(line.canMoveLeft(0)).isFalse();
+        assertThat(line.canMoveLeft(1)).isFalse();
+        assertThat(line.canMoveLeft(2)).isTrue();
+    }
+
+    @Test
+    void 오른쪽_이동() {
+        LadderLine line = LadderLine.of(List.of(true, false, true));
+
+        assertThat(line.canMoveRight(0)).isTrue();
+        assertThat(line.canMoveRight(1)).isFalse();
+        assertThat(line.canMoveRight(2)).isTrue();
+        assertThat(line.canMoveRight(3)).isFalse();
+    }
+
     static class FixedRandom extends Random {
         private final boolean[] values;
         private int index = 0;

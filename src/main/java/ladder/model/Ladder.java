@@ -25,4 +25,13 @@ public class Ladder {
     public int getHeight() {
         return this.lines.size();
     }
+
+    public int run(int startIndex) {
+        int w = startIndex;
+        for (LadderLine line : lines) {
+            w += line.canMoveLeft(w) ? -1 : line.canMoveRight(w) ? 1 : 0;
+        }
+        return w;
+    }
+
 }
