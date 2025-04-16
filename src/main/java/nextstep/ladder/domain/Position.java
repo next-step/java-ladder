@@ -42,8 +42,8 @@ public class Position {
         return new Position(this.value - MOVE_POSITION);
     }
 
-    public Result getResult(List<Result> results) {
-        return results.get(value);
+    public LadderResult getResult(List<LadderResult> ladderResults) {
+        return ladderResults.get(value);
     }
 
     @Override

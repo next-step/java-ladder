@@ -30,10 +30,10 @@ class PositionTest {
 
     @Test
     void getResultTest() {
-        List<Result> results = List.of(new Result("10000"), new Result("20000"));
+        List<LadderResult> ladderResults = List.of(new LadderResult("10000"), new LadderResult("20000"));
 
         Position position = new Position(1);
 
-        assertThat(position.getResult(results)).isEqualTo(new Result("20000"));
+        assertThat(position.getResult(ladderResults)).isEqualTo(new LadderResult("20000"));
     }
 }

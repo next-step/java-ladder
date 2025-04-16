@@ -7,14 +7,14 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Prize {
-    private final Map<Name, Result> prize;
+    private final Map<Name, LadderResult> prize;
 
-    public Prize(List<Player> players, List<Result> result) {
+    public Prize(List<Player> players, List<LadderResult> ladderResult) {
         this.prize = players.stream()
-                .collect(Collectors.toMap(Player::getName, player -> player.matchResult(result)));
+                .collect(Collectors.toMap(Player::getName, player -> player.matchResult(ladderResult)));
     }
 
-    public Map<Name, Result> getPrize(Name name) {
+    public Map<Name, LadderResult> getPrize(Name name) {
         if (name.equals(new Name("all"))) {
             return new HashMap<>(prize);
         }

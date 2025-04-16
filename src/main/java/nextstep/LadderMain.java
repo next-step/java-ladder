@@ -4,26 +4,27 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import nextstep.ladder.domain.LadderGame;
+import nextstep.ladder.domain.LadderResult;
 import nextstep.ladder.domain.Name;
 import nextstep.ladder.domain.Player;
 import nextstep.ladder.domain.Prize;
 import nextstep.ladder.domain.RandomGeneratorStrategy;
-import nextstep.ladder.domain.Result;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
 public class LadderMain {
     public static void main(String[] args) {
         List<String> inputNames = InputView.inputNames();
-        List<Result> results = InputView.inputResults().stream().map(Result::new).collect(Collectors.toList());
+        List<LadderResult> ladderResults = InputView.inputResults().stream().map(LadderResult::new)
+                .collect(Collectors.toList());
         int height = InputView.inputLadderHeight();
-        checkInput(results, inputNames);
+        checkInput(ladderResults, inputNames);
 
         LadderGame ladderGame = new LadderGame(inputNames, height, new RandomGeneratorStrategy());
         List<Player> players = ladderGame.progressGame();
-        Prize prize = new Prize(players, results);
+        Prize prize = new Prize(players, ladderResults);
 
-        printResultPrompt(ladderGame, results);
+        printResultPrompt(ladderGame, ladderResults);
         String viewer;
 
         do {
@@ -32,15 +33,15 @@ public class LadderMain {
         } while (!Objects.equals(viewer, "all"));
     }
 
-    private static void checkInput(List<Result> inputResults, List<String> inputNames) {
-        if (inputResults.size() != inputNames.size()) {
+    private static void checkInput(List<LadderResult> inputLadderResults, List<String> inputNames) {
+        if (inputLadderResults.size() != inputNames.size()) {
             throw new IllegalArgumentException("Input results size is not equal to input names size.");
         }
     }
 
-    private static void printResultPrompt(LadderGame ladderGame, List<Result> inputResults) {
+    private static void printResultPrompt(LadderGame ladderGame, List<LadderResult> inputLadderResults) {
         OutputView.printPlayers(ladderGame.getPlayers());
         OutputView.printLadder(ladderGame.getLines());
-        OutputView.printResult(inputResults);
+        OutputView.printResult(inputLadderResults);
     }
 }

@@ -33,8 +33,8 @@ public class Player {
         return name.getValue();
     }
 
-    public Result matchResult(List<Result> result) {
-        return position.getResult(result);
+    public LadderResult matchResult(List<LadderResult> ladderResult) {
+        return position.getResult(ladderResult);
     }
 
     @Override

@@ -36,9 +36,9 @@ class PlayerTest {
 
     @Test
     void getMatchResultTest() {
-        List<Result> results = List.of(new Result("3000"), new Result("꽝"));
+        List<LadderResult> ladderResults = List.of(new LadderResult("3000"), new LadderResult("꽝"));
         Player player = new Player("pobi", 1);
 
-        assertThat(player.matchResult(results)).isEqualTo(new Result("꽝"));
+        assertThat(player.matchResult(ladderResults)).isEqualTo(new LadderResult("꽝"));
     }
 }
