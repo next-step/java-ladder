@@ -1,8 +1,7 @@
 package nextstep.ladder.ui;
 
-import nextstep.ladder.Entry;
-import nextstep.ladder.Players;
-import nextstep.ladder.Results;
+import nextstep.ladder.Name;
+import nextstep.ladder.Names;
 import nextstep.ladder.line.Lines;
 
 import java.util.Map;
@@ -12,7 +11,7 @@ public class ResultView {
     public static final String VERTICAL_LINE = "|";
     public static final String EMPTY_SPACE = "     ";
 
-    public static void printLadder(Players players, Lines lines, Results results) {
+    public static void printLadder(Names players, Lines lines, Names results) {
         System.out.println("\n사다리 결과\n");
         System.out.println(players);
         System.out.print(lines);
@@ -24,15 +23,15 @@ public class ResultView {
         System.out.println("\n이름을 잘못 입력하셨습니다.\n");
     }
 
-    public static void printResult(Entry result) {
+    public static void printResult(Name result) {
         printResultTitle();
         System.out.println(result);
         System.out.println();
     }
 
-    public static void printResults(Map<Entry, Entry> resultsMap) {
+    public static void printResults(Map<Name, Name> resultsMap) {
         printResultTitle();
-        for (Map.Entry<Entry, Entry> entry : resultsMap.entrySet()) {
+        for (Map.Entry<Name, Name> entry : resultsMap.entrySet()) {
             System.out.println(entry.getKey() + " : " + entry.getValue());
         }
         System.out.println();

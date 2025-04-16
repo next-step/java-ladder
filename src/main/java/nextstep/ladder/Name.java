@@ -27,6 +27,11 @@ public class Name {
         return this.name.equals(name.name);
     }
 
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+
     private void validate(String name) {
         validateEmpty(name);
         validateLength(name);

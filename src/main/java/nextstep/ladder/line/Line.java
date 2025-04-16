@@ -15,6 +15,10 @@ public class Line {
         generateDirections(size);
     }
 
+    public Line(List<Direction> directions) {
+        this.directions = directions;
+    }
+
     public Direction getDirection(int index) {
         return directions.get(index);
     }
