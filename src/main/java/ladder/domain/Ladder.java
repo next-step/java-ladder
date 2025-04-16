@@ -1,37 +1,41 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ladder.exception.LadderInvalidException;
 
 public class Ladder {
-    private static final int MIN_HEIGHT = 1;
-    private static final int MIN_PERSON_COUNT = 2;
+    private static final int FIRST_INDEX = 0;
     private final List<Line> lines;
 
-    public Ladder(int ladderHeight, int countOfPersons) {
-        validateInput(ladderHeight, countOfPersons);
-        this.lines = createLines(ladderHeight, countOfPersons);
+    public Ladder(List<Line> lines) {
+        validate(lines);
+
+        this.lines = lines;
     }
 
-    private void validateInput(int ladderHeight, int countOfPersons) {
-        if (ladderHeight < MIN_HEIGHT || countOfPersons < MIN_PERSON_COUNT) {
+    private void validate(List<Line> lines) {
+        if (lines.isEmpty()) {
             throw new LadderInvalidException();
         }
-    }
 
-    private List<Line> createLines(int ladderHeight, int countOfPersons) {
-        List<Line> lines = new ArrayList<>();
-
-        for (int i = 0; i < ladderHeight; i++) {
-            lines.add(new Line(countOfPersons));
-        }
-
-        return lines;
+        lines.stream()
+            .filter(line -> line.getLinks().isEmpty())
+            .findAny()
+            .ifPresent(line -> {
+                throw new LadderInvalidException();
+            });
     }
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public int getHeight() {
+        return lines.size();
+    }
+
+    public int getWidth() {
+        return lines.get(FIRST_INDEX).getPoints().size();
     }
 }

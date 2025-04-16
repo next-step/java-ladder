@@ -1,32 +1,52 @@
 package ladder.domain;
 
+import java.util.Arrays;
 import java.util.List;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import ladder.exception.LineInvalidException;
-import ladder.strategy.LineCreationStrategy;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LineTest {
     @Test
-    @DisplayName("Line 생성 시 countOfPersons - 1 크기의 리스트가 생성되는지 확인")
-    void testConstructor() {
-        Line line = new Line(5);
+    @DisplayName("유효한 links 리스트로 Line 생성 성공")
+    void createLineWithValidLinks() {
+        List<Boolean> links = Arrays.asList(false, true, false, true, false);
 
-        assertThat(line.getPoints()).isNotNull();
-        assertThat(line.getPoints().size()).isEqualTo(4);
+        Line line = new Line(links);
+
+        Assertions.assertThat(line).isNotNull();
+        Assertions.assertThat(line.getLinks()).isEqualTo(links);
     }
 
     @Test
-    @DisplayName("Line 생성 시 validation 이 정상적으로 작동하는지 확인")
-    void testValidatePoints() {
-        LineCreationStrategy strategy = countOfPersons -> List.of(true, false, true, true);
-        assertThrows(LineInvalidException.class, () -> new Line(5, strategy));
+    @DisplayName("연속된 true 값이 있는 links 리스트로 Line 생성 시 예외 발생")
+    void createLineWithInvalidLinksThrowsException() {
+        List<Boolean> invalidLinks = Arrays.asList(false, true, true, false);
+
+        Assertions.assertThatThrownBy(() -> new Line(invalidLinks))
+            .isInstanceOf(LineInvalidException.class)
+            .hasMessage(null); // 예외 메시지가 있다면 추가 가능
     }
 
+    @Test
+    @DisplayName("빈 links 리스트로 Line 생성 시 예외 발생")
+    void createLineWithEmptyLinksThrowsException() {
+        List<Boolean> emptyLinks = List.of();
 
+        Assertions.assertThatThrownBy(() -> new Line(emptyLinks))
+            .isInstanceOf(LineInvalidException.class)
+            .hasMessage(null);
+    }
+
+    @Test
+    @DisplayName("null links 리스트로 Line 생성 시 예외 발생")
+    void createLineWithNullLinksThrowsException() {
+        List<Boolean> nullLinks = null;
+
+        Assertions.assertThatThrownBy(() -> new Line(nullLinks))
+            .isInstanceOf(NullPointerException.class); // NullPointerException 확인
+    }
 }
