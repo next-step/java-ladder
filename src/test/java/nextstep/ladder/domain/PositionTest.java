@@ -20,12 +20,30 @@ class PositionTest {
     }
 
     @Test
-    void moveByTest() {
+    void moveByLeftTest() {
+        Position position = new Position(1);
+
+        position = position.moveBy(List.of(true, false));
+
+        assertThat(position).isEqualTo(new Position(0));
+    }
+
+    @Test
+    void moveByRightTest() {
         Position position = new Position(1);
 
         position = position.moveBy(List.of(false, true));
 
         assertThat(position).isEqualTo(new Position(2));
+    }
+
+    @Test
+    void moveByStandTest() {
+        Position position = new Position(1);
+
+        position = position.moveBy(List.of(false, false));
+
+        assertThat(position).isEqualTo(new Position(1));
     }
 
     @Test
