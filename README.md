@@ -60,3 +60,4 @@
 - [x] 피드백
   - [x] LadderGameApplication RandomLineGenerator 상수로 분리
   - [x] Player 가 Result 를 필드로 가짐
+## 4단계
