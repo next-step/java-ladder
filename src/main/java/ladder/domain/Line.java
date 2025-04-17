@@ -5,16 +5,12 @@ import java.util.List;
 import java.util.Random;
 
 public class Line {
+    private static final Random RANDOM = new Random();
     private final List<Boolean> points = new ArrayList<>();
 
     public Line (int countOfPerson) {
-        Random random = new Random();
         for (int i = 0; i < countOfPerson - 1; i++) {
-            if (i > 0 && points.get(i - 1)) {
-                this.points.add(false);
-                continue;
-            }
-            this.points.add(random.nextBoolean());
+            points.add(createRandomPoint(i));
         }
     }
 
@@ -24,5 +20,12 @@ public class Line {
 
     public List<Boolean> getPoints() {
         return List.copyOf(points);
+    }
+
+    private boolean createRandomPoint(int index) {
+        if (index > 0 && points.get(index - 1)) {
+            return false;
+        }
+        return RANDOM.nextBoolean();
     }
 }
