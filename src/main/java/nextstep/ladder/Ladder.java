@@ -27,21 +27,7 @@ public class Ladder {
             String playerName = players.getPlayersNames().get(i);
             var cursor = i;
             for (Line line : lines.getLines()) {
-                if (cursor == 0) {
-                    if (line.getPoints().get(cursor)) {
-                        cursor++;
-                    }
-                } else if (cursor == players.size() - 1) {
-                    if (line.getPoints().get(cursor - 1)) {
-                        cursor--;
-                    }
-                } else {
-                    if (line.getPoints().get(cursor - 1)) {
-                        cursor--;
-                    } else if (line.getPoints().get(cursor)) {
-                        cursor++;
-                    }
-                }
+                cursor = line.calculateNextPosition(cursor);
             }
             resultMap.put(playerName, results.get(cursor));
         }
