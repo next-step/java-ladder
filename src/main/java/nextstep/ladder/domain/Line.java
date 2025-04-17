@@ -8,12 +8,12 @@ import java.util.Objects;
 public class Line {
     private final List<Boolean> points;
 
-    public Line(int countOfPerson, GeneratorStrategy strategy) {
-        this(createPoints(countOfPerson, strategy));
-    }
-
     public Line(List<Boolean> points) {
         this.points = points;
+    }
+
+    public Line(int countOfPerson, GeneratorStrategy strategy) {
+        this(createPoints(countOfPerson, strategy));
     }
 
     private static List<Boolean> createPoints(int countOfPerson, GeneratorStrategy strategy) {
@@ -31,6 +31,10 @@ public class Line {
 
     private static boolean isGenerateLine(boolean previousHasLine, GeneratorStrategy strategy) {
         return !previousHasLine && strategy.isGenerate();
+    }
+
+    public Player movePosition(Player player) {
+        return player.movePosition(points);
     }
 
     public List<Boolean> getPoints() {

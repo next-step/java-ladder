@@ -13,4 +13,11 @@ public class Lines {
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }
+
+    public Player moveLines(Player player) {
+        for (Line line : lines) {
+            player = line.movePosition(player);
+        }
+        return player;
+    }
 }
