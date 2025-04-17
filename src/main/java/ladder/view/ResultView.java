@@ -26,8 +26,8 @@ public class ResultView {
 
     private void printLadder(Ladder ladder) {
         String ladderString = ladder.getLines().stream()
-                .map(line -> line.getPoints().stream()
-                        .map(point -> point.hasPoint() ? "-----" : "     ")
+                .map(line -> line.stream()
+                        .map(hasPoint -> hasPoint ? "-----" : "     ")
                         .collect(Collectors.joining("|", "    |", "|"))
                 )
                 .collect(Collectors.joining("\n"));

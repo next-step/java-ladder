@@ -22,7 +22,7 @@ public class Ladder {
         }
     }
 
-    public int findResultIdx(int playerIdx) {
+    public int move(int playerIdx) {
         int idx = playerIdx;
         for (Line line : lines) {
             idx = line.move(idx);
@@ -30,7 +30,9 @@ public class Ladder {
         return idx;
     }
 
-    public List<Line> getLines() {
-        return List.copyOf(lines);
+    public List<List<Boolean>> getLines() {
+        return lines.stream()
+                .map(Line::getPoints)
+                .collect(Collectors.toList());
     }
 }

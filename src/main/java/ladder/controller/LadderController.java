@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LadderController {
+    private static final String ALL = "all";
     private final InputView inputView = new InputView();
     private final ResultView resultView = new ResultView();
 
@@ -31,7 +32,7 @@ public class LadderController {
     }
 
     private void branchResultBasedOnInput(String input, Players players, GameResult gameResult) {
-        if (input.equals("all")) {
+        if (input.equals(ALL)) {
             printAllResult(players, gameResult);
             return;
         }
