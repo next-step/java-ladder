@@ -1,6 +1,8 @@
 package ladder.view;
 
+import ladder.domain.LadderHeight;
 import ladder.domain.User;
+import ladder.domain.Users;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,19 +12,18 @@ import java.util.stream.Collectors;
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static List<User> getUsers() {
+    public static Users getUsers() {
         String userInput = getStringInput("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        List<User> users = Arrays.stream(userInput.split(","))
+        List<User> usersList = Arrays.stream(userInput.split(","))
                 .map(String::trim)
                 .map(User::new)
                 .collect(Collectors.toList());
-        return users;
+        return new Users(usersList);
     }
 
-    public static int getLadderHeight() {
+    public static LadderHeight getLadderHeight() {
         String userInput = getStringInput("최대 사다리 높이는 몇 개인가요?");
-        int height = Integer.parseInt(userInput);
-        return height;
+        return new LadderHeight(Integer.parseInt(userInput));
     }
 
     private static String getStringInput(String message) {

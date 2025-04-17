@@ -1,21 +1,16 @@
 package ladder.domain;
 
+import ladder.service.PointGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
     private final List<Line> lines = new ArrayList<>();
 
-    public Ladder(int countOfPerson, int height) {
-        for (int i = 0; i < height; i++) {
-            Line line = new Line(countOfPerson);
-            this.lines.add(line);
-        }
-    }
-
-    public Ladder(int countOfPerson, int height, List<List<Boolean>> points) {
-        for (int i = 0; i < height; i++) {
-            Line line = new Line(countOfPerson, points.get(i));
+    public Ladder(int countOfPerson, LadderHeight height, PointGenerator pointGenerator) {
+        for (int i = 0; i < height.getHeight(); i++) {
+            Line line = new Line(countOfPerson, pointGenerator);
             this.lines.add(line);
         }
     }

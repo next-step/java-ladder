@@ -1,18 +1,21 @@
 package ladder.controller;
 
 import ladder.domain.Ladder;
-import ladder.domain.User;
+import ladder.domain.LadderHeight;
+import ladder.domain.Users;
+import ladder.service.PointGenerator;
+import ladder.service.RandomPointGenerator;
 import ladder.view.InputView;
 import ladder.view.ResultView;
 
-import java.util.List;
-
 public class LadderController {
     public static void main(String[] args) {
-        List<User> users = InputView.getUsers();
-        int ladderHeight = InputView.getLadderHeight();
+        Users users = InputView.getUsers();
+        LadderHeight ladderHeight = InputView.getLadderHeight();
 
-        Ladder ladder = new Ladder(users.size(), ladderHeight);
+        int countOfPerson = users.count();
+        PointGenerator pointGenerator = new RandomPointGenerator();
+        Ladder ladder = new Ladder(countOfPerson, ladderHeight, pointGenerator);
 
         ResultView.printLadderGenerationResult(users, ladder);
     }

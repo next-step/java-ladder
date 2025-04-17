@@ -1,22 +1,19 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.User;
-import ladder.domain.Line;
+import ladder.domain.*;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
-    public static void printLadderGenerationResult(List<User> users, Ladder ladder) {
+    public static void printLadderGenerationResult(Users users, Ladder ladder) {
         System.out.println("실행결과\n");
         printUserNames(users);
         printLadder(ladder);
     }
 
-    public static void printUserNames(List<User> users) {
+    public static void printUserNames(Users users) {
         System.out.println(
-                users.stream()
+                users.getUsers().stream()
                         .map(user -> String.format("%6s", user.getName()))
                         .collect(Collectors.joining())
                         .trim()
@@ -30,9 +27,9 @@ public class ResultView {
     private static void printLine(Line line) {
         StringBuilder lineRepresentation = new StringBuilder();
         lineRepresentation.append(" ".repeat(4));
-        for (Boolean point : line.getPoints()) {
+        for (Point point : line.getPoints()) {
             lineRepresentation.append("|");
-            if (point) {
+            if (point.isConnected()) {
                 lineRepresentation.append("-".repeat(5));
             } else {
                 lineRepresentation.append(" ".repeat(5));
