@@ -8,10 +8,13 @@ public class Main {
 
     public static void main(String[] args) {
         var players = InputView.inputPlayerNames();
+        var results = InputView.inputResults();
         var height = InputView.inputHeight();
 
         var ladder = new Ladder(players, height);
 
-        OutputView.printResult(ladder);
+        OutputView.printResult(ladder, results);
+        OutputView.searchResult(ladder, results);
     }
 }
+
