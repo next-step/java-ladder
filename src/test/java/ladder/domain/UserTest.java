@@ -22,12 +22,4 @@ public class UserTest {
         User user = new User(name);
         assert user.getName().equals(name);
     }
-
-    @DisplayName("이름을 포맷한다.")
-    @Test
-    public void testFormatName() {
-        String name = "abcde";
-        User user = new User(name);
-        assert user.formatName().equals(" abcde");
-    }
 }

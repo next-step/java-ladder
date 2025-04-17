@@ -20,7 +20,7 @@ public class Ladder {
         }
     }
 
-    public void printLadder() {
-        this.lines.forEach(Line::printLine);
+    public List<Line> getLines() {
+        return List.copyOf(lines);
     }
 }

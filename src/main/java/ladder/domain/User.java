@@ -17,8 +17,4 @@ public class User {
     public String getName() {
         return this.name;
     }
-
-    public String formatName() {
-        return String.format("%6s", this.name);
-    }
 }
