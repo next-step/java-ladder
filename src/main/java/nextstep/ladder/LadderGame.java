@@ -14,25 +14,23 @@ public class LadderGame {
     public static void main(String[] args) {
         String names = InputView.inputNames();
         String[] nameArray = StringParser.parse(names);
-        Players players = Players.of(nameArray);
+        Names players = Names.of(nameArray);
 
         String resultString = InputView.inputResult();
         String[] resultArray = StringParser.parse(resultString);
 
-        Location height = new Location(InputView.inputLadderHeight());
+        Height height = new Height(InputView.inputLadderHeight());
         Lines lines = new Lines(height, players.size());
 
-        Results results = Results.of(resultArray, height);
+        Names results = Names.of(resultArray);
 
         ResultView.printLadder(players, lines, results);
 
-        players.move(lines);
-
-        Map<Entry, Entry> resultsMap = results.getResults(players);
+        Map<Name, Name> resultsMap = lines.getResults(players, results);
         printResults(resultsMap, players);
     }
 
-    private static void printResults(Map<Entry, Entry> resultsMap, Players players) {
+    private static void printResults(Map<Name, Name> resultsMap, Names players) {
         while (true) {
             String resultNameString = InputView.inputResultName();
 
@@ -52,8 +50,7 @@ public class LadderGame {
                 continue;
             }
 
-            Entry player = players.get(resultName);
-            Entry result = resultsMap.get(player);
+            Name result = resultsMap.get(resultName);
             ResultView.printResult(result);
         }
     }

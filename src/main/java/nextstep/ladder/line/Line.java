@@ -15,6 +15,25 @@ public class Line {
         generateDirections(size);
     }
 
+    public Line(List<Direction> directions) {
+        this.directions = directions;
+    }
+
+    public Direction getDirection(int index) {
+        return directions.get(index);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(VERTICAL_LINE);
+        for (int i = 0; i < directions.size() - 1; i++) {
+            sb.append(directions.get(i).toString());
+            sb.append(VERTICAL_LINE);
+        }
+        return sb.toString();
+    }
+
     private void generateDirections(int size) {
         Direction before = null;
         for (int i = 0; i < size; i++) {
@@ -31,20 +50,5 @@ public class Line {
         if (size < 0) {
             throw new IllegalArgumentException("사다리 길이는 0보다 작을 수 없습니다.");
         }
-    }
-
-    public Direction getDirection(int index) {
-        return directions.get(index);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(VERTICAL_LINE);
-        for (int i = 0; i < directions.size() - 1; i++) {
-            sb.append(directions.get(i).toString());
-            sb.append(VERTICAL_LINE);
-        }
-        return sb.toString();
     }
 }
