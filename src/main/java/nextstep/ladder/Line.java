@@ -12,7 +12,7 @@ public class Line {
     public Line(int playerCount, Random random) {
         this.points = new ArrayList<>();
 
-        for (int i = 0; i < playerCount; i++) {
+        for (int i = 0; i < playerCount-1; i++) {
             if (i == 0) {
                 points.add(random.nextBoolean());
             } else if (points.get(i-1) == true) {

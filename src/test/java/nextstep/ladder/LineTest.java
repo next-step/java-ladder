@@ -15,7 +15,7 @@ public class LineTest {
         var playerCount = 5;
         var trueLine = new Line(playerCount, new TrueRandom());
 
-        Assertions.assertThat(trueLine.getPoints()).isEqualTo(List.of(true, false, true, false, true));
+        Assertions.assertThat(trueLine.getPoints()).isEqualTo(List.of(true, false, true, false));
     }
 
     static class TrueRandom extends Random {
