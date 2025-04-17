@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -24,9 +25,15 @@ public class Lines {
                 .collect(Collectors.toList());
     }
 
-    public List<List<Boolean>> getList() {
-        return lines.stream()
-                .map(Line::getList)
-                .collect(Collectors.toUnmodifiableList());
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
+    }
+
+    public boolean hasSameHeight(int height) {
+        return lines.size() == height;
+    }
+
+    public boolean hasSameWidth(int width) {
+        return lines.stream().allMatch(line -> line.hasSameWidth(width));
     }
 }

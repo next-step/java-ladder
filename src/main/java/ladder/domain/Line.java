@@ -49,6 +49,10 @@ public class Line {
         return Collections.unmodifiableList(line);
     }
 
+    public boolean hasSameWidth(int width) {
+        return line.size() == width;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

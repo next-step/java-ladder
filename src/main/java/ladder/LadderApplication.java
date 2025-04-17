@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.domain.LadderFactory;
+import ladder.domain.Ladder;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -11,8 +11,8 @@ public class LadderApplication {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
-        LadderFactory ladderFactory = new LadderFactory(inputView.inputNames(), inputView.inputHeight());
-        outputView.printNames(ladderFactory.getNames());
-        outputView.printLadder(ladderFactory.getLadder());
+        Ladder ladder = new Ladder(inputView.inputNames(), inputView.inputHeight());
+        outputView.printNames(ladder.getNames());
+        outputView.printLadder(ladder.getLadder());
     }
 }

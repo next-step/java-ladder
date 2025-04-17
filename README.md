@@ -141,6 +141,8 @@ public class Line {
 - [x] InputView > `inputNames()` 입력 책임에 맞게 이름을 리스트로 제공해 주면 어떨까요? 그러면 비즈니스 로직에서 파싱할 필요가 없어져서 로직에만 집중할 수 있습니다.
 - [x] OutputView > `printLadders()` depth가 깊어보이는데 스트림과 메소드 추출을 활용하면 좋겠습니다!
 - [x] LineTest > `getLine()` 대신 `new Line()`으로 비교해 볼 수 있게 만들어봐도 좋겠네요
-- [ ] Lines > `validLadderLength()` 양수 값 객체를 만드는 방법도 있겠네요! `규칙 6: 모든 엔티티를 작게 유지한다.` 
-- [ ] LadderFactory > 상태를 가지는 대신 Factory가 객체를 생성해주는 방향으로 만들어보면 어떨까요? `var ladder = factory.line(names, hieght)`
+- [x] Lines > `validLadderLength()` 양수 값 객체를 만드는 방법도 있겠네요! `규칙 6: 모든 엔티티를 작게 유지한다.` 
+- [x] LadderFactory > 상태를 가지는 대신 Factory가 객체를 생성해주는 방향으로 만들어보면 어떨까요? `var ladder = factory.line(names, hieght)`
 - [x] Line > `createLine()` boolean 연산 값이 참일 때 라인 요소를 false로 세팅하네요. 가독성에 신경써서 이게 어떤 작업인지 메소드 이름을 통해 표현해 보면 좋겠습니다!
+- [x] Ladder > 여러 라인을 반환하는데 List<List<Boolean>>으로 내보내는 것이 오히려 캡슐화를 깨뜨리는 행위이지 않을까요? lines를 게터로 제공하고 View에서 게터를 이용하여 사다리의 출력 포맷을 결정하는 게 좋을 것 같아요
+- [ ] Line > 구성하는 요소(boolean)도 객체로 래핑해 보면 어떨까요?
