@@ -26,16 +26,4 @@ public class Line {
     public List<Boolean> getPoints() {
         return points;
     }
-
-    public int getFinalPosition(int startPosition) {
-        int position = startPosition;
-        for (int i = 0; i < points.size(); i++) {
-            if (position == i && points.get(i)) {
-                position++;
-            } else if (position == i + 1 && points.get(i)) {
-                position--;
-            }
-        }
-        return position;
-    }
 }
