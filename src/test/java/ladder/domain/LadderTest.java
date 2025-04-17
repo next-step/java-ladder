@@ -13,8 +13,9 @@ class LadderTest {
     void name() {
         int width = 4;
         int height = 4;
+        LadderSize ladderSize = new LadderSize(width, height);
 
-        Ladder ladder = Ladder.generate(width, height);
+        Ladder ladder = Ladder.generate(ladderSize);
 
         Assertions.assertThat(ladder.size()).isEqualTo(height);
     }

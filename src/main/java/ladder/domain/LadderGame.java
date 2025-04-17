@@ -22,7 +22,8 @@ public class LadderGame {
         Participants participants = new Participants(names);
         int width = participants.size() - 1;
 
-        Ladder ladder = Ladder.generate(width, height);
+        LadderSize ladderSize = new LadderSize(width, height);
+        Ladder ladder = Ladder.generate(ladderSize);
         resultView.printLadder(participants, ladder);
     }
 }
