@@ -25,4 +25,11 @@ public class InputView {
         System.out.println();
         return input;
     }
+
+    public static String inputPlayerNameToCheckResult() {
+        System.out.println("결과를 보고 싶은 사람은?");
+        String name = scanner.nextLine();
+        System.out.println();
+        return name;
+    }
 }
