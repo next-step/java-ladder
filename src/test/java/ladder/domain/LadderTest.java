@@ -15,21 +15,21 @@ class LadderTest {
     @Test
     @DisplayName("사다리 게임에 입력하는 사다리 높이는 양수여야 한다.")
     void validateLadderHeightShouldBeLargerThan0() {
-        assertThatThrownBy(() -> new Ladder(List.of("sunny", "univ"), -1, List.of("3000", "5000")))
+        assertThatThrownBy(() -> new Ladder(List.of("sunny", "univ"), List.of("3000", "5000"), -1))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("사다리 게임에 입력하는 참가자 수와 결과 수는 동일해야한다.")
     void validateHaveSameNamesAndResultsSize() {
-        assertThatCode(() -> new Ladder(List.of("sunny", "univ"), 1, List.of("3000", "5000"))).doesNotThrowAnyException();
-        assertThrows(IllegalArgumentException.class, () -> new Ladder(List.of("sunny", "univ"), 1, List.of("3000")));
+        assertThatCode(() -> new Ladder(List.of("sunny", "univ"), List.of("3000", "5000"), 1)).doesNotThrowAnyException();
+        assertThrows(IllegalArgumentException.class, () -> new Ladder(List.of("sunny", "univ"), List.of("3000"), 1));
     }
 
     @Test
     @DisplayName("사다리 타기는 (참여하는 사람의 수 - 1) 만큼 라인이 생성된다.")
     void getLines() {
-        Lines lines = new Ladder(List.of("red", "blue"), 2, () -> true, List.of("3000", "5000")).getLines();
+        Lines lines = new Ladder(List.of("red", "blue"), List.of("3000", "5000"),2, () -> true).getLines();
         assertTrue(lines.hasSameHeight(2));
         assertTrue(lines.hasSameWidth(1));
     }
@@ -37,20 +37,20 @@ class LadderTest {
     @Test
     @DisplayName("사다리 타기는 라인이 겹치지 않는다.")
     void lineShouldNotOverlap() {
-        Lines lines = new Ladder(List.of("red", "blue", "green"), 3, () -> true, List.of("3000", "5000", "꽝")).getLines();
+        Lines lines = new Ladder(List.of("red", "blue", "green"), List.of("3000", "5000", "꽝"), 3, () -> true).getLines();
         assertThat(lines.getLines()).allMatch(width -> !width.equals(List.of(true, true)));
     }
 
     @Test
     @DisplayName("사다리 타기 참여자의 이름을 얻는다.")
     void getNames() {
-        assertThat(new Ladder(List.of("red", "blue", "green"), 1, List.of("3000", "5000", "꽝")).getNames()).isEqualTo(new Names("red", "blue", "green"));
+        assertThat(new Ladder(List.of("red", "blue", "green"), List.of("3000", "5000", "꽝"), 1).getNames()).isEqualTo(new Names("red", "blue", "green"));
     }
 
     @Test
     @DisplayName("사다리 타기를 실행하여 결과를 받는다.")
     void runLadder() {
-        Ladder ladder = new Ladder(List.of("red", "blue", "green"), 1, () -> true, List.of("3000", "5000", "꽝"));
+        Ladder ladder = new Ladder(List.of("red", "blue", "green"), List.of("3000", "5000", "꽝"), 1, () -> true);
         LadderResult result = ladder.run();
         assertThat(result.getResult("red")).isEqualTo("5000");
         assertThat(result.getResult("blue")).isEqualTo("3000");

@@ -16,6 +16,9 @@ public class LadderResult {
     }
 
     public String getResult(String name) {
+        if (!result.containsKey(name)) {
+            throw new IllegalArgumentException("No such result: " + name);
+        }
         return result.get(name);
     }
 

@@ -1,25 +1,28 @@
 package ladder.view;
 
-import ladder.domain.Line;
-import ladder.domain.Lines;
-import ladder.domain.Names;
-import ladder.domain.Rung;
+import ladder.domain.*;
 
 import java.util.stream.Collectors;
 
 public class OutputView {
-    public void printNames(Names names) {
-        System.out.println("실행결과");
+    public void printLadder(Ladder ladder) {
+        System.out.println("사다리 결과");
         System.out.println();
 
-        names.getAll().stream()
-                .map(name -> String.format("%5s ", name))
-                .forEach(System.out::print);
-
+        printNames(ladder.getNames());
+        printLines(ladder.getLines());
+        printPrizes(ladder.getPrizes());
         System.out.println();
     }
 
-    public void printLadder(Lines lines) {
+    private void printNames(Names names) {
+        names.getAll().stream()
+                .map(name -> String.format("%5s ", name))
+                .forEach(System.out::print);
+        System.out.println();
+    }
+
+    private void printLines(Lines lines) {
         lines.getLines().stream()
                 .map(this::convertLine)
                 .forEach(System.out::println);
@@ -33,5 +36,25 @@ public class OutputView {
 
     private String convertRung(Rung rung) {
         return rung.isConnected() ? "-----" : "     ";
+    }
+
+    private void printPrizes(Prizes prizes) {
+        prizes.getPrizes().stream()
+                .map(name -> String.format("%5s ", name))
+                .forEach(System.out::print);
+        System.out.println();
+    }
+
+    public void printResult(LadderResult result, String name) {
+        System.out.println("실행 결과");
+        System.out.println(result.getResult(name));
+        System.out.println();
+    }
+
+    public void printAllResult(LadderResult result) {
+        System.out.println("실행 결과");
+        result.getResult().entrySet().stream()
+                .map(entry -> String.format("%s : %s", entry.getKey(), entry.getValue()))
+                .forEach(System.out::println);
     }
 }

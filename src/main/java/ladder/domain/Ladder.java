@@ -3,19 +3,17 @@ package ladder.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Ladder {
     private final Names names;
     private final Lines lines;
     private final Prizes prizes;
 
-    public Ladder(List<String> names, int height, List<String> prizes) {
-        this(names, height, new RandomRungGenerator(), prizes);
+    public Ladder(List<String> names, List<String> prizes, int height) {
+        this(names, prizes, height, new RandomRungGenerator());
     }
 
-    public Ladder(List<String> names, int height, RungGenerator rungGenerator, List<String> prizes) {
+    public Ladder(List<String> names, List<String> prizes, int height, RungGenerator rungGenerator) {
         validateSameSize(names, prizes);
         this.names = new Names(names);
         this.lines = new Lines(height, this.names.connectSize(), rungGenerator);
