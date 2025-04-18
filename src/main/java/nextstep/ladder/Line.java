@@ -7,17 +7,21 @@ import java.util.Random;
 public class Line {
     private final List<Boolean> points;
 
-    public Line(int playerCount, Random random) {
+    Line(int playerCount, Random random) {
         this.points = new ArrayList<>();
 
         for (int i = 0; i < playerCount - 1; i++) {
             if (i == 0) {
                 points.add(random.nextBoolean());
-            } else if (points.get(i - 1) == true) {
-                points.add(false);
-            } else {
-                points.add(random.nextBoolean());
+                continue;
             }
+
+            if (points.get(i - 1) == true) {
+                points.add(false);
+                continue;
+            }
+
+            points.add(random.nextBoolean());
         }
     }
 
@@ -30,22 +34,23 @@ public class Line {
     }
 
     public int calculateNextPosition(int cursor) {
-        if (cursor == 0) {
-            if (points.get(cursor)) {
-                cursor++;
-            }
-        } else if (cursor == points.size()) {
-            if (points.get(cursor - 1)) {
-                cursor--;
-            }
-        } else {
-            if (points.get(cursor - 1)) {
-                cursor--;
-            } else if (points.get(cursor)) {
-                cursor++;
-            }
+        if (cursor == 0 && points.get(cursor)) {
+            return ++cursor;
+        }
+
+        if (cursor == points.size() && points.get(cursor - 1)) {
+            return --cursor;
+        }
+
+        if (points.get(cursor - 1)) {
+            return --cursor;
+        }
+
+        if (points.get(cursor)) {
+            return ++cursor;
         }
 
         return cursor;
+
     }
 }
