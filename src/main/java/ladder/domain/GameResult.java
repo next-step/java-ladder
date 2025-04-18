@@ -10,7 +10,7 @@ public class GameResult {
     }
 
     public String getResultName(int playerIdx) {
-        int resultIdx = ladder.findResultIdx(playerIdx);
-        return results.getName(resultIdx);
+        int resultIdx = ladder.move(playerIdx);
+        return results.getNameAt(resultIdx);
     }
 }

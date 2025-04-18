@@ -14,7 +14,7 @@ public class Results {
         return results.size();
     }
 
-    public String getName(int idx) {
+    public String getNameAt(int idx) {
         return results.get(idx).getName();
     }
 
