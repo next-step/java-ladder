@@ -11,7 +11,7 @@ public class LadderApplication {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
-        Ladder ladder = new Ladder(inputView.inputNames(), inputView.inputHeight());
+        Ladder ladder = new Ladder(inputView.inputNames(), inputView.inputHeight(), inputView.inputPrizes());
         outputView.printNames(ladder.getNames());
         outputView.printLadder(ladder.getLines());
     }

@@ -1,7 +1,6 @@
 package ladder.domain;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,7 +14,7 @@ public class Names {
 
     public Names(List<String> names) {
         validateNameMaxLength(names);
-        this.names = names;
+        this.names = List.copyOf(names);
     }
 
     private void validateNameMaxLength(List<String> names) {
@@ -24,7 +23,7 @@ public class Names {
     }
 
     public List<String> getAll() {
-        return Collections.unmodifiableList(names);
+        return names;
     }
 
     public int connectSize() {
