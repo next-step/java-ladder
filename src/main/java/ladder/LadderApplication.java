@@ -1,7 +1,7 @@
 package ladder;
 
 import ladder.domain.Ladder;
-import ladder.domain.LadderResult;
+import ladder.domain.Results;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
@@ -16,11 +16,11 @@ public class LadderApplication {
         Ladder ladder = new Ladder(inputView.inputNames(), inputView.inputPrizes(), inputView.inputHeight());
         outputView.printLadder(ladder);
 
-        LadderResult result = ladder.run();
+        Results results = ladder.getResults();
         String name;
         while ((name = inputView.inputNameForResult()) != null){
-            outputView.printResult(result, name);
+            outputView.printResult(results, name);
         }
-        outputView.printAllResult(result);
+        outputView.printAllResult(results);
     }
 }

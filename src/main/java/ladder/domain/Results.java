@@ -1,13 +1,15 @@
 package ladder.domain;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class LadderResult {
+public class Results {
     private final Map<String, String> result;
+    private List<Result> results;
 
-    public LadderResult(Map<String, String> result) {
+    public Results(Map<String, String> result) {
         this.result = new HashMap<>(result);
     }
 
@@ -25,7 +27,7 @@ public class LadderResult {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        LadderResult that = (LadderResult) o;
+        Results that = (Results) o;
         return Objects.equals(result, that.result);
     }
 

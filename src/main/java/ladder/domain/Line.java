@@ -59,13 +59,17 @@ public class Line {
         return Objects.hashCode(rungs);
     }
 
-    public int move(int index) {
+    public int moveFrom(int point) {
+        if (isMoveToLeft(point)) return point - 1;
+        if (isMoveToRight(point)) return point + 1;
+        return point;
+    }
 
-        if(index>0 && rungs.get(index-1).isConnected())
-            return index-1;
-        else if(index < rungs.size() && rungs.get(index).isConnected())
-            return index+1;
-        else
-            return index;
+    private boolean isMoveToLeft(int point) {
+        return point > 0 && rungs.get(point - 1).isConnected();
+    }
+
+    private boolean isMoveToRight(int point) {
+        return point < rungs.size() && rungs.get(point).isConnected();
     }
 }

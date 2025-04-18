@@ -1,6 +1,5 @@
 package ladder.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,14 +37,11 @@ public class Lines {
         return lines.stream().allMatch(line -> line.hasSameWidth(width));
     }
 
-    public List<Integer> run(int points) {
-        List<Integer> result = new ArrayList<>();
-        for(int i = 0; i < points; i++) {
-            result.add(i);
-            for (Line line : lines) {
-                result.set(i, line.move(result.get(i)));
-            }
+    public int moveLinesFrom(int startPoint) {
+        int point = startPoint;
+        for (Line line : lines) {
+            point = line.moveFrom(point);
         }
-        return result;
+        return point;
     }
 }

@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -49,9 +48,9 @@ class LadderTest {
 
     @Test
     @DisplayName("사다리 타기를 실행하여 결과를 받는다.")
-    void runLadder() {
+    void getResultsLadder() {
         Ladder ladder = new Ladder(List.of("red", "blue", "green"), List.of("3000", "5000", "꽝"), 1, () -> true);
-        LadderResult result = ladder.run();
+        Results result = ladder.getResults();
         assertThat(result.getResult("red")).isEqualTo("5000");
         assertThat(result.getResult("blue")).isEqualTo("3000");
         assertThat(result.getResult("green")).isEqualTo("꽝");

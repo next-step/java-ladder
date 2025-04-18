@@ -1,8 +1,9 @@
 package ladder.domain;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Ladder {
     private final Names names;
@@ -25,13 +26,16 @@ public class Ladder {
             throw new IllegalArgumentException("The size of names and results do not match");
     }
 
-    public LadderResult run() {
-        List<Integer> indexResult = lines.run(names.size());
-        Map<String, String> result = new HashMap<>();
-        for (int i = 0; i < indexResult.size(); i++) {
-            result.put(names.get(i), prizes.get(indexResult.get(i)));
-        }
-        return new LadderResult(result);
+    public Results getResults() {
+        Map<String, String> results = IntStream.range(0, names.size())
+                .mapToObj(this::getResult)
+                .collect(Collectors.toMap(Result::getName, Result::getPrize));
+
+        return new Results(results);
+    }
+
+    private Result getResult(int point) {
+        return new Result(names.get(point), prizes.get(lines.moveLinesFrom(point)));
     }
 
     public Lines getLines() {

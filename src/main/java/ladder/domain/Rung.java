@@ -33,4 +33,5 @@ public class Rung {
     public int hashCode() {
         return Objects.hashCode(connected);
     }
+
 }

@@ -45,13 +45,13 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printResult(LadderResult result, String name) {
+    public void printResult(Results result, String name) {
         System.out.println("실행 결과");
         System.out.println(result.getResult(name));
         System.out.println();
     }
 
-    public void printAllResult(LadderResult result) {
+    public void printAllResult(Results result) {
         System.out.println("실행 결과");
         result.getResult().entrySet().stream()
                 .map(entry -> String.format("%s : %s", entry.getKey(), entry.getValue()))
