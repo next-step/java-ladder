@@ -30,19 +30,29 @@ public class LadderGame {
         ResultMapping resultMapping = new ResultMapping(participants, ladder, results);
 
         resultView.printLadder(participants, ladder, results);
+        findResults(resultMapping);
+    }
+
+    private void findResults(ResultMapping resultMapping) {
+        findSingleResult(resultMapping);
+        findFinalResults(resultMapping);
+    }
+
+    private void findSingleResult(ResultMapping resultMapping) {
         while (true) {
             String name = inputView.readNameToFindResult();
             if (name.equalsIgnoreCase("all")) {
-                for (String participantName : resultMapping.allParticipants()) {
-                    String result = resultMapping.findResult(participantName);
-                    resultView.printResult(participantName, result);
-                }
                 break;
             }
-
             String result = resultMapping.findResult(name);
             resultView.printResult(name, result);
         }
+    }
 
+    private void findFinalResults(ResultMapping resultMapping) {
+        for (String participantName : resultMapping.allParticipants()) {
+            String result = resultMapping.findResult(participantName);
+            resultView.printResult(participantName, result);
+        }
     }
 }
