@@ -28,7 +28,30 @@ public class Ladder {
         return Collections.unmodifiableList(lines);
     }
 
-    public int move(int i) {
-        return 0;
+    public int move(int index) {
+        for (Line line : lines) {
+            index = moveOneLine(index, line);
+        }
+        return index;
+    }
+
+    private int moveOneLine(int index, Line line) {
+        if (canMoveLeft(index, line)) {
+            return index - 1;
+        }
+
+        if (canMoveRight(index, line)) {
+            return index + 1;
+        }
+
+        return index;
+    }
+
+    private boolean canMoveLeft(int index, Line line) {
+        return index > 0 && line.isConnected(index - 1);
+    }
+
+    private boolean canMoveRight(int index, Line line) {
+        return index < line.width() && line.isConnected(index);
     }
 }
