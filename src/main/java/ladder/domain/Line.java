@@ -13,7 +13,6 @@ public class Line {
 
     public static Line generate(int width, ConnectionStrategy connectionStrategy) {
         List<Boolean> points = new ArrayList<>();
-        Random random = new Random();
         boolean prev = false;
 
         for (int i = 0; i < width; i++) {
