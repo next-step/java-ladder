@@ -1,32 +1,32 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Participant;
-import ladder.domain.Participants;
+import ladder.domain.*;
 
 public class ResultView {
 
     public static final String VERTICAL_LINE = "|";
     public static final String HORIZONTAL_LINE_CONNECTED = "|-----";
     public static final String HORIZONTAL_LINE = "|     ";
+    public static final String FORMAT_NAMES = "%-6s";
 
-    public void printLadder(Participants participants, Ladder ladder) {
+    public void printLadder(Participants participants, Ladder ladder, Results results) {
         System.out.println("실행결과");
         printParticipants(participants);
         printLadderLines(ladder);
+        printResults(results);
     }
 
     private void printParticipants(Participants participants) {
         for (Participant p : participants.list()) {
-            System.out.print(getNameFormat(p));
+            System.out.print(getListFormat(p));
         }
         System.out.println();
     }
 
-    private String getNameFormat(Participant p) {
-        return String.format("%-6s", p.getName());
+    private String getListFormat(Participant p) {
+        return String.format(FORMAT_NAMES, p.getName());
     }
+
 
     private void printLadderLines(Ladder ladder) {
         for (Line line : ladder.getLines()) {
@@ -41,5 +41,17 @@ public class ResultView {
         }
         sb.append(VERTICAL_LINE);
         return sb.toString();
+    }
+
+    private void printResults(Results results) {
+        for (Result r : results.list()) {
+            System.out.print(getListFormat(r));
+        }
+        System.out.println();
+    }
+
+
+    private String getListFormat(Result p) {
+        return String.format(FORMAT_NAMES, p.value());
     }
 }

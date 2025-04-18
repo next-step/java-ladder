@@ -18,14 +18,16 @@ public class LadderGame {
     public void run() {
         List<String> names = inputView.readParticipantNames();
         List<String> resultInputs = inputView.readLadderResults();
-        int height = inputView.readLadderHeight();
 
         Participants participants = new Participants(names);
+        Results results = new Results(resultInputs);
+        results.validateSize(participants.size());
+
+        int height = inputView.readLadderHeight();
         int width = participants.size() - 1;
         LadderSize ladderSize = new LadderSize(width, height);
         Ladder ladder = Ladder.generate(ladderSize, new RandomConnection());
-        Results results = new Results(resultInputs);
 
-        resultView.printLadder(participants, ladder);
+        resultView.printLadder(participants, ladder, results);
     }
 }
