@@ -7,11 +7,15 @@ import java.util.Set;
 public class ResultMapping {
     private final Map<String, String> mapping;
 
-    public ResultMapping(Participants participants, Ladder ladder, Results results) {
-        this.mapping = createMapping(participants, ladder, results);
+    public ResultMapping(LadderGameContext gameContext) {
+        this.mapping = createMapping(gameContext);
     }
 
-    private Map<String, String> createMapping(Participants participants, Ladder ladder, Results results) {
+    private Map<String, String> createMapping(LadderGameContext gameContext) {
+        Participants participants = gameContext.getParticipants();
+        Results results = gameContext.getResults();
+        Ladder ladder = gameContext.getLadder();
+
         Map<String, String> map = new HashMap<>();
         for (int i = 0; i < participants.size(); i++) {
             int endIndex = ladder.move(i);

@@ -16,6 +16,13 @@ public class LadderGame {
     }
 
     public void run() {
+        LadderGameContext gameContext = createGameContext();
+        ResultMapping resultMapping = new ResultMapping(gameContext);
+        resultView.printLadder(gameContext);
+        findResults(resultMapping);
+    }
+
+    private LadderGameContext createGameContext() {
         List<String> names = inputView.readParticipantNames();
         List<String> resultInputs = inputView.readLadderResults();
 
@@ -27,10 +34,8 @@ public class LadderGame {
         int width = participants.size() - 1;
         LadderSize ladderSize = new LadderSize(width, height);
         Ladder ladder = Ladder.generate(ladderSize, new RandomConnection());
-        ResultMapping resultMapping = new ResultMapping(participants, ladder, results);
 
-        resultView.printLadder(participants, ladder, results);
-        findResults(resultMapping);
+        return new LadderGameContext(participants, ladder, results);
     }
 
     private void findResults(ResultMapping resultMapping) {

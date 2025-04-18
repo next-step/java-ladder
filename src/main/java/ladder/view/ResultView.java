@@ -9,11 +9,11 @@ public class ResultView {
     public static final String HORIZONTAL_LINE = "|     ";
     public static final String FORMAT_NAMES = "%-6s";
 
-    public void printLadder(Participants participants, Ladder ladder, Results results) {
+    public void printLadder(LadderGameContext gameContext) {
         System.out.println("실행결과");
-        printParticipants(participants);
-        printLadderLines(ladder);
-        printResults(results);
+        printParticipants(gameContext.getParticipants());
+        printLadderLines(gameContext.getLadder());
+        printResults(gameContext.getResults());
     }
 
     private void printParticipants(Participants participants) {
