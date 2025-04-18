@@ -25,11 +25,9 @@ public class Ladder {
         Map<String, String> resultMap = new HashMap<>();
         for (int i = 0; i < players.size(); i++) {
             String playerName = players.getPlayersNames().get(i);
-            var cursor = i;
-            for (Line line : lines.getLines()) {
-                cursor = line.calculateNextPosition(cursor);
-            }
-            resultMap.put(playerName, results.get(cursor));
+            var playerIndex = i;
+            playerIndex = lines.calculateLastPosition(playerIndex);
+            resultMap.put(playerName, results.get(playerIndex));
         }
         return resultMap;
     }
