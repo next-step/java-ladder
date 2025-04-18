@@ -12,9 +12,10 @@ public class Main {
         var height = InputView.inputHeight();
 
         var ladder = new Ladder(players, height);
+        var report = ladder.report(results);
 
         OutputView.printResult(ladder, results);
-        OutputView.searchResult(ladder, results);
+        OutputView.searchResult(report);
     }
 }
 

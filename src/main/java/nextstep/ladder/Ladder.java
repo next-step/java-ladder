@@ -25,10 +25,14 @@ public class Ladder {
         Map<String, String> resultMap = new HashMap<>();
         for (int i = 0; i < players.size(); i++) {
             String playerName = players.getPlayersNames().get(i);
-            var playerIndex = i;
-            playerIndex = lines.calculateLastPosition(playerIndex);
-            resultMap.put(playerName, results.get(playerIndex));
+            var cursor = i;
+            cursor = lines.calculateLastPosition(cursor);
+            resultMap.put(playerName, results.get(cursor));
         }
         return resultMap;
+    }
+
+    public Report report(List<String> results) {
+        return new Report(calculateResults(results));
     }
 }
