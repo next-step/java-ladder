@@ -19,6 +19,16 @@ public class Line {
         return List.copyOf(points);
     }
 
+    int getNextIndex(int index) {
+        if (index < points.size() && points.get(index).isConnected()) {
+            return index + 1;
+        }
+        if (index > 0 && points.get(index - 1).isConnected()) {
+            return index - 1;
+        }
+        return index;
+    }
+
     private void validate() {
         for (int i = 0; i < points.size() - 1; i++) {
             if (points.get(i).isConnected() && points.get(i + 1).isConnected()) {

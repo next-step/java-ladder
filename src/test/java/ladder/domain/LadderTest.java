@@ -2,26 +2,57 @@ package ladder.domain;
 
 import ladder.service.PointGenerator;
 import ladder.service.StaticPointGenerator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
-import static ladder.support.TestConstants.POINTS;
+import static ladder.support.TestConstants.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LadderTest {
+    private Ladder ladder;
+    private Users users;
+    private LadderHeight height;
+    private Results results;
+
+    @BeforeEach
+    public void setUp() {
+        users = new Users(USERS);
+        height = new LadderHeight(5);
+        results = new Results(RESULTS);
+        PointGenerator pointGenerator = new StaticPointGenerator(POINTS);
+        ladder = new Ladder(users, results, height, pointGenerator);
+    }
+
     @DisplayName("Ladder 생성 테스트")
     @Test
-    void createLadderTest() {
-        int countOfPerson = 4;
-        LadderHeight height = new LadderHeight(5);
-        PointGenerator pointGenerator = new StaticPointGenerator(POINTS);
-        Ladder ladder = new Ladder(countOfPerson, height, pointGenerator);
-
+    public void createLadderTest() {
         List<Line> lines = ladder.getLines();
 
         assertEquals(height.getHeight(), lines.size());
-        assertEquals(countOfPerson - 1, lines.get(0).getPoints().size());
+        assertEquals(users.count() - 1, lines.get(0).getPoints().size());
+    }
+
+    @DisplayName("유저 결과 확인 테스트")
+    @Test
+    public void findResultTest() {
+        User targetUser = new User("pobi");
+        Result result = ladder.findResult(targetUser);
+
+        assertEquals(result.getValue(), "꽝");
+    }
+
+    @DisplayName("모든 결과 확인 테스트")
+    @Test
+    public void findResultAllTest() {
+        Map<User, Result> resultMap = ladder.findResultAll();
+
+        assertEquals(resultMap.get(new User("pobi")).getValue(), "꽝");
+        assertEquals(resultMap.get(new User("honux")).getValue(), "3000");
+        assertEquals(resultMap.get(new User("crong")).getValue(), "꽝");
+        assertEquals(resultMap.get(new User("jk")).getValue(), "5000");
     }
 }

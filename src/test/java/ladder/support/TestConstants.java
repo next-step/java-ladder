@@ -10,4 +10,12 @@ public class TestConstants {
             false, true, false,
             true, false, true
     );
+
+    public static final List<String> USERS = List.of(
+            "pobi", "honux", "crong", "jk"
+    );
+
+    public static final List<String> RESULTS = List.of(
+            "꽝", "5000", "꽝", "3000"
+    );
 }
