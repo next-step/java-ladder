@@ -7,15 +7,15 @@ public class Ladder {
     private final Lines lines;
 
     public Ladder(List<String> names, int height) {
-        this(names, height, new RandomLineGenerator());
+        this(names, height, new RandomRungGenerator());
     }
 
-    public Ladder(List<String> names, int height, LineGenerator lineGenerator) {
+    public Ladder(List<String> names, int height, RungGenerator rungGenerator) {
         this.names = new Names(names);
-        this.lines = new Lines(height, this.names.connectSize(), lineGenerator);
+        this.lines = new Lines(height, this.names.connectSize(), rungGenerator);
     }
 
-    public Lines getLadder() {
+    public Lines getLines() {
         return lines;
     }
 

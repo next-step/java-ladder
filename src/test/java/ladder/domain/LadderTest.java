@@ -20,8 +20,8 @@ class LadderTest {
 
     @Test
     @DisplayName("사다리 타기는 (참여하는 사람의 수 - 1) 만큼 라인이 생성된다.")
-    void getLadder() {
-        Lines lines = new Ladder(List.of("red", "blue"), 2, () -> true).getLadder();
+    void getLines() {
+        Lines lines = new Ladder(List.of("red", "blue"), 2, () -> true).getLines();
         assertTrue(lines.hasSameHeight(2));
         assertTrue(lines.hasSameWidth(1));
     }
@@ -29,7 +29,7 @@ class LadderTest {
     @Test
     @DisplayName("사다리 타기는 라인이 겹치지 않는다.")
     void lineShouldNotOverlap() {
-        Lines lines = new Ladder(List.of("red", "blue", "green"), 3, () -> true).getLadder();
+        Lines lines = new Ladder(List.of("red", "blue", "green"), 3, () -> true).getLines();
         assertThat(lines.getLines()).allMatch(width -> !width.equals(List.of(true, true)));
     }
 

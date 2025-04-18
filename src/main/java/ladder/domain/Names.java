@@ -7,18 +7,19 @@ import java.util.Objects;
 
 public class Names {
     private final List<String> names;
+    private static final int MAX_NAME_LENGTH = 5;
 
     public Names(String... names) {
         this(Arrays.asList(names));
     }
 
     public Names(List<String> names) {
-        this.names = names;
         validateNameMaxLength(names);
+        this.names = names;
     }
 
     private void validateNameMaxLength(List<String> names) {
-        if (names.stream().anyMatch(name -> name.length() > 5))
+        if (names.stream().anyMatch(name -> name.length() > MAX_NAME_LENGTH))
             throw new IllegalArgumentException("The name should be up to 5 letters.");
     }
 

@@ -1,5 +1,5 @@
 package ladder.domain;
 
-public interface LineGenerator {
+public interface RungGenerator {
     boolean isConnected();
 }

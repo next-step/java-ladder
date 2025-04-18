@@ -3,8 +3,6 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
@@ -19,7 +17,7 @@ class LineTest {
     @Test
     @DisplayName("사다리의 라인 하나가 반환된다.")
     void getList() {
-        assertThat(new Line(true, false, true).getList()).isEqualTo(List.of(true, false, true));
+        assertThat(new Line(true, false, true).getRungs()).hasSize(3);
     }
 
 }

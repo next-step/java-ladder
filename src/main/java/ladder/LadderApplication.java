@@ -13,6 +13,6 @@ public class LadderApplication {
 
         Ladder ladder = new Ladder(inputView.inputNames(), inputView.inputHeight());
         outputView.printNames(ladder.getNames());
-        outputView.printLadder(ladder.getLadder());
+        outputView.printLadder(ladder.getLines());
     }
 }

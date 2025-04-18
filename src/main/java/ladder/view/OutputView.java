@@ -3,8 +3,8 @@ package ladder.view;
 import ladder.domain.Line;
 import ladder.domain.Lines;
 import ladder.domain.Names;
+import ladder.domain.Rung;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -26,12 +26,12 @@ public class OutputView {
     }
 
     private String convertLine(Line line) {
-        return line.getList().stream()
-                .map(this::convertLineElement)
+        return line.getRungs().stream()
+                .map(this::convertRung)
                 .collect(Collectors.joining("|", "    |", "|"));
     }
 
-    private String convertLineElement(Boolean connected) {
-        return Boolean.TRUE.equals(connected) ? "-----" : "     ";
+    private String convertRung(Rung rung) {
+        return rung.isConnected() ? "-----" : "     ";
     }
 }

@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 public class Lines {
     private final List<Line> lines;
 
-    public Lines(int height, int width, LineGenerator generator) {
+    public Lines(int height, int width, RungGenerator generator) {
         validLadderLength(height);
         validLadderLength(width);
         this.lines = createLadder(height, width, generator);
@@ -19,7 +19,7 @@ public class Lines {
             throw new IllegalArgumentException("The ladder height should be larger than zero.");
     }
 
-    private List<Line> createLadder(int height, int width, LineGenerator generator) {
+    private List<Line> createLadder(int height, int width, RungGenerator generator) {
         return IntStream.range(0, height)
                 .mapToObj(i -> new Line(width, generator))
                 .collect(Collectors.toList());
