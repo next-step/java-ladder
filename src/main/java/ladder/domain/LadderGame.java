@@ -21,6 +21,7 @@ public class LadderGame {
         int height = inputView.readLadderHeight();
 
         Participants participants = new Participants(names);
+
         int width = participants.size() - 1;
 
         LadderSize ladderSize = new LadderSize(width, height);
