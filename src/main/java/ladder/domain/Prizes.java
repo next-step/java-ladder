@@ -12,4 +12,8 @@ public class Prizes {
     public List<String> getPrizes() {
         return prizes;
     }
+
+    public String get(int index) {
+        return prizes.get(index);
+    }
 }

@@ -27,4 +27,9 @@ class NamesTest {
         assertThat(new Names("red", "blue", "green").connectSize()).isEqualTo(2);
     }
 
+    @Test
+    @DisplayName("참여자 순번을 입력하면 참여자 이름을 반환한다.")
+    void getNameByIndex() {
+        assertThat(new Names("red", "blue").get(1)).isEqualTo("blue");
+    }
 }

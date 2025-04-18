@@ -3,6 +3,8 @@ package ladder.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -21,5 +23,12 @@ class LinesTest {
         assertThat(new Lines(3, 5, () -> true).getLines())
                 .hasSize(3)
                 .allMatch(line -> line.hasSameWidth(5));
+    }
+
+    @Test
+    @DisplayName("사다리타기 실행 결과를 반환한다.")
+    void getResult() {
+        Lines lines = new Lines(1, 2, () -> true);
+        assertThat(lines.run(3)).hasSize(3).isEqualTo(List.of(1, 0, 2));
     }
 }

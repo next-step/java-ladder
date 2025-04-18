@@ -59,4 +59,13 @@ public class Line {
         return Objects.hashCode(rungs);
     }
 
+    public int move(int index) {
+
+        if(index>0 && rungs.get(index-1).isConnected())
+            return index-1;
+        else if(index < rungs.size() && rungs.get(index).isConnected())
+            return index+1;
+        else
+            return index;
+    }
 }

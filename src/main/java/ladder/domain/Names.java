@@ -22,12 +22,20 @@ public class Names {
             throw new IllegalArgumentException("The name should be up to 5 letters.");
     }
 
+    public String get(int index) {
+        return names.get(index);
+    }
+
     public List<String> getAll() {
         return names;
     }
 
     public int connectSize() {
         return names.size() - 1;
+    }
+
+    public int size() {
+        return names.size();
     }
 
     @Override
