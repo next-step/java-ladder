@@ -54,4 +54,8 @@ public class ResultView {
     private String getListFormat(Result p) {
         return String.format(FORMAT_NAMES, p.value());
     }
+
+    public void printResult(String participantName, String result) {
+        System.out.println(participantName + " : " + result);
+    }
 }

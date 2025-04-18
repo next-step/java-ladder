@@ -27,7 +27,22 @@ public class LadderGame {
         int width = participants.size() - 1;
         LadderSize ladderSize = new LadderSize(width, height);
         Ladder ladder = Ladder.generate(ladderSize, new RandomConnection());
+        ResultMapping resultMapping = new ResultMapping(participants, ladder, results);
 
         resultView.printLadder(participants, ladder, results);
+        while (true) {
+            String name = inputView.readNameToFindResult();
+            if (name.equalsIgnoreCase("all")) {
+                for (String participantName : resultMapping.allParticipants()) {
+                    String result = resultMapping.findResult(participantName);
+                    resultView.printResult(participantName, result);
+                }
+                break;
+            }
+
+            String result = resultMapping.findResult(name);
+            resultView.printResult(name, result);
+        }
+
     }
 }
