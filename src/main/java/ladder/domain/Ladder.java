@@ -12,9 +12,9 @@ public class Ladder {
         this.lines = lines;
     }
 
-    public static Ladder generate(LadderSize ladderSize) {
+    public static Ladder generate(LadderSize ladderSize, ConnectionStrategy connectionStrategy) {
         List<Line> lines = IntStream.range(0, ladderSize.height())
-                .mapToObj(i -> Line.generate(ladderSize.width()))
+                .mapToObj(i -> Line.generate(ladderSize.width(), connectionStrategy))
                 .collect(Collectors.toList());
 
         return new Ladder(lines);
