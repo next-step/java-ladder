@@ -27,4 +27,14 @@ public class Lines {
     public List<Line> getLines() {
         return lines;
     }
+
+    public int calculateLastPosition(int playerIndex) {
+        int cursor = playerIndex;
+
+        for (Line line : lines) {
+            cursor = line.calculateNextPosition(cursor);
+        }
+
+        return cursor;
+    }
 }
