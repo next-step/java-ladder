@@ -30,10 +30,10 @@ public class Points {
     }
     
     public boolean hasLine(final Position position) {
-        if (!isValidPosition(position)) {
-            return false;
+        if (isValidPosition(position)) {
+            return points.get(position.getValue()).isConnected();
         }
-        return points.get(position.getValue()).isConnected();
+        return false;
     }
     
     public boolean isValidPosition(final Position position) {
