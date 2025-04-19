@@ -5,8 +5,8 @@ import nextstep.ladder.strategy.RandomPointGenerator;
 import java.util.Objects;
 
 public class Point {
-    private static final Point TRUE_POINT = new Point(true);
-    private static final Point FALSE_POINT = new Point(false);
+    private static final Point CONNECTED_POINT = new Point(true);
+    private static final Point DISCONNECTED_POINT = new Point(false);
     
     private final boolean connected;
     
@@ -15,7 +15,7 @@ public class Point {
     }
     
     public static Point of(final boolean connected) {
-        return connected ? TRUE_POINT : FALSE_POINT;
+        return connected ? CONNECTED_POINT : DISCONNECTED_POINT;
     }
     
     public static Point create(final RandomPointGenerator pointGenerator) {
