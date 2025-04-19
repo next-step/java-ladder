@@ -20,14 +20,23 @@ public class ResultView {
     public static void displaySingleResult(final String playerName, final Players players, final LadderResult ladderResult) {
         System.out.println("\n실행 결과");
         players.findByName(playerName)
-                .ifPresentOrElse(
-                        player -> System.out.println(ladderResult.getResult(player).getValue()),
-                        () -> System.out.println("해당하는 참가자를 찾을 수 없습니다."));
+                .ifPresentOrElse(player -> printPlayerResult(player, ladderResult),  ResultView::printPlayerNotFound);
+    }
+    
+    private static void printPlayerResult(Player player, LadderResult ladderResult) {
+        System.out.println(ladderResult.getResult(player).getValue());
+    }
+    
+    private static void printPlayerNotFound() {
+        System.out.println("해당하는 참가자를 찾을 수 없습니다.");
     }
     
     public static void displayAllResults(final LadderResult ladderResult) {
         System.out.println("\n실행 결과");
-        ladderResult.getAllResults()
-                .forEach((key, value) -> System.out.println(key.getName() + " : " + value.getValue()));
+        ladderResult.getAllResults().forEach(ResultView::printPlayerAndResult);
+    }
+    
+    private static void printPlayerAndResult(Player player, Result result) {
+        System.out.println(player.getName() + " : " + result.getValue());
     }
 }

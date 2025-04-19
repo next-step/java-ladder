@@ -21,13 +21,21 @@ public class LadderPrinter {
     private static void printHeader(final Players players) {
         StringBuilder header = new StringBuilder();
         List<String> playerNames = players.getNames();
+        appendPlayerNames(header, playerNames);
+        System.out.println(header);
+    }
+    
+    private static void appendPlayerNames(StringBuilder header, List<String> playerNames) {
         for (int i = 0; i < playerNames.size(); i++) {
             header.append(playerNames.get(i));
-            if (i < playerNames.size() - 1) {
-                header.append("  ");
-            }
+            appendSpaceIfNotLast(header, i, playerNames.size());
         }
-        System.out.println(header);
+    }
+    
+    private static void appendSpaceIfNotLast(StringBuilder header, int index, int size) {
+        if (index < size - 1) {
+            header.append("  ");
+        }
     }
 
     private static void printLadder(final Ladder ladder, final int playerCount) {
@@ -36,19 +44,24 @@ public class LadderPrinter {
 
     private static void printLine(final Line line, final int playerCount) {
         StringBuilder sb = new StringBuilder();
-        
+        buildLineString(sb, line, playerCount);
+        System.out.println(sb);
+    }
+    
+    private static void buildLineString(StringBuilder sb, Line line, int playerCount) {
         for (int i = 0; i < playerCount; i++) {
             if (i == 0) {
                 sb.append("    ");
             }
             
             sb.append(LINE);
-            
-            if (i < playerCount - 1) {
-                sb.append(line.hasLine(new Position(i)) ? BRIDGE : NO_BRIDGE);
-            }
+            appendBridgeIfNeeded(sb, line, i, playerCount);
         }
-        
-        System.out.println(sb);
+    }
+    
+    private static void appendBridgeIfNeeded(StringBuilder sb, Line line, int position, int playerCount) {
+        if (position < playerCount - 1) {
+            sb.append(line.hasLine(new Position(position)) ? BRIDGE : NO_BRIDGE);
+        }
     }
 } 

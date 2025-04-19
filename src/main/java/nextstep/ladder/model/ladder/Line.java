@@ -20,6 +20,10 @@ public class Line {
     }
 
     public Position movePosition(final Position position) {
+        return determineNextPosition(position);
+    }
+    
+    private Position determineNextPosition(final Position position) {
         if (position.getValue() > 0 && hasLine(position.moveLeft())) {
             return position.moveLeft();
         }

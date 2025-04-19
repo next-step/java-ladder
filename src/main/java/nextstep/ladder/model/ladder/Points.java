@@ -17,14 +17,16 @@ public class Points {
 
     public static Points create(final Players players, final RandomPointGenerator pointGenerator) {
         List<Point> generatedPoints = new ArrayList<>();
-        IntStream.range(0, players.count() - 1).forEach(i -> {
-            if (i > 0 && generatedPoints.get(i - 1).isConnected()) {
-                generatedPoints.add(Point.of(false));
-                return;
-            }
-            generatedPoints.add(Point.create(pointGenerator));
-        });
+        IntStream.range(0, players.count() - 1).forEach(i -> generatePoint(generatedPoints, i, pointGenerator));
         return new Points(generatedPoints);
+    }
+    
+    private static void generatePoint(final List<Point> generatedPoints, final int position, final RandomPointGenerator pointGenerator) {
+        if (position > 0 && generatedPoints.get(position - 1).isConnected()) {
+            generatedPoints.add(Point.of(false));
+            return;
+        }
+        generatedPoints.add(Point.create(pointGenerator));
     }
     
     public boolean hasLine(final Position position) {

@@ -26,18 +26,19 @@ public class LadderGame {
     }
     
     private static void processResultQueries(final Players players, final LadderResult ladderResult) {
-        while (true) {
-            String query = InputView.inputResultQuery();
-            if (query.isBlank()) {
-                break;
-            }
-            
-            if (query.equalsIgnoreCase(ALL_RESULTS)) {
-                ResultView.displayAllResults(ladderResult);
-                continue;
-            }
-
-            ResultView.displaySingleResult(query, players, ladderResult);
+        String query = InputView.inputResultQuery();
+        while (!query.isBlank()) {
+            processQuery(query, players, ladderResult);
+            query = InputView.inputResultQuery();
         }
+    }
+    
+    private static void processQuery(String query, Players players, LadderResult ladderResult) {
+        if (query.equalsIgnoreCase(ALL_RESULTS)) {
+            ResultView.displayAllResults(ladderResult);
+            return;
+        }
+
+        ResultView.displaySingleResult(query, players, ladderResult);
     }
 }

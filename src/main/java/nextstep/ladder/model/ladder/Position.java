@@ -6,10 +6,14 @@ public class Position {
     private final int value;
     
     public Position(final int value) {
+        validatePosition(value);
+        this.value = value;
+    }
+    
+    private void validatePosition(final int value) {
         if (value < 0) {
             throw new IllegalArgumentException("위치는 음수가 될 수 없습니다: " + value);
         }
-        this.value = value;
     }
     
     public Position moveLeft() {

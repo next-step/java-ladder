@@ -31,8 +31,10 @@ public class Ladder {
 
     public Position run(final Position startPosition) {
         return lines.stream()
-                .reduce(startPosition, 
-                        (position, line) -> line.movePosition(position), 
-                        (p1, p2) -> p2);
+                .reduce(startPosition, this::applyLineToPosition, (p1, p2) -> p2);
+    }
+    
+    private Position applyLineToPosition(final Position position, final Line line) {
+        return line.movePosition(position);
     }
 } 
