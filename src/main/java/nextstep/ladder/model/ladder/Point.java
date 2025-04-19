@@ -38,9 +38,4 @@ public class Point {
     public int hashCode() {
         return Objects.hash(connected);
     }
-    
-    @Override
-    public String toString() {
-        return connected ? "연결됨" : "연결되지 않음";
-    }
 } 
