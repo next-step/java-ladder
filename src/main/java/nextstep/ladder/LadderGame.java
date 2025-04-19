@@ -11,7 +11,6 @@ import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
 public class LadderGame {
-    private static final String ALL_RESULTS = "all";
     
     public static void main(final String[] args) {
         Players players = InputView.inputPlayers();
@@ -34,7 +33,7 @@ public class LadderGame {
     }
     
     private static void processQuery(String query, Players players, LadderResult ladderResult) {
-        if (query.equalsIgnoreCase(ALL_RESULTS)) {
+        if (query.equalsIgnoreCase(InputView.ALL_RESULTS)) {
             ResultView.displayAllResults(ladderResult);
             return;
         }
