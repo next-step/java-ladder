@@ -16,7 +16,7 @@ public class LadderResult {
     public LadderResult(final Players players, final List<Result> resultValues, final Ladder ladder) {
         this.results = IntStream.range(0, players.count())
                 .boxed()
-                .collect(Collectors.toMap(players::get, i -> resultValues.get(ladder.run(new Position(i)).getValue())));
+                .collect(Collectors.toMap(players::get, i -> resultValues.get(ladder.run(new Position(i)).getIndex())));
     }
     
     public Result getResult(final Player player) {

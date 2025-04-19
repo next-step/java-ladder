@@ -59,7 +59,7 @@ public class LineTest {
         
         @Override
         public boolean hasLine(Position position) {
-            return position.getValue() == 0;
+            return position.getIndex() == 0;
         }
     }
 } 

@@ -24,7 +24,7 @@ public class Line {
     }
     
     private Position determineNextPosition(final Position position) {
-        if (position.getValue() > 0 && hasLine(position.moveLeft())) {
+        if (position.getIndex() > 0 && hasLine(position.moveLeft())) {
             return position.moveLeft();
         }
         

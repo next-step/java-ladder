@@ -31,13 +31,13 @@ public class Points {
     
     public boolean hasLine(final Position position) {
         if (isValidPosition(position)) {
-            return points.get(position.getValue()).isConnected();
+            return points.get(position.getIndex()).isConnected();
         }
         return false;
     }
     
     public boolean isValidPosition(final Position position) {
-        return position.getValue() >= 0 && position.getValue() < points.size();
+        return position.getIndex() >= 0 && position.getIndex() < points.size();
     }
     
     public int size() {

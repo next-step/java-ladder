@@ -15,7 +15,7 @@ public class PositionTest {
     @DisplayName("위치 생성 테스트")
     void createPosition() {
         Position position = new Position(1);
-        assertThat(position.getValue()).isEqualTo(1);
+        assertThat(position.getIndex()).isEqualTo(1);
     }
     
     @ParameterizedTest
@@ -34,7 +34,7 @@ public class PositionTest {
         Position position = new Position(initialPosition);
         Position movedPosition = position.moveLeft();
         
-        assertThat(movedPosition.getValue()).isEqualTo(expectedPosition);
+        assertThat(movedPosition.getIndex()).isEqualTo(expectedPosition);
     }
     
     @Test
@@ -53,7 +53,7 @@ public class PositionTest {
         Position position = new Position(initialPosition);
         Position movedPosition = position.moveRight();
         
-        assertThat(movedPosition.getValue()).isEqualTo(expectedPosition);
+        assertThat(movedPosition.getIndex()).isEqualTo(expectedPosition);
     }
     
     @ParameterizedTest
