@@ -4,6 +4,7 @@ import java.util.List;
 
 import nextstep.ladder.model.ladder.Height;
 import nextstep.ladder.model.ladder.Ladder;
+import nextstep.ladder.model.ladder.LadderFactory;
 import nextstep.ladder.model.result.LadderResult;
 import nextstep.ladder.model.player.Players;
 import nextstep.ladder.model.result.Result;
@@ -17,7 +18,7 @@ public class LadderGame {
         List<Result> results = InputView.inputResults();
         Height height = InputView.inputHeight();
         
-        Ladder ladder = new Ladder(players, height);
+        Ladder ladder = LadderFactory.create(players, height);
         LadderResult ladderResult = new LadderResult(players, results, ladder);
         
         ResultView.displayLadder(ladder, players, results);

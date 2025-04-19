@@ -1,32 +1,18 @@
 package nextstep.ladder.model.ladder;
 
-import nextstep.ladder.model.player.Players;
-import nextstep.ladder.strategy.DefaultRandomPointGenerator;
-import nextstep.ladder.strategy.RandomPointGenerator;
-
 import java.util.List;
-import java.util.stream.IntStream;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class Ladder {
     private final List<Line> lines;
 
-    public Ladder(final Players players, final Height height) {
-        this(players, height, new DefaultRandomPointGenerator());
-    }
-    
-    public Ladder(final Players players, final Height height, final RandomPointGenerator pointGenerator) {
-        this.lines = createLadder(players, height, pointGenerator);
-    }
-    
-    private List<Line> createLadder(final Players players, final Height height, final RandomPointGenerator pointGenerator) {
-        return IntStream.range(0, height.getValue())
-                .mapToObj(i -> new Line(players, pointGenerator))
-                .collect(Collectors.toList());
+    public Ladder(final List<Line> lines) {
+        this.lines = new ArrayList<>(lines);
     }
 
     public List<Line> getLines() {
-        return lines;
+        return new ArrayList<>(lines);
     }
 
     public Position run(final Position startPosition) {
@@ -36,5 +22,18 @@ public class Ladder {
     
     private Position applyLineToPosition(final Position position, final Line line) {
         return line.movePosition(position);
+    }
+    
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ladder ladder = (Ladder) o;
+        return Objects.equals(lines, ladder.lines);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(lines);
     }
 } 

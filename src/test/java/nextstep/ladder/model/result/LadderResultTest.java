@@ -2,6 +2,8 @@ package nextstep.ladder.model.result;
 
 import nextstep.ladder.model.ladder.Height;
 import nextstep.ladder.model.ladder.Ladder;
+import nextstep.ladder.model.ladder.LadderFactory;
+import nextstep.ladder.model.ladder.Line;
 import nextstep.ladder.model.ladder.Position;
 import nextstep.ladder.model.player.Player;
 import nextstep.ladder.model.player.Players;
@@ -12,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -30,7 +33,7 @@ public class LadderResultTest {
         Result result3 = new Result("5000원");
         List<Result> resultValues = Arrays.asList(result1, result2, result3);
 
-        Ladder ladder = new Ladder(players, new Height(1), new TestPointGenerator(false));
+        Ladder ladder = LadderFactory.create(players, new Height(1), new TestPointGenerator(false));
         LadderResult ladderResult = new LadderResult(players, resultValues, ladder);
 
         assertThat(ladderResult.getResult(pobi)).isEqualTo(result1);
@@ -49,7 +52,7 @@ public class LadderResultTest {
         Result result2 = new Result("꽝");
         List<Result> resultValues = Arrays.asList(result1, result2);
 
-        Ladder ladder = new Ladder(players, new Height(1), new TestPointGenerator(false));
+        Ladder ladder = LadderFactory.create(players, new Height(1), new TestPointGenerator(false));
         LadderResult ladderResult = new LadderResult(players, resultValues, ladder);
 
         Map<Player, Result> allResults = ladderResult.getAllResults();
@@ -69,7 +72,7 @@ public class LadderResultTest {
         Result result2 = new Result("꽝");
         List<Result> resultValues = Arrays.asList(result1, result2);
 
-        Ladder ladder = new Ladder(players, new Height(1), new TestPointGenerator(false)) {
+        Ladder ladder = new Ladder(new ArrayList<>()) {
             @Override
             public Position run(final Position start) {
                 if (start.equals(new Position(0))) {
