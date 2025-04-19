@@ -1,12 +1,20 @@
 package ladder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
     private final List<Point> points;
 
-    public Line(List<Point> points) {
-        this.points = points;
+    public Line(int countOfPersons, PointStrategy strategy) {
+        List<Point> line = new ArrayList<>();
+        boolean prev = false;
+        for (int i = 0; i < countOfPersons - 1; i++) {
+            boolean current = !prev && strategy.generate();
+            line.add(new Point(current));
+            prev = current;
+        }
+        this.points = line;
     }
 
     public int move(int index) {
@@ -21,6 +29,10 @@ public class Line {
 
     public boolean canMoveRight(int index) {
         return index < points.size() && points.get(index).hasRight();
+    }
+
+    public int size() {
+        return points.size();
     }
 
 }
