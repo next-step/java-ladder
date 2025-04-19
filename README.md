@@ -61,3 +61,6 @@
   - [x] LadderGameApplication RandomLineGenerator 상수로 분리
   - [x] Player 가 Result 를 필드로 가짐
 ## 4단계
+- [ ] 3단계 피드백
+  - [ ] playerMap 이름 변경
+  - [ ] Position add, subtract 메소드명 변경
