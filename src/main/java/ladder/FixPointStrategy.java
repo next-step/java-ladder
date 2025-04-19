@@ -12,7 +12,7 @@ public class FixPointStrategy implements PointStrategy{
     }
     @Override
     public boolean generate() {
-        if (index > points.size()) {
+        if (index >= points.size()) {
             return false;
         }
         return points.get(index++);
