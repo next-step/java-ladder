@@ -35,4 +35,8 @@ public class Line {
         return points.size();
     }
 
+    public List<Point> points() {
+        return List.copyOf(points);
+    }
+
 }
