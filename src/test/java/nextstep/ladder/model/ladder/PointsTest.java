@@ -22,8 +22,8 @@ public class PointsTest {
     }
     
     @Test
-    @DisplayName("연속된 가로 라인 생성 방지 규칙 테스트")
-    void preventConsecutiveTruePoints() {
+    @DisplayName("인접한 두 지점에 동시에 가로 라인이 생성되지 않도록 하는 규칙 테스트")
+    void ensureAdjacentPositionsCannotBothHaveLines() {
         Players players = createPlayersWithCount(5);
         Points points = Points.create(players, new TestPointGenerator(true));
 

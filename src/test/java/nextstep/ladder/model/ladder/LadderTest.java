@@ -24,8 +24,8 @@ public class LadderTest {
     }
     
     @Test
-    @DisplayName("특정 패턴의 사다리 실행 테스트")
-    void runLadderWithCustomPattern() {
+    @DisplayName("첫 번째와 두 번째 위치가 서로 교환되는 사다리 패턴 테스트")
+    void runLadderWithPositionSwapPattern() {
         Players players = createTestPlayers();
         Ladder ladder = new Ladder(players, new Height(2), new TestPointGenerator(true)) {
             @Override
