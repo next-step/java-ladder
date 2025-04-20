@@ -210,4 +210,5 @@ jk : 5000
 - [x] Rung > 첫번째 Rung 생성하기 위해 null 입력 대신 Rung.create(generator)을 추가로 만들어도 좋을 것 같네요
 - [ ] Results > 키, 밸류 모두 String 타입이라 사용하는 측에서는 바로 파악하기가 어려울 것 같아요. 
   - 함수 네이밍을 nameToPrizeResults 같은 표현으로 나타내도 좋고 javadoc을 이용해서 어떤 값이 반환되는지 작성하면 좋을 것 같아요
-- [ ] LadderApplication > null을 제어 흐름에 사용하는 것은 알맞지 않은 것 같아요! depth가 신경쓰인다면 메소드 추출을 통해서도 해결할 수 있을 것 같습니다!
+- [x] LadderApplication > null을 제어 흐름에 사용하는 것은 알맞지 않은 것 같아요! depth가 신경쓰인다면 메소드 추출을 통해서도 해결할 수 있을 것 같습니다!
+  - Robert C. Martin의 Clean Code (138p): "null을 반환하지 마라. null을 반환하는 대신 예외를 던지거나 특수 사례 객체를 반환하라."

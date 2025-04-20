@@ -18,9 +18,13 @@ public class LadderApplication {
 
         Results results = ladder.getResults();
         String name;
-        while ((name = inputView.inputNameForResult()) != null){
+        while (isNotAll(name = inputView.inputNameForResult())) {
             outputView.printResult(results, name);
         }
         outputView.printAllResult(results);
+    }
+
+    public static boolean isNotAll(String name) {
+        return !"all".equals(name);
     }
 }
