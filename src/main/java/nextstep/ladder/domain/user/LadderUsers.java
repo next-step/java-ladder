@@ -39,7 +39,11 @@ public class LadderUsers {
     }
 
     public LadderUsers move(Line line) {
-        return new LadderUsers(ladderUsers.stream().map(ladderUser -> ladderUser.move(line)).collect(Collectors.toList()));
+        return new LadderUsers(
+            ladderUsers.stream()
+                .map(ladderUser -> ladderUser.move(line))
+                .collect(Collectors.toList())
+        );
     }
 
     public LadderUser get(int index) {

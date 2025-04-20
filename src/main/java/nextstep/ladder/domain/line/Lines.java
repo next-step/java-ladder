@@ -25,7 +25,9 @@ public class Lines {
     }
 
     public List<List<Boolean>> getvalue() {
-        return value.stream().map(Line::getValue).collect(Collectors.toList());
+        return value.stream()
+            .map(Line::getValue)
+            .collect(Collectors.toList());
     }
 
     public LadderUsers moveUsers(LadderUsers users) {
