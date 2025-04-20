@@ -5,17 +5,17 @@ import java.util.Objects;
 public class Rung {
     private final boolean connected;
 
-    public Rung(boolean connected) {
+    protected Rung(boolean connected) {
         this.connected = connected;
     }
 
-    public static Rung create(RungGenerator generator, Rung previous) {
-        boolean isConnected = canConnect(previous) && generator.isConnected();
-        return new Rung(isConnected);
+    public static Rung create(RungGenerator generator) {
+        return new Rung(generator.isConnected());
     }
 
-    private static boolean canConnect(Rung other) {
-        return other == null || !other.connected;
+    public Rung createNext(RungGenerator generator) {
+        boolean isConnected = !this.connected && generator.isConnected();
+        return new Rung(isConnected);
     }
 
     public boolean isConnected() {

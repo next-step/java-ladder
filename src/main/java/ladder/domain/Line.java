@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Line {
     private final List<Rung> rungs;
@@ -32,10 +33,9 @@ public class Line {
             throw new IllegalArgumentException("Line size should be greater than 0");
         }
 
-        RungFactory factory = new RungFactory(generator);
-        return IntStream.range(0, size)
-                .mapToObj(i -> factory.createNextRung())
-                .collect(Collectors.toList());
+        return Stream.iterate(Rung.create(generator), previous -> previous.createNext(generator))
+                .limit(size)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public List<Rung> getRungs() {

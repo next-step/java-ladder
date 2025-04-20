@@ -10,19 +10,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class RungTest {
 
     @Test
-    @DisplayName("이전 사다리 가로대가 없으면 정책에 따라서 생성한다.")
-    void createWithNonPrevious() {
-        assertThat(Rung.create(() -> true, null)).isEqualTo(new Rung(true));
-        assertThat(Rung.create(() -> true, new Rung(false))).isEqualTo(new Rung(true));
-        assertThat(Rung.create(() -> false, null)).isEqualTo(new Rung(false));
-        assertThat(Rung.create(() -> false, new Rung(false))).isEqualTo(new Rung(false));
+    @DisplayName("첫번 째 사다리 가로대를 생성한다.")
+    void createFirstRung() {
+        assertThat(Rung.create(() -> true)).isEqualTo(new Rung(true));
+        assertThat(Rung.create(() -> false)).isEqualTo(new Rung(false));
     }
 
     @Test
-    @DisplayName("이전 사다리 가로대가 있으면 정책에 따라서 생성한다.")
-    void createWithPrevious() {
-        assertThat(Rung.create(() -> true, new Rung(true))).isEqualTo(new Rung(false));
-        assertThat(Rung.create(() -> false, new Rung(true))).isEqualTo(new Rung(false));
+    @DisplayName("이전 사다리 가로대가 없으면 정책에 따라서 생성한다.")
+    void createNextWithNonPrevious() {
+        assertThat(new Rung(true).createNext(() -> true)).isEqualTo(new Rung(false));
+        assertThat(new Rung(true).createNext(() -> false)).isEqualTo(new Rung(false));
+        assertThat(new Rung(false).createNext(() -> true)).isEqualTo(new Rung(true));
+        assertThat(new Rung(false).createNext(() -> false)).isEqualTo(new Rung(false));
     }
 
     @Test
