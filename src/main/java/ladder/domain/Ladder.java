@@ -15,7 +15,7 @@ public class Ladder {
     }
 
     private void validate(List<Line> lines) {
-        if (lines.isEmpty()) {
+        if (lines == null || lines.isEmpty()) {
             throw new LadderInvalidException();
         }
 
