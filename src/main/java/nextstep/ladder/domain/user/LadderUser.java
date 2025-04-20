@@ -23,14 +23,13 @@ public class LadderUser {
     }
 
     public LadderUser move(Line line) {
-        if (position.canMoveLeft(line)) {
-            return new LadderUser(name, position.moveLeft());
+        Position current = position.tryMoveLeft(line);
+
+        if (current.equals(position)) {
+            current = position.tryMoveRight(line);
         }
 
-        if (position.canMoveRight(line)) {
-            return new LadderUser(name, position.moveRight());
-        }
-        return this;
+        return new LadderUser(name, current);
     }
 
     public boolean isSameName(LadderUser ladderUser) {
