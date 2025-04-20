@@ -62,4 +62,7 @@
   - [x] Player 가 Result 를 필드로 가짐
 ## 4단계
 - [x] 3단계 피드백
-  - [x] playerMap 이름 변경
+  - [ ] playerMap 이름 변경
+  - [ ] LadderGameTest 단위 테스트 추가
+  - [ ] 상수 위치 조정
+  - [ ] Players 메서드 순서 정리
