@@ -20,4 +20,13 @@ public class PersonName {
     public String getName() {
         return name;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append(" ".repeat((9 - name.length()) / 2));
+        sb.append(name);
+        sb.append(" ".repeat(9 - sb.length()));
+        return sb.toString();
+    }
 }
