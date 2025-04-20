@@ -1,13 +1,11 @@
 package ladder.domain;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 public class Results {
     private final Map<String, String> result;
-    private List<Result> results;
 
     public Results(Map<String, String> result) {
         this.result = new HashMap<>(result);
