@@ -16,7 +16,10 @@ public class LadderUsers {
         }
 
         boolean hasDuplicatedName = ladderUsers.stream()
-            .flatMap(user1 -> ladderUsers.stream().filter(user2 -> user1 != user2 && user1.isSameName(user2)))
+            .flatMap(user1 ->
+                ladderUsers.stream()
+                    .filter(user2 -> user1 != user2 && user1.isSameName(user2))
+            )
             .findAny()
             .isPresent();
         if (hasDuplicatedName) {
@@ -24,7 +27,10 @@ public class LadderUsers {
         }
 
         boolean hasDuplicatedPosition = ladderUsers.stream()
-            .flatMap(user1 -> ladderUsers.stream().filter(user2 -> user1 != user2 && user1.isSamePosition(user2)))
+            .flatMap(user1 ->
+                ladderUsers.stream()
+                    .filter(user2 -> user1 != user2 && user1.isSamePosition(user2))
+            )
             .findAny()
             .isPresent();
         if (hasDuplicatedPosition) {
@@ -51,7 +57,9 @@ public class LadderUsers {
     }
 
     public List<String> getLadderUserNames() {
-        return ladderUsers.stream().map(LadderUser::getName).collect(Collectors.toList());
+        return ladderUsers.stream()
+            .map(LadderUser::getName)
+            .collect(Collectors.toList());
     }
 
     public LadderPrizes selectPrizes(LadderPrizes ladderPrizes) {

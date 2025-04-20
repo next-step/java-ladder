@@ -20,13 +20,17 @@ public class LadderGameSystem {
 
     public static void main(String[] args) {
         List<String> names = InputView.showNamesInput();
-        LadderUsers ladderUsers = new LadderUsers(IntStream.range(0, names.size())
-            .mapToObj(i -> new LadderUser(names.get(i), new Position(i))).collect(Collectors.toList())
+        LadderUsers ladderUsers = new LadderUsers(
+            IntStream.range(0, names.size())
+                .mapToObj(i -> new LadderUser(names.get(i), new Position(i)))
+                .collect(Collectors.toList())
         );
 
         List<String> prizes = InputView.showResultsInput();
-        LadderPrizes ladderPrizes = new LadderPrizes(prizes.stream()
-            .map(LadderPrize::new).collect(Collectors.toList())
+        LadderPrizes ladderPrizes = new LadderPrizes(
+            prizes.stream()
+                .map(LadderPrize::new)
+                .collect(Collectors.toList())
         );
 
         Dimension dimension = new Dimension(InputView.showLadderHeightInput());
