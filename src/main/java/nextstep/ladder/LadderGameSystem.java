@@ -8,6 +8,7 @@ import nextstep.ladder.domain.user.LadderUser;
 import nextstep.ladder.domain.user.LadderUsers;
 import nextstep.ladder.domain.user.Position;
 import nextstep.ladder.dto.LadderDto;
+import nextstep.ladder.factory.LadderDtoFactory;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
@@ -29,7 +30,9 @@ public class LadderGameSystem {
         );
 
         Dimension dimension = new Dimension(InputView.showLadderHeightInput());
-        LadderDto ladderDto = new Ladder(ladderUsers, ladderPrizes, dimension).toLadderDto();
+        LadderDtoFactory ladderDtoFactory = new LadderDtoFactory();
+        Ladder ladder = new Ladder(ladderUsers, ladderPrizes, dimension);
+        LadderDto ladderDto = ladderDtoFactory.create(ladder);
 
         OutputView.showLadderResult(ladderDto);
         OutputView.showLadderUserResult(ladderDto);

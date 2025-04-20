@@ -28,26 +28,20 @@ public class Ladder {
         this.lines = new Lines(new Dimension(ladderUsers.size()), height, lineFactory);
     }
 
-    public List<String> getUsersName() {
+    public List<String> getUsersNames() {
         return ladderUsers.getLadderUserNames();
     }
 
-    public List<String> getPrizesValue() {
+    public List<String> getPrizes() {
         return ladderPrizes.getLadderPrizes();
+    }
+
+    public List<List<Boolean>> getLadder() {
+        return lines.getvalue();
     }
 
     public LadderResult simulate() {
         LadderUsers moved = lines.moveUsers(ladderUsers);
         return new LadderResult(moved, moved.selectPrizes(ladderPrizes));
-    }
-
-    public LadderDto toLadderDto() {
-        return null;
-//        return new LadderDto(
-//            ladderConfig.getUsersName(),
-//            lines.getvalue(),
-//            ladderConfig.getPrizesValue(),
-//            ladderConfig.getResultString(lines)
-//        );
     }
 }
