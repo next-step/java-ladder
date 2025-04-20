@@ -19,12 +19,12 @@ import java.util.stream.IntStream;
 public class LadderGameSystem {
 
     public static void main(String[] args) {
-        List<String> names = List.of(InputView.showNamesInput().split(","));
+        List<String> names = InputView.showNamesInput();
         LadderUsers ladderUsers = new LadderUsers(IntStream.range(0, names.size())
             .mapToObj(i -> new LadderUser(names.get(i), new Position(i))).collect(Collectors.toList())
         );
 
-        List<String> prizes = List.of(InputView.showResultsInput().split(","));
+        List<String> prizes = InputView.showResultsInput();
         LadderPrizes ladderPrizes = new LadderPrizes(prizes.stream()
             .map(LadderPrize::new).collect(Collectors.toList())
         );
