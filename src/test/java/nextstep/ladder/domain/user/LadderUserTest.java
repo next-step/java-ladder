@@ -53,13 +53,13 @@ class LadderUserTest {
             () -> assertThat(ladderUser3.move(line)).isEqualTo(new LadderUser("jk", 2))
         );
     }
-    
+
     @DisplayName("위치에 따른 Prize 선택")
     @Test
     public void testSelect() {
         LadderUser ladderUser = new LadderUser("jk", 1);
 
-        LadderPrizes ladderPrizes  = new LadderPrizes(List.of(new LadderPrize("1000"), new LadderPrize("꽝")));
+        LadderPrizes ladderPrizes = new LadderPrizes(List.of(new LadderPrize("1000"), new LadderPrize("꽝")));
         assertThat(ladderUser.select(ladderPrizes)).isEqualTo(new LadderPrize("꽝"));
     }
 }

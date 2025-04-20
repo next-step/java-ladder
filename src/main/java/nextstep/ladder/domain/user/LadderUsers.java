@@ -1,7 +1,7 @@
 package nextstep.ladder.domain.user;
 
-import nextstep.ladder.domain.prize.LadderPrizes;
 import nextstep.ladder.domain.line.Line;
+import nextstep.ladder.domain.prize.LadderPrizes;
 
 import java.util.List;
 import java.util.Objects;

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Random;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class PointFactoryTest {
 

@@ -1,11 +1,10 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.line.Dimension;
+import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.domain.prize.LadderPrizes;
 import nextstep.ladder.domain.user.LadderUsers;
 import nextstep.ladder.factory.LineFactory;
-import nextstep.ladder.domain.line.Lines;
-import nextstep.ladder.dto.LadderDto;
 
 import java.util.List;
 
