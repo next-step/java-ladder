@@ -11,7 +11,7 @@ public class LadderUsers {
     private final List<LadderUser> ladderUsers;
 
     public LadderUsers(List<LadderUser> ladderUsers) {
-        if (ladderUsers.size() <= 1) {
+        if (ladderUsers.size() < 2) {
             throw new IllegalArgumentException("유저는 2명 이상이여야 합니다.");
         }
 
