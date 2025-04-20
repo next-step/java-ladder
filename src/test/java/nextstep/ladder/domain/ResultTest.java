@@ -29,6 +29,14 @@ class ResultTest {
     }
 
     @Test
+    @DisplayName("공백으로 Result 생성 시 예외 발생")
+    void createResultWithOnlyWhiteSpaceString() {
+        assertThatThrownBy(() -> new Result(" "))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("결과는 빈 값일 수 없습니다");
+    }
+
+    @Test
     @DisplayName("null로 Result 생성 시 예외 발생")
     void createResultWithNull() {
         assertThatThrownBy(() -> new Result(null))
