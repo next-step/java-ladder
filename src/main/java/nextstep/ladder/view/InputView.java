@@ -4,8 +4,8 @@ import nextstep.ladder.domain.PersonName;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -41,7 +41,7 @@ public class InputView {
         }
     }
 
-    public static Set<String> getPersonNameInput(String prompt, String delimiter) {
+    public static List<String> getPersonNameInput(String prompt, String delimiter) {
         System.out.println(prompt);
         while (true) {
             String line = scanner.nextLine();
@@ -52,10 +52,10 @@ public class InputView {
                 continue;
             }
 
-            Set<String> result = Arrays.stream(split)
+            List<String> result = Arrays.stream(split)
                     .map(String::trim)
                     .filter(s -> !s.isEmpty())
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toList());
 
             if (split.length != result.size()) {
                 System.out.println("이름은 중복될 수 없습니다. 다시 입력해 주세요.");

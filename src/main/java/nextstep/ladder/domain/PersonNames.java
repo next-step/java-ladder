@@ -1,13 +1,13 @@
 package nextstep.ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class PersonNames {
     private final List<PersonName> personNames;
 
-    public PersonNames(Set<String> personNames) {
+    public PersonNames(List<String> personNames) {
         this.personNames = personNames.stream()
                 .map(PersonName::new)
                 .collect(Collectors.toList());
@@ -15,6 +15,10 @@ public class PersonNames {
 
     public int size() {
         return personNames.size();
+    }
+
+    public List<PersonName> getPersonNames() {
+        return Collections.unmodifiableList(personNames);
     }
 
     @Override

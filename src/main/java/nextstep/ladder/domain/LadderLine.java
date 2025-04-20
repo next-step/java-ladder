@@ -16,6 +16,10 @@ public class LadderLine {
         this.lines = lines;
     }
 
+    public int size() {
+        return lines.size();
+    }
+
     private void validateLines(List<Boolean> lines) {
         Iterator<Boolean> iterator = lines.iterator();
         boolean prev = iterator.next();
