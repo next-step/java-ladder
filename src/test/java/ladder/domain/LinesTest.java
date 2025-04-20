@@ -17,9 +17,18 @@ class LinesTest {
 
     @Test
     @DisplayName("사다리 높이와 폭은 입력한대로 생성된다.")
-    void getList() {
-        assertThat(new Lines(3, 5, () -> true).getList())
+    void getLines() {
+        assertThat(new Lines(3, 5, () -> true).getLines())
                 .hasSize(3)
-                .allMatch(line -> line.size() == 5);
+                .allMatch(line -> line.hasSameWidth(5));
+    }
+
+    @Test
+    @DisplayName("사다리타기 실행 결과를 반환한다.")
+    void getResult() {
+        Lines lines = new Lines(1, 2, () -> true);
+        assertThat(lines.moveLinesFrom(0)).isEqualTo(1);
+        assertThat(lines.moveLinesFrom(1)).isEqualTo(0);
+        assertThat(lines.moveLinesFrom(2)).isEqualTo(2);
     }
 }

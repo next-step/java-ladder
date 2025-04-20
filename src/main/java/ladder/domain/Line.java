@@ -5,48 +5,45 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Line {
-    private final List<Boolean> line;
+    private final List<Rung> rungs;
 
-    public Line(int size, LineGenerator generator) {
-        this(createLine(size, generator));
+    public Line(int size, RungGenerator generator) {
+        this(generateRungs(size, generator));
     }
 
     public Line(boolean... line) {
-        this(createLine(line));
+        this(toRungs(line));
     }
 
-    public Line(List<Boolean> line) {
-        this.line = line;
+    public Line(List<Rung> rungs) {
+        this.rungs = rungs;
     }
 
-    private static List<Boolean> createLine(int size, LineGenerator generator) {
-        if (size < 1) {
-            throw new IllegalArgumentException("Line size should be greater than 0");
-        }
-        return createLine(generate(size, generator));
-    }
-
-    private static List<Boolean> createLine(boolean[] line) {
+    private static List<Rung> toRungs(boolean[] line) {
         return IntStream.range(0, line.length)
-                .mapToObj(i -> line[i])
+                .mapToObj(i -> new Rung(line[i]))
                 .collect(Collectors.toList());
     }
 
-    private static boolean[] generate(int size, LineGenerator generator) {
-        boolean[] line = new boolean[size];
-        line[0] = generator.isConnected();
-
-        for (int i = 1; i < size; i++) {
-            line[i] = (!line[i - 1] && generator.isConnected());
+    private static List<Rung> generateRungs(int size, RungGenerator generator) {
+        if (size < 1) {
+            throw new IllegalArgumentException("Line size should be greater than 0");
         }
 
-        return line;
+        return Stream.iterate(Rung.create(generator), previous -> previous.createNext(generator))
+                .limit(size)
+                .collect(Collectors.toUnmodifiableList());
     }
 
-    public List<Boolean> getList() {
-        return Collections.unmodifiableList(line);
+    public List<Rung> getRungs() {
+        return Collections.unmodifiableList(rungs);
+    }
+
+    public boolean hasSameWidth(int width) {
+        return rungs.size() == width;
     }
 
     @Override
@@ -54,12 +51,25 @@ public class Line {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Line line1 = (Line) o;
-        return Objects.equals(line, line1.line);
+        return Objects.equals(rungs, line1.rungs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(line);
+        return Objects.hashCode(rungs);
     }
 
+    public int moveFrom(int point) {
+        if (isMoveToLeft(point)) return point - 1;
+        if (isMoveToRight(point)) return point + 1;
+        return point;
+    }
+
+    private boolean isMoveToLeft(int point) {
+        return point > 0 && rungs.get(point - 1).isConnected();
+    }
+
+    private boolean isMoveToRight(int point) {
+        return point < rungs.size() && rungs.get(point).isConnected();
+    }
 }

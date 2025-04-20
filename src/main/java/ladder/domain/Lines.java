@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -7,7 +8,7 @@ import java.util.stream.IntStream;
 public class Lines {
     private final List<Line> lines;
 
-    public Lines(int height, int width, LineGenerator generator) {
+    public Lines(int height, int width, RungGenerator generator) {
         validLadderLength(height);
         validLadderLength(width);
         this.lines = createLadder(height, width, generator);
@@ -18,15 +19,29 @@ public class Lines {
             throw new IllegalArgumentException("The ladder height should be larger than zero.");
     }
 
-    private List<Line> createLadder(int height, int width, LineGenerator generator) {
+    private List<Line> createLadder(int height, int width, RungGenerator generator) {
         return IntStream.range(0, height)
                 .mapToObj(i -> new Line(width, generator))
                 .collect(Collectors.toList());
     }
 
-    public List<List<Boolean>> getList() {
-        return lines.stream()
-                .map(Line::getList)
-                .collect(Collectors.toUnmodifiableList());
+    public List<Line> getLines() {
+        return Collections.unmodifiableList(lines);
+    }
+
+    public boolean hasSameHeight(int height) {
+        return lines.size() == height;
+    }
+
+    public boolean hasSameWidth(int width) {
+        return lines.stream().allMatch(line -> line.hasSameWidth(width));
+    }
+
+    public int moveLinesFrom(int startPoint) {
+        int point = startPoint;
+        for (Line line : lines) {
+            point = line.moveFrom(point);
+        }
+        return point;
     }
 }
