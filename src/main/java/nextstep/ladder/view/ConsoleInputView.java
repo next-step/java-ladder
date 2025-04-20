@@ -8,13 +8,13 @@ public class ConsoleInputView implements InputViewInterface {
     public static final String VALID_NUMBER_INPUT_MSG = "유효한 숫자를 입력해 주세요.";
 
     @Override
-    public int getNumberInput() {
+    public int getNumberInput(String prompt) {
+        System.out.println(prompt);
         String input = scanner.nextLine().trim();
         if (isInteger(input)) {
             return Integer.parseInt(input);
         }
-        System.out.println(VALID_NUMBER_INPUT_MSG);
-        return getNumberInput();
+        return getNumberInput(VALID_NUMBER_INPUT_MSG);
     }
 
     private boolean isInteger(String input) {
@@ -27,7 +27,15 @@ public class ConsoleInputView implements InputViewInterface {
     }
 
     @Override
-    public String[] getStringListInput(String delimiter) {
+    public String getStringInput(String prompt) {
+        System.out.println(prompt);
+        String input = scanner.nextLine().trim();
+        return input.trim();
+    }
+
+    @Override
+    public String[] getStringListInput(String prompt, String delimiter) {
+        System.out.println(prompt);
         String input = scanner.nextLine().trim();
         return Arrays.stream(input.split(delimiter))
                 .map(String::trim)

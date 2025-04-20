@@ -2,15 +2,15 @@ package nextstep.ladder.domain;
 
 import java.util.Objects;
 
-public class Participant {
+public class Name {
     public static final String NULL_OR_EMPTY_ERROR_MESSAGE = "이름은 null 이거나 빈 문자열일 수 없습니다";
     public static final String TOO_LENGTH_ERROR_MESSAGE = "이름은 1자 이상 5자 이하로 입력해야 합니다";
 
     private final String value;
 
-    public Participant(String name) {
-        this.valid(name);
-        this.value = name.trim();
+    public Name(String value) {
+        this.valid(value);
+        this.value = value.trim();
     }
 
     private void valid(String name) {
@@ -31,8 +31,8 @@ public class Participant {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Participant that = (Participant) o;
-        return Objects.equals(value, that.value);
+        Name name = (Name) o;
+        return Objects.equals(value, name.value);
     }
 
     @Override

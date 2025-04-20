@@ -1,74 +1,75 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Ladder {
-    public static final String INVALID_LADDER_HEIGHT_MESSAGE = "사다리 높이는 1 이상이어야 합니다.";
-    public static final String NO_MATCH_LADDER_SIZE_WITH_PARTICIPANTS = "사다리 라인의 크기는 (참여자 수 - 1) 이어야 합니다.";
-    private final Participants participants;
-    private final List<LadderLine> ladderLines;
+    public static final String INVALID_LADDER_SIZE_MESSAGE = "사다리 사이즈(높이,가로사이즈)는 1 이상이어야 합니다.";
+    public static final String NOT_ALL_MATCH_LADDER_SIZE = "사다리 라인의 크기는 동일해야 합니다.";
+    public static final String NOT_MATCH_PARTICIPANTS_REWARDS_COUNT = "참가자 수와 결과 수는 같아야 합니다.";
+    private final List<LadderLine> lines;
 
-    public Ladder(Participants participants, List<LadderLine> ladderLines) {
-        this.validateLadderLines(participants, ladderLines);
+    public Ladder(List<LadderLine> lines) {
+        this.validateLadderLines(lines);
 
-        this.participants = participants;
-        this.ladderLines = ladderLines;
+        this.lines = lines;
     }
 
-    private void validateLadderLines(Participants participants, List<LadderLine> ladderLines) {
+    private void validateLadderLines(List<LadderLine> ladderLines) {
         if (ladderLines.isEmpty()) {
-            throw new IllegalArgumentException(INVALID_LADDER_HEIGHT_MESSAGE);
+            throw new IllegalArgumentException(INVALID_LADDER_SIZE_MESSAGE);
         }
 
-        ladderLines.forEach(ladderLine -> {
-            if (ladderLine.size() != participants.size() - 1) {
-                throw new IllegalArgumentException(NO_MATCH_LADDER_SIZE_WITH_PARTICIPANTS + " - SIZE : " + ladderLine.size());
-            }
-        });
-    }
+        LadderLine expectedLadderLine = ladderLines.get(0);
+        boolean allMatch = ladderLines.stream()
+                .allMatch(ladderLine -> ladderLine.sameSize(expectedLadderLine));
 
-    public List<Participant> getNames() {
-        return participants.getNames();
-    }
-
-    public List<LadderLine> getLines() {
-        return ladderLines;
-    }
-
-    public static Ladder generate(int height, String[] names) {
-        valid(height);
-        Participants participants = new Participants(names);
-        List<LadderLine> ladderLines = generateLines(height, names);
-        return new Ladder(participants, ladderLines);
-    }
-
-    private static void valid(int height) {
-        if (height < 1) {
-            throw new IllegalArgumentException(INVALID_LADDER_HEIGHT_MESSAGE);
+        if (!allMatch) {
+            throw new IllegalArgumentException(NOT_ALL_MATCH_LADDER_SIZE);
         }
     }
 
-    private static List<LadderLine> generateLines(int height, String[] names) {
-        int size = names.length - 1;
+    public List<LadderLine> asList() {
+        return lines;
+    }
+
+    public LadderResults assignRewards(Participants participants, Rewards rewards) {
+        if (participants.size() != rewards.size()) {
+            throw new IllegalArgumentException(NOT_MATCH_PARTICIPANTS_REWARDS_COUNT);
+        }
+
+        Map<Name, Name> results = new LinkedHashMap<>();
+        for (int i = 0; i < participants.size(); i++) {
+            int resultIndex = resultPositionOf(i);
+            results.put(participants.get(i), rewards.get(resultIndex));
+        }
+        return new LadderResults(results);
+    }
+
+    private int resultPositionOf(int startIndex) {
+        int position = startIndex;
+        for (LadderLine line : lines) {
+            position = line.nextPosition(position);
+        }
+        return position;
+    }
+
+    public static Ladder generate(int height, int ladderLineSize) {
+        valid(height, ladderLineSize);
+        List<LadderLine> ladderLines = generateLines(height, ladderLineSize);
+        return new Ladder(ladderLines);
+    }
+
+    private static void valid(int height, int ladderLineSize) {
+        if (height < 1 || ladderLineSize < 1) {
+            throw new IllegalArgumentException(INVALID_LADDER_SIZE_MESSAGE);
+        }
+    }
+
+    private static List<LadderLine> generateLines(int height, int ladderLineSize) {
         List<LadderLine> ladderLines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            ladderLines.add(LadderLine.generate(size));
+            ladderLines.add(LadderLine.generate(ladderLineSize));
         }
         return Collections.unmodifiableList(ladderLines);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Ladder ladder = (Ladder) o;
-        return Objects.equals(participants, ladder.participants) && Objects.equals(ladderLines, ladder.ladderLines);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(participants, ladderLines);
     }
 }
