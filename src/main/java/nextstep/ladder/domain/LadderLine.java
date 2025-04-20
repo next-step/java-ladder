@@ -28,4 +28,15 @@ public class LadderLine {
             prev = cur;
         }
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        for (Boolean line : lines) {
+            sb.append("|");
+            sb.append(line ? "--------": "        ");
+        }
+        sb.append("|");
+        return sb.toString();
+    }
 }

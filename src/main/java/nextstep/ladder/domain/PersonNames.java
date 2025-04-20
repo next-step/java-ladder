@@ -13,6 +13,10 @@ public class PersonNames {
                 .collect(Collectors.toList());
     }
 
+    public int size() {
+        return personNames.size();
+    }
+
     @Override
     public String toString() {
         return personNames.stream()
