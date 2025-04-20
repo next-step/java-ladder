@@ -1,44 +1,55 @@
 package nextstep.ladder.domain;
 
 import java.util.Objects;
-import java.util.Random;
 
 public class Bridge {
-    private final boolean value;
+    public static final String INVALID_CONNECTION_ERROR = "사다리의 왼쪽과 오른쪽은 동시에 연결될 수 없습니다.";
+    private final boolean left;
+    private final boolean right;
 
-    public Bridge() {
-        this(new Random().nextBoolean());
+    public Bridge(boolean left, boolean right) {
+        validate(left, right);
+        this.left = left;
+        this.right = right;
     }
 
-    public Bridge(boolean value) {
-        this.value = value;
+    private void validate(boolean left, boolean right) {
+        if (left && right) {
+            throw new IllegalArgumentException(INVALID_CONNECTION_ERROR);
+        }
     }
 
-    public boolean isConnected() {
-        return value;
+    public boolean isLeftConnected() {
+        return left;
     }
 
-    public Bridge nextBridge() {
-        if (this.value)
-            return new Bridge(false);
+    public boolean isRightConnected() {
+        return right;
+    }
 
-        return new Bridge();
+    public Direction nextDirection() {
+        if (right) return Direction.RIGHT;
+        if (left) return Direction.LEFT;
+        return Direction.STAY;
     }
 
     @Override
     public String toString() {
-        return value ? "-----" : "     ";
+        return "Bridge{" +
+                "left=" + left +
+                ", right=" + right +
+                '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Bridge bridge = (Bridge) o;
-        return value == bridge.value;
+        return left == bridge.left && right == bridge.right;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(value);
+        return Objects.hash(left, right);
     }
 }

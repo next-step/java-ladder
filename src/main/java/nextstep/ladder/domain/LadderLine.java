@@ -3,8 +3,10 @@ package nextstep.ladder.domain;
 import java.util.*;
 
 public class LadderLine {
-    public static final String INVALID_LINE_VALUE_MESSAGE = "사다리 라인은 연속된 두 개의 라인을 가질 수 없습니다.";
     public static final String INVALID_LINE_SIZE_MESSAGE = "사다리 라인의 크기는 1 이상이어야 합니다.";
+    public static final String INVALID_PAIR_MESSAGE = "사다리 연결 정보가 일치하지 않습니다.";
+    public static final String FIRST_BRIDGE_CANNOT_LEFT_CONNECTED = "첫번째 사다리의 왼쪽은 연결되어 있으면 안됩니다.";
+    public static final String LAST_BRIDGE_CANNOT_RIGHT_CONNECTED = "마지막 사다리의 오른쪽은 연결되어 있으면 안됩니다.";
     private final List<Bridge> bridges;
 
     public LadderLine(List<Bridge> lines) {
@@ -17,47 +19,66 @@ public class LadderLine {
             throw new IllegalArgumentException(INVALID_LINE_SIZE_MESSAGE);
         }
 
+        validEdge(lines);
+
         for (int i = 0; i < lines.size() - 1; i++) {
             validPairValue(lines.get(i), lines.get(i + 1));
         }
     }
 
-    private static void validPairValue(Bridge current, Bridge next) {
-        if (current.isConnected() && next.isConnected()) {
-            throw new IllegalArgumentException(INVALID_LINE_VALUE_MESSAGE);
+    private static void validEdge(List<Bridge> lines) {
+        if (lines.get(0).isLeftConnected()) {
+            throw new IllegalArgumentException(FIRST_BRIDGE_CANNOT_LEFT_CONNECTED);
+        }
+        if (lines.get(lines.size() - 1).isRightConnected()) {
+            throw new IllegalArgumentException(LAST_BRIDGE_CANNOT_RIGHT_CONNECTED);
         }
     }
 
-    public List<Bridge> getBridgeStatus() {
+    private static void validPairValue(Bridge current, Bridge next) {
+        if (current.isRightConnected() != next.isLeftConnected()) {
+            throw new IllegalArgumentException(INVALID_PAIR_MESSAGE);
+        }
+    }
+
+    public List<Bridge> asList() {
         return bridges;
     }
 
-    public int size() {
-        return bridges.size();
+    public boolean sameSize(LadderLine ladderLine2) {
+        return this.bridges.size() == ladderLine2.bridges.size();
     }
 
-    public int getNextPosition(int position) {
-        if (position < bridges.size() && bridges.get(position).isConnected()) {
-            return position + 1;
+    public int nextPosition(int position) {
+        Direction direction = bridges.get(position).nextDirection();
+
+        if (direction == Direction.LEFT) {
+            return (position - 1);
         }
-        if (position > 0 && bridges.get(position - 1).isConnected()) {
-            return position - 1;
+
+        if (direction == Direction.RIGHT) {
+            return (position + 1);
         }
+
         return position;
     }
 
     public static LadderLine generate(int size) {
         validSize(size);
 
+        Random random = new Random();
         List<Bridge> result = new ArrayList<>();
-        Bridge prev = new Bridge();
+        Bridge prev = generateFirst(random);
         result.add(prev);
 
-        for (int i = 1; i < size; i++) {
-            Bridge next = prev.nextBridge();
+        for (int i = 1; i < size - 1; i++) {
+            Bridge next = generateNext(prev, random);
             result.add(next);
             prev = next;
         }
+
+        Bridge last = new Bridge(prev.isRightConnected(), false);
+        result.add(last);
 
         return new LadderLine(result);
     }
@@ -66,6 +87,18 @@ public class LadderLine {
         if (size <= 0) {
             throw new IllegalArgumentException(INVALID_LINE_SIZE_MESSAGE);
         }
+    }
+
+    private static Bridge generateFirst(Random random) {
+        return new Bridge(false, random.nextBoolean());
+    }
+
+    private static Bridge generateNext(Bridge prev, Random random) {
+        if (prev.nextDirection() == Direction.RIGHT) {
+            return new Bridge(true, false);
+        }
+
+        return new Bridge(false, random.nextBoolean());
     }
 
     @Override

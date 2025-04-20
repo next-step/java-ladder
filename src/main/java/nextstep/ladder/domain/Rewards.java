@@ -1,24 +1,21 @@
 package nextstep.ladder.domain;
 
-import java.util.*;
+import java.util.List;
+import java.util.Objects;
 
-public class Participants {
-    public static final String TOO_FEW_PARTICIPANTS_MESSAGE = "참여자는 2명 이상이어야 합니다.";
+public class Rewards {
+    public static final String TOO_FEW_REWARDS_MESSAGE = "결과는 2개 이상이어야 합니다.";
     private final List<Name> values;
 
-    public Participants(List<Name> values) {
+    public Rewards(List<Name> values) {
         this.valid(values);
         this.values = values;
     }
 
     private void valid(List<Name> values) {
         if (values == null || values.size() < 2) {
-            throw new IllegalArgumentException(TOO_FEW_PARTICIPANTS_MESSAGE);
+            throw new IllegalArgumentException(TOO_FEW_REWARDS_MESSAGE);
         }
-    }
-
-    public int size() {
-        return values.size();
     }
 
     public Name get(int index) {
@@ -29,11 +26,15 @@ public class Participants {
         return values;
     }
 
+    public int size() {
+        return values.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Participants that = (Participants) o;
-        return Objects.equals(values, that.values);
+        Rewards rewards = (Rewards) o;
+        return Objects.equals(values, rewards.values);
     }
 
     @Override

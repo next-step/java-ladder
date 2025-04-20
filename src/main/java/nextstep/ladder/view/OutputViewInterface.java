@@ -1,13 +1,16 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.LadderLine;
-import nextstep.ladder.domain.Name;
-import nextstep.ladder.domain.Results;
+import nextstep.ladder.domain.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface OutputViewInterface {
-    void printLadder(List<Name> names, List<LadderLine> ladder, List<Name> results);
+    void printPrompt(String prompt);
 
-    void printGameResult(List<Name> names, Results matchResults);
+    void printLadder(Participants names, Ladder ladder, Rewards rewards);
+
+    void printAllMatchResult(Map<Name, Name> matched);
+
+    void printResult(Name reward);
 }

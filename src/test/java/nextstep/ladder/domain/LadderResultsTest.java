@@ -4,10 +4,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ResultsTest {
+public class LadderResultsTest {
     @Test
     @DisplayName("Results 생성 후 getResult 통해 결과를 제대로 가져오는지 확인")
     void getResult_test() {
@@ -17,11 +18,14 @@ public class ResultsTest {
         Name result1 = new Name("1000");
         Name result2 = new Name("2000");
         Name result3 = new Name("3000");
-        Participants participants = new Participants(List.of(new Participant(name1, 2), new Participant(name2, 1), new Participant(name3, 0)));
-        List<Name> results = List.of(result1, result2, result3);
-        Results result = participants.getMatchResults(results);
-        assertThat(result.getResult(name1)).isEqualTo("3000");
-        assertThat(result.getResult(name2)).isEqualTo("2000");
-        assertThat(result.getResult(name3)).isEqualTo("1000");
+        Map<Name, Name> results = Map.of(
+                name1, result1,
+                name2, result2,
+                name3, result3
+        );
+        LadderResults ladderResults = new LadderResults(results);
+        assertThat(ladderResults.resultOf(name1)).isEqualTo(result1);
+        assertThat(ladderResults.resultOf(name2)).isEqualTo(result2);
+        assertThat(ladderResults.resultOf(name3)).isEqualTo(result3);
     }
 }
