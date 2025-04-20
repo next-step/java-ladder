@@ -17,9 +17,9 @@ class PointFactoryTest {
         assertDoesNotThrow(() -> new PointFactory(new Random()));
     }
 
-    @DisplayName("Point 생성")
+    @DisplayName("첫번째 Point 생성")
     @Test
-    public void testCreate() {
+    public void testFirst() {
         Random random = new Random() {
             @Override
             public boolean nextBoolean() {
@@ -28,7 +28,21 @@ class PointFactoryTest {
         };
 
         PointFactory pointFactory = new PointFactory(random);
-        assertThat(pointFactory.create(new Point(false))).isEqualTo(new Point(true));
-        assertThat(pointFactory.create(new Point(true))).isEqualTo(new Point(false));
+        assertThat(pointFactory.first()).isEqualTo(new Point(true));
+    }
+
+    @DisplayName("다음 Point 생성")
+    @Test
+    public void testNext() {
+        Random random = new Random() {
+            @Override
+            public boolean nextBoolean() {
+                return true;
+            }
+        };
+
+        PointFactory pointFactory = new PointFactory(random);
+        assertThat(pointFactory.next(new Point(false))).isEqualTo(new Point(true));
+        assertThat(pointFactory.next(new Point(true))).isEqualTo(new Point(false));
     }
 }
