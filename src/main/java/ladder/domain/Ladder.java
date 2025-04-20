@@ -10,7 +10,6 @@ public class Ladder {
 
     public Ladder(List<Line> lines) {
         validate(lines);
-
         this.lines = lines;
     }
 
@@ -18,13 +17,6 @@ public class Ladder {
         if (lines == null || lines.isEmpty()) {
             throw new LadderInvalidException();
         }
-
-        lines.stream()
-            .filter(line -> line.getLinks().isEmpty())
-            .findAny()
-            .ifPresent(line -> {
-                throw new LadderInvalidException();
-            });
     }
 
     public List<Line> getLines() {
