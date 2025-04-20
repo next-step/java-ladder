@@ -1,7 +1,6 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.Ladder;
-import nextstep.ladder.domain.LadderConfig;
 import nextstep.ladder.domain.line.Dimension;
 import nextstep.ladder.domain.prize.LadderPrize;
 import nextstep.ladder.domain.prize.LadderPrizes;
@@ -29,9 +28,8 @@ public class LadderGameSystem {
             .map(LadderPrize::new).collect(Collectors.toList())
         );
 
-        LadderConfig ladderConfig = new LadderConfig(ladderUsers, ladderPrizes);
         Dimension dimension = new Dimension(InputView.showLadderHeightInput());
-        LadderDto ladderDto = new Ladder(ladderConfig, dimension).toLadderDto();
+        LadderDto ladderDto = new Ladder(ladderUsers, ladderPrizes, dimension).toLadderDto();
 
         OutputView.showLadderResult(ladderDto);
         OutputView.showLadderUserResult(ladderDto);

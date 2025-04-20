@@ -1,29 +1,53 @@
 package nextstep.ladder.domain;
 
 import nextstep.ladder.domain.line.Dimension;
+import nextstep.ladder.domain.prize.LadderPrizes;
+import nextstep.ladder.domain.user.LadderUsers;
 import nextstep.ladder.factory.LineFactory;
 import nextstep.ladder.domain.line.Lines;
 import nextstep.ladder.dto.LadderDto;
 
-public class Ladder {
-    private final Lines lines;
-    private final LadderConfig ladderConfig;
+import java.util.List;
 
-    public Ladder(LadderConfig ladderConfig, Dimension dimension) {
-        this(ladderConfig, dimension, new LineFactory());
+public class Ladder {
+    private final LadderUsers ladderUsers;
+    private final Lines lines;
+    private final LadderPrizes ladderPrizes;
+
+    public Ladder(LadderUsers ladderUsers, LadderPrizes ladderPrizes, Dimension dimension) {
+        this(ladderUsers, ladderPrizes, dimension, new LineFactory());
     }
 
-    public Ladder(LadderConfig ladderConfig, Dimension height, LineFactory lineFactory) {
-        this.ladderConfig = ladderConfig;
-        this.lines = new Lines(new Dimension(ladderConfig.size()), height, lineFactory);
+    public Ladder(LadderUsers ladderUsers, LadderPrizes ladderPrizes, Dimension height, LineFactory lineFactory) {
+        if (ladderUsers.size() != ladderPrizes.size()) {
+            throw new IllegalArgumentException("유저와 결과 수가 맞지 않습니다.");
+        }
+
+        this.ladderUsers = ladderUsers;
+        this.ladderPrizes = ladderPrizes;
+        this.lines = new Lines(new Dimension(ladderUsers.size()), height, lineFactory);
+    }
+
+    public List<String> getUsersName() {
+        return ladderUsers.getLadderUserNames();
+    }
+
+    public List<String> getPrizesValue() {
+        return ladderPrizes.getLadderPrizes();
+    }
+
+    public LadderResult simulate() {
+        LadderUsers moved = lines.moveUsers(ladderUsers);
+        return new LadderResult(moved, moved.selectPrizes(ladderPrizes));
     }
 
     public LadderDto toLadderDto() {
-        return new LadderDto(
-            ladderConfig.getUsersName(),
-            lines.getvalue(),
-            ladderConfig.getPrizesValue(),
-            ladderConfig.getResultString(lines)
-        );
+        return null;
+//        return new LadderDto(
+//            ladderConfig.getUsersName(),
+//            lines.getvalue(),
+//            ladderConfig.getPrizesValue(),
+//            ladderConfig.getResultString(lines)
+//        );
     }
 }

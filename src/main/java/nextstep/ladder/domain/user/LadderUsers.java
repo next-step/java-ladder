@@ -54,7 +54,7 @@ public class LadderUsers {
         return ladderUsers.stream().map(LadderUser::getName).collect(Collectors.toList());
     }
 
-    public LadderPrizes selectAll(LadderPrizes ladderPrizes) {
+    public LadderPrizes selectPrizes(LadderPrizes ladderPrizes) {
         return new LadderPrizes(
             ladderUsers.stream()
                 .map(ladderUser -> ladderUser.select(ladderPrizes))
