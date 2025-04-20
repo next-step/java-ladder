@@ -11,10 +11,22 @@ public class Results {
         this.result = new HashMap<>(result);
     }
 
+    /**
+     * 사다리 게임의 모든 결과를 반환합니다.
+     * 
+     * @return 결과 맵 (key: 참가자 이름, value: 해당 참가자가 도달한 결과값)
+     */
     public Map<String, String> getResult() {
         return result;
     }
 
+    /**
+     * 특정 참가자의 결과를 반환합니다.
+     * 
+     * @param name 결과를 조회할 참가자 이름
+     * @return 해당 참가자가 도달한 결과값
+     * @throws IllegalArgumentException 존재하지 않는 참가자 이름이 주어진 경우
+     */
     public String getResult(String name) {
         if (!result.containsKey(name)) {
             throw new IllegalArgumentException("No such result: " + name);
