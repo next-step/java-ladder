@@ -1,8 +1,6 @@
 package ladder;
 
-import ladder.domain.Ladder;
-import ladder.domain.LineDrawStrategy;
-import ladder.domain.Participants;
+import ladder.domain.*;
 import ladder.view.InputView;
 import ladder.view.LadderView;
 
@@ -11,10 +9,18 @@ import java.util.Random;
 public class LadderApplication {
     public static void main(String[] args) {
         Participants participants = InputView.inputParticipants();
+        Rewards rewards = InputView.inputResults();
         int maxHeight = InputView.inputMaxLadderHeight();
 
         Ladder ladder = Ladder.of(maxHeight, participants, randomStrategy());
-        LadderView.printLadder(participants, ladder);
+        LadderView.printLadder(participants, ladder, rewards);
+        LadderGame ladderGame = new LadderGame(participants, rewards, ladder);
+        Results results = ladderGame.play();
+
+        while (true) {
+            Target target = InputView.inputTarget();
+            LadderView.printTargetResult(results, target);
+        }
     }
 
     private static LineDrawStrategy randomStrategy() {
