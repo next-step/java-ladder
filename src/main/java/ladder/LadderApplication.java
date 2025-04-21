@@ -1,13 +1,14 @@
 package ladder;
 
 import ladder.domain.*;
+import ladder.generator.BridgeGenerator;
 import ladder.generator.RandomBridgeGenerator;
 import ladder.view.InputView;
 import ladder.view.OutputView;
 
 public class LadderApplication {
 
-    private static final RandomBridgeGenerator BRIDGE_GENERATOR = new RandomBridgeGenerator();
+    private static final BridgeGenerator BRIDGE_GENERATOR = new RandomBridgeGenerator();
 
     public static void main(String[] args) {
         Players players = Players.of(InputView.getPlayerNames());
