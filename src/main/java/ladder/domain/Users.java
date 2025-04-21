@@ -21,6 +21,9 @@ public class Users {
     }
 
     int getIndex(User targetUser) {
+        if (!users.contains(targetUser)) {
+            throw new IllegalArgumentException("User not found: " + targetUser.getName());
+        }
         return users.indexOf(targetUser);
     }
 }

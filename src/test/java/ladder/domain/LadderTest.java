@@ -36,6 +36,19 @@ public class LadderTest {
         assertEquals(users.count() - 1, lines.get(0).getPoints().size());
     }
 
+    @DisplayName("유저 수와 결과 수가 일치하지 않을 때 예외가 발생한다.")
+    @Test
+    public void createLadderWithDifferentUserAndResultCountTest() {
+        Users differentUsers = new Users(List.of("pobi", "honux", "crong"));
+        Results differentResults = new Results(List.of("꽝", "3000", "꽝", "5000"));
+
+        try {
+            new Ladder(differentUsers, differentResults, height, new StaticPointGenerator(POINTS));
+        } catch (IllegalArgumentException e) {
+            assertEquals("사용자 수와 결과 수가 일치하지 않습니다.", e.getMessage());
+        }
+    }
+
     @DisplayName("유저 결과 확인 테스트")
     @Test
     public void findResultTest() {

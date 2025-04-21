@@ -13,12 +13,19 @@ public class Ladder {
     private final Results results;
 
     public Ladder(Users users, Results results, LadderHeight height, PointGenerator pointGenerator) {
+        validate(users, results);
         this.users = users;
         this.results = results;
         int countOfPerson = users.count();
         for (int i = 0; i < height.getHeight(); i++) {
             Line line = new Line(countOfPerson, pointGenerator);
             this.lines.add(line);
+        }
+    }
+
+    private void validate(Users users, Results results) {
+        if (users.count() != results.count()) {
+            throw new IllegalArgumentException("사용자 수와 결과 수가 일치하지 않습니다.");
         }
     }
 

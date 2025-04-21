@@ -21,4 +21,15 @@ public class UsersTest {
         int index = users.getIndex(new User(USERS.get(0)));
         assertEquals(0, index);
     }
+
+    @DisplayName("User의 index를 가져올 때, 없는 User일 경우 예외가 발생한다.")
+    @Test
+    public void getUserIndexExceptionTest() {
+        Users users = new Users(USERS);
+        try {
+            users.getIndex(new User("nini"));
+        } catch (IllegalArgumentException e) {
+            assertEquals("User not found: nini", e.getMessage());
+        }
+    }
 }

@@ -12,6 +12,10 @@ public class Results {
                 .collect(Collectors.toList());
     }
 
+    public int count() {
+        return results.size();
+    }
+
     public List<Result> getResults() {
         return List.copyOf(results);
     }
