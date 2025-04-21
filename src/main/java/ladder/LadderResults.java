@@ -26,4 +26,16 @@ public class LadderResults {
     public Map<Player, Result> getResultMap() {
         return Map.copyOf(results);
     }
+
+    public Result getResultOf(String name) {
+        return results.keySet().stream()
+                .filter(player -> player.toString().equals(name))
+                .findFirst()
+                .map(results::get)
+                .orElse(null);
+    }
+
+    public List<Player> getPlayers() {
+        return List.copyOf(results.keySet());
+    }
 }
