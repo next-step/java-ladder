@@ -27,11 +27,23 @@ public class Ladder {
     }
 
     public int run(int startIndex) {
-        int w = startIndex;
+        int currentIndex = startIndex;
+
         for (LadderLine line : lines) {
-            w += line.canMoveLeft(w) ? -1 : line.canMoveRight(w) ? 1 : 0;
+            currentIndex = getNextIndex(line, currentIndex);
         }
-        return w;
+
+        return currentIndex;
+    }
+
+    private int getNextIndex(LadderLine line, int index) {
+        if (line.canMoveLeft(index)) {
+            return index - 1;
+        } else if (line.canMoveRight(index)) {
+            return index + 1;
+        } else {
+            return index;
+        }
     }
 
 }
