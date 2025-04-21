@@ -37,24 +37,23 @@ public class LadderLineTest {
         assertThat(line.crosses()).isEqualTo(List.of(true, false, true, false, true, false));
     }
 
-
     @Test
-    void 왼쪽_이동() {
+    void 이동_방향() {
         LadderLine line = LadderLine.of(List.of(false, true, false));
 
-        assertThat(line.canMoveLeft(0)).isFalse();
-        assertThat(line.canMoveLeft(1)).isFalse();
-        assertThat(line.canMoveLeft(2)).isTrue();
+        assertThat(line.getDirection(0)).isEqualTo(LadderDirection.STAY);
+        assertThat(line.getDirection(1)).isEqualTo(LadderDirection.RIGHT);
+        assertThat(line.getDirection(2)).isEqualTo(LadderDirection.LEFT);
     }
 
     @Test
-    void 오른쪽_이동() {
+    void 이동_오프셋() {
         LadderLine line = LadderLine.of(List.of(true, false, true));
 
-        assertThat(line.canMoveRight(0)).isTrue();
-        assertThat(line.canMoveRight(1)).isFalse();
-        assertThat(line.canMoveRight(2)).isTrue();
-        assertThat(line.canMoveRight(3)).isFalse();
+        assertThat(line.getOffset(0)).isEqualTo(1);
+        assertThat(line.getOffset(1)).isEqualTo(-1);
+        assertThat(line.getOffset(2)).isEqualTo(1);
+        assertThat(line.getOffset(3)).isEqualTo(-1);
     }
 
     static class FixedRandom extends Random {

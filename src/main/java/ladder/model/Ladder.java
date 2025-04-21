@@ -37,13 +37,7 @@ public class Ladder {
     }
 
     private int getNextIndex(LadderLine line, int index) {
-        if (line.canMoveLeft(index)) {
-            return index - 1;
-        } else if (line.canMoveRight(index)) {
-            return index + 1;
-        } else {
-            return index;
-        }
+        return index + line.getOffset(index);
     }
 
 }

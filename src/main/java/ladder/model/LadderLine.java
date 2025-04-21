@@ -56,13 +56,21 @@ public class LadderLine {
         return ladderPoints.size();
     }
 
-    public boolean canMoveLeft(int width) {
-        return width > 0 && ladderPoints.get(width).move() == LadderDirection.LEFT;
+    public LadderDirection getDirection(int width) {
+        return ladderPoints.get(width).move();
     }
 
-    public boolean canMoveRight(int width) {
-        return width < size() && ladderPoints.get(width).move() == LadderDirection.RIGHT;
+    public int getOffset(int width) {
+        return ladderPoints.get(width).move().getOffset();
     }
+
+//    public boolean canMoveLeft(int width) {
+//        return ladderPoints.get(width).move() == LadderDirection.LEFT;
+//    }
+//
+//    public boolean canMoveRight(int width) {
+//        return ladderPoints.get(width).move() == LadderDirection.RIGHT;
+//    }
 
     @Override
     public boolean equals(Object o) {
