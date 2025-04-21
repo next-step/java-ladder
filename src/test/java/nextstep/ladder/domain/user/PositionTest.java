@@ -33,7 +33,7 @@ class PositionTest {
     public void testCanMoveLeft_True() {
         Line line = new Line(List.of(new Point(true), new Point(false)));
 
-        assertThat(new Position(1).canMoveLeft(line)).isTrue();
+        assertThat(new Position(1).tryMoveLeft(line)).isEqualTo(new Position(0));
     }
 
     @DisplayName("왼쪽으로 움직이지 못함")
@@ -42,8 +42,8 @@ class PositionTest {
         Line line = new Line(List.of(new Point(true), new Point(false)));
 
         assertAll(
-            () -> assertThat(new Position(0).canMoveLeft(line)).isFalse(),
-            () -> assertThat(new Position(2).canMoveLeft(line)).isFalse()
+            () -> assertThat(new Position(0).tryMoveLeft(line)).isEqualTo(new Position(0)),
+            () -> assertThat(new Position(2).tryMoveLeft(line)).isEqualTo(new Position(2))
         );
     }
 
@@ -52,7 +52,7 @@ class PositionTest {
     public void testCanMoveRight_True() {
         Line line = new Line(List.of(new Point(true), new Point(false)));
 
-        assertThat(new Position(0).canMoveRight(line)).isTrue();
+        assertThat(new Position(0).tryMoveRight(line)).isEqualTo(new Position(1));
     }
 
     @DisplayName("오른쪽으로 움직이지 못함")
@@ -61,20 +61,8 @@ class PositionTest {
         Line line = new Line(List.of(new Point(true), new Point(false)));
 
         assertAll(
-            () -> assertThat(new Position(1).canMoveRight(line)).isFalse(),
-            () -> assertThat(new Position(2).canMoveRight(line)).isFalse()
+            () -> assertThat(new Position(1).tryMoveRight(line)).isEqualTo(new Position(1)),
+            () -> assertThat(new Position(2).tryMoveRight(line)).isEqualTo(new Position(2))
         );
-    }
-
-    @DisplayName("왼쪽으로 이동")
-    @Test
-    public void testMoveLeft() {
-        assertThat(new Position(1).moveLeft()).isEqualTo(new Position(0));
-    }
-
-    @DisplayName("오른쪽으로 이동")
-    @Test
-    public void testMoveRight() {
-        assertThat(new Position(1).moveRight()).isEqualTo(new Position(2));
     }
 }

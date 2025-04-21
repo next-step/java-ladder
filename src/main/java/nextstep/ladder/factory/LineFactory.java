@@ -20,11 +20,11 @@ public class LineFactory {
 
     public Line create(int size) {
         List<Point> points = new ArrayList<>();
-        Point previousPoint = pointFactory.create(new Point(false));
+        Point previousPoint = pointFactory.first();
         points.add(previousPoint);
 
         for (int i = 1; i < size - 1; i++) {
-            Point newPoint = pointFactory.create(previousPoint);
+            Point newPoint = pointFactory.next(previousPoint);
             points.add(newPoint);
             previousPoint = newPoint;
         }

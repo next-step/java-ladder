@@ -16,7 +16,11 @@ public class PointFactory {
         this.random = random;
     }
 
-    public Point create(Point point) {
+    public Point first() {
+        return new Point(random.nextBoolean());
+    }
+
+    public Point next(Point point) {
         if (point.getValue()) {
             return new Point(false);
         }

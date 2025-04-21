@@ -1,7 +1,7 @@
 package nextstep.ladder.domain.user;
 
-import nextstep.ladder.domain.prize.LadderPrizes;
 import nextstep.ladder.domain.line.Line;
+import nextstep.ladder.domain.prize.LadderPrizes;
 
 import java.util.List;
 import java.util.Objects;
@@ -11,12 +11,15 @@ public class LadderUsers {
     private final List<LadderUser> ladderUsers;
 
     public LadderUsers(List<LadderUser> ladderUsers) {
-        if (ladderUsers.size() <= 1) {
+        if (ladderUsers.size() < 2) {
             throw new IllegalArgumentException("유저는 2명 이상이여야 합니다.");
         }
 
         boolean hasDuplicatedName = ladderUsers.stream()
-            .flatMap(user1 -> ladderUsers.stream().filter(user2 -> user1 != user2 && user1.isSameName(user2)))
+            .flatMap(user1 ->
+                ladderUsers.stream()
+                    .filter(user2 -> user1 != user2 && user1.isSameName(user2))
+            )
             .findAny()
             .isPresent();
         if (hasDuplicatedName) {
@@ -24,7 +27,10 @@ public class LadderUsers {
         }
 
         boolean hasDuplicatedPosition = ladderUsers.stream()
-            .flatMap(user1 -> ladderUsers.stream().filter(user2 -> user1 != user2 && user1.isSamePosition(user2)))
+            .flatMap(user1 ->
+                ladderUsers.stream()
+                    .filter(user2 -> user1 != user2 && user1.isSamePosition(user2))
+            )
             .findAny()
             .isPresent();
         if (hasDuplicatedPosition) {
@@ -39,7 +45,11 @@ public class LadderUsers {
     }
 
     public LadderUsers move(Line line) {
-        return new LadderUsers(ladderUsers.stream().map(ladderUser -> ladderUser.move(line)).collect(Collectors.toList()));
+        return new LadderUsers(
+            ladderUsers.stream()
+                .map(ladderUser -> ladderUser.move(line))
+                .collect(Collectors.toList())
+        );
     }
 
     public LadderUser get(int index) {
@@ -47,10 +57,12 @@ public class LadderUsers {
     }
 
     public List<String> getLadderUserNames() {
-        return ladderUsers.stream().map(LadderUser::getName).collect(Collectors.toList());
+        return ladderUsers.stream()
+            .map(LadderUser::getName)
+            .collect(Collectors.toList());
     }
 
-    public LadderPrizes selectAll(LadderPrizes ladderPrizes) {
+    public LadderPrizes selectPrizes(LadderPrizes ladderPrizes) {
         return new LadderPrizes(
             ladderUsers.stream()
                 .map(ladderUser -> ladderUser.select(ladderPrizes))

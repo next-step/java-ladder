@@ -18,20 +18,18 @@ public class Position {
         return value;
     }
 
-    public boolean canMoveLeft(Line line) {
-        return value > 0 && line.get(value - 1).getValue();
+    public Position tryMoveLeft(Line line) {
+        if (value > 0 && line.get(value - 1).getValue()) {
+            return new Position(value - 1);
+        }
+        return this;
     }
 
-    public boolean canMoveRight(Line line) {
-        return value < line.size() && line.get(value).getValue();
-    }
-
-    public Position moveLeft() {
-        return new Position(value - 1);
-    }
-
-    public Position moveRight() {
-        return new Position(value + 1);
+    public Position tryMoveRight(Line line) {
+        if (value < line.size() && line.get(value).getValue()) {
+            return new Position(value + 1);
+        }
+        return this;
     }
 
     @Override

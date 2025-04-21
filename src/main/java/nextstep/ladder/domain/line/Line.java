@@ -12,7 +12,9 @@ public class Line {
     }
 
     public List<Boolean> getValue() {
-        return value.stream().map(Point::getValue).collect(Collectors.toList());
+        return value.stream()
+            .map(Point::getValue)
+            .collect(Collectors.toList());
     }
 
     public int size() {

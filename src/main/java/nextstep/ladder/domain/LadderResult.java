@@ -17,7 +17,8 @@ public class LadderResult {
             throw new IllegalArgumentException("유저와 결과 수가 같지 않습니다.");
         }
 
-        this.value = IntStream.range(0, ladderUsers.size()).boxed()
+        this.value = IntStream.range(0, ladderUsers.size())
+            .boxed()
             .collect(Collectors.toMap(ladderUsers::get, ladderPrizes::get));
     }
 
