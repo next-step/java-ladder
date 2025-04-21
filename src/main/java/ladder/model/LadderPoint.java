@@ -31,6 +31,14 @@ public class LadderPoint {
         return new LadderPoint(this.rightSide, false);
     }
 
+    public boolean hasRightSide() {
+        return rightSide;
+    }
+
+    public boolean hasNotRightSide() {
+        return !hasRightSide();
+    }
+
     public LadderDirection move() {
         if (leftSide) {
             return LadderDirection.LEFT;
