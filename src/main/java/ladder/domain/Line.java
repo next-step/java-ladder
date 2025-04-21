@@ -11,13 +11,12 @@ public class Line {
         this.points = points;
     }
 
-    public static Line generate(int width) {
+    public static Line generate(int width, ConnectionStrategy connectionStrategy) {
         List<Boolean> points = new ArrayList<>();
-        Random random = new Random();
         boolean prev = false;
 
         for (int i = 0; i < width; i++) {
-            boolean connect = !prev && random.nextBoolean();
+            boolean connect = !prev && connectionStrategy.generate();
             points.add(connect);
             prev = connect;
         }

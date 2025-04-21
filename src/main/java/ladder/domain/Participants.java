@@ -31,4 +31,9 @@ public class Participants {
     public List<Participant> list() {
         return Collections.unmodifiableList(participants);
     }
+
+    public String getName(int i) {
+        Participant participant = participants.get(i);
+        return participant.getName();
+    }
 }
