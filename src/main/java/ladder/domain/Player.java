@@ -3,6 +3,9 @@ package ladder.domain;
 import java.util.List;
 
 public class Player {
+    public static final String NO_RESULT = "";
+    public static final int MAX_NAME_LENGTH = 5;
+
     private final String name;
     private final Position position;
     private final String result;
@@ -11,7 +14,7 @@ public class Player {
         validateName(name);
         this.name = name;
         this.position = position;
-        this.result = LadderConstants.NO_RESULT;
+        this.result = NO_RESULT;
     }
 
     public Player(String name, Position position, String result) {
@@ -44,7 +47,7 @@ public class Player {
     }
 
     private void checkNameLength(String name) {
-        if (name.length() > LadderConstants.MAX_NAME_LENGTH) {
+        if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("Player name cannot be longer than 5 characters");
         }
     }
