@@ -2,7 +2,7 @@ package nextstep.ladder;
 
 public class Player {
     public static final int MAX_NAME_LENGTH = 5;
-    private String name;
+    private final String name;
 
     public Player(String name) {
         validPlayer(name);
@@ -14,7 +14,7 @@ public class Player {
     }
 
     private void validPlayer(String name){
-        if(name == null || name.isEmpty()){
+        if(name == null || name.trim().isEmpty()){
             throw new IllegalArgumentException("이름은 공백을 허용하지 않습니다.");
         }
         if(name.length() > MAX_NAME_LENGTH){
