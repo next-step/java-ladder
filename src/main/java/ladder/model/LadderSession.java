@@ -1,10 +1,11 @@
 package ladder.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LadderSession {
-    private final static String ALL_USERNAME = "all";
 
     private final LadderSlotsPair ladderSlotsPair;
     private final Ladder ladder;
@@ -30,29 +31,14 @@ public class LadderSession {
         return ladder.getLines();
     }
 
-    public boolean hasUserName(String name) {
-        return ALL_USERNAME.equals(name) || ladderSlotsPair.hasUserName(name);
-    }
 
-    public String getGameResult(String targetName) {
-        if (ALL_USERNAME.equals(targetName)) {
-            return getAllUserResults();
+    public LadderResult runGame() {
+        Map<Integer, Integer> result = new HashMap<>();
+        for(int i = 0; i < ladderSlotsPair.size(); i++) {
+            int resultIndex = ladder.run(i);
+            result.put(i, resultIndex);
         }
-
-        return getResultName(targetName);
-    }
-
-    private String getAllUserResults() {
-        List<String> userNames = ladderSlotsPair.getUserNames();
-        return userNames.stream()
-            .map(user -> user + " : " + getResultName(user))
-            .collect(Collectors.joining("\n"));
-    }
-
-    private String getResultName(String targetName) {
-        int upperSlotIndex = ladderSlotsPair.userNameIndex(targetName);
-        int lowerSlotIndex = ladder.run(upperSlotIndex);
-        return ladderSlotsPair.indexedResult(lowerSlotIndex);
+        return new LadderResult(ladderSlotsPair, result);
     }
 
 }

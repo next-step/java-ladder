@@ -1,6 +1,7 @@
 package ladder.controller;
 
 import ladder.model.Ladder;
+import ladder.model.LadderResult;
 import ladder.model.LadderSession;
 import ladder.model.LadderSlots;
 import ladder.model.LadderSlotsPair;
@@ -20,15 +21,17 @@ public class Main {
         LadderSession session = new LadderSession(ladderSlotsPair, ladder);
         OutputView.printLadderSession(session);
 
-        gameLoop(session);
+        LadderResult ladderResult = session.runGame();
+
+        gameLoop(ladderResult);
     }
 
-    private static void gameLoop(LadderSession session) {
+    private static void gameLoop(LadderResult ladderResult) {
         while(true) {
             String target = InputView.getTarget();
 
-            if (session.hasUserName(target)) {
-                String result = session.getGameResult(target);
+            if (ladderResult.hasUserName(target)) {
+                String result = ladderResult.getGameResult(target);
                 OutputView.printGameResult(result);
                 continue;
             }
