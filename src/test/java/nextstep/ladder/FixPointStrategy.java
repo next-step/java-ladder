@@ -1,8 +1,10 @@
-package ladder;
+package nextstep.ladder;
+
+import ladder.PointStrategy;
 
 import java.util.List;
 
-public class FixPointStrategy implements PointStrategy{
+public class FixPointStrategy implements PointStrategy {
 
     private final List<Boolean> points;
     private int index = 0;

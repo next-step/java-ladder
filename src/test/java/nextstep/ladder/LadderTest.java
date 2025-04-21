@@ -1,6 +1,5 @@
 package nextstep.ladder;
 
-import ladder.FixPointStrategy;
 import ladder.Ladder;
 import ladder.PointStrategy;
 import org.assertj.core.api.Assertions;
