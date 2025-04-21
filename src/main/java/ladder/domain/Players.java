@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 
 public class Players {
     private final List<Player> players;
-    private final Map<String, Player> playersByName;
+    private final Map<String, Player> nameToPlayer;
 
     public Players(List<Player> players) {
         if (players == null || players.isEmpty()) {
@@ -15,7 +15,7 @@ public class Players {
         }
 
         this.players = players;
-        this.playersByName = players.stream()
+        this.nameToPlayer = players.stream()
                 .collect(Collectors.toMap(Player::name, player -> player));
     }
 
@@ -50,11 +50,11 @@ public class Players {
             throw new IllegalArgumentException("Player name cannot be null or empty");
         }
 
-        if (!playersByName.containsKey(name)) {
+        if (!nameToPlayer.containsKey(name)) {
             throw new IllegalArgumentException("Player not found");
         }
 
-        return playersByName.get(name);
+        return nameToPlayer.get(name);
     }
 
     private void validateLadder(Ladder ladder) {
