@@ -1,30 +1,30 @@
 package nextstep.ladder;
 
+import nextstep.ladder.strategy.LineStrategy;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collector;
 
 public class Line {
     private final List<Boolean> points;
 
-    public Line(int countOfPerson) {
+    public Line(int countOfPerson, LineStrategy lineStrategy) {
         int size = countOfPerson - 1;
         this.points = new ArrayList<>(size);
-        Random random = new Random();
+        draw(lineStrategy, size);
+    }
 
+    private void draw(LineStrategy lineStrategy, int size) {
         for (int i = 0; i < size; i++) {
-            if (i > 0 && points.get(i - 1)) {
-                points.add(false);
-            } else {
-                points.add(random.nextBoolean());
-            }
+            points.add(isAddTrue(i) && lineStrategy.isDraw());
         }
+    }
 
+    private boolean isAddTrue(int index) {
+        return index == 0 || !points.get(index - 1);
     }
 
     public List<Boolean> getPoints() {
         return points;
     }
-
 }
