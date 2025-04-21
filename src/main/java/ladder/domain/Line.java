@@ -6,10 +6,12 @@ import ladder.exception.LineInvalidException;
 
 public class Line {
     private final List<Boolean> links;
+    private final List<Point> points;
 
     public Line(List<Boolean> links) {
         validateLinks(links);
         this.links = links;
+        this.points = PointFactory.createPointsFromLinks(links);
     }
 
     private void validateLinks(List<Boolean> links) {
@@ -33,6 +35,11 @@ public class Line {
     }
 
     public List<Point> getPoints() {
-        return PointFactory.createPointsFromLinks(links);
+        return points;
+    }
+
+    public int getMove(int index) {
+        return points.get(index)
+            .getMove();
     }
 }

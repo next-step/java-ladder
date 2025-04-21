@@ -41,9 +41,7 @@ public class LadderSimulator {
         int currentIndex = initialIndex;
 
         for (Line line : ladder.getLines()) {
-            currentIndex = currentIndex + line.getPoints()
-                .get(currentIndex)
-                .getMove();
+            currentIndex = currentIndex + line.getMove(currentIndex);;
         }
 
         return new UserResult(initialIndex, users.get(initialIndex).getName(), results.get(currentIndex));
