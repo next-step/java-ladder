@@ -5,23 +5,21 @@ import java.util.List;
 
 public class Ladder {
 
-  List<Line> lines = new ArrayList<>();
+  private final List<Line> lines;
 
-  public Ladder(int height, int countOfPerson,
-      RandomPointStrategy randomPointStrategy) {
-    for (int i = 0; i < height; i++) {
-      lines.add(generateLines(countOfPerson, randomPointStrategy));
-    }
+  private Ladder(List<Line> lines) {
+    this.lines = lines;
   }
 
-  private Line generateLines(int countOfPerson,
-      RandomPointStrategy randomPointStrategy) {
-    return new Line(countOfPerson, randomPointStrategy);
+  public static Ladder of(int height, int countOfPerson, PointGenerateStrategy strategy) {
+    List<Line> lines = new ArrayList<>();
+    for (int i = 0; i < height; i++) {
+      lines.add(new Line(countOfPerson, strategy));
+    }
+    return new Ladder(lines);
   }
 
   public void printLadder() {
-    for (Line line : lines) {
-      line.printLine();
-    }
+    lines.forEach(Line::printLine);
   }
 }
