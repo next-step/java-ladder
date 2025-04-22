@@ -25,10 +25,7 @@ public class Ladder {
     }
 
     public int move(int startIndex) {
-        int position = startIndex;
-        for (Line line : lines) {
-            position = line.move(position);
-        }
-        return position;
+        return lines.stream()
+                .reduce(startIndex, (position, line) -> line.move(position), (a, b) -> a);
     }
 }
