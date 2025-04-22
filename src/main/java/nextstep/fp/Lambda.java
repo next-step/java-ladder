@@ -27,30 +27,15 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        return sumAllWithFilter(numbers, new SumFilter() {
-            @Override
-            public boolean filter(Integer integer) {
-                return true;
-            }
-        });
+        return sumAllWithFilter(numbers, integer -> true);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        return sumAllWithFilter(numbers, new SumFilter() {
-            @Override
-            public boolean filter(Integer integer) {
-                return integer % 2 == 0;
-            }
-        });
+        return sumAllWithFilter(numbers, integer -> integer % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
-        return sumAllWithFilter(numbers, new SumFilter() {
-            @Override
-            public boolean filter(Integer integer) {
-                return integer > 3;
-            }
-        });
+        return sumAllWithFilter(numbers, integer -> integer > 3);
     }
 
     public static int sumAllWithFilter(List<Integer> numbers, SumFilter sumFilter) {
