@@ -1,7 +1,9 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Participants {
 
@@ -11,7 +13,6 @@ public class Participants {
     participants = names.stream()
         .map(Participant::new)
         .collect(Collectors.toList());
-
   }
 
   public void printAll() {
@@ -19,4 +20,8 @@ public class Participants {
     System.out.println();
   }
 
+  public void findResults(Ladder ladder, LadderResults results, ResultMappings resultMappings) {
+    IntStream.range(0, participants.size())
+        .forEach(i -> resultMappings.add(participants.get(i), results.resultAt(ladder.play(i))));
+  }
 }
