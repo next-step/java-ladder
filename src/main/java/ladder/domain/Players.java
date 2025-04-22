@@ -19,6 +19,14 @@ public class Players {
                 .collect(Collectors.toMap(Player::name, player -> player));
     }
 
+    public static Players createWithNames(List<String> playerStrings) {
+        List<Player> players = IntStream.range(0, playerStrings.size())
+                .mapToObj(i -> initializePlayer(playerStrings.get(i), i))
+                .collect(Collectors.toList());
+
+        return new Players(players);
+    }
+
     public int count() {
         return players.size();
     }
@@ -35,14 +43,6 @@ public class Players {
                 .collect(Collectors.toList());
 
         return new Players(traversedPlayers);
-    }
-
-    public static Players createWithNames(List<String> playerStrings) {
-        List<Player> players = IntStream.range(0, playerStrings.size())
-                .mapToObj(i -> initializePlayer(playerStrings.get(i), i))
-                .collect(Collectors.toList());
-
-        return new Players(players);
     }
 
     public Player findPlayer(String name) {

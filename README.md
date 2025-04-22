@@ -65,4 +65,4 @@
   - [x] playerMap 이름 변경
   - [x] LadderGameTest 단위 테스트 추가
   - [x] 상수 위치 조정
-  - [ ] Players 메서드 순서 정리
+  - [x] Players 메서드 순서 정리
