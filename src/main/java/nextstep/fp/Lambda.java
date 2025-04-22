@@ -27,27 +27,21 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        return sumAllWithFilter(numbers, integer -> true);
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
-            }
-        }
-        return total;
+        return sumAllWithFilter(numbers, integer -> integer % 2 == 0);
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
+        return sumAllWithFilter(numbers, integer -> integer > 3);
+    }
+
+    public static int sumAllWithFilter(List<Integer> numbers, SumFilter sumFilter) {
         int total = 0;
         for (int number : numbers) {
-            if (number > 3) {
+            if (sumFilter.filter(number)) {
                 total += number;
             }
         }
