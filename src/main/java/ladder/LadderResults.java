@@ -1,41 +1,34 @@
 package ladder;
 
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class LadderResults {
-    private final Map<Player, Result> results;
+    private final Players players;
+    private final Results matchedResults;
 
-    private LadderResults(Map<Player, Result> results) {
-        this.results = results;
+    private LadderResults(Players players, Results matchedResults) {
+        this.players = players;
+        this.matchedResults = matchedResults;
     }
 
     public static LadderResults from(Players players, Ladder ladder, Results results) {
-        Map<Player, Result> resultMap = new LinkedHashMap<>();
-        List<Player> all = players.players();
+        List<Result> resultList = results.getResults();
 
-        for (int i = 0; i < all.size(); i++) {
-            Player player = all.get(i);
-            int resultIndex = ladder.move(i);
-            resultMap.put(player, results.getResults().get(resultIndex));
+        List<Result> matched = new ArrayList<>();
+        for (int i = 0; i < players.size(); i++) {
+            int moved = ladder.move(i);
+            matched.add(resultList.get(moved));
         }
-
-        return new LadderResults(resultMap);
-    }
-    public Map<Player, Result> getResultMap() {
-        return Map.copyOf(results);
-    }
-
-    public Result getResultOf(String name) {
-        return results.keySet().stream()
-                .filter(player -> player.toString().equals(name))
-                .findFirst()
-                .map(results::get)
-                .orElse(null);
+        return new LadderResults(players, new Results(matched, players));
     }
 
     public List<Player> getPlayers() {
-        return List.copyOf(results.keySet());
+        return players.players();
+    }
+
+    public Result getResultOf(Player player) {
+        int index = players.indexOf(player);
+        return matchedResults.getResults().get(index);
     }
 }
