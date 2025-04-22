@@ -13,7 +13,7 @@ public class Ladder {
 
     public static Ladder of(int height, Participants participants, LineDrawStrategy strategy) {
         List<Line> result = new ArrayList<>();
-        int numLines = participants.getParticipantsCount() - 1;
+        int numLines = participants.getParticipantsCount();
         for (int i = 0; i < height; i++) {
             result.add(Line.generate(numLines, strategy));
         }
@@ -24,8 +24,8 @@ public class Ladder {
         return lines;
     }
 
-    public int move(int startIndex) {
+    public int move(int position) {
         return lines.stream()
-                .reduce(startIndex, (position, line) -> line.move(position), (a, b) -> a);
+                .reduce(position, (pos, line) -> line.move(pos), (a, b) -> b);
     }
 }

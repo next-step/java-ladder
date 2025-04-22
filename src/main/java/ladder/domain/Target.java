@@ -10,4 +10,8 @@ public class Target {
     public String getName() {
         return name;
     }
+
+    public boolean isContinue() {
+        return !name.equals("all");
+    }
 }
