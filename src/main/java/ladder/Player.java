@@ -16,6 +16,10 @@ public class Player {
         }
     }
 
+    public boolean isSameName(String other) {
+        return this.name.equals(other);
+    }
+
     @Override
     public String toString() {
         return name;

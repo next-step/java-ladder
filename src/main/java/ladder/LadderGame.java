@@ -8,16 +8,16 @@ public class LadderGame {
         Players players = new Players(InputView.readNames());
         Results results = InputView.readResults(players);
         Ladder ladder = new Ladder(InputView.readHeight(), players.size(), new RandomPointStrategy());
-        LadderResults ladderResults = LadderResults.from(players, ladder, results);
-        OutputView.printResult(ladderResults, ladder);
+        OutputView.printResult(players, ladder, results);
 
+        LadderResults ladderResults = LadderResults.from(players, ladder, results);
         while (true) {
-            String name = InputView.askPlayerName();
-            if ("all".equals(name)) {
+            Player player = InputView.askPlayerName();
+            if (player.isSameName("all")) {
                 OutputView.printAllResults(ladderResults);
                 break;
             }
-            OutputView.printSingleResult(name, ladderResults);
+            OutputView.printSingleResult(player, ladderResults);
         }
     }
 }

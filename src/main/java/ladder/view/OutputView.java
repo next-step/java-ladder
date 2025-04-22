@@ -4,21 +4,21 @@ import ladder.*;
 
 public class OutputView {
 
-    public static void printResult(LadderResults results, Ladder ladder) {
+    public static void printResult(Players players, Ladder ladder, Results results) {
         System.out.println("\n사다리 결과\n");
-        printNames(results);
+        printNames(players);
         printLadder(ladder);
         printResults(results);
     }
 
-    private static void printResults(LadderResults results) {
-        results.getPlayers().forEach(player ->
-                System.out.printf("%-6s", results.getResultMap().get(player).toString()));
+    private static void printResults(Results results) {
+        results.getResults().forEach(result ->
+                System.out.printf("%-6s", result));
         System.out.println();
     }
 
-    private static void printNames(LadderResults results) {
-        results.getPlayers().forEach(player ->
+    private static void printNames(Players players) {
+        players.players().forEach(player ->
                 System.out.printf("%-6s", player));
         System.out.println();
     }
@@ -35,8 +35,8 @@ public class OutputView {
         }
     }
 
-    public static void printSingleResult(String name, LadderResults results) {
-        Result result = results.getResultOf(name);
+    public static void printSingleResult(Player player, LadderResults results) {
+        Result result = results.getResultOf(player);
         if (result == null) {
             System.out.println("존재하지 않는 참가자입니다.");
             return;
@@ -48,7 +48,7 @@ public class OutputView {
     public static void printAllResults(LadderResults results) {
         System.out.println("\n실행 결과");
         results.getPlayers().forEach(player -> {
-            Result result = results.getResultMap().get(player);
+            Result result = results.getResultOf(player);
             System.out.println(player + " : " + result.toString());
         });
     }

@@ -24,9 +24,9 @@ public class InputView {
         return players;
     }
 
-    public static String askPlayerName() {
+    public static Player askPlayerName() {
         System.out.println("\n결과를 보고 싶은 사람은?");
-        return scanner.nextLine();
+        return new Player(scanner.nextLine());
     }
 
     private static String[] getTokens() {
