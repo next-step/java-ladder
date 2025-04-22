@@ -27,4 +27,14 @@ public class Line {
     public List<Point> getPoints() {
         return points;
     }
+
+    public int move(int index) {
+        if (index < points.size() && points.get(index).hasRight()) {
+            return index + 1;
+        }
+        if (index > 0 && points.get(index - 1).hasRight()) {
+            return index - 1;
+        }
+        return index;
+    }
 }

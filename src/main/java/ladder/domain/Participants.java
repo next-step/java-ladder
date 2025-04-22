@@ -35,4 +35,8 @@ public class Participants {
                 .map(Participant::getLength)
                 .collect(Collectors.toList());
     }
+
+    public String getName(int index) {
+        return names.get(index).getName();
+    }
 }
