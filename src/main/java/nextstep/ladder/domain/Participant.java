@@ -18,4 +18,25 @@ public class Participant {
   public void print() {
     System.out.printf("%-6s", name);
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Participant)) return false;
+    Participant that = (Participant) o;
+    return name.equals(that.name);
+  }
+
+  @Override
+  public int hashCode() {
+    return name.hashCode();
+  }
+
+  public boolean matchName(String name) {
+    return this.name.equals(name);
+  }
+
+  public String value() {
+    return this.name;
+  }
 }

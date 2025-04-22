@@ -1,19 +1,21 @@
 package nextstep.ladder.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Line {
 
-  private List<Boolean> points = new ArrayList<>();
+  private final List<Boolean> points;
 
   public Line(int countOfPerson, PointGenerateStrategy strategy) {
-    boolean previousHasLine = false;
-    for (int i = 0; i < countOfPerson - 1; i++) {
-      boolean current = generateNextLine(previousHasLine, strategy);
-      points.add(current);
-      previousHasLine = current;
-    }
+    this.points = Stream.iterate(false, prev -> !prev)
+        .limit(countOfPerson - 1)
+        .map(prev -> {
+          boolean current = strategy.generate();
+          return !prev && current;
+        })
+        .collect(Collectors.toList());
   }
 
   public boolean generateNextLine(boolean previousHasLine,
@@ -25,16 +27,18 @@ public class Line {
   }
 
   public void printLine() {
-    StringBuilder sb = new StringBuilder();
-    for (Boolean point : points) {
-      sb.append("|");
-      if (point) {
-        sb.append("-----");
-      } else {
-        sb.append("     ");
-      }
+    points.stream().map(point -> "|" + (point ? "-----" : "     "))
+        .forEach(System.out::print);
+    System.out.println("|");
+  }
+
+  public int move(int index) {
+    if (index < points.size() && points.get(index)) {
+      return index + 1;
     }
-    sb.append("|");
-    System.out.println(sb);
+    if (index > 0 && points.get(index - 1)) {
+      return index - 1;
+    }
+    return index;
   }
 }
