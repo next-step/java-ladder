@@ -16,7 +16,7 @@ public class ResultView {
 
         ResultView.printPlayer(ladderGame.players());
         ResultView.printLadder(ladder);
-        ResultView.printResults(ladderGame.getResults());
+        ResultView.printResults(ladderGame.results());
     }
 
     private static void printResults(List<String> results) {

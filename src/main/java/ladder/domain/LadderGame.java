@@ -20,7 +20,7 @@ public class LadderGame {
         return new LadderGameResult(traversed, results);
     }
 
-    public List<String> getResults() {
+    public List<String> results() {
         return results;
     }
 }

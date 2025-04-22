@@ -60,3 +60,9 @@
 - [x] 피드백
   - [x] LadderGameApplication RandomLineGenerator 상수로 분리
   - [x] Player 가 Result 를 필드로 가짐
+## 4단계
+- [x] 3단계 피드백
+  - [x] playerMap 이름 변경
+  - [x] LadderGameTest 단위 테스트 추가
+  - [x] 상수 위치 조정
+  - [x] Players 메서드 순서 정리

@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 
 public class Players {
     private final List<Player> players;
-    private final Map<String, Player> playerMap;
+    private final Map<String, Player> nameToPlayer;
 
     public Players(List<Player> players) {
         if (players == null || players.isEmpty()) {
@@ -15,8 +15,16 @@ public class Players {
         }
 
         this.players = players;
-        this.playerMap = players.stream()
+        this.nameToPlayer = players.stream()
                 .collect(Collectors.toMap(Player::name, player -> player));
+    }
+
+    public static Players createWithNames(List<String> playerStrings) {
+        List<Player> players = IntStream.range(0, playerStrings.size())
+                .mapToObj(i -> initializePlayer(playerStrings.get(i), i))
+                .collect(Collectors.toList());
+
+        return new Players(players);
     }
 
     public int count() {
@@ -37,24 +45,16 @@ public class Players {
         return new Players(traversedPlayers);
     }
 
-    public static Players createWithNames(List<String> playerStrings) {
-        List<Player> players = IntStream.range(0, playerStrings.size())
-                .mapToObj(i -> initializePlayer(playerStrings.get(i), i))
-                .collect(Collectors.toList());
-
-        return new Players(players);
-    }
-
     public Player findPlayer(String name) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Player name cannot be null or empty");
         }
 
-        if (!playerMap.containsKey(name)) {
+        if (!nameToPlayer.containsKey(name)) {
             throw new IllegalArgumentException("Player not found");
         }
 
-        return playerMap.get(name);
+        return nameToPlayer.get(name);
     }
 
     private void validateLadder(Ladder ladder) {

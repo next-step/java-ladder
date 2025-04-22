@@ -7,9 +7,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static ladder.domain.LadderConstants.RANDOM_TRUE_THRESHOLD;
-
 public class RandomLadderLineGenerator implements LadderLineGenerator {
+
+    public static final double RANDOM_TRUE_THRESHOLD = 0.5;
 
     public RandomLadderLineGenerator() {}
 
