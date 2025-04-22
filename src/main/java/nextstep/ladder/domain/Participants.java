@@ -26,7 +26,7 @@ public class Participants {
     }
 
     public List<Name> asList() {
-        return values;
+        return Collections.unmodifiableList(values);
     }
 
     @Override

@@ -29,7 +29,7 @@ public class Ladder {
     }
 
     public List<LadderLine> asList() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 
     public LadderResults assignRewards(Participants participants, Rewards rewards) {

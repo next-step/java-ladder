@@ -19,17 +19,29 @@ public class Bridge {
         }
     }
 
-    public boolean isLeftConnected() {
-        return left;
-    }
-
     public boolean isRightConnected() {
         return right;
     }
 
+    public boolean notMatchWithNext(Bridge next) {
+        return right != next.left;
+    }
+
+    public boolean notValidAsFirst() {
+        return left;
+    }
+
+    public boolean notValidAsLast() {
+        return right;
+    }
+
     public Direction nextDirection() {
-        if (right) return Direction.RIGHT;
-        if (left) return Direction.LEFT;
+        if (right) {
+            return Direction.RIGHT;
+        }
+        if (left) {
+            return Direction.LEFT;
+        }
         return Direction.STAY;
     }
 

@@ -15,6 +15,11 @@ public class LadderTest {
 
     @BeforeEach
     void setUp() {
+        /*
+            아래 형태를 가지는 bridge를 생성
+            |---|   |
+            |   |---|
+         */
         List<Bridge> bridge1 = List.of(new Bridge(false, true), new Bridge(true, false), new Bridge(false, false));
         List<Bridge> bridge2 = List.of(new Bridge(false, false), new Bridge(false, true), new Bridge(true, false));
         ladderLines = new ArrayList<>();

@@ -7,6 +7,7 @@ public class LadderLine {
     public static final String INVALID_PAIR_MESSAGE = "사다리 연결 정보가 일치하지 않습니다.";
     public static final String FIRST_BRIDGE_CANNOT_LEFT_CONNECTED = "첫번째 사다리의 왼쪽은 연결되어 있으면 안됩니다.";
     public static final String LAST_BRIDGE_CANNOT_RIGHT_CONNECTED = "마지막 사다리의 오른쪽은 연결되어 있으면 안됩니다.";
+
     private final List<Bridge> bridges;
 
     public LadderLine(List<Bridge> lines) {
@@ -27,16 +28,17 @@ public class LadderLine {
     }
 
     private static void validEdge(List<Bridge> lines) {
-        if (lines.get(0).isLeftConnected()) {
+        if (lines.get(0).notValidAsFirst()) {
             throw new IllegalArgumentException(FIRST_BRIDGE_CANNOT_LEFT_CONNECTED);
         }
-        if (lines.get(lines.size() - 1).isRightConnected()) {
+
+        if (lines.get(lines.size() - 1).notValidAsLast()) {
             throw new IllegalArgumentException(LAST_BRIDGE_CANNOT_RIGHT_CONNECTED);
         }
     }
 
     private static void validPairValue(Bridge current, Bridge next) {
-        if (current.isRightConnected() != next.isLeftConnected()) {
+        if (current.notMatchWithNext(next)) {
             throw new IllegalArgumentException(INVALID_PAIR_MESSAGE);
         }
     }
