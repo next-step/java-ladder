@@ -27,27 +27,36 @@ public class Lambda {
     }
 
     public static int sumAll(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            total += number;
-        }
-        return total;
+        return sumAllWithFilter(numbers, new SumFilter() {
+            @Override
+            public boolean filter(Integer integer) {
+                return true;
+            }
+        });
     }
 
     public static int sumAllEven(List<Integer> numbers) {
-        int total = 0;
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                total += number;
+        return sumAllWithFilter(numbers, new SumFilter() {
+            @Override
+            public boolean filter(Integer integer) {
+                return integer % 2 == 0;
             }
-        }
-        return total;
+        });
     }
 
     public static int sumAllOverThree(List<Integer> numbers) {
+        return sumAllWithFilter(numbers, new SumFilter() {
+            @Override
+            public boolean filter(Integer integer) {
+                return integer > 3;
+            }
+        });
+    }
+
+    public static int sumAllWithFilter(List<Integer> numbers, SumFilter sumFilter) {
         int total = 0;
         for (int number : numbers) {
-            if (number > 3) {
+            if (sumFilter.filter(number)) {
                 total += number;
             }
         }
