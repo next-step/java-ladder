@@ -10,14 +10,14 @@ class LineTest {
     @Test
     @DisplayName("사다리 라인을 생성한다.")
     void createLine() {
-        assertThat(new Line(3, () -> true)).isEqualTo(new Line(true, false, true));
-        assertThat(new Line(3, () -> false)).isEqualTo(new Line(false, false, false));
+        assertThat(new Line(4, () -> true)).isEqualTo(new Line(true, false, true));
+        assertThat(new Line(4, () -> false)).isEqualTo(new Line(false, false, false));
     }
 
     @Test
     @DisplayName("사다리의 라인 하나가 반환된다.")
     void getList() {
-        assertThat(new Line(true, false, true).getRungs()).hasSize(3);
+        assertThat(new Line(true, false, true).getPoints()).hasSize(4);
     }
 
 }

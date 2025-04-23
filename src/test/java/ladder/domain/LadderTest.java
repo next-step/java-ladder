@@ -7,7 +7,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LadderTest {
 
@@ -28,9 +27,8 @@ class LadderTest {
     @Test
     @DisplayName("사다리 타기는 (참여하는 사람의 수 - 1) 만큼 라인이 생성된다.")
     void getLines() {
-        Lines lines = new Ladder(List.of("red", "blue"), List.of("3000", "5000"),2, () -> true).getLines();
-        assertTrue(lines.hasSameHeight(2));
-        assertTrue(lines.hasSameWidth(1));
+        Ladder ladder = new Ladder(List.of("red", "blue"), List.of("3000", "5000"), 2, () -> true);
+        assertThat(ladder.getLines()).isEqualTo(new Lines(new Line(true), new Line(true)));
     }
 
     @Test

@@ -30,10 +30,6 @@ public class Names {
         return names;
     }
 
-    public int connectSize() {
-        return names.size() - 1;
-    }
-
     public int size() {
         return names.size();
     }

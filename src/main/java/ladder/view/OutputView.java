@@ -29,13 +29,14 @@ public class OutputView {
     }
 
     private String convertLine(Line line) {
-        return line.getRungs().stream()
+        return line.getPoints().stream()
+                .skip(1)
                 .map(this::convertRung)
                 .collect(Collectors.joining("|", "    |", "|"));
     }
 
-    private String convertRung(Rung rung) {
-        return rung.isConnected() ? "-----" : "     ";
+    private String convertRung(Point point) {
+        return point.isMoveRight() ? "-----" : "     ";
     }
 
     private void printPrizes(Prizes prizes) {

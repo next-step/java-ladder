@@ -17,7 +17,7 @@ public class Ladder {
     public Ladder(List<String> names, List<String> prizes, int height, RungGenerator rungGenerator) {
         validateSameSize(names, prizes);
         this.names = new Names(names);
-        this.lines = new Lines(height, this.names.connectSize(), rungGenerator);
+        this.lines = new Lines(height, this.names.size(), rungGenerator);
         this.prizes = new Prizes(prizes);
     }
 
