@@ -27,7 +27,7 @@ public class LadderGame {
         Rewards rewards = new Rewards(getNames(RESULT_PROMPT));
         int maxLadderHeight = inputView.getNumberInput(MAX_LADDER_HEIGHT_PROMPT);
 
-        Ladder ladder = Ladder.generate(maxLadderHeight, participants.size());
+        Ladder ladder = Ladder.generate(maxLadderHeight, participants.size(), new RandomConnectionStrategy());
         LadderResults ladderResults = ladder.assignRewards(participants, rewards);
 
         outputView.printLadder(participants, ladder, rewards);

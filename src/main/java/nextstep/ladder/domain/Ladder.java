@@ -8,28 +8,26 @@ public class Ladder {
     public static final String NOT_MATCH_PARTICIPANTS_REWARDS_COUNT = "참가자 수와 결과 수는 같아야 합니다.";
     private final List<LadderLine> lines;
 
-    public Ladder(List<LadderLine> lines) {
-        this.validateLadderLines(lines);
-
+    private Ladder(List<LadderLine> lines) {
         this.lines = lines;
     }
 
-    private void validateLadderLines(List<LadderLine> ladderLines) {
-        if (ladderLines.isEmpty()) {
-            throw new IllegalArgumentException(INVALID_LADDER_SIZE_MESSAGE);
-        }
-
-        LadderLine expectedLadderLine = ladderLines.get(0);
-        boolean allMatch = ladderLines.stream()
-                .allMatch(ladderLine -> ladderLine.sameSize(expectedLadderLine));
-
-        if (!allMatch) {
-            throw new IllegalArgumentException(NOT_ALL_MATCH_LADDER_SIZE);
-        }
-    }
+//    private void validateLadderLines(List<LadderLine> ladderLines) {
+//        if (ladderLines.isEmpty()) {
+//            throw new IllegalArgumentException(INVALID_LADDER_SIZE_MESSAGE);
+//        }
+//
+//        LadderLine expectedLadderLine = ladderLines.get(0);
+//        boolean allMatch = ladderLines.stream()
+//                .allMatch(ladderLine -> ladderLine.sameSize(expectedLadderLine));
+//
+//        if (!allMatch) {
+//            throw new IllegalArgumentException(NOT_ALL_MATCH_LADDER_SIZE);
+//        }
+//    }
 
     public List<LadderLine> asList() {
-        return lines;
+        return Collections.unmodifiableList(lines);
     }
 
     public LadderResults assignRewards(Participants participants, Rewards rewards) {
@@ -53,22 +51,22 @@ public class Ladder {
         return position;
     }
 
-    public static Ladder generate(int height, int ladderLineSize) {
-        valid(height, ladderLineSize);
-        List<LadderLine> ladderLines = generateLines(height, ladderLineSize);
+    public static Ladder generate(int height, int width, ConnectionStrategy connectionStrategy) {
+        valid(height, width);
+        List<LadderLine> ladderLines = generateLines(height, width, connectionStrategy);
         return new Ladder(ladderLines);
     }
 
     private static void valid(int height, int ladderLineSize) {
-        if (height < 1 || ladderLineSize < 1) {
+        if (height < 1 || ladderLineSize < 2) {
             throw new IllegalArgumentException(INVALID_LADDER_SIZE_MESSAGE);
         }
     }
 
-    private static List<LadderLine> generateLines(int height, int ladderLineSize) {
+    private static List<LadderLine> generateLines(int height, int width, ConnectionStrategy connectionStrategy) {
         List<LadderLine> ladderLines = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            ladderLines.add(LadderLine.generate(ladderLineSize));
+            ladderLines.add(LadderLine.generate(width, connectionStrategy));
         }
         return Collections.unmodifiableList(ladderLines);
     }
