@@ -19,7 +19,7 @@ public class Players {
 
     public int indexOf(Player player) {
         return IntStream.range(0, players.size())
-                .filter(i -> players.get(i).toString().equals(player.toString()))
+                .filter(i -> players.get(i).isSameName(player))
                 .findFirst()
                 .orElseThrow(()-> new IllegalArgumentException("해당 이름의 참여자가 없습니다."));
     }
