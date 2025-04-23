@@ -9,7 +9,7 @@ public class Ladder {
     public Ladder(int height, int count, PointStrategy strategy) {
         List<Line> ladder = new ArrayList<>();
         for (int i = 0; i < height; i++) {
-            ladder.add(new Line(count, strategy));
+            ladder.add(LineFactory.create(count, strategy));
         }
         this.lines = ladder;
     }
