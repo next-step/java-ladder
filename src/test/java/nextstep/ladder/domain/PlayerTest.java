@@ -17,6 +17,11 @@ class PlayerTest {
     }
 
     @Test
+    void 이름이_공백이면_예외() {
+        assertThrows(IllegalArgumentException.class, () -> new Player(" "));
+    }
+
+    @Test
     void 이름이_5자를_초과하면_예외() {
         assertThrows(IllegalArgumentException.class, () -> new Player("longname"));
     }

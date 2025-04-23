@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,5 +21,12 @@ public class Players {
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public List<String> getPlayersName() {
+        List<String> names = new ArrayList<>();
+        players.forEach(player -> names.add(player.getName()));
+
+        return names;
     }
 }
