@@ -2,7 +2,6 @@ package nextstep.domain;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,12 +24,15 @@ public class LadderTest {
     @DisplayName("모든 행이 false로만 이루어져 있다면, 출발과 도착 위치가 같다.")
     void playStraightTest() {
         int columns = 4, height = 6;
-        List<Line> straightLines = IntStream.range(0, height)
-            .mapToObj(i -> new Line(columns, new ArrayList<>(Collections.nCopies(columns - 1, false))))
+        List<Boolean> falseEdge = Collections.nCopies(columns - 1, false);
+        List<Line> straightLine = IntStream.range(0, height)
+            .mapToObj(i -> Line.ofStatus(columns, falseEdge))
             .collect(Collectors.toList());
-        Ladder ladder = new Ladder(straightLines);
-        for (int i = 0; i < columns; i++) {
-            assertEquals(i, ladder.play(i));
+
+        Ladder ladder = new Ladder(straightLine);
+
+        for (int start = 0; start < columns; start++) {
+            assertEquals(start, ladder.play(start));
         }
     }
 }

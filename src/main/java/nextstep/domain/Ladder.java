@@ -1,5 +1,6 @@
 package nextstep.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -27,12 +28,7 @@ public class Ladder {
     public int play(int index) {
         int position = index;
         for (Line line : lines) {
-            List<Boolean> points = line.rowStatus();
-            if (position > 0 && points.get(position - 1)) {
-                position = position - 1;
-            } else if (position < points.size() && points.get(position)) {
-                position = position + 1;
-            }
+            position = line.move(position);
         }
         return position;
     }
@@ -42,9 +38,7 @@ public class Ladder {
         return lines.size();
     }
 
-    public void print() {
-        for (Line line : lines) {
-            System.out.println(line.rowStatus());
-        }
+    public List<Line> lines() {
+        return Collections.unmodifiableList(lines);
     }
 }
