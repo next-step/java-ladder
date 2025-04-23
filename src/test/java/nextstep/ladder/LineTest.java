@@ -24,7 +24,6 @@ public class LineTest {
 
     @Test
     void newLine_falseStrategy() {
-        falseLine = new Line(4, () -> false);
         List<Boolean> points = falseLine.getPoints();
 
         assertEquals(points.size(), 3);

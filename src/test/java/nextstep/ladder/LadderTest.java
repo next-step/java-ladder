@@ -2,12 +2,21 @@ package nextstep.ladder;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LadderTest {
+
+    Player pobi = new Player("pobi");
+    Player honux = new Player("honux");
+    Player crong = new Player("crong");
+    Player jk = new Player("jk");
+
+    List<Player> playerList = List.of(pobi, honux, crong, jk);
+    Players players = new Players(playerList);
 
     @Test
     void newLadder() {
@@ -16,33 +25,36 @@ public class LadderTest {
 
     @Test
     void play_trueLadder() {
-        Players players = new Players("pobi,honux,crong,jk");
-        String resultString = "꽝,5000,꽝,3000";
+        String prizeString = "꽝,5000,꽝,3000";
 
-        Ladder ladder = new Ladder(players, 5, resultString, () -> true);
+        Ladder ladder = new Ladder(players, 5, prizeString, () -> true);
 
         GameResult result = ladder.play(players);
 
-        assertEquals(players.getCount(), result.getAllResults().size());
-        assertThat(result.getResult("pobi")).isEqualTo("5000");
-        assertThat(result.getResult("honux")).isEqualTo("꽝");
-        assertThat(result.getResult("crong")).isEqualTo("3000");
-        assertThat(result.getResult("jk")).isEqualTo("꽝");
+        assertAll(
+                () -> assertThat(result.getAllResults().size()).isEqualTo(players.getCount()),
+                () -> assertThat(result.getResult(pobi)).isEqualTo(new Prize("5000")),
+                () -> assertThat(result.getResult(honux)).isEqualTo(new Prize("꽝")),
+                () -> assertThat(result.getResult(crong)).isEqualTo(new Prize("3000")),
+                () -> assertThat(result.getResult(jk)).isEqualTo(new Prize("꽝"))
+        );
     }
 
     @Test
     void play_falseLadder() {
-        Players players = new Players("pobi,honux,crong,jk");
-        String resultString = "꽝,5000,꽝,3000";
-        Ladder ladder = new Ladder(players, 5, resultString, () -> false);
+        String prizeString = "꽝,5000,꽝,3000";
+
+        Ladder ladder = new Ladder(players, 5, prizeString, () -> false);
 
         GameResult result = ladder.play(players);
 
-        assertEquals(players.getCount(), result.getAllResults().size());
-        assertThat(result.getResult("pobi")).isEqualTo("꽝");
-        assertThat(result.getResult("honux")).isEqualTo("5000");
-        assertThat(result.getResult("crong")).isEqualTo("꽝");
-        assertThat(result.getResult("jk")).isEqualTo("3000");
+        assertAll(
+                () -> assertThat(result.getAllResults().size()).isEqualTo(players.getCount()),
+                () -> assertThat(result.getResult(pobi)).isEqualTo(new Prize("꽝")),
+                () -> assertThat(result.getResult(honux)).isEqualTo(new Prize("5000")),
+                () -> assertThat(result.getResult(crong)).isEqualTo(new Prize("꽝")),
+                () -> assertThat(result.getResult(jk)).isEqualTo(new Prize("3000"))
+        );
     }
 
 }
