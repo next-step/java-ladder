@@ -37,11 +37,10 @@ public class Ladder {
     }
 
     public GameResult play(Players players) {
-        Map<String, String> resultMap = new LinkedHashMap<>();
+        Map<Player, Prize> resultMap = new LinkedHashMap<>();
         for (int i = 0; i < players.getCount(); i++) {
-            String name = players.getPlayers().get(i).getName();
             int finalPosition = calculateFinalPosition(i);
-            resultMap.put(name, result.get(finalPosition));
+            resultMap.put(players.getPlayers().get(i), new Prize(result.get(finalPosition)));
         }
         return new GameResult(resultMap);
     }

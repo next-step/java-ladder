@@ -23,9 +23,13 @@ public class LadderTest {
 
         GameResult result = ladder.play(players);
 
+<<<<<<< HEAD
+        assertEquals(players.getCount(), result.getAllResults().size());
+=======
         Map<String, String> results = result.getAllResults();
 
-        assertEquals(players.getCount(), results.size());
+        assertThat(players.getCount()).isEqualTo(results.size());
+>>>>>>> 0838979798611bbc9a197b51b4265f2978a26741
         assertThat(result.getResult("pobi")).isEqualTo("5000");
         assertThat(result.getResult("honux")).isEqualTo("꽝");
         assertThat(result.getResult("crong")).isEqualTo("3000");
@@ -40,9 +44,7 @@ public class LadderTest {
 
         GameResult result = ladder.play(players);
 
-        Map<String, String> results = result.getAllResults();
-
-        assertEquals(players.getCount(), results.size());
+        assertEquals(players.getCount(), result.getAllResults().size());
         assertThat(result.getResult("pobi")).isEqualTo("꽝");
         assertThat(result.getResult("honux")).isEqualTo("5000");
         assertThat(result.getResult("crong")).isEqualTo("꽝");
