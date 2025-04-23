@@ -1,7 +1,9 @@
 package ladder.domain;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -12,6 +14,10 @@ public class Lines {
         validLadderLength(lineCount);
         validLadderLength(pointCount);
         this.lines = createLadder(lineCount, pointCount, generator);
+    }
+
+    public Lines(Line... lines) {
+        this.lines = Arrays.asList(lines);
     }
 
     private void validLadderLength(int value) {
@@ -29,19 +35,23 @@ public class Lines {
         return Collections.unmodifiableList(lines);
     }
 
-    public boolean hasSameLineCount(int lineCount) {
-        return lines.size() == lineCount;
-    }
-
-    public boolean hasSamePointCount(int pointCount) {
-        return lines.stream().allMatch(line -> line.hasSamePointCount(pointCount));
-    }
-
     public int moveLinesFrom(int startPoint) {
-        int point = startPoint;
-        for (Line line : lines) {
-            point = line.moveFrom(point);
-        }
-        return point;
+        return lines.stream()
+                .reduce(startPoint,
+                        (previousPoint, line) -> line.moveFrom(previousPoint),
+                        (previousPoint, currentPoint) -> currentPoint);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Lines lines1 = (Lines) o;
+        return Objects.equals(lines, lines1.lines);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(lines);
     }
 }

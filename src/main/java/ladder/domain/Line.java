@@ -51,10 +51,6 @@ public class Line {
         return Collections.unmodifiableList(points);
     }
 
-    public boolean hasSamePointCount(int size) {
-        return points.size() == size;
-    }
-
     public int moveFrom(int point) {
         return points.get(point).move();
     }
