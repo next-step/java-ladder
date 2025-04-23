@@ -14,11 +14,19 @@ public class Point {
     }
 
     public static Point create(RungGenerator generator) {
-        return new Point(0, false, generator.isConnected());
+        return create(generator.isConnected());
+    }
+
+    public static Point create(boolean right) {
+        return new Point(0, false, right);
     }
 
     public Point createNext(RungGenerator generator) {
-        boolean connect = !this.right && generator.isConnected();
+        return createNext(generator.isConnected());
+    }
+
+    public Point createNext(boolean right) {
+        boolean connect = !this.right && right;
         return new Point(position + 1, this.right, connect);
     }
 

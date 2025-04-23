@@ -23,12 +23,14 @@ public class Line {
     }
 
     private static List<Point> toPoints(boolean[] line) {
-        List<Point> points = new ArrayList<>();
-        points.add(new Point(0, false, line[0]));
+        List<Point> points = new ArrayList<>(line.length + 1);
+        points.add(Point.create(line[0]));
+
         for (int i = 1; i < line.length; i++) {
-            points.add(new Point(i, line[i - 1], line[i]));
+            points.add(points.get(i - 1).createNext(line[i]));
         }
-        points.add(new Point(line.length, line[line.length - 1], false));
+
+        points.add(points.get(points.size() - 1).createLast());
         return points;
     }
 
