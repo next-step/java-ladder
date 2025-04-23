@@ -9,18 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LineTest {
 
-    Line line;
-    Line falseLine;
-
-    @BeforeEach
-    void setUp() {
-        // 4명의 참가자 (points 크기 3)
-        // 고정된 가로줄 패턴: [true, false, true]
-        line = new Line(4, () -> true);
-
-        // 모든 point가 false
-        falseLine = new Line(4, () -> false);
-    }
+    private final Line line = new Line(4, () -> true);
+    private final Line falseLine = new Line(4, () -> false);
 
     @Test
     void newLine_trueStrategy() {
