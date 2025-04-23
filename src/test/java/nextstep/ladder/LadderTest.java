@@ -25,7 +25,7 @@ public class LadderTest {
 
         Map<String, String> results = result.getAllResults();
 
-        assertEquals(players.getCount(), results.size());
+        assertThat(players.getCount()).isEqualTo(results.size());
         assertThat(result.getResult("pobi")).isEqualTo("5000");
         assertThat(result.getResult("honux")).isEqualTo("꽝");
         assertThat(result.getResult("crong")).isEqualTo("3000");
