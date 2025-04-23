@@ -8,10 +8,10 @@ import java.util.stream.IntStream;
 public class Lines {
     private final List<Line> lines;
 
-    public Lines(int height, int width, RungGenerator generator) {
-        validLadderLength(height);
-        validLadderLength(width);
-        this.lines = createLadder(height, width, generator);
+    public Lines(int lineCount, int pointCount, RungGenerator generator) {
+        validLadderLength(lineCount);
+        validLadderLength(pointCount);
+        this.lines = createLadder(lineCount, pointCount, generator);
     }
 
     private void validLadderLength(int value) {
@@ -19,9 +19,9 @@ public class Lines {
             throw new IllegalArgumentException("The ladder height should be larger than zero.");
     }
 
-    private List<Line> createLadder(int height, int width, RungGenerator generator) {
-        return IntStream.range(0, height)
-                .mapToObj(i -> new Line(width, generator))
+    private List<Line> createLadder(int lineCount, int pointCount, RungGenerator generator) {
+        return IntStream.range(0, lineCount)
+                .mapToObj(i -> new Line(pointCount, generator))
                 .collect(Collectors.toList());
     }
 
@@ -29,12 +29,12 @@ public class Lines {
         return Collections.unmodifiableList(lines);
     }
 
-    public boolean hasSameHeight(int height) {
-        return lines.size() == height;
+    public boolean hasSameLineCount(int lineCount) {
+        return lines.size() == lineCount;
     }
 
-    public boolean hasSameWidth(int width) {
-        return lines.stream().allMatch(line -> line.hasSameWidth(width));
+    public boolean hasSamePointCount(int pointCount) {
+        return lines.stream().allMatch(line -> line.hasSamePointCount(pointCount));
     }
 
     public int moveLinesFrom(int startPoint) {

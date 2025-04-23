@@ -20,13 +20,13 @@ class LinesTest {
     void getLines() {
         assertThat(new Lines(3, 5, () -> true).getLines())
                 .hasSize(3)
-                .allMatch(line -> line.hasSameWidth(5));
+                .allMatch(line -> line.hasSamePointCount(5));
     }
 
     @Test
     @DisplayName("사다리타기 실행 결과를 반환한다.")
     void getResult() {
-        Lines lines = new Lines(1, 2, () -> true);
+        Lines lines = new Lines(1, 3, () -> true);
         assertThat(lines.moveLinesFrom(0)).isEqualTo(1);
         assertThat(lines.moveLinesFrom(1)).isEqualTo(0);
         assertThat(lines.moveLinesFrom(2)).isEqualTo(2);

@@ -29,8 +29,8 @@ class LadderTest {
     @DisplayName("사다리 타기는 (참여하는 사람의 수 - 1) 만큼 라인이 생성된다.")
     void getLines() {
         Lines lines = new Ladder(List.of("red", "blue"), List.of("3000", "5000"),2, () -> true).getLines();
-        assertTrue(lines.hasSameHeight(2));
-        assertTrue(lines.hasSameWidth(1));
+        assertTrue(lines.hasSameLineCount(2));
+        assertTrue(lines.hasSamePointCount(2));
     }
 
     @Test
