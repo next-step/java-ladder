@@ -1,5 +1,7 @@
 package nextstep.ladder;
 
+import java.util.Objects;
+
 public class Prize {
     private final String name;
 
@@ -16,6 +18,14 @@ public class Prize {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Prize prize = (Prize) o;
+        return Objects.equals(name, prize.name);
     }
 
 }

@@ -8,6 +8,11 @@ import java.util.stream.Collectors;
 public class Players {
     private List<Player> players = new ArrayList<>();
 
+
+    public Players(List<Player> players ) {
+        this.players = players;
+    }
+
     public Players(String names) {
         this.players = Arrays.stream(names.split(","))
                 .map(String::trim)

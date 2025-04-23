@@ -27,8 +27,8 @@ public class ResultView {
                 )
                 .forEach(System.out::println);
 
-        String resultLine = ladder.getResult().stream()
-                .map(result -> String.format("%-6s", result))
+        String resultLine = ladder.getPrizes().stream()
+                .map(prize -> String.format("%-6s", prize.getName()))
                 .collect(Collectors.joining());
         System.out.println(resultLine);
     }
@@ -44,8 +44,8 @@ public class ResultView {
     }
 
     private static void printAllResults(GameResult gameResult) {
-        gameResult.getAllResults().forEach((name, result) ->
-                System.out.println(name + " : " + result)
+        gameResult.getAllResults().forEach((player, prize) ->
+                System.out.println(player.getName() + " : " + prize.getName())
         );
     }
 
