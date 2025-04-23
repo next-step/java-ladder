@@ -1,28 +1,41 @@
 package ladder.domain;
 
-import java.util.Objects;
-
 public class Point {
+    private final boolean prev;
+    private final boolean current;
 
-    private final boolean hasRight;
+    private Point(boolean prev, boolean current) {
+        if (prev && current) {
+            throw new IllegalArgumentException("유효하지 않은 입력값입니다.");
+        }
 
-    public Point(boolean hasRight) {
-        this.hasRight = hasRight;
+        this.prev = prev;
+        this.current = current;
     }
 
-    public boolean hasRight() {
-        return hasRight;
+    public static Point first(boolean current) {
+        return new Point(false, current);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Point point = (Point) o;
-        return hasRight == point.hasRight;
+    public Point next(boolean current) {
+        return new Point(this.current, current);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(hasRight);
+    public Point last() {
+        return new Point(this.current, false);
+    }
+
+    public Direction move() {
+        if (prev) {
+            return Direction.LEFT;
+        }
+        if (current) {
+            return Direction.RIGHT;
+        }
+        return Direction.SOUTH;
+    }
+
+    public boolean getCurrent() {
+        return current;
     }
 }

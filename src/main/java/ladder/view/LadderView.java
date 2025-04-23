@@ -31,12 +31,12 @@ public class LadderView {
         StringBuilder sb = new StringBuilder();
         sb.append(" ".repeat(leftPadding));
 
-        List<Point> points = line.getPoints();
-        for (int i = 0; i < points.size(); i++) {
-            Point point = points.get(i);
+        List<LinePoint> linePoints = line.getLinePoints();
+        for (int i = 0; i < linePoints.size() - 1; i++) {
+            Point point = linePoints.get(i).getPoint();
             int repeatNum = (nameLengths.get(i) + nameLengths.get(i + 1)) / 2 + SPACES_BETWEEN_NAMES - 1;
             sb.append("|");
-            sb.append(point.hasRight() ? "-".repeat(repeatNum) : " ".repeat(repeatNum));
+            sb.append(point.getCurrent() ? "-".repeat(repeatNum) : " ".repeat(repeatNum));
         }
 
         sb.append("|");

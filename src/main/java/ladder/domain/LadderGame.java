@@ -17,13 +17,15 @@ public class LadderGame {
 
     public Results play() {
         List<Result> resultList = IntStream.range(0, participantNames.getParticipantsCount())
-                .mapToObj(index -> {
-                    int finalIndex = ladder.move(index);
-                    String name = participantNames.getName(index);
-                    String reward = rewards.getReward(finalIndex);
-                    return new Result(name, reward);
-                })
+                .mapToObj(this::getResult)
                 .collect(Collectors.toList());
         return new Results(resultList);
+    }
+
+    private Result getResult(int index) {
+        int finalIndex = ladder.move(index);
+        String name = participantNames.getName(index);
+        String reward = rewards.getReward(finalIndex);
+        return new Result(name, reward);
     }
 }

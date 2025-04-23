@@ -20,6 +20,9 @@ public class LadderApplication {
         while (true) {
             Target target = InputView.inputTarget();
             LadderView.printTargetResult(results, target);
+            if (!target.isContinue()) {
+                break;
+            }
         }
     }
 

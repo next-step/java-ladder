@@ -4,37 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
+    private final List<LinePoint> linePoints;
 
-    private final List<Point> points;
-
-    public Line(List<Point> points) {
-        this.points = List.copyOf(points);
+    public Line(List<LinePoint> linePoints) {
+        this.linePoints = List.copyOf(linePoints);
     }
 
     public static Line generate(int numLines, LineDrawStrategy strategy) {
-        List<Point> result = new ArrayList<>();
-        boolean prevHasRight = false;
+        List<LinePoint> result = new ArrayList<>();
+        boolean current = strategy.draw(false);
+        Point point = Point.first(current);
+        result.add(new LinePoint(0, point));
 
-        for (int i = 0; i < numLines; i++) {
-            boolean draw = strategy.draw(prevHasRight);
-            result.add(new Point(draw));
-            prevHasRight = draw;
+        for (int i = 1; i < numLines - 1; i++) {
+            current = strategy.draw(current);
+            point = point.next(current);
+            result.add(new LinePoint(i, point));
         }
+        result.add(new LinePoint(numLines - 1, point.last()));
 
         return new Line(result);
     }
 
-    public List<Point> getPoints() {
-        return points;
+    public int move(int position) {
+        return linePoints.get(position).move();
     }
 
-    public int move(int index) {
-        if (index < points.size() && points.get(index).hasRight()) {
-            return index + 1;
-        }
-        if (index > 0 && points.get(index - 1).hasRight()) {
-            return index - 1;
-        }
-        return index;
+    public List<LinePoint> getLinePoints() {
+        return linePoints;
     }
 }
