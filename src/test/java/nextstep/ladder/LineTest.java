@@ -1,6 +1,5 @@
 package nextstep.ladder;
 
-import ladder.FixPointStrategy;
 import ladder.Line;
 import ladder.PointStrategy;
 import org.assertj.core.api.Assertions;
@@ -29,6 +28,13 @@ public class LineTest {
         PointStrategy strategy = new FixPointStrategy(List.of(false, true, false, false, true, true));
         Line line = new Line(5, strategy);
         Assertions.assertThat(line.size()).isEqualTo(4);
+    }
+    @Test
+    void 연속된_line_생성_불가() {
+        PointStrategy strategy = new FixPointStrategy(List.of(true, true, true, true));
+        Line line = new Line(5, strategy);
+        // 연속된 가로줄이 무시되어 한 칸만 이동함
+        Assertions.assertThat(line.move(0)).isEqualTo(1);
     }
 
 }

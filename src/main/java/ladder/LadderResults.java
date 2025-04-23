@@ -1,26 +1,34 @@
 package ladder;
 
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class LadderResults {
-    private final Map<Player, Integer> results;
+    private final Players players;
+    private final Results matchedResults;
 
-    private LadderResults(Map<Player, Integer> results) {
-        this.results = results;
+    private LadderResults(Players players, Results matchedResults) {
+        this.players = players;
+        this.matchedResults = matchedResults;
     }
 
-    public static LadderResults from(Players players, Ladder ladder) {
-        Map<Player, Integer> resultMap = new LinkedHashMap<>();
-        List<Player> all = players.players();
+    public static LadderResults from(Players players, Ladder ladder, Results results) {
+        List<Result> resultList = results.getResults();
 
-        for (int i = 0; i < all.size(); i++) {
-            Player player = all.get(i);
-            int resultIndex = ladder.move(i);
-            resultMap.put(player, resultIndex);
+        List<Result> matched = new ArrayList<>();
+        for (int i = 0; i < players.size(); i++) {
+            int moved = ladder.move(i);
+            matched.add(resultList.get(moved));
         }
+        return new LadderResults(players, new Results(matched, players));
+    }
 
-        return new LadderResults(resultMap);
+    public List<Player> getPlayers() {
+        return players.players();
+    }
+
+    public Result getResultOf(Player player) {
+        int index = players.indexOf(player);
+        return matchedResults.getResults().get(index);
     }
 }

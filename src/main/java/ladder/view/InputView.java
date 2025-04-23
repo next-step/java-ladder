@@ -1,6 +1,6 @@
 package ladder.view;
 
-import ladder.Player;
+import ladder.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,7 @@ public class InputView {
 
     public static List<Player> readNames() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-        String input = scanner.nextLine();
-        String[] tokens = input.split(REGEX);
+        String[] tokens = getTokens();
 
         List<Player> players = new ArrayList<>();
         for (String token : tokens) {
@@ -23,6 +22,27 @@ public class InputView {
             throw new IllegalArgumentException("최소 1명 이상의 이름이 필요합니다.");
         }
         return players;
+    }
+
+    public static Player askPlayerName() {
+        System.out.println("\n결과를 보고 싶은 사람은?");
+        return new Player(scanner.nextLine());
+    }
+
+    private static String[] getTokens() {
+        String input = scanner.nextLine();
+        return input.split(REGEX);
+    }
+
+    public static Results readResults(Players players) {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String[] tokens = getTokens();
+
+        List<Result> results = new ArrayList<>();
+        for (String token : tokens) {
+            results.add(new Result(token.trim()));
+        }
+        return new Results(results, players);
     }
 
     public static int readHeight() {
