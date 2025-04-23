@@ -6,8 +6,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class ConsoleOutputView implements OutputViewInterface {
-    private static final Scanner scanner = new Scanner(System.in);
-
     @Override
     public void printPrompt(String prompt) {
         System.out.println(prompt);
@@ -23,7 +21,7 @@ public class ConsoleOutputView implements OutputViewInterface {
         ladder.asList()
                 .forEach(ladderLine -> {
                     System.out.print("     ");
-                    ladderLine.asList().forEach(this::printBridge);
+                    ladderLine.asList().forEach(this::printPoint);
                     System.out.println();
                 });
         rewards.asList()
@@ -31,8 +29,8 @@ public class ConsoleOutputView implements OutputViewInterface {
         System.out.println();
     }
 
-    private void printBridge(Bridge bridge) {
-        if (bridge.nextDirection() == Direction.RIGHT) {
+    private void printPoint(Point point) {
+        if (point.hasRight()) {
             System.out.print("|-----");
             return;
         }
