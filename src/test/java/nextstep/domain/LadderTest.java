@@ -26,7 +26,7 @@ public class LadderTest {
         int columns = 4, height = 6;
         List<Boolean> falseEdge = Collections.nCopies(columns - 1, false);
         List<Line> straightLine = IntStream.range(0, height)
-            .mapToObj(i -> Line.ofStatus(columns, falseEdge))
+            .mapToObj(i -> Line.ofManual(columns, falseEdge))
             .collect(Collectors.toList());
 
         Ladder ladder = new Ladder(straightLine);
