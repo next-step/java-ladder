@@ -23,4 +23,15 @@ public class PlayerTest {
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(String.format("이름은 %d자 이하여야 합니다.", Player.MAX_NAME_LENGTH));
   }
+
+  @Test
+  void testPlay() {
+    String playerName = "pobi";
+    Player player = new Player(playerName);
+    Ladder ladder = new Ladder(3, new Players("pobi, crong, jk"), () -> true, "0, 1, 2");
+
+    String result = player.play(ladder, 0);
+
+    assertThat(result).isEqualTo("1");
+  }
 }

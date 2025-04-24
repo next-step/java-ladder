@@ -30,4 +30,32 @@ public class InputViewTest {
 
     Assertions.assertEquals(3, actual);
   }
+
+  @Test
+  void testReadLadderHeightWithInvalidInput() {
+    String testInput = "abc";
+    InputView inputView = new InputView(getTestScanner(testInput));
+
+    Assertions.assertThrows(IllegalArgumentException.class, inputView::readLadderHeight);
+  }
+
+  @Test
+  void testReadResult() {
+    String testInput = "1,2,3";
+    InputView inputView = new InputView(getTestScanner(testInput));
+
+    String actual = inputView.readResult();
+
+    Assertions.assertEquals(testInput, actual);
+  }
+
+  @Test
+  void testReadResultQuery() {
+    String testInput = "pobi";
+    InputView inputView = new InputView(getTestScanner(testInput));
+
+    String actual = inputView.readResultQuery();
+
+    Assertions.assertEquals(testInput, actual);
+  }
 }
