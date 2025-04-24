@@ -51,4 +51,9 @@ public class Players {
                     LinkedHashMap::new
             ));
   }
+
+  public boolean contains(String name) {
+    return players.stream()
+            .anyMatch(player -> player.equals(Player.of(name)));
+  }
 }

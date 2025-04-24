@@ -23,6 +23,10 @@ public class Player {
     return ladder.resultAt(finalIndex);
   }
 
+  public static Player of(String name) {
+    return new Player(name);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;

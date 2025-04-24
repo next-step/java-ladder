@@ -11,7 +11,7 @@ import java.io.PrintStream;
 public class OutputViewTest {
 
   @Test
-  void testPrintResult() {
+  void testPrintLadder() {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     PrintStream originalOut = System.out;
     System.setOut(new PrintStream(outputStream));
@@ -25,7 +25,7 @@ public class OutputViewTest {
             "     |-----|     |\n" +
             "     |-----|     |\n";
 
-    OutputView.printResult(players, ladder);
+    OutputView.printLadder(players, ladder);
 
     System.setOut(originalOut);
     Assertions.assertEquals(expected, outputStream.toString());
