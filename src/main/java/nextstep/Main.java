@@ -1,15 +1,12 @@
 package nextstep;
 
+
 import java.util.List;
 
 import nextstep.domain.Bonus;
 import nextstep.domain.Ladder;
 import nextstep.domain.LadderResult;
 import nextstep.domain.Name;
-import nextstep.domain.Names;
-import nextstep.view.InputView;
-import nextstep.view.OutputView;
-
 public class Main {
     public static void main(String[] args) {
         /* I/O 선언 */

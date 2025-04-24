@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
 /**
  * 전체 인원
  */
@@ -42,7 +41,7 @@ public class Names {
     public int size() {
         return names.size();
     }
-
+  
     public int getIndex(Name name) {
         return names.indexOf(name);
     }
