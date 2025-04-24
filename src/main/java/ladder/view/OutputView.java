@@ -1,6 +1,9 @@
 package ladder.view;
 
 import ladder.*;
+import nextstep.ladder.Direction;
+
+import java.util.List;
 
 public class OutputView {
 
@@ -26,11 +29,12 @@ public class OutputView {
     private static void printLadder(Ladder ladder) {
         for (Line line : ladder.lines()) {
             StringBuilder row = new StringBuilder();
-            for (Point point : line.points()) {
+            List<Point> points = line.points();
+            for (int i = 0; i < points.size() - 1; i++) {
                 row.append("|");
-                row.append(point.hasRight() ? "-----" : "     ");
+                row.append(points.get(i).isRightDirection() ? "-----" : "     ");
             }
-            row.append("|");
+            row.append("|"); // 마지막 막대기
             System.out.println(row);
         }
     }

@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Player {
     private final String name;
 
-    public Player (String name) {
+    public Player(String name) {
         validate(name);
         this.name = name;
     }
@@ -18,6 +18,14 @@ public class Player {
 
     public boolean isSameName(String other) {
         return this.name.equals(other);
+    }
+
+    public boolean isSameName(Player player) {
+        return this.name.equals(player.getName());
+    }
+
+    private String getName() {
+        return name;
     }
 
     @Override
