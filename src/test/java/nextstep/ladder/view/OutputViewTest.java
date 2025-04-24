@@ -26,7 +26,8 @@ public class OutputViewTest {
             " pobi crong    jk\n" +
             "     |-----|     |\n" +
             "     |-----|     |\n" +
-            "     |-----|     |\n";
+            "     |-----|     |\n" +
+            "    1    2    3\n";
 
     OutputView.printLadder(players, ladder);
 
