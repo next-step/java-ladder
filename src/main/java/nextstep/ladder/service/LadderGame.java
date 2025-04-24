@@ -28,8 +28,12 @@ public class LadderGame {
   }
 
   private void setUpForGame() {
-    this.players = new Players(inputView.readPlayers());
-    this.ladder = new Ladder(inputView.readLadderHeight(), players, new RandomLineGenerateStrategy(), inputView.readResult());
+    String players = inputView.readPlayers();
+    String result = inputView.readResult();
+    int ladderHeight = inputView.readLadderHeight();
+
+    this.players = new Players(players);
+    this.ladder = new Ladder(ladderHeight, this.players, new RandomLineGenerateStrategy(), result);
   }
 
   private void printLadder() {

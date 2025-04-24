@@ -1,11 +1,12 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.view.OutputView;
+
 import java.util.Objects;
 
 public class Player {
   private final String name;
   static final int MAX_NAME_LENGTH = 5;
-  private static final int SPACE_WIDTH = 5;
 
   public Player(String name) {
     validate(name);
@@ -41,6 +42,6 @@ public class Player {
   }
 
   public String toConsoleOutput() {
-    return String.format("%" + SPACE_WIDTH + "s", name);
+    return String.format("%" + OutputView.SPACE_WIDTH + "s", name);
   }
 }

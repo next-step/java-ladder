@@ -1,10 +1,11 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-  private static final int SPACE_WIDTH = 5;
   private static final String VERTICAL_SYMBOL = "|";
   private static final String HORIZONTAL_SYMBOL = "-";
   private static final String EMPTY_SYMBOL = " ";
@@ -30,12 +31,12 @@ public class Line {
   }
 
   public String toConsoleOutput() {
-    StringBuilder sb = new StringBuilder(" ".repeat(SPACE_WIDTH));
+    StringBuilder sb = new StringBuilder(" ".repeat(OutputView.SPACE_WIDTH));
     for (Point point : points) {
       if (point.hasLine()) {
-        sb.append(VERTICAL_SYMBOL).append(HORIZONTAL_SYMBOL.repeat(SPACE_WIDTH));
+        sb.append(VERTICAL_SYMBOL).append(HORIZONTAL_SYMBOL.repeat(OutputView.SPACE_WIDTH));
       } else {
-        sb.append(VERTICAL_SYMBOL).append(EMPTY_SYMBOL.repeat(SPACE_WIDTH));
+        sb.append(VERTICAL_SYMBOL).append(EMPTY_SYMBOL.repeat(OutputView.SPACE_WIDTH));
       }
     }
     sb.append(VERTICAL_SYMBOL);

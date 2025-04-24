@@ -1,9 +1,12 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 
 public class Ladder {
   private static final int MIN_LADDER_HEIGHT = 1;
@@ -48,9 +51,14 @@ public class Ladder {
             .collect(Collectors.joining("\n"));
   }
 
-  public String resultAt(int startIndex) {
-    int finalIndex = move(startIndex);
-    return results.get(finalIndex);
+  public String resultsOutput() {
+    return results.stream()
+            .map(result -> String.format("%" + OutputView.SPACE_WIDTH + "s", result))
+            .collect(Collectors.joining());
+  }
+
+  public String resultAt(int index) {
+    return results.get(index);
   }
 
   public int move(int index) {
