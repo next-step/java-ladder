@@ -7,7 +7,6 @@ import nextstep.ladder.domain.GameResult;
 public class GameRunner {
   private final Ladder ladder;
   private final Players players;
-  private GameResult gameResult;
 
   public GameRunner(Ladder ladder, Players players) {
     this.ladder = ladder;
