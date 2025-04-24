@@ -18,16 +18,15 @@ public class Name {
         return new Name(name);
     }
 
-    public String getName() {
-        return name;
-    }
-
     private void validate(String input) {
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException("이름은 빈 문자열이 될 수 없습니다.");
         }
         if (input.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 최대 " + MAX_NAME_LENGTH + "자까지 허용됩니다.");
+        }
+        if (input.equals("all")) {
+            throw new IllegalArgumentException("사용할 수 없는 이름입니다.");
         }
     }
 
