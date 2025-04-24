@@ -26,11 +26,15 @@ public class InputView {
         return height;
     }
 
+    public List<String> getBonus(int count) {
+        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+        String bonus = scanner.nextLine();
+        return parseBonus(bonus, count);
+    }
+
     /** 이름 파싱 */
     private List<String> parseName(String input) {
-        List<String> names = Arrays.stream(input.split(","))
-            .map(String::trim)
-            .collect(Collectors.toList());
+        List<String> names = splitAndTrim(input);
         // 빈 이름 체크
         if (names.stream().anyMatch(String::isEmpty)) {
             throw new IllegalArgumentException("이름은 빈 문자열이 될 수 없습니다.");
@@ -47,4 +51,19 @@ public class InputView {
         return name.length() > MAX_NAME_LENGTH;
     }
 
+    /** 결과 파싱 */
+    private List<String> parseBonus(String input, int count) {
+        List<String> bonus = splitAndTrim(input);
+        // 보너스 개수 validation
+        if (bonus.size() != count) {
+            throw new IllegalArgumentException("보너스 개수는 사람 수와 일치해야 합니다.");
+        }
+        return bonus;
+    }
+
+    private List<String> splitAndTrim(String input) {
+        return Arrays.stream(input.split(","))
+            .map(String::trim)
+            .collect(Collectors.toList());
+    }
 }
