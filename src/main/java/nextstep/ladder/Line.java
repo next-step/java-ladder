@@ -27,4 +27,31 @@ public class Line {
     public List<Boolean> getPoints() {
         return points;
     }
+
+    public int move(int currentPosition) {
+        validatePosition(currentPosition);
+
+        if (canMoveLeft(currentPosition)) {
+            return currentPosition - 1;
+        }
+        if (canMoveRight(currentPosition)) {
+            return currentPosition + 1;
+        }
+        return currentPosition;
+    }
+
+    private void validatePosition(int position) {
+        if (position < 0 || position >= points.size() + 1) {
+            throw new IllegalArgumentException("잘못된 위치 값: " + position);
+        }
+    }
+
+    private boolean canMoveLeft(int position) {
+        return position > 0 && points.get(position - 1);
+    }
+
+    private boolean canMoveRight(int position) {
+        return position < points.size() && points.get(position);
+    }
+
 }
