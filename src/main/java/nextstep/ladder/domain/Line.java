@@ -41,4 +41,14 @@ public class Line {
     sb.append(VERTICAL_SYMBOL);
     return sb.toString();
   }
+
+  public int move(int position) {
+    if (position < points.size() && points.get(position).hasLine()) {
+      return position + 1;
+    }
+    if (position > 0 && points.get(position - 1).hasLine()) {
+      return position - 1;
+    }
+    return position;
+  }
 }

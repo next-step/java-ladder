@@ -12,7 +12,7 @@ public class LadderTest {
     int height = 3;
     Players players = new Players("pobi,crong,jk");
 
-    Ladder ladder = new Ladder(height, players, () -> false);
+    Ladder ladder = new Ladder(height, players, () -> false, "1, 2, 3");
     String[] lines = ladder.toConsoleOutput().split("\n");
 
     assertEquals(height, lines.length);
@@ -23,7 +23,7 @@ public class LadderTest {
     int height = 1;
     Players players = new Players("pobi,crong,jk");
 
-    Ladder ladder = new Ladder(height, players, () -> true);
+    Ladder ladder = new Ladder(height, players, () -> true, "1, 2, 3");
     String rendered = ladder.toConsoleOutput();
 
     assertThat(rendered).isEqualTo("     |-----|     |");

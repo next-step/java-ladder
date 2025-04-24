@@ -17,7 +17,7 @@ public class OutputViewTest {
     System.setOut(new PrintStream(outputStream));
 
     Players players = new Players("pobi,crong,jk");
-    Ladder ladder = new Ladder(3, players, () -> true);
+    Ladder ladder = new Ladder(3, players, () -> true, "1, 2, 3");
     String expected = "실행 결과\n" +
             "\n" +
             " pobi crong    jk\n" +

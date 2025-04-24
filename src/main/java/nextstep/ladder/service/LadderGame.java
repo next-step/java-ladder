@@ -20,15 +20,17 @@ public class LadderGame {
 
   public void run() {
     setUpForGame();
-    printResult();
+    printLadder();
   }
 
   private void setUpForGame() {
     this.players = new Players(inputView.readPlayers());
-    this.ladder = new Ladder(inputView.readLadderHeight(), players, new RandomLineGenerateStrategy());
+    int ladderHeight = inputView.readLadderHeight();
+    String result = inputView.readResult();
+    this.ladder = new Ladder(ladderHeight, players, new RandomLineGenerateStrategy(), result);
   }
 
-  private void printResult() {
+  private void printLadder() {
     OutputView.printResult(players, ladder);
   }
 }

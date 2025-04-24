@@ -18,6 +18,11 @@ public class Player {
     }
   }
 
+  public String play(Ladder ladder, int startIndex) {
+    int finalIndex = ladder.move(startIndex);
+    return ladder.resultAt(finalIndex);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
