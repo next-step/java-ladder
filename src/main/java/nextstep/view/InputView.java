@@ -1,9 +1,8 @@
 package nextstep.view;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
+
+import nextstep.domain.Names;
 
 /**
  * 입력 클래스
@@ -13,10 +12,10 @@ public class InputView {
     private final Scanner scanner = new Scanner(System.in);
 
     /** 참여 인원 입력 */
-    public List<String> getName() {
+    public Names getName() {
         System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
         String name = scanner.nextLine();
-        return parseName(name);
+        return new Names(name);
     }
 
     /** 사다리 높이 */

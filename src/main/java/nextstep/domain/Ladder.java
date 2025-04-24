@@ -13,15 +13,13 @@ import java.util.stream.IntStream;
 public class Ladder {
     private final List<Line> lines;
 
-    // 테스트를 위한 생성자
     public Ladder(List<Line> lines) {
         this.lines = lines;
     }
 
     public static Ladder of(int column, int height) {
         List<Line> lines = IntStream.range(0, height) // 전체 행 지정
-            .mapToObj(i -> Line.ofColumn(column)) // 전체 열 생성
-            .peek(Line::generateRandomStatus) // 사다리 만들기
+            .mapToObj(i -> Line.ofRandom(column)) // 전체 열 생성
             .collect(Collectors.toList());
         return new Ladder(lines);
     }
