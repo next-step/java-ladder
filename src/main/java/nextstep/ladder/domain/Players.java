@@ -1,6 +1,8 @@
 package nextstep.ladder.domain;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -38,5 +40,20 @@ public class Players {
 
   public int size() {
     return players.size();
+  }
+
+  public Map<Player, String> playAll(Ladder ladder) {
+    return players.stream()
+            .collect(Collectors.toMap(
+                    player -> player,
+                    player -> player.play(ladder, players.indexOf(player)),
+                    (a, b) -> b,
+                    LinkedHashMap::new
+            ));
+  }
+
+  public boolean contains(String name) {
+    return players.stream()
+            .anyMatch(player -> player.equals(Player.of(name)));
   }
 }

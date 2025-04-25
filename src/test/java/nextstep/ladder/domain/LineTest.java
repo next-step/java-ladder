@@ -17,4 +17,13 @@ public class LineTest {
       Assertions.assertFalse(prevHasLine && currHasLine, "연속된 가로줄 발견: " + segments[i - 1] + " | " + segments[i]);
     }
   }
+
+  @Test
+  void testMove() {
+    Line line = new Line(new Players("pobi,crong,jk"), () -> true);
+    int startIndex = 1;
+    int movedIndex = line.move(startIndex);
+
+    Assertions.assertEquals(0, movedIndex);
+  }
 }
