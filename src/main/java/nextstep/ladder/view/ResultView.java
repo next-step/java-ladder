@@ -18,9 +18,8 @@ public class ResultView {
 
         System.out.println("");
 
-        ladder.values()
-                .stream()
-                .map(line -> "    " + line.toString());
-
+        for(Line line: ladder.values()) {
+            System.out.println("    " + line.toString());
+        }
     }
 }

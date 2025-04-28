@@ -3,7 +3,6 @@ package nextstep.ladder.domain.ladder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
 
 public class Line {
     List<Boolean> line = new ArrayList<>();
@@ -33,9 +32,11 @@ public class Line {
 
     @Override
     public String toString() {
-        return line.stream()
-                .map(b -> b ? "|-----" : "|     ")
-                .collect(Collectors.joining())
-                + "|";
+        StringBuilder sb = new StringBuilder();
+        for (boolean b : line) {
+            sb.append(b ? "|-----" : "|     ");
+        }
+        sb.append("|");
+        return sb.toString();
     }
 }
