@@ -1,13 +1,12 @@
 package nextstep.ladder.domain.name;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Names {
     private final String DELIM = ",";
-    private List<Name> nameList = new ArrayList<>();
+    private List<Name> nameList;
 
     public Names(String names) {
         if (names == null || names.isBlank()) {

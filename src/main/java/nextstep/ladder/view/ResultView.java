@@ -17,8 +17,10 @@ public class ResultView {
                 .map(name -> System.out.printf("%-5s ", name));
 
         System.out.println("");
-        for(Line line: ladder.values()) {
-            System.out.println("    " + line.toString());
-        }
+
+        ladder.values()
+                .stream()
+                .map(line -> "    " + line.toString());
+
     }
 }

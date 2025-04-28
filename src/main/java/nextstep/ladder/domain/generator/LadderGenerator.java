@@ -6,7 +6,6 @@ import nextstep.ladder.domain.ladder.Line;
 
 public class LadderGenerator {
     public static Ladder generateLadder(int countOfPerson, Height height) {
-
         Ladder ladder = new Ladder();
         for (int i = 0; i < height.value(); i++) {
             Line line = new Line(countOfPerson);

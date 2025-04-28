@@ -2,6 +2,8 @@ package nextstep.ladder.domain.ladder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 public class Line {
     List<Boolean> line = new ArrayList<>();
@@ -10,16 +12,19 @@ public class Line {
         boolean lastBoolean = false;
         for (int i = 0; i < countOfPerson - 1; i++) {
             boolean currBoolean = randomBoolean();
-            if(currBoolean && lastBoolean) {
+            if(isConsecutiveLine(currBoolean, lastBoolean)) {
                 currBoolean = false;
             }
             line.add(currBoolean);
             lastBoolean = currBoolean;
         }
     }
+    private boolean isConsecutiveLine(boolean curr, boolean last) {
+        return curr && last;
+    }
 
     private boolean randomBoolean() {
-        return Math.random() < 0.5;
+        return ThreadLocalRandom.current().nextBoolean();
     }
 
     public int size() {
@@ -28,11 +33,9 @@ public class Line {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (boolean b : line) {
-            sb.append(b ? "|-----" : "|     ");
-        }
-        sb.append("|");
-        return sb.toString();
+        return line.stream()
+                .map(b -> b ? "|-----" : "|     ")
+                .collect(Collectors.joining())
+                + "|";
     }
 }
