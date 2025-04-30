@@ -5,15 +5,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Names {
-    private final String DELIM = ",";
+    private static final String DELIM = ",";
     private List<Name> nameList;
 
     public Names(String names) {
-        if (names == null || names.isBlank()) {
+        this(parseNameString(names));
+    }
+
+    public Names(List<Name> nameList) {
+        if (nameList == null || nameList.isEmpty()) {
             throw new IllegalArgumentException("이름 문자열은 빈공백일 수 없습니다.");
         }
+        this.nameList = nameList;
+    }
 
-        nameList = Arrays.stream(names.split(DELIM))
+    private static List<Name> parseNameString(String names) {
+        return Arrays.stream(names.split(DELIM))
                 .map(Name::new)
                 .collect(Collectors.toList());
     }

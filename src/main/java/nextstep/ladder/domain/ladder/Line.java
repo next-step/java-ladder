@@ -6,7 +6,12 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 public class Line {
-    List<Boolean> line = new ArrayList<>();
+    private List<Boolean> line = new ArrayList<>();
+
+
+    public Line(List<Boolean> values) {
+        this.line = values;
+    }
 
     public Line(int countOfPerson) {
         boolean lastBoolean = false;
