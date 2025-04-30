@@ -24,4 +24,28 @@ public class Line {
     public List<Boolean> values() {
         return line;
     }
+
+    public boolean canMoveLeft(int index) {
+        try {
+            if (line.get(index - 1)) { return true; }
+        } catch(IndexOutOfBoundsException e) {
+            return false;
+        }
+        return false;
+    }
+
+    public boolean canMoveRight(int index) {
+        try {
+            if (line.get(index)) { return true; }
+        } catch(IndexOutOfBoundsException e) {
+            return false;
+        }
+        return false;
+    }
+
+    public int move(int index) {
+        if (canMoveLeft(index)) { return index - 1; }
+        if (canMoveRight(index)) { return index + 1; }
+        return index;
+    }
 }

@@ -5,6 +5,7 @@ import nextstep.ladder.domain.generator.LineGenerator;
 import nextstep.ladder.domain.ladder.Height;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.ladder.Line;
+import nextstep.ladder.view.ResultView;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class LadderGeneratorTest {
 
         Ladder ladder = LadderGenerator.generateLadder(countOfPeople, height);
         for(Line line : ladder.values()) {
-            System.out.println(line);
+            System.out.println(ResultView.viewLine(line));
             assertThat(line.size()).isEqualTo(countOfPeople - 1);
         }
 
