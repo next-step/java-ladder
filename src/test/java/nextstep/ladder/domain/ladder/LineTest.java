@@ -30,37 +30,43 @@ class LineTest {
 
     @Test
     public void 사다리_왼쪽으로_이동불가() {
-        Line line = new Line(List.of(false, false));
-        assertThat(line.canMoveLeft(1)).isFalse();
+        Line line = new Line(false, false);
+        Index index = new Index(1, 2);
+        assertThat(line.isMovableToLeft(index)).isFalse();
     }
 
     @Test
     public void 사다리_왼쪽으로_이동가능() {
-        Line line = new Line(List.of(true, false));
-        assertThat(line.canMoveLeft(1)).isTrue();
+        Line line = new Line(true, false);
+        Index index = new Index(1, 2);
+        assertThat(line.isMovableToLeft(index)).isTrue();
     }
 
     @Test
     public void 사다리_왼쪽끝일경우_왼쪽으로_이동불가() {
-        Line line = new Line(List.of(true, false));
-        assertThat(line.canMoveLeft(0)).isFalse();
+        Line line = new Line(true, false);
+        Index index = new Index(0, 2);
+        assertThat(line.isMovableToLeft(index)).isFalse();
     }
 
     @Test
     public void 사다리_오른쪽으로_이동가능() {
-        Line line = new Line(List.of(true, false));
-        assertThat(line.canMoveRight(0)).isTrue();
+        Line line = new Line(true, false);
+        Index index = new Index(0, 2);
+        assertThat(line.isMovableToRight(index)).isTrue();
     }
 
     @Test
     public void 사다리_오른쪽으로_이동불가() {
-        Line line = new Line(List.of(false, false));
-        assertThat(line.canMoveRight(0)).isFalse();
+        Line line = new Line(false, false);
+        Index index = new Index(0, 2);
+        assertThat(line.isMovableToRight(index)).isFalse();
     }
 
     @Test
     public void 사다리_오른쪽끝일경우_오른쪽으로_이동불가() {
-        Line line = new Line(List.of(false, false));
-        assertThat(line.canMoveRight(1)).isFalse();
+        Line line = new Line(false, false);
+        Index index = new Index(1, 2);
+        assertThat(line.isMovableToRight(index)).isFalse();
     }
 }

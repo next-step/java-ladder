@@ -1,18 +1,18 @@
 package nextstep.ladder;
 
 import nextstep.ladder.domain.ladder.Height;
+import nextstep.ladder.domain.ladder.Index;
 import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.generator.LadderGenerator;
 import nextstep.ladder.domain.name.Name;
 import nextstep.ladder.domain.name.Names;
-import nextstep.ladder.domain.resolver.LadderResolver;
 import nextstep.ladder.domain.reward.Reward;
 import nextstep.ladder.domain.reward.Rewards;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.ResultView;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LadderGame {
 
@@ -23,9 +23,8 @@ public class LadderGame {
 
         Ladder ladder = LadderGenerator.generateLadder(names.count(), height);
 
-        ResultView.ladderResult(names, ladder);
+        ResultView.ladderResult(names, ladder, rewards);
 
-        LadderResolver resolver = new LadderResolver(ladder);
         while(true) {
             String playerName = InputView.getPlayerName();
 
@@ -34,15 +33,17 @@ public class LadderGame {
             }
 
             if (playerName.equalsIgnoreCase("all")) {
-                List<Integer> rewardList = resolver.all();
+                List<Integer> rewardList = ladder.all().stream()
+                    .map(Index::value)
+                    .collect(Collectors.toList());
                 ResultView.rewardResult(names, rewards, rewardList);
                 continue;
             }
 
             Name name = new Name(playerName);
-            int rewardIdx = resolver.resultOf(names.positionOf(name));
+            Index rewardIdx = ladder.resultOf(names.positionOf(name));
             try {
-                Reward reward = rewards.get(rewardIdx);
+                Reward reward = rewards.get(rewardIdx.value());
                 System.out.println(reward);
             } catch(IndexOutOfBoundsException e) {
                 System.out.println("이름이 명단에 없습니다.");

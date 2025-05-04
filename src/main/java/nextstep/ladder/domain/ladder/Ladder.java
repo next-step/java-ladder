@@ -20,7 +20,19 @@ public class Ladder {
         lineList.add(line);
     }
 
-    public int countOfPeople() {
-        return countOfPeople;
+    public Index resultOf(int position) {
+        Index index = new Index(position, countOfPeople);
+        for(Line line: values()) {
+            index = line.movePerson(index);
+        }
+        return index;
+    }
+
+    public List<Index> all() {
+        List<Index> results = new ArrayList<>();
+        for(int i = 0; i < countOfPeople; i++) {
+            results.add(resultOf(i));
+        }
+        return results;
     }
 }

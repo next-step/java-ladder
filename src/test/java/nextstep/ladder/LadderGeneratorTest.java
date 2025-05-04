@@ -30,7 +30,7 @@ public class LadderGeneratorTest {
     @Test
     public void 사람수를_입력하면_사람수보다_하나작은_사다리가_만들어진다() {
         int countOfPeople = 10;
-        List<Boolean> line = LineGenerator.generateLine(countOfPeople);
+        Line line = LineGenerator.generateLine(countOfPeople);
         assertThat(line.size()).isEqualTo(countOfPeople - 1);
     }
 }

@@ -1,22 +1,28 @@
 package nextstep.ladder.domain.generator;
 
+import nextstep.ladder.domain.ladder.Line;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class LineGenerator {
-    public static List<Boolean> generateLine(int countOfPerson) {
-        boolean lastBoolean = false;
+    public static Line generateLine(int countOfPerson) {
         List<Boolean> line = new ArrayList<>();
+        Point point = new Point(false, false);
+
         for (int i = 0; i < countOfPerson - 1; i++) {
-            boolean currBoolean = randomBoolean();
-            if(isConsecutiveLine(currBoolean, lastBoolean)) {
-                currBoolean = false;
+            boolean nextBoolean = randomBoolean();
+            point = new Point(point.next(), nextBoolean);
+            
+            if (point.isConsecutive()) {
+                nextBoolean = false;
+                point = new Point(point.current(), false);
             }
-            line.add(currBoolean);
-            lastBoolean = currBoolean;
+            
+            line.add(nextBoolean);
         }
-        return line;
+        return new Line(line);
     }
 
     public static void assertValidLine(List<Boolean> values) {
@@ -25,14 +31,11 @@ public class LineGenerator {
         }
 
         for(int i = 0; i < values.size() -1; i++) {
-            if(isConsecutiveLine(values.get(i), values.get(i + 1))) {
+            Point point = new Point(values.get(i), values.get(i + 1));
+            if(point.isConsecutive()) {
                 throw new IllegalArgumentException("연속된 사다리 계단은 나올 수 없습니다.");
             }
         }
-    }
-
-    private static boolean isConsecutiveLine(boolean curr, boolean last) {
-        return curr && last;
     }
 
     private static boolean randomBoolean() {

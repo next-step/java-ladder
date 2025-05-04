@@ -1,8 +1,6 @@
-package nextstep.ladder.domain.resolver;
+package nextstep.ladder.domain.ladder;
 
 import nextstep.ladder.domain.generator.LadderGenerator;
-import nextstep.ladder.domain.ladder.Height;
-import nextstep.ladder.domain.ladder.Ladder;
 import nextstep.ladder.domain.name.Names;
 import org.junit.jupiter.api.Test;
 
@@ -12,19 +10,17 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LadderResolverTest {
-
+class LadderTest {
     @Test
     public void 단건으로_사람들의_정보가_입력되면_중복없는_결과를_리턴한다() {
         Names names = new Names("aaa, bbb, ccc");
         Height height = new Height(5);
         Ladder ladder = LadderGenerator.generateLadder(names.count(), height);
-        LadderResolver resolver = new LadderResolver(ladder);
 
-        Set setList = new HashSet();
+        Set<Integer> setList = new HashSet<>();
         for(int i = 0; i < names.count(); i++) {
-            int result = resolver.resultOf(i);
-            setList.add(result);
+            Index result = ladder.resultOf(i);
+            setList.add(result.value());
         }
 
         assertThat(setList).hasSize(3);
@@ -35,13 +31,12 @@ public class LadderResolverTest {
         Names names = new Names("aaa, bbb, ccc");
         Height height = new Height(5);
         Ladder ladder = LadderGenerator.generateLadder(names.count(), height);
-        LadderResolver resolver = new LadderResolver(ladder);
 
-        List<Integer> results = resolver.all();
+        List<Index> results = ladder.all();
 
-        Set setList = new HashSet();
-        for(Integer result: results) {
-            setList.add(result);
+        Set<Integer> setList = new HashSet<>();
+        for(Index result: results) {
+            setList.add(result.value());
         }
 
         assertThat(setList).hasSize(3);

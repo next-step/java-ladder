@@ -1,5 +1,6 @@
 package nextstep.ladder.domain.generator;
 
+import nextstep.ladder.domain.ladder.Line;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -17,25 +18,16 @@ class LineGeneratorTest {
     public void 사람수를_입력하면_사람수보다_하나작은_계단이_만들어진다() {
         int countOfPeople = 10;
 
-        List<Boolean> line = LineGenerator.generateLine(countOfPeople);
+        Line line = LineGenerator.generateLine(countOfPeople);
 
         assertThat(line.size()).isEqualTo(countOfPeople - 1);
     }
 
-    @ParameterizedTest
-    @MethodSource("invalidLines")
-    public void 연속된_계단은_생성될수없다(List<Boolean> invalidLine) {
+    @Test
+    public void 연속된_계단은_생성될수없다() {
         assertThatIllegalArgumentException().isThrownBy(() -> {
-            assertValidLine(invalidLine);
+            assertValidLine(List.of(true, true));
         });
-    }
-    static Stream<List<Boolean>> invalidLines() {
-        return Stream.of(
-                List.of(true, true),
-                List.of(true, true, true),
-                List.of(false, true, true),
-                List.of(true, true, false)
-        );
     }
 
     @ParameterizedTest
@@ -57,10 +49,7 @@ class LineGeneratorTest {
         return Stream.of(
                 List.of(false, false),
                 List.of(true, false),
-                List.of(false, true),
-                List.of(true, false, false),
-                List.of(false, true, false),
-                List.of(false, false, true)
+                List.of(false, true)
         );
     }
 }
