@@ -25,6 +25,10 @@ public class ResultView {
         for(Reward reward: rewards.values()) {
             System.out.printf("%-5s ", reward.toString());
         }
+
+        for(Reward reward: rewards.values()) {
+            System.out.printf("%-5s ", reward.toString());
+        }
     }
 
     public static String viewLine(Line line) {
