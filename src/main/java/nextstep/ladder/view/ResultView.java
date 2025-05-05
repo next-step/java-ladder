@@ -16,10 +16,7 @@ public class ResultView {
         for(Name name: names.values()) {
             System.out.printf("%-5s ", name.toString());
         }
-
-        for(Line line: ladder.values()) {
-            System.out.println("    " + line.toString());
-        }
+        System.out.println("");
 
         for(Line line: ladder.values()) {
             System.out.println("    " + viewLine(line));

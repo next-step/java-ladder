@@ -8,8 +8,6 @@ import nextstep.ladder.domain.ladder.Line;
 import nextstep.ladder.view.ResultView;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderGeneratorTest {
@@ -25,6 +23,7 @@ public class LadderGeneratorTest {
         }
 
         assertThat(ladder.values()).hasSize(5);
+        
     }
 
     @Test
