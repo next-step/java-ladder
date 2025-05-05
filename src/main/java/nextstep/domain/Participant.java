@@ -23,9 +23,6 @@ public class Participant {
         if (input.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 최대 " + MAX_NAME_LENGTH + "자까지 허용됩니다.");
         }
-        if (input.equals("all")) {
-            throw new IllegalArgumentException("사용할 수 없는 이름입니다.");
-        }
     }
 
     public int getPosition() {
