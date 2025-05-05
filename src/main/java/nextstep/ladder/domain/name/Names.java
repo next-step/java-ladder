@@ -1,28 +1,17 @@
 package nextstep.ladder.domain.name;
 
-import java.util.Arrays;
+import nextstep.ladder.domain.common.AbstractValueList;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class Names {
-    private final String DELIM = ",";
-    private List<Name> nameList;
+import static nextstep.ladder.domain.util.StringParserUtil.parseInputString;
 
-    public Names(String names) {
-        if (names == null || names.isBlank()) {
-            throw new IllegalArgumentException("이름 문자열은 빈공백일 수 없습니다.");
-        }
-
-        nameList = Arrays.stream(names.split(DELIM))
-                .map(Name::new)
-                .collect(Collectors.toList());
+public class Names extends AbstractValueList<Name> {
+    public Names(String input) {
+        this(parseInputString(input, Name::new));
     }
 
-    public List<Name> values() {
-        return nameList;
-    }
-
-    public int count() {
-        return nameList.size();
+    public Names(List<Name> nameList) {
+        super(nameList);
     }
 }
