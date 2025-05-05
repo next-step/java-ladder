@@ -5,17 +5,15 @@ import java.util.Objects;
 /**
  * 이름 클래스
  */
-public class Name {
+public class Participant {
     private static final Integer MAX_NAME_LENGTH = 5;
     private final String name;
+    private final Integer position;
 
-    private Name(String name) {
+    public Participant(String name, int Position) {
         validate(name);
         this.name = name;
-    }
-
-    public static Name of(String name) {
-        return new Name(name);
+        this.position = Position;
     }
 
     private void validate(String input) {
@@ -30,8 +28,15 @@ public class Name {
         }
     }
 
-    @Override
-    public String toString() {
+    public int getPosition() {
+        return position;
+    }
+
+    public boolean isSameName(String name) {
+        return this.name.equals(name);
+    }
+
+    public String getName() {
         return name;
     }
 
@@ -39,8 +44,8 @@ public class Name {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass())
             return false;
-        Name name1 = (Name)o;
-        return Objects.equals(name, name1.name);
+        Participant participant1 = (Participant)o;
+        return Objects.equals(name, participant1.name);
     }
 
     @Override

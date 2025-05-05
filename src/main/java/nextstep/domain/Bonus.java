@@ -3,14 +3,20 @@ package nextstep.domain;
 public class Bonus {
     private static final Integer MAX_NAME_LENGTH = 5;
     private final String bonusName;
+    private final Integer position;
 
-    public Bonus(String bonusName) {
+    public Bonus(String bonusName, Integer position) {
         validate(bonusName);
         this.bonusName = bonusName;
+        this.position = position;
     }
 
     public static Bonus of(String bonusName) {
-        return new Bonus(bonusName);
+        return new Bonus(bonusName, 0);
+    }
+
+    public static Bonus of(String bonusName, int position) {
+        return new Bonus(bonusName, position);
     }
 
     private void validate(String input) {
@@ -22,8 +28,15 @@ public class Bonus {
         }
     }
 
-    @Override
-    public String toString() {
+    public int position() {
+        return position;
+    }
+
+    public boolean isMatch(int index){
+        return position.equals(index);
+    }
+
+    public String getName() {
         return bonusName;
     }
 }

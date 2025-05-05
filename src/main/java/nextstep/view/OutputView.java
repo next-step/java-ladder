@@ -3,11 +3,12 @@ package nextstep.view;
 import java.util.List;
 
 import nextstep.domain.Bonus;
+import nextstep.domain.Bonuses;
 import nextstep.domain.Ladder;
 import nextstep.domain.LadderResult;
 import nextstep.domain.Line;
-import nextstep.domain.Name;
-import nextstep.domain.Names;
+import nextstep.domain.Participant;
+import nextstep.domain.Participants;
 
 /**
  * 출력 클래스
@@ -18,11 +19,11 @@ public class OutputView {
     private static final int WIDTH = 5;
 
     /** 결과 */
-    public void printLadder(Names names, Ladder ladder, List<Bonus> bonusList) {
+    public void printLadder(Participants participants, Ladder ladder, Bonuses bonusList) {
         System.out.println("사다리 결과");
 
         // 1) 이름 줄
-        System.out.println(formatNameLine(names));
+        System.out.println(formatNameLine(participants));
 
         // 2) 사다리 줄
         ladder.lines()
@@ -35,42 +36,35 @@ public class OutputView {
     /**
      * 단일 결과
      */
-    public void printPersonalResult(int index, LadderResult result, List<Bonus> bonusList) {
+    public void printPersonalResult(LadderResult result, String name) {
         System.out.println("실행 결과");
-        if (index == -1) {
-            System.out.println("게임에 참여하지 않은 사람입니다.");
-            return;
-        }
-        System.out.println(bonusList.get(result.get(index)));
+        System.out.println(result.findBonusByParticipantName(name));
     }
 
     /**
      * all 조회 결과 출력
      */
-    public void printAllResults(Names names, LadderResult result, List<Bonus> bonuses) {
+    public void printAllResults(LadderResult result) {
         System.out.println("실행 결과");
-        for (int i = 0; i < names.size(); i++) {
-            Name name = names.unmodifiableNames().get(i);
-            Bonus bonus = bonuses.get(result.get(i));
-            System.out.printf("%s : %s%n", name, bonus);
-        }
+        result.getAllResult()
+            .forEach((key, value) -> System.out.println(key + " : " + value));
     }
 
     /** 이름 formatting */
-    private static String formatNameLine(Names names) {
+    private static String formatNameLine(Participants participants) {
         StringBuilder sb = new StringBuilder();
-        for (Name name : names.unmodifiableNames()) {
+        for (Participant participant : participants.unmodifiableNames()) {
             sb.append(" ")
-                .append(padLeft(name.toString()));
+                .append(padLeft(participant.getName()));
         }
         return sb.toString();
     }
 
-    private static String formatBonusLine(List<Bonus> bonusList) {
+    private static String formatBonusLine(Bonuses bonusList) {
         StringBuilder sb = new StringBuilder();
-        for (Bonus bonus : bonusList) {
+        for (Bonus bonus : bonusList.unmodifiableNames()) {
             sb.append(" ")
-                .append(padLeft(bonus.toString()));
+                .append(padLeft(bonus.getName()));
         }
         return sb.toString();
     }
