@@ -1,7 +1,9 @@
 package nextstep.domain;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -38,5 +40,12 @@ public class Ladder {
 
     public List<Line> lines() {
         return Collections.unmodifiableList(lines);
+    }
+
+    public Map<Integer, Integer> result() {
+        Map<Integer, Integer> result = new HashMap<>();
+        IntStream.range(0, lines.size())
+            .forEach(i -> result.put(i, play(i)));
+        return result;
     }
 }
