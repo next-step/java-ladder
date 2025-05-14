@@ -13,7 +13,7 @@ public class Ladder {
     }
 
     public List<Line> values() {
-        return lineList;
+        return List.copyOf(lineList);
     }
 
     public void add(Line line) {
