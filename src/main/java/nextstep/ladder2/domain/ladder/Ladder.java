@@ -29,44 +29,19 @@ public class Ladder {
     public List<Line> lines() {
         return List.copyOf(lines);
     }
-    
-    public int resultOf(int position) {
-        validatePosition(position);
-        
+
+    public Position resultOf(Position position) {
         for (Line line : lines) {
-            position = moveWithDirection(position, line);
+            position.moveBy(line.move(position.value()));
         }
-        
+
         return position;
     }
-    
-    private int moveWithDirection(int position, Line line) {
-        if (position < 0 || position >= line.size()) {
-            return position;
-        }
-        
-        Direction direction = line.move(position);
-        
-        if (direction == Direction.LEFT) {
-            return position - 1;
-        }
-        
-        if (direction == Direction.RIGHT) {
-            return position + 1;
-        }
-        
-        return position;
-    }
-    
-    private void validatePosition(int position) {
-        if (position < 0 || position >= peopleCount) {
-            throw new IllegalArgumentException("유효하지 않은 위치입니다: " + position);
-        }
-    }
-    
+
     public MatchingResult play() {
-        List<Integer> playerRewardList = IntStream.range(0, peopleCount)
-                .mapToObj(this::resultOf)
+        List<Position> positions = Position.range(0, peopleCount, peopleCount);
+        List<Position> playerRewardList = positions.stream()
+                .map(this::resultOf)
                 .collect(Collectors.toList());
         return new MatchingResult(playerRewardList);
     }

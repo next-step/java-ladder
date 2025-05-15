@@ -3,6 +3,10 @@
 
 ## 4단계 - 사다리(리팩터링)
 - [x] PR 반영
+  - [x] position 객체화 
+  - [x] direction enum refactoring with 'move value'
+
+- [x] PR 반영
   - [x] 리뷰 코멘트의 가이드 코멘트 및 코드를 참고하여 반영해보자. 
     - 가이드 코드: https://github.com/next-step/java-ladder/pull/2421#discussion_r2074396800
 - [x] 리팩터링 요구사항 
