@@ -2,6 +2,7 @@ package nextstep.ladder2.ladder;
 
 import nextstep.ladder2.domain.ladder.Ladder;
 import nextstep.ladder2.domain.ladder.Line;
+import nextstep.ladder2.domain.ladder.Position;
 import nextstep.ladder2.domain.result.MatchingResult;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,6 +11,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -49,8 +52,8 @@ public class LadderTest {
         Ladder ladder = new Ladder(peopleCount, 10);
         
         for (int i = 0; i < peopleCount; i++) {
-            int result = ladder.resultOf(i);
-            assertThat(result).isBetween(0, peopleCount - 1);
+            Position result = ladder.resultOf(Position.of(i, 4));
+            assertThat(result.value()).isBetween(0, peopleCount - 1);
         }
     }
     
@@ -58,8 +61,8 @@ public class LadderTest {
     void 유효하지_않은_위치로_결과를_요청하면_예외가_발생한다() {
         Ladder ladder = new Ladder(3, 5);
         
-        assertThatIllegalArgumentException().isThrownBy(() -> ladder.resultOf(-1));
-        assertThatIllegalArgumentException().isThrownBy(() -> ladder.resultOf(3));
+        assertThatIllegalArgumentException().isThrownBy(() -> ladder.resultOf(Position.of(-1, 3)));
+        assertThatIllegalArgumentException().isThrownBy(() -> ladder.resultOf(Position.of(3, 3)));
     }
     
     @ParameterizedTest
@@ -78,9 +81,9 @@ public class LadderTest {
         
         MatchingResult result = ladder.play();
 
-        List<Integer> playerRewardIndexList = result.playerRewardList();
-        Set<Integer> actual = new HashSet<>(playerRewardIndexList);
-        Set<Integer> expected = new HashSet<>(List.of(0, 1, 2, 3, 4));
+        List<Position> playerRewardIndexList = result.playerRewardList();
+        Set<Position> actual = new HashSet<>(playerRewardIndexList);
+        Set<Position> expected = new HashSet<>(Position.range(0, 5, peopleCount));
 
         assertThat(actual).isEqualTo(expected);
     }

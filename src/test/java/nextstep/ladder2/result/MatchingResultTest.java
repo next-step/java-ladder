@@ -1,5 +1,6 @@
 package nextstep.ladder2.result;
 
+import nextstep.ladder2.domain.ladder.Position;
 import nextstep.ladder2.domain.player.Players;
 import nextstep.ladder2.domain.result.LadderResult;
 import nextstep.ladder2.domain.result.MatchingResult;
@@ -18,7 +19,8 @@ public class MatchingResultTest {
     void 플레이어와_보상을_매핑할수있다() {
         Players players = new Players("철수", "영희", "민수");
         Rewards rewards = new Rewards("꽝", "당첨", "행운");
-        List<Integer> indexList = List.of(1, 2, 0);
+        int rewardsCount = 3;
+        List<Position> indexList = Position.listOf(rewardsCount, 1, 2, 0);
 
         MatchingResult matchingResult = new MatchingResult(indexList);
         LadderResult ladderResult = matchingResult.map(players, rewards);
