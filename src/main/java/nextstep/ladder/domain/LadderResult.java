@@ -25,6 +25,9 @@ public class LadderResult {
     }
 
     public String getReward(String name) {
+        if (name.equals("all")) {
+            return "";
+        }
         return playerToReward.get(new Participant(name));
     }
 }

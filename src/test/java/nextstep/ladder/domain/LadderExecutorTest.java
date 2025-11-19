@@ -18,7 +18,7 @@ class LadderExecutorTest {
     @Test
     @DisplayName("사다리를 실행하고 결과를 수집")
     void moveAndCollectResult() {
-        LadderExecutor ladderExecutor = new LadderExecutor(LinesTest.lines(), participants);
+        LadderExecutor ladderExecutor = new LadderExecutor(NextStepLinesTest.lines(), participants);
         MachingResult machingResult = ladderExecutor.play();
 
         assertThat(machingResult.getMachingResultMap().get(0)).isEqualTo(1);
