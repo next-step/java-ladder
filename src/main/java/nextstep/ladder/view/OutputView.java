@@ -28,7 +28,7 @@ public class OutputView {
     }
 
     private static void outputLadder(LinesCreator linesCreator) {
-        ((NextStepLines) linesCreator).getLines().forEach(line -> {
+        linesCreator.getLines().forEach(line -> {
             line.getPoints().forEach(points -> System.out.print(POINTS_LINE.get(points)));
             System.out.println("|");
         });
