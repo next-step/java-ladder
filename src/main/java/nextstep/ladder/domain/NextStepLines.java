@@ -9,15 +9,16 @@ import java.util.List;
 public class NextStepLines implements LinesCreator {
     private final List<Line> lines;
 
-    public NextStepLines() {
-        this(new ArrayList<Line>());
+    public NextStepLines(int participantCnt, int maxLadder, LineStrategy lineStrategy) {
+        this.lines = new ArrayList<>();
+        generateLine(participantCnt, maxLadder, lineStrategy);
     }
 
     public NextStepLines(ArrayList<Line> lines) {
         this.lines = new ArrayList<>(lines);
     }
 
-    public void generateLine(int participantCnt, int maxLadder, LineStrategy lineStrategy) {
+    private void generateLine(int participantCnt, int maxLadder, LineStrategy lineStrategy) {
         for (int i = 0; i < maxLadder; i++) {
             generateLine(participantCnt, lineStrategy);
         }
@@ -28,6 +29,7 @@ public class NextStepLines implements LinesCreator {
         lines.add(line);
     }
 
+    @Override
     public List<Line> getLines() {
         return lines;
     }

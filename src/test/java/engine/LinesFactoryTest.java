@@ -1,6 +1,6 @@
 package engine;
 
-import factory.LinesFactoryBean;
+import factory.LinesFactory;
 import nextstep.ladder.domain.LadderExecutor;
 import nextstep.ladder.domain.MachingResult;
 import nextstep.ladder.domain.Participants;
@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LinesFactoryBeanTest {
+public class LinesFactoryTest {
 
     @Test
-    void createNextStepLadderFactory() {
-        LinesCreator linesCreator = LinesFactoryBean.createNextStepLadderFactory(3, 5, new TrueLineStrategy());
+    void createNextStepLines() {
+        LinesCreator linesCreator = LinesFactory.createNextStepLines(3, 5, new TrueLineStrategy());
         Participants participants = new Participants("a,b,c");
         LadderExecutor ladderExecutor = new LadderExecutor(linesCreator, participants);
         MachingResult machingResult = ladderExecutor.play();

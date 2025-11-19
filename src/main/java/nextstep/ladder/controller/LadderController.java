@@ -1,7 +1,7 @@
 package nextstep.ladder.controller;
 
 import engine.LinesCreator;
-import factory.LinesFactoryBean;
+import factory.LinesFactory;
 import nextstep.ladder.domain.LadderExecutor;
 import nextstep.ladder.domain.ExecuteResult;
 import nextstep.ladder.domain.LadderResult;
@@ -29,7 +29,7 @@ public class LadderController {
 
         ExecuteResult executeResult = new ExecuteResult(participants.size(), executeResultStr);
 
-        LinesCreator linesCreator = LinesFactoryBean.createNextStepLadderFactory(participants.size(), maxLadder, new LadderLineStrategy());
+        LinesCreator linesCreator = LinesFactory.createNextStepLines(participants.size(), maxLadder, new LadderLineStrategy());
 
         LadderExecutor ladderExecutor = new LadderExecutor(linesCreator, participants);
         MachingResult machingResult = ladderExecutor.play();

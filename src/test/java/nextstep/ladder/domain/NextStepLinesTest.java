@@ -10,16 +10,13 @@ class NextStepLinesTest {
 
     public static NextStepLines lines() {
         LineStrategy lineStrategy = new TrueLineStrategy();
-        NextStepLines nextStepLines = new NextStepLines();
-        nextStepLines.generateLine(4, 3, lineStrategy);
-        return nextStepLines;
+        return new NextStepLines(4, 3, lineStrategy);
     }
 
     @Test
     void 세명의참가자만큼_네줄로_사다리_생성() {
         LineStrategy lineStrategy = new TrueLineStrategy();
-        NextStepLines nextStepLines = new NextStepLines();
-        nextStepLines.generateLine(3, 4, lineStrategy);
+        NextStepLines nextStepLines = new NextStepLines(3, 4, lineStrategy);
 
         assertThat(nextStepLines.size()).isEqualTo(4);
         for (int i = 0; i < nextStepLines.size(); i++) {
