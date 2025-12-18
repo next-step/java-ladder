@@ -4,7 +4,7 @@
 
 ## 코드 리뷰
 
-> PR 링크 :
+> PR 링크 : [#2426](https://github.com/next-step/java-ladder/pull/2426)
 
 ## 나의 학습 목표
 
