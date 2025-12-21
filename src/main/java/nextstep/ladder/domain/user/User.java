@@ -1,22 +1,23 @@
 package nextstep.ladder.domain.user;
 
 
+import nextstep.ladder.domain.ladder.Position;
+
 public class User {
 
     private final UserName name;
-    private final NameLength length;
+    private final Position position;
 
-    public User(String name) {
+    public User(String name, int position) {
         this.name = new UserName(name);
-        this.length = new NameLength(name.length());
+        this.position = new Position(position);
     }
 
     public UserName getName() {
         return name;
     }
 
-    public NameLength getLength() {
-        return length;
+    public Position getPosition() {
+        return position;
     }
-
 }

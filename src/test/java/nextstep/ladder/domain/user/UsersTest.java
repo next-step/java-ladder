@@ -14,7 +14,6 @@ public class UsersTest {
         assertThat(users.getUsers()).hasSize(4);
     }
 
-
     @ParameterizedTest
     @NullAndEmptySource
     void 참여자_null또는공백시_오류발생(String names){

@@ -1,18 +1,20 @@
 package nextstep.ladder.domain.user;
 
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 public class Users {
 
     private List<User> users;
 
     public Users(String names) {
-        this(Arrays.stream(validateName(names)
-                        .split(","))
-                .map(User::new)
+        this(validateName(names).split(","));
+    }
+
+    public Users(String[] names) {
+        this(IntStream.range(0, names.length)
+                .mapToObj(i -> new User(names[i], i))
                 .toList());
     }
 
