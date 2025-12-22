@@ -28,4 +28,11 @@ public class Position {
     public int hashCode() {
         return Objects.hashCode(position);
     }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "position=" + position +
+                '}';
+    }
 }

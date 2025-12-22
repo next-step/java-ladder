@@ -1,26 +1,37 @@
 package nextstep.ladder.domain.ladder;
 
-import java.util.List;
+import java.util.Map;
+
+import static nextstep.ladder.domain.ladder.LadderGenerator.createLadders;
 
 public class Ladders {
 
-    private final List<Ladder> ladders;
+    private Map<Ladder, Boolean> laddersMap;
     private final Integer height;
 
-    public Ladders(List<Ladder> ladders, Integer height) {
-        this.ladders = ladders;
+    public Ladders(int height, int row) {
+        this.laddersMap = createLadders(row, height);
         this.height = height;
     }
 
-    public void createLadders() {
-
+    public Ladders(Map<Ladder,Boolean> laddersMap, Integer height) {
+        this.laddersMap = laddersMap;
+        this.height = height;
     }
 
-    public List<Ladder> getLadders() {
-        return ladders;
+    public Map<Ladder, Boolean> getLadders() {
+        return laddersMap;
     }
 
     public Integer getHeight() {
         return height;
+    }
+
+    @Override
+    public String toString() {
+        return "Ladders{" +
+                "ladderMap=" + laddersMap +
+                ", height=" + height +
+                '}';
     }
 }
