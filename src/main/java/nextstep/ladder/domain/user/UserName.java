@@ -13,7 +13,7 @@ public class UserName {
     }
 
     private void validateNameLength(String name) {
-        if(name.length() > MAX_NAME_LENGTH){
+        if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(String.format("참여자 이름은 최대 %d글자까지 입력 가능합니다.", MAX_NAME_LENGTH));
         }
     }

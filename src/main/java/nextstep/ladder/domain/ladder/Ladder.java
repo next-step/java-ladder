@@ -1,6 +1,6 @@
 package nextstep.ladder.domain.ladder;
 
-public class Ladder {
+public class Ladder implements Comparable<Ladder> {
 
     private final Position row;
     private final Position column;
@@ -8,6 +8,7 @@ public class Ladder {
     public Ladder(int row, int column) {
         this(new Position(row), new Position(column));
     }
+
     public Ladder(Position row, Position column) {
         this.row = row;
         this.column = column;
@@ -27,5 +28,14 @@ public class Ladder {
                 "row=" + row +
                 ", column=" + column +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Ladder other) {
+        int rowCompare = this.row.compareTo(other.row);
+        if (rowCompare != 0) {
+            return rowCompare;
+        }
+        return this.column.compareTo(other.column);
     }
 }

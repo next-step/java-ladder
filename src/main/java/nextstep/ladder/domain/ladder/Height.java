@@ -14,7 +14,7 @@ public class Height {
     }
 
     private void validateHeight(int height) {
-        if(height < MIN_HEIGHT){
+        if (height < MIN_HEIGHT) {
             throw new IllegalArgumentException(String.format("높이는 %d보다 작을 수 없습니다.", MIN_HEIGHT));
         }
     }

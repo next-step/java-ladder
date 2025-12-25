@@ -2,23 +2,24 @@ package nextstep.ladder.domain.ladder;
 
 import java.util.Map;
 import java.util.Objects;
+import java.util.TreeMap;
 
 import static nextstep.ladder.domain.ladder.LadderGenerator.createLadders;
 
 public class Ladders {
 
-    private Map<Ladder, Boolean> laddersMap;
+    private TreeMap<Ladder, Boolean> laddersMap;
     private final Height height;
 
     public Ladders(int height, int row) {
         this(createLadders(row, height), height);
     }
 
-    public Ladders(Map<Ladder, Boolean> laddersMap, int height) {
+    public Ladders(TreeMap<Ladder, Boolean> laddersMap, int height) {
         this(laddersMap, new Height(height));
     }
 
-    public Ladders(Map<Ladder, Boolean> laddersMap, Height height) {
+    public Ladders(TreeMap<Ladder, Boolean> laddersMap, Height height) {
         this.laddersMap = laddersMap;
         this.height = height;
     }
@@ -29,6 +30,10 @@ public class Ladders {
 
     public Height getHeight() {
         return height;
+    }
+
+    public int getHeightValue() {
+        return height.getHeight();
     }
 
     @Override
@@ -50,5 +55,4 @@ public class Ladders {
     public int hashCode() {
         return Objects.hash(laddersMap, getHeight());
     }
-
 }

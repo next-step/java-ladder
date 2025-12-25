@@ -17,6 +17,10 @@ public class User {
         return name;
     }
 
+    public String getNameValue() {
+        return name.getName();
+    }
+
     public Position getPosition() {
         return position;
     }

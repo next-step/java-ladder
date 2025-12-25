@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -12,7 +13,7 @@ public class LaddersTest {
 
     @Test
     void 사다리_임의_생성(){
-        Map<Ladder, Boolean> ladderMap = new HashMap<>();
+        TreeMap<Ladder, Boolean> ladderMap = new TreeMap<>();
         ladderMap.put(new Ladder(0, 0), true);
         ladderMap.put(new Ladder(0, 1), false);
         ladderMap.put(new Ladder(1, 0), false);
