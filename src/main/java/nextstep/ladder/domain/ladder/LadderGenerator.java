@@ -2,33 +2,36 @@ package nextstep.ladder.domain.ladder;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.Random;
 
 public class LadderGenerator {
 
+    private static final Random RANDOM = new Random();
+
     public static Map<Ladder, Boolean> createLadders(int width, int height) {
-        return IntStream.range(0, height)
-                .boxed()
-                .flatMap(i -> {
-                    boolean[] previousHasLine = {false};  // 배열로 우회
-                    return IntStream.range(0, width)
-                            .mapToObj(j -> {
-                                boolean currentHasLine = createHasHorizontalLine(previousHasLine[0]);
-                                previousHasLine[0] = currentHasLine;
-                                return Map.entry(new Ladder(i, j), currentHasLine);
-                            });
-                })
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue
-                ));
+        Map<Ladder, Boolean> map = new HashMap<>();
+
+        for (int i = 0; i < height; i++) {
+            boolean previousHasLine = false;
+            for (int j = 0; j < width; j++) {
+                if (j + 1 == width) {
+                    map.put(new Ladder(i, j), false);
+                    continue;
+                }
+                boolean currentHasLine = createHasHorizontalLine(previousHasLine);
+                map.put(new Ladder(i, j), currentHasLine);
+                previousHasLine = currentHasLine;
+            }
+        }
+
+        return map;
     }
 
     private static boolean createHasHorizontalLine(Boolean previousValue) {
         if (previousValue) {
             return false;
         }
-        return Math.random() < 0.5;
+
+        return RANDOM.nextBoolean();
     }
 }

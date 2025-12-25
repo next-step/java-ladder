@@ -20,13 +20,14 @@ public class LaddersTest {
         Ladders ladders = new Ladders(ladderMap, 2);
 
         assertThat(ladders.getLadders()).hasSize(4);
-        assertThat(ladders.getHeight()).isEqualTo(2);
+        assertThat(ladders.getHeight()).isEqualTo(new Height(2));
     }
 
     @Test
     void 사다리_전체_랜덤_생성() {
         Ladders ladders = new Ladders(3, 3);
-        System.out.println("ladders = " + ladders);
+        assertThat(ladders.getLadders()).hasSize(9);
+        assertThat(ladders.getHeight()).isEqualTo(new Height(3));
     }
 
 }
