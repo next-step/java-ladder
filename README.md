@@ -17,6 +17,7 @@
 - [x] : map, reduce, filter 실습 2 : 출력
 
 ## Optional
-- [ ] : Optional을 활용해 조건에 따른 반환
-- [ ] : Optional에서 값을 반환
-- [ ] : Optional에서 exception 처리
+
+- [x] : Optional을 활용해 조건에 따른 반환
+- [x] : Optional에서 값을 반환
+- [x] : Optional에서 exception 처리
