@@ -1,7 +1,6 @@
 package nextstep.ladder.view;
 
-import nextstep.ladder.domain.ladder.Ladder;
-import nextstep.ladder.domain.ladder.Ladders;
+import nextstep.ladder.domain.ladder.Height;
 import nextstep.ladder.domain.user.Users;
 
 import java.util.Map;
@@ -23,8 +22,8 @@ public class InputView {
         System.out.println(INPUT_PEOPLE_NAME_MESSAGE);
     }
 
-    public static String inputName() {
-        return scanner.nextLine();
+    public static Users inputName() {
+        return new Users(scanner.nextLine());
     }
 
     public static void printLadderHeight() {
@@ -32,8 +31,8 @@ public class InputView {
         System.out.println(INPUT_LADDER_HIGHT_MESSAGE);
     }
 
-    public static int inputHeight() {
-        return scanner.nextInt();
+    public static Height inputHeight() {
+        return new Height(scanner.nextInt());
     }
 
     public static void printResultMessage() {
@@ -41,19 +40,7 @@ public class InputView {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public static void printLadders(Users users, Ladders ladders) {
-        users.getUsers().forEach(user -> System.out.printf("%6s", user.getNameValue()));
-        System.out.println();
+    public static void printLadders(Users users) {
 
-        Map<Ladder, Boolean> laddersMap = ladders.getLadders();
-
-        IntStream.range(0, ladders.getHeightValue())
-                .forEach(i -> {
-                    System.out.print(LADDER_START_BLOCK);
-                    IntStream.range(0, users.size()).forEach(j -> {
-                        System.out.print(laddersMap.get(new Ladder(i, j)) ? LADDER_TRUE : LADDER_FALSE);
-                    });
-                    System.out.println();
-                });
     }
 }

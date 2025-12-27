@@ -1,0 +1,16 @@
+package nextstep.ladder.domain.ladder;
+
+import nextstep.ladder.domain.strategy.RandomLadderLineGenerateStrategy;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.*;
+
+class LineTest {
+
+    @Test
+    void 라인_정상_생성(){
+        Line line = new Line(3, new RandomLadderLineGenerateStrategy());
+        assertThat(line.getLine()).hasSize(2);
+    }
+
+}
