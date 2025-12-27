@@ -4,11 +4,8 @@ import nextstep.ladder.domain.ladder.Height;
 import nextstep.ladder.domain.ladder.LadderGame;
 import nextstep.ladder.domain.ladder.Line;
 import nextstep.ladder.domain.ladder.Lines;
-import nextstep.ladder.domain.user.User;
 import nextstep.ladder.domain.user.Users;
 
-import java.util.Map;
-import java.util.Optional;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
@@ -22,6 +19,7 @@ public class InputView {
     public static final String LADDER_TRUE = "|-----";
     public static final String LADDER_FALSE = "|     ";
     public static final String LADDER_START_BLOCK = "     ";
+    public static final String NEXT_LINE = System.lineSeparator();
 
     public static void printPeopleName() {
         printMessageNextLine(INPUT_PEOPLE_NAME_MESSAGE);
@@ -42,24 +40,33 @@ public class InputView {
 
     public static void printResultMessage() {
         printMessageNextLine("");
-        printMessageNextLine(RESULT_MESSAGE);
+        printMessageNextLine(RESULT_MESSAGE + NEXT_LINE);
     }
 
     public static void printLadders(LadderGame ladderGame) {
-        ladderGame.getUsers().getUsers().forEach(user -> System.out.printf("%6s", user.getNameValue()));
+        printUserNames(ladderGame.getUsers());
+
+        printLines(ladderGame.getLines());
+    }
+
+    private static void printUserNames(Users users) {
+        users.getUsers().forEach(user -> System.out.printf("%6s", user.getNameValue()));
         printMessageNextLine("");
+    }
 
-        Lines lines = ladderGame.getLines();
-
+    private static void printLines(Lines lines) {
         IntStream.range(0, lines.size())
                 .forEach(i -> {
-                    Line line = lines.getLines().get(i);
                     printMessageCurrentLine(LADDER_START_BLOCK);
-                    IntStream.range(0, line.size())
-                            .forEach(j -> printMessageCurrentLine(line.getLine().get(j) ? LADDER_TRUE : LADDER_FALSE));
+                    printSingleLine(lines.getLines().get(i));
                     printMessageCurrentLine(LADDER_FALSE);
                     printMessageNextLine("");
                 });
+    }
+
+    private static void printSingleLine(Line line) {
+        IntStream.range(0, line.size())
+                .forEach(j -> printMessageCurrentLine(line.getLine().get(j) ? LADDER_TRUE : LADDER_FALSE));
     }
 
     private static void printMessageCurrentLine(String message) {
