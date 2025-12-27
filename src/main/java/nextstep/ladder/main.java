@@ -21,6 +21,6 @@ public class main {
 
         printResultMessage();
 
-        printLadders(users);
+        printLadders(ladderGame);
     }
 }

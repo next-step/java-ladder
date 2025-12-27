@@ -21,4 +21,12 @@ public class LadderGame {
         this.users = users;
         this.lines = lines;
     }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public Lines getLines() {
+        return lines;
+    }
 }

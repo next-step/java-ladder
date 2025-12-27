@@ -12,9 +12,18 @@ public class Line {
         this.line = generate.generate(row);
     }
 
+    public int size(){
+        return this.line.size();
+    }
+
     public List<Boolean> getLine() {
         return line;
     }
 
-
+    @Override
+    public String toString() {
+        return "Line{" +
+                "line=" + line +
+                '}';
+    }
 }

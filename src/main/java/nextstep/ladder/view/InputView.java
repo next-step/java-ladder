@@ -1,9 +1,14 @@
 package nextstep.ladder.view;
 
 import nextstep.ladder.domain.ladder.Height;
+import nextstep.ladder.domain.ladder.LadderGame;
+import nextstep.ladder.domain.ladder.Line;
+import nextstep.ladder.domain.ladder.Lines;
+import nextstep.ladder.domain.user.User;
 import nextstep.ladder.domain.user.Users;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
@@ -19,7 +24,7 @@ public class InputView {
     public static final String LADDER_START_BLOCK = "     ";
 
     public static void printPeopleName() {
-        System.out.println(INPUT_PEOPLE_NAME_MESSAGE);
+        printMessageNextLine(INPUT_PEOPLE_NAME_MESSAGE);
     }
 
     public static Users inputName() {
@@ -27,8 +32,8 @@ public class InputView {
     }
 
     public static void printLadderHeight() {
-        System.out.println();
-        System.out.println(INPUT_LADDER_HIGHT_MESSAGE);
+        printMessageNextLine("");
+        printMessageNextLine(INPUT_LADDER_HIGHT_MESSAGE);
     }
 
     public static Height inputHeight() {
@@ -36,11 +41,32 @@ public class InputView {
     }
 
     public static void printResultMessage() {
-        System.out.println();
-        System.out.println(RESULT_MESSAGE);
+        printMessageNextLine("");
+        printMessageNextLine(RESULT_MESSAGE);
     }
 
-    public static void printLadders(Users users) {
+    public static void printLadders(LadderGame ladderGame) {
+        ladderGame.getUsers().getUsers().forEach(user -> System.out.printf("%6s", user.getNameValue()));
+        printMessageNextLine("");
 
+        Lines lines = ladderGame.getLines();
+
+        IntStream.range(0, lines.size())
+                .forEach(i -> {
+                    Line line = lines.getLines().get(i);
+                    printMessageCurrentLine(LADDER_START_BLOCK);
+                    IntStream.range(0, line.size())
+                            .forEach(j -> printMessageCurrentLine(line.getLine().get(j) ? LADDER_TRUE : LADDER_FALSE));
+                    printMessageCurrentLine(LADDER_FALSE);
+                    printMessageNextLine("");
+                });
+    }
+
+    private static void printMessageCurrentLine(String message) {
+        System.out.print(message);
+    }
+
+    private static void printMessageNextLine(String message) {
+        System.out.println(message);
     }
 }

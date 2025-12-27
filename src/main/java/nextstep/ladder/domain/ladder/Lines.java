@@ -10,5 +10,11 @@ public class Lines {
         this.lines = lines;
     }
 
+    public int size(){
+        return this.lines.size();
+    }
 
+    public List<Line> getLines() {
+        return lines;
+    }
 }
