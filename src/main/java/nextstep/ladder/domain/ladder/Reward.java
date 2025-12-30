@@ -10,6 +10,10 @@ public class Reward {
         this.reward = reward;
     }
 
+    public String getReward() {
+        return reward;
+    }
+
     @Override
     public String toString() {
         return "Reward{" +

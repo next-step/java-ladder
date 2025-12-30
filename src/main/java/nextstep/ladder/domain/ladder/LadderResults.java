@@ -18,7 +18,7 @@ public class LadderResults {
         return results;
     }
 
-    public int size(){
+    public int size() {
         return this.results.size();
     }
 

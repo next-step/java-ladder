@@ -12,6 +12,12 @@ public class LadderGame {
     private final Lines lines;
     private final Rewards rewards;
 
+    public LadderGame(Users users, Height height, GenerateLadderLineStrategy generate, Rewards rewards) {
+        this(users, new Lines(IntStream.range(0, height.getHeight())
+                .mapToObj(i -> new Line(users.size(), generate))
+                .collect(Collectors.toList())), rewards);
+    }
+
     public LadderGame(Users users, Height height, GenerateLadderLineStrategy generate) {
         this(users, new Lines(IntStream.range(0, height.getHeight())
                 .mapToObj(i -> new Line(users.size(), generate))
@@ -40,6 +46,10 @@ public class LadderGame {
 
     public Lines getLines() {
         return lines;
+    }
+
+    public Rewards getRewards() {
+        return rewards;
     }
 
 }

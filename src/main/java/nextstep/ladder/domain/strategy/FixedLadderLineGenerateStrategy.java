@@ -2,7 +2,7 @@ package nextstep.ladder.domain.strategy;
 
 import java.util.List;
 
-public class FixedLadderLineGenerateStrategy implements GenerateLadderLineStrategy{
+public class FixedLadderLineGenerateStrategy implements GenerateLadderLineStrategy {
 
     private final List<Boolean> pattern;
 

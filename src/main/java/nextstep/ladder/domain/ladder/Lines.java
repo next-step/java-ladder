@@ -14,7 +14,7 @@ public class Lines {
         this.lines = lines;
     }
 
-    public int size(){
+    public int size() {
         return this.lines.size();
     }
 

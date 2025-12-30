@@ -17,14 +17,6 @@ public class Position implements Comparable<Position> {
         }
     }
 
-    public void plus(){
-        this.position++;
-    }
-
-    public void minus(){
-        this.position--;
-    }
-
     public int getPosition() {
         return position;
     }

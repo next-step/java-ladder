@@ -26,6 +26,14 @@ public class LadderResult {
         return this.reward;
     }
 
+    public String getUserValue() {
+        return this.user.getNameValue();
+    }
+
+    public String getRewardValue() {
+        return this.reward.getReward();
+    }
+
     @Override
     public String toString() {
         return "LadderResult{" +

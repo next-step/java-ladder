@@ -3,7 +3,6 @@ package nextstep.ladder.domain.user;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.IntStream;
 
 public class Users {
 

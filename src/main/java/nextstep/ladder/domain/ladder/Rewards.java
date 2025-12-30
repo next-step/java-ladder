@@ -25,6 +25,10 @@ public class Rewards {
         return reward;
     }
 
+    public int size() {
+        return this.rewards.size();
+    }
+
     public List<Reward> getRewards() {
         return rewards;
     }

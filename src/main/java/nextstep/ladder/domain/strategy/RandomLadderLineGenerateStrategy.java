@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class RandomLadderLineGenerateStrategy implements GenerateLadderLineStrategy{
+public class RandomLadderLineGenerateStrategy implements GenerateLadderLineStrategy {
 
     private static Random random = new Random();
     private Boolean previousHasLine = false;
