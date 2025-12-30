@@ -1,5 +1,7 @@
 package nextstep.ladder.domain.ladder;
 
+import java.util.Objects;
+
 public class Reward {
 
     private final String reward;
@@ -13,5 +15,17 @@ public class Reward {
         return "Reward{" +
                 "reward='" + reward + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Reward reward1 = (Reward) o;
+        return Objects.equals(reward, reward1.reward);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(reward);
     }
 }

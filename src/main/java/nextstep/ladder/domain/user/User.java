@@ -1,6 +1,8 @@
 package nextstep.ladder.domain.user;
 
 
+import java.util.Objects;
+
 public class User {
 
     private final UserName name;
@@ -22,5 +24,17 @@ public class User {
         return "User{" +
                 "name=" + name +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(getName(), user.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getName());
     }
 }
