@@ -16,8 +16,10 @@ public class LadderResultTest {
     @Test
     void 사다리_위치_변경(){
         LadderResult result = new LadderResult(new User("pobi", 0), 0);
+
         result.plusPosition();
         assertThat(result.getPosition()).isEqualTo(1);
+
         result.minusPosition();
         assertThat(result.getPosition()).isEqualTo(0);
     }
