@@ -38,4 +38,11 @@ public class UserName {
     public int hashCode() {
         return Objects.hashCode(getName());
     }
+
+    @Override
+    public String toString() {
+        return "UserName{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

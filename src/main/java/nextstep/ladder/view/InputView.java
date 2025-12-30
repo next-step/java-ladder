@@ -66,7 +66,7 @@ public class InputView {
 
     private static void printSingleLine(Line line) {
         IntStream.range(0, line.size())
-                .forEach(j -> printMessageCurrentLine(line.getLine().get(j) ? LADDER_TRUE : LADDER_FALSE));
+                .forEach(j -> printMessageCurrentLine(line.getLines().get(j) ? LADDER_TRUE : LADDER_FALSE));
     }
 
     private static void printMessageCurrentLine(String message) {

@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Position implements Comparable<Position> {
 
-    private final int position;
+    private int position;
 
     public Position(int position) {
         validateNagative(position);
@@ -15,6 +15,14 @@ public class Position implements Comparable<Position> {
         if (position < 0) {
             throw new IllegalArgumentException("위치는 음수일 수 없습니다.");
         }
+    }
+
+    public void plus(){
+        this.position++;
+    }
+
+    public void minus(){
+        this.position--;
     }
 
     public int getPosition() {

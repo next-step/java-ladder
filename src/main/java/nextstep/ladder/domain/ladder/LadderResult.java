@@ -5,26 +5,30 @@ import nextstep.ladder.domain.user.User;
 public class LadderResult {
 
     private final User user;
-    private int position;
+    private final Reward reward;
 
-    public LadderResult(User user, int position) {
+    public LadderResult(User user) {
+        this(user, null);
+    }
+
+    public LadderResult(User user, Reward reward) {
         this.user = user;
-        this.position = position;
-    }
-
-    public void plusPosition() {
-        this.position++;
-    }
-
-    public void minusPosition() {
-        this.position--;
+        this.reward = reward;
     }
 
     public User getUser() {
         return user;
     }
 
-    public int getPosition() {
-        return position;
+    public Reward getReward() {
+        return this.reward;
+    }
+
+    @Override
+    public String toString() {
+        return "LadderResult{" +
+                "user=" + user +
+                ", reward=" + reward +
+                '}';
     }
 }

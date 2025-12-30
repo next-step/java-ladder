@@ -21,4 +21,11 @@ public class LadderResults {
     public int size(){
         return this.results.size();
     }
+
+    @Override
+    public String toString() {
+        return "LadderResults{" +
+                "results=" + results +
+                '}';
+    }
 }

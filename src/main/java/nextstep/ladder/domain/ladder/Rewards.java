@@ -28,4 +28,15 @@ public class Rewards {
     public List<Reward> getRewards() {
         return rewards;
     }
+
+    @Override
+    public String toString() {
+        return "Rewards{" +
+                "rewards=" + rewards +
+                '}';
+    }
+
+    public Reward findReward(int position) {
+        return rewards.get(position);
+    }
 }

@@ -17,4 +17,10 @@ public class User {
         return name.getName();
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "name=" + name +
+                '}';
+    }
 }

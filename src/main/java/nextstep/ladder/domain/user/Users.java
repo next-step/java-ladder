@@ -35,4 +35,11 @@ public class Users {
     public int size() {
         return users.size();
     }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "users=" + users +
+                '}';
+    }
 }
