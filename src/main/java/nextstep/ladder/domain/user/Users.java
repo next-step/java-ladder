@@ -24,7 +24,7 @@ public class Users {
 
     private static String validateName(String names) {
         if (Objects.isNull(names) || names.isEmpty()) {
-            throw new IllegalArgumentException("참여자는 입력은 필수입니다.");
+            throw new IllegalArgumentException("참여자 입력은 필수입니다.");
         }
         return names;
     }
