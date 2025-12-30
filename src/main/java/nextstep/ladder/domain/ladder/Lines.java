@@ -6,6 +6,10 @@ public class Lines {
 
     private final List<Line> lines;
 
+    public Lines(Line... lines) {
+        this(List.of(lines));
+    }
+
     public Lines(List<Line> lines) {
         this.lines = lines;
     }

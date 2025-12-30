@@ -22,6 +22,10 @@ public class LadderGame {
         this.lines = lines;
     }
 
+    public LadderResults play() {
+        return null;
+    }
+
     public Users getUsers() {
         return users;
     }
@@ -29,4 +33,5 @@ public class LadderGame {
     public Lines getLines() {
         return lines;
     }
+
 }

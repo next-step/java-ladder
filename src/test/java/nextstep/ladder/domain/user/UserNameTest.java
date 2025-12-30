@@ -13,7 +13,7 @@ class UserNameTest {
 
     @Test
     void 이름_5글자_초과시_에러발생() {
-        assertThatThrownBy(() -> new User("pobipo", 1))
+        assertThatThrownBy(() -> new User("pobipo"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("참여자 이름은 최대 5글자까지 입력 가능합니다.");
     }
@@ -21,7 +21,7 @@ class UserNameTest {
     @ParameterizedTest
     @NullAndEmptySource
     void 이름_공백_또는_null일경우_에러발생(String value) {
-        assertThatThrownBy(() -> new User(value, 1))
+        assertThatThrownBy(() -> new User(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("참여자 이름은 공백일 수 없습니다.");
     }
