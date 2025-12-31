@@ -10,16 +10,34 @@ public class LadderGame {
 
     private final Users users;
     private final Lines lines;
+    private final Rewards rewards;
+
+    public LadderGame(Users users, Height height, GenerateLadderLineStrategy generate, Rewards rewards) {
+        this(users, new Lines(IntStream.range(0, height.getHeight())
+                .mapToObj(i -> new Line(users.size(), generate))
+                .collect(Collectors.toList())), rewards);
+    }
 
     public LadderGame(Users users, Height height, GenerateLadderLineStrategy generate) {
         this(users, new Lines(IntStream.range(0, height.getHeight())
                 .mapToObj(i -> new Line(users.size(), generate))
-                .collect(Collectors.toList())));
+                .collect(Collectors.toList())), null);
     }
 
-    public LadderGame(Users users, Lines lines) {
+    public LadderGame(Users users, Lines lines, Rewards rewards) {
         this.users = users;
         this.lines = lines;
+        this.rewards = rewards;
+    }
+
+    public LadderResults play() {
+        return new LadderResults(IntStream.range(0, users.size())
+                .mapToObj(this::generateLadderResult)
+                .toList());
+    }
+
+    private LadderResult generateLadderResult(int userIndex) {
+        return new LadderResult(users.getUsers().get(userIndex), rewards.findReward(lines.move(userIndex)));
     }
 
     public Users getUsers() {
@@ -29,4 +47,9 @@ public class LadderGame {
     public Lines getLines() {
         return lines;
     }
+
+    public Rewards getRewards() {
+        return rewards;
+    }
+
 }

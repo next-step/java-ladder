@@ -1,6 +1,5 @@
 package nextstep.ladder.domain.user;
 
-import nextstep.ladder.domain.ladder.Position;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -12,9 +11,8 @@ class UserTest {
 
     @Test
     void 참여자_생성() {
-        User user = new User("pobi", 1);
+        User user = new User("pobi");
         assertThat(user.getName()).isEqualTo(new UserName("pobi"));
-        assertThat(user.getPosition()).isEqualTo(new Position(1));
     }
 
 

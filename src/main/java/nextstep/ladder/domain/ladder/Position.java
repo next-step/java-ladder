@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Position implements Comparable<Position> {
 
-    private final int position;
+    private int position;
 
     public Position(int position) {
         validateNagative(position);

@@ -19,6 +19,6 @@ public class UsersTest {
     void 참여자_null또는공백시_오류발생(String names){
         assertThatThrownBy(() -> new Users(names))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("참여자는 입력은 필수입니다.");
+                .hasMessageContaining("참여자 입력은 필수입니다.");
     }
 }

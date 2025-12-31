@@ -1,16 +1,14 @@
 package nextstep.ladder.domain.user;
 
 
-import nextstep.ladder.domain.ladder.Position;
+import java.util.Objects;
 
 public class User {
 
     private final UserName name;
-    private final Position position;
 
-    public User(String name, int position) {
+    public User(String name) {
         this.name = new UserName(name);
-        this.position = new Position(position);
     }
 
     public UserName getName() {
@@ -21,7 +19,22 @@ public class User {
         return name.getName();
     }
 
-    public Position getPosition() {
-        return position;
+    @Override
+    public String toString() {
+        return "User{" +
+                "name=" + name +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(getName(), user.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getName());
     }
 }
