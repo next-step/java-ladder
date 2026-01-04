@@ -2,6 +2,8 @@ package nextstep.laddergame;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LineTest {
 
@@ -10,17 +12,17 @@ class LineTest {
         assertThat(new Line(5).getPoints()).hasSize(5);
     }
 
-    @Test
-    void 바로_옆_좌표애_라인이_있으면_가로라인을_그리지않는다() {
-        // @todo 테스트가 직접적인 계산등의 수에 의존적임
+    @ParameterizedTest
+    @ValueSource(ints = {1, 3, 5})
+    void true_개수는_인접금지_규칙상_최대치를_넘지않는다(int countOfPerson) {
+        Line line = new Line(countOfPerson);
+        int maxTrue = (line.getPoints().size() + 1) / 2;
 
-        Line line = new Line(5);
-        System.out.println("line = " + line);
         assertThat(
             line.getPoints().stream()
                 .filter(Boolean::booleanValue)
                 .count()
-        ).isLessThanOrEqualTo(3);
+        ).isLessThanOrEqualTo(maxTrue);
     }
 
 }

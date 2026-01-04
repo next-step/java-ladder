@@ -59,16 +59,21 @@ participant → ladder → Line → height → participants
 
 ### 객체별 주요 구현 사항
 
-#### participant
-
+#### Participant
 - [x] : 참가자 이름
 
-#### ladder
+#### Ladder
 
+- [x] : 사다리의 높이만큼 만든다
+
+#### Line
 - [x] : 사다리에 가로 선 만들기
-- [ ] : 사다리의 높이와 폭 정보
+
+#### Participants
+
+- [x] : 참석자들의 수 만큼 생성
+
+#### LadderGame
+
+#### controller
 - [ ] : 높이는 직접 입력, 폭은 이름으로 벌리기
-
-#### participants
-
-- [ ] : 참석자들의 수
