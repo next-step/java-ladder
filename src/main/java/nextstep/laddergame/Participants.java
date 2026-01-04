@@ -7,6 +7,10 @@ public class Participants {
 
     private final List<Participant> participantList;
 
+    public Participants(String participantList) {
+        this(Arrays.stream(participantList.split(",")).map(String::trim).toArray(String[]::new));
+    }
+
     public Participants(String... participantList) {
         this(Arrays.stream(participantList).map(Participant::new).toList());
     }

@@ -14,4 +14,8 @@ public class Participant {
             throw new IllegalArgumentException("참가자의 이름은 1자에서 5자 사이여야 합니다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }
