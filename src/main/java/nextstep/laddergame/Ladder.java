@@ -7,8 +7,12 @@ public class Ladder {
 
     private final List<Line> line;
 
-    public Ladder(int ladderHeight) {
-        this(IntStream.range(0, ladderHeight).mapToObj(Line::new).toList());
+    public Ladder(String ladderHeight, int countOfPerson) {
+        this(Integer.parseInt(ladderHeight), countOfPerson);
+    }
+
+    public Ladder(int ladderHeight, int countOfPerson) {
+        this(IntStream.range(0, ladderHeight).mapToObj(i -> new Line(countOfPerson)).toList());
     }
 
     public Ladder(List<Line> line) {
