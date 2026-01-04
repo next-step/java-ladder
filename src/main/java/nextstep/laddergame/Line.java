@@ -2,8 +2,8 @@ package nextstep.laddergame;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.IntStream;
+import nextstep.laddergame.util.RandomUtil;
 
 public record Line(List<Boolean> points) {
 
@@ -24,29 +24,25 @@ public record Line(List<Boolean> points) {
         boolean previous = false;
 
         for (int i = 0; i < countOfPerson; i++) {
-            boolean current = isLineTrue(previous);
+            boolean current = lineDecider(previous);
             points.add(current);
             previous = current;
         }
-        if (checkAllFalse(points)) {
-            return lineGenerate(countOfPerson);
+        if (isAllPointsFalse(points)) {
+            points.set(RandomUtil.randomIndex(points.size()), true);
         }
         return points;
     }
 
-    private static boolean checkAllFalse(List<Boolean> points) {
-        return points.stream().noneMatch(point -> point == true);
-    }
-
-    private static boolean isLineTrue(boolean previous) {
+    private static boolean lineDecider(boolean previous) {
         if (previous) {
             return false;
         }
-        return new Random().nextBoolean();
+        return RandomUtil.halfAndHalfBoolean();
     }
 
     private void validate(List<Boolean> points) {
-        if (points.stream().noneMatch(point -> point == true)) {
+        if (isAllPointsFalse(points)) {
             throw new IllegalArgumentException("모든 라인이 false일 수 없습니다");
         }
 
@@ -54,6 +50,10 @@ public record Line(List<Boolean> points) {
             throw new IllegalArgumentException("인접라인이 서로 true일수 없습니다");
         }
 
+    }
+
+    private static boolean isAllPointsFalse(List<Boolean> points) {
+        return points.stream().noneMatch(Boolean::booleanValue);
     }
 
     @Override
