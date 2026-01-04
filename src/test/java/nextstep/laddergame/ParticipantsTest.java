@@ -9,7 +9,7 @@ class ParticipantsTest {
     void 참여자_이름을_입력하면_참여자_이름이_생성된다() {
         Participants participants = new Participants("A", "B", "C");
 
-        assertThat(participants.getParticipantList().size()).isEqualTo(3);
+        assertThat(participants.participantList().size()).isEqualTo(3);
     }
 
 }

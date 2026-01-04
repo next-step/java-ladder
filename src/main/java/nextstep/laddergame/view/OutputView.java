@@ -10,8 +10,8 @@ public class OutputView {
     private static final int NAME_WIDTH = 5;
 
     public static void printLadderResult(LadderGame ladderGame) {
-        List<Participant> participants = ladderGame.getParticipants().getParticipantList();
-        List<Line> lines = ladderGame.getLadder().getLine();
+        List<Participant> participants = ladderGame.participants().participantList();
+        List<Line> lines = ladderGame.ladder().line();
 
         if (lines.isEmpty()) {
             System.out.println(renderNames(participants, NAME_WIDTH));
@@ -40,7 +40,7 @@ public class OutputView {
         for (int i = 0; i < verticalCount; i++) {
             String label;
             if (i < participants.size()) {
-                label = participants.get(i).getName();
+                label = participants.get(i).name();
             } else {
                 label = String.valueOf(i + 1); // participants가 부족할 때 임시 라벨
             }
@@ -55,7 +55,7 @@ public class OutputView {
     private static String renderNames(List<Participant> participants, int w) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < participants.size(); i++) {
-            sb.append(padRight(participants.get(i).getName(), w));
+            sb.append(padRight(participants.get(i).name(), w));
             if (i < participants.size() - 1) {
                 sb.append(" ");
             }
@@ -64,7 +64,7 @@ public class OutputView {
     }
 
     private static String renderLine(Line line, int verticalCount, int w) {
-        List<Boolean> points = line.getPoints();
+        List<Boolean> points = line.points();
 
         StringBuilder sb = new StringBuilder();
         sb.append("|");

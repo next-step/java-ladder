@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class Line {
-
-    private final List<Boolean> points;
+public record Line(List<Boolean> points) {
 
     public Line(boolean... values) {
         this(IntStream.range(0, values.length).mapToObj(i -> values[i]).toList());
@@ -17,9 +15,8 @@ public class Line {
         this(lineGenerate(countOfPerson));
     }
 
-    public Line(List<Boolean> points) {
+    public Line {
         validate(points);
-        this.points = points;
     }
 
     private static List<Boolean> lineGenerate(int countOfPerson) {
@@ -46,10 +43,6 @@ public class Line {
             return false;
         }
         return new Random().nextBoolean();
-    }
-
-    public List<Boolean> getPoints() {
-        return points;
     }
 
     private void validate(List<Boolean> points) {
