@@ -7,7 +7,7 @@ public record LadderGame(Participants participants, Ladder ladder) {
     }
 
     private LadderGame(Participants participants, String ladderHeight) {
-        this(participants, new Ladder(ladderHeight, participants.participantList().size()));
+        this(participants, new Ladder(ladderHeight, participants.size()));
     }
 
 }

@@ -17,4 +17,8 @@ public record Participants(List<Participant> participantList) {
         this(Arrays.stream(participantList).toList());
     }
 
+    public int size() {
+        return participantList().size();
+    }
+
 }
