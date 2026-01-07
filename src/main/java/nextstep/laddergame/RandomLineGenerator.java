@@ -7,12 +7,18 @@ import nextstep.laddergame.util.RandomUtil;
 
 public class RandomLineGenerator implements LineGenerator {
 
+    private final int countOfPerson;
+
+    public RandomLineGenerator(int countOfPerson) {
+        this.countOfPerson = countOfPerson;
+    }
+
     @Override
-    public List<Boolean> lineDraw(int countOfPerson) {
+    public List<Boolean> lineDraw() {
         List<Boolean> points = new ArrayList<>();
         boolean previous = false;
 
-        for (int i = 0; i < countOfPerson; i++) {
+        for (int i = 0; i < this.countOfPerson; i++) {
             boolean current = lineDecider(previous);
             points.add(current);
             previous = current;

@@ -104,3 +104,5 @@ participant → ladder → Line → height → participants
 ## 구현 방향
 
 - [x] : step 2 피드백 반영
+  - 고민 부분 : 테스트가 가능하게 하기 위한 방법
+    - `LineGenerator`라는 함수형 인터페이스를 만들어서 테스트에서는 결과 값 통제가능하게 변경

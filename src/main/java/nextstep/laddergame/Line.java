@@ -9,12 +9,12 @@ public record Line(List<Boolean> points) {
         this(IntStream.range(0, values.length).mapToObj(i -> values[i]).toList());
     }
 
-    public Line(int countOfPerson, LineGenerator lineGenerator) {
-        this(lineGenerator.lineDraw(countOfPerson));
+    public Line(LineGenerator lineGenerator) {
+        this(lineGenerator.lineDraw());
     }
 
     public Line(int countOfPerson) {
-        this(new RandomLineGenerator().lineDraw(countOfPerson));
+        this(new RandomLineGenerator(countOfPerson).lineDraw());
     }
 
     public Line {
