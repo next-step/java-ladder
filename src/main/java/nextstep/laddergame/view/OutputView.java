@@ -1,9 +1,9 @@
 package nextstep.laddergame.view;
 
 import java.util.List;
-import nextstep.laddergame.LadderGame;
-import nextstep.laddergame.Line;
-import nextstep.laddergame.Participant;
+import nextstep.laddergame.domain.LadderGame;
+import nextstep.laddergame.domain.Line;
+import nextstep.laddergame.domain.Participant;
 
 public class OutputView {
 

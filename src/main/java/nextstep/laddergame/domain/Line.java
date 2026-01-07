@@ -1,7 +1,9 @@
-package nextstep.laddergame;
+package nextstep.laddergame.domain;
 
 import java.util.List;
 import java.util.stream.IntStream;
+import nextstep.laddergame.domain.linegenerator.LineGenerator;
+import nextstep.laddergame.domain.linegenerator.RandomLineGenerator;
 
 public record Line(List<Boolean> points) {
 
@@ -32,7 +34,7 @@ public record Line(List<Boolean> points) {
 
     }
 
-    static boolean isAllPointsFalse(List<Boolean> points) {
+    public static boolean isAllPointsFalse(List<Boolean> points) {
         return points.stream().noneMatch(Boolean::booleanValue);
     }
 

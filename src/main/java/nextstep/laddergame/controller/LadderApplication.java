@@ -1,6 +1,6 @@
 package nextstep.laddergame.controller;
 
-import nextstep.laddergame.LadderGame;
+import nextstep.laddergame.domain.LadderGame;
 import nextstep.laddergame.view.InputView;
 import nextstep.laddergame.view.OutputView;
 

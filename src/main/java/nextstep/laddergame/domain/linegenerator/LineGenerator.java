@@ -1,4 +1,4 @@
-package nextstep.laddergame;
+package nextstep.laddergame.domain.linegenerator;
 
 import java.util.List;
 
