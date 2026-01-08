@@ -17,7 +17,7 @@ public class LineFactory {
         List<Boolean> points = new ArrayList<>();
         boolean prev = false;
 
-        for (int i=0; i<countOfPlayer-1; i++) {
+        for (int i = 0; i < countOfPlayer - 1; i++) {
             boolean current = generator.generate(prev);
             points.add(current);
             prev = current;

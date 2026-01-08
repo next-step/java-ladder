@@ -12,7 +12,7 @@ public class FixedLineGenerator implements LineGenerator {
 
     @Override
     public boolean generate(boolean prev) {
-        if(prev) return false;
+        if (prev) return false;
         return points.next();
     }
 }

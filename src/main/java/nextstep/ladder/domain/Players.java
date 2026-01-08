@@ -11,6 +11,7 @@ public class Players {
     public Players(String players) {
         this(convertList(split(players)));
     }
+
     public Players(List<Player> players) {
         this.players = players;
     }

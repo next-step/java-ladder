@@ -26,7 +26,7 @@ public class Line {
     private void validate(List<Boolean> points) {
         IntStream.range(0, points.size() - 1)
                 .filter(i -> points.get(i) && points.get(i + 1)).forEach(i -> {
-            throw new IllegalArgumentException("가로선이 연속될 수 없습니다.");
-        });
+                    throw new IllegalArgumentException("가로선이 연속될 수 없습니다.");
+                });
     }
 }

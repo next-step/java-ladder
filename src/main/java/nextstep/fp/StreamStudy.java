@@ -52,6 +52,7 @@ public class StreamStudy {
     public static long sumOverThreeAndDouble(List<Integer> numbers) {
         return sumAll(doubleNumbers(overThreeNumbers(numbers)));
     }
+
     public static List<Integer> overThreeNumbers(List<Integer> numbers) {
         return numbers.stream().filter(x -> x > 3).collect(Collectors.toList());
     }
