@@ -68,7 +68,7 @@ public record Line(List<Boolean> points) {
     }
 
     private boolean endOfRight(int line) {
-        return line == points.size();
+        return line >= points.size() - 1;
     }
 
     public int size() {
