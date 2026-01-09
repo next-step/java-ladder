@@ -14,8 +14,8 @@ public class OutputView {
 
     public static void printLadderResult(LadderGame ladderGame) {
         List<Participant> participants = ladderGame.participants().participantList();
-        List<Line> lines = ladderGame.ladder().lines();
-        List<Goal> goals = ladderGame.ladder().goals();
+        List<Line> lines = ladderGame.ladder().lines().lineList();
+        List<Goal> goals = ladderGame.ladder().goals().goalList();
 
         System.out.println("사다리 결과");
 

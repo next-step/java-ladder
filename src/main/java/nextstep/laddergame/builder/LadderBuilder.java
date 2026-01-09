@@ -2,29 +2,33 @@ package nextstep.laddergame.builder;
 
 import java.util.List;
 import nextstep.laddergame.domain.Goal;
+import nextstep.laddergame.domain.Goals;
 import nextstep.laddergame.domain.Ladder;
 import nextstep.laddergame.domain.Line;
+import nextstep.laddergame.domain.Lines;
 
 public class LadderBuilder {
 
-    private List<Line> lines;
-    private List<Goal> goals;
+    private Lines lines;
+    private Goals goals;
 
     public static Ladder aLadderBuilder() {
         return new LadderBuilder()
             .withLines(
-                List.of(
+                new Lines(
                     new Line(() -> List.of(true, false, false)),
                     new Line(() -> List.of(false, true, false)),
                     new Line(() -> List.of(true, false, false))
                 )
             ).withGoals(
-                List.of(new Goal("꽝"), new Goal("당첨"), new Goal("아슬"))
+                new Goals(
+                    List.of(new Goal("꽝"), new Goal("당첨"), new Goal("아슬"))
+                )
             ).build();
     }
 
     public static String aLadderResult(int startPoint) {
-        return aLadderBuilder().goals().get(startPoint).goal();
+        return aLadderBuilder().goals().goalList().get(startPoint).goal();
     }
 
     private LadderBuilder() {
@@ -35,12 +39,12 @@ public class LadderBuilder {
         this.goals = copy.goals;
     }
 
-    public LadderBuilder withLines(List<Line> lines) {
+    public LadderBuilder withLines(Lines lines) {
         this.lines = lines;
         return this;
     }
 
-    public LadderBuilder withGoals(List<Goal> goals) {
+    public LadderBuilder withGoals(Goals goals) {
         this.goals = goals;
         return this;
     }

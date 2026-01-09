@@ -1,11 +1,10 @@
 package nextstep.laddergame.domain;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public record Ladder(List<Line> lines, List<Goal> goals) {
+public record Ladder(Lines lines, Goals goals) {
 
     public Ladder(String ladderHeight, int countOfPerson) {
         this(Integer.parseInt(ladderHeight), countOfPerson);
@@ -23,15 +22,15 @@ public record Ladder(List<Line> lines, List<Goal> goals) {
         this(getLines(ladderHeight, countOfPerson), getGoals(goals));
     }
 
-    private static List<Goal> getGoals(String[] goals) {
-        return Arrays.stream(goals).map(Goal::new).toList();
+    private static Goals getGoals(String[] goals) {
+        return new Goals(Arrays.stream(goals).map(Goal::new).toList());
     }
 
-    private static List<Line> getLines(int ladderHeight, int countOfPerson) {
-        return IntStream.range(0, ladderHeight).mapToObj(i -> new Line(countOfPerson)).toList();
+    private static Lines getLines(int ladderHeight, int countOfPerson) {
+        return new Lines(IntStream.range(0, ladderHeight).mapToObj(i -> new Line(countOfPerson)).toList());
     }
 
-    public Ladder(List<Line> lines, String... goals) {
+    public Ladder(Lines lines, String... goals) {
         this(lines, getGoals(goals));
     }
 
@@ -39,8 +38,8 @@ public record Ladder(List<Line> lines, List<Goal> goals) {
         validate(lines, goals);
     }
 
-    private void validate(List<Line> lines, List<Goal> goals) {
-        if (lines.getFirst().size() != goals.size()) {
+    private void validate(Lines lines, Goals goals) {
+        if (lines.lineList().getFirst().size() != goals.goalList().size()) {
             throw new IllegalArgumentException("사다리와 결과값이 다르다");
         }
     }
@@ -48,11 +47,11 @@ public record Ladder(List<Line> lines, List<Goal> goals) {
     public String traverse(int startPosition) {
         int currentPosition = startPosition;
 
-        for (Line line : lines) {
+        for (Line line : lines.lineList()) {
             currentPosition = line.nextPosition(currentPosition);
         }
 
-        return goals.get(currentPosition).goal();
+        return goals.goalList().get(currentPosition).goal();
     }
 
 }

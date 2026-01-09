@@ -134,7 +134,7 @@ participant → ladder → Line → height → participants
 
 - [x] : 반복된 테스트 코드 데이터 builder 로 변경
 - [x] : 원시값 포장
-- [ ] : 일급컬렉션 만들기
+- [x] : 일급컬렉션 만들기
 - [ ] : validate 테스트 추가 (line 이동 검증)
 
 규칙 6: 모든 엔티티를 작게 유지한다.
