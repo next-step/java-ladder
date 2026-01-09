@@ -4,6 +4,7 @@ import static nextstep.laddergame.builder.LadderBuilder.aLadderBuilder;
 import static nextstep.laddergame.builder.LadderBuilder.aLadderResult;
 import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
+import nextstep.laddergame.domain.participant.Participants;
 import org.junit.jupiter.api.Test;
 
 class LadderGameTest {

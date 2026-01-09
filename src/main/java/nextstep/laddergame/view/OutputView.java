@@ -5,7 +5,7 @@ import nextstep.laddergame.domain.Goal;
 import nextstep.laddergame.domain.LadderGame;
 import nextstep.laddergame.domain.LadderResult;
 import nextstep.laddergame.domain.Line;
-import nextstep.laddergame.domain.Participant;
+import nextstep.laddergame.domain.participant.Participant;
 
 public class OutputView {
 
@@ -63,7 +63,7 @@ public class OutputView {
         for (int i = 0; i < verticalCount; i++) {
             String label;
             if (i < participants.size()) {
-                label = participants.get(i).name();
+                label = participants.get(i).name().value();
             } else {
                 label = String.valueOf(i + 1); // participants가 부족할 때 임시 라벨
             }
@@ -78,7 +78,7 @@ public class OutputView {
     private static String renderNames(List<Participant> participants, int w) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < participants.size(); i++) {
-            sb.append(padRight(participants.get(i).name(), w));
+            sb.append(padRight(participants.get(i).name().value(), w));
             if (i < participants.size() - 1) {
                 sb.append(" ");
             }

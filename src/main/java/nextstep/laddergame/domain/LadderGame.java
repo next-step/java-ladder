@@ -1,6 +1,7 @@
 package nextstep.laddergame.domain;
 
 import java.util.List;
+import nextstep.laddergame.domain.participant.Participants;
 
 public record LadderGame(Participants participants, Ladder ladder) {
 
@@ -22,7 +23,7 @@ public record LadderGame(Participants participants, Ladder ladder) {
 
     public List<LadderResult> ladderGameResult() {
         return participants.participantList().stream()
-            .map(participant -> new LadderResult(participant.name(), ladder.traverse(participant.position())))
+            .map(participant -> new LadderResult(participant.name().value(), ladder.traverse(participant.position().value())))
             .toList();
     }
 }
