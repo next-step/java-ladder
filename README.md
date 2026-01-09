@@ -113,7 +113,7 @@ participant → ladder → Line → height → participants
   - 초기 지점 0 으로 지정
 - [x] : LadderGame 에서 결과 출력 및 참가자와 결과 매핑
   - Participant 에 위치 재지정 후 리턴
-- [ ] : 실제 출력문 개발
+- [x] : 실제 출력문 개발
 
 ## 객체 설계
 

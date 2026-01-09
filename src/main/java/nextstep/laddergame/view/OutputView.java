@@ -1,20 +1,27 @@
 package nextstep.laddergame.view;
 
 import java.util.List;
+import nextstep.laddergame.domain.Goal;
 import nextstep.laddergame.domain.LadderGame;
+import nextstep.laddergame.domain.LadderResult;
 import nextstep.laddergame.domain.Line;
 import nextstep.laddergame.domain.Participant;
 
 public class OutputView {
 
     private static final int NAME_WIDTH = 5;
+    private static final String ALL_TARGET = "all";
 
     public static void printLadderResult(LadderGame ladderGame) {
         List<Participant> participants = ladderGame.participants().participantList();
         List<Line> lines = ladderGame.ladder().lines();
+        List<Goal> goals = ladderGame.ladder().goals();
+
+        System.out.println("사다리 결과");
 
         if (lines.isEmpty()) {
             System.out.println(renderNames(participants, NAME_WIDTH));
+            System.out.println(renderGoals(goals, NAME_WIDTH));
             return;
         }
 
@@ -30,6 +37,22 @@ public class OutputView {
         for (Line line : lines) {
             System.out.println(ladderMargin + renderLine(line, verticalCount, nameWidth));
         }
+
+        // 3) 결과 라인
+        System.out.println(renderGoals(goals, nameWidth));
+    }
+
+    public static void printResult(List<LadderResult> ladderResults, String target) {
+        System.out.println("실행 결과");
+        if (ALL_TARGET.equals(target)) {
+            printAllResults(ladderResults);
+            return;
+        }
+
+        ladderResults.stream()
+            .filter(result -> result.name().equals(target))
+            .findFirst()
+            .ifPresent(result -> System.out.println(result.goal()));
     }
 
     // ----- render helpers -----
@@ -74,6 +97,23 @@ public class OutputView {
             sb.append("|");
         }
         return sb.toString();
+    }
+
+    private static String renderGoals(List<Goal> goals, int w) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < goals.size(); i++) {
+            sb.append(padRight(goals.get(i).goal(), w));
+            if (i < goals.size() - 1) {
+                sb.append(" ");
+            }
+        }
+        return sb.toString();
+    }
+
+    private static void printAllResults(List<LadderResult> ladderResults) {
+        for (LadderResult result : ladderResults) {
+            System.out.println(result.name() + " : " + result.goal());
+        }
     }
 
     private static String padRight(String s, int w) {
