@@ -1,5 +1,6 @@
-package nextstep.laddergame.domain;
+package nextstep.laddergame.domain.game;
 
+import nextstep.laddergame.domain.ladder.Goal;
 import nextstep.laddergame.domain.participant.Name;
 
 public record LadderResult(Name name, Goal goal) {

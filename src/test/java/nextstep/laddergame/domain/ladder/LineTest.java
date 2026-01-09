@@ -1,4 +1,4 @@
-package nextstep.laddergame.domain;
+package nextstep.laddergame.domain.ladder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

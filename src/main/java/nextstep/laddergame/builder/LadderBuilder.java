@@ -1,11 +1,11 @@
 package nextstep.laddergame.builder;
 
 import java.util.List;
-import nextstep.laddergame.domain.Goal;
-import nextstep.laddergame.domain.Goals;
-import nextstep.laddergame.domain.Ladder;
-import nextstep.laddergame.domain.Line;
-import nextstep.laddergame.domain.Lines;
+import nextstep.laddergame.domain.ladder.Goal;
+import nextstep.laddergame.domain.ladder.Goals;
+import nextstep.laddergame.domain.ladder.Ladder;
+import nextstep.laddergame.domain.ladder.Line;
+import nextstep.laddergame.domain.ladder.Lines;
 
 public class LadderBuilder {
 

@@ -1,6 +1,7 @@
-package nextstep.laddergame.domain;
+package nextstep.laddergame.domain.game;
 
 import java.util.List;
+import nextstep.laddergame.domain.ladder.Ladder;
 import nextstep.laddergame.domain.participant.Participants;
 
 public record LadderGame(Participants participants, Ladder ladder) {

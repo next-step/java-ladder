@@ -1,4 +1,4 @@
-package nextstep.laddergame.domain;
+package nextstep.laddergame.domain.game;
 
 import static nextstep.laddergame.builder.LadderBuilder.aLadderBuilder;
 import static nextstep.laddergame.builder.LadderBuilder.aLadderResult;

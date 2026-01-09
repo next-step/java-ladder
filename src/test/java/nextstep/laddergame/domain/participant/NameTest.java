@@ -1,7 +1,6 @@
-package nextstep.laddergame.domain;
+package nextstep.laddergame.domain.participant;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import nextstep.laddergame.domain.participant.Name;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

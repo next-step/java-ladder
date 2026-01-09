@@ -1,4 +1,4 @@
-package nextstep.laddergame.domain;
+package nextstep.laddergame.domain.ladder;
 
 import java.util.Arrays;
 import java.util.List;

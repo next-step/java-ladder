@@ -1,8 +1,8 @@
 package nextstep.laddergame.controller;
 
 import java.util.List;
-import nextstep.laddergame.domain.LadderGame;
-import nextstep.laddergame.domain.LadderResult;
+import nextstep.laddergame.domain.game.LadderGame;
+import nextstep.laddergame.domain.game.LadderResult;
 import nextstep.laddergame.view.InputView;
 import nextstep.laddergame.view.OutputView;
 

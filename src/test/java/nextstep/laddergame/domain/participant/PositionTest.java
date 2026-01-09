@@ -1,7 +1,6 @@
-package nextstep.laddergame.domain;
+package nextstep.laddergame.domain.participant;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import nextstep.laddergame.domain.participant.Position;
 import org.junit.jupiter.api.Test;
 
 class PositionTest {

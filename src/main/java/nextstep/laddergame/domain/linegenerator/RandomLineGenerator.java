@@ -1,6 +1,6 @@
 package nextstep.laddergame.domain.linegenerator;
 
-import static nextstep.laddergame.domain.Line.isAllPointsFalse;
+import static nextstep.laddergame.domain.ladder.Line.isAllPointsFalse;
 import java.util.ArrayList;
 import java.util.List;
 import nextstep.laddergame.util.RandomUtil;

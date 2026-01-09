@@ -1,4 +1,4 @@
-package nextstep.laddergame.domain;
+package nextstep.laddergame.domain.ladder;
 
 import java.util.List;
 import java.util.stream.IntStream;
