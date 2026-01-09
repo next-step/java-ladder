@@ -1,7 +1,6 @@
-package nextstep.laddergame;
+package nextstep.laddergame.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import nextstep.laddergame.domain.Participants;
 import org.junit.jupiter.api.Test;
 
 class ParticipantsTest {

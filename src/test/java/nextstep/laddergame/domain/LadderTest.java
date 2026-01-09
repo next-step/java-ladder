@@ -1,10 +1,8 @@
-package nextstep.laddergame;
+package nextstep.laddergame.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
-import nextstep.laddergame.domain.Ladder;
-import nextstep.laddergame.domain.Line;
 import org.junit.jupiter.api.Test;
 
 class LadderTest {
