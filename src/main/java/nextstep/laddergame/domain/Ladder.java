@@ -11,6 +11,10 @@ public record Ladder(List<Line> lines, List<Goal> goals) {
         this(Integer.parseInt(ladderHeight), countOfPerson);
     }
 
+    public Ladder(String ladderHeight, int countOfPerson, String goals) {
+        this(Integer.parseInt(ladderHeight), countOfPerson, goals.split(","));
+    }
+
     public Ladder(int ladderHeight, int countOfPerson) {
         this(getLines(ladderHeight, countOfPerson), Stream.generate(() -> "").limit(countOfPerson).toArray(String[]::new));
     }

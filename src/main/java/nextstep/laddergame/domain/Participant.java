@@ -1,8 +1,12 @@
 package nextstep.laddergame.domain;
 
-public record Participant(String name) {
+public record Participant(String name, int position) {
 
     public static final int NAME_MAX_LENGTH = 5;
+
+    public Participant(String name) {
+        this(name, 0);
+    }
 
     public Participant {
         validate(name);
