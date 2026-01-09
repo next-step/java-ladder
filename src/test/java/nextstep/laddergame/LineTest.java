@@ -60,4 +60,18 @@ class LineTest {
         ).isLessThanOrEqualTo(maxTrue);
     }
 
+    @Test
+    void 해당_line이_왼쪽으로_이동가능한지_검증하고_가능하면_왼쪽_이동하는_값을_전달한다() {
+        Line line = new Line(() -> List.of(false, false, true, false, false));
+
+        assertThat(line.nextPosition(3)).isEqualTo(2);
+    }
+
+    @Test
+    void 해당_line이_오른쪽으로_이동가능한지_검증하고_가능하면_오른쪽_이동하는_값을_전달한다() {
+        Line line = new Line(() -> List.of(false, false, true, false, false));
+
+        assertThat(line.nextPosition(2)).isEqualTo(3);
+    }
+
 }

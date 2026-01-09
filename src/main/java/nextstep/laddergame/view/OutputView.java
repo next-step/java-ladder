@@ -11,7 +11,7 @@ public class OutputView {
 
     public static void printLadderResult(LadderGame ladderGame) {
         List<Participant> participants = ladderGame.participants().participantList();
-        List<Line> lines = ladderGame.ladder().line();
+        List<Line> lines = ladderGame.ladder().lines();
 
         if (lines.isEmpty()) {
             System.out.println(renderNames(participants, NAME_WIDTH));

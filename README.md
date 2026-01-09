@@ -106,3 +106,23 @@ participant → ladder → Line → height → participants
 - [x] : step 2 피드백 반영
   - 고민 부분 : 테스트가 가능하게 하기 위한 방법
     - `LineGenerator`라는 함수형 인터페이스를 만들어서 테스트에서는 결과 값 통제가능하게 변경
+- [x] : Goal 구현 및 Ladder 에 추가
+  - Ladder 에서 순회하는 메서드 구현
+  - Line 에서 위치를 결정하는 메서드 구현
+- [ ] : Position 구현 및 Participant 에 위치 추가
+- [ ] : LadderGame 에서 결과 출력 및 참가자와 결과 매핑
+
+## 객체 설계
+
+- Result : 해당 라인의 끝에 결과 입력
+- Participant : 기존 이름 + 현재 위치 값 추가
+  - Ladder 의 내부 값에 따라서 Participant 위치 이동
+  - 결과는 마지막 위치와 Result와 결합하여 제공
+  - Result와 Participant 가 1:1인지 검증
+
+### 객체 역할
+
+- Goal : 도착지의 역할
+- Participant : 이름 + 현재 위치 (or 최종위치)
+- Position : 현재위치 객체 역할
+- Ladder : 사다리 형태, 이동 방향 제공

@@ -38,6 +38,43 @@ public record Line(List<Boolean> points) {
         return points.stream().noneMatch(Boolean::booleanValue);
     }
 
+    public int nextPosition(int position) {
+        if (isRightConnection(position)) {
+            return position + 1;
+        }
+        if (isLeftConnection(position)) {
+            return position - 1;
+        }
+        return position;
+    }
+
+    private boolean isRightConnection(int line) {
+        if (endOfRight(line)) {
+            return false;
+        }
+
+        return points.get(line);
+    }
+
+    private boolean isLeftConnection(int line) {
+        if (endOfLeft(line)) {
+            return false;
+        }
+        return points.get(line - 1);
+    }
+
+    private static boolean endOfLeft(int line) {
+        return line < 1;
+    }
+
+    private boolean endOfRight(int line) {
+        return line == points.size();
+    }
+
+    public int size() {
+        return points.size();
+    }
+
     @Override
     public String toString() {
         return "Line{" +
