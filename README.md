@@ -129,3 +129,12 @@ participant → ladder → Line → height → participants
 - Participant : 이름 + 현재 위치 (or 최종위치)
 - Position : 현재위치 객체 역할
 - Ladder : 사다리 형태, 이동 방향 제공
+
+### 리팩터링
+
+- [x] : 반복된 테스트 코드 데이터 builder 로 변경
+- [ ] : 원시값, 일급컬렉션 이용
+- [ ] : validate 테스트 추가
+
+규칙 6: 모든 엔티티를 작게 유지한다.
+규칙 7: 3개 이상의 인스턴스 변수를 가진 클래스를 쓰지 않는다.

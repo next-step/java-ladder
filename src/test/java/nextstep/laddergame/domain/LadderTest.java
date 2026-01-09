@@ -1,8 +1,9 @@
 package nextstep.laddergame.domain;
 
+import static nextstep.laddergame.builder.LadderBuilder.aLadderBuilder;
+import static nextstep.laddergame.builder.LadderBuilder.aLadderResult;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class LadderTest {
@@ -23,17 +24,11 @@ class LadderTest {
 
     @Test
     void 특정참가자가_lines를_따라가서_0번_line이_마지막_golas_가_어딘지_나타낸다() {
-        Ladder ladder = new Ladder(
-            List.of(
-                new Line(() -> List.of(true, false, false)),
-                new Line(() -> List.of(false, true, false)),
-                new Line(() -> List.of(true, false, false))
-            ),
-            "꽝", "당첨", "아슬");
+        Ladder ladder = aLadderBuilder();
 
-        assertThat(ladder.traverse(0)).isEqualTo("아슬");
-        assertThat(ladder.traverse(1)).isEqualTo("당첨");
-        assertThat(ladder.traverse(2)).isEqualTo("꽝");
+        assertThat(ladder.traverse(0)).isEqualTo(aLadderResult(2));
+        assertThat(ladder.traverse(1)).isEqualTo(aLadderResult(1));
+        assertThat(ladder.traverse(2)).isEqualTo(aLadderResult(0));
     }
 
 }
