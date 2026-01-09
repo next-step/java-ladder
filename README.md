@@ -109,8 +109,11 @@ participant → ladder → Line → height → participants
 - [x] : Goal 구현 및 Ladder 에 추가
   - Ladder 에서 순회하는 메서드 구현
   - Line 에서 위치를 결정하는 메서드 구현
-- [ ] : Position 구현 및 Participant 에 위치 추가
-- [ ] : LadderGame 에서 결과 출력 및 참가자와 결과 매핑
+- [x] : Participant 에 position 추가
+  - 초기 지점 0 으로 지정
+- [x] : LadderGame 에서 결과 출력 및 참가자와 결과 매핑
+  - Participant 에 위치 재지정 후 리턴
+- [ ] : 실제 출력문 개발
 
 ## 객체 설계
 
