@@ -1,4 +1,4 @@
-package nextstep.laddergame.domain.linegenerator;
+package nextstep.laddergame.domain.ladder.linegenerator;
 
 import static nextstep.laddergame.domain.ladder.Line.isAllPointsFalse;
 import java.util.ArrayList;
