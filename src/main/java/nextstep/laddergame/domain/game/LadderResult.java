@@ -13,7 +13,7 @@ public record LadderResult(Name name, Goal goal) {
     public String toString() {
         return "LadderResult{" +
             "name='" + name + '\'' +
-            ", goal='" + goal + '\'' +
+            ", value='" + goal + '\'' +
             '}';
     }
 }

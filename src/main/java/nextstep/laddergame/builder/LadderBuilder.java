@@ -28,7 +28,7 @@ public class LadderBuilder {
     }
 
     public static String aLadderResult(int startPoint) {
-        return aLadderBuilder().goals().goalList().get(startPoint).goal();
+        return aLadderBuilder().goals().goalList().get(startPoint).value();
     }
 
     private LadderBuilder() {

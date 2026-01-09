@@ -51,7 +51,7 @@ public record Ladder(Lines lines, Goals goals) {
             currentPosition = line.nextPosition(currentPosition);
         }
 
-        return goals.goalList().get(currentPosition).goal();
+        return goals.goalList().get(currentPosition).value();
     }
 
 }

@@ -102,7 +102,7 @@ public class OutputView {
     private static String renderGoals(List<Goal> goals, int w) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < goals.size(); i++) {
-            sb.append(padRight(goals.get(i).goal(), w));
+            sb.append(padRight(goals.get(i).value(), w));
             if (i < goals.size() - 1) {
                 sb.append(" ");
             }
@@ -112,7 +112,7 @@ public class OutputView {
 
     private static void printAllResults(List<LadderResult> ladderResults) {
         for (LadderResult result : ladderResults) {
-            System.out.println(result.name() + " : " + result.goal());
+            System.out.println(result.name().value() + " : " + result.goal().value());
         }
     }
 
