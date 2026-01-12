@@ -32,12 +32,7 @@ public class LadderGame {
     }
 
     public Result play(String playerName) {
-        int playerIndex = players.indexOf(playerName);
-        if (playerIndex == -1) {
-            throw new IllegalArgumentException("해당 이름이 없습니다.");
-        }
-        int resultIndex = ladder.move(playerIndex);
-        return results.findResultByIndex(resultIndex);
+        return results.findResultByIndex(ladder.move(players.indexOf(playerName)));
     }
 
     public List<Result> playAll() {

@@ -30,7 +30,7 @@ public class Players {
         return IntStream.range(0, players.size())
                 .filter(i -> players.get(i).getName().equals(name))
                 .findFirst()
-                .orElse(-1);
+                .orElseThrow(()->new IllegalArgumentException("해당 이름이 없습니다."));
     }
 
     private static List<Player> convertList(String[] players) {
