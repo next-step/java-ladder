@@ -21,4 +21,16 @@ public class Ladder {
     public List<Line> getLines() {
         return this.lines;
     }
+
+    public int move(int startIndex){
+        int index = startIndex;
+        for(Line line: lines) {
+            if(index < line.getPoints().size() && line.hasLine(index)){
+                index++;
+            } else if (index > 0 && line.hasLine(index - 1)) {
+                index--;
+            }
+        }
+        return index;
+    }
 }

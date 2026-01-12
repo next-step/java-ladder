@@ -16,7 +16,7 @@ public class LadderGameTest {
 
         Ladder ladder = new Ladder(3, 4, lineFactory);
 
-        LadderGame ladderGame = new LadderGame("pobi,honux,crong,jk", ladder);
+        LadderGame ladderGame = new LadderGame("pobi,honux,crong,jk", ladder, "꽝,5000,꽝,3000");
 
         Assertions.assertThat(ladderGame.getPlayers()).hasSize(4);
     }
