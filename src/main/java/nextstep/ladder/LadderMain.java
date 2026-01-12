@@ -37,7 +37,7 @@ public class LadderMain {
         OutputView.printResults(ladderGame.getResults());
 
         while (true) {
-            String playerName = InputView.inputResultName().trim();
+            String playerName = InputView.inputResultName();
             if (playerName.equalsIgnoreCase("all")) {
                 OutputView.printAllResults(ladderGame);
                 break;
