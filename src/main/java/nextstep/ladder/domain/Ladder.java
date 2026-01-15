@@ -5,30 +5,37 @@ import java.util.List;
 
 public class Ladder {
   private final List<Line> lines;
-  private final int maxHeight;
+  private final Height height;
 
-  public Ladder(int countOfPerson, int maxHeight) {
-    this(generateLines(countOfPerson, maxHeight), maxHeight);
+  public Ladder(int countOfPerson, Height height) {
+    this(generateLines(countOfPerson, height), height);
   }
 
-  public Ladder(List<Line> lines, int maxHeight) {
-    validateHeight(lines, maxHeight);
+  public Ladder(List<Line> lines, Height height) {
+    validateHeight(lines, height);
     this.lines = Collections.unmodifiableList(new ArrayList<>(lines));
-    this.maxHeight = maxHeight;
+    this.height = height;
   }
 
-  private static List<Line> generateLines(int countOfPerson, int maxHeight) {
+  private static List<Line> generateLines(int countOfPerson, Height height) {
     List<Line> lines = new ArrayList<>();
-    for (int i = 0; i < maxHeight; i++) {
+    for (int i = 0; i < height.getValue(); i++) {
       lines.add(new Line(countOfPerson));
     }
     return lines;
   }
 
-  private static void validateHeight(List<Line> lines, int maxHeight) {
-    if (lines.size() > maxHeight) {
-      throw new IllegalArgumentException("최대 사다리 높이는 " + maxHeight + "입니다.");
+  private static void validateHeight(List<Line> lines, Height height) {
+    if (lines.size() > height.getValue()) {
+      throw new IllegalArgumentException("최대 사다리 높이는 " + height.getValue() + "입니다.");
     }
+  }
+
+  public int findEnd(int position) {
+    for (Line line : lines) {
+      position = line.move(position);
+    }
+    return position;
   }
 
   @Override
@@ -39,4 +46,5 @@ public class Ladder {
     }
     return sb.toString();
   }
+
 }
