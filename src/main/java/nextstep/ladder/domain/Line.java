@@ -4,44 +4,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<Point> points;
+    private final List<Cross> crosses;
 
     public Line(List<Boolean> connections) {
-        this.points = createPoints(connections);
+        this.crosses = createCrosses(connections);
     }
 
-    private List<Point> createPoints(List<Boolean> connections) {
-        List<Point> points = new ArrayList<>();
+    private List<Cross> createCrosses(List<Boolean> connections) {
+        List<Cross> crosses = new ArrayList<>();
 
-        Point point = Point.first(connections.isEmpty() ? false : connections.get(0));
-        points.add(point);
+        Cross cross = Cross.first(!connections.isEmpty() && connections.getFirst());
+        crosses.add(cross);
 
         for (int i = 1; i < connections.size(); i++) {
-            point = point.next(connections.get(i));
-            points.add(point);
+            cross = cross.next(connections.get(i));
+            crosses.add(cross);
         }
 
-        points.add(point.last());
-        return points;
+        crosses.add(cross.last());
+        return crosses;
     }
 
     public Line(int countOfPerson) {
-        this.points = generatePoints(countOfPerson);
+        this.crosses = generateCrosses(countOfPerson);
     }
 
-    private List<Point> generatePoints(int countOfPerson) {
-        List<Point> points = new ArrayList<>();
+    private List<Cross> generateCrosses(int countOfPerson) {
+        List<Cross> crosses = new ArrayList<>();
 
-        Point point = Point.first(generateRandomBoolean(false));
-        points.add(point);
+        Cross cross = Cross.first(generateRandomBoolean(false));
+        crosses.add(cross);
 
         for (int i = 1; i < countOfPerson - 1; i++) {
-            point = point.next(generateRandomBoolean(point.hasRightConnection()));
-            points.add(point);
+            cross = cross.next(generateRandomBoolean(cross.hasRightConnection()));
+            crosses.add(cross);
         }
 
-        points.add(point.last());
-        return points;
+        crosses.add(cross.last());
+        return crosses;
     }
 
     private boolean generateRandomBoolean(boolean previousRight) {
@@ -52,19 +52,19 @@ public class Line {
     }
 
     public boolean hasConnectionAt(int position) {
-        return points.get(position).hasRightConnection();
+        return crosses.get(position).hasRightConnection();
     }
 
     public int move(int position) {
-        return points.get(position).move();
+        return crosses.get(position).move();
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("     ");
-        for (int i = 0; i < points.size() - 1; i++) {
-            sb.append("|").append(points.get(i).hasRightConnection() ? "-----" : "     ");
+        for (int i = 0; i < crosses.size() - 1; i++) {
+            sb.append("|").append(crosses.get(i).hasRightConnection() ? "-----" : "     ");
         }
         sb.append("|");
         return sb.toString();
