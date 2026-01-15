@@ -18,4 +18,8 @@ public class Names {
         return names;
     }
 
+    public int size() {
+        return names.size();
+    }
+
 }
