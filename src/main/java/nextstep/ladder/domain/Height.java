@@ -14,4 +14,8 @@ public class Height {
             throw new IllegalArgumentException("높이는 %d 이상이어야 합니다.".formatted(MIN_HEIGHT));
         }
     }
+
+    public int getHeight() {
+        return height;
+    }
 }
