@@ -8,11 +8,15 @@ public class Ladder {
   private final Height height;
 
   public Ladder(int countOfPerson, int maxHeight) {
-    this(countOfPerson, new Height(maxHeight));
+    this(countOfPerson, new Height(maxHeight), new RandomLineConnectionStrategy());
   }
 
   public Ladder(int countOfPerson, Height height) {
-    this(generateLines(countOfPerson, height), height);
+    this(countOfPerson, height, new RandomLineConnectionStrategy());
+  }
+
+  public Ladder(int countOfPerson, Height height, LineConnectionStrategy strategy) {
+    this(generateLines(countOfPerson, height, strategy), height);
   }
 
   public Ladder(List<Line> lines, Height height) {
@@ -21,10 +25,10 @@ public class Ladder {
     this.height = height;
   }
 
-  private static List<Line> generateLines(int countOfPerson, Height height) {
+  private static List<Line> generateLines(int countOfPerson, Height height, LineConnectionStrategy strategy) {
     List<Line> lines = new ArrayList<>();
     for (int i = 0; i < height.getValue(); i++) {
-      lines.add(new Line(countOfPerson));
+      lines.add(new Line(countOfPerson, strategy));
     }
     return lines;
   }

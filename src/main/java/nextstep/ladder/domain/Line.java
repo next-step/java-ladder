@@ -25,30 +25,23 @@ public class Line {
         return crosses;
     }
 
-    public Line(int countOfPerson) {
-        this.crosses = generateCrosses(countOfPerson);
+    public Line(int countOfPerson, LineConnectionStrategy strategy) {
+        this.crosses = generateCrosses(countOfPerson, strategy);
     }
 
-    private List<Cross> generateCrosses(int countOfPerson) {
+    private List<Cross> generateCrosses(int countOfPerson, LineConnectionStrategy strategy) {
         List<Cross> crosses = new ArrayList<>();
 
-        Cross cross = Cross.first(generateRandomBoolean(false));
+        Cross cross = Cross.first(strategy.hasConnection(false));
         crosses.add(cross);
 
         for (int i = 1; i < countOfPerson - 1; i++) {
-            cross = cross.next(generateRandomBoolean(cross.hasRightConnection()));
+            cross = cross.next(strategy.hasConnection(cross.hasRightConnection()));
             crosses.add(cross);
         }
 
         crosses.add(cross.last());
         return crosses;
-    }
-
-    private boolean generateRandomBoolean(boolean previousRight) {
-        if (previousRight) {
-            return false;
-        }
-        return Math.random() < 0.5;
     }
 
     public boolean hasConnectionAt(int position) {

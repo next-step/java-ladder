@@ -12,14 +12,14 @@ class LineTest {
   @ParameterizedTest
   @ValueSource(ints = {2, 3, 5, 10, 20})
   void 라인생성(int countOfPerson) {
-    Line line = new Line(countOfPerson);
+    Line line = new Line(countOfPerson, new RandomLineConnectionStrategy());
     assertThat(line).isNotNull();
   }
 
   @Test
   void 연속된가로선이없어야함() {
     for (int trial = 0; trial < 100; trial++) {
-      Line line = new Line(10);
+      Line line = new Line(10, new RandomLineConnectionStrategy());
 
       for (int i = 0; i < 8; i++) {
         boolean current = line.hasConnectionAt(i);
@@ -32,7 +32,7 @@ class LineTest {
 
   @Test
   void toString_포맷확인() {
-    Line line = new Line(3);
+    Line line = new Line(3, new RandomLineConnectionStrategy());
     String result = line.toString();
     assertThat(result).startsWith("     ");
     assertThat(result).endsWith("|");
