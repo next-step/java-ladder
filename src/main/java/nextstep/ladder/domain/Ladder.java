@@ -1,28 +1,23 @@
 package nextstep.ladder.domain;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 public class Ladder {
-    private final List<Line> lines;
+    private final Names names;
+    private final Lines lines;
 
-    public Ladder(int height, int countOfPerson) {
-        this(height, countOfPerson, new RandomLineStrategy());
+    public Ladder(String input, int height) {
+        this(new Names(input), new Lines(height, new Names(input).size()));
     }
 
-    public Ladder(int height, int countOfPerson, LineStrategy strategy) {
-        this(Stream.generate(() -> new Line(countOfPerson, strategy))
-                .limit(new Height(height).getHeight())
-                .collect(Collectors.toList()));
-    }
-
-    public Ladder(List<Line> lines) {
+    public Ladder(Names names, Lines lines) {
+        this.names = names;
         this.lines = lines;
     }
 
-    public List<Line> getValues() {
-        return Collections.unmodifiableList(lines);
+    public Names getNames() {
+        return names;
+    }
+
+    public Lines getLines() {
+        return lines;
     }
 }

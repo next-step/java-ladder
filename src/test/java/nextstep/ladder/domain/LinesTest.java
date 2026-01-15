@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LadderTest {
+class LinesTest {
 
     @Test
     void create_ladder() {
-        Ladder ladder = new Ladder(3, 5);
-        assertThat(ladder.getValues()).hasSize(3);
+        Lines lines = new Lines(3, 5);
+        assertThat(lines.getValues()).hasSize(3);
     }
 
     @Test
@@ -18,9 +18,9 @@ class LadderTest {
         int countOfPerson = 5;
         LineStrategy strategy = () -> true;
 
-        Ladder ladder = new Ladder(height, countOfPerson, strategy);
+        Lines lines = new Lines(height, countOfPerson, strategy);
 
-        assertThat(ladder.getValues()).allSatisfy(line -> {
+        assertThat(lines.getValues()).allSatisfy(line -> {
             assertThat(line.getPoints()).containsExactly(true, false, true, false);
         });
 
