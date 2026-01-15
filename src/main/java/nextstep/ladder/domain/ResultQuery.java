@@ -1,25 +1,17 @@
 package nextstep.ladder.domain;
 
-public class ResultQuery {
-    private static final String ALL = "all";
+import java.util.function.Consumer;
+import nextstep.ladder.LadderGameResult;
 
-    private final String name;
-    private final boolean isAll;
+public interface ResultQuery {
+    String ALL = "all";
 
-    public ResultQuery(String name, boolean isAll) {
-        this.name = name;
-        this.isAll = isAll;
-    }
+    boolean execute(LadderGameResult result, Consumer<String> output);
 
-    public ResultQuery(String input) {
-        this(ALL.equalsIgnoreCase(input) ? null : input, ALL.equalsIgnoreCase(input));
-    }
-
-    public boolean isAll() {
-        return isAll;
-    }
-
-    public String getName() {
-        return name;
+    static ResultQuery of(String input) {
+        if (ALL.equalsIgnoreCase(input)) {
+            return new AllResultQuery();
+        }
+        return new SingleResultQuery(input);
     }
 }
