@@ -1,5 +1,6 @@
 package nextstep.ladder.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -11,7 +12,7 @@ class LadderTest {
 
   @Test
   void 사다리생성_자동생성() {
-    assertDoesNotThrow(() -> new Ladder(5, 10));
+    assertDoesNotThrow(() -> new Ladder(5, new Height(10)));
   }
 
   @Test
@@ -20,7 +21,7 @@ class LadderTest {
     lines.add(new Line(5));
     lines.add(new Line(5));
 
-    assertDoesNotThrow(() -> new Ladder(lines, 10));
+    assertDoesNotThrow(() -> new Ladder(lines, new Height(10)));
   }
 
   @Test
@@ -30,7 +31,7 @@ class LadderTest {
       lines.add(new Line(5));
     }
 
-    assertThatThrownBy(() -> new Ladder(lines, 10))
+    assertThatThrownBy(() -> new Ladder(lines, new Height(10)))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessage("최대 사다리 높이는 10입니다.");
   }
@@ -42,7 +43,23 @@ class LadderTest {
       lines.add(new Line(5));
     }
 
-    assertDoesNotThrow(() -> new Ladder(lines, 10));
+    assertDoesNotThrow(() -> new Ladder(lines, new Height(10)));
   }
 
+  @Test
+  void 사다리이동() {
+    // |-----|     |     |
+    // |     |-----|     |
+    // 0     1     2     3
+    List<Line> lines = List.of(
+        new Line(List.of(true, false, false)),
+        new Line(List.of(false, true, false))
+    );
+    Ladder ladder = new Ladder(lines, new Height(5));
+
+    assertThat(ladder.findEnd(0)).isEqualTo(2);  // 0 → 1 → 2
+    assertThat(ladder.findEnd(1)).isEqualTo(0);  // 1 → 0 → 0
+    assertThat(ladder.findEnd(2)).isEqualTo(1);  // 2 → 2 → 1
+    assertThat(ladder.findEnd(3)).isEqualTo(3);  // 3 → 3 → 3
+  }
 }

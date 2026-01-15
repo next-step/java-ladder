@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -35,5 +36,36 @@ class LineTest {
     String result = line.toString();
     assertThat(result).startsWith("     ");
     assertThat(result).endsWith("|");
+  }
+
+  @Test
+  void move_오른쪽연결시오른쪽이동() {
+    // |-----|     |
+    // 0     1     2
+    Line line = new Line(java.util.List.of(true, false));
+    assertThat(line.move(0)).isEqualTo(1);
+  }
+
+  @Test
+  void move_왼쪽연결시왼쪽이동() {
+    // |-----|     |
+    // 0     1     2
+    Line line = new Line(java.util.List.of(true, false));
+    assertThat(line.move(1)).isEqualTo(0);
+  }
+
+  @Test
+  void move_연결없으면그대로() {
+    // |-----|     |
+    // 0     1     2
+    Line line = new Line(java.util.List.of(true, false));
+    assertThat(line.move(2)).isEqualTo(2);
+  }
+
+  @Test
+  void 연속된가로선입력시예외() {
+    assertThatThrownBy(() -> new Line(java.util.List.of(true, true, false)))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage("연속된 가로선은 허용되지 않습니다.");
   }
 }

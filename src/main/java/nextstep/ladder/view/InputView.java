@@ -14,8 +14,23 @@ public class InputView {
             .collect(Collectors.toList());
   }
 
+  public static List<String> inputLadderRewards(int participantCount){
+    System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
+    List<String> rewards = Arrays.stream(scanner.nextLine().split(","))
+        .collect(Collectors.toList());
+    if(rewards.size() != participantCount){
+      throw new IllegalArgumentException("참여자수와 결과수가 같지 않습니다");
+    }
+    return rewards;
+  }
+
   public static int inputMaxLadderHeight(){
     System.out.println("\n최대 사다리 높이는 몇 개인가요?");
     return Integer.parseInt(scanner.nextLine());
+  }
+
+  public static String inputNameofResult() {
+    System.out.println("\n결과를 보고 싶은 사람은?");
+    return scanner.nextLine();
   }
 }
