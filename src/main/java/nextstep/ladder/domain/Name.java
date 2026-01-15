@@ -18,4 +18,8 @@ public class Name {
             throw new IllegalArgumentException("이름은 %d자 이하여야 합니다".formatted(MAX_LENGTH));
         }
     }
+
+    public String getValue() {
+        return name;
+    }
 }
