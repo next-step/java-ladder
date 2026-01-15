@@ -21,10 +21,7 @@ public class LadderGameApplication {
     LadderGame game = new LadderGame(ladder, rewards);
     LadderGameResult result = game.play(participants);
 
-    ResultQuery query = ResultQuery.of(InputView.inputResultQuery());
-    while (query.execute(result, OutputView::printResult)) {
-      query = ResultQuery.of(InputView.inputResultQuery());
-    }
+    ResultQuery.queryUntilDone(result, InputView::inputResultQuery, OutputView::printResult);
     OutputView.printAllResults(result);
   }
 

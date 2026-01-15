@@ -1,6 +1,7 @@
 package nextstep.ladder.domain;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 import nextstep.ladder.LadderGameResult;
 
 public interface ResultQuery {
@@ -13,5 +14,14 @@ public interface ResultQuery {
             return new AllResultQuery();
         }
         return new SingleResultQuery(input);
+    }
+
+    static void queryUntilDone(LadderGameResult result,
+                               Supplier<String> inputSupplier,
+                               Consumer<String> output) {
+        ResultQuery query = of(inputSupplier.get());
+        while (query.execute(result, output)) {
+            query = of(inputSupplier.get());
+        }
     }
 }
