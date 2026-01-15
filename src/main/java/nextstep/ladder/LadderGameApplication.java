@@ -3,12 +3,12 @@ package nextstep.ladder;
 import nextstep.ladder.domain.Height;
 import nextstep.ladder.domain.Ladder;
 import nextstep.ladder.domain.Participants;
+import nextstep.ladder.domain.ResultQuery;
 import nextstep.ladder.domain.Rewards;
 import nextstep.ladder.view.InputView;
 import nextstep.ladder.view.OutputView;
 
 public class LadderGameApplication {
-  private static final String ALL = "all";
 
   public static void main(String[] args) {
     Participants participants = new Participants(InputView.inputParticipants());
@@ -21,15 +21,12 @@ public class LadderGameApplication {
     LadderGame game = new LadderGame(ladder, rewards);
     LadderGameResult result = game.play(participants);
 
-    queryResults(result);
-  }
-
-  private static void queryResults(LadderGameResult result) {
-    String name = InputView.inputNameofResult();
-    while (!ALL.equals(name)) {
-      OutputView.printResult(result.getResult(name));
-      name = InputView.inputNameofResult();
+    ResultQuery query = new ResultQuery(InputView.inputResultQuery());
+    while (!query.isAll()) {
+      OutputView.printResult(result.getResult(query.getName()));
+      query = new ResultQuery(InputView.inputResultQuery());
     }
     OutputView.printAllResults(result);
   }
+
 }
