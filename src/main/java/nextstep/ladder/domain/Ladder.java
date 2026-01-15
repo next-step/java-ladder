@@ -7,6 +7,10 @@ public class Ladder {
   private final List<Line> lines;
   private final Height height;
 
+  public Ladder(int countOfPerson, int maxHeight) {
+    this(countOfPerson, new Height(maxHeight));
+  }
+
   public Ladder(int countOfPerson, Height height) {
     this(generateLines(countOfPerson, height), height);
   }
