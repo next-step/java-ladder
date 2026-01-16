@@ -10,11 +10,7 @@ public class LadderGame {
     private final Ladder ladder;
     private final Results results;
 
-    public LadderGame(String players, Ladder ladder, String results) {
-        this(new Players(players), ladder, new Results(results));
-    }
-
-    public LadderGame(Players players, Ladder ladder, Results results) {
+    private LadderGame(Players players, Ladder ladder, Results results) {
         this.players = players;
         this.ladder = ladder;
         this.results = results;
