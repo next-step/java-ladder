@@ -1,7 +1,6 @@
 package nextstep.ladder.domain;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Line {
     private final List<Boolean> points;
@@ -23,10 +22,25 @@ public class Line {
         return points.get(i);
     }
 
+    public int move(int index) {
+        if(canMoveRight(index)) return index + 1;
+        if (canMoveLeft(index)) return index - 1;
+        return index;
+    }
+
+    private boolean canMoveLeft(int index) {
+        return index > 0 && this.hasLine(index - 1);
+    }
+
+    private boolean canMoveRight(int index) {
+        return index < this.getPoints().size() && this.hasLine(index);
+    }
+
     private void validate(List<Boolean> points) {
-        IntStream.range(0, points.size() - 1)
-                .filter(i -> points.get(i) && points.get(i + 1)).forEach(i -> {
-                    throw new IllegalArgumentException("가로선이 연속될 수 없습니다.");
-                });
+        for (int i = 0; i < points.size() - 1; i++) {
+            if (points.get(i) && points.get(i + 1)) {
+                throw new IllegalArgumentException("가로선이 연속될 수 없습니다.");
+            }
+        }
     }
 }

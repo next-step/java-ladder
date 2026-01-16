@@ -22,19 +22,10 @@ public class Ladder {
         return this.lines;
     }
 
-    private static int getNextIndex(Line line, int index) {
-        if(index < line.getPoints().size() && line.hasLine(index)){
-            index++;
-        } else if (index > 0 && line.hasLine(index - 1)) {
-            index--;
-        }
-        return index;
-    }
-
     public int move(int startIndex){
         int index = startIndex;
         for(Line line: lines) {
-            index = getNextIndex(line, index);
+            index = line.move(index);
         }
         return index;
     }

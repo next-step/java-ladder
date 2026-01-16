@@ -19,4 +19,19 @@ public class LadderTest {
 
         assertThat(ladder.getLines()).hasSize(3);
     }
+
+    @Test
+    void 사다리를_타면_정해진_위치로_이동한다() {
+        LineFactory factory = new LineFactory(new FixedLineGenerator(
+                true, false, true,
+                false, true, false,
+                true, false, false
+        ));
+        Ladder ladder = new Ladder(3, 4, factory);
+
+        assertThat(ladder.move(0)).isEqualTo(2);
+        assertThat(ladder.move(1)).isEqualTo(1);
+        assertThat(ladder.move(2)).isEqualTo(3);
+        assertThat(ladder.move(3)).isEqualTo(0);
+    }
 }

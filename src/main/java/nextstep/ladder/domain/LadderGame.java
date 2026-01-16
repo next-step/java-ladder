@@ -1,5 +1,7 @@
 package nextstep.ladder.domain;
 
+import nextstep.ladder.factory.LineFactory;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -7,7 +9,6 @@ public class LadderGame {
     private final Players players;
     private final Ladder ladder;
     private final Results results;
-
 
     public LadderGame(String players, Ladder ladder, String results) {
         this(new Players(players), ladder, new Results(results));
@@ -17,6 +18,14 @@ public class LadderGame {
         this.players = players;
         this.ladder = ladder;
         this.results = results;
+    }
+
+    public static LadderGame of(String names, String results, int height, LineFactory factory) {
+        Players players = new Players(names);
+        Results result = new Results(results);
+        Ladder ladder = new Ladder(height, players.getSize(), factory);
+
+        return new LadderGame(players, ladder, result);
     }
 
     public List<Player> getPlayers() {
