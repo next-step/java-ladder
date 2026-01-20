@@ -4,65 +4,62 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-  private List<Boolean> points;
+    private final List<Cross> crosses;
 
-  public Line(List<Boolean> points) {
-    validateNoConsecutiveConnection(points);
-    this.points = new ArrayList<>(points);
-  }
-
-  private void validateNoConsecutiveConnection(List<Boolean> points) {
-    for (int i = 0; i < points.size() - 1; i++) {
-      if (points.get(i) && points.get(i + 1)) {
-        throw new IllegalArgumentException("연속된 가로선은 허용되지 않습니다.");
-      }
+    public Line(List<Boolean> connections) {
+        this.crosses = createCrosses(connections);
     }
-  }
 
-  public Line(int countOfPerson) {
-    this(generatePoints(countOfPerson));
-  }
+    private List<Cross> createCrosses(List<Boolean> connections) {
+        List<Cross> crosses = new ArrayList<>();
 
-  private static List<Boolean> generatePoints(int countOfPerson) {
-    List<Boolean> points = new ArrayList<>();
-    for (int i = 0; i < countOfPerson - 1; i++) {
-      points.add(generatePoint(points));
-    }
-    return points;
-  }
+        Cross cross = Cross.first(!connections.isEmpty() && connections.getFirst());
+        crosses.add(cross);
 
-  private static boolean generatePoint(List<Boolean> points) {
-    if (points.isEmpty()) {
-      return Math.random() < 0.5;
-    }
-    if (points.get(points.size() - 1)) {
-      return false;
-    }
-    return Math.random() < 0.5;
-  }
+        for (int i = 1; i < connections.size(); i++) {
+            cross = cross.next(connections.get(i));
+            crosses.add(cross);
+        }
 
-  public boolean hasConnectionAt(int position) {
-    return points.get(position);
-  }
+        crosses.add(cross.last());
+        return crosses;
+    }
 
-  public int move(int position) {
-    if (position > 0 && points.get(position - 1)) {
-      return position - 1;
+    public Line(int countOfPerson, LineConnectionStrategy strategy) {
+        this.crosses = generateCrosses(countOfPerson, strategy);
     }
-    if (position < points.size() && points.get(position)) {
-      return position + 1;
-    }
-    return position;
-  }
 
-  @Override
-  public String toString(){
-    StringBuilder sb = new StringBuilder();
-    sb.append("     ");
-    for(int i = 0; i < points.size(); i++){
-      sb.append("|").append(points.get(i)? "-----" : "     ");
+    private List<Cross> generateCrosses(int countOfPerson, LineConnectionStrategy strategy) {
+        List<Cross> crosses = new ArrayList<>();
+
+        Cross cross = Cross.first(strategy.hasConnection(false));
+        crosses.add(cross);
+
+        for (int i = 1; i < countOfPerson - 1; i++) {
+            cross = cross.next(strategy.hasConnection(cross.hasRightConnection()));
+            crosses.add(cross);
+        }
+
+        crosses.add(cross.last());
+        return crosses;
     }
-    sb.append("|");
-    return sb.toString();
-  }
+
+    public boolean hasConnectionAt(int position) {
+        return crosses.get(position).hasRightConnection();
+    }
+
+    public int move(int position) {
+        return crosses.get(position).move();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("     ");
+        for (int i = 0; i < crosses.size() - 1; i++) {
+            sb.append("|").append(crosses.get(i).hasRightConnection() ? "-----" : "     ");
+        }
+        sb.append("|");
+        return sb.toString();
+    }
 }

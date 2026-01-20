@@ -18,8 +18,8 @@ class LadderTest {
   @Test
   void 사다리생성_직접주입() {
     List<Line> lines = new ArrayList<>();
-    lines.add(new Line(5));
-    lines.add(new Line(5));
+    lines.add(new Line(5, new RandomLineConnectionStrategy()));
+    lines.add(new Line(5, new RandomLineConnectionStrategy()));
 
     assertDoesNotThrow(() -> new Ladder(lines, new Height(10)));
   }
@@ -28,7 +28,7 @@ class LadderTest {
   void 최대높이초과시예외() {
     List<Line> lines = new ArrayList<>();
     for (int i = 0; i < 11; i++) {
-      lines.add(new Line(5));
+      lines.add(new Line(5, new RandomLineConnectionStrategy()));
     }
 
     assertThatThrownBy(() -> new Ladder(lines, new Height(10)))
@@ -40,7 +40,7 @@ class LadderTest {
   void 최대높이와정확히같은높이는허용() {
     List<Line> lines = new ArrayList<>();
     for (int i = 0; i < 10; i++) {
-      lines.add(new Line(5));
+      lines.add(new Line(5, new RandomLineConnectionStrategy()));
     }
 
     assertDoesNotThrow(() -> new Ladder(lines, new Height(10)));
